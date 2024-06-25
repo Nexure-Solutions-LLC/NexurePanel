@@ -84,7 +84,7 @@
 
                                         echo '</table>';
                                     }
-                                } if ($employeeAccessLevel == "Manager") {
+                                } else if ($employeeAccessLevel == "Manager") {
                                     $sql = "SELECT * FROM caliweb_tasks";
                                     $result = mysqli_query($con, $sql);
 
