@@ -1,1 +1,0 @@
-Error: [8192] Implicit conversion from float 62.06896551724138 to int loses precision in /var/www/calipanel/modules/graphSQL/pieCharts/index.php on line 54

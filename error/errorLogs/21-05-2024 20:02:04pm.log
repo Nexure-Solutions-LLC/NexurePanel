@@ -1,1 +1,0 @@
-Error: [2] file(blockedips.txt): Failed to open stream: No such file or directory in /var/www/calipanel/assets/php/dashboardHeader.php on line 103

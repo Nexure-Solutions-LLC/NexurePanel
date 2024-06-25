@@ -1,2 +1,0 @@
-Error: [2] include(/var/www/calipanel/assets/php/loginFooter.php
-            ): Failed to open stream: No such file or directory in /var/www/calipanel/login/index.php on line 101

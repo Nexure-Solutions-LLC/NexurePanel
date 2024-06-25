@@ -1,1 +1,0 @@
-Error: [8192] ucfirst(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/calipanel/modules/paymentModule/stripe/index.php on line 60

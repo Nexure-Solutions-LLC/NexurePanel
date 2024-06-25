@@ -1,2 +1,0 @@
-Error: [2] file_get_contents(https://lookup.binlist.net/4242): Failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
- in /var/www/calipanel/modules/paymentModule/binLookup/index.php on line 10

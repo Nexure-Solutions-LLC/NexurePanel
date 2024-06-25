@@ -1,1 +1,0 @@
-Error: [2] include(/assets/php/headerMenuConfiguration.php): Failed to open stream: No such file or directory in /var/www/calipanel/assets/php/dashboardHeader.php on line 151

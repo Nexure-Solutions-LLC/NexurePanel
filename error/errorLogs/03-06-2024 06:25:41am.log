@@ -1,1 +1,0 @@
-Error: [2] Attempt to read property "name" on null in /var/www/calipanel/modules/paymentModule/stripe/index.php on line 58

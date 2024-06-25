@@ -1,1 +1,0 @@
-Error: [2] Cannot modify header information - headers already sent by (output started at /var/www/calipanel/assets/php/loginHeader.php:115) in /var/www/calipanel/dashboard/administration/verification/customerVerification/index.php on line 28
