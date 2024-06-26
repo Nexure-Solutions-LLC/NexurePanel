@@ -127,40 +127,40 @@
     <!-- Unique Website Title Tag End -->
 
         <section class="login-container">
-            <div class="container caliweb-container" style="width:42%; margin-top:4%;">
+            <div class="container caliweb-container" style="width:42%; margin-top:2%;">
                 <div class="caliweb-login-box-header mb-5-per" style="text-align:left;">
                     <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Self Registration</span></h3>
                     <p style="font-size:12px; margin-top:-2%;">Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.</p>
                 </div>
                 <div class="caliweb-login-box-body">
                     <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                        <div class="form-control">
+                        <div class="form-control" style="margin-top:-2%;">
                             <label for="legalname" class="text-gray-label">Legal Name</label>
                             <input type="text" class="form-input" name="legalname" id="legalname" placeholder="" required="" />
                         </div>
-                        <div class="form-control">
+                        <div class="form-control" style="margin-top:-2%;">
                             <label for="phonenumber" class="text-gray-label">Phone Number</label>
                             <input type="text" class="form-input" name="phonenumber" id="phonenumber" placeholder="" required="" />
                         </div>
-                        <div class="form-control">
+                        <div class="form-control" style="margin-top:-2%;">
                             <label for="emailaddress" class="text-gray-label">Email Address</label>
                             <input type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="" required="" />
                         </div>
-                        <div class="form-control">
+                        <div class="form-control" style="margin-top:-2%;">
                             <label for="password" class="text-gray-label">Password</label>
                             <input type="password" class="form-input" name="password" id="password" placeholder="" />
                         </div>
                         <div class="form-control">
                             <input type="text" class="form-input" style="display:none;" name="dispnone" id="dispnone" placeholder="" />
                         </div>
-                        <div class="mt-10-per" style="display:flex; align-items:center; justify-content:space-between;">
+                        <div style="padding-top:2%;">
+                            <div class="h-captcha" id="h-captcha" data-sitekey="509db1ec-9483-4051-aea3-8ba88d8bbc8e"></div>
+                        </div>
+                        <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between;">
                             <div class="form-control width-50">
                                 <p style="font-size:14px; padding:0; margin:0;">We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.</p>
                             </div>
                             <div class="form-control width-25">
-                                <div>
-                                    <div class="h-captcha" id="h-captcha" data-sitekey="509db1ec-9483-4051-aea3-8ba88d8bbc8e"></div>
-                                </div>
                                 <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
                             </div>
                         </div>
