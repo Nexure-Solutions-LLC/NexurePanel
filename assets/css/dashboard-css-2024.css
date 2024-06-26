@@ -258,11 +258,11 @@ html[data-theme='dark'] body{
 }
 
 .dark-mode .card-header {
-    border-bottom:1px solid #222;
+    border-bottom:0;
 }
 
 .dark-mode .card-footer {
-    border-top:1px solid #222;
+    border-top:0;
 }
 
 .dark-mode .card-header-account {
@@ -312,6 +312,16 @@ html[data-theme='dark'] body{
 .dark-mode .thumb-web-img {
     border:#333 1px solid;
 }
+
+.dark-mode table {
+    border-top:1px solid #333 !important;
+}
+
+.dark-mode .price-table-head, 
+.dark-mode table tbody th {
+    background-color: #1d1d1d !important;
+}
+
 
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
@@ -466,12 +476,16 @@ table {
     width: 100%;
     margin-top:-2%;
     margin-bottom:1%;
-    border-top:1px solid #ddd;
+    border-top:1px solid #eee;
+}
+
+.price-table-head, table tbody th {
+    background-color: #fff !important;
 }
 
 td,
 th {
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #eee;
     text-align: left;
     padding: 10px;
     width:100%;
@@ -549,6 +563,10 @@ textarea.swal2-input{
     width: 100%;
     height: auto;
     border-radius: 0px;
+}
+
+.loading-bar-inner {
+    background-color: #d8b1ff !important;
 }
 
 @media (min-width:1290px) and (max-width: 1500px) {

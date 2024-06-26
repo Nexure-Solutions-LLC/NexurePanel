@@ -35,3 +35,7 @@ html[data-theme='dark'] body {
 .dark-mode .subtitle-text {
     color: #CDCDCD;
 }
+
+.loading-bar-inner {
+    background-color: #85e2ff !important;
+}
