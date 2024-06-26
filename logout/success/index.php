@@ -106,13 +106,13 @@
 
         // Start the countdown when the page loads
         window.onload = function() {
-            startCountdown(5, '/login'); // Change 'https://example.com' to your desired URL
+            startCountdown(5, '/login');
         };
 
     </script>
 </html>
 <?php
     } else {
-        header("Location: /license");
+        header("Location: /error/licenseInvalid");
     }
 ?>
