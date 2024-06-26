@@ -44,6 +44,7 @@
                                                     <th style="width:20%;">Task Name</th>
                                                     <th style="width:20%;">Task Start Date</th>
                                                     <th style="width:20%;">Task Due Date</th>
+                                                    <th style="width:20%;">Assigned To</th>
                                                     <th style="width:20%;">Status</th>
                                                     <th style="width:20%;">Actions</th>
                                                 </tr>';
@@ -65,6 +66,7 @@
                                                 echo '<td style="width:20%;">' . $row['taskName'] . '</td>';
                                                 echo '<td style="width:20%;">' . $startDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $dueDateFormattedFinal . '</td>';
+                                                echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -95,6 +97,7 @@
                                                     <th style="width:20%;">Task Name</th>
                                                     <th style="width:20%;">Task Start Date</th>
                                                     <th style="width:20%;">Task Due Date</th>
+                                                    <th style="width:20%;">Assigned To</th>
                                                     <th style="width:20%;">Status</th>
                                                     <th style="width:20%;">Actions</th>
                                                 </tr>';
@@ -116,6 +119,7 @@
                                                 echo '<td style="width:20%;">' . $row['taskName'] . '</td>';
                                                 echo '<td style="width:20%;">' . $startDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $dueDateFormattedFinal . '</td>';
+                                                echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -146,6 +150,7 @@
                                                     <th style="width:20%;">Task Name</th>
                                                     <th style="width:20%;">Task Start Date</th>
                                                     <th style="width:20%;">Task Due Date</th>
+                                                    <th style="width:20%;">Assigned To</th>
                                                     <th style="width:20%;">Status</th>
                                                     <th style="width:20%;">Actions</th>
                                                 </tr>';
@@ -167,6 +172,7 @@
                                                 echo '<td style="width:20%;">' . $row['taskName'] . '</td>';
                                                 echo '<td style="width:20%;">' . $startDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $dueDateFormattedFinal . '</td>';
+                                                echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
