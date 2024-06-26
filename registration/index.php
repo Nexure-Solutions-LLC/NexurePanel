@@ -1,36 +1,110 @@
 <?php
-    session_start();
+    ob_start();
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    
+    // When form submitted, insert values into the database.
 
-    // When form submitted, check and create user session.
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        
+        $data = array(
+            'secret' => "0x1097356228F6a429882375bC5974c5a9a2631Bb3",
+            'response' => $_POST['h-captcha-response']
+        );
+        $verify = curl_init();
 
-    if (isset($_SESSION['caliid'])) {
-        header("Location: /dashboard");
-        exit;
-    }
 
-    if (isset($_POST['emailaddress'])) {
+        curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+        curl_setopt($verify, CURLOPT_POST, true);
+        curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
 
-        $cali_id = stripslashes($_REQUEST['emailaddress']);
-        $cali_id = mysqli_real_escape_string($con, $cali_id);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
 
-        // Check user is exist in the database
-        $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '".md5($password)."'";
-        $result = mysqli_query($con, $query) or die(mysql_error());
-        $rows = mysqli_num_rows($result);
-        if ($rows == 1) {
+        $response = curl_exec($verify);
+        // var_dump($response);
+        $responseData = json_decode($response);
 
-            $_SESSION['caliid'] = $cali_id;
 
-            header("Location: /dashboard");
+        if($responseData->success) {
+            $legalname = stripslashes($_REQUEST['legalname']);
+            $legalname = mysqli_real_escape_string($con, $legalname);
+            $caliid = stripslashes($_REQUEST['emailaddress']);
+            $caliid = mysqli_real_escape_string($con, $caliid);
+            $mobilenumber = stripslashes($_REQUEST['mobilenumber']);
+            $mobilenumber = mysqli_real_escape_string($con, $mobilenumber);
+            $password = stripslashes($_REQUEST['password']);
+            $password = mysqli_real_escape_string($con, $password);
+            $registrationdate = date("Y-m-d H:i:s");
+            $accountnumber = substr(str_shuffle("0123456789"), 0, 12);
+            $dispnone = stripslashes($_REQUEST['dispnone']);
+            $dispnone = mysqli_real_escape_string($con, $dispnone);
 
+            $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
+            $builtaccountnumber = $accountnumber_starting.$accountnumber;
+
+            function generateRandomPrefix($length = 3) {
+                $characters = 'abcdefghijklmnopqrstuvwxyz';
+                $prefix = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $prefix .= $characters[rand(0, strlen($characters) - 1)];
+                }
+                return $prefix;
+            }
+            
+            $randomPrefix = generateRandomPrefix(5);
+
+            if ($dispnone == "") {
+
+                if (mysqli_connect_errno()) {
+                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                    exit();
+                }
+            
+                // Perform query
+                $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
+                $paymentgateway = mysqli_fetch_array($result);
+                // Free result set
+                mysqli_free_result($result);
+            
+                $apikeysecret = $paymentgateway['secretKey'];
+                $apikeypublic = $paymentgateway['publicKey'];
+                $paymentgatewaystatus = $paymentgateway['status'];
+                $paymentProccessorName = $paymentgateway['processorName'];
+
+                // Checks type of payment proccessor.
+                if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+                    if ($paymentProccessorName == "Stripe") {
+                        \Stripe\Stripe::setApiKey($apikeysecret);
+
+                        $cu = \Stripe\Customer::create(array(
+                            'name' => $legalname,
+                            'email' => $caliid,
+                            'phone' => $mobilenumber,
+                            'description' => "Account Number: ".$builtaccountnumber, 
+                        ));
+
+                        $SS_STRIPE_ID =  $cu['id'];
+                    } else {
+                        header ("location: /error/genericSystemError");
+                    }
+                } else {
+                    header ("location: /error/genericSystemError");
+                }
+
+                $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `isAdmin`, `isPartner`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`) VALUES ('$caliid','".md5($password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','false','false','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','customer','')";
+                $result   = mysqli_query($con, $query);
+
+                if ($result) {
+                    echo '<script type="text/javascript">window.location = "/login"</script>';
+                } else {
+                    header ("location: /error/genericSystemError");
+                }
+            }
         } else {
-            header("Location /error/genericSystemError");
+            header ("location: /error/genericSystemError");
         }
-    } else {
+    } else {    
+
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->
 <?php
@@ -76,11 +150,17 @@
                             <label for="password" class="text-gray-label">Password</label>
                             <input type="password" class="form-input" name="password" id="password" placeholder="" />
                         </div>
+                        <div class="form-control">
+                            <input type="text" class="form-input" style="display:none;" name="dispnone" id="dispnone" placeholder="" />
+                        </div>
                         <div class="mt-10-per" style="display:flex; align-items:center; justify-content:space-between;">
                             <div class="form-control width-50">
                                 <p style="font-size:14px; padding:0; margin:0;">We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.</p>
                             </div>
                             <div class="form-control width-25">
+                                <div>
+                                    <div class="h-captcha" id="h-captcha" data-sitekey="509db1ec-9483-4051-aea3-8ba88d8bbc8e"></div>
+                                </div>
                                 <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
                             </div>
                         </div>
