@@ -33,46 +33,36 @@
 
     if ($licenseKeyfromConfig == $licenseKeyfromDB) {
 
+    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+
+    echo '<title>You have been signed out of your Cali account.</title>';
 
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="author" content="Nick Derry, Michael Brinkley, Cali Web Design Corporation">
-        <meta property="og:image" content="https://caliwebdesignservices.com/assets/img/opengraphimage/opengraphimage.jpg" />
-        <meta property="og:type" content="website" />
-        <meta content="summary_large_image" name="twitter:card" />
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="CaliWebDesignSvcs" name="generator" />
-        <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-        <link rel="apple-touch-icon" sizes="180x180" href="https://caliwebdesignservices.com/assets/img/favico/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://caliwebdesignservices.com/assets/img/favico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://caliwebdesignservices.com/assets/img/favico/favicon-16x16.png">
-        <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
-        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
-        <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-        <script type="text/javascript">
-            window.antiFlicker = {
-                active: true,
-                timeout: 3000
-            }
-        </script>
-        <script src="https://caliwebdesignservices.com/assets/js/darkmode.js" type="text/javascript"></script>
-    </head>
-    <body>
-        <center>
-            <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
-            <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
-            <p style="font-weight:300; font-size:20px; margin-top:2%; margin-bottom:4%;"><?php echo $LANG_LOGOUT_BASE_TEXT; ?> <br><?php echo $LANG_LOGOUT_SECONDARY_TEXT; ?> <span id="countdown"></span>. <br><?php echo $LANG_LOGOUT_REDIRECT_FALLBACK_TEXT; ?> <a href="/login" class="careers-link">click here</a>.</p>
-            <h6 style="font-weight:700;">We hope you have a Good <span id="lblGreetings"></span></h6>
-        </centeR>
-    </body>
+    <section class="section" style="padding-top:0%; padding-left:10%;">
+        <div class="container caliweb-container">
+            <div style="display:flex; align-items:center;">
+                <div>
+                    <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
+                    <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
+                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We hope you have a Good <span id="lblGreetings"></span></h6>
+                    <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_LOGOUT_BASE_TEXT; ?> <?php echo $LANG_LOGOUT_SECONDARY_TEXT; ?> <span id="countdown"></span>. <?php echo $LANG_LOGOUT_REDIRECT_FALLBACK_TEXT; ?> <a href="/login" class="careers-link">click here</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="caliweb-login-footer license-footer">
+        <div class="container caliweb-container">
+            <div class="caliweb-grid-2">
+                <div class="">
+                    <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Corporation - All rights reserved. It is illegal to copy this website.</p>
+                </div>
+                <div class="list-links-footer">
+                    <a href="'.$paneldomain.'/terms">Terms of Service</a>
+                    <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         var myDate = new Date();
         var hrs = myDate.getHours();
@@ -104,14 +94,12 @@
             }, 1000);
         }
 
-        // Start the countdown when the page loads
-        window.onload = function() {
-            startCountdown(5, '/login');
-        };
+       
 
     </script>
-</html>
 <?php
+    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
+
     } else {
         header("Location: /error/licenseInvalid");
     }
