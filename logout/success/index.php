@@ -94,7 +94,10 @@
             }, 1000);
         }
 
-       
+        // Start the countdown when the page loads
+        window.onload = function() {
+            startCountdown(5, '/login');
+        };
 
     </script>
 <?php
