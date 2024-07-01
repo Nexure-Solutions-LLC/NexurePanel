@@ -127,7 +127,7 @@
     <!-- Unique Website Title Tag End -->
 
         <section class="login-container">
-            <div class="container caliweb-container" style="width:42%; margin-top:2%;">
+            <div class="container caliweb-container bigscreens-are-strange" style="width:42%; margin-top:2%;">
                 <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                     <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Self Registration</span></h3>
                     <p style="font-size:12px; margin-top:-2%;">Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.</p>

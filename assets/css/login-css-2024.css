@@ -356,3 +356,10 @@ body {
         padding-top: 15%;
     }
 }
+@media (min-width:2000px) {
+    /* Moves the Registration form down futher on screen that are lager
+    like the Apple XDR Displays cause Apple is weird */
+    .bigscreens-are-strange {
+        margin-top:6% !important;
+    }
+}
