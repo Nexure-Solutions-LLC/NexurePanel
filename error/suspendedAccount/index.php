@@ -1,9 +1,13 @@
 <?php
-    session_start();
-
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
+
+    // Retreive Users Email Address
+
+    $caliemail = $_SESSION['caliid'];
+
+    // MySQL Queries
 
     $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($userprofileresult);
