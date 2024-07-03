@@ -98,33 +98,33 @@
                                     <div class="caliweb-three-grid mt-5-per customer-grid-quick-actions">
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
-                                            <p class="text-bold no-padding no-margin font-14px">Edit Websites</p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Edit your website on the fly with an easy to use drag and drop interface.</p>
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_EDIT_WEBSITES_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_EDIT_WEBSITES_SUBTEXT; ?></p>
                                         </div>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/page-speed.png" />
-                                            <p class="text-bold no-padding no-margin font-14px">Run Speed Test</p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Wondering how fast your site is? Run a speed test to find out.</p>
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_RUN_SPEEDTEST_SUBTEXT; ?></p>
                                         </div>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/synchronize.png" />
-                                            <p class="text-bold no-padding no-margin font-14px">Backups</p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Run scheduled backups and restore backups right within your portal.</p>
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_BACKUPS_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_BACKUPS_SUBTEXT; ?></p>
                                         </div>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/log-file.png" />
-                                            <p class="text-bold no-padding no-margin font-14px">Log Files</p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">View your websites logs, account logs and what your users are doing.</p>
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_LOG_FILES_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
                                         </div>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/integrity.png" />
-                                            <p class="text-bold no-padding no-margin font-14px">Code Integrity</p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $orgShortName; ?> Code Integrity allows you to protect your website.</p>
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_CODE_INTEGRITY_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $orgShortName; ?> <?php echo $LANG_CODE_INTEGRITY_SUBTEXT; ?></p>
                                         </div>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/monitoring.png" />
-                                            <p class="text-bold no-padding no-margin font-14px">Monitoring</p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Have us monitor your website for any suspicious activity.</p>
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_MONITORING_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_MONITORING_SUBTEXT; ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                             <div class="caliweb-card dashboard-card" style="margin-top:2%;">
                                 <div class="card-body">
                                     <h4 class="text-bold no-padding" style="font-size:16px;">Plan for your next business</h4>
-                                    <p class="no-margin no-padding" style="padding-top:4%; font-size:12px;">There are currently no pre-approved offers.</p>
+                                    <p class="no-margin no-padding" style="padding-top:4%; font-size:12px;"><?php echo $LANG_NO_PREAPPROVED_DASH_TEXT; ?></p>
                                 </div>
                             </div>
                             <div class="caliweb-card dashboard-card" style="margin-top:2%;">
