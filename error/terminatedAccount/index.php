@@ -1,6 +1,7 @@
 <?php
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
 
     // Retreive Users Email Address
