@@ -31,7 +31,7 @@
         header ("Location: /error/terminatedAccount");
     }
 
-    echo '<title>'.$orgshortname.' - Generic Error</title>';
+    echo '<title>'.$orgshortname.' - Under Review</title>';
 
     echo '<section class="section" style="padding-top:10%; padding-left:15%;">
             <div class="container caliweb-container">
