@@ -94,7 +94,7 @@
                         <div class="quick-actions">
                             <div class="caliweb-card dashboard-card" style="padding-bottom:30px;">
                                 <div class="card-body">
-                                    <h4 class="text-bold no-padding" style="font-size:16px;">Quick Actions</h4>
+                                    <h4 class="text-bold no-padding" style="font-size:16px;"><?php echo $LANG_QUICKACTIONS_TITLE; ?></h4>
                                     <div class="caliweb-three-grid mt-5-per customer-grid-quick-actions">
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
@@ -131,13 +131,13 @@
                             </div>
                             <div class="caliweb-card dashboard-card" style="margin-top:2%;">
                                 <div class="card-body">
-                                    <h4 class="text-bold no-padding" style="font-size:16px;">Plan for your next business</h4>
+                                    <h4 class="text-bold no-padding" style="font-size:16px;"><?php echo $LANG_PREAPPROVED_DASH_TITLE; ?></h4>
                                     <p class="no-margin no-padding" style="padding-top:4%; font-size:12px;"><?php echo $LANG_NO_PREAPPROVED_DASH_TEXT; ?></p>
                                 </div>
                             </div>
                             <div class="caliweb-card dashboard-card" style="margin-top:2%;">
                                 <div class="card-body">
-                                    <h4 class="text-bold no-padding" style="font-size:16px;">Explore Documentation</h4>
+                                    <h4 class="text-bold no-padding" style="font-size:16px;"><?php echo $LANG_DOCUMENTATION_SECTION_TITLE; ?></h4>
                                 </div>
                             </div>
                         </div>
