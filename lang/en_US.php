@@ -23,7 +23,7 @@ $LANG_LOGIN_HEADER_CALI_LINKS = "Cali";
 // Login Page Text Specifications
 $LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LOGIN_TITLE_PAR_2 = "Login";
-$LANG_LOGIN_AUTH_ERROR_TITLE = "Cali Web Design Authentication Error";
+$LANG_LOGIN_AUTH_ERROR_TITLE = "Incorrect Username or Password";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "The username or password entered is incorrect. Please try again or contact us to reset your login.";
 $LANG_LOGIN_BUTTON = "Continue";
 
