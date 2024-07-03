@@ -3,6 +3,25 @@
 
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
+
+    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userinfo = mysqli_fetch_array($userprofileresult);
+    mysqli_free_result($userprofileresult);
+
+    // User Profile Variable Definitions
+    $accountStatus = $userinfo['accountStatus'];
+
+    // Checks the users account staus and send them to the right page.
+    // If the user is active load the dashboard like normal.
+
+    if ($accountStatus == "Under Review") {
+        header ("Location: /error/underReviewAccount");
+    } else if ($accountStatus == "Suspended") {
+        header ("Location: /error/suspendedAccount");
+    } else if ($accountStatus == "Active") {
+        header ("Location: /dashboard/customers/");
+    }
 
     echo '<title>'.$orgshortname.' - Generic Error</title>';
 

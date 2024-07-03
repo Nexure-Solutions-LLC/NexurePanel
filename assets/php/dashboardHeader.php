@@ -73,6 +73,7 @@
     // User Profile Variable Definitions
     $userrole = $userinfo['userrole'];
     $fullname = $userinfo['legalName'];
+    $accountStatus = $userinfo['accountStatus'];
     $employeeAccessLevel = $userinfo['employeeAccessLevel'];
 
     // Panel Configuration Definitions
@@ -249,6 +250,17 @@
         if (isIpBlocked($clientIp, $blockedIpList)) {
             banIp($clientIp);
         }
+    }
+
+    // Checks the users account staus and send them to the right page.
+    // If the user is active load the dashboard like normal.
+
+    if ($accountStatus == "Under Review") {
+        header ("Location: /error/underReviewAccount");
+    } else if ($accountStatus == "Suspended") {
+        header ("Location: /error/suspendedAccount");
+    } else if ($accountStatus == "Terminated") {
+        header ("Location: /error/terminatedAccount");
     }
 
 ?>
