@@ -38,7 +38,9 @@
     echo '<title>Your account was approved!</title>';
 
 ?>
-    <section class="section" style="padding-top:0%; padding-left:10%;">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+
+    <section class="section purchase-complete" style="padding-top:0%; padding-left:10%;" id="birthdays">
         <div class="container caliweb-container">
             <div style="display:flex; align-items:center;">
                 <div>

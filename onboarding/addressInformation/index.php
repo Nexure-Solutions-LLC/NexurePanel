@@ -4,40 +4,40 @@
 ?>
 
     <section class="login-container">
-        <div class="container caliweb-container bigscreens-are-strange" style="width:50%;">
+        <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                 <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Onboarding</span></h3>
-                <p style="font-size:12px; margin-top:0%;">You have made the first step into getting your account. Now its time to finish and get rolling.</p>
+                <p style="font-size:12px; margin-top:0%;">Please provide your home address so that we can make sure your location is supported.</p>
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                     <div class="caliweb-grid caliweb-two-grid">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="legalname" class="text-gray-label">Legal Name</label>
-                                <input type="text" class="form-input" name="legalname" id="legalname" placeholder="" required="" />
+                                <label for="addressline1" class="text-gray-label">Address Line 1</label>
+                                <input type="text" class="form-input" name="addressline1" id="addressline1" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="phonenumber" class="text-gray-label">Phone Number</label>
-                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" placeholder="" required="" />
+                                <label for="city" class="text-gray-label">City</label>
+                                <input type="text" class="form-input" name="city" id="city" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="emailaddress" class="text-gray-label">Email Address</label>
-                                <input type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="" required="" />
+                                <label for="postalcode" class="text-gray-label">Postal Code</label>
+                                <input type="text" class="form-input" name="postalcode" id="postalcode" placeholder="" required="" />
                             </div>
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="dateofbirth" class="text-gray-label">Date of Bith (Must be 14 years or older)</label>
-                                <input type="date" class="form-input" name="dateofbirth" id="dateofbirth" placeholder="" requird="" />
+                                <label for="addressline2" class="text-gray-label">Address Line 2</label>
+                                <input type="text" class="form-input" name="addressline2" id="addressline2" placeholder="" required="" />
                             </div>
-                            <div style="border:1px solid green; border-radius:8px; padding:10px; margin-top:0%;">
-                                <label style="color:green; font-size:12px;">This is a secure form and will be verified with the IRS.</label>
-                                <div class="form-control" style="margin-top:4%;">
-                                    <label for="einssnnumber" class="text-gray-label">EIN or SSN Number</label>
-                                    <input type="text" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" requird="" />
-                                </div>
-                                <p style="font-size:12px; padding:0; margin:0;">Why do we require this? To comply with financial regulations and provide our full rage of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.</p>
+                            <div class="form-control" style="margin-top:-2%;">
+                                <label for="state" class="text-gray-label">State</label>
+                                <input type="text" class="form-input" name="state" id="state" placeholder="" required="" />
+                            </div>
+                            <div class="form-control" style="margin-top:-2%;">
+                                <label for="country" class="text-gray-label">Country</label>
+                                <input type="text" class="form-input" name="country" id="country" placeholder="" required="" />
                             </div>
                             <div class="form-control">
                                 <input type="text" class="form-input" style="display:none;" name="dispnone" id="dispnone" placeholder="" />
