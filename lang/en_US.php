@@ -106,10 +106,15 @@ $LANG_ONBOARDCOMLETE_FALLBACK_TEXT = "If you are not redirected automatically yo
 
 // ====================== START DASHBOARD LANGUAGE AREA ==========================
 
-// Dashboard Home Page Text Specifications
+// Dashboard Overview Text Specifications
 
 $LANG_DASH_HOME_TITLE = ""; // Leave Blank for no Double Greeting
 $LANG_CUSTOMER_HOME_ACCOUNTS_TITLE = "accounts";
 $LANG_DASH_REQUIRES_VERIFICATION_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/dashboard/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
+
+// Dashboard Account Management Text Specifications
+
+$LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Current Services";
+
 
 ?>
