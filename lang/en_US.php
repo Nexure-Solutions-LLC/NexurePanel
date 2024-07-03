@@ -78,7 +78,7 @@ $LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated in 
 
 // Account Under Review Text Specifications
 $LANG_ACCOUNT_UNDER_REVIEW_TITLE = 'Uh-Oh! We need more information to open your account.';
-$LANG_ACCOUNT_UNDER_REVIEW_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/dashboard/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
+$LANG_ACCOUNT_UNDER_REVIEW_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
 
 // Banned Error Text Specifications
 $LANG_BANNED_TITLE = "Hmmm. Your network seems a little unusual. We have banned your IP for security.";
