@@ -76,10 +76,13 @@ $LANG_SUSPENDED_CONTACT_INFO = "To resolve this issue please call the number for
 $LANG_TERMINATED_TITLE = "We have terminated your account.";
 $LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated in order to protect ourselves, this means you may no longer use Cali Web Design. This decision is final and can't be overturned.";
 
+// Account Under Review Text Specifications
+$LANG_ACCOUNT_UNDER_REVIEW_TITLE = 'Uh-Oh! We need more information to open your account.';
+$LANG_ACCOUNT_UNDER_REVIEW_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/dashboard/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
+
 // Banned Error Text Specifications
 $LANG_BANNED_TITLE = "Hmmm. Your network seems a little unusual. We have banned your IP for security.";
 $LANG_BANNED_TEXT = "We cant verify the authenticity of this visit. We have banned this IP. Please disable any VPNs, Browser Extensions, or AD Blockers, and try your request again. This is an automated process.";
-
 
 // Payment Errors Text Specifications
 
@@ -110,7 +113,6 @@ $LANG_ONBOARDCOMLETE_FALLBACK_TEXT = "If you are not redirected automatically yo
 
 $LANG_DASH_HOME_TITLE = ""; // Leave Blank for no Double Greeting
 $LANG_CUSTOMER_HOME_ACCOUNTS_TITLE = "accounts";
-$LANG_DASH_REQUIRES_VERIFICATION_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/dashboard/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
 $LANG_QUICKACTIONS_TITLE = "Quick Actions";
 $LANG_EDIT_WEBSITES_TILE = "Edit Websites";
 $LANG_EDIT_WEBSITES_SUBTEXT = "Edit your website on the fly with an easy to use drag and drop interface.";
