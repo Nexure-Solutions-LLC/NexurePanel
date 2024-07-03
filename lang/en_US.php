@@ -111,6 +111,19 @@ $LANG_ONBOARDCOMLETE_FALLBACK_TEXT = "If you are not redirected automatically yo
 $LANG_DASH_HOME_TITLE = ""; // Leave Blank for no Double Greeting
 $LANG_CUSTOMER_HOME_ACCOUNTS_TITLE = "accounts";
 $LANG_DASH_REQUIRES_VERIFICATION_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/dashboard/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
+$LANG_EDIT_WEBSITES_TILE = "Edit Websites";
+$LANG_EDIT_WEBSITES_SUBTEXT = "Edit your website on the fly with an easy to use drag and drop interface.";
+$LANG_RUN_SPEEDTEST_TILE = "Run Speed Test";
+$LANG_RUN_SPEEDTEST_SUBTEXT = "Wondering how fast your site is? Run a speed test to find out.";
+$LANG_BACKUPS_TILE = "Backups";
+$LANG_BACKUPS_SUBTEXT = "Run scheduled backups and restore backups right within your portal.";
+$LANG_LOG_FILES_TILE = "Log Files";
+$LANG_LOG_FILES_SUBTEXT = "View your websites logs, account logs and what your users are doing.";
+$LANG_CODE_INTEGRITY_TILE = "Code Integrity";
+$LANG_CODE_INTEGRITY_SUBTEXT = "Cali Web Design Code Integrity allows you to protect your website.";
+$LANG_MONITORING_TILE = "Monitoring";
+$LANG_MONITORING_SUBTEXT = "Have us monitor your website for any suspicious activity.";
+$LANG_NO_PREAPPROVED_DASH_TEXT = "There are currently no pre-approved offers.";
 
 // Dashboard Account Management Text Specifications
 
