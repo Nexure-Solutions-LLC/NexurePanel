@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="caliweb-error-box">
                                             <p class="caliweb-login-sublink" style="font-weight:700; padding-top:0; margin-top:0;">'.$LANG_LOGIN_AUTH_ERROR_TITLE.'</p>
-                                            <p class="caliweb-login-sublink">'.$LANG_LOGIN_AUTH_ERROR_TEXT.'</p>
+                                            <p class="caliweb-login-sublink" style="font-size:12px;">'.$LANG_LOGIN_AUTH_ERROR_TEXT.'</p>
                                         </div>
                                         <hr>
                                         <div class="form-control" style="margin-bottom:0;">
@@ -98,8 +98,9 @@
                         </div>
                     </div>
                 </div>
-            '.include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php").'
             ';
+            
+            include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php");
         }
     } else {
 ?>
