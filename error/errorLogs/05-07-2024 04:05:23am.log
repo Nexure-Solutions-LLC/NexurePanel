@@ -1,0 +1,1 @@
+Error: [2] imagepng(/var/www/calipanel/modules/graphSQL/barGraphs/salesPerformance.png): Failed to open stream: Permission denied in /var/www/calipanel/modules/graphSQL/barGraphs/index.php on line 49
