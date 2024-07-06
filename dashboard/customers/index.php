@@ -136,11 +136,31 @@
                                             <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_LOG_FILES_TILE; ?></p>
                                             <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
                                         </div>
-                                        <div>
-                                            <img class="customer-quick-actions-img" src="/assets/img/systemIcons/integrity.png" />
-                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_CODE_INTEGRITY_TILE; ?></p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $orgShortName; ?> <?php echo $LANG_CODE_INTEGRITY_SUBTEXT; ?></p>
-                                        </div>
+                                        <?php
+                                            $codemoduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFreindlyName` = 'Security'");
+                                            $codemoduleInfo = mysqli_fetch_array($codemoduleResult);
+                                            mysqli_free_result($codemoduleResult);
+
+                                            $codeIntNameModuleCheck = $codemoduleInfo['moduleName'];
+                                            $codeIntStatusModuleCheck = $codemoduleInfo['moduleStatus'];
+                                            $codeIntPathModule= $codemoduleInfo['modulePath'];
+
+                                            if ($codeIntNameModuleCheck == "Cali Code Integrity" && $codeIntStatusModuleCheck == "Active") {
+                                                                                            
+                                                echo '
+                                                    <a href="'.$codeIntPathModule.'" style="text-decoration:none;">
+                                                        <div>
+                                                            <img class="customer-quick-actions-img" src="/assets/img/systemIcons/integrity.png" />
+                                                            <p class="text-bold no-padding no-margin font-14px">'.$LANG_CODE_INTEGRITY_TILE.'</p>
+                                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">'.$orgShortName.' '.$LANG_CODE_INTEGRITY_SUBTEXT.'</p>
+                                                        </div>
+                                                    </a>
+                                                ';
+
+                                            } else {
+                                                echo '';
+                                            }
+                                        ?>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/monitoring.png" />
                                             <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_MONITORING_TILE; ?></p>
