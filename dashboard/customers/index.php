@@ -103,15 +103,18 @@
 
                                             $webDesignNameModuleCheck = $moduleInfo['moduleName'];
                                             $webDesignStatusModuleCheck = $moduleInfo['moduleStatus'];
+                                            $webDesignPathModule= $moduleInfo['modulePath'];
 
                                             if ($webDesignNameModuleCheck == "Cali Websites" && $webDesignStatusModuleCheck == "Active") {
 
-                                                echo '
-                                                    <div>
-                                                        <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
-                                                        <p class="text-bold no-padding no-margin font-14px">'.$LANG_EDIT_WEBSITES_TILE.'</p>
-                                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">'.$LANG_EDIT_WEBSITES_SUBTEXT.'</p>
-                                                    </div>
+                                                echo ' 
+                                                    <a href="'.$webDesignPathModule.'" style="text-decoration:none;">
+                                                        <div>
+                                                            <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
+                                                            <p class="text-bold no-padding no-margin font-14px">'.$LANG_EDIT_WEBSITES_TILE.'</p>
+                                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">'.$LANG_EDIT_WEBSITES_SUBTEXT.'</p>
+                                                        </div>
+                                                    </a>
                                                 ';
 
                                             } else {
