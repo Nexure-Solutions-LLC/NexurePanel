@@ -56,7 +56,7 @@ $LANG_REG_DISABLED_TEXT = "We are currently not accepting new registrations. If 
 $LANG_GENERIC_ERROR_TITLE_PAR_1 = "Cali Web Design";
 $LANG_GENERIC_ERROR_TITLE_PAR_2 = "System Error";
 $LANG_GENERIC_ERROR_TITLE = "We encountered an unexpected error.";
-$LANG_GENERIC_ERROR_TEXT = "The action your performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact support.";
+$LANG_GENERIC_ERROR_TEXT = "The action your performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Cali Web Design.";
 
 // Customer Security Quiz Text Specifications
 
@@ -69,7 +69,7 @@ $LANG_CUSTOMER_VERIFICATION_TEXT_PHONE_VERIFY = "Cali Web Design will send a 6 d
 
 // Account Suspension Error Text Specifications
 $LANG_SUSPENDED_TITLE = "We have suspended your account for suspicious activity.";
-$LANG_SUSPENDED_TEXT = "Your account at Cali Web Design has been suspended, please contact us during normal business hours in order to resolve this issue. Your services also have been suspended and can not be accessed.";
+$LANG_SUSPENDED_TEXT = "Your account at Cali Web Design has been suspended, please contact Cali Web Design Support during business hours in order to resolve this issue. Your services also have been suspended and can not be accessed.";
 $LANG_SUSPENDED_CONTACT_INFO = "To resolve this issue please call the number for your type of account. <br><br>For Cali Web Design Retail Customers call +1 (877)-597-7325. For Cali Web Design Business Customers call +1 (315)-898-1221. For Cali Web Design UK Customers call +44 (87) 0820 0077";
 
 // Account Terminated Error Text Specifications
