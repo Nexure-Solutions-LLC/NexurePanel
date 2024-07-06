@@ -96,11 +96,28 @@
                                 <div class="card-body">
                                     <h4 class="text-bold no-padding" style="font-size:16px;"><?php echo $LANG_QUICKACTIONS_TITLE; ?></h4>
                                     <div class="caliweb-three-grid mt-5-per customer-grid-quick-actions">
-                                        <div>
-                                            <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
-                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_EDIT_WEBSITES_TILE; ?></p>
-                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_EDIT_WEBSITES_SUBTEXT; ?></p>
-                                        </div>
+                                        <?php 
+                                            $moduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFreindlyName` = 'Websites'");
+                                            $moduleInfo = mysqli_fetch_array($moduleResult);
+                                            mysqli_free_result($moduleResult);
+
+                                            $webDesignNameModuleCheck = $moduleInfo['moduleName'];
+                                            $webDesignStatusModuleCheck = $moduleInfo['moduleStatus'];
+
+                                            if ($webDesignNameModuleCheck == "Cali Websites" && $webDesignStatusModuleCheck == "Active") {
+
+                                                echo '
+                                                    <div>
+                                                        <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
+                                                        <p class="text-bold no-padding no-margin font-14px">'.$LANG_EDIT_WEBSITES_TILE.'</p>
+                                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">'.$LANG_EDIT_WEBSITES_SUBTEXT.'</p>
+                                                    </div>
+                                                ';
+
+                                            } else {
+                                                    echo '';
+                                            }
+                                        ?>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/page-speed.png" />
                                             <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
