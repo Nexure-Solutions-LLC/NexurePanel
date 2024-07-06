@@ -44,7 +44,7 @@
                 <div>
                     <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
-                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We hope you have a Good <span id="lblGreetings"></span></h6>
+                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We hope you have a Good. <span id="lblGreetings"></span></h6>
                     <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_LOGOUT_BASE_TEXT; ?> <?php echo $LANG_LOGOUT_SECONDARY_TEXT; ?> <span id="countdown"></span>. <?php echo $LANG_LOGOUT_REDIRECT_FALLBACK_TEXT; ?> <a href="/login" class="careers-link">click here</a></p>
                 </div>
             </div>
