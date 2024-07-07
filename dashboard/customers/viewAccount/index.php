@@ -80,11 +80,20 @@
 
                                             // Output table rows
                                             while ($row = mysqli_fetch_assoc($result)) {
+
+                                                // This formats the date to MM/DD/YYYY HH:MM AM/PM
+                                                $serviceStartDateUnformattedData = $row['serviceStartDate'];
+                                                $serviceEndDateUnformattedData = $row['serviceEndDate'];
+                                                $serviceStartDateUnformatted = new DateTime($serviceStartDateUnformattedData);
+                                                $serviceEndDateUnformatted = new DateTime($serviceEndDateUnformattedData);
+                                                $serviceStartDateFormatted = $serviceStartDateUnformatted->format('m/d/Y g:i A');
+                                                $serviceEndDateFormatted = $serviceEndDateUnformatted->format('m/d/Y g:i A');
+
                                                 echo '<tr>';
                                                 echo '<td style="width:20%; background-color:transparent !important;">' . $row['serviceName'] . '</td>';
                                                 echo '<td style="width:15%; background-color:transparent !important;">' . $row['serviceType'] . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $row['serviceStartDate'] . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $row['serviceEndDate'] . '</td>';
+                                                echo '<td style="width:15%; background-color:transparent !important;">' . $serviceStartDateFormatted . '</td>';
+                                                echo '<td style="width:15%; background-color:transparent !important;">' . $serviceEndDateFormatted . '</td>';
                                                 echo '<td style="width:10%; background-color:transparent !important;">$ ' . $row['serviceCost'] . '</td>';
                                                 echo '<td style="width:10%; background-color:transparent !important;">' . $row['serviceStatus'] . '</td>';
                                                 echo '<td style="background-color:transparent !important;">

@@ -166,11 +166,20 @@
 
                                                     // Output table rows
                                                     while ($row = mysqli_fetch_assoc($result)) {
+
+                                                        // This formats the date to MM/DD/YYYY HH:MM AM/PM
+                                                        $serviceStartDateUnformattedData = $row['serviceStartDate'];
+                                                        $serviceEndDateUnformattedData = $row['serviceEndDate'];
+                                                        $serviceStartDateUnformatted = new DateTime($serviceStartDateUnformattedData);
+                                                        $serviceEndDateUnformatted = new DateTime($serviceEndDateUnformattedData);
+                                                        $serviceStartDateFormatted = $serviceStartDateUnformatted->format('m/d/Y g:i A');
+                                                        $serviceEndDateFormatted = $serviceEndDateUnformatted->format('m/d/Y g:i A');
+
                                                         echo '<tr>';
                                                         echo '<td style="width:20%;">' . $row['serviceName'] . '</td>';
                                                         echo '<td style="width:15%;">' . $row['serviceType'] . '</td>';
-                                                        echo '<td style="width:15%;">' . $row['serviceStartDate'] . '</td>';
-                                                        echo '<td style="width:15%;">' . $row['serviceEndDate'] . '</td>';
+                                                        echo '<td style="width:15%;">' . $serviceStartDateFormatted . '</td>';
+                                                        echo '<td style="width:15%;">' . $serviceEndDateFormatted . '</td>';
                                                         echo '<td style="width:10%;">$ ' . $row['serviceCost'] . '</td>';
                                                         echo '<td style="width:10%;">' . $row['serviceStatus'] . '</td>';
                                                         echo '<td style="display-flex align-center">
@@ -226,11 +235,20 @@
 
                                                     // Output table rows
                                                     while ($row = mysqli_fetch_assoc($result)) {
+
+                                                        // This formats the date to MM/DD/YYYY HH:MM AM/PM
+                                                        $caseCreateDateUnformattedData = $row['caseCreateDate'];
+                                                        $caseCloseDateUnformattedData = $row['caseCloseDate'];
+                                                        $caseCreateDateUnformatted = new DateTime($caseCreateDateUnformattedData);
+                                                        $caseCloseDateUnformatted = new DateTime($caseCloseDateUnformattedData);
+                                                        $caseCreateDateFormatted = $caseCreateDateUnformatted->format('m/d/Y g:i A');
+                                                        $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
+
                                                         echo '<tr>';
                                                         echo '<td style="width:10%;">' . $row['caseNumber'] . '</td>';
                                                         echo '<td style="width:15%;">' . $row['caseTitle'] . '</td>';
-                                                        echo '<td style="width:10%;">' . $row['caseCreateDate'] . '</td>';
-                                                        echo '<td style="width:10%;">' . $row['caseCloseDate'] . '</td>';
+                                                        echo '<td style="width:10%;">' . $caseCreateDateFormatted . '</td>';
+                                                        echo '<td style="width:10%;">' . $caseCloseDateFormatted . '</td>';
                                                         echo '<td style="width:15%;">' . $row['assignedAgent'] . '</td>';
                                                         echo '<td style="width:15%;">' . $row['assignedDepartment'] . '</td>';
                                                         echo '<td style="width:10%;">' . $row['caseStatus'] . '</td>';

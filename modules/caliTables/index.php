@@ -16,6 +16,7 @@
             // Output table rows
             while ($row = mysqli_fetch_assoc($result)) {
 
+                // This formats the date to MM/DD/YYYY HH:MM AM/PM
                 $tasksStatusColorAssignment = $row['status'];
                 $taskStartDateUnformattedData = $row['taskStartDate'];
                 $taskDueDateUnformattedData = $row['taskDueDate'];
@@ -61,6 +62,7 @@
             // Output table rows
             while ($row = mysqli_fetch_assoc($result)) {
 
+                // This formats the date to MM/DD/YYYY HH:MM AM/PM
                 $caseStatusColorAssignment = $row['caseStatus'];
                 $caseCreateDateUnformattedData = $row['caseCreateDate'];
                 $caseCloseDateUnformattedData = $row['caseCloseDate'];
@@ -106,6 +108,7 @@
             // Output table rows
             while ($row = mysqli_fetch_assoc($result)) {
 
+                // This formats the date to MM/DD/YYYY HH:MM AM/PM
                 $tasksStatusColorAssignment = $row['status'];
                 $taskStartDateUnformattedData = $row['taskStartDate'];
                 $taskDueDateUnformattedData = $row['taskDueDate'];
@@ -151,6 +154,7 @@
             // Output table rows
             while ($row = mysqli_fetch_assoc($result)) {
 
+                // This formats the date to MM/DD/YYYY HH:MM AM/PM
                 $caseStatusColorAssignment = $row['caseStatus'];
                 $caseCreateDateUnformattedData = $row['caseCreateDate'];
                 $caseCloseDateUnformattedData = $row['caseCloseDate'];
