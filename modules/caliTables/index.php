@@ -53,7 +53,6 @@
             echo '<table style="width:100%; margin-top:1%;">
                     <tr>
                         <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Case Title</th>
                         <th style="width:20%; ">Case Created</th>
                         <th style="width:20%; ">Case Closed</th>
                         <th style="width:20%; ">Status</th>
