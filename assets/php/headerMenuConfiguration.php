@@ -62,7 +62,7 @@
 
             if (mysqli_num_rows($moduleresult) > 0) {
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                    echo '<li class="nav-links"><a href="/dashboard/administration/'.lcfirst($modulerow['moduleFreindlyName']).'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                    echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
                 }
             }
 
@@ -87,7 +87,7 @@
 
            if (mysqli_num_rows($moduleresult) > 0) {
                while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                   echo '<li class="nav-links"><a href="/dashboard/administration/'.lcfirst($modulerow['moduleFreindlyName']).'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
                }
            }
 
@@ -112,7 +112,7 @@
 
             if (mysqli_num_rows($moduleresult) > 0) {
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                    echo '<li class="nav-links"><a href="/dashboard/administration/'.lcfirst($modulerow['moduleFreindlyName']).'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                    echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
                 }
             }
 
@@ -153,7 +153,7 @@
 
           if (mysqli_num_rows($moduleresult) > 0) {
               while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                  echo '<li class="nav-links"><a href="/dashboard/administration/'.lcfirst($modulerow['moduleFreindlyName']).'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
               }
           }
 
@@ -178,7 +178,7 @@
   
             if (mysqli_num_rows($moduleresult) > 0) {
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                    echo '<li class="nav-links"><a href="/dashboard/administration/'.lcfirst($modulerow['moduleFreindlyName']).'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                    echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
                 }
             }
   
