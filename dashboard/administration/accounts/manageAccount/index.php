@@ -225,10 +225,9 @@
                                                             <tr>
                                                                 <th style="width:10%;">Case Number</th>
                                                                 <th style="width:15%;">Case Title</th>
-                                                                <th style="width:10%;">Created Date</th>
-                                                                <th style="width:10%;">Closed Date</th>
+                                                                <th style="width:15%;">Created Date</th>
+                                                                <th style="width:15%;">Closed Date</th>
                                                                 <th style="width:15%;">Assigned Agent</th>
-                                                                <th style="width:15%;">Department</th>
                                                                 <th style="width:10%;">Status</th>
                                                                 <th>Actions</th>
                                                             </tr>';
@@ -247,10 +246,9 @@
                                                         echo '<tr>';
                                                         echo '<td style="width:10%;">' . $row['caseNumber'] . '</td>';
                                                         echo '<td style="width:15%;">' . $row['caseTitle'] . '</td>';
-                                                        echo '<td style="width:10%;">' . $caseCreateDateFormatted . '</td>';
-                                                        echo '<td style="width:10%;">' . $caseCloseDateFormatted . '</td>';
+                                                        echo '<td style="width:15%;">' . $caseCreateDateFormatted . '</td>';
+                                                        echo '<td style="width:15%;">' . $caseCloseDateFormatted . '</td>';
                                                         echo '<td style="width:15%;">' . $row['assignedAgent'] . '</td>';
-                                                        echo '<td style="width:15%;">' . $row['assignedDepartment'] . '</td>';
                                                         echo '<td style="width:10%;">' . $row['caseStatus'] . '</td>';
                                                         echo '<td style="display-flex align-center">
                                                                 <a href="/dashboard/administration/accounts/manageAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
