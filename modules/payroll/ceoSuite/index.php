@@ -68,7 +68,7 @@
                                                     echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
                                                 } else if ($employeeStatusColorAssignment == "Closed" || $employeeStatusColorAssignment == "closed") {
                                                    echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
-                                                } else if ($caseStatemployeeStatusColorAssignmentusColorAssignment == "Pending" || $employeeStatusColorAssignment == "pending") {
+                                                } else if ($employeeStatusColorAssignment == "Pending" || $employeeStatusColorAssignment == "pending") {
                                                    echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
                                                 } else if ($employeeStatusColorAssignment == "On Hold" || $employeeStatusColorAssignment == "on hold") {
                                                    echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
