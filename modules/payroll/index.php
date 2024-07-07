@@ -14,4 +14,12 @@
     // THIS MODULE WILL NOT SUBMIT THE FORMS TO THE IRS NOR SUBMIT ANY EARNINGS TO THE IRS.
     // YOU ARE FULLY RESPONSIBLE, THIS JUST ALLOWS AUTOMATING OF ACH PAYMENTS AND TIME KEEPING.
 
+    if ($employeeAccessLevel == "Executive" || $employeeAccessLevel == "Manager") {
+
+        
+
+    } else {
+        header("location:/modules/payroll/employeeView");
+    }
+
 ?>
