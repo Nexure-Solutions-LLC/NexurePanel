@@ -29,6 +29,7 @@
                     echo '<td style="width:20%; ">' . $row['taskName'] . '</td>';
                     echo '<td style="width:20%; ">' . $taskStartDateFormatted . '</td>';
                     echo '<td style="width:20%; ">' . $taskDueDateFormatted . '</td>';
+
                     if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                         echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -38,6 +39,7 @@
                     } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
                        echo '<td style="width:20%; "><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     }
+
                 echo '</tr>';
 
             }
@@ -74,6 +76,7 @@
                     echo '<td style="width:20%; ">' . $row['customerName'] . '</td>';
                     echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
                     echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
+
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
                         echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
@@ -83,6 +86,7 @@
                     } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
                        echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     }
+
                 echo '</tr>';
 
             }
@@ -119,6 +123,7 @@
                     echo '<td style="width:20%; ">' . $row['taskName'] . '</td>';
                     echo '<td style="width:20%; ">' . $taskStartDateFormatted . '</td>';
                     echo '<td style="width:20%; ">' . $taskDueDateFormatted . '</td>';
+
                     if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                         echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -128,6 +133,7 @@
                     } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
                        echo '<td style="width:20%; "><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     }
+
                 echo '</tr>';
 
             }
@@ -166,6 +172,7 @@
                     echo '<td style="width:20%; ">' . $row['caseTitle'] . '</td>';
                     echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
                     echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
+
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
                         echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
@@ -175,6 +182,7 @@
                     } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
                        echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     }
+                    
                 echo '</tr>';
 
             }

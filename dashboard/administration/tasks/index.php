@@ -67,6 +67,7 @@
                                                 echo '<td style="width:20%;">' . $startDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $dueDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
+
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -76,6 +77,7 @@
                                                 } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
                                                 echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 }
+
                                                 echo '<td class="">
                                                         <a href="/dashboard/administration/tasks/viewTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/tasks/deleteTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/tasks/editTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                     </td>
@@ -120,6 +122,7 @@
                                                 echo '<td style="width:20%;">' . $startDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $dueDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
+
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -129,6 +132,7 @@
                                                 } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
                                                 echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 }
+
                                                 echo '<td class="">
                                                         <a href="/dashboard/administration/tasks/viewTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/tasks/deleteTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/tasks/editTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                     </td>
@@ -173,6 +177,7 @@
                                                 echo '<td style="width:20%;">' . $startDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $dueDateFormattedFinal . '</td>';
                                                 echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
+
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -182,6 +187,7 @@
                                                 } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
                                                 echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                                                 }
+                                                
                                                 echo '<td class="">
                                                         <a href="/dashboard/administration/tasks/viewTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/tasks/deleteTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/tasks/editTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                     </td>
