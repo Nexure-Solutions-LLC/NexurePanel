@@ -73,7 +73,6 @@
 
                 echo '<tr>';
                     echo '<td style="width:20%; ">' . $row['customerName'] . '</td>';
-                    echo '<td style="width:20%; ">' . $row['caseTitle'] . '</td>';
                     echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
                     echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
