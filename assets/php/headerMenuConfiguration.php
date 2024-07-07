@@ -82,8 +82,8 @@
                    <li class="nav-links"><a href="/dashboard/administration/accounts" class="nav-links-clickable">Accounts</a></li>
                    <li class="nav-links"><a href="/dashboard/administration/campaigns" class="nav-links-clickable">Campaigns</a></li>
                    <li class="nav-links"><a href="/dashboard/administration/contacts" class="nav-links-clickable">Contacts</a></li>
-                   <li class="nav-links"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
-           ';
+                   <li class="nav-links "><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
+                   ';
 
            if (mysqli_num_rows($moduleresult) > 0) {
                while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
