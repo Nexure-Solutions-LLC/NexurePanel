@@ -245,6 +245,7 @@
     }
 
     if (!isIpAllowed($clientIp, $allowedIpList)) {
+        /*
         if (isIpBlacklistedOrProxyVpn($clientIp, $userId, $apiKey)) {
             banIp($clientIp);
         }
@@ -256,6 +257,7 @@
         if (hasAdBlocker()) {
             banIp($clientIp);
         }
+        */
 
         if (isIpBlocked($clientIp, $blockedIpList)) {
             banIp($clientIp);
