@@ -2,8 +2,6 @@
     $pagetitle = "Payroll";
     $pagesubtitle = "Employees Listing";
 
-    unset($_SESSION['verification_code']);
-
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
@@ -45,10 +43,12 @@
                                         // Output table header
                                         echo '<table style="width:100%;">
                                                 <tr>
-                                                    <th style="width:20%;">Company/Account Number</th>
-                                                    <th style="width:20%;">Owner</th>
-                                                    <th style="width:20%;">Phone</th>
-                                                    <th style="width:20%;">Type</th>
+                                                    <th style="width:20%;">Employee Name/ID Number</th>
+                                                    <th style="width:10%;">Time Allocation</th>
+                                                    <th style="width:10%;">Pay Type</th>
+                                                    <th style="width:10%;">Worked Hours</th>
+                                                    <th style="width:10%;">Current Pay</th>
+                                                    <th style="width:10%;">Department</th>
                                                     <th style="width:10%;">Status</th>
                                                     <th>Actions</th>
                                                 </tr>';
@@ -56,11 +56,25 @@
                                         // Output table rows
                                         while ($row = mysqli_fetch_assoc($result)) {
 
-                                            
+                                            echo '<tr>';
+                                                echo '<td style="width:20%;">' . $row['employeeName'] . ' - '. $row['employeeIDNumber'] .'</td>';
+                                                echo '<td style="width:10%;">' . $row['employeeTimeType'] . '</td>';
+                                                echo '<td style="width:10%;">' . $row['employeePayType'] . '</td>';
+                                                echo '<td style="width:10%;">' . $row['employeeWorkedHours'] . '</td>';
+                                                echo '<td style="width:10%;">$' . $row['employeeActualPay'] . '</td>';
+                                                echo '<td style="width:10%;">' . $row['employeeDepartment'] . '</td>';
+                                                echo '<td style="width:10%;">' . $row['employeeStatus'] . '</td>';
+                                                echo '<td class="">
+                                                                <a href="/dashboard/administration/verification/customerVerification/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/accounts/deleteAccount/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/accounts/editAccount/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
+                                                            </td>
+                                                     ';
+                                            echo '<tr>';
 
                                         }
 
                                         echo '</table>'; // Close the table
+                                    } else {
+                                        echo '<p>There are no employees at this organization.<p>';
                                     }
                                 ?>
                             </table>
