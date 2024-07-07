@@ -22,7 +22,7 @@
                     <div class="card-header">
                          <div class="display-flex align-center">
                             <div class="no-padding margin-10px-right icon-size-formatted">
-                                <img src="/assets/img/systemIcons/accountsicon.png" alt="Employee Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                <img src="/assets/img/systemIcons/employeeicon.png" alt="Employee Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
                             </div>
                             <div>
                                 <p class="no-padding font-14px">Employees</p>
@@ -65,7 +65,7 @@
                                                 echo '<td style="width:10%;">' . $row['employeeDepartment'] . '</td>';
                                                 echo '<td style="width:10%;">' . $row['employeeStatus'] . '</td>';
                                                 echo '<td class="">
-                                                                <a href="/dashboard/administration/verification/customerVerification/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/accounts/deleteAccount/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/accounts/editAccount/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
+                                                                <a href="/modules/payroll/ceoSuite/manageEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/modules/payroll/ceoSuite/deleteEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/modules/payroll/ceoSuite/editEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                             </td>
                                                      ';
                                             echo '<tr>';
