@@ -22,10 +22,10 @@
                     <div class="card-header">
                          <div class="display-flex align-center">
                             <div class="no-padding margin-10px-right icon-size-formatted">
-                                <img src="/assets/img/systemIcons/cases.png" alt="Client Logo and/or Business Logo" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                <img src="/assets/img/systemIcons/cases.png" alt="Cases Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
                             </div>
                             <div>
-                                <p class="no-padding font-14px">Tasks</p>
+                                <p class="no-padding font-14px">Cases</p>
                                 <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">List Cases</h4>
                             </div>
                          </div>
