@@ -7,10 +7,10 @@
             // Output table header
             echo '<table style="width:100%; margin-top:1%;">
                     <tr>
-                        <th style="width:20%; font-size:12px;">Task Name</th>
-                        <th style="width:20%; font-size:12px;">Task Start Date</th>
-                        <th style="width:20%; font-size:12px;">Task Due Date</th>
-                        <th style="width:20%; font-size:12px;">Status</th>
+                        <th style="width:20%; ">Task Name</th>
+                        <th style="width:20%; ">Task Start Date</th>
+                        <th style="width:20%; ">Task Due Date</th>
+                        <th style="width:20%; ">Status</th>
                     </tr>';
 
             // Output table rows
@@ -26,17 +26,17 @@
                 $taskDueDateFormatted = $taskDueDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['taskName'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $taskStartDateFormatted . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $taskDueDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $row['taskName'] . '</td>';
+                    echo '<td style="width:20%; ">' . $taskStartDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $taskDueDateFormatted . '</td>';
                     if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
-                        echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     }
                 echo '</tr>';
 
@@ -52,11 +52,11 @@
             // Output table header
             echo '<table style="width:100%; margin-top:1%;">
                     <tr>
-                        <th style="width:20%; font-size:12px;">Customer Name</th>
-                        <th style="width:20%; font-size:12px;">Case Title</th>
-                        <th style="width:20%; font-size:12px;">Case Created</th>
-                        <th style="width:20%; font-size:12px;">Case Closed</th>
-                        <th style="width:20%; font-size:12px;">Status</th>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Case Title</th>
+                        <th style="width:20%; ">Case Created</th>
+                        <th style="width:20%; ">Case Closed</th>
+                        <th style="width:20%; ">Status</th>
                     </tr>';
 
             // Output table rows
@@ -72,18 +72,18 @@
                 $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['customerName'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['caseTitle'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $caseCreateDateFormatted . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $caseCloseDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $row['customerName'] . '</td>';
+                    echo '<td style="width:20%; ">' . $row['caseTitle'] . '</td>';
+                    echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
-                        echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     }
                 echo '</tr>';
 
@@ -99,10 +99,10 @@
             // Output table header
             echo '<table style="width:100%; margin-top:1%;">
                     <tr>
-                        <th style="width:20%; font-size:12px;">Task Name</th>
-                        <th style="width:20%; font-size:12px;">Task Start Date</th>
-                        <th style="width:20%; font-size:12px;">Task Due Date</th>
-                        <th style="width:20%; font-size:12px;">Status</th>
+                        <th style="width:20%; ">Task Name</th>
+                        <th style="width:20%; ">Task Start Date</th>
+                        <th style="width:20%; ">Task Due Date</th>
+                        <th style="width:20%; ">Status</th>
                     </tr>';
 
             // Output table rows
@@ -118,17 +118,17 @@
                 $taskDueDateFormatted = $taskDueDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['taskName'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $taskStartDateFormatted . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $taskDueDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $row['taskName'] . '</td>';
+                    echo '<td style="width:20%; ">' . $taskStartDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $taskDueDateFormatted . '</td>';
                     if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
-                        echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     }
                 echo '</tr>';
 
@@ -144,11 +144,11 @@
             // Output table header
             echo '<table style="width:100%; margin-top:1%;">
                     <tr>
-                        <th style="width:20%; font-size:12px;">Customer Name</th>
-                        <th style="width:20%; font-size:12px;">Case Title</th>
-                        <th style="width:20%; font-size:12px;">Case Created</th>
-                        <th style="width:20%; font-size:12px;">Case Closed</th>
-                        <th style="width:20%; font-size:12px;">Status</th>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Case Title</th>
+                        <th style="width:20%; ">Case Created</th>
+                        <th style="width:20%; ">Case Closed</th>
+                        <th style="width:20%; ">Status</th>
                     </tr>';
 
             // Output table rows
@@ -164,18 +164,18 @@
                 $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['customerName'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['caseTitle'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $caseCreateDateFormatted . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $caseCloseDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $row['customerName'] . '</td>';
+                    echo '<td style="width:20%; ">' . $row['caseTitle'] . '</td>';
+                    echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
+                    echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
-                        echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
-                       echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     }
                 echo '</tr>';
 
