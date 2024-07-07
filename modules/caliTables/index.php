@@ -17,11 +17,17 @@
             while ($row = mysqli_fetch_assoc($result)) {
 
                 $tasksStatusColorAssignment = $row['status'];
+                $taskStartDateUnformattedData = $row['taskStartDate'];
+                $taskDueDateUnformattedData = $row['taskDueDate'];
+                $taskStartDateUnformatted = new DateTime($taskStartDateUnformattedData);
+                $taskDueDateUnformatted = new DateTime($taskDueDateUnformattedData);
+                $taskStartDateFormatted = $taskStartDateUnformatted->format('m/d/Y g:i A');
+                $taskDueDateFormatted = $taskDueDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
                     echo '<td style="width:20%; font-size:12px;">' . $row['taskName'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['taskStartDate'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['taskDueDate'] . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $taskStartDateFormatted . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $taskDueDateFormatted . '</td>';
                     if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                         echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -56,12 +62,18 @@
             while ($row = mysqli_fetch_assoc($result)) {
 
                 $caseStatusColorAssignment = $row['caseStatus'];
+                $caseCreateDateUnformattedData = $row['caseCreateDate'];
+                $caseCloseDateUnformattedData = $row['caseCloseDate'];
+                $caseCreateDateUnformatted = new DateTime($caseCreateDateUnformattedData);
+                $caseCloseDateUnformatted = new DateTime($caseCloseDateUnformattedData);
+                $caseCreateDateFormatted = $caseCreateDateUnformatted->format('m/d/Y g:i A');
+                $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
                     echo '<td style="width:20%; font-size:12px;">' . $row['customerName'] . '</td>';
                     echo '<td style="width:20%; font-size:12px;">' . $row['caseTitle'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['caseCreateDate'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['caseCloseDate'] . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $caseCreateDateFormatted . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $caseCloseDateFormatted . '</td>';
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
                         echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
@@ -95,11 +107,17 @@
             while ($row = mysqli_fetch_assoc($result)) {
 
                 $tasksStatusColorAssignment = $row['status'];
+                $taskStartDateUnformattedData = $row['taskStartDate'];
+                $taskDueDateUnformattedData = $row['taskDueDate'];
+                $taskStartDateUnformatted = new DateTime($taskStartDateUnformattedData);
+                $taskDueDateUnformatted = new DateTime($taskDueDateUnformattedData);
+                $taskStartDateFormatted = $taskStartDateUnformatted->format('m/d/Y g:i A');
+                $taskDueDateFormatted = $taskDueDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
                     echo '<td style="width:20%; font-size:12px;">' . $row['taskName'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['taskStartDate'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['taskDueDate'] . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $taskStartDateFormatted . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $taskDueDateFormatted . '</td>';
                     if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
                         echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
                     } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
@@ -134,12 +152,18 @@
             while ($row = mysqli_fetch_assoc($result)) {
 
                 $caseStatusColorAssignment = $row['caseStatus'];
+                $caseCreateDateUnformattedData = $row['caseCreateDate'];
+                $caseCloseDateUnformattedData = $row['caseCloseDate'];
+                $caseCreateDateUnformatted = new DateTime($caseCreateDateUnformattedData);
+                $caseCloseDateUnformatted = new DateTime($caseCloseDateUnformattedData);
+                $caseCreateDateFormatted = $caseCreateDateUnformatted->format('m/d/Y g:i A');
+                $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
 
                 echo '<tr>';
                     echo '<td style="width:20%; font-size:12px;">' . $row['customerName'] . '</td>';
                     echo '<td style="width:20%; font-size:12px;">' . $row['caseTitle'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['caseCreateDate'] . '</td>';
-                    echo '<td style="width:20%; font-size:12px;">' . $row['caseCloseDate'] . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $caseCreateDateFormatted . '</td>';
+                    echo '<td style="width:20%; font-size:12px;">' . $caseCloseDateFormatted . '</td>';
                     if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
                         echo '<td style="width:20%; font-size:12px;"><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
                     } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
