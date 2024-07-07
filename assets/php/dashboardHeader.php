@@ -145,6 +145,14 @@
     $blockedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_blocklist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     $allowedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_allowlist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
+    /* 
+
+    TODO: RE ADD THIS WHEN WE GO IN PRODUCTION THIS IS TO FIX RATE LIMIT,
+    THIS WILL ALSO FIX AND WEIRD JS ISSUED WITH AD BLOCK BUT DONT RELY ON THIS
+    THE PANEL WILL ONLY ALLOW MANUAL BLOCKING AND UNBLOCKING AUTO DETECTON
+    IS DISABLED FOR DEVELOPMENT PURPOSES, BEFORE PRODUCTION FIX THIS. 
+    TEMP USE ONLY. THIS IS NOT RELAIBLE AND SHOULD BE FIXED.
+    
     function isIpBlacklistedOrProxyVpn($ip, $userId, $apiKey) {
         $url = "https://neutrinoapi.net/ip-probe";
         $ch = curl_init();
@@ -228,6 +236,8 @@
 
         return false;
     }
+
+    */
 
     function banIp($ip) {
         header("Location: /error/bannedUser");
