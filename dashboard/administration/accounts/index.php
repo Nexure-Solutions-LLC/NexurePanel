@@ -41,7 +41,7 @@
 
                                     if (mysqli_num_rows($result) > 0) {
                                         // Output table header
-                                        echo '<table style="width:100%; margin-top:-3%;">
+                                        echo '<table style="width:100%;">
                                                 <tr>
                                                     <th style="width:20%;">Company/Account Number</th>
                                                     <th style="width:20%;">Owner</th>

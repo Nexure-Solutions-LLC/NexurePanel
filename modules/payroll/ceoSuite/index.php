@@ -79,7 +79,7 @@
                                                 } else if ($employeeStatusColorAssignment == "Suspended" || $employeeStatusColorAssignment == "Suspended") {
                                                    echo '<td style="width:10%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
                                                 }
-                                                
+
                                                 echo '<td class="">
                                                                 <a href="/modules/payroll/ceoSuite/manageEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/modules/payroll/ceoSuite/deleteEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/modules/payroll/ceoSuite/editEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                             </td>
