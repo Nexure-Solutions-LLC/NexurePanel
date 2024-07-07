@@ -12,6 +12,11 @@
         header("location:/dashboard/partnerships");
     }
 
+    $sql = "SELECT * FROM caliweb_cases";
+    $result = mysqli_query($con, $sql);
+
+    if ($employeeAccessLevel == "Executive") {
+
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 ?>
 
@@ -97,5 +102,9 @@
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+
+    } else {
+        header("location:/modules/payroll/employeeView");
+    }
 
 ?>
