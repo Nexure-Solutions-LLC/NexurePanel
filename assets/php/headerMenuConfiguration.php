@@ -163,6 +163,31 @@
                   <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
               </ul>
           ';
-        }
+        } else if ($pagetitle == "Cases") {
+            echo '
+                <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/tasks" class="nav-links-clickable">Tasks</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/leads" class="nav-links-clickable">Leads</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/accounts" class="nav-links-clickable">Accounts</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/campaigns" class="nav-links-clickable">Campaigns</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/contacts" class="nav-links-clickable">Contacts</a></li>
+                    <li class="nav-links active"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
+            ';
+  
+            if (mysqli_num_rows($moduleresult) > 0) {
+                while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+                    echo '<li class="nav-links"><a href="/dashboard/administration/'.lcfirst($modulerow['moduleFreindlyName']).'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                }
+            }
+  
+            echo '
+                    <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
+          }
     }
 ?>
