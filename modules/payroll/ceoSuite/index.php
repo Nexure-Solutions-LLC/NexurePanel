@@ -63,7 +63,16 @@
                                                 echo '<td style="width:10%;">' . $row['employeeWorkedHours'] . '</td>';
                                                 echo '<td style="width:10%;">$' . $row['employeeActualPay'] . '</td>';
                                                 echo '<td style="width:10%;">' . $row['employeeDepartment'] . '</td>';
-                                                echo '<td style="width:10%;">' . $row['employeeStatus'] . '</td>';
+                                                $employeeStatusColorAssignment = $row['employeeStatus'];
+                                                if ($employeeStatusColorAssignment == "Open" || $employeeStatusColorAssignment == "open") {
+                                                    echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
+                                                } else if ($employeeStatusColorAssignment == "Closed" || $employeeStatusColorAssignment == "closed") {
+                                                   echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
+                                                } else if ($caseStatemployeeStatusColorAssignmentusColorAssignment == "Pending" || $employeeStatusColorAssignment == "pending") {
+                                                   echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
+                                                } else if ($employeeStatusColorAssignment == "On Hold" || $employeeStatusColorAssignment == "on hold") {
+                                                   echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['employeeStatus'] . '</span></td>';
+                                                }
                                                 echo '<td class="">
                                                                 <a href="/modules/payroll/ceoSuite/manageEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/modules/payroll/ceoSuite/deleteEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/modules/payroll/ceoSuite/editEmployees/?employee_number='.$row['employeeIDNumber'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                             </td>
