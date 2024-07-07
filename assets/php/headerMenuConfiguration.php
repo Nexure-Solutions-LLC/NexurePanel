@@ -60,6 +60,15 @@
                     <li class="nav-links"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
             ';
 
+            echo '
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                            
+                        
+            
+            ';
+
             if (mysqli_num_rows($moduleresult) > 0) {
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
@@ -67,8 +76,10 @@
             }
 
             echo '
-                    <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
-                    <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
@@ -85,18 +96,29 @@
                    <li class="nav-links "><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
                    ';
 
-           if (mysqli_num_rows($moduleresult) > 0) {
-               while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
-               }
-           }
+            echo '
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                    
+                
+    
+            ';
 
-           echo '
-                   <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
-                   <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
-                   <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
-               </ul>
-           ';
+            if (mysqli_num_rows($moduleresult) > 0) {
+                while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+                    echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                }
+            }
+
+            echo '
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
         } else if ($pagetitle == "Customer Accounts") {
             echo '
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>
@@ -110,6 +132,16 @@
                     <li class="nav-links"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
             ';
 
+            echo '
+
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                            
+                        
+            
+            ';
+
             if (mysqli_num_rows($moduleresult) > 0) {
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
@@ -117,8 +149,10 @@
             }
 
             echo '
-                    <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
-                    <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
@@ -139,7 +173,7 @@
                 </ul>
             ';
         } else if ($pagetitle == "Tasks") {
-          echo '
+            echo '
               <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>
               <ul class="caliweb-nav-links">
                   <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -149,20 +183,32 @@
                   <li class="nav-links"><a href="/dashboard/administration/campaigns" class="nav-links-clickable">Campaigns</a></li>
                   <li class="nav-links"><a href="/dashboard/administration/contacts" class="nav-links-clickable">Contacts</a></li>
                   <li class="nav-links"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
-          ';
+            ';
 
-          if (mysqli_num_rows($moduleresult) > 0) {
-              while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
-                echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
-              }
-          }
+            echo '
 
-          echo '
-                  <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
-                  <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
-                  <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
-              </ul>
-          ';
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                            
+                        
+            
+            ';
+
+            if (mysqli_num_rows($moduleresult) > 0) {
+                while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+                    echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+                }
+            }
+
+            echo '
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
         } else if ($pagetitle == "Cases") {
             echo '
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>
@@ -176,15 +222,27 @@
                     <li class="nav-links active"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
             ';
   
+            echo '
+
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                            
+                        
+            
+            ';
+
             if (mysqli_num_rows($moduleresult) > 0) {
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
                 }
             }
-  
+
             echo '
-                    <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
-                    <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';

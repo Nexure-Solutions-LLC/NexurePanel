@@ -140,6 +140,24 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
 });
 
+// ====================== Dropdown JS Code ======================
+
+document.addEventListener('DOMContentLoaded', function () {
+    const moreButton = document.querySelector('.more-button');
+    const more = document.querySelector('.more');
+
+    moreButton.addEventListener('click', function (e) {
+        e.preventDefault();
+        more.classList.toggle('active');
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!more.contains(e.target)) {
+            more.classList.remove('active');
+        }
+    });
+});
+
 // ====================== Dashboard Time of Day Text ======================
 
 
