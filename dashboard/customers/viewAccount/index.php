@@ -106,7 +106,7 @@
 
                                             echo '</table>'; // Close the table
                                         } else {
-                                            echo '<p class="no-padding font-14px" style="margin-top:-2% !important; margin-bottom:25px;">There are no services for this account.<p>';
+                                            echo '<p class="no-padding font-14px" style="margin-top:0% !important; margin-bottom:25px;">There are no services for this account.<p>';
                                         }
                                     ?>
                                 </div>

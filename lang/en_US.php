@@ -138,5 +138,9 @@ $LANG_DOCUMENTATION_SECTION_TITLE = "Explore Documentation";
 
 $LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Current Services";
 
+// Dashboard Support Center Management Text Specifications
+
+$LANG_CUSTOMER_SUPORTCENTER_TITLE_TEXT = "Current Support Cases"
+
 
 ?>
