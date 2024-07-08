@@ -101,7 +101,7 @@
                                         echo '</table>';
                                     } else {
                                         echo '
-                                            <table style="width:100%; margin-top:1%;">
+                                            <table style="width:100%;">
                                                 <tr>
                                                     <th style="width:20%;">Company/Account Number</th>
                                                     <th style="width:20%;">Owner</th>

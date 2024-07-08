@@ -89,7 +89,7 @@
                                         echo '</table>';
                                     } else {
                                         echo '
-                                            <table style="width:100%; margin-top:1%;">
+                                            <table style="width:100%; margin-top:-3%;">
                                                 <tr>
                                                     <th style="width:20%;">Task Name</th>
                                                     <th style="width:20%;">Task Start Date</th>
@@ -164,7 +164,7 @@
                                         echo '</table>';
                                     } else {
                                         echo '
-                                            <table style="width:100%; margin-top:1%;">
+                                            <table style="width:100%; margin-top:-3%;">
                                                 <tr>
                                                     <th style="width:20%;">Task Name</th>
                                                     <th style="width:20%;">Task Start Date</th>
@@ -239,7 +239,7 @@
                                         echo '</table>';
                                     } else {
                                         echo '
-                                            <table style="width:100%; margin-top:1%;">
+                                            <table style="width:100%; margin-top:-3%;">
                                                 <tr>
                                                     <th style="width:20%;">Task Name</th>
                                                     <th style="width:20%;">Task Start Date</th>
