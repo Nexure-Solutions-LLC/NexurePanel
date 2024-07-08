@@ -90,7 +90,29 @@
 
                                         echo '</table>'; // Close the table
                                     } else {
-                                        echo '<p>There are no employees at this organization.<p>';
+                                        echo '
+                                            <table style="width:100%; margin-top:1%;">
+                                                <tr>
+                                                    <th style="width:20%;">Employee Name/ID Number</th>
+                                                    <th style="width:10%;">Time Allocation</th>
+                                                    <th style="width:10%;">Pay Type</th>
+                                                    <th style="width:10%;">Worked Hours</th>
+                                                    <th style="width:10%;">Current Pay</th>
+                                                    <th style="width:10%;">Department</th>
+                                                    <th style="width:10%;">Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%; ">There are no Employees</td>
+                                                    <td style="width:10%; "></td>
+                                                    <td style="width:10%; "></td>
+                                                    <td style="width:10%; "></td>
+                                                    <td style="width:10%; "></td>
+                                                    <td style="width:10%; "></td>
+                                                    <td style="width:10%; "></td>
+                                                </tr>
+                                            </table>
+                                        ';
                                     }
                                 ?>
                             </table>
