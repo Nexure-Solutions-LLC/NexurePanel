@@ -71,8 +71,11 @@
                     $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
                     mysqli_free_result($websiteAccountQuery);
 
-                    if ($websiteAccountInfo != NULL) {
+                    if ($websiteAccountInfo) {
                         $websitedomain = $websiteAccountInfo['domainName'];
+                    } else {
+                        $websitedomain = "Not Assigned";
+                    }
 
 
 ?>
@@ -199,14 +202,11 @@
                 } else {
                     header("location: /dashboard/administration/accounts");
                 }
-            } else {
-            header("location: /dashboard/administration/accounts");
             }
+        } else {
+            header("location: /dashboard/administration/accounts");
         }
-    } else {
-    header("location: /dashboard/administration/accounts");
     }
-}
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
 
