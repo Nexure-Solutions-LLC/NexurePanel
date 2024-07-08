@@ -30,7 +30,7 @@
             $legalname = mysqli_real_escape_string($con, $legalname);
             $caliid = stripslashes($_REQUEST['emailaddress']);
             $caliid = mysqli_real_escape_string($con, $caliid);
-            $mobilenumber = stripslashes($_REQUEST['mobilenumber']);
+            $mobilenumber = stripslashes($_REQUEST['phonenumber']);
             $mobilenumber = mysqli_real_escape_string($con, $mobilenumber);
             $password = stripslashes($_REQUEST['password']);
             $password = mysqli_real_escape_string($con, $password);
@@ -91,7 +91,7 @@
                     header ("location: /error/genericSystemError");
                 }
 
-                $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `isAdmin`, `isPartner`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`) VALUES ('$caliid','".md5($password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','false','false','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','customer','')";
+                $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`) VALUES ('$caliid','".md5($password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','customer','','')";
                 $result   = mysqli_query($con, $query);
 
                 if ($result) {
