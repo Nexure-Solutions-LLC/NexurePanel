@@ -44,11 +44,13 @@
             if ($accountnumber != $dbaccountnumber) {
                 header("location: /dashboard/administration/accounts");
             } else {
+
                 $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE id = '".$customerSystemID."'");
                 $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
                 mysqli_free_result($businessAccountQuery);
 
-                if ($businessAccountInfo != NULL) {
+                if ($businessAccountInfo) {
+
                     $businessname = $businessAccountInfo['businessName'];
                     $businessindustry = $businessAccountInfo['businessIndustry'];
 
@@ -62,6 +64,13 @@
                     } else {
                         $websitedomain = "Not Assigned";
                     }
+
+                } else {
+                    $businessname = $legalname;
+                    $businessindustry = "Not Assigned";
+                    $websitedomain = "Not Assigned";
+                }
+                    
 
 ?>
 
@@ -304,9 +313,6 @@
     </section>
 
 <?php
-                } else {
-                    header("location: /dashboard/administration/accounts");
-                }
             }
         } else {
             header("location: /dashboard/administration/accounts");
