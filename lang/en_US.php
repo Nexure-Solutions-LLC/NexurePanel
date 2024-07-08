@@ -92,6 +92,9 @@ $LANG_PAYMENT_ERROR_TITLE_PAR_2 = "Payment Error";
 $LANG_PAYMENT_ERROR_TITLE = "We encountered an declined card error.";
 $LANG_PAYMENT_ERROR_TEXT = "The payment you attempted to make has failed. Please try again or use another card. We are sorry for any issues this may have caused. If you need assistance please contact support.";
 
+$LANG_MOBILE_EXPERIANCE_TITLE = "Oh! You tried to access the panel from your mobile device.";
+$LANG_MOBILE_EXPERIANCE_TEXT = "For the best experiance please use a laptop or desktop computer, If you wish to continue on your mobile device download our app.";
+
 // ====================== START LOGOUT LANGUAGE AREA ==========================
 
 // Logout Text Specifications

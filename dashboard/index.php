@@ -6,7 +6,18 @@
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
+    use Detection\MobileDetect;
+
     session_start();
+
+    // Check if the user is accessing from a mobile device
+
+    $detect = new MobileDetect();
+
+    if ($detect->isMobile() || $detect->isTablet()) {
+        header("Location: /error/mobileExperiance/");
+        exit();
+    }
 
     function errorHandler($errno, $errstr, $errfile, $errline) {
         $log_timestamp = date("d-m-Y H:i:sa");

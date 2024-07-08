@@ -40,6 +40,7 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
@@ -84,6 +85,7 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Lexer\\' => 22,
+            'Detection\\' => 10,
         ),
     );
 
@@ -119,6 +121,10 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
         'Stripe\\' => 
         array (
             0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
         'Psr\\Log\\' => 
         array (
@@ -224,6 +230,10 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
         'Doctrine\\Common\\Lexer\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/lexer/src',
+        ),
+        'Detection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/src',
         ),
     );
 

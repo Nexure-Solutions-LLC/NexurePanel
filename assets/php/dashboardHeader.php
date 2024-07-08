@@ -11,8 +11,18 @@
 
     use GuzzleHttp\Client;
     use IPLib\Factory;
+    use Detection\MobileDetect;
 
-    session_start();                                    
+    session_start();        
+    
+    // Check if the user is accessing from a mobile device
+
+    $detect = new MobileDetect();
+
+    if ($detect->isMobile() || $detect->isTablet()) {
+        header("Location: /error/mobileExperiance/");
+        exit();
+    }
 
     // Custom Error Handler
 

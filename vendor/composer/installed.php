@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '234b2847cd489e7b35997620c81857f691b557b0',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '234b2847cd489e7b35997620c81857f691b557b0',
             'dev_requirement' => false,
         ),
         'authorizenet/authorizenet' => array(
@@ -152,6 +152,15 @@
             'install_path' => __DIR__ . '/../mlocati/ip-lib',
             'aliases' => array(),
             'reference' => 'c77bd0b1f3e3956c7e9661e75cb1f54ed67d95d2',
+            'dev_requirement' => false,
+        ),
+        'mobiledetect/mobiledetectlib' => array(
+            'pretty_version' => '4.8.06',
+            'version' => '4.8.06.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mobiledetect/mobiledetectlib',
+            'aliases' => array(),
+            'reference' => 'af088b54cecc13b3264edca7da93a89ba7aa2d9e',
             'dev_requirement' => false,
         ),
         'mongodb/mongodb' => array(
@@ -294,6 +303,15 @@
             'provided' => array(
                 0 => '3.0.0',
             ),
+        ),
+        'psr/simple-cache' => array(
+            'pretty_version' => '3.0.0',
+            'version' => '3.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/simple-cache',
+            'aliases' => array(),
+            'reference' => '764e0b3939f5ca87cb904f570ef9be2d78a07865',
+            'dev_requirement' => false,
         ),
         'ralouphie/getallheaders' => array(
             'pretty_version' => '3.0.3',
