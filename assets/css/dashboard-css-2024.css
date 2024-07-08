@@ -212,6 +212,7 @@ body {
     padding:8px;
     top:33px;
     left:0% !important;
+    z-index: 999;
 }
 
 .dropdown li {
