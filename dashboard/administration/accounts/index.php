@@ -121,6 +121,7 @@
                                                     <td style="width:20%; "></td>
                                                     <td style="width:20%; "></td>
                                                     <td style="width:10%; "></td>
+                                                    <td style="width:10%; "></td>
                                                 </tr>
                                             </table>
                                         ';

@@ -56,9 +56,12 @@
                     $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
                     mysqli_free_result($websiteAccountQuery);
 
-                    if ($websiteAccountInfo != NULL) {
-                        $websitedomain = $websiteAccountInfo['domainName'];
 
+                    if ($websiteAccountInfo) {
+                        $websitedomain = $websiteAccountInfo['domainName'];
+                    } else {
+                        $websitedomain = "Not Assigned";
+                    }
 
 ?>
 
@@ -283,7 +286,15 @@
                             </div>
                             <div class="card-body">
                                 <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;"><?php echo $statusreason; ?></p>
-                                <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;"><?php echo $accountnotes; ?></p>
+                                <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">
+                                    <?php 
+                                        if ($accountnotes == NULL || $accountnotes == "") {
+                                            echo "There are no notes for this account.";
+                                        } else {
+                                            echo $accountnotes; 
+                                        }
+                                    ?>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -293,18 +304,14 @@
     </section>
 
 <?php
-
                 } else {
                     header("location: /dashboard/administration/accounts");
                 }
-            } else {
-            header("location: /dashboard/administration/accounts");
             }
+        } else {
+            header("location: /dashboard/administration/accounts");
         }
-    } else {
-    header("location: /dashboard/administration/accounts");
     }
-}
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
 
