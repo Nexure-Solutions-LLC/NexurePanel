@@ -12,7 +12,7 @@
     use GuzzleHttp\Client;
     use IPLib\Factory;
 
-    session_start();
+    session_start();                                    
 
     // Custom Error Handler
 

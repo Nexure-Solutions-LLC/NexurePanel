@@ -1,1 +1,0 @@
-Error: [2] session_start(): Session cannot be started after headers have already been sent in /var/www/calipanel/authentication/index.php on line 2

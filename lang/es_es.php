@@ -23,6 +23,7 @@ $LANG_LOGIN_TITLE_PAR_2 = "Acceso";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Nombre de usuario o contraseña incorrecta";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "El nombre de usuario o contraseña ingresado es incorrecto. Inténtelo de nuevo o contáctenos para restablecer su inicio de Acceso.";
 $LANG_LOGIN_BUTTON = "Continue";
+$LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 
 // Register Page Text Specifications
 $LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";

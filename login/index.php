@@ -1,6 +1,9 @@
 <?php
     session_start();
 
+    $pagetitle = "Login Page";
+    $_SESSION['pagetitle'] = $pagetitle;
+
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     // When form submitted, check and create user session.
@@ -146,6 +149,23 @@
                                     <input type="password" class="form-input" name="password" id="password" placeholder="" />
                                 </div>
                                 <div class="form-control">
+                                    <?php 
+                                        $loginModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
+                                        $loginModulesLookupResult = mysqli_query($con, $loginModulesLookupQuery);
+                                    
+                                        if (mysqli_num_rows($loginModulesLookupResult) > 0) {
+                                            while ($loginModulesLookupRow = mysqli_fetch_assoc($loginModulesLookupResult)) {
+                                                $loginModulesName = $loginModulesLookupRow['moduleName'];
+                                    
+                                                if ($loginModulesName == "Cali OAuth") {
+
+                                                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php"); 
+
+                                                }
+                                            }
+                                        }
+                                    
+                                    ?>
                                     <button class="caliweb-button primary" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?></button>
                                 </div>
                                 <div class="caliweb-horizantal-spacer mt-5-per"></div>

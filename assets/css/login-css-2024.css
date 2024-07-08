@@ -110,6 +110,7 @@ body {
     width: 100%;
     border-radius: 4px;
     padding:14px 24px;
+    font-family: "IBM Plex Sans", sans-serif !important;
 }
 .caliweb-login-footer {
     background-color: #f1f1f1;

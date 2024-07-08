@@ -1,1 +1,0 @@
-Error: [8] session_start(): Ignoring session_start() because a session is already active in /var/www/calipanel/authentication/index.php on line 2
