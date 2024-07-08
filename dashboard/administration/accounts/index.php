@@ -99,6 +99,26 @@
                                             echo '</tr>';
                                         }
                                         echo '</table>';
+                                    } else {
+                                        echo '
+                                            <table style="width:100%; margin-top:1%;">
+                                                <tr>
+                                                    <th style="width:20%;">Company/Account Number</th>
+                                                    <th style="width:20%;">Owner</th>
+                                                    <th style="width:20%;">Phone</th>
+                                                    <th style="width:20%;">Type</th>
+                                                    <th style="width:10%;">Status</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%; ">There are no Accounts</td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:10%; "></td>
+                                                </tr>
+                                            </table>
+                                        ';
                                     }
                                 ?>
                             </table>

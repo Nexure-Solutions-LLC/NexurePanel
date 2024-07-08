@@ -80,6 +80,27 @@
                                         echo '</tr>';
                                     }
                                     echo '</table>';
+                                } else {
+                                    echo '
+                                        <table style="width:100%; margin-top:1%;">
+                                            <tr>
+                                                <th style="width:20%;">Customer Name</th>
+                                                <th style="width:20%;">Case Title</th>
+                                                <th style="width:20%;">Case Create Date</th>
+                                                <th style="width:20%;">Case Close Date</th>
+                                                <th style="width:20%;">Status</th>
+                                                <th style="width:20%;">Actions</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:20%; ">There are no Cases</td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                            </tr>
+                                        </table>
+                                    ';
                                 }
                             } else {
                                 $sql = "SELECT * FROM caliweb_cases WHERE assignedUser = '$fullname'";
@@ -130,6 +151,27 @@
                                         echo '</tr>';
                                     }
                                     echo '</table>';
+                                } else {
+                                    echo '
+                                        <table style="width:100%; margin-top:1%;">
+                                            <tr>
+                                                <th style="width:20%;">Customer Name</th>
+                                                <th style="width:20%;">Case Title</th>
+                                                <th style="width:20%;">Case Create Date</th>
+                                                <th style="width:20%;">Case Close Date</th>
+                                                <th style="width:20%;">Status</th>
+                                                <th style="width:20%;">Actions</th>
+                                            </tr>
+                                            <tr>
+                                                <td style="width:20%; ">There are no Cases</td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                                <td style="width:20%; "></td>
+                                            </tr>
+                                        </table>
+                                    ';
                                 }
                             }
                             ?>

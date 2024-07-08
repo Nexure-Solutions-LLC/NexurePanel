@@ -87,6 +87,26 @@
                                         }
 
                                         echo '</table>';
+                                    } else {
+                                        echo '
+                                            <table style="width:100%; margin-top:1%;">
+                                                <tr>
+                                                    <th style="width:20%;">Task Name</th>
+                                                    <th style="width:20%;">Task Start Date</th>
+                                                    <th style="width:20%;">Task Due Date</th>
+                                                    <th style="width:20%;">Assigned To</th>
+                                                    <th style="width:20%;">Status</th>
+                                                    <th style="width:20%;">Actions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%; ">There are no Tasks</td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                </tr>
+                                            </table>
+                                        ';
                                     }
                                 } else if ($employeeAccessLevel == "Manager") {
                                     $sql = "SELECT * FROM caliweb_tasks";
@@ -142,6 +162,26 @@
                                         }
 
                                         echo '</table>';
+                                    } else {
+                                        echo '
+                                            <table style="width:100%; margin-top:1%;">
+                                                <tr>
+                                                    <th style="width:20%;">Task Name</th>
+                                                    <th style="width:20%;">Task Start Date</th>
+                                                    <th style="width:20%;">Task Due Date</th>
+                                                    <th style="width:20%;">Assigned To</th>
+                                                    <th style="width:20%;">Status</th>
+                                                    <th style="width:20%;">Actions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%; ">There are no Tasks</td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                </tr>
+                                            </table>
+                                        ';
                                     }
                                 } else {
                                     $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$fullname'";
@@ -197,6 +237,26 @@
                                         }
 
                                         echo '</table>';
+                                    } else {
+                                        echo '
+                                            <table style="width:100%; margin-top:1%;">
+                                                <tr>
+                                                    <th style="width:20%;">Task Name</th>
+                                                    <th style="width:20%;">Task Start Date</th>
+                                                    <th style="width:20%;">Task Due Date</th>
+                                                    <th style="width:20%;">Assigned To</th>
+                                                    <th style="width:20%;">Status</th>
+                                                    <th style="width:20%;">Actions</th>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width:20%; ">There are no Tasks</td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                    <td style="width:20%; "></td>
+                                                </tr>
+                                            </table>
+                                        ';
                                     }
                                 }
                             ?>
