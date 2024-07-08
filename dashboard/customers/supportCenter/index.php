@@ -7,11 +7,11 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Authorized User" || $userrole == "authorized user") {
-        header("location:/dashboard/customers/authorizedUserView");
+        header("location:/dashboard/customers/authorizedUserView/supportCenter");
     } else if ($userrole == "Partner" || $userrole == "partner") {
-        header("location:/dashboard/partnerships");
+        header("location:/dashboard/partnerships/supportCenter/");
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
-        header("location:/dashboard/administration");
+        header("location:/dashboard/administration/cases");
     }
 
     $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
@@ -51,7 +51,7 @@
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
                                         // Fetch data from MySQL table
-                                        $sql = "SELECT * FROM caliweb_cases WHERE accountNumber = '".$accountnumber."'";
+                                        $sql = "SELECT * FROM caliweb_cases WHERE emailAddress = '".$caliemail."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned
@@ -59,12 +59,13 @@
                                             // Output table header
                                             echo '<table style="width:100%; margin-top:0%; margin-bottom:0; background-color:transparent;>
                                                     <tr style="background-color:transparent;">
-                                                        <th style="width:20%; background-color:transparent !important;">Service Name</th>
-                                                        <th style="width:15%; background-color:transparent !important;">Type</th>
-                                                        <th style="width:15%; background-color:transparent !important;">Started</th>
-                                                        <th style="width:15%; background-color:transparent !important;">Renewal</th>
-                                                        <th style="width:10%; background-color:transparent !important;">Cost</th>
-                                                        <th style="width:10%; background-color:transparent !important;">Status</th>
+                                                        <th style="width:15%;">Case Number</th>
+                                                        <th style="width:20%;">Title</th>
+                                                        <th style="width:15%;">Created Date</th>
+                                                        <th style="width:15%;">Closed Date</th>
+                                                        <th style="width:10%;">Assigned Agent</th>
+                                                        <th style="width:15%;">Assigned Department</th>
+                                                        <th style="width:15%;">Status</th>
                                                         <th>Actions</th>
                                                     </tr>';
 
@@ -72,25 +73,32 @@
                                             while ($row = mysqli_fetch_assoc($result)) {
 
                                                 // This formats the date to MM/DD/YYYY HH:MM AM/PM
-                                                $serviceStartDateUnformattedData = $row['serviceStartDate'];
-                                                $serviceEndDateUnformattedData = $row['serviceEndDate'];
-                                                $serviceStartDateUnformatted = new DateTime($serviceStartDateUnformattedData);
-                                                $serviceEndDateUnformatted = new DateTime($serviceEndDateUnformattedData);
-                                                $serviceStartDateFormatted = $serviceStartDateUnformatted->format('m/d/Y g:i A');
-                                                $serviceEndDateFormatted = $serviceEndDateUnformatted->format('m/d/Y g:i A');
+                                                $caseCreateDateUnformatted = new DateTime($row['caseCreateDate']);
+                                                $caseCreateDateFormatted = $caseCreateDateUnformatted->format('m/d/Y g:i A');
+                                                $caseCloseDateUnformatted = new DateTime($row['caseCloseDate']);
+                                                $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
+
+                                                $caseStatusColorAssignment = $row['caseStatus'];
 
                                                 echo '<tr>';
-                                                echo '<td style="width:20%; background-color:transparent !important;">' . $row['serviceName'] . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $row['serviceType'] . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $serviceStartDateFormatted . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $serviceEndDateFormatted . '</td>';
-                                                echo '<td style="width:10%; background-color:transparent !important;">$ ' . $row['serviceCost'] . '</td>';
-                                                echo '<td style="width:10%; background-color:transparent !important;">' . $row['serviceStatus'] . '</td>';
-                                                echo '<td style="background-color:transparent !important;">
-                                                        <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                        <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/deleteService/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                        <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/editService/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
-                                                    </td>';
+                                                echo '<td style="width:15%;">' . $row['caseNumber'] . '</td>';
+                                                echo '<td style="width:20%;">' . $row['caseTitle'] . '</td>';
+                                                echo '<td style="width:15%;">' . $caseCreateDateFormatted . '</td>';
+                                                echo '<td style="width:15%;">' . $caseCloseDateFormatted . '</td>';
+                                                echo '<td style="width:10%;">' . $row['assignedAgent'] . '</td>';
+                                                echo '<td style="width:15%;">' . $row['assignedDepartment'] . '</td>';
+
+                                                if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
+                                                    echo '<td style="width:15%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                                                } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
+                                                echo '<td style="width:15%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                                                } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
+                                                echo '<td style="width:15%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                                                } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
+                                                echo '<td style="width:15%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                                                }
+                                                
+                                                echo '<td class=""><a href="/dashboard/administration/cases/viewCases/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/cases/deleteCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/cases/editCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a></td>';
                                                 echo '</tr>';
                                             }
 

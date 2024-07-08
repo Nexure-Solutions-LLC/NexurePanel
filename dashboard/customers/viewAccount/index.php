@@ -69,12 +69,12 @@
                                             // Output table header
                                             echo '<table style="width:100%; margin-top:0%; margin-bottom:0; background-color:transparent;>
                                                     <tr style="background-color:transparent;">
-                                                        <th style="width:20%; background-color:transparent !important;">Service Name</th>
-                                                        <th style="width:15%; background-color:transparent !important;">Type</th>
-                                                        <th style="width:15%; background-color:transparent !important;">Started</th>
-                                                        <th style="width:15%; background-color:transparent !important;">Renewal</th>
-                                                        <th style="width:10%; background-color:transparent !important;">Cost</th>
-                                                        <th style="width:10%; background-color:transparent !important;">Status</th>
+                                                        <th style="width:20%;">Service Name</th>
+                                                        <th style="width:15%;">Type</th>
+                                                        <th style="width:15%;">Started</th>
+                                                        <th style="width:15%;">Renewal</th>
+                                                        <th style="width:10%;">Cost</th>
+                                                        <th style="width:10%;">Status</th>
                                                         <th>Actions</th>
                                                     </tr>';
 
@@ -90,13 +90,13 @@
                                                 $serviceEndDateFormatted = $serviceEndDateUnformatted->format('m/d/Y g:i A');
 
                                                 echo '<tr>';
-                                                echo '<td style="width:20%; background-color:transparent !important;">' . $row['serviceName'] . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $row['serviceType'] . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $serviceStartDateFormatted . '</td>';
-                                                echo '<td style="width:15%; background-color:transparent !important;">' . $serviceEndDateFormatted . '</td>';
-                                                echo '<td style="width:10%; background-color:transparent !important;">$ ' . $row['serviceCost'] . '</td>';
-                                                echo '<td style="width:10%; background-color:transparent !important;">' . $row['serviceStatus'] . '</td>';
-                                                echo '<td style="background-color:transparent !important;">
+                                                echo '<td style="width:20%;">' . $row['serviceName'] . '</td>';
+                                                echo '<td style="width:15%;">' . $row['serviceType'] . '</td>';
+                                                echo '<td style="width:15%;">' . $serviceStartDateFormatted . '</td>';
+                                                echo '<td style="width:15%;">' . $serviceEndDateFormatted . '</td>';
+                                                echo '<td style="width:10%;">$ ' . $row['serviceCost'] . '</td>';
+                                                echo '<td style="width:10%;">' . $row['serviceStatus'] . '</td>';
+                                                echo '<td style="">
                                                         <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
                                                         <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/deleteService/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
                                                         <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/editService/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
