@@ -45,6 +45,23 @@
             }
 
             echo '</table>';
+        } else {
+            echo '
+                <table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Task Name</th>
+                        <th style="width:20%; ">Task Start Date</th>
+                        <th style="width:20%; ">Task Due Date</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>
+                    <tr>
+                        <td style="width:20%; ">There are no Tasks</td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                    </tr>
+                </table>
+            ';
         }
     } else if ($_SESSION['graphCallType'] == "Dashboard Cases Table") {
         $sql = "SELECT * FROM caliweb_cases";
@@ -92,6 +109,23 @@
             }
 
             echo '</table>';
+        } else {
+            echo '
+                <table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Case Created</th>
+                        <th style="width:20%; ">Case Closed</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>
+                    <tr>
+                        <td style="width:20%; ">There are no Cases</td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                    </tr>
+                </table>
+            ';
         }
     } else if ($_SESSION['graphCallType'] == "Dashboard Tasks Table Employee Only") {
         $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$fullname'";
@@ -139,8 +173,25 @@
             }
 
             echo '</table>';
+        } else {
+            echo '
+                <table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Task Name</th>
+                        <th style="width:20%; ">Task Start Date</th>
+                        <th style="width:20%; ">Task Due Date</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>
+                    <tr>
+                        <td style="width:20%; ">There are no Tasks</td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                    </tr>
+                </table>
+            ';
         }
-    } else if ($_SESSION['graphCallType'] == "Dashboard Cases Table") {
+    } else if ($_SESSION['graphCallType'] == "Dashboard Cases Table Employee Only") {
         $sql = "SELECT * FROM caliweb_cases WHERE assignedAgent = '$fullname'";
         $result = mysqli_query($con, $sql);
 
@@ -188,6 +239,103 @@
             }
 
             echo '</table>';
+        } else {
+            echo '
+                <table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Case Created</th>
+                        <th style="width:20%; ">Case Closed</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>
+                    <tr>
+                        <td style="width:20%; ">There are no Cases</td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                    </tr>
+                </table>
+            ';
+        }
+    } else if ($_SESSION['graphCallType'] == "Dashboard Leads Table") {
+        $sql = "SELECT * FROM caliweb_leads";
+        $result = mysqli_query($con, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            // Output table header
+            echo '<table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Assigned To</th>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Account Number</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>';
+
+            // Output table rows
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                
+
+            }
+
+            echo '</table>';
+        } else {
+            echo '
+                <table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Assigned To</th>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Account Number</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>
+                    <tr>
+                        <td style="width:20%; ">There are no Leads</td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                    </tr>
+                </table>
+            ';
+        }
+    } else if ($_SESSION['graphCallType'] == "Dashboard Leads Table Employee Only") {
+        $sql = "SELECT * FROM caliweb_leads WHERE assignedAgent = '$fullname'";
+        $result = mysqli_query($con, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            // Output table header
+            echo '<table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Assigned To</th>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Account Number</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>';
+
+            // Output table rows
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                
+
+            }
+
+            echo '</table>';
+        } else {
+            echo '
+                <table style="width:100%; margin-top:1%;">
+                    <tr>
+                        <th style="width:20%; ">Assigned To</th>
+                        <th style="width:20%; ">Customer Name</th>
+                        <th style="width:20%; ">Account Number</th>
+                        <th style="width:20%; ">Status</th>
+                    </tr>
+                    <tr>
+                        <td style="width:20%; ">There are no Leads</td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                        <td style="width:20%; "></td>
+                    </tr>
+                </table>
+            ';
         }
     }
 ?>

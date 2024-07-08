@@ -274,7 +274,14 @@
                             <p class="no-padding">All Leads</p>
                         </div>
                         <div class="card-body">                
-                            <h4 class="text-bold font-size-20 no-padding">3</h4>
+                            
+                            <?php
+                                unset($_SESSION['graphCallType']);
+                                $graphCallType = "Dashboard Leads Table";
+                                $_SESSION['graphCallType'] = $graphCallType;
+                                include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                            ?>
+
                         </div>
                         <div class="card-footer">
                             <a href="" class="careers-link">View Report</a>
@@ -288,8 +295,15 @@
                         <div class="card-header">
                             <p class="no-padding">All Leads</p>
                         </div>
-                        <div class="card-body">                
-                            <h4 class="text-bold font-size-20 no-padding">3</h4>
+                        <div class="card-body">     
+
+                            <?php
+                                unset($_SESSION['graphCallType']);
+                                $graphCallType = "Dashboard Leads Table";
+                                $_SESSION['graphCallType'] = $graphCallType;
+                                include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                            ?>
+
                         </div>
                         <div class="card-footer">
                             <a href="" class="careers-link">View Report</a>
@@ -303,8 +317,15 @@
                         <div class="card-header">
                             <p class="no-padding">My Leads</p>
                         </div>
-                        <div class="card-body">                
-                            <h4 class="text-bold font-size-20 no-padding">3</h4>
+                        <div class="card-body">    
+                                        
+                            <?php
+                                unset($_SESSION['graphCallType']);
+                                $graphCallType = "Dashboard Leads Table Employee Only";
+                                $_SESSION['graphCallType'] = $graphCallType;
+                                include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                            ?>
+
                         </div>
                         <div class="card-footer">
                             <a href="" class="careers-link">View Report</a>
