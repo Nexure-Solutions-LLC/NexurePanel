@@ -67,7 +67,7 @@
                                         </div>
                                         <hr>
                                         <div class="form-control" style="margin-bottom:0;">
-                                            <div class="caliweb-two-grid">
+                                            <div class="caliweb-two-grid must-be-grid">
                                                 <div class="text-left">
                                                     <a href="/resetPassword" class="careers-link" style="font-size:12px;">Forgot password?</a>
                                                 </div>
@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="caliweb-horizantal-spacer mt-5-per"></div>
                                 <div class="form-control mt-5-per" style="margin-bottom:0;">
-                                    <div class="caliweb-two-grid">
+                                    <div class="caliweb-two-grid must-be-grid">
                                         <div class="text-left">
                                             <a href="/resetPassword" class="careers-link" style="font-size:12px;">Forgot password?</a>
                                         </div>

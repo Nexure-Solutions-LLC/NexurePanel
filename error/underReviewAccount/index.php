@@ -35,7 +35,7 @@
 
     echo '<section class="section" style="padding-top:10%; padding-left:15%;">
             <div class="container caliweb-container">
-                <div style="display:flex; align-items:center;">
+                <div style="display:flex; align-items:center;" class="mobile-experiance">
                     <div style="margin-right:2%;">
                         <img src="/assets/img/systemIcons/underreviewicon.webp" style="height:30px; width:30px;" />
                     </div>

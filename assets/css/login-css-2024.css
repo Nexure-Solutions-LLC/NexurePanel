@@ -356,6 +356,18 @@ body {
     .register-only {
         padding-top: 15%;
     }
+    .must-be-grid {
+        display: grid !important;
+        -ms-grid-columns: 1fr 1fr !important;
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    .mobile-experiance {
+        text-align: center !important;
+        display: block !important;
+        width:80%;
+        padding-left:0 !important;
+    }
 }
 @media (min-width:2000px) {
     /* Moves the Registration form down futher on screen that are lager
