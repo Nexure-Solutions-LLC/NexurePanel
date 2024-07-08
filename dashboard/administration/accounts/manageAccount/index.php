@@ -237,7 +237,7 @@
                                                     echo '<table style="width:100%;">
                                                             <tr>
                                                                 <th style="width:10%;">Case Number</th>
-                                                                <th style="width:15%;">Case Title</th>
+                                                                <th style="width:20%;">Case Title</th>
                                                                 <th style="width:15%;">Created Date</th>
                                                                 <th style="width:15%;">Closed Date</th>
                                                                 <th style="width:15%;">Assigned Agent</th>
@@ -258,7 +258,7 @@
 
                                                         echo '<tr>';
                                                         echo '<td style="width:10%;">' . $row['caseNumber'] . '</td>';
-                                                        echo '<td style="width:15%;">' . $row['caseTitle'] . '</td>';
+                                                        echo '<td style="width:20%;">' . $row['caseTitle'] . '</td>';
                                                         echo '<td style="width:15%;">' . $caseCreateDateFormatted . '</td>';
                                                         echo '<td style="width:15%;">' . $caseCloseDateFormatted . '</td>';
                                                         echo '<td style="width:15%;">' . $row['assignedAgent'] . '</td>';
@@ -283,6 +283,19 @@
                         </div>
                     </div>
                     <div>
+                        <div class="caliweb-card dashboard-card" style="margin-bottom:2%;">
+                            <div class="card-header">
+                                <div class="display-flex align-center" style="justify-content:space-between;">
+                                    <div>
+                                        <p class="no-padding">Account Insights</p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                
+                            </div>
+                        </div>
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
                                 <div class="display-flex align-center" style="justify-content:space-between;">
