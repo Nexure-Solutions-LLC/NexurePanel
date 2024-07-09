@@ -1,10 +1,10 @@
-# Cali Panel 20.0.1
+## Cali Panel 20.0.1
 
 This is the official repository for the new Cali Web Design Panel that will run virtually every modern business out there with a completely modulated experience.
 
 ---
 
-## Features
+### Features
 
 - **Dashboard**: A comprehensive dashboard to view and manage all business operations.
 - **CRM**: Customer Relationship Management tools to track and manage client interactions.
@@ -21,7 +21,7 @@ This is the official repository for the new Cali Web Design Panel that will run 
 
 ---
 
-## Technologies Used
+### Technologies Used
 
 - **PHP** (with Composer)
 - **MySQL**
@@ -34,7 +34,7 @@ This is the official repository for the new Cali Web Design Panel that will run 
 
 ---
 
-## Authors
+### Authors
 
 - Nick Derry
 - Mikey Brinkley
@@ -44,7 +44,7 @@ This is the official repository for the new Cali Web Design Panel that will run 
 
 ---
 
-## Getting Started
+### Getting Started
 
 This panel is still in development so the install script has not been built yet. The panel also is buggy and unfinished
 it currently is only open to Developer Testing.
