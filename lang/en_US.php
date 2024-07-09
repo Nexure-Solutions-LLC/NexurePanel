@@ -75,7 +75,7 @@ $LANG_SUSPENDED_CONTACT_INFO = "To resolve this issue please call the number for
 
 // Account Terminated Error Text Specifications
 $LANG_TERMINATED_TITLE = "We have terminated your account.";
-$LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated in order to protect ourselves, this means you may no longer use Cali Web Design.";
+$LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated in order to protect ourselves, this means you may no longer use Cali Web Design. This decision is final and can't be overturned.";
 
 // Account Under Review Text Specifications
 $LANG_ACCOUNT_UNDER_REVIEW_TITLE = 'Uh-Oh! We need more information to open your account.';
@@ -140,7 +140,7 @@ $LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Current Services";
 
 // Dashboard Support Center Management Text Specifications
 
-$LANG_CUSTOMER_SUPORTCENTER_TITLE_TEXT = "Current Support Cases"
+$LANG_CUSTOMER_SUPORTCENTER_TITLE_TEXT = "Current Support Cases";
 
 
 ?>
