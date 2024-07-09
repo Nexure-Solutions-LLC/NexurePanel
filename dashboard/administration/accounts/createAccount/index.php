@@ -107,27 +107,98 @@
         $accountInsertResult = mysqli_query($con, $accountInsertRequest);
 
         if ($accountInsertResult) {
-
-            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
-            $addressInsertResult = mysqli_query($con, $addressInsertRequest);
-
-            if ($addressInsertResult) {
-
-                $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
-                $businessInsertResult = mysqli_query($con, $businessInsertRequest);
-
-                if ($businessInsertResult) {
-                    echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
+            // Runs a check to see if it's an employee to add the account to the employee payroll module.
+            // Logins are treated as customer accounts until they are not. One system for all.
+            if ($accesslevel != "Retail" && $accesslevel != "Wholesale" && $accesslevel != "Referral" && $accesslevel != "Undefined") {
+        
+                $moduleCheckQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND `modulePositionType` = 'Staff Function'";
+                $moduleCheckResult = mysqli_query($con, $moduleCheckQuery);
+        
+                if (mysqli_num_rows($moduleCheckResult) > 0) {
+                    while ($moduleCheckRow = mysqli_fetch_assoc($moduleCheckResult)) {
+                        $moduleCheckName = $moduleCheckRow['moduleName'];
+        
+                        if ($moduleCheckName == "Cali Payroll") {
+                            // Generate Employee IDs
+                            $checkEmployeeIDsQuery = "SELECT employeeIDNumber FROM caliweb_payroll ORDER BY id DESC LIMIT 1";
+                            $checkEmployeeIDsResult = $con->query($checkEmployeeIDsQuery);
+        
+                            if ($checkEmployeeIDsResult->num_rows > 0) {
+                                $checkEmployeeIDsRow = $checkEmployeeIDsResult->fetch_assoc();
+                                $employeeLastID = intval($checkEmployeeIDsRow['employeeIDNumber']);
+                                $employeeNewID = $employeeLastID + 1;
+                            } else {
+                                $employeeNewID = 4;
+                            }
+        
+                            $employeeFormattedID = sprintf('%08d', $employeeNewID);
+        
+                            // Insert the new employee record
+                            $employeeInsertRequest = "INSERT INTO `caliweb_payroll`(`employeeName`, `employeeIDNumber`, `employeePayType`, `employeeEmail`, `employeeTimeType`, `employeeHireDate`, `employeeTerminationDate`, `employeeRehireDate`, `employeePayRate`, `employeeWorkedHours`, `employeeExpectedPay`, `employeeActualPay`, `employeePhoneNumber`, `employeeExtension`, `employeeAddressLine1`, `employeeAddressLine2`, `employeeCity`, `employeeState`, `employeePostalCode`, `employeeCountry`, `employeeDateOfBirth`, `employeeSSNNumber`, `employeeDepartment`, `employeeNotes`, `employeeStatus`, `bankRoutingNumber`, `bankAccountNumber`, `bankAccountType`, `fundingType`) VALUES ('$legalname','$employeeFormattedID','Salary','$caliid','Full-Time','$registrationdate','0000-00-00','0000-00-00','0.00','0.00','0.00','0.00','$mobilenumber','0000','$streetaddress','$additionaladdress','$city','$state','$postalcode','$country','0000-00-00','000-00-0000','Not Assigned','','$accountstatus','000000000','000000000','Undefined','Standard ACH')";
+                            $employeeInsertResult = mysqli_query($con, $employeeInsertRequest);
+        
+                            if ($employeeInsertResult) {
+                                header("location: /modules/payroll");
+                            } else {
+                                header("location: /error/genericSystemError");
+                            }
+                        } else {
+                            // Handle non-employee insertion into ownership information and businesses
+                            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                            $addressInsertResult = mysqli_query($con, $addressInsertRequest);
+                    
+                            if ($addressInsertResult) {
+                                $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
+                                $businessInsertResult = mysqli_query($con, $businessInsertRequest);
+                    
+                                if ($businessInsertResult) {
+                                    echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
+                                } else {
+                                    header("location: /error/genericSystemError");
+                                }
+                            } else {
+                                header("location: /error/genericSystemError");
+                            }
+                        }
+                    }
                 } else {
-                    header ("location: /error/genericSystemError");
+                    // Handle non-employee insertion into ownership information and businesses
+                    $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                    $addressInsertResult = mysqli_query($con, $addressInsertRequest);
+            
+                    if ($addressInsertResult) {
+                        $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
+                        $businessInsertResult = mysqli_query($con, $businessInsertRequest);
+            
+                        if ($businessInsertResult) {
+                            echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
+                        } else {
+                            header("location: /error/genericSystemError");
+                        }
+                    } else {
+                        header("location: /error/genericSystemError");
+                    }
                 }
-
             } else {
-                header ("location: /error/genericSystemError");
+                // Handle non-employee insertion into ownership information and businesses
+                $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                $addressInsertResult = mysqli_query($con, $addressInsertRequest);
+        
+                if ($addressInsertResult) {
+                    $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
+                    $businessInsertResult = mysqli_query($con, $businessInsertRequest);
+        
+                    if ($businessInsertResult) {
+                        echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
+                    } else {
+                        header("location: /error/genericSystemError");
+                    }
+                } else {
+                    header("location: /error/genericSystemError");
+                }
             }
-
         } else {
-            header ("location: /error/genericSystemError");
+            header("location: /error/genericSystemError");
         }
 
     } else {
@@ -210,9 +281,9 @@
                                                 <label for="accesslevel">Access Level</label>
                                                 <select type="text" name="accesslevel" id="accesslevel" class="form-input">
                                                     <option>Please choose an option</option>
-                                                    <option>Retail Customer</option>
-                                                    <option>Wholesale Customer</option>
-                                                    <option>Referral Customer</option>
+                                                    <option>Retail</option>
+                                                    <option>Wholesale</option>
+                                                    <option>Referral</option>
                                                     <option>Employee</option>
                                                     <option>Manager</option>
                                                     <option>Executive</option>

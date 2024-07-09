@@ -1,4 +1,7 @@
 <?php
+    $pagetitle = "Client";
+    $pagesubtitle = "Overview";
+
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
