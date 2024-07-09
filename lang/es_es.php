@@ -22,26 +22,23 @@ $LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LOGIN_TITLE_PAR_2 = "Acceso";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Nombre de usuario o contraseña incorrecta";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "El nombre de usuario o contraseña ingresado es incorrecto. Inténtelo de nuevo o contáctenos para restablecer su inicio de Acceso.";
-$LANG_LOGIN_BUTTON = "Continue";
-$LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
+$LANG_LOGIN_BUTTON = "Continuar";
 
 // Register Page Text Specifications
 $LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";
-$LANG_REGISTER_TITLE_PAR_2 = "Registration";
-$LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registration Error";
-$LANG_REGISTER_AUTH_ERROR_TEXT = "The registration proccess failed for an unknown reason. Please try again or if the problem presists contact Cali Web Design.";
-$LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha Error";
-$LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Please make sure youâ€™re not a robot. We require this to protect against spam.";
-$LANG_REGISTER_REGISTRATION_TITLE = "Already are a Cali Web Design customer?";
-$LANG_REGISTER_REGISTRATION_TEXT = "If you are a developer that needs access for testing please contact us for a sandbox account and API Credentials.";
-$LANG_REGISTER_BUTTON = "Continue";
+$LANG_REGISTER_TITLE_PAR_2 = "Registro";
+$LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registro el falló";
+$LANG_REGISTER_AUTH_ERROR_TEXT = "El proceso de registro falló por un motivo desconocido. Por favor inténtelo nuevamente o si el problema persiste comuníquese con Cali Web Design.";
+$LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha falló";
+$LANG_REGISTER_CAPTCHA_ERROR_TEXT = "No marcaste esa pequeña y tonta casilla. P@r favor, asegúrate de no ser un robot.";
+$LANG_REGISTER_BUTTON = "Continuar";
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 
 // License Error Text Specifications
 
 $LANG_LICENSE_TITLE_PAR_1 = "Cali Web Design";
-$LANG_LICENSE_TITLE_PAR_2 = "License Error";
+$LANG_LICENSE_TITLE_PAR_2 = "Licencia falló";
 $LANG_LICENSE_TITLE = "The key you entered is not correct or malformed!";
 $LANG_LICENSE_TEXT = "To protect the Cali Web Design Panel Software you need a license to use it. The key you entered is not valid and can't be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.";
 
@@ -92,9 +89,6 @@ $LANG_PAYMENT_ERROR_TITLE_PAR_2 = "Payment Error";
 $LANG_PAYMENT_ERROR_TITLE = "We encountered an declined card error.";
 $LANG_PAYMENT_ERROR_TEXT = "The payment you attempted to make has failed. Please try again or use another card. We are sorry for any issues this may have caused. If you need assistance please contact support.";
 
-$LANG_MOBILE_EXPERIANCE_TITLE = "Oh! You tried to access the panel from your mobile device.";
-$LANG_MOBILE_EXPERIANCE_TEXT = "For the best experience please use a laptop or desktop computer, If you wish to continue on your mobile device download our app.";
-
 // ====================== START LOGOUT LANGUAGE AREA ==========================
 
 // Logout Text Specifications
@@ -138,8 +132,5 @@ $LANG_DOCUMENTATION_SECTION_TITLE = "Explore Documentation";
 
 $LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Current Services";
 
-// Dashboard Support Center Management Text Specifications
-
-$LANG_CUSTOMER_SUPORTCENTER_TITLE_TEXT = "Current Support Cases"
 
 ?>

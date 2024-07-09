@@ -32,8 +32,6 @@ $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registration Error";
 $LANG_REGISTER_AUTH_ERROR_TEXT = "The registration proccess failed for an unknown reason. Please try again or if the problem presists contact Cali Web Design.";
 $LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha Error";
 $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Please make sure youâ€™re not a robot. We require this to protect against spam.";
-$LANG_REGISTER_REGISTRATION_TITLE = "Already are a Cali Web Design customer?";
-$LANG_REGISTER_REGISTRATION_TEXT = "If you are a developer that needs access for testing please contact us for a sandbox account and API Credentials.";
 $LANG_REGISTER_BUTTON = "Continue";
 
 // ====================== START ERROR LANGUAGE AREA ==========================
