@@ -18,13 +18,16 @@
 // ====================== START LOGIN LANGUAGE AREA ==========================
 
 // Login Page Text Specifications
+
 $LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LOGIN_TITLE_PAR_2 = "Acceso";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Nombre de usuario o contraseña incorrecta";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "El nombre de usuario o contraseña ingresado es incorrecto. Inténtelo de nuevo o contáctenos para restablecer su inicio de Acceso.";
 $LANG_LOGIN_BUTTON = "Continuar";
+$LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 
 // Register Page Text Specifications
+
 $LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";
 $LANG_REGISTER_TITLE_PAR_2 = "Registro";
 $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registro el falló";
@@ -64,21 +67,24 @@ $LANG_CUSTOMER_VERIFICATION_TITLE = "Cali Web Design needs to verify some inform
 $LANG_CUSTOMER_VERIFICATION_TEXT = "Please complete the short security quiz. The information in this security quiz is based off of public record.";
 $LANG_CUSTOMER_VERIFICATION_TEXT_PHONE_VERIFY = "Cali Web Design will send a 6 digit code to the phone number on file. Please enter it here.";
 
-
 // Account Suspension Error Text Specifications
+
 $LANG_SUSPENDED_TITLE = "We have suspended your account for suspicious activity.";
 $LANG_SUSPENDED_TEXT = "Your account at Cali Web Design has been suspended, please contact Cali Web Design Support during business hours in order to resolve this issue. Your services also have been suspended and can not be accessed.";
 $LANG_SUSPENDED_CONTACT_INFO = "To resolve this issue please call the number for your type of account. <br><br>For Cali Web Design Retail Customers call +1 (877)-597-7325. For Cali Web Design Business Customers call +1 (315)-898-1221. For Cali Web Design UK Customers call +44 (87) 0820 0077";
 
 // Account Terminated Error Text Specifications
+
 $LANG_TERMINATED_TITLE = "We have terminated your account.";
 $LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated in order to protect ourselves, this means you may no longer use Cali Web Design. This decision is final and can't be overturned.";
 
 // Account Under Review Text Specifications
+
 $LANG_ACCOUNT_UNDER_REVIEW_TITLE = 'Uh-Oh! We need more information to open your account.';
 $LANG_ACCOUNT_UNDER_REVIEW_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
 
 // Banned Error Text Specifications
+
 $LANG_BANNED_TITLE = "Hmmm. Your network seems a little unusual. We have banned your IP for security.";
 $LANG_BANNED_TEXT = "We cant verify the authenticity of this visit. We have banned this IP. Please disable any VPNs, Browser Extensions, or AD Blockers, and try your request again. This is an automated process.";
 
@@ -88,6 +94,11 @@ $LANG_PAYMENT_ERROR_TITLE_PAR_1 = "Cali Web Design";
 $LANG_PAYMENT_ERROR_TITLE_PAR_2 = "Payment Error";
 $LANG_PAYMENT_ERROR_TITLE = "We encountered an declined card error.";
 $LANG_PAYMENT_ERROR_TEXT = "The payment you attempted to make has failed. Please try again or use another card. We are sorry for any issues this may have caused. If you need assistance please contact support.";
+
+// Mobile Experiance Text Specifications
+
+$LANG_MOBILE_EXPERIANCE_TITLE = "Oh! You tried to access the panel from your mobile device.";
+$LANG_MOBILE_EXPERIANCE_TEXT = "For the best experience please use a laptop or desktop computer, If you wish to continue on your mobile device download our app.";
 
 // ====================== START LOGOUT LANGUAGE AREA ==========================
 
@@ -132,5 +143,8 @@ $LANG_DOCUMENTATION_SECTION_TITLE = "Explore Documentation";
 
 $LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Current Services";
 
+// Dashboard Support Center Text Specifications
+
+$LANG_CUSTOMER_SUPORTCENTER_TITLE_TEXT = "Current Support Cases"
 
 ?>
