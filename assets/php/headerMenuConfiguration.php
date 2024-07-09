@@ -45,6 +45,16 @@
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
+        } else if ($pagetitle == "Client" && $pagesubtitle == "Customer Service") {
+            echo '
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/accessAndSecurityCenter" class="nav-links-clickable">Access & Security Center</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/serviceStatus" class="nav-links-clickable">Service Status</a></li>
+                    <li class="nav-links active"><a href="/dashboard/customers/supportCenter" class="nav-links-clickable">Customer Service</a></li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
         }
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
         if ($pagetitle == "Administration Dashboard") {
