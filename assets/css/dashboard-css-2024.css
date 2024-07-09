@@ -68,6 +68,11 @@ body {
     align-items: center;
 }
 
+.align-top {
+    align-items: top;
+    vertical-align: top;
+}
+
 .width-20 {
     width:20% !important;
 }
@@ -622,6 +627,46 @@ textarea.swal2-input{
     width: 100%;
     height: auto;
     border-radius: 0px;
+}
+
+/* =================== Cali Web Design Dashboard Modals =================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 12% auto;
+    padding: 20px;
+    border: 1px solid #eee;
+    width: 50%;
+    border-radius:4px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */

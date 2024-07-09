@@ -19,6 +19,7 @@
     $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
 
     $accountnumber = $userinfo['accountNumber'];
+    $truncatedAccountNumber = substr($accountnumber, -4);
     $customerStatus = $userinfo['accountStatus'];
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
@@ -54,7 +55,7 @@
                                     </h6>
                                     <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
                                         <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600;">
-                                            <?php echo $orgShortName; ?> Standard (<?php echo $accountnumber; ?>)
+                                            <?php echo $orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
                                         </h6>
                                         <span>
                                             <a href="/dashboard/customers/viewAccount/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary">View Account</a>

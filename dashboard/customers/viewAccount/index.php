@@ -19,6 +19,16 @@
 
     $customerStatus = $userinfo['accountStatus'];
 
+    $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
+    $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
+    mysqli_free_result($businessAccountQuery);
+
+    $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
+
+    $accountnumber = $userinfo['accountNumber'];
+    $truncatedAccountNumber = substr($accountnumber, -4);
+    $customerStatus = $userinfo['accountStatus'];
+
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
 ?>
@@ -36,11 +46,57 @@
                     <div class="caliweb-one-grid" style="grid-row-gap: 32px;">
                         <div class="accounts-overview">
                             <div class="caliweb-card dashboard-card" style="padding:0;">
-                                <div class="card-header no-padding no-margin customer-card-header" style="padding:20px;">
-                                    
+                                <div class="card-header no-padding no-margin customer-card-header" style="padding:20px; border:0;">
+                                    <div class="display-flex align-top">
+                                        <div>
+                                            <p style="font-size:14px; font-weight:600;">
+                                                <?php echo $orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
+                                            </p>
+                                            <p style="font-size:12px; margin-top:5px;">
+                                                <?php
+                                                    if ($businessname !== null) {
+                                                        echo strtoupper($businessname);
+                                                    } else {
+                                                        echo strtoupper($fullname);
+                                                    }
+                                                ?>
+                                            </p>
+                                        </div>
+                                        <span style="padding-left:15px; padding-right:15px;">|</span>
+                                        <div>
+                                            <a class="display-flex align-center careers-link" style="text-decoration:none;" href="javascript:void(0);" onclick="openModal()"><span style="padding-right:5px;">See full account number</span> <span class="lnr lnr-chevron-right"></span></a>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-body">
-
+                                    <div class="caliweb-three-grid" style="padding:20px;">
+                                        <div class="customer-balance">
+                                            <h5 style="font-weight:300; font-size:40px;" class="no-padding no-margin">$0.00</h5>
+                                            <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Owed Balance</p>
+                                        </div>
+                                        <div class="customer-duedate" style="margin-top:4%;">
+                                            <h5 style="font-weight:300; font-size:18px;" class="no-padding no-margin">July 12, 2024</h5>
+                                            <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
+                                        </div>
+                                        <div class="customer-duedate" style="margin-top:3.5%;">
+                                            <h5 style="font-weight:300; font-size:18px;" class="no-padding no-margin">
+                                                <?php
+                                                    if ($customerStatus == "Active" || $customerStatus == "active") {
+                                                        echo "<span class='account-status-badge green' style='margin-left:0;'>Active</span>";
+                                                    } else if ($customerStatus == "Suspended" || $customerStatus == "suspended") {
+                                                       echo "<span class='account-status-badge red' style='margin-left:0;'>Suspended</span>";
+                                                    } else if ($customerStatus == "Terminated" || $customerStatus == "terminated") {
+                                                       echo "<span class='account-status-badge red-dark' style='margin-left:0;'>Terminated</span>";
+                                                    } else if ($customerStatus == "Under Review" || $customerStatus == "under review") {
+                                                       echo "<span class='account-status-badge yellow' style='margin-left:0;'>Under Review</span>";
+                                                    } else if ($customerStatus == "Closed" || $customerStatus == "closed") {
+                                                       echo "<span class='account-status-badge passive' style='margin-left:0;'>Closed</span>";
+                                                    }
+                                                ?>
+                                            </h5>
+                                            <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -116,5 +172,28 @@
                 </div>
             </section>
         </section>
+
+        <div id="accountModal" class="modal">
+            <div class="modal-content">
+                <h6 style="font-size:14px; font-weight:600; padding:0; margin:0;">Full Account Number</h6>
+                <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">Full Account Number: <?php echo $accountnumber; ?></p>
+                <p style="font-size:14px; padding-bottom:30px;">This account number will be used to identify your account. Keep this number safe.</p>
+                <div style="display:flex; align-items:right; justify-content:right;">
+                    <button class="caliweb-button primary" onclick="closeModal()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var modal = document.getElementById("accountModal");
+
+            function openModal() {
+                modal.style.display = "block";
+            }
+
+            function closeModal() {
+                modal.style.display = "none";
+            }
+        </script>
 
 <?php include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php'); ?>
