@@ -1,6 +1,6 @@
 <?php
     $pagetitle = "Client";
-    $pagesubtitle = "Account Overview";
+    $pagesubtitle = "Customer Service";
 
     $accountnumber = $_GET['account_number'];
 
