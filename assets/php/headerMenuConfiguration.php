@@ -3,6 +3,7 @@
     $moduleresult = mysqli_query($con, $sql);
 
     if ($userrole == "Customer" || $userrole == "customer") {
+
         if ($pagetitle == "Client" && $pagesubtitle == "Overview") {
             echo '
                 <ul class="caliweb-nav-links">
@@ -13,7 +14,9 @@
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
+
         } else if ($pagetitle == "Client" && $pagesubtitle == "Account Overview") {
+
             echo '
                 <ul class="caliweb-nav-links">
                     <li class="nav-links active"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
@@ -24,7 +27,9 @@
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
+
         } else if ($pagetitle == "Client" && $pagesubtitle == "Billing Center") {
+
             echo '
                 <ul class="caliweb-nav-links">
                     <li class="nav-links"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
@@ -35,7 +40,9 @@
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
+
         } else if ($pagetitle == "Client" && $pagesubtitle == "Access and Security") {
+
             echo '
                 <ul class="caliweb-nav-links">
                     <li class="nav-links"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
@@ -45,7 +52,9 @@
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
+
         } else if ($pagetitle == "Client" && $pagesubtitle == "Customer Service") {
+
             echo '
                 <ul class="caliweb-nav-links">
                     <li class="nav-links"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
@@ -55,10 +64,13 @@
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
             ';
+
         }
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
         if ($pagetitle == "Administration Dashboard") {
+
             echo '
+
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Dashboard</p>
                 <ul class="caliweb-nav-links">
                     <li class="nav-links active"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -92,9 +104,13 @@
                     </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
+
         } else if ($pagetitle == "Your Calendar and Planner") {
+
            echo '
+
                <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Calendar</p>
                <ul class="caliweb-nav-links">
                    <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -128,9 +144,13 @@
                     </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
+
         } else if ($pagetitle == "Customer Accounts") {
+
             echo '
+
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>
                 <ul class="caliweb-nav-links">
                     <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -165,9 +185,13 @@
                     </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
+
         } else if ($pagetitle == "Connected Payments" && $pagesubtitle == "Home") {
+
             echo '
+
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Payments Cloud</p>
                 <ul class="caliweb-nav-links">
                     <li class="nav-links active"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -181,9 +205,13 @@
                     <li class="nav-links"><a href="/" class="nav-links-clickable">Return to Dashboard</a></li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
+
         } else if ($pagetitle == "Tasks") {
+
             echo '
+
               <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>
               <ul class="caliweb-nav-links">
                   <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -218,9 +246,13 @@
                     </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
+
         } else if ($pagetitle == "Cases") {
+
             echo '
+
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>
                 <ul class="caliweb-nav-links">
                     <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -255,9 +287,13 @@
                     </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
-          } else if ($pagetitle == "Payroll") {
+
+        } else if ($pagetitle == "Payroll") {
+
             echo '
+
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>
                 <ul class="caliweb-nav-links">
                     <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
@@ -268,7 +304,7 @@
                     <li class="nav-links"><a href="/dashboard/administration/contacts" class="nav-links-clickable">Contacts</a></li>
                     <li class="nav-links"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
             ';
-  
+
             echo '
 
                     <li class="nav-links more">
@@ -292,7 +328,32 @@
                     </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
-          }
+
+        } else if ($pagetitle == "Cali Mail") {
+            echo '
+
+                <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Cali Mail</p>
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
+                    <li class="nav-links active"><a href="/dashboard/administration/email" class="nav-links-clickable">Inbox</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/email/compose" class="nav-links-clickable">Compose</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/contacts" class="nav-links-clickable">Contacts</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/email/sent" class="nav-links-clickable">Sent</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/email/junk" class="nav-links-clickable">Junk</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/email/trash" class="nav-links-clickable">Trash</a></li>
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                            <li class="nav-links"><a href="/dashboard/administration/email/preferences" class="nav-links-clickable">Preferences</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+
+            ';
+        }
     }
 ?>

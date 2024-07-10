@@ -362,6 +362,17 @@ html[data-theme='dark'] body{
     background-color: #292929 !important;
 }
 
+.dark-mode .caliweb-email-listing {
+    border:1px solid #222 !important;
+    background-color: #0a0a0a !important;
+}
+
+.dark-mode .caliweb-email-listing:hover {
+    background-color: #dcf1ff !important;
+    border: 1px solid #dcf1ff !important;
+    color:#000 !important;
+}
+
 
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
@@ -383,6 +394,11 @@ html[data-theme='dark'] body{
 .profile-grid-modified {
     -ms-grid-columns: .5fr 1fr .5fr;
     grid-template-columns: .5fr 1fr .5fr;
+}
+
+.email-grid {
+    -ms-grid-columns: .5fr 1.5fr;
+    grid-template-columns: .5fr 1.5fr;
 }
 
 /* =================== Cali Web Design Dashboard Section Styles =================== */
@@ -667,6 +683,28 @@ textarea.swal2-input{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* =================== Cali Web Design Cali Mail Styling =================== */
+
+.caliweb-email-listing {
+    padding:15px;
+    border-radius: 6px;
+    border:1px solid #eee;
+    background-color: #f2f3f5;
+    margin:8px;
+    margin:0;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.caliweb-email-listing-header {
+    margin-bottom:2%;
+}
+
+.caliweb-email-listing:hover {
+    background-color: #f8e9ff !important;
+    border: 1px solid #f8e9ff !important;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */
