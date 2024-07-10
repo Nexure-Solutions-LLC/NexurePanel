@@ -16,7 +16,7 @@
         $eventURL = !empty($event_data[2])?$event_data[2]:'';
 
         if (!empty($eventTitle)) {
-            
+
             $sqlQ = "INSERT INTO events (title,description,url,start,end) VALUES (?,?,?,?,?)";
             $stmt = $con->prepare($sqlQ);
             $stmt->bind_param("sssss", $eventTitle, $eventDesc, $eventURL, $start, $end);
@@ -27,6 +27,7 @@
                 $output = [
                     'status' => 1
                 ];
+                
                 echo json_encode($output);
 
             } else {
