@@ -362,9 +362,13 @@ html[data-theme='dark'] body{
     background-color: #292929 !important;
 }
 
+.dark-mode .back-dark-mode {
+    background-color: #000 !important;
+}
+
 .dark-mode .caliweb-email-listing {
-    border:1px solid #222 !important;
-    background-color: #0a0a0a !important;
+    border:1px solid #333 !important;
+    background-color: #222 !important;
 }
 
 .dark-mode .caliweb-email-listing:hover {
@@ -687,6 +691,18 @@ textarea.swal2-input{
 
 /* =================== Cali Web Design Cali Mail Styling =================== */
 
+.caliweb-email-listing-container {
+    height:85vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.caliweb-email-content-container {
+    height:85vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .caliweb-email-listing {
     padding:15px;
     border-radius: 6px;
@@ -699,7 +715,7 @@ textarea.swal2-input{
 }
 
 .caliweb-email-listing-header {
-    margin-bottom:2%;
+    margin-bottom:4%;
 }
 
 .caliweb-email-listing:hover {

@@ -15,7 +15,7 @@
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 ?>
 
-    <section class="section first-dashboard-area-cards">
+    <section class="section first-dashboard-area-cards" style="overflow:hidden; height:90vh;">
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
                 <div class="caliweb-grid caliweb-two-grid email-grid">
@@ -48,40 +48,48 @@
 
                                 function decodeMimeStr($string, $charset = 'UTF-8') {
 
-                                    if (preg_match('/=\?([^?]+)\?(B|Q)\?([^?]+)\?=/', $string)) {
+                                    if (preg_match_all('/=\?([^?]+)\?(B|Q)\?([^?]+)\?=/i', $string, $matches)) {
 
-                                        $elements = imap_mime_header_decode($string);
-                                        $output = '';
-                                
-                                        foreach ($elements as $element) {
+                                        $decoded_string = '';
 
-                                            if (strtolower($element->charset) === 'default') {
+                                        for ($i = 0; $i < count($matches[0]); $i++) {
 
-                                                $output .= $element->text;
+                                            $encoding = strtoupper($matches[2][$i]);
+                                            $data = $matches[3][$i];
 
-                                            } else {
-
-                                                $output .= mb_convert_encoding($element->text, $charset, $element->charset);
-
+                                            switch ($encoding) {
+                                                case 'B':
+                                                    $decoded_string .= base64_decode($data);
+                                                    break;
+                                                case 'Q':
+                                                    $decoded_string .= quoted_printable_decode(str_replace('_', ' ', $data));
+                                                    break;
                                             }
 
                                         }
-                                
-                                        return $output;
+
+                                        return mb_convert_encoding($decoded_string, $charset, $matches[1][0]);
 
                                     } else {
 
                                         return $string;
-
                                     }
 
                                 }
-                                
+
+                                // This formats the date to MM/DD/YYYY HH:MM AM/PM
+
+                                function formatDate($dateStr) {
+
+                                    $date = DateTime::createFromFormat('D, d M Y H:i:s O', $dateStr);
+                                    return $date ? $date->format('m/d/y h:i A') : 'Unknown date';
+
+                                }
 
                                 // Create a listing for all the emails that come in.
 
                                 echo '
-                                    <div class="caliweb-card dashboard-card">
+                                    <div class="caliweb-card dashboard-card caliweb-email-listing-container back-dark-mode">
                                 ';
 
                                         if ($emails) {
@@ -89,13 +97,15 @@
 
                                             foreach ($emails as $email_number) {
                                                 $overview = imap_fetch_overview($inbox, $email_number, 0);
-                                                $date = isset($overview[0]->date) ? $overview[0]->date : 'Unknown date';
+                                                $date = isset($overview[0]->date) ? formatDate($overview[0]->date) : 'Unknown date';
+
+                                                $sender = decodeMimeStr($overview[0]->from);     
 
                                                 echo '
                                                     <div class="caliweb-email-listing">
                                                         <div class="caliweb-email-listing-header display-flex align-center" style="justify-content:space-between">
                                                             <div>
-                                                                <p style="font-size:12px; font-weight:300;">'.$overview[0]->from.'</p>
+                                                                <p style="font-size:12px; font-weight:300;">'.$sender.'</p>
                                                             </div>
                                                             <div>
                                                                 <p style="font-size:12px; font-weight:300;">'.$date.'</p>
@@ -128,7 +138,7 @@
                                 echo '
                                     </div>
 
-                                    <div class="caliweb-card dashboard-card">
+                                    <div class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode">
                                 ';
 
                                 echo '
