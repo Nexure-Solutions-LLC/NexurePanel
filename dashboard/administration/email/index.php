@@ -108,7 +108,7 @@
                                                 $sender = decodeMimeStr($overview[0]->from);     
 
                                                 echo '
-                                                    <div class="caliweb-email-listing">
+                                                    <div class="caliweb-email-listing" onclick="loadEmailContent('.$email_number.')">
                                                         <div class="caliweb-email-listing-header display-flex align-center" style="justify-content:space-between">
                                                             <div>
                                                                 <p style="font-size:12px; font-weight:300;">'.$sender.'</p>
@@ -141,14 +141,92 @@
                                             }
                                         }
 
-                                echo '
-                                    </div>
+                                echo '</div>';
 
-                                    <div class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode">
-                                ';
+                                if (mysqli_num_rows($emailWebClientLoginResult) > 0) {
+
+                                    $emailNumber = isset($_GET['emailNumber']) ? intval($_GET['emailNumber']) : null;
+
+                                    if ($emailNumber !== null) {
+                                
+                                        while ($emailWebClientLoginRow = mysqli_fetch_assoc($emailWebClientLoginResult)) {
+                                    
+                                            $caliMailUsername = $emailWebClientLoginRow['email'];
+                                            $caliMailDomain = $emailWebClientLoginRow['domain'];
+                                            $caliMailPasword = $emailWebClientLoginRow['password'];
+                                            $caliMailBuiltEmail = $caliMailUsername.'@'.$caliMailDomain;
+                                    
+                                            $inbox = imap_open($hostName, $caliMailBuiltEmail, $caliMailPasword) or die('Cannot connect to IMAP server: ' . imap_last_error());
+                                            $overview = imap_fetch_overview($inbox, $emailNumber, 0)[0];
+                                            $message = imap_fetchbody($inbox, $emailNumber, 2);
+                                            $message = quoted_printable_decode($message);
+                                            
+                                            $subject = decodeMimeStr($overview->subject);
+                                            $date = formatDate($overview->date);
+                                            $from = $overview->from;
+                                            $to = $overview->to;
+
+                                            echo '
+                                                <div id="email-content" class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode">
+                                                    <div class="caliweb-email-header">
+                                                        <div class="card-header">
+                                                            <div class="display-flex align-center" style="justify-content: space-between;">
+                                                                <div class="display-flex align-center">
+                                                                    <div class="no-padding margin-10px-right icon-size-formatted">
+                                                                        <img src="/assets/img/systemIcons/defaultprofileimage.jpg" alt="Email Profile Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                                                    </div>
+                                                                    <div>
+                                                                        <p class="no-padding font-14px">Ray Ban</p>
+                                                                        <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">Hottest Sunglasses at Only $27.99 - Shop Now!</h4>
+                                                                        <div class="display-flex align-center" style="margin-top:5px;">
+                                                                            <p class="no-padding font-14px">'.$from.'</p>
+                                                                            <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">'.$subject.'</h4>
+                                                                            <div class="display-flex align-center" style="margin-top:5px;">
+                                                                                <div>
+                                                                                    <p style="font-size:12px; font-weight:300;">Date: '.$date.'</p>
+                                                                                </div>
+                                                                                <span style="margin-right:5px; margin-left:5px;">|</span>
+                                                                                <div>
+                                                                                    <p style="font-size:12px; font-weight:300;">To: '.$to.'</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <a class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;" href="javascript:void(0);" onclick="openModal()">Details</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body">
+
+                                                        <div class="caliweb-email-body">
+                                                            '.$message.'
+                                                        </div>
+                                            ';
+
+                                        }
+                                    
+                                    } else {
+                                        echo '
+
+                                                <div id="email-content" class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode">
+
+                                                    Select an email to start.
+                                        ';
+                                    }
+
+                                } else {
+
+                                    echo 'Error: Unable to fetch email details.';
+
+                                }
+                                    
 
                                 echo '
-                                    </div>
+                                                </div>
+                                            </div>
                                 ';
 
                                 imap_close($inbox);
@@ -163,6 +241,37 @@
             </div>
         </div>
     </section>
+
+    <div id="accountModal" class="modal">
+        <div class="modal-content" style="margin-bottom: 0 !important; margin-top:0% !important;">
+            <h6 style="font-size:14px; font-weight:600; padding:0; margin:0;">Email Details</h6>
+            <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">No Details.</p>
+            <div style="display:flex; align-items:right; justify-content:right;">
+                <button class="caliweb-button primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function loadEmailContent(emailNumber) {
+            fetch(`/dashboard/administration/email/?emailNumber=${emailNumber}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('email-content').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        var modal = document.getElementById("accountModal");
+
+        function openModal() {
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
 
 <?php
 

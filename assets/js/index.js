@@ -11,6 +11,12 @@ window.addEventListener("load", function() {const preloader = document.querySele
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
+    var calendarEl = document.getElementById('calendar');
+
+    if (!calendarEl) {
+        return;
+    }
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
         height: 650,
