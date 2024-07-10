@@ -7,13 +7,17 @@
         $image = imagecreate($width, $height);
 
         if ($theme == 'dark-mode') {
+
             $backgroundColor = imagecolorallocate($image, 29, 29, 29);
             $textColor = imagecolorallocate($image, 255, 255, 255);
             $barColor = imagecolorallocate($image, 199, 149, 245);
+
         } else {
+
             $backgroundColor = imagecolorallocate($image, 255, 255, 255);
             $textColor = imagecolorallocate($image, 0, 0, 0);
             $barColor = imagecolorallocate($image, 199, 149, 245);
+
         }
 
         imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
@@ -23,6 +27,7 @@
 
         $data = [];
         if ($result->num_rows > 0) {
+
             while($row = $result->fetch_assoc()) {
                 $data[$row['salesPerson']] = $row['salesPerformance'];
             }
@@ -50,10 +55,12 @@
             imagedestroy($image);
 
             echo '<img src="/modules/graphSQL/barGraphs/salesPerformance.png?theme=' . $theme . '" alt="Bar Graph">';
+
         } else {
             echo "0 results";
         }
     } else if ($_SESSION['graphCallType'] == "Employee Only Sales Activity") {
+
         $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
 
         $width = 850;
@@ -61,13 +68,17 @@
         $image = imagecreate($width, $height);
 
         if ($theme == 'dark-mode') {
+
             $backgroundColor = imagecolorallocate($image, 29, 29, 29);
             $textColor = imagecolorallocate($image, 255, 255, 255);
             $barColor = imagecolorallocate($image, 199, 149, 245);
+
         } else {
+
             $backgroundColor = imagecolorallocate($image, 255, 255, 255);
             $textColor = imagecolorallocate($image, 0, 0, 0);
             $barColor = imagecolorallocate($image, 199, 149, 245);
+
         }
 
         imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
@@ -77,6 +88,7 @@
 
         $data = [];
         if ($result->num_rows > 0) {
+
             while($row = $result->fetch_assoc()) {
                 $data[$row['salesPerson']] = $row['salesPerformance'];
             }
@@ -104,6 +116,7 @@
             imagedestroy($image);
 
             echo '<img src="/modules/graphSQL/barGraphs/salesPerformance.png?theme=' . $theme . '" alt="Bar Graph">';
+            
         } else {
             echo "0 results";
         }

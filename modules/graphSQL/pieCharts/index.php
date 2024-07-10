@@ -7,6 +7,7 @@
         $image = imagecreate($width, $height);
 
         if ($theme == 'dark-mode') {
+
             $backgroundColor = imagecolorallocate($image, 29, 29, 29);
             $textColor = imagecolorallocate($image, 255, 255, 255);
             $colors = [
@@ -17,7 +18,9 @@
                 imagecolorallocate($image, 153, 102, 255), // Purple
                 imagecolorallocate($image, 255, 159, 64)  // Orange
             ];
+
         } else {
+
             $backgroundColor = imagecolorallocate($image, 255, 255, 255);
             $textColor = imagecolorallocate($image, 0, 0, 0);
             $colors = [
@@ -28,6 +31,7 @@
                 imagecolorallocate($image, 153, 102, 255), // Purple
                 imagecolorallocate($image, 255, 159, 64)  // Orange
             ];
+
         }
 
         imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
@@ -38,6 +42,7 @@
 
         $data = [];
         if ($result->num_rows > 0) {
+
             while ($row = $result->fetch_assoc()) {
                 $data[$row['segment']] = $row['value'];
             }
@@ -50,6 +55,7 @@
             }
 
             foreach ($data as $key => $value) {
+
                 $angle = ($value / $total) * 360;
                 $angleEnd = $angleStart + $angle;
 
@@ -69,6 +75,7 @@
                 );
 
                 $angleStart = $angleEnd;
+
             }
 
             $white = imagecolorallocate($image, 255, 255, 255);
@@ -115,6 +122,7 @@
             imagedestroy($image);
 
             echo '<img src="/modules/graphSQL/pieCharts/leadsSource.png?theme=' . $theme . '" alt="Doughnut Chart">';
+            
         } else {
             echo "0 results";
         }

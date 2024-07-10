@@ -6,6 +6,7 @@ $jsonStr = file_get_contents('php://input');
 $jsonObj = json_decode($jsonStr);
 
 if($jsonObj->request_type == 'addEvent'){
+
     $start = $jsonObj->start;
     $end = $jsonObj->end;
 
@@ -29,7 +30,9 @@ if($jsonObj->request_type == 'addEvent'){
             echo json_encode(['error' => 'Event Add request failed!']);
         }
     }
+
 }elseif($jsonObj->request_type == 'editEvent'){
+
     $start = $jsonObj->start;
     $end = $jsonObj->end;
     $event_id = $jsonObj->event_id;
@@ -54,7 +57,9 @@ if($jsonObj->request_type == 'addEvent'){
             echo json_encode(['error' => 'Event Update request failed!']);
         }
     }
+
 }elseif($jsonObj->request_type == 'deleteEvent'){
+
     $id = $jsonObj->event_id;
 
     $sql = "DELETE FROM events WHERE id=$id";
@@ -67,6 +72,7 @@ if($jsonObj->request_type == 'addEvent'){
     }else{
         echo json_encode(['error' => 'Event Delete request failed!']);
     }
+    
 }
 
 ?>
