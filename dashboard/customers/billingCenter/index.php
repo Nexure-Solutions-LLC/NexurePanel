@@ -7,11 +7,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         header("location:/dashboard/administration");
+
     }
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
@@ -45,6 +51,7 @@
                                 </div>
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
+
                                         $proccessorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
                                         $proccessorInfo = mysqli_fetch_array($proccessorResult);
                                         mysqli_free_result($proccessorResult);
@@ -52,8 +59,11 @@
                                         $paymentProccessorName = $proccessorInfo['processorName'];
 
                                         if ($paymentProccessorName == "Stripe") {
+
                                             require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+                                            
                                         }
+
                                     ?>
                                 </div>
                             </div>

@@ -5,11 +5,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
+
         header("location:/dashboard/customers");
+
     } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+        
     }
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
@@ -19,11 +25,15 @@
     $accountnumber = $_GET['account_number'];
 
     if (!isset($_SESSION['verification_code'])) {
+
         header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
+        
     }
 
     if ($accountnumber == "") {
+
         header("location: /dashboard/administration/accounts");
+
     } else {
 
         $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
@@ -42,13 +52,17 @@
             $accountnotes = $customerAccountInfo['accountNotes'];
 
             if ($accountnumber != $dbaccountnumber) {
+
                 header("location: /dashboard/administration/accounts");
+
             } else {
+
                 $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE id = '".$customerSystemID."'");
                 $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
                 mysqli_free_result($businessAccountQuery);
 
                 if ($businessAccountInfo != NULL) {
+
                     $businessname = $businessAccountInfo['businessName'];
                     $businessindustry = $businessAccountInfo['businessIndustry'];
 
@@ -57,9 +71,13 @@
                     mysqli_free_result($websiteAccountQuery);
 
                     if ($websiteAccountInfo) {
+
                         $websitedomain = $websiteAccountInfo['domainName'];
+
                     } else {
+
                         $websitedomain = "Not Assigned";
+
                     }
 
 
@@ -88,12 +106,14 @@
                                     <div class="dashboard-table">
                                         <table style="width:100%;">
                                             <?php
+
                                                 // Fetch data from MySQL table
                                                 $sql = "SELECT * FROM caliweb_users WHERE userrole = 'authorized user'";
                                                 $result = mysqli_query($con, $sql);
 
                                                 // Check if any rows were returned
                                                 if (mysqli_num_rows($result) > 0) {
+
                                                     // Output table header
                                                     echo '<table style="width:100%;">
                                                             <tr>
@@ -128,8 +148,11 @@
                                                     }
 
                                                     echo '</table>'; // Close the table
+
                                                 } else {
+
                                                     echo '<p class="no-padding font-14px" style="margin-top:-2% !important; margin-bottom:25px;">There are no additional relationships for this account.<p>';
+                                                
                                                 }
                                             ?>
                                         </table>
@@ -155,9 +178,13 @@
                                 <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">
                                     <?php 
                                         if ($accountnotes == NULL || $accountnotes == "") {
+
                                             echo "There are no notes for this account.";
+
                                         } else {
+
                                             echo $accountnotes; 
+
                                         }
                                     ?>
                                 </p>
@@ -172,11 +199,15 @@
 <?php
 
                 } else {
+
                     header("location: /dashboard/administration/accounts");
+
                 }
             }
         } else {
+
             header("location: /dashboard/administration/accounts");
+
         }
     }
 

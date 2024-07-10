@@ -5,10 +5,15 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
+
         header("location:/dashboard/customers");
+
     } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
     }
 
@@ -39,10 +44,12 @@
                         <div class="dashboard-table">
                         <?php
                             if ($employeeAccessLevel == "Executive" || $employeeAccessLevel == "Manager") {
+
                                 $sql = "SELECT * FROM caliweb_cases";
                                 $result = mysqli_query($con, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {
+
                                     // Output table header
                                     echo '<table style="width:100%; margin-top:-3%;">
                                             <tr>
@@ -83,9 +90,13 @@
                                             
                                             echo '<td class=""><a href="/dashboard/administration/cases/viewCases/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/cases/deleteCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/cases/editCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a></td>';
                                         echo '</tr>';
+
                                     }
+
                                     echo '</table>';
+
                                 } else {
+
                                     echo '
                                         <table style="width:100%; margin-top:-3%;">
                                             <tr>
@@ -106,12 +117,16 @@
                                             </tr>
                                         </table>
                                     ';
+
                                 }
+
                             } else {
+
                                 $sql = "SELECT * FROM caliweb_cases WHERE assignedUser = '$fullname'";
                                 $result = mysqli_query($con, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {
+
                                     // Output table header
                                     echo '<table style="width:100%; margin-top:-3%;">
                                             <tr>
@@ -154,9 +169,13 @@
                                                     <a href="/dashboard/administration/cases/editCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                 </td>';
                                         echo '</tr>';
+
                                     }
+
                                     echo '</table>';
+
                                 } else {
+
                                     echo '
                                         <table style="width:100%; margin-top:-3%;">
                                             <tr>
@@ -178,6 +197,7 @@
                                         </table>
                                     ';
                                 }
+                                
                             }
                             ?>
                         </div>

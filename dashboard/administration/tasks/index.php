@@ -5,11 +5,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
+
         header("location:/dashboard/customers");
+
     } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+
     }
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
@@ -39,10 +45,12 @@
                         <div class="dashboard-table">
                             <?php
                                 if ($employeeAccessLevel == "Executive") {
+
                                     $sql = "SELECT * FROM caliweb_tasks";
                                     $result = mysqli_query($con, $sql);
 
                                     if (mysqli_num_rows($result) > 0) {
+
                                         // Output table header
                                         echo '<table style="width:100%; margin-top:-3%;">
                                                 <tr>
@@ -74,13 +82,21 @@
                                                 echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
 
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
+
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 }
 
                                                 echo '<td class="">
@@ -92,7 +108,9 @@
                                         }
 
                                         echo '</table>';
+
                                     } else {
+
                                         echo '
                                             <table style="width:100%; margin-top:-3%;">
                                                 <tr>
@@ -115,6 +133,7 @@
                                         ';
                                     }
                                 } else if ($employeeAccessLevel == "Manager") {
+
                                     $sql = "SELECT * FROM caliweb_tasks";
                                     $result = mysqli_query($con, $sql);
 
@@ -150,13 +169,21 @@
                                                 echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
 
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
+
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+                                                    
                                                 }
 
                                                 echo '<td class="">
@@ -168,7 +195,9 @@
                                         }
 
                                         echo '</table>';
+
                                     } else {
+
                                         echo '
                                             <table style="width:100%; margin-top:-3%;">
                                                 <tr>
@@ -189,12 +218,15 @@
                                                 </tr>
                                             </table>
                                         ';
+
                                     }
                                 } else {
+
                                     $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$fullname'";
                                     $result = mysqli_query($con, $sql);
 
                                     if (mysqli_num_rows($result) > 0) {
+
                                         // Output table header
                                         echo '<table style="width:100%; margin-top:-3%;">
                                                 <tr>
@@ -226,13 +258,21 @@
                                                 echo '<td style="width:20%;">' . $row['assignedUser'] . '</td>';
 
                                                 if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
+
                                                     echo '<td style="width:20%;"><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-                                                echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
+                                                    echo '<td style="width:20%;"><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
+
                                                 }
                                                 
                                                 echo '<td class="">
@@ -244,7 +284,9 @@
                                         }
 
                                         echo '</table>';
+
                                     } else {
+
                                         echo '
                                             <table style="width:100%; margin-top:-3%;">
                                                 <tr>
@@ -265,6 +307,7 @@
                                                 </tr>
                                             </table>
                                         ';
+
                                     }
                                 }
                             ?>

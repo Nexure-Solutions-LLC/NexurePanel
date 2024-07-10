@@ -7,11 +7,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView/supportCenter");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships/supportCenter/");
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         header("location:/dashboard/administration/cases");
+
     }
 
     $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
@@ -50,6 +56,7 @@
                                 </div>
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
+
                                         // Fetch data from MySQL table
                                         $sql = "SELECT * FROM caliweb_cases WHERE emailAddress = '".$caliemail."'";
                                         $result = mysqli_query($con, $sql);
@@ -100,11 +107,15 @@
                                                 
                                                 echo '<td class=""><a href="/dashboard/administration/cases/viewCases/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/cases/deleteCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/cases/editCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a></td>';
                                                 echo '</tr>';
+
                                             }
 
                                             echo '</table>'; // Close the table
+
                                         } else {
+
                                             echo '<p class="no-padding font-14px" style="margin-top:0% !important; margin-bottom:25px;">There are no cases for this account.<p>';
+                                            
                                         }
                                     ?>
                                 </div>

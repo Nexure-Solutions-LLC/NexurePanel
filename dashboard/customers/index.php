@@ -5,11 +5,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         header("location:/dashboard/administration");
+
     }
 
     $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
@@ -46,11 +52,17 @@
                                 <div class="card-body">
                                     <h6 class="no-padding customer-business-card-bar" style="font-size:14px; font-weight:600;">
                                         <?php
+
                                             if ($businessname !== null) {
+
                                                 echo strtoupper($businessname);
+
                                             } else {
+
                                                 echo strtoupper($fullname);
+
                                             }
+
                                         ?>
                                     </h6>
                                     <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
@@ -73,17 +85,29 @@
                                         <div class="customer-duedate" style="padding-top:5.5%">
                                             <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
                                                 <?php
+
                                                     if ($customerStatus == "Active" || $customerStatus == "active") {
+
                                                         echo "<span class='account-status-badge green' style='margin-left:0;'>Active</span>";
+
                                                     } else if ($customerStatus == "Suspended" || $customerStatus == "suspended") {
+
                                                        echo "<span class='account-status-badge red' style='margin-left:0;'>Suspended</span>";
+
                                                     } else if ($customerStatus == "Terminated" || $customerStatus == "terminated") {
+
                                                        echo "<span class='account-status-badge red-dark' style='margin-left:0;'>Terminated</span>";
+
                                                     } else if ($customerStatus == "Under Review" || $customerStatus == "under review") {
+
                                                        echo "<span class='account-status-badge yellow' style='margin-left:0;'>Under Review</span>";
+
                                                     } else if ($customerStatus == "Closed" || $customerStatus == "closed") {
+
                                                        echo "<span class='account-status-badge passive' style='margin-left:0;'>Closed</span>";
+
                                                     }
+
                                                 ?>
                                             </h5>
                                             <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
@@ -98,6 +122,7 @@
                                     <h4 class="text-bold no-padding" style="font-size:16px;"><?php echo $LANG_QUICKACTIONS_TITLE; ?></h4>
                                     <div class="caliweb-three-grid mt-5-per customer-grid-quick-actions">
                                         <?php 
+
                                             $moduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFreindlyName` = 'Websites'");
                                             $moduleInfo = mysqli_fetch_array($moduleResult);
                                             mysqli_free_result($moduleResult);
@@ -119,8 +144,11 @@
                                                 ';
 
                                             } else {
+
                                                     echo '';
+
                                             }
+
                                         ?>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/page-speed.png" />
@@ -138,6 +166,7 @@
                                             <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
                                         </div>
                                         <?php
+
                                             $codemoduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFreindlyName` = 'Security'");
                                             $codemoduleInfo = mysqli_fetch_array($codemoduleResult);
                                             mysqli_free_result($codemoduleResult);
@@ -159,8 +188,11 @@
                                                 ';
 
                                             } else {
+
                                                 echo '';
+
                                             }
+                                            
                                         ?>
                                         <div>
                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/monitoring.png" />

@@ -1,4 +1,5 @@
 <?php
+
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
@@ -16,29 +17,41 @@
     mysqli_free_result($customerAccountQuery);
 
     if ($customerAccountInfo != NULL) {
+
         $customerSystemID = $customerAccountInfo['id'];
         $customerPhoneNumber = $customerAccountInfo['mobileNumber'];
         $customerStatus = $customerAccountInfo['accountStatus'];
         $dbaccountnumber = $customerAccountInfo['accountNumber'];
 
         if ($accountnumber != $dbaccountnumber) {
+
             echo '<script>window.location.href = "/dashboard/administration/accounts";</script>';
+
         }
+
     } else {
+
         echo '<script>window.location.href = "/dashboard/administration/accounts";</script>';
+
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
         $enteredCode = $_POST['verification_code'];
 
         if (isset($_SESSION['verification_code']) && $enteredCode == $_SESSION['verification_code']) {
+
             $enteredCode = $_SESSION['verification_code'];
             header('Location: /dashboard/administration/accounts/manageAccount/?account_number='.$accountnumber);
             exit();
+
         } else {
+
             // Verification failed
             header('Location: /error/genericSystemError');
+
         }
+        
     }
 
 ?>

@@ -15,11 +15,14 @@
     $detect = new MobileDetect();
 
     if ($detect->isMobile() || $detect->isTablet()) {
+
         header("Location: /error/mobileExperiance/");
         exit();
+
     }
 
     function errorHandler($errno, $errstr, $errfile, $errline) {
+
         $log_timestamp = date("d-m-Y H:i:sa");
         $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline";
         $errorLogFile = $_SERVER["DOCUMENT_ROOT"] . "/error/errorLogs/$log_timestamp.log";
@@ -29,21 +32,31 @@
         $_SESSION['error_log_file'] = $errorLogFile;
 
         while (ob_get_level()) {
+
             ob_end_clean();
+
         }
         if (headers_sent()) {
+
             echo '<meta http-equiv="refresh" content="0;url=/error/genericSystemError/">';
+
         } else {
+
             header("Location: /error/genericSystemError/");
+
         }
+
         exit;
+
     }
 
     set_error_handler("errorHandler");
 
     $error = error_get_last();
+
     if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING])) {
         customErrorHandler($error['type'], $error['message'], $error['file'], $error['line']);
+
     }
 
     use Dotenv\Dotenv;
@@ -56,8 +69,10 @@
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
+
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
+
     }
 
     $caliemail = $_SESSION['caliid'];
@@ -71,15 +86,25 @@
     $userrole = $userinfo['userrole'];
 
     if ($userrole == "Customer" || $userrole == "customer") {
+
         header("location:/dashboard/customers");
+
     } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         header("location:/dashboard/administration");
+
     } else {
+
         header("Location: /error/genericSystemError/");
+        
     }
 
 ?>

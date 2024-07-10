@@ -5,11 +5,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
+        
         header("location:/dashboard/customers/emailSuite");
+
     } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView/emailSuite");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships/emailSuite");
+
     }
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';

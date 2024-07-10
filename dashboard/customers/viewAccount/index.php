@@ -7,11 +7,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         header("location:/dashboard/administration");
+
     }
 
     $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
@@ -55,9 +61,13 @@
                                             <p style="font-size:12px; margin-top:5px;">
                                                 <?php
                                                     if ($businessname !== null) {
+
                                                         echo strtoupper($businessname);
+
                                                     } else {
+
                                                         echo strtoupper($fullname);
+
                                                     }
                                                 ?>
                                             </p>
@@ -82,15 +92,25 @@
                                             <h5 style="font-weight:300; font-size:18px;" class="no-padding no-margin">
                                                 <?php
                                                     if ($customerStatus == "Active" || $customerStatus == "active") {
+
                                                         echo "<span class='account-status-badge green' style='margin-left:0;'>Active</span>";
+
                                                     } else if ($customerStatus == "Suspended" || $customerStatus == "suspended") {
+
                                                        echo "<span class='account-status-badge red' style='margin-left:0;'>Suspended</span>";
+
                                                     } else if ($customerStatus == "Terminated" || $customerStatus == "terminated") {
+
                                                        echo "<span class='account-status-badge red-dark' style='margin-left:0;'>Terminated</span>";
+
                                                     } else if ($customerStatus == "Under Review" || $customerStatus == "under review") {
+
                                                        echo "<span class='account-status-badge yellow' style='margin-left:0;'>Under Review</span>";
+
                                                     } else if ($customerStatus == "Closed" || $customerStatus == "closed") {
+
                                                        echo "<span class='account-status-badge passive' style='margin-left:0;'>Closed</span>";
+
                                                     }
                                                 ?>
                                             </h5>
@@ -116,6 +136,7 @@
                                 </div>
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
+
                                         // Fetch data from MySQL table
                                         $sql = "SELECT * FROM caliweb_services WHERE accountNumber = '".$accountnumber."'";
                                         $result = mysqli_query($con, $sql);
@@ -161,8 +182,11 @@
                                             }
 
                                             echo '</table>'; // Close the table
+
                                         } else {
+
                                             echo '<p class="no-padding font-14px" style="margin-top:0% !important; margin-bottom:25px;">There are no services for this account.<p>';
+                                            
                                         }
                                     ?>
                                 </div>

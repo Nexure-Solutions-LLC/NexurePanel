@@ -7,11 +7,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         header("location:/dashboard/administration");
+
     }
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
@@ -46,12 +52,14 @@
                                 </div>
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
+
                                         // Fetch data from MySQL table
                                         $sql = "SELECT * FROM caliweb_users WHERE email = '".$caliemail."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned
                                         if (mysqli_num_rows($result) > 0) {
+
                                             // Output table header
                                             echo '<table style="width:100%; margin-top:0%;">
                                                     <tr>
@@ -64,16 +72,25 @@
 
                                             // Output table rows
                                             while ($row = mysqli_fetch_assoc($result)) {
+
                                                 echo '<tr>';
                                                 echo '<td style="width:25%;">' . $row['legalName'] . '</td>';
                                                 echo '<td style="width:20%;">' . $row['mobileNumber'] . '</td>';
+
                                                 if ($row["userrole"] == "customer" || $row["userrole"] == "Customer") {
+
                                                     echo '<td style="width:20%;">Customer - Direct</td>';
+
                                                 } else if ($row["userrole"] == "partner" || $row["userrole"] == "Partner") {
+
                                                     echo '<td style="width:20%;">Partner - Affiliate</td>';
+
                                                 } else {
+
                                                     echo '<td style="width:20%;">Unknown</td>';
+
                                                 }
+
                                                 echo '<td style="width:20%;">' . $row['accountStatus'] . '</td>';
                                                 echo '<td style="display-flex align-center">
                                                         <a href="/dashboard/administration/accounts/manageAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
@@ -81,11 +98,15 @@
                                                         <a href="/dashboard/administration/accounts/editAccount/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
                                                     </td>';
                                                 echo '</tr>';
+
                                             }
 
                                             echo '</table>'; // Close the table
+
                                         } else {
+
                                             echo '<p class="no-padding font-14px" style="margin-top:25px !important; margin-bottom:25px;">There are no authorized users for this account.<p>';
+
                                         }
                                     ?>
                                 </div>
@@ -98,12 +119,14 @@
                                 </div>
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
+
                                         // Fetch data from MySQL table
                                         $sql = "SELECT * FROM caliweb_users WHERE userrole = 'authorized user' AND ownerAuthorizedEmail = '".$caliemail."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned
                                         if (mysqli_num_rows($result) > 0) {
+
                                             // Output table header
                                             echo '<table style="width:100%; margin-top:0%;">
                                                     <tr>
@@ -119,13 +142,21 @@
                                                 echo '<tr>';
                                                 echo '<td style="width:25%;">' . $row['legalName'] . '</td>';
                                                 echo '<td style="width:20%;">' . $row['mobileNumber'] . '</td>';
+
                                                 if ($row["userrole"] == "customer" || $row["userrole"] == "Customer") {
+
                                                     echo '<td style="width:20%;">Customer - Direct</td>';
+
                                                 } else if ($row["userrole"] == "partner" || $row["userrole"] == "Partner") {
+
                                                     echo '<td style="width:20%;">Partner - Affiliate</td>';
+
                                                 } else {
+
                                                     echo '<td style="width:20%;">Unknown</td>';
+                                                    
                                                 }
+
                                                 echo '<td style="width:20%;">' . $row['accountStatus'] . '</td>';
                                                 echo '<td style="display-flex align-center">
                                                         <a href="/dashboard/administration/accounts/manageAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
@@ -136,8 +167,11 @@
                                             }
 
                                             echo '</table>'; // Close the table
+
                                         } else {
+
                                             echo '<p class="no-padding font-14px" style="margin-top:25px !important; margin-bottom:25px;">There are no authorized users for this account.<p>';
+
                                         }
                                     ?>
                                 </div>
