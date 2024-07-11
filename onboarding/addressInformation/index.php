@@ -99,9 +99,6 @@
                                 <label for="country" class="text-gray-label">Country</label>
                                 <input type="text" class="form-input" name="country" id="country" placeholder="" required="" />
                             </div>
-                            <div class="form-control">
-                                <input type="text" class="form-input" style="display:none;" name="dispnone" id="dispnone" placeholder="" />
-                            </div>
                             <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between; float:right;">
                                 <div class="form-control width-100">
                                     <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
