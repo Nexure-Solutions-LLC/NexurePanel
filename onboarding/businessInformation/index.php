@@ -80,6 +80,7 @@
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="city" class="text-gray-label">Business Industry</label>
                                 <input type="text" class="form-input" name="businessIndustry" id="businessIndustry" placeholder="Start typing to search..." required />
+                                <div id="industryResults" class="industry-results"></div>
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="postalcode" class="text-gray-label">Business Type</label>
@@ -137,54 +138,73 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script>
-
         $(document).ready(function() {
 
-            $('#businessIndustry').autocomplete({
+            $('#businessIndustry').on('input', function() {
 
-                source: function(request, response) {
+                var searchTerm = $(this).val().trim().toLowerCase();
+                var resultsContainer = $('#industryResults');
+                resultsContainer.empty();
 
-                    $.ajax({
+                $.ajax({
 
-                        url: '/onboarding/businessInformation/industrySearchLogic/index.php', // URL to fetch NAICS data
+                    url: '/onboarding/businessInformation/industrySearchLogic/index.php',
+                    dataType: 'json',
 
-                        dataType: 'json',
+                    data: {
+                        term: searchTerm
+                    },
 
-                        data: {
+                    success: function(data) {
 
-                            term: request.term
+                        data.forEach(function(industry) {
 
-                        },
+                            var item = $('<div class="industry-div">' + industry.name + '</div>');
 
-                        success: function(data) {
+                            item.on('click', function() {
 
-                            response(data.map(function(industry) {
+                                $('#businessIndustry').val(industry.name);
+                                resultsContainer.hide();
 
-                                return {
-                                    label: industry.name,
-                                    value: industry.code
-                                };
+                            });
 
-                            }));
+                            resultsContainer.append(item);
+
+                        });
+
+                        if (searchTerm.length > 0) {
+
+                            resultsContainer.show();
+
+                        } else {
+
+                            resultsContainer.hide();
 
                         }
 
-                    });
+                    },
 
-                },
+                    error: function(xhr, status, error) {
 
-                minLength: 2,
+                        console.error('AJAX Error:', status, error);
 
-                select: function(event, ui) {
+                    }
 
-                    $('#businessIndustry').val(ui.item.label);
-                    return false;
-                }
+                });
 
             });
 
-        });
+            $(document).on('click', function(e) {
 
+                if (!$(e.target).closest('#industryResults').length && !$(e.target).is('#businessIndustry')) {
+
+                    $('#industryResults').hide();
+
+                }
+
+            });
+            
+        });
     </script>
 
 <?php

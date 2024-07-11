@@ -220,6 +220,34 @@ body {
     max-width: 98%;
 }
 
+.industry-results {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px;
+    margin-top:5px;
+    border-radius:8px;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+}
+
+.industry-div {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: ease-in-out 0.3s all;
+}
+
+.industry-div:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.industry-results::-webkit-scrollbar-track {
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+}
+
 @media (max-width: 1366px) {
     body {
         overflow-y: scroll;

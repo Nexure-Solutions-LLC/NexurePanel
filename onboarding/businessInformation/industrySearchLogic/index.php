@@ -343,7 +343,7 @@ $naicsData = [
     ["code" => "9251", "name" => "Administration of Housing Programs, Urban Planning, and Community Development"],
     ["code" => "9261", "name" => "Administration of Economic Programs"],
     ["code" => "9271", "name" => "Space Research and Technology"],
-    ["code" => "9281", "name" => "National Security and International Affairs"],
+    ["code" => "9281", "name" => "National Security and International Affairs"]
 
 ];
 
