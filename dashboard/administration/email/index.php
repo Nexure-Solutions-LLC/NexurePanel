@@ -67,7 +67,10 @@
                     </div>
 
                     <div class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode" id="email-content">
-                        
+                        <div class="center-image-content">
+                            <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img mail-logo-content light-mode" style="width:20%; margin-top:12%;" />
+                            <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img mail-logo-content dark-mode" style="width:20%; margin-top:12%;" />
+                        </div>
                     </div>
 
                 </div>
@@ -125,6 +128,6 @@
 
 <?php
 
-    
+include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
 
 ?>
