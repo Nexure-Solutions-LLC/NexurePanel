@@ -213,7 +213,10 @@
 
                                                 <div id="email-content" class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode">
 
-                                                    Select an email to start.
+                                                    <div class="center-image-content">
+                                                        <img src="'.$orglogolight.'" class="caliweb-navbar-logo-img mail-logo-content light-mode" style="width:20%; margin-top:12%;" />
+                                                        <img src="'.$orglogodark.'" class="caliweb-navbar-logo-img mail-logo-content dark-mode" style="width:20%; margin-top:12%;" />
+                                                    </div>
                                         ';
                                     }
 

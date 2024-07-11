@@ -89,6 +89,8 @@
     // Panel Configuration Definitions
     $panelName = $panelinfo['panelName'];
     $orgShortName = $panelinfo['organizationShortName'];
+    $orglogolight = $panelinfo['organizationLogoLight'];
+    $orglogodark = $panelinfo['organizationLogoDark'];
 
     // Generic Variable Definitions
 
@@ -360,12 +362,12 @@
             <div class="container caliweb-navbar-container">
                 <div class="caliweb-navbar-logo">
                     <a href="https://caliwebdesignservices.com/">
-                        <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-Logo.svg" width="100px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode">
-                        <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-WhiteLogo.svg" width="100px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode">
+                        <img src="<?php echo $orglogolight; ?>" width="100px" loading="lazy" alt="Light Logo" class="caliweb-navbar-logo-img light-mode">
+                        <img src="<?php echo $orglogodark; ?>" width="100px" loading="lazy" alt=" Dark Logo" class="caliweb-navbar-logo-img dark-mode">
                     </a>
                 </div>
                 <div class="caliweb-header-search">
-                    <input class="form-input caliweb-search-input" placeholder="Search all of Cali Web Design" />
+                    <input class="form-input caliweb-search-input" placeholder="Search all of <?php echo $orgShortName ?>" />
                 </div>
                 <div class="caliweb-nav-buttons">
                     <a href="/dashboard/accountManagement" class="caliweb-nav-button secondary"><?php echo $fullname; ?></a>
