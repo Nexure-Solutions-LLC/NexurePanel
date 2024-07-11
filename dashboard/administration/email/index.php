@@ -66,41 +66,8 @@
                         
                     </div>
 
-                    <div class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode">
-                        <div class="caliweb-email-header">
-                            <div class="card-header">
-                                <div class="display-flex align-center" style="justify-content: space-between;">
-                                    <div class="display-flex align-center">
-                                        <div class="no-padding margin-10px-right icon-size-formatted">
-                                            <img src="/assets/img/systemIcons/defaultprofileimage.jpg" alt="Email Profile Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
-                                        </div>
-                                        <div>
-                                            <p class="no-padding font-14px">'.$from.'</p>
-                                            <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">'.$subject.'</h4>
-                                            <div class="display-flex align-center" style="margin-top:5px;">
-                                                <div class="display-flex align-center" style="margin-top:5px;">
-                                                    <div>
-                                                        <p style="font-size:12px; font-weight:300;">Date: '.$date.'</p>
-                                                    </div>
-                                                    <span style="margin-right:5px; margin-left:5px;">|</span>
-                                                    <div>
-                                                        <p style="font-size:12px; font-weight:300;">To: '.$to.'</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <a class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;" href="javascript:void(0);" onclick="openModal()">Details</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-
-                            <div class="caliweb-email-body" id="email-content"></div>
-
-                        </div>
+                    <div class="caliweb-card dashboard-card caliweb-email-content-container back-dark-mode" id="email-content">
+                        
                     </div>
 
                 </div>
@@ -138,7 +105,6 @@
 
                 .then(data => {
 
-                    console.log('Data:', data);
                     document.getElementById('email-content').innerHTML = data;
 
                 })

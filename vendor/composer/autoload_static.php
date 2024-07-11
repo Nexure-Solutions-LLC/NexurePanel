@@ -18,6 +18,7 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
         '1f87db08236948d07391152dccb70f04' => __DIR__ . '/..' . '/google/apiclient-services/autoload.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a8d3953fd9959404dd22d3dfcd0a79f0' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
+        '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -234,6 +235,16 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
         'Detection\\' => 
         array (
             0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'H' => 
+        array (
+            'HTMLPurifier' => 
+            array (
+                0 => __DIR__ . '/..' . '/ezyang/htmlpurifier/library',
+            ),
         ),
     );
 
@@ -577,6 +588,7 @@ class ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit582868d86f8335b3c6e0dd563c0132e3::$classMap;
 
         }, null, ClassLoader::class);

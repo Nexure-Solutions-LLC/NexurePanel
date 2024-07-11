@@ -381,6 +381,10 @@ html[data-theme='dark'] body{
     opacity: .3 !important;
 }
 
+.dark-mode .caliweb-email-header {
+    background-color: rgba(22, 22, 23, 0.8) !important;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -746,7 +750,32 @@ textarea.swal2-input{
     opacity: .3 !important;
 }
 
+.caliweb-email-header {
+    background-color: rgba(245, 245, 247, 0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    position:sticky; 
+    top:0;
+    width:100%;
+    padding:0;
+    margin:0;
+    padding:20px !important;
+}
 
+.caliweb-email-header .card-header {
+    margin:0 !important;
+    margin-bottom: 0 !important;
+    padding:0 !important;
+}
+
+#email-content {
+    padding:0 !important;
+    padding-top: 0 !important;
+}
+
+.caliweb-email-body {
+    padding:20px;
+}
 
 /* =================== Cali Web Design Dashboard Preloader =================== */
 

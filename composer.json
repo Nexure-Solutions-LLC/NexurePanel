@@ -9,6 +9,7 @@
         "rlanvin/php-ip": "^3.0",
         "mlocati/ip-lib": "^1.18",
         "twilio/sdk": "^8.0",
-        "mobiledetect/mobiledetectlib": "^4.8"
+        "mobiledetect/mobiledetectlib": "^4.8",
+        "ezyang/htmlpurifier": "^4.17"
     }
 }

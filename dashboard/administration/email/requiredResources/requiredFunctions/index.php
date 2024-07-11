@@ -44,6 +44,52 @@
 
         }
 
+        // Recursive function to get the message part
+        
+        function getMessagePart($structure, $partNumber, $inbox, $emailNumber) {
+            
+            $data = imap_fetchbody($inbox, $emailNumber, $partNumber);
+
+            switch ($structure->encoding) {
+                case 3: // BASE64
+                    return base64_decode($data);
+                case 4: // QUOTED-PRINTABLE
+                    return quoted_printable_decode($data);
+                default:
+                    return $data;
+            }
+
+        }
+
+        // Function to extract parts recursively
+
+        function extractParts($structure, $partNumber, $inbox, $emailNumber, &$plainText, &$htmlText) {
+
+            if ($structure->type == 0) { // TYPE: Text
+
+                if ($structure->subtype == 'PLAIN') {
+
+                    $plainText .= getMessagePart($structure, $partNumber, $inbox, $emailNumber);
+
+                } elseif ($structure->subtype == 'HTML') {
+
+                    $htmlText .= getMessagePart($structure, $partNumber, $inbox, $emailNumber);
+
+                }
+
+            } elseif ($structure->type == 1 && isset($structure->parts)) { // TYPE: Multipart
+
+                foreach ($structure->parts as $partIndex => $subPart) {
+
+                    extractParts($subPart, $partNumber . '.' . ($partIndex + 1), $inbox, $emailNumber, $plainText, $htmlText);
+                    
+                }
+
+            }
+
+        }
+        
+
     } else {
 
         header("location:/error/genericSystemError");

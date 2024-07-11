@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '234b2847cd489e7b35997620c81857f691b557b0',
+        'reference' => 'ea0465cedba542ce6261d3820cba71e073e2a693',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '234b2847cd489e7b35997620c81857f691b557b0',
+            'reference' => 'ea0465cedba542ce6261d3820cba71e073e2a693',
             'dev_requirement' => false,
         ),
         'authorizenet/authorizenet' => array(
@@ -44,6 +44,15 @@
             'install_path' => __DIR__ . '/../doctrine/lexer',
             'aliases' => array(),
             'reference' => '31ad66abc0fc9e1a1f2d9bc6a42668d2fbbcd6dd',
+            'dev_requirement' => false,
+        ),
+        'ezyang/htmlpurifier' => array(
+            'pretty_version' => 'v4.17.0',
+            'version' => '4.17.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../ezyang/htmlpurifier',
+            'aliases' => array(),
+            'reference' => 'bbc513d79acf6691fa9cf10f192c90dd2957f18c',
             'dev_requirement' => false,
         ),
         'firebase/php-jwt' => array(
