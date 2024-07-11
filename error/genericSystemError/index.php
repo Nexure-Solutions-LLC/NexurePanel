@@ -14,13 +14,17 @@
     ';
 
     if(isset($_SESSION['error_log_file'])) {
+
         $errorLogFilePath = $_SESSION['error_log_file'];
         $errorLogContent = file_get_contents($errorLogFilePath);
 
         echo "<pre>$errorLogContent</pre>";
         unset($_SESSION['error_log_file']);
+
     } else {
+
         echo "";
+        
     }
 
     echo '

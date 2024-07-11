@@ -3,15 +3,20 @@
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     // Perform query
+    
     $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
     $panelinfo = mysqli_fetch_array($result);
+
     // Free result set
+
     mysqli_free_result($result);
 
     $isregenabled = $panelinfo['isRegEnabled'];
 
     if ($isregenabled == "True" || $isregenabled == "true") {
+
         header("location:/registration");
+
     } else {
 
 ?>

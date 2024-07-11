@@ -4,10 +4,12 @@
 body {
     background-color: transparent;
 }
+
 body {
     height: 100vh;
     background-color: #f1f1f1;
 }
+
 .wrapper {
     right: 0;
     height: 100%;
@@ -17,17 +19,21 @@ body {
     position: fixed;
     z-index: -999;
 }
+
 .text-gray-label {
-    font-size:12px;
+    font-size: 12px;
 }
+
 .caliweb-navbar {
     background-color: transparent !important;
     border-bottom: none !important;
 }
+
 .dark-mode .caliweb-navbar {
     background-color: transparent !important;
     border-bottom: none !important;
 }
+
 .caliweb-login-box {
     position: relative;
     max-width: 22%;
@@ -35,20 +41,25 @@ body {
     margin: auto;
     height: 100%;
 }
+
 .login-only {
     margin-top: 4%;
 }
+
 .register-only {
     margin-top: 2%;
 }
+
 .register-only-second-box {
     margin-bottom: 10%;
 }
+
 .caliweb-login-heading {
     font-size: 25px;
     font-weight: 300;
     font-family: "IBM Plex Sans", sans-serif;
 }
+
 .caliweb-login-box-content {
     padding: 5%;
     border-radius: 6px;
@@ -57,35 +68,42 @@ body {
     border: 1px solid #ddd;
     text-align: left;
 }
+
 .caliweb-error-box,
 .caliweb-register-link-box {
-    border:0;
+    border: 0;
     padding: 5%;
     margin-top: 8%;
 }
+
 .caliweb-error-box {
     background-color: #ffe7e7;
     border-radius: 4px;
 }
+
 .dark-mode .caliweb-login-box-content,
 .dark-mode .license-box {
     background-color: #000;
     box-shadow: none;
     border: 1px solid #222;
 }
+
 .caliweb-login-sublink {
     color: #7c7c7c;
     font-size: 14px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
+
 .caliweb-login-sublink a {
     font-weight: 700;
 }
+
 .caliweb-login-box-header {
     text-align: center;
     padding-bottom: 2%;
-    margin-top:-4%;
+    margin-top: -4%;
 }
+
 .caliweb-login-footer,
 .license-footer {
     top: auto;
@@ -94,97 +112,121 @@ body {
     padding-bottom: 1%;
     bottom: 0;
 }
+
 .caliweb-login-box-body {
     display: block;
     margin-top: 2%;
     margin-bottom: 2%;
 }
+
 .caliweb-ix-form-login {
     width: 100%;
 }
+
 .form-control {
     margin-bottom: 4%;
 }
+
 .caliweb-button.primary {
     margin-top: 4%;
     width: 100%;
     border-radius: 4px;
-    padding:14px 24px;
+    padding: 14px 24px;
     font-family: "IBM Plex Sans", sans-serif !important;
 }
+
 .caliweb-login-footer {
     background-color: #f1f1f1;
-    border-top:1px solid #ddd;
+    border-top: 1px solid #ddd;
     position: absolute;
     width: 100%;
-    align-items:center;
-    display:flex;
+    align-items: center;
+    display: flex;
 }
+
 .caliweb-login-footer-text {
     font-size: 10px;
 }
+
 .domain-form-input {
     font-size: 12px;
 }
+
 .form-input {
     font-size: 12px;
     border-radius: 4px;
-    padding:14px 24px;
-    border:1px solid #ddd;
+    padding: 14px 24px;
+    border: 1px solid #ddd;
 }
+
 .dark-mode .caliweb-login-footer {
     background-color: #000;
-    border-top:1px solid #222;
+    border-top: 1px solid #222;
 }
+
 .dark-mode .caliweb-error-box,
 .dark-mode .caliweb-register-link-box {
     box-shadow: none;
 }
+
 .caliweb-grid-2 {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 .list-links-footer a {
     margin-right: 20px;
     font-size: 10px;
 }
+
 .dark-mode .list-links-footer a {
-    color:rgb(235, 235, 235);
+    color: rgb(235, 235, 235);
 }
+
 .dark-mode .list-links-footer a:hover {
-    color:white;
+    color: white;
 }
+
 .license-only {
     margin-top: 6%;
     position: relative;
 }
+
 .license-box {
     background-color: #fff;
     border: 1px solid #ddd;
     box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
     color: #000;
 }
+
 .license-footer {
     background-color: #f1f1f1;
     position: fixed;
 }
+
 .dark-mode .license-box {
     color: #dbdbdb;
 }
+
 .dark-mode .license-text-dark {
     color: #dbdbdb !important;
 }
+
 .caliweb-navbar-container,
 .container,
 .container.caliweb-container.footer {
     width: 100%;
     max-width: 98%;
 }
+
 @media (max-width: 1366px) {
     body {
         overflow-y: scroll;
     }
+
+    
+
     .caliweb-login-box {
         position: relative;
         max-width: 30%;
@@ -195,6 +237,7 @@ body {
         vertical-align: middle;
         height: 100%;
     }
+
     .license-container {
         height: 100%;
         background-color: transparent;
@@ -203,35 +246,42 @@ body {
         left: 0;
         z-index: 999;
     }
+
     .caliweb-login-footer,
     .license-only {
         position: relative;
     }
+
     .caliweb-login-footer,
     .license-footer {
         position: fixed;
-        bottom:0;
+        bottom: 0;
         top: auto;
         left: 0;
         background-color: #f1f1f1;
         padding-top: 1%;
         padding-bottom: 1%;
     }
+
     .login-only,
     .register-only {
         margin-top: 0%;
     }
+
     .login-only-second-box {
         margin-bottom: 10%;
     }
+
     .license-only {
         z-index: 999;
         margin-top: -2%;
     }
+
     .license-footer {
         position: fixed;
         bottom: 0;
     }
+
     .caliweb-navbar-container,
     .container,
     .container.caliweb-container.footer {
@@ -239,10 +289,12 @@ body {
         max-width: 98%;
     }
 }
+
 @media (min-width: 1399px) and (max-width: 1499px) {
     body {
         overflow-y: scroll;
     }
+
     .caliweb-login-box {
         position: relative;
         max-width: 30%;
@@ -253,6 +305,7 @@ body {
         vertical-align: middle;
         height: 100%;
     }
+
     .license-container {
         height: 100%;
         background-color: transparent;
@@ -262,10 +315,12 @@ body {
         z-index: 999;
         width: 100%;
     }
+
     .caliweb-login-footer,
     .license-only {
         position: relative;
     }
+
     .caliweb-login-footer,
     .license-footer {
         position: fixed;
@@ -274,23 +329,28 @@ body {
         background-color: #f1f1f1;
         padding-top: 1%;
         padding-bottom: 1%;
-        bottom:0 !important;
+        bottom: 0 !important;
     }
+
     .login-only,
     .register-only {
         margin-top: 0%;
     }
+
     .license-only {
         z-index: 999;
         margin-top: -2%;
     }
+
     .login-only-second-box {
         margin-bottom: 10%;
     }
+
     .license-footer {
         position: fixed;
         bottom: 0;
     }
+
     .caliweb-navbar-container,
     .container,
     .container.caliweb-container.footer {
@@ -298,20 +358,24 @@ body {
         max-width: 98%;
     }
 }
+
 @media (max-width: 1200px) {
     .login-container {
         height: 100%;
         background-color: #f1f1f1;
     }
+
     .container {
         width: 100%;
         max-width: 95%;
     }
+
     .caliweb-navbar-container,
     .container.caliweb-container.footer {
         width: 100%;
         max-width: 90%;
     }
+
     .caliweb-login-box {
         position: relative;
         max-width: 60%;
@@ -322,12 +386,15 @@ body {
         vertical-align: middle;
         height: 100%;
     }
+
     .login-only {
         margin-top: 0;
     }
+
     .register-only {
         padding-top: 15%;
     }
+
     .caliweb-login-footer {
         padding-top: 2%;
         padding-left: 4%;
@@ -335,10 +402,12 @@ body {
         bottom: 0;
         padding-bottom: 2%
     }
+
     .list-links-footer {
         display: none;
     }
 }
+
 @media (max-width: 999px) {
     .caliweb-login-box {
         position: relative;
@@ -350,12 +419,15 @@ body {
         vertical-align: middle;
         height: 100%;
     }
+
     .login-only {
         margin-top: 0;
     }
+
     .register-only {
         padding-top: 15%;
     }
+
     .must-be-grid {
         display: grid !important;
         -ms-grid-columns: 1fr 1fr !important;
@@ -365,14 +437,18 @@ body {
     .mobile-experiance {
         text-align: center !important;
         display: block !important;
-        width:80%;
-        padding-left:0 !important;
+        width: 80%;
+        padding-left: 0 !important;
     }
 }
+
 @media (min-width:2000px) {
+
     /* Moves the Registration form down futher on screen that are lager
     like the Apple XDR Displays cause Apple is weird */
+
     .bigscreens-are-strange {
-        margin-top:6% !important;
+        margin-top: 6% !important;
     }
+
 }

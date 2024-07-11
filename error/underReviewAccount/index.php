@@ -18,17 +18,24 @@
     mysqli_free_result($userprofileresult);
 
     // User Profile Variable Definitions
+    
     $accountStatus = $userinfo['accountStatus'];
 
     // Checks the users account staus and send them to the right page.
     // If the user is active load the dashboard like normal.
 
     if ($accountStatus == "Active") {
+
         header ("Location: /dashboard/customers/");
+
     } else if ($accountStatus == "Suspended") {
+
         header ("Location: /error/suspendedAccount");
+
     } else if ($accountStatus == "Terminated") {
+
         header ("Location: /error/terminatedAccount");
+
     }
 
     echo '<title>'.$orgshortname.' - Under Review</title>';

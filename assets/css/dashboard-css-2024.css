@@ -8,10 +8,10 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
-    width:100%;
-    position:fixed;
-    top:0;
-    bottom:0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
 }
 
 *::-webkit-scrollbar {
@@ -30,30 +30,30 @@ body {
 }
 
 .text-bold {
-    font-weight:700;
+    font-weight: 700;
 }
 
 .font-size-20 {
-    font-size:20px;
+    font-size: 20px;
 }
 
 .font-size-16 {
-    font-size:16px;
+    font-size: 16px;
 }
 
 .font-14px {
-    font-size:14px;
-    width:100%;
+    font-size: 14px;
+    width: 100%;
 }
 
 .no-padding {
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
 }
 
 .no-margin {
-    margin:0 !important;
-    padding:0;
+    margin: 0 !important;
+    padding: 0;
 }
 
 .margin-10px-right {
@@ -62,7 +62,7 @@ body {
 
 .display-flex {
     display: flex;
-} 
+}
 
 .align-center {
     align-items: center;
@@ -74,22 +74,22 @@ body {
 }
 
 .width-20 {
-    width:20% !important;
+    width: 20% !important;
 }
 
 .width-100 {
-    width:100%;
+    width: 100%;
 }
 
 .padding-20px {
-    padding:20px;
+    padding: 20px;
 }
 
 .padding-20px-no-top {
-    padding:20px;
+    padding: 20px;
     padding-top: 0px;
-    margin-top:-20px;
-    margin-bottom:-15px;
+    margin-top: -20px;
+    margin-bottom: -15px;
 }
 
 .width-60 {
@@ -97,19 +97,19 @@ body {
 }
 
 .tab-switch-ul {
-    list-style:none;
-    margin:0;
-    padding:0;
-    margin-bottom:2%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 2%;
 }
 
 .tab-switch-tab {
-    border-bottom:2px solid #ddd;
-    padding:4px 20px;
-    padding-bottom:8px;
+    border-bottom: 2px solid #ddd;
+    padding: 4px 20px;
+    padding-bottom: 8px;
     padding-left: 0;
     text-align: center;
-    width:100%;
+    width: 100%;
 }
 
 .tab-switch-tab a {
@@ -117,7 +117,7 @@ body {
 }
 
 .tab-switch-tab.active {
-    border-bottom:2px solid #D49DFF;
+    border-bottom: 2px solid #D49DFF;
 }
 
 /* =================== Cali Web Design Dashboard Container Styles =================== */
@@ -135,8 +135,8 @@ body {
 }
 
 .first-dashboard-area-cards {
-    overflow-y:scroll;
-    position:relative;
+    overflow-y: scroll;
+    position: relative;
     margin-bottom: 5%;
     height: 90%;
 }
@@ -146,13 +146,13 @@ body {
 .caliweb-navbar {
     background-color: #fff;
     display: block;
-    padding-top:0;
+    padding-top: 0;
     padding-bottom: 0;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .caliweb-header-search {
-    width:60% !important;
+    width: 60% !important;
 }
 
 .caliweb-search-input {
@@ -164,7 +164,7 @@ body {
     min-width: 100%;
     margin-top: 0;
     margin-bottom: 0;
-    padding:10px;
+    padding: 10px;
 }
 
 .caliweb-nav-buttons {
@@ -183,23 +183,23 @@ body {
     margin-left: 4px;
     margin-right: 4px;
     border-radius: 0;
-    padding:4px 14px;
-    border-top:3px solid transparent;
+    padding: 4px 14px;
+    border-top: 3px solid transparent;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
 }
 
 .nav-links:hover {
-    border-top:3px solid #000;
+    border-top: 3px solid #000;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
 }
 
 .nav-links.active {
-    border-top:3px solid #000;
+    border-top: 3px solid #000;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    background-color:#f1f1f1;
+    background-color: #f1f1f1;
 }
 
 .more {
@@ -210,27 +210,27 @@ body {
     display: none;
     position: absolute;
     background-color: #ffffff;
-    border:1px solid #ddd;
+    border: 1px solid #ddd;
     min-width: 230px;
     z-index: 1;
-    list-style:none;
-    padding:8px;
-    top:33px;
-    left:0% !important;
+    list-style: none;
+    padding: 8px;
+    top: 33px;
+    left: 0% !important;
     z-index: 999;
 }
 
 .dropdown li {
     display: block;
-    border:1px solid transparent !important;
+    border: 1px solid transparent !important;
 }
 
 .dropdown a {
-    padding:14px 8px !important;
+    padding: 14px 8px !important;
 }
 
 .dropdown li:hover {
-    border:1px solid #ddd !important;
+    border: 1px solid #ddd !important;
 }
 
 .more.active .dropdown {
@@ -239,21 +239,23 @@ body {
 
 /* =================== Cali Web Design Dashboard Dark Mode Styles =================== */
 
-html[data-theme='dark'] body{
+html[data-theme='dark'] body {
     overflow-x: hidden;
     background-color: #1f1f1f;
     background-image: url("/assets/img/dashboardBackground/mainDarkBackground.webp") !important;
-    color:#DBDBDB !important;
+    color: #DBDBDB !important;
 }
 
 .dark-mode *::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
+
 .dark-mode *::-webkit-scrollbar-track {
     background: #1b1b1b;
     border-left: 1px solid #222;
 }
+
 .dark-mode *::-webkit-scrollbar-thumb {
     background-color: #353535;
     border-radius: 50px;
@@ -262,52 +264,52 @@ html[data-theme='dark'] body{
 .dark-mode .nav-links,
 .dark-mode .nav-links:hover a,
 .dark-mode .nav-links-clickable {
-    color:#DBDBDB !important;
+    color: #DBDBDB !important;
     background-color: none;
 }
 
 .dark-mode .nav-links:hover,
 .dark-mode .nav-links:hover a,
 .dark-mode .nav-links-clickable:hover {
-    color:#fff !important;
+    color: #fff !important;
     background-color: #222;
 }
 
 .dark-mode .nav-links:hover {
-    border-top:3px solid #fff;
+    border-top: 3px solid #fff;
     border-left: 1px solid #222;
     border-right: 1px solid #222;
-    background-color:#1f1f1f;
+    background-color: #1f1f1f;
 }
 
 .dark-mode .nav-links.active {
-    border-top:3px solid #fff;
+    border-top: 3px solid #fff;
     border-left: 1px solid #222;
     border-right: 1px solid #222;
-    background-color:#1f1f1f;
+    background-color: #1f1f1f;
 }
 
 .dark-mode .caliweb-card.dashboard-card {
     background: #1d1d1d;
-    border:1px solid #222;
+    border: 1px solid #222;
 }
 
 .dark-mode .caliweb-card.dashboard-card-shrink {
     background: #1d1d1d;
-    border:1px solid #222;
+    border: 1px solid #222;
 }
 
 .dark-mode .card-header {
-    border-bottom:0;
+    border-bottom: 0;
 }
 
 .dark-mode .card-footer {
-    border-top:0;
+    border-top: 0;
 }
 
 .dark-mode .card-header-account {
     background-color: #2b2b2b;
-    border-bottom:1px solid #333;
+    border-bottom: 1px solid #333;
 }
 
 .dark-mode td,
@@ -315,26 +317,27 @@ html[data-theme='dark'] body{
     border-bottom: 1px solid #333;
     text-align: left;
     padding: 10px;
-    width:100%;
+    width: 100%;
 }
 
 .dark-mode .icon-size-formatted {
-    border:1px solid #222;
+    border: 1px solid #222;
 }
 
 .dark-mode .preloader {
     background-color: #000 !important;
 }
+
 .dark-mode .tab-switch-tab {
-    border-bottom:2px solid #333;
+    border-bottom: 2px solid #333;
 }
 
 .dark-mode .tab-switch-tab a {
-    color:#DBDBDB;
+    color: #DBDBDB;
 }
 
 .dark-mode .tab-switch-tab.active {
-    border-bottom:2px solid #D49DFF;
+    border-bottom: 2px solid #D49DFF;
 }
 
 .dark-mode .customer-business-card-bar {
@@ -342,22 +345,22 @@ html[data-theme='dark'] body{
 }
 
 .dark-mode .customer-card-header {
-    border-bottom:1px solid #222;
+    border-bottom: 1px solid #222;
 }
 
 .dark-mode .customer-quick-actions-img {
-    border:1px solid #333;
+    border: 1px solid #333;
 }
 
 .dark-mode .thumb-web-img {
-    border:#333 1px solid;
+    border: #333 1px solid;
 }
 
 .dark-mode table {
-    border-top:1px solid #333 !important;
+    border-top: 1px solid #333 !important;
 }
 
-.dark-mode .price-table-head, 
+.dark-mode .price-table-head,
 .dark-mode table tbody th {
     background-color: #292929 !important;
 }
@@ -367,14 +370,14 @@ html[data-theme='dark'] body{
 }
 
 .dark-mode .caliweb-email-listing {
-    border:1px solid #333 !important;
+    border: 1px solid #333 !important;
     background-color: #222 !important;
 }
 
 .dark-mode .caliweb-email-listing:hover {
     background-color: #dcf1ff !important;
     border: 1px solid #dcf1ff !important;
-    color:#000 !important;
+    color: #000 !important;
 }
 
 .dark-mode .mail-logo-content {
@@ -423,37 +426,37 @@ html[data-theme='dark'] body{
 
 .caliweb-card.dashboard-card {
     background: #fff;
-    border:1px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 6px;
-    padding:20px;
+    padding: 20px;
 }
 
 .caliweb-card.dashboard-card-shrink {
     background: #fff;
-    border:1px solid #ddd;
+    border: 1px solid #ddd;
     border-radius: 6px;
-    padding:10px;
-    padding-left:20px;
-    padding-right:20px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .card-header {
-    padding-top:0px;
+    padding-top: 0px;
     padding-bottom: 10px;
     margin-bottom: 4%;
 }
 
 .card-header-account {
-    padding-top:0px;
+    padding-top: 0px;
     padding-bottom: 10px;
     background-color: #f1f1f1;
-    padding:20px;
+    padding: 20px;
     border-radius: 6px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    border-bottom:1px solid #eee;
+    border-bottom: 1px solid #eee;
     margin-bottom: 2.5%;
     display: flex;
     align-items: center;
@@ -461,20 +464,20 @@ html[data-theme='dark'] body{
 }
 
 .client-business-andor-profile-logo {
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
     border-radius: 5px;
 }
 
 .icon-size-formatted {
-    height:45px;
-    width:45px;
+    height: 45px;
+    width: 45px;
     border-radius: 5px;
-    border:1px solid #ddd;
+    border: 1px solid #ddd;
 }
 
 .card-footer {
-    padding-top:10px;
+    padding-top: 10px;
     padding-bottom: 0px;
     margin-top: 4%;
     display: flex;
@@ -484,7 +487,7 @@ html[data-theme='dark'] body{
 
 .card-footer p,
 .card-header p {
-    font-size:14px;
+    font-size: 14px;
 }
 
 .custom-padding-account-card {
@@ -495,58 +498,59 @@ html[data-theme='dark'] body{
 
 .account-status-badge {
     border-radius: 4px;
-    padding:4px 12px;
-    margin-left:20px;
-    font-size:12px;
-    margin-top:0;
+    padding: 4px 12px;
+    margin-left: 20px;
+    font-size: 12px;
+    margin-top: 0;
 }
 
 .account-status-badge.passive {
-    border:1px solid #B8B8B8;
+    border: 1px solid #B8B8B8;
     background-color: #F1F1F1;
-    color:#646464;
+    color: #646464;
 }
 
 .account-status-badge.green {
-    border:1px solid #6ED741;
+    border: 1px solid #6ED741;
     background-color: #CEFFB9;
-    color:#204510;
+    color: #204510;
 }
 
 .account-status-badge.yellow {
-    border:1px solid #D5D94A;
+    border: 1px solid #D5D94A;
     background-color: #FDFFBE;
-    color:#585A1A;
+    color: #585A1A;
 }
 
 .account-status-badge.red {
-    border:1px solid #FF9090;
+    border: 1px solid #FF9090;
     background-color: #FFE1E1;
-    color:#AD3434;
+    color: #AD3434;
 }
 
 .account-status-badge.red-dark {
-    border:1px solid #FE5D5D;
+    border: 1px solid #FE5D5D;
     background-color: #FFD4D4;
-    color:#901818;
+    color: #901818;
 }
 
 /* =================== Cali Web Design Dashboard Table Styles =================== */
 
 .dashboard-table {
-    width:100%;
+    width: 100%;
 }
 
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
-    margin-top:-2%;
-    margin-bottom:1%;
-    border-top:1px solid #e6e5e5;
+    margin-top: -2%;
+    margin-bottom: 1%;
+    border-top: 1px solid #e6e5e5;
 }
 
-.price-table-head, table tbody th {
+.price-table-head,
+table tbody th {
     background-color: #efeeee !important;
 }
 
@@ -555,82 +559,78 @@ th {
     border-bottom: 1px solid #e6e5e5;
     text-align: left;
     padding: 10px;
-    width:100%;
-    font-size:12px;
+    width: 100%;
+    font-size: 12px;
 }
 
 /* =================== Cali Web Design Dashboard Calendar Widget Styles =================== */
 
 
-.swal2-input{
+.swal2-input {
     width: 100% !important;
     margin-left: 0 !important;
     height: 2.5em !important;
     margin-right: 0 !important;
 }
 
-textarea.swal2-input{
+textarea.swal2-input {
     height: 5em !important;
     padding: 0.5em 0.5em !important;
 }
 
-.swal2-close{
+.swal2-close {
     outline: none;
 }
 
 /* =================== Cali Web Design Dashboard Customer Accounts Overview =================== */
 
 .customer-dashboard-greeting-section {
-    padding-top:50px;
+    padding-top: 50px;
 }
 
-.customer-dashboard-section {
-
-}
+.customer-dashboard-section {}
 
 .customer-quick-actions-img {
-    height:40px;
-    width:40px;
-    border:1px solid #eee;
-    padding:4px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid #eee;
+    padding: 4px;
     border-radius: 6px;
     margin-bottom: 6%;
 }
 
 .customer-business-card-bar {
     background-color: #f1f1f1;
-    padding:20px;
+    padding: 20px;
     border-radius: 0px;
 }
 
 .customer-card-header {
-    border-bottom:1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 
-.customer-account-title {
-
-}
+.customer-account-title {}
 
 /* =================== Cali Web Design Dashboard Customer Accounts Edit/Create =================== */
 
 .fillable-header {
-    background-color:#f1f1f1;
-    padding-top:5px;
-    padding-bottom:5px;
-    padding-left:10px;
+    background-color: #f1f1f1;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
 }
 
 .fillable-body {
-    width:100%;
+    width: 100%;
     max-width: 70%;
     margin-left: auto;
     margin-right: auto;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 .fillable-text {
-    font-size:12px;
-    font-weight:700;
+    font-size: 12px;
+    font-weight: 700;
 }
 
 /* =================== Cali Web Design Dashboard Image Thumbnail =================== */
@@ -644,9 +644,9 @@ textarea.swal2-input{
     display: flex;
     padding: 0px;
     position: relative;
-    width:35%;
-    height:35vh;
-    margin-right:40px;
+    width: 35%;
+    height: 35vh;
+    margin-right: 40px;
 }
 
 .thumb-web-img img {
@@ -667,8 +667,8 @@ textarea.swal2-input{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
 
@@ -678,7 +678,7 @@ textarea.swal2-input{
     padding: 20px;
     border: 1px solid #eee;
     width: 50%;
-    border-radius:4px;
+    border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -699,13 +699,13 @@ textarea.swal2-input{
 /* =================== Cali Web Design Cali Mail Styling =================== */
 
 .caliweb-email-listing-container {
-    height:85vh;
+    height: 85vh;
     overflow-x: hidden;
     overflow-y: scroll;
 }
 
 .caliweb-email-content-container {
-    height:85vh;
+    height: 85vh;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -717,18 +717,18 @@ textarea.swal2-input{
 }
 
 .caliweb-email-listing {
-    padding:15px;
+    padding: 15px;
     border-radius: 6px;
-    border:1px solid #eee;
+    border: 1px solid #eee;
     background-color: #f2f3f5;
-    margin:8px;
-    margin:0;
-    margin-top:10px;
-    margin-bottom:10px;
+    margin: 8px;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .caliweb-email-listing-header {
-    margin-bottom:4%;
+    margin-bottom: 4%;
 }
 
 .caliweb-email-listing:hover {
@@ -743,7 +743,7 @@ textarea.swal2-input{
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-top:10%;
+    margin-top: 10%;
 }
 
 .mail-logo-content {
@@ -754,27 +754,27 @@ textarea.swal2-input{
     background-color: rgba(245, 245, 247, 0.72);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
-    position:sticky; 
-    top:0;
-    width:100%;
-    padding:0;
-    margin:0;
-    padding:20px !important;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    padding: 20px !important;
 }
 
 .caliweb-email-header .card-header {
-    margin:0 !important;
+    margin: 0 !important;
     margin-bottom: 0 !important;
-    padding:0 !important;
+    padding: 0 !important;
 }
 
 #email-content {
-    padding:0 !important;
+    padding: 0 !important;
     padding-top: 0 !important;
 }
 
 .caliweb-email-body {
-    padding:20px;
+    padding: 20px;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */
@@ -790,11 +790,13 @@ textarea.swal2-input{
         -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
     }
-    .container,
-    .container.caliweb-container,
+
+    .container .container.caliweb-container,
     .container.caliweb-navbar-container {
-        width:95% !important;
+        width: 95% !important;
     }
+
+    
 }
 
 @media (max-width: 1289px) {
@@ -802,9 +804,10 @@ textarea.swal2-input{
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
     }
+
     .container,
     .container.caliweb-container,
     .container.caliweb-navbar-container {
-        width:95% !important;
+        width: 95% !important;
     }
 }

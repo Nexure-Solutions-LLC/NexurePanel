@@ -1,6 +1,71 @@
 <?php
+
+    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+
+    $caliemail = $_SESSION['caliid'];
+
+    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userinfo = mysqli_fetch_array($userprofileresult);
+    mysqli_free_result($userprofileresult);
+
+    // User Profile Variable Definitions
+
+    $fullname = $userinfo['legalName'];
+    $mobilenumber = $userinfo['mobileNumber'];
+    $accountStatus = $userinfo['accountStatus'];
+
+    if ($accountStatus == "Active") {
+
+        header ("Location: /dashboard/customers/");
+
+    } else if ($accountStatus == "Suspended") {
+
+        header ("Location: /error/suspendedAccount");
+
+    } else if ($accountStatus == "Terminated") {
+
+        header ("Location: /error/terminatedAccount");
+        
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $dateofbirth = stripslashes($_REQUEST['dateofbirth']);
+        $dateofbirth = mysqli_real_escape_string($con, $dateofbirth);
+        $einssnnumber = stripslashes($_REQUEST['einssnnumber']);
+        $einssnnumber = mysqli_real_escape_string($con, $einssnnumber);
+
+        $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
+        $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
+
+        function encryptSSN($ssn, $encryptKey, $encryptIv) {
+
+            $cipher = 'aes-256-cbc';
+            $encrypted = openssl_encrypt($ssn, $cipher, $encryptKey, 0, $encryptIv);
+            return base64_encode($encrypted . '::' . $encryptIv);
+
+        }
+        
+        $encryptedeinssnumber = encryptSSN($einssnnumber, $encryptKey, $encryptIv);
+
+        $query = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$fullname','$mobilenumber','$caliemail','$dateofbirth','$encryptedeinssnumber','','','','','','')";
+        $result   = mysqli_query($con, $query);
+
+        if ($result) {
+
+            echo '<script type="text/javascript">window.location = "/onboarding/addressInformation"</script>';
+
+        } else {
+
+            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+        }
+
+    }
+
     echo '<title>Complete onbording of your new account.</title>';
+
 ?>
 
     <section class="login-container">
@@ -15,15 +80,15 @@
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="legalname" class="text-gray-label">Legal Name</label>
-                                <input type="text" class="form-input" name="legalname" id="legalname" placeholder="" required="" />
+                                <input type="text" class="form-input" name="legalname" id="legalname" value="<?php echo $fullname; ?>" required="" readonly />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="phonenumber" class="text-gray-label">Phone Number</label>
-                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" placeholder="" required="" />
+                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $mobilenumber; ?>" required="" readonly />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="emailaddress" class="text-gray-label">Email Address</label>
-                                <input type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="" required="" />
+                                <input type="email" class="form-input" name="emailaddress" id="emailaddress" value="<?php echo $caliemail; ?>" required="" readonly />
                             </div>
                         </div>
                         <div>
@@ -35,7 +100,7 @@
                                 <label style="color:green; font-size:12px;">This is a secure form and will be verified with the IRS.</label>
                                 <div class="form-control" style="margin-top:4%;">
                                     <label for="einssnnumber" class="text-gray-label">EIN or SSN Number</label>
-                                    <input type="text" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" requird="" />
+                                    <input type="password" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" requird="" />
                                 </div>
                                 <p style="font-size:12px; padding:0; margin:0;">Why do we require this? To comply with financial regulations and provide our full rage of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.</p>
                             </div>
@@ -74,5 +139,7 @@
     </div>
 
 <?php
+
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
+
 ?>

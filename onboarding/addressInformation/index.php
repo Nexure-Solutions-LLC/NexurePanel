@@ -1,6 +1,66 @@
 <?php
+
+    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+
+    $caliemail = $_SESSION['caliid'];
+
+    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userinfo = mysqli_fetch_array($userprofileresult);
+    mysqli_free_result($userprofileresult);
+
+    // User Profile Variable Definitions
+
+    $fullname = $userinfo['legalName'];
+    $mobilenumber = $userinfo['mobileNumber'];
+    $accountStatus = $userinfo['accountStatus'];
+
+    if ($accountStatus == "Active") {
+
+        header ("Location: /dashboard/customers/");
+
+    } else if ($accountStatus == "Suspended") {
+
+        header ("Location: /error/suspendedAccount");
+
+    } else if ($accountStatus == "Terminated") {
+
+        header ("Location: /error/terminatedAccount");
+        
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $addressline1 = stripslashes($_REQUEST['addressline1']);
+        $addressline1 = mysqli_real_escape_string($con, $addressline1);
+        $addressline2 = stripslashes($_REQUEST['addressline2']);
+        $addressline2 = mysqli_real_escape_string($con, $addressline2);
+        $city = stripslashes($_REQUEST['city']);
+        $city = mysqli_real_escape_string($con, $city);
+        $state = stripslashes($_REQUEST['state']);
+        $state = mysqli_real_escape_string($con, $state);
+        $postalcode = stripslashes($_REQUEST['postalcode']);
+        $postalcode = mysqli_real_escape_string($con, $postalcode);
+        $country = stripslashes($_REQUEST['country']);
+        $country = mysqli_real_escape_string($con, $country);
+
+        $query = "UPDATE `caliweb_ownershipinformation` SET `addressline1`='$addressline1',`addressline2`='$addressline2',`city`='$city',`state`='$state',`postalcode`='$postalcode',`country`='$country' WHERE `emailAddress` = '$caliemail'";
+        $result   = mysqli_query($con, $query);
+
+        if ($result) {
+
+            echo '<script type="text/javascript">window.location = "/onboarding/businessInformation"</script>';
+
+        } else {
+
+            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+        }
+
+    }
+
     echo '<title>Complete onbording of your new account.</title>';
+
 ?>
 
     <section class="login-container">
@@ -29,7 +89,7 @@
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="addressline2" class="text-gray-label">Address Line 2</label>
-                                <input type="text" class="form-input" name="addressline2" id="addressline2" placeholder="" required="" />
+                                <input type="text" class="form-input" name="addressline2" id="addressline2" placeholder="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="state" class="text-gray-label">State</label>

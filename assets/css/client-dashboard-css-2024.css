@@ -19,13 +19,13 @@ html[data-theme='dark'] body {
 
 .systemLoads,
 .dark-mode .systemLoads {
-    display:none !important;
+    display: none !important;
 }
 
 .container,
 .container.caliweb-container,
 .container.caliweb-navbar-container {
-    width:85%;
+    width: 85%;
 }
 
 .subtitle-text {
@@ -38,4 +38,55 @@ html[data-theme='dark'] body {
 
 .loading-bar-inner {
     background-color: #85e2ff !important;
+}
+
+
+@media (max-width: 1366px) {
+    body {
+        overflow-y: scroll;
+    }
+
+    .caliweb-button.secondary {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .caliweb-button-section {
+        display: flex;
+        padding-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .container,
+    .container.caliweb-container,
+    .container.caliweb-navbar-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .caliweb-two-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .customer-account-title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .customer-account-title h6 {
+        margin-bottom: 10px;
+    }
+
+    .caliweb-three-grid {
+        grid-template-columns: 1fr !important;
+        row-gap: 20px;
+    }
+
+
+    .customer-grid-quick-actions {
+        grid-template-columns: 1fr !important;
+        row-gap: 20px;
+    }
 }

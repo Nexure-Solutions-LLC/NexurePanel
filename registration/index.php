@@ -11,6 +11,7 @@
             'secret' => "0x1097356228F6a429882375bC5974c5a9a2631Bb3",
             'response' => $_POST['h-captcha-response']
         );
+
         $verify = curl_init();
 
 
@@ -21,11 +22,11 @@
 
 
         $response = curl_exec($verify);
-        // var_dump($response);
         $responseData = json_decode($response);
 
 
         if($responseData->success) {
+
             $legalname = stripslashes($_REQUEST['legalname']);
             $legalname = mysqli_real_escape_string($con, $legalname);
             $caliid = stripslashes($_REQUEST['emailaddress']);
@@ -43,12 +44,18 @@
             $builtaccountnumber = $accountnumber_starting.$accountnumber;
 
             function generateRandomPrefix($length = 3) {
+
                 $characters = 'abcdefghijklmnopqrstuvwxyz';
                 $prefix = '';
+
                 for ($i = 0; $i < $length; $i++) {
+
                     $prefix .= $characters[rand(0, strlen($characters) - 1)];
+
                 }
+
                 return $prefix;
+
             }
             
             $randomPrefix = generateRandomPrefix(5);
@@ -61,9 +68,12 @@
                 }
             
                 // Perform query
+
                 $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
                 $paymentgateway = mysqli_fetch_array($result);
+
                 // Free result set
+
                 mysqli_free_result($result);
             
                 $apikeysecret = $paymentgateway['secretKey'];
@@ -72,8 +82,11 @@
                 $paymentProccessorName = $paymentgateway['processorName'];
 
                 // Checks type of payment proccessor.
+
                 if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+
                     if ($paymentProccessorName == "Stripe") {
+
                         \Stripe\Stripe::setApiKey($apikeysecret);
 
                         $cu = \Stripe\Customer::create(array(
@@ -84,24 +97,38 @@
                         ));
 
                         $SS_STRIPE_ID =  $cu['id'];
+
                     } else {
+
                         header ("location: /error/genericSystemError");
+
                     }
+
                 } else {
+
                     header ("location: /error/genericSystemError");
+
                 }
 
                 $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`) VALUES ('$caliid','".md5($password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','Customer','Retail','')";
                 $result   = mysqli_query($con, $query);
 
                 if ($result) {
+
                     echo '<script type="text/javascript">window.location = "/login"</script>';
+
                 } else {
+
                     header ("location: /error/genericSystemError");
+
                 }
+
             }
+
         } else {
+
             header ("location: /error/genericSystemError");
+
         }
     } else {    
 
@@ -187,7 +214,11 @@
                 </div>
             </div>
         </div>
+
     <?php include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); ?>
+
 <?php
+
     }
+
 ?>
