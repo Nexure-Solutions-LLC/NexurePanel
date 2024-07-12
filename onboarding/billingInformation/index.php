@@ -1,11 +1,12 @@
 <?php
 
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+
+    $pagetitle = "Onboarding Billing";
+    $_SESSION['pagetitle'] = $pagetitle;
+
+    // Check the user account
 
     $caliemail = $_SESSION['caliid'];
 
@@ -18,6 +19,7 @@
     $fullname = $userinfo['legalName'];
     $mobilenumber = $userinfo['mobileNumber'];
     $accountStatus = $userinfo['accountStatus'];
+    $stripeID = $userinfo['stripeID'];
 
     if ($accountStatus == "Active") {
 
@@ -33,20 +35,12 @@
         
     }
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        
-
-    }
-
-    echo '<title>Complete onbording of your new account.</title>';
-
-    // Perform query
+    // Perform payment proccessor check query
 
     $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
     $paymentgateway = mysqli_fetch_array($result);
 
-    // Free result set
+    // Free payment proccessor check result set
 
     mysqli_free_result($result);
 
@@ -55,13 +49,25 @@
     $paymentgatewaystatus = $paymentgateway['status'];
     $paymentProccessorName = $paymentgateway['processorName'];
 
+    echo '<title>Complete onbording of your new account.</title>';
+
     // Checks type of payment proccessor.
 
     if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
         if ($paymentProccessorName == "Stripe") {
 
-            
+            \Stripe\Stripe::setApiKey($apikeysecret);
+                
+            $customer = \Stripe\Customer::retrieve($stripeID);
+            $customerData = $customer;
+            $defaultSourceId = $customerData['default_source'];
+
+            if ($defaultSourceId != "") {
+
+                echo '<script>window.location.href = "/onboarding/completeOnboarding";</script>';
+
+            }
 
 ?>
 
@@ -72,7 +78,7 @@
                         <p style="font-size:12px; margin-top:0%;">Please provide your billing information so that you can order services without interuption.</p>
                     </div>
                     <div class="caliweb-login-box-body">
-                        <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
+                        <form action="/onboarding/requiredLogic/index.php" method="POST" id="caliweb-form-plugin"  class="caliweb-ix-form-login">
                             <div class="caliweb-grid caliweb-two-grid">
                                 <div>
                                     <div id="card-element" style="padding:10px; background-color:#F8F8F8; border-radius:8px; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border:1px solid #ddd; margin-bottom:10%;">

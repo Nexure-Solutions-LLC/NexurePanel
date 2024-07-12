@@ -1,1 +1,0 @@
-Error: [2] Undefined variable $apikeypublic in /var/www/calipanel/modules/paymentModule/stripe/internalPayments/clientside.php on line 2
