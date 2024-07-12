@@ -1,5 +1,7 @@
 <?php
+
     function errorHandler($errno, $errstr, $errfile, $errline) {
+
         $log_timestamp = date("d-m-Y H:i:sa");
         $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline";
         $errorLogFile = $_SERVER["DOCUMENT_ROOT"] . "/error/errorLogs/$log_timestamp.log";
@@ -9,21 +11,33 @@
         $_SESSION['error_log_file'] = $errorLogFile;
 
         while (ob_get_level()) {
+
             ob_end_clean();
+
         }
+
         if (headers_sent()) {
+
             echo '<meta http-equiv="refresh" content="0;url=/error/genericSystemError/">';
+
         } else {
+
             header("Location: /error/genericSystemError/");
+
         }
+
         exit;
+
     }
 
     set_error_handler("errorHandler");
 
     $error = error_get_last();
+
     if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING])) {
+
         customErrorHandler($error['type'], $error['message'], $error['file'], $error['line']);
+
     }
 
     require($_SERVER["DOCUMENT_ROOT"].'/lang/en_US.php');
@@ -33,10 +47,12 @@
     use Dotenv\Dotenv;
 
     // Load environment variables from .env file
+
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
     // Get database credentials from environment variables
+
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
@@ -45,9 +61,12 @@
     }
 
     // Perform query
+
     $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
     $panelinfo = mysqli_fetch_array($result);
+
     // Free result set
+
     mysqli_free_result($result);
 
     $panelname = $panelinfo['panelName'];
@@ -144,5 +163,7 @@
             </div>
         </div>
     <?php } else {
+
         header("Location: /error/licenseInvalid");
+        
     } ?>

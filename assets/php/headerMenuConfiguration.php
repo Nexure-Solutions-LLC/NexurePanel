@@ -1,4 +1,5 @@
 <?php
+
     $sql = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND `modulePositionType` = 'Staff Function'";
     $moduleresult = mysqli_query($con, $sql);
 
@@ -67,6 +68,7 @@
 
         }
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
+
         if ($pagetitle == "Administration Dashboard") {
 
             echo '
@@ -92,9 +94,13 @@
             ';
 
             if (mysqli_num_rows($moduleresult) > 0) {
+
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
                 }
+
             }
 
             echo '
@@ -132,9 +138,13 @@
             ';
 
             if (mysqli_num_rows($moduleresult) > 0) {
+
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
                 }
+
             }
 
             echo '
@@ -173,9 +183,13 @@
             ';
 
             if (mysqli_num_rows($moduleresult) > 0) {
+
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
                 }
+
             }
 
             echo '
@@ -234,9 +248,13 @@
             ';
 
             if (mysqli_num_rows($moduleresult) > 0) {
+
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
                 }
+
             }
 
             echo '
@@ -275,9 +293,13 @@
             ';
 
             if (mysqli_num_rows($moduleresult) > 0) {
+
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
                 }
+
             }
 
             echo '
@@ -316,9 +338,13 @@
             ';
 
             if (mysqli_num_rows($moduleresult) > 0) {
+
                 while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
                     echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
                 }
+
             }
 
             echo '
@@ -332,6 +358,7 @@
             ';
 
         } else if ($pagetitle == "Cali Mail") {
+
             echo '
 
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Cali Mail</p>
@@ -354,6 +381,9 @@
                 </ul>
 
             ';
+
         }
+
     }
+
 ?>

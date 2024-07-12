@@ -10,15 +10,25 @@
                                     <h4 class="text-bold font-size-16 no-padding display-flex align-center"><?php echo $businessname; ?> - <?php echo $accountnumber; ?> <?php
 
                                         if ($customerStatus == "Active" || $customerStatus == "active") {
+
                                             echo "<span class='account-status-badge green'>Active</span>";
+
                                         } else if ($customerStatus == "Suspended" || $customerStatus == "suspended") {
+
                                            echo "<span class='account-status-badge red'>Suspended</span>";
+
                                         } else if ($customerStatus == "Terminated" || $customerStatus == "terminated") {
+
                                            echo "<span class='account-status-badge red-dark'>Terminated</span>";
+
                                         } else if ($customerStatus == "Under Review" || $customerStatus == "under review") {
+
                                            echo "<span class='account-status-badge yellow'>Under Review</span>";
+
                                         } else if ($customerStatus == "Closed" || $customerStatus == "closed") {
+
                                            echo "<span class='account-status-badge passive'>Closed</span>";
+
                                         }
 
                                      ?></h4>
@@ -36,13 +46,21 @@
                                 <p class="no-padding font-14px">Type</p>
                                 <p class="no-padding font-14px">
                                     <?php
+                                    
                                         if ($userrole == "customer" || $userrole == "Customer") {
+
                                             echo 'Customer - Direct';
+
                                         } else if ($userrole == "partner" || $userrole == "Partner") {
+
                                             echo 'Partner - Affiliate';
+
                                         } else {
+
                                             echo 'Unknown';
+
                                         }
+
                                     ?>
                                 </p>
                             </div>

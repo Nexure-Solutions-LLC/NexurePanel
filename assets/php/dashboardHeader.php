@@ -20,13 +20,16 @@
     $detect = new MobileDetect();
 
     if ($detect->isMobile() || $detect->isTablet()) {
+
         header("Location: /error/mobileExperiance/");
         exit();
+
     }
 
     // Custom Error Handler
 
     function errorHandler($errno, $errstr, $errfile, $errline) {
+
         $log_timestamp = date("d-m-Y H:i:sa");
         $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline";
         $errorLogFile = $_SERVER["DOCUMENT_ROOT"] . "/error/errorLogs/$log_timestamp.log";
@@ -36,21 +39,32 @@
         $_SESSION['error_log_file'] = $errorLogFile;
 
         while (ob_get_level()) {
+
             ob_end_clean();
+
         }
         if (headers_sent()) {
+
             echo '<meta http-equiv="refresh" content="0;url=/error/genericSystemError/">';
+
         } else {
+
             header("Location: /error/genericSystemError/");
+
         }
+
         exit;
+
     }
 
     set_error_handler("errorHandler");
 
     $error = error_get_last();
+
     if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING])) {
+
         customErrorHandler($error['type'], $error['message'], $error['file'], $error['line']);
+
     }
 
     // Initialize DotEnv for PHP
@@ -62,8 +76,10 @@
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
+
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
+
     }
 
     // Retreive Users Email Address
@@ -81,12 +97,14 @@
     mysqli_free_result($userprofileresult);
 
     // User Profile Variable Definitions
+
     $userrole = $userinfo['userrole'];
     $fullname = $userinfo['legalName'];
     $accountStatus = $userinfo['accountStatus'];
     $employeeAccessLevel = $userinfo['employeeAccessLevel'];
 
     // Panel Configuration Definitions
+
     $panelName = $panelinfo['panelName'];
     $orgShortName = $panelinfo['organizationShortName'];
     $orglogolight = $panelinfo['organizationLogoLight'];
@@ -102,6 +120,7 @@
     // IP Address Checking and Banning
 
     function getClientIp() {
+
         $ipaddress = '';
         if (getenv('HTTP_CLIENT_IP'))
             $ipaddress = getenv('HTTP_CLIENT_IP');
@@ -118,40 +137,66 @@
         else
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
+
     }
 
     $clientIp = getClientIp();
 
     function isIpBlocked($ip, $blockedIpList) {
+
         $ip = Factory::addressFromString($ip);
         if ($ip === null) {
+
             return false;
+
         }
+
         foreach ($blockedIpList as $blockedIp) {
+
             $range = Factory::rangeFromString($blockedIp);
+
             if ($range !== null && $range->contains($ip)) {
+
                 return true;
+
             } elseif ($blockedIp === (string)$ip) {
+
                 return true;
+
             }
+
         }
+
         return false;
     }
 
     function isIpAllowed($ip, $allowedIpList) {
+
         $ip = Factory::addressFromString($ip);
+
         if ($ip === null) {
+
             return false;
         }
+
         foreach ($allowedIpList as $allowedIp) {
+
             $range = Factory::rangeFromString($allowedIp);
+
             if ($range !== null && $range->contains($ip)) {
+
                 return true;
+
             } elseif ($allowedIp === (string)$ip) {
+
                 return true;
+
             }
+
         }
+
         return false;
+
     }
 
     $blockedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_blocklist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -252,8 +297,10 @@
     */
 
     function banIp($ip) {
+
         header("Location: /error/bannedUser");
         exit;
+
     }
 
     if (!isIpAllowed($clientIp, $allowedIpList)) {
@@ -272,7 +319,9 @@
         */
 
         if (isIpBlocked($clientIp, $blockedIpList)) {
+
             banIp($clientIp);
+
         }
     }
 
@@ -280,11 +329,17 @@
     // If the user is active load the dashboard like normal.
 
     if ($accountStatus == "Under Review") {
+
         header ("Location: /error/underReviewAccount");
+
     } else if ($accountStatus == "Suspended") {
+
         header ("Location: /error/suspendedAccount");
+
     } else if ($accountStatus == "Terminated") {
+
         header ("Location: /error/terminatedAccount");
+
     }
 
 ?>
@@ -341,9 +396,13 @@
         <?php include($_SERVER["DOCUMENT_ROOT"]."/dashboard/company/themes/index.php"); ?>
         <?php
             if ($pagetitle == "Client") {
+
                 echo '<link href="/assets/css/client-dashboard-css-2024.css" rel="stylesheet" type="text/css" />';
+
             } else {
+
                 echo '';
+                
             }
         ?>
         <script type="text/javascript">   
@@ -387,11 +446,17 @@
                 <div class="systemLoads">
                     <span>
                         <?php
+
                             $loads = sys_getloadavg();
+
                             $rounded_loads = array_map(function($load) {
+
                                 return number_format($load, 2);
+
                             }, $loads);
+
                             echo "System Loads: " . implode(", ", $rounded_loads);
+
                         ?>
                     </span>
                 </div>
