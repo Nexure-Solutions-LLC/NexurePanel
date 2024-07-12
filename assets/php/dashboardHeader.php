@@ -101,6 +101,7 @@
     $userrole = $userinfo['userrole'];
     $fullname = $userinfo['legalName'];
     $accountStatus = $userinfo['accountStatus'];
+    $accountStatusReason = $userinfo['statusReason'];
     $employeeAccessLevel = $userinfo['employeeAccessLevel'];
 
     // Panel Configuration Definitions
@@ -339,6 +340,10 @@
     } else if ($accountStatus == "Terminated") {
 
         header ("Location: /error/terminatedAccount");
+
+    } else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is runing a prohibited business and their application was denied.") {
+
+        header("Location: /onboarding/decision/deniedApp");
 
     }
 

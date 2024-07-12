@@ -139,7 +139,6 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;"><?php echo $statusreason; ?></p>
                                 <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">
                                     <?php 
                                         if ($accountnotes == NULL || $accountnotes == "") {
@@ -167,12 +166,15 @@
                     header("location: /dashboard/administration/accounts");
 
                 }
+
             }
+
         } else {
 
             header("location: /dashboard/administration/accounts");
             
         }
+
     }
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');

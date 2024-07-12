@@ -6,21 +6,28 @@
     use Dotenv\Dotenv;
 
     // Load environment variables from .env file
+
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
     // Get database credentials from environment variables
+
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
+
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
+
     }
 
     // Perform query
+
     $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
     $panelinfo = mysqli_fetch_array($result);
+
     // Free result set
+
     mysqli_free_result($result);
 
     $panelname = $panelinfo['panelName'];
@@ -44,7 +51,7 @@
                 <div>
                     <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
-                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We are sorry, Unfortuantly we could not approve your acocunt.</h6>
+                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We are sorry, Unfortuantly we could not approve your account.</h6>
                     <p class="caliweb-login-sublink license-text-dark width-100">Based on the information you told us we could not open an account. Please logout <a class="careers-link" href="/logout/">here</a>.</p>
                 </div>
             </div>

@@ -70,7 +70,7 @@
                                             echo '<tr>';
                                                 echo '<td style="width:20%;">';
 
-                                                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE id = '" . $row['id'] . "'");
+                                                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '" . $row['email'] . "'");
                                                 $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
                                                 mysqli_free_result($businessAccountQuery);
 

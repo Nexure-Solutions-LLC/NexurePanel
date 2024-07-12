@@ -1,5 +1,9 @@
 <?php
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
@@ -31,29 +35,62 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $addressline1 = stripslashes($_REQUEST['addressline1']);
-        $addressline1 = mysqli_real_escape_string($con, $addressline1);
-        $addressline2 = stripslashes($_REQUEST['addressline2']);
-        $addressline2 = mysqli_real_escape_string($con, $addressline2);
-        $city = stripslashes($_REQUEST['city']);
-        $city = mysqli_real_escape_string($con, $city);
-        $state = stripslashes($_REQUEST['state']);
-        $state = mysqli_real_escape_string($con, $state);
-        $postalcode = stripslashes($_REQUEST['postalcode']);
-        $postalcode = mysqli_real_escape_string($con, $postalcode);
-        $country = stripslashes($_REQUEST['country']);
-        $country = mysqli_real_escape_string($con, $country);
+        $businessName = stripslashes($_REQUEST['businessName']);
+        $businessName = mysqli_real_escape_string($con, $businessName);
+        $businessIndustry = stripslashes($_REQUEST['businessIndustry']);
+        $businessIndustry = mysqli_real_escape_string($con, $businessIndustry);
+        $businessType = stripslashes($_REQUEST['businessType']);
+        $businessType = mysqli_real_escape_string($con, $businessType);
+        $businessRevenue = stripslashes($_REQUEST['businessRevenue']);
+        $businessRevenue = mysqli_real_escape_string($con, $businessRevenue);
+        $businessRegistrationDate = stripslashes($_REQUEST['businessRegistrationDate']);
+        $businessRegistrationDate = mysqli_real_escape_string($con, $businessRegistrationDate);
+        $businessDescription = stripslashes($_REQUEST['buisnessDescription']);
+        $businessDescription = mysqli_real_escape_string($con, $businessDescription);
 
-        $query = "UPDATE `caliweb_ownershipinformation` SET `addressline1`='$addressline1',`addressline2`='$addressline2',`city`='$city',`state`='$state',`postalcode`='$postalcode',`country`='$country' WHERE `emailAddress` = '$caliemail'";
-        $result   = mysqli_query($con, $query);
+        // This software has an automatic approval and denial feature based on
+        // a list of supported business industires compared against the user selection.
+        // If the industry isnt supported the panel will reject the application and
+        // send them to the denial screen.
 
-        if ($result) {
+        $checkBusinessIndustryQuery = "SELECT COUNT(*) as count FROM `caliweb_restrictedbusinesses` WHERE `businessIndustry` = '$businessIndustry'";
+        $checkBusinessIndustryResult = mysqli_query($con, $checkBusinessIndustryQuery);
+        $checkBusinessIndustryRow = mysqli_fetch_assoc($checkBusinessIndustryResult);
 
-            echo '<script type="text/javascript">window.location = "/onboarding/businessInformation"</script>';
+        if ($checkBusinessIndustryRow['count'] > 0) {
+
+            $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is runing a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
+            $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
+
+            $userOwnerDeleteQuery = "DELETE FROM caliweb_ownershipinformation WHERE emailAddress = '$caliemail'";
+            
+            $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Denied','$businessRegistrationDate','$businessDescription','True')";
+            $submitBusinessInformationResult = mysqli_query($con, $submitBusinessInformationQuery);
+
+            if ($userProfileUpdateResult && $userOwnerDeleteQuery && $submitBusinessInformationResult) {
+
+                echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
+
+            } else {
+
+                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+            }
 
         } else {
 
-            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+            $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Active','$businessRegistrationDate','$businessDescription','False')";
+            $submitBusinessInformationResult   = mysqli_query($con, $submitBusinessInformationQuery);
+
+            if ($submitBusinessInformationResult) {
+
+                echo '<script type="text/javascript">window.location = "/onboarding/billingInformation"</script>';
+    
+            } else {
+    
+                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+    
+            }
 
         }
 
@@ -74,16 +111,16 @@
                     <div class="caliweb-grid caliweb-two-grid">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="addressline1" class="text-gray-label">Business Name</label>
+                                <label for="businessName" class="text-gray-label">Business Name</label>
                                 <input type="text" class="form-input" name="businessName" id="businessName" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="city" class="text-gray-label">Business Industry</label>
+                                <label for="businessIndustry" class="text-gray-label">Business Industry</label>
                                 <input type="text" class="form-input" name="businessIndustry" id="businessIndustry" placeholder="Start typing to search..." required />
                                 <div id="industryResults" class="industry-results"></div>
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="postalcode" class="text-gray-label">Business Type</label>
+                                <label for="businessType" class="text-gray-label">Business Type</label>
                                 <select type="text" class="form-input" name="businessType" id="businessType" required="">
                                     <option>Please slect a business type</option>
                                     <option>Privatly Held Company</option>
@@ -93,15 +130,15 @@
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="addressline2" class="text-gray-label">Business Revenue</label>
+                                <label for="businessRevenue" class="text-gray-label">Business Revenue</label>
                                 <input type="text" class="form-input" name="businessRevenue" id="businessRevenue" placeholder="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="state" class="text-gray-label">Business Registration Date</label>
-                                <input type="text" class="form-input" name="businessRegistrationDate" id="businessRegistrationDate" placeholder="" required="" />
+                                <label for="businessRegistrationDate" class="text-gray-label">Business Registration Date</label>
+                                <input type="date" class="form-input" name="businessRegistrationDate" id="businessRegistrationDate" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="country" class="text-gray-label">Business Description</label>
+                                <label for="businessDescription" class="text-gray-label">Business Description</label>
                                 <textarea style="height:150px;" type="text" class="form-input" name="buisnessDescription" id="buisnessDescription" placeholder="" required=""></textarea>
                             </div>
                             <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between; float:right;">
