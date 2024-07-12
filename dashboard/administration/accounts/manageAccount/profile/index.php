@@ -43,6 +43,7 @@
         if ($customerAccountInfo != NULL) {
 
             $legalname = $customerAccountInfo['legalName'];
+            $customeremail = $customerAccountInfo['email'];
             $customerSystemID = $customerAccountInfo['id'];
             $mobilenumber = $customerAccountInfo['mobileNumber'];
             $customerStatus = $customerAccountInfo['accountStatus'];
@@ -72,7 +73,7 @@
 
             } else {
 
-                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE id = '".$customerSystemID."'");
+                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$customeremail."'");
                 $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
                 mysqli_free_result($businessAccountQuery);
 
@@ -81,7 +82,7 @@
                     $businessname = $businessAccountInfo['businessName'];
                     $businessindustry = $businessAccountInfo['businessIndustry'];
 
-                    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE id = '".$customerSystemID."'");
+                    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".$customeremail."'");
                     $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
                     mysqli_free_result($websiteAccountQuery);
 
