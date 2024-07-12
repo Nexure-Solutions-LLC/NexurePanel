@@ -11,6 +11,7 @@
     use IPLib\Factory;
 
     function getClientIp() {
+
        $ipaddress = '';
        if (getenv('HTTP_CLIENT_IP'))
            $ipaddress = getenv('HTTP_CLIENT_IP');
@@ -27,30 +28,47 @@
        else
            $ipaddress = 'UNKNOWN';
        return $ipaddress;
+
     }
 
     $clientIp = getClientIp();
 
     function isIpAllowed($ip, $allowedIpList) {
+
         $ip = Factory::addressFromString($ip);
+
         if ($ip === null) {
+
             return false;
+
         }
+
         foreach ($allowedIpList as $allowedIp) {
+
             $range = Factory::rangeFromString($allowedIp);
+
             if ($range !== null && $range->contains($ip)) {
+
                 return true;
+
             } elseif ($allowedIp === (string)$ip) {
+
                 return true;
+
             }
+
         }
+
         return false;
+
     }
 
     $allowedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_allowlist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
     if (isIpAllowed($clientIp, $allowedIpList)) {
+
         header("location:/login");
+        
     }
 
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");

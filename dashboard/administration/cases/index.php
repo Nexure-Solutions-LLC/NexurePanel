@@ -79,16 +79,25 @@
                                             echo '<td style="width:20%;">' . $caseCloseDateFormatted . '</td>';
 
                                             if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
+
                                                 echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+
                                             } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
+
                                                echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+
                                             } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
+
                                                echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+
                                             } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
+
                                                echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+
                                             }
                                             
                                             echo '<td class=""><a href="/dashboard/administration/cases/viewCases/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/cases/deleteCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/cases/editCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a></td>';
+                                        
                                         echo '</tr>';
 
                                     }
@@ -155,13 +164,21 @@
                                             echo '<td style="width:20%;">' . $caseCreateDateFormatted . '</td>';
                                             echo '<td style="width:20%;">' . $caseCloseDateFormatted . '</td>';
                                             if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
+
                                                 echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+
                                             } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
+
                                                echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+
                                             } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
+
                                                echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                                               
                                             } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
+
                                                echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
+                                               
                                             }
                                             echo '<td class="">
                                                     <a href="/dashboard/administration/cases/viewCase/?case_id=' . $row['id'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a>

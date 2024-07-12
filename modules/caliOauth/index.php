@@ -18,7 +18,9 @@
     $authModulesLookupResult = mysqli_query($con, $authModulesLookupQuery);
 
     if (mysqli_num_rows($authModulesLookupResult) > 0) {
+
         while ($authModulesLookupRow = mysqli_fetch_assoc($authModulesLookupResult)) {
+
             $authModulesName = $authModulesLookupRow['moduleName'];
 
             // Check to see if each OAuth Modules are enabled and sets the depeneny to Present
@@ -63,6 +65,7 @@
             }
 
         }
+        
     }
   
 ?>

@@ -30,6 +30,7 @@
             $discord_redirect_uri = $_ENV['DISCORD_REDIRECT_URI'];
 
             // Builds the OAuth Discord Button.
+
             echo '
                 <a 
                     class="caliweb-button primary" 
@@ -57,7 +58,9 @@
             ';
 
         } else if ($_SESSION['pagetitle'] == "Dashboard") {
+
             header("location:/modules/caliOauth/discord/callback");
+            
         }
 
     } else {

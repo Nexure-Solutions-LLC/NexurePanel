@@ -36,6 +36,7 @@
         if (isset($discord_token_data['access_token'])) {
             
             // Fetch user information from Discord
+
             $discord_access_token = $discord_token_data['access_token'];
             $discord_curl = curl_init('https://discord.com/api/users/@me');
             curl_setopt($discord_curl, CURLOPT_HTTPHEADER, array(
@@ -59,22 +60,31 @@
                 if (isset($_SESSION['calidiscordid'])) {
 
                     // Perform query
+
                     $discord_query = mysqli_query($con, "SELECT * FROM caliweb_users WHERE discord_id = '".$_SESSION['calidiscordid']."'");
                     $discord_info = mysqli_fetch_array($discord_query);
+                    
                     // Free result set
+
                     mysqli_free_result($discord_query);
             
                     $caliid = $discord_info['email'];
                     $_SESSION['caliid'] = $caliid;
 
                     if (isset($_SESSION['caliid'])) {
+
                         echo '<script type="text/javascript">window.location = "/dashboard"</script>';
+
                     } else {
+
                         echo '<script type="text/javascript">window.location = "/login"</script>';
+
                     }
 
                 } else {
+
                     echo '<script type="text/javascript">window.location = "/login"</script>';
+
                 }
 
             } else {

@@ -62,10 +62,12 @@
     use Dotenv\Dotenv;
 
     // Load environment variables from .env file
+    
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
     // Get database credentials from environment variables
+
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
@@ -78,9 +80,12 @@
     $caliemail = $_SESSION['caliid'];
 
     // Perform query
+
     $result = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($result);
+
     // Free result set
+
     mysqli_free_result($result);
 
     $userrole = $userinfo['userrole'];

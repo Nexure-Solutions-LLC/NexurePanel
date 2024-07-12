@@ -21,9 +21,11 @@
         $password = mysqli_real_escape_string($con, $password);
         
         // Check user is exist in the database
+
         $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '".md5($password)."'";
         $result = mysqli_query($con, $query) or die(mysql_error());
         $rows = mysqli_num_rows($result);
+
         if ($rows == 1) {
 
             $_SESSION['caliid'] = $cali_id;
@@ -204,7 +206,8 @@
                 </div>
             </div>
         </div>
-    <?php include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); ?>
+
 <?php 
+        include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); 
     }
 ?>

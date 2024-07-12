@@ -1,5 +1,7 @@
 <?php
+
     if ($_SESSION['graphCallType'] == "Deals by Segment") {
+        
         $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
 
         $width = 850;
@@ -44,14 +46,20 @@
         if ($result->num_rows > 0) {
 
             while ($row = $result->fetch_assoc()) {
+
                 $data[$row['segment']] = $row['value'];
+
             }
 
             $total = array_sum($data);
             $angleStart = 0;
+
             $fontPath = $_SERVER["DOCUMENT_ROOT"].'/assets/fonts/IBMPlexSans-Regular.ttf';
+
             if (!file_exists($fontPath)) {
+
                 die('Font file not found.');
+
             }
 
             foreach ($data as $key => $value) {
@@ -110,21 +118,28 @@
             $legendX = $height + 350;
             $legendY = 20;
             foreach ($data as $key => $value) {
+
                 $colorIndex = array_search($key, array_keys($data));
                 $color = $colors[$colorIndex];
                 imagefilledrectangle($image, $legendX, $legendY, $legendX + 20, $legendY + 20, $color);
                 imagettftext($image, 10, 0, $legendX + 30, $legendY + 15, $textColor, $fontPath, $key);
                 $legendY += 30;
+
             }
 
             $imagePath = $_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/pieCharts/leadsSource.png';
+
             imagepng($image, $imagePath);
             imagedestroy($image);
 
             echo '<img src="/modules/graphSQL/pieCharts/leadsSource.png?theme=' . $theme . '" alt="Doughnut Chart">';
             
         } else {
+
             echo "0 results";
+
         }
+
     }
+
 ?>

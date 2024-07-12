@@ -22,6 +22,7 @@
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
 <?php include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php"); ?>
+
 <?php include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php"); ?>
 
     <!-- 
@@ -62,4 +63,5 @@
     </div>
 
 <?php include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); ?>
+
 <?php } ?>

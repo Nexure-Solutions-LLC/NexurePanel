@@ -13,6 +13,7 @@
     $discord_redirect_uri = $_ENV['DISCORD_REDIRECT_URI'];
 
     if ($_SESSION['pagetitle'] == "Account Settings") {
+
         if (isset($_GET['code'])) {
 
             $discord_newauth_redirect_uri = $_ENV['DISCORD_REDIRECT_NEWAUTH_URI'];
@@ -28,24 +29,37 @@
             );
         
             $discord_curl = curl_init('https://discord.com/api/oauth2/token');
+
             curl_setopt($discord_curl, CURLOPT_POST, true);
+
             curl_setopt($discord_curl, CURLOPT_POSTFIELDS, http_build_query($discord_token_request));
+
             curl_setopt($discord_curl, CURLOPT_RETURNTRANSFER, true);
+
             $discord_token_response = curl_exec($discord_curl);
+
             curl_close($discord_curl);
+
             $discord_token_data = json_decode($discord_token_response, true);
+            
         
             if (isset($discord_token_data['access_token'])) {
                 
                 // Fetch user information from Discord
+
                 $discord_access_token = $discord_token_data['access_token'];
+
                 $discord_curl = curl_init('https://discord.com/api/users/@me');
                 curl_setopt($discord_curl, CURLOPT_HTTPHEADER, array(
                     'Authorization: Bearer ' . $discord_access_token
                 ));
+
                 curl_setopt($discord_curl, CURLOPT_RETURNTRANSFER, true);
+
                 $discord_user_response = curl_exec($discord_curl);
+
                 curl_close($discord_curl);
+
                 $discord_user_data = json_decode($discord_user_response, true);
 
                 $discord_id = $discord_user_data['id'];
@@ -56,9 +70,13 @@
                 echo '<script type="text/javascript">window.location = "/dashboard/"</script>';
                     
             } else {
+
                 echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
             }
+
         }
+
     }
 
 ?>

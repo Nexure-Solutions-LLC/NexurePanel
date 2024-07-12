@@ -6,21 +6,28 @@
     use Dotenv\Dotenv;
 
     // Load environment variables from .env file
+
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
     // Get database credentials from environment variables
+
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
+
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
+
     }
 
     // Perform query
+
     $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
     $panelinfo = mysqli_fetch_array($result);
+
     // Free result set
+
     mysqli_free_result($result);
 
     $panelname = $panelinfo['panelName'];
@@ -64,6 +71,7 @@
         </div>
     </div>
     <script>
+
         var myDate = new Date();
         var hrs = myDate.getHours();
 
@@ -79,24 +87,34 @@
         document.getElementById('lblGreetings').innerHTML = greet;
 
         // Function to start countdown
+
         function startCountdown(seconds, redirectUrl) {
+
             var countdownElement = document.getElementById('countdown');
             var remainingSeconds = seconds;
             
             var countdownInterval = setInterval(function() {
+
                 countdownElement.innerHTML = remainingSeconds;
                 remainingSeconds--;
                 
                 if (remainingSeconds < 0) {
+
                     clearInterval(countdownInterval);
                     window.location.href = redirectUrl;
+
                 }
+
             }, 1000);
+
         }
 
         // Start the countdown when the page loads
+
         window.onload = function() {
+
             startCountdown(5, '/login');
+
         };
 
     </script>
@@ -104,6 +122,8 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
 
     } else {
+
         header("Location: /error/licenseInvalid");
+        
     }
 ?>

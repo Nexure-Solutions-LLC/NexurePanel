@@ -31,8 +31,11 @@
                 echo json_encode($output);
 
             } else {
+
                 echo json_encode(['error' => 'Event Add request failed!']);
+
             }
+
         }
 
     } elseif ($jsonObj->request_type == 'editEvent') {
@@ -62,8 +65,11 @@
                 echo json_encode($output);
 
             } else {
+
                 echo json_encode(['error' => 'Event Update request failed!']);
+
             }
+
         }
 
     } elseif($jsonObj->request_type == 'deleteEvent') {
@@ -82,7 +88,9 @@
             echo json_encode($output);
 
         } else {
+
             echo json_encode(['error' => 'Event Delete request failed!']);
+            
         }
         
     }

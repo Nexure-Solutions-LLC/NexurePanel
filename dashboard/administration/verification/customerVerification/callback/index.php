@@ -48,6 +48,7 @@
         } else {
 
             // Verification failed
+            
             header('Location: /error/genericSystemError');
 
         }
