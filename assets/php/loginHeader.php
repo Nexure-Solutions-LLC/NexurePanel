@@ -155,6 +155,12 @@
                     <nav class="caliweb-navbar-menu" id="caliweb-navigation">
                         
                     </nav>
+                    <div>
+                        <select name="langSelector" id="langSelector" class="lang-selector">
+                            <option>English</option>
+                            <option>Spanish</option>
+                        </select>
+                    </div>
                     <span class="toggle-container">
                         <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
                         <span class="lnr lnr-moon"  class="toggle-input" id="darkModeIcon"></span>
