@@ -22,6 +22,14 @@ html[data-theme='dark'] body {
     display: none !important;
 }
 
+.dark-mode .dark-mode-white {
+    color:#dbdbdb !important;
+}
+
+.dark-mode .dark-mode-white:hover {
+    color:#fff !important;
+}
+
 .container,
 .container.caliweb-container,
 .container.caliweb-navbar-container {
@@ -40,6 +48,18 @@ html[data-theme='dark'] body {
     background-color: #85e2ff !important;
 }
 
+@media (min-width:1290px) and (max-width: 1500px) {
+    .container,
+    .container.caliweb-container,
+    .container.caliweb-navbar-container {
+        width: 95%;
+    }
+
+    .section.first-dashboard-area-cards,
+    .first-dashboard-area-cards {
+        padding-bottom: 4% !important;
+    }
+}
 
 @media (max-width: 1366px) {
     body {

@@ -388,6 +388,12 @@ html[data-theme='dark'] body {
     background-color: rgba(22, 22, 23, 0.8) !important;
 }
 
+.dark-mode .modal-content {
+    background-color: #1b1b1b;
+    border: 1px solid #222;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -832,5 +838,10 @@ textarea.swal2-input {
     .container.caliweb-container,
     .container.caliweb-navbar-container {
         width: 95% !important;
+    }
+
+    .section.first-dashboard-area-cards,
+    .first-dashboard-area-cards {
+        margin-top:10%;
     }
 }

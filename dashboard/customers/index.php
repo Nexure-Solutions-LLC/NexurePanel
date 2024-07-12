@@ -130,7 +130,7 @@
                                         if ($webDesignNameModuleCheck == "Cali Websites" && $webDesignStatusModuleCheck == "Active") {
 
                                             echo ' 
-                                                <a href="'.$webDesignPathModule.'" style="text-decoration:none;">
+                                                <a href="'.$webDesignPathModule.'" class="dark-mode-white" style="text-decoration:none;">
                                                     <div>
                                                         <img class="customer-quick-actions-img" src="/assets/img/systemIcons/website-builder.png" />
                                                         <p class="text-bold no-padding no-margin font-14px">'.$LANG_EDIT_WEBSITES_TILE.'</p>
@@ -174,7 +174,7 @@
                                         if ($codeIntNameModuleCheck == "Cali Code Integrity" && $codeIntStatusModuleCheck == "Active") {
 
                                             echo '
-                                                <a href="'.$codeIntPathModule.'" style="text-decoration:none;">
+                                                <a href="'.$codeIntPathModule.'" class="dark-mode-white" style="text-decoration:none;">
                                                     <div>
                                                         <img class="customer-quick-actions-img" src="/assets/img/systemIcons/integrity.png" />
                                                         <p class="text-bold no-padding no-margin font-14px">'.$LANG_CODE_INTEGRITY_TILE.'</p>
