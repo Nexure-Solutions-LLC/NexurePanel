@@ -796,6 +796,25 @@ textarea.swal2-input {
         width: 95% !important;
     }
 
+    .section.first-dashboard-area-cards {
+        padding-bottom: 4%;
+    }
+
+    .macBook-styling-hotfix {
+        width:100% !important;
+        max-width: 100% !important;
+    }
+
+    .macBook-width-60 {
+        width: 60%;
+        max-width: 60%;
+    }
+
+    .macBook-Menu-Links-Small {
+        font-size: 12px !important;
+        padding: 4px 10px !important;
+        padding-left:0 !important;
+    }
     
 }
 

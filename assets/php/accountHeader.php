@@ -40,9 +40,9 @@
                             <a href="/dashboard/administration/accounts/viewAsOwner/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">View as Owner</a>
                         </div>
                     </div>
-                    <div class="card-body width-75">
+                    <div class="card-body width-75 macBook-styling-hotfix">
                         <div class="display-flex align-center width-100 padding-20px-no-top">
-                            <div class="width-60">
+                            <div class="width-60 macBook-styling-hotfix-1">
                                 <p class="no-padding font-14px">Type</p>
                                 <p class="no-padding font-14px">
                                     <?php
@@ -72,7 +72,7 @@
                                 <p class="no-padding font-14px">Website</p>
                                 <p class="no-padding font-14px"><?php echo $websitedomain; ?></p>
                             </div>
-                            <div class="width-75">
+                            <div class="width-75 macBook-width-60">
                                 <p class="no-padding font-14px">Owner</p>
                                 <p class="no-padding font-14px"><?php echo $legalname; ?></p>
                             </div>
