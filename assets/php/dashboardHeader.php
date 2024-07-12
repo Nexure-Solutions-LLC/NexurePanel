@@ -341,7 +341,29 @@
 
         header ("Location: /error/terminatedAccount");
 
-    } else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is runing a prohibited business and their application was denied.") {
+    } else if ($accountStatus == "Under Review" && $accountStatusReason == "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.") {
+
+        header("Location: /onboarding/decision/manualReview");
+
+    } else if ($accountStatus == "Under Review" && $accountStatusReason == "This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.") {
+
+        header("Location: /onboarding/decision/callOnlineTeam");
+
+    } else if ($accountStatus == "Under Review" && $accountStatusReason == "DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'notes' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.") {
+
+        header("Location: /onboarding/decision/emailRiskTeam");
+
+    } else if ($accountStatus == "Under Review" && $accountStatusReason == "Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'notes' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.") {
+
+        header("Location: /onboarding/decision/presentBranch");
+
+    }
+    
+    else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is runing a prohibited business and their application was denied.") {
+
+        header("Location: /onboarding/decision/deniedApp");
+
+    }  else if ($accountStatus == "Closed" && $accountStatusReason == "The customer scored too high on the risk score and we cant serve this customer.") {
 
         header("Location: /onboarding/decision/deniedApp");
 
