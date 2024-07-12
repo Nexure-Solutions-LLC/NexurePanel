@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="card-body width-75 macBook-styling-hotfix">
-                        <div class="display-flex align-center width-100 padding-20px-no-top">
+                        <div class="display-flex align-center width-100 padding-20px-no-top macBook-padding-top">
                             <div class="width-60 macBook-styling-hotfix-1">
                                 <p class="no-padding font-14px">Type</p>
                                 <p class="no-padding font-14px">

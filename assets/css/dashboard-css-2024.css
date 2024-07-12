@@ -815,6 +815,10 @@ textarea.swal2-input {
         padding: 4px 10px !important;
         padding-left:0 !important;
     }
+
+    .macBook-padding-top {
+        padding-top:10px;
+    }
     
 }
 
