@@ -329,19 +329,7 @@
     // Checks the users account staus and send them to the right page.
     // If the user is active load the dashboard like normal.
 
-    if ($accountStatus == "Under Review") {
-
-        header ("Location: /error/underReviewAccount");
-
-    } else if ($accountStatus == "Suspended") {
-
-        header ("Location: /error/suspendedAccount");
-
-    } else if ($accountStatus == "Terminated") {
-
-        header ("Location: /error/terminatedAccount");
-
-    } else if ($accountStatus == "Under Review" && $accountStatusReason == "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.") {
+    if ($accountStatus == "Under Review" && $accountStatusReason == "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.") {
 
         header("Location: /onboarding/decision/manualReview");
 
@@ -357,15 +345,25 @@
 
         header("Location: /onboarding/decision/presentBranch");
 
-    }
-    
-    else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is runing a prohibited business and their application was denied.") {
+    } else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is runing a prohibited business and their application was denied.") {
 
         header("Location: /onboarding/decision/deniedApp");
 
     }  else if ($accountStatus == "Closed" && $accountStatusReason == "The customer scored too high on the risk score and we cant serve this customer.") {
 
         header("Location: /onboarding/decision/deniedApp");
+
+    } else if ($accountStatus == "Under Review") {
+
+        header ("Location: /error/underReviewAccount");
+
+    } else if ($accountStatus == "Suspended") {
+
+        header ("Location: /error/suspendedAccount");
+
+    } else if ($accountStatus == "Terminated") {
+
+        header ("Location: /error/terminatedAccount");
 
     }
 
