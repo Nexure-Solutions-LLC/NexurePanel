@@ -100,7 +100,7 @@
                                                 }
 
                                                 echo '<td class="">
-                                                        <a href="/dashboard/administration/tasks/viewTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/tasks/deleteTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/tasks/editTask/task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
+                                                        <a href="/dashboard/administration/tasks/viewTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/tasks/deleteTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/tasks/editTask/?task_id='.$row['id'].'" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                     </td>
                                                 ';
                                             echo '</tr>';
