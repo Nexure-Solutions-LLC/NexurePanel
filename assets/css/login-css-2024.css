@@ -260,8 +260,6 @@ body {
         overflow-y: scroll;
     }
 
-    
-
     .caliweb-login-box {
         position: relative;
         max-width: 30%;
@@ -326,8 +324,11 @@ body {
 }
 
 @media (min-width: 1399px) and (max-width: 1499px) {
-    body {
+
+    .login-container {
+        padding-bottom: 5% !important;
         overflow-y: scroll;
+        background-color: #f1f1f1;
     }
 
     .caliweb-login-box {
