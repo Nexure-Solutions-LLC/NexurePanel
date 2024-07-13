@@ -46,11 +46,11 @@
         
                 } catch (\Stripe\Exception\ApiErrorException $e) {
             
-                    header ("location: /error/genericSystemError");
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
             
                 } catch (Exception $e) {
             
-                    header ("location: /error/genericSystemError");
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
             
                 }
             
@@ -88,64 +88,111 @@
                     // Run the Risk Score on the last payment taken and review the score.  
 
                     $retrievedPaymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntent->id);
-                    $riskScore = $retrievedPaymentIntent->charges->data[0]->outcome->risk_score;
 
-                    
-                    $actions = [
-                        ['threshold' => 15, 'status' => 'Active', 'reason' => '', 'notes' => '', 'redirect' => '/onboarding/decision/approvedApp'],
-                        ['threshold' => 25, 'status' => 'Under Review', 'reason' => 'The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.', 'notes' => 'The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.', 'redirect' => '/onboarding/decision/manualReview'],
-                        ['threshold' => 35, 'status' => 'Under Review', 'reason' => 'This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.', 'notes' => 'This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.', 'redirect' => '/onboarding/decision/callOnlineTeam'],
-                        ['threshold' => 45, 'status' => 'Under Review', 'reason' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'notes' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'redirect' => '/onboarding/decision/emailRiskTeam'],
-                        ['threshold' => 60, 'status' => 'Under Review', 'reason' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'notes' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'redirect' => '/onboarding/decision/presentBranch'],
-                        ['threshold' => 70, 'status' => 'Closed', 'reason' => 'The customer scored too high on the risk score and we cant serve this customer.', 'notes' => 'The customer scored too high on the risk score and we cant serve this customer.', 'redirect' => '/onboarding/decision/deniedApp'],
-                    ];
-            
-                    $action = end($actions);
-                    foreach ($actions as $a) {
-                        if ($riskScore <= $a['threshold']) {
-                            $action = $a;
-                            break;
-                        }
-                    }
-            
-                    $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = '{$action['status']}', `statusReason`='{$action['reason']}', `accountNotes`='{$action['notes']}' WHERE email = '$caliemail'";
-                    $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
-            
-                    if ($userProfileUpdateResult) {
+                    if (isset($retrievedPaymentIntent->charges->data[0]->outcome->risk_score)) {
 
-                        echo '<script type="text/javascript">window.location = "' . $action['redirect'] . '"</script>';
+                        $riskScore = $retrievedPaymentIntent->charges->data[0]->outcome->risk_score;
 
                     } else {
 
-                        header("Location: /error/genericSystemError");
+                        $riskScore = null;
+                        
+                        $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='The customer could not be scored on the risk scoring system. Make sure the system is not in test mode. If it is not then ask the customer to pay using another payment method.' WHERE email = '$caliemail'";
+                        $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
+                
+                        if ($userProfileUpdateResult) {
+
+                            echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                        exit;
+
+                    }
+                    
+                    $actions = [
+                        ['min' => 0, 'max' => 15, 'status' => 'Active', 'reason' => '', 'notes' => '', 'redirect' => '/onboarding/decision/approvedApp'],
+                        ['min' => 16, 'max' => 25, 'status' => 'Under Review', 'reason' => 'The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.', 'notes' => 'The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.', 'redirect' => '/onboarding/decision/manualReview'],
+                        ['min' => 26, 'max' => 35, 'status' => 'Under Review', 'reason' => 'This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.', 'notes' => 'This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.', 'redirect' => '/onboarding/decision/callOnlineTeam'],
+                        ['min' => 36, 'max' => 45, 'status' => 'Under Review', 'reason' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'notes' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'redirect' => '/onboarding/decision/emailRiskTeam'],
+                        ['min' => 46, 'max' => 60, 'status' => 'Under Review', 'reason' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'notes' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'redirect' => '/onboarding/decision/presentBranch'],
+                        ['min' => 61, 'max' => 70, 'status' => 'Closed', 'reason' => 'The customer scored too high on the risk score and we cant serve this customer.', 'notes' => 'The customer scored too high on the risk score and we cant serve this customer.', 'redirect' => '/onboarding/decision/deniedApp'],
+                    ];
+                    
+                    $action = null;
+
+                    foreach ($actions as $a) {
+
+                        if ($riskScore >= $a['min'] && $riskScore <= $a['max']) {
+
+                            $action = $a;
+                            break;
+
+                        }
+
+                    }
+            
+                    if ($action) {
+
+                        $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = '{$action['status']}', `statusReason`='{$action['reason']}', `accountNotes`='{$action['notes']}' WHERE email = '$caliemail'";
+                        $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
+                
+                        if ($userProfileUpdateResult) {
+
+                            echo '<script type="text/javascript">window.location = "' . $action['redirect'] . '"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                    } else {
+
+                        $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='The customer could not be scored on the risk scoring system. Make sure the system is not in test mode. If it is not then ask the customer to pay using another payment method.' WHERE email = '$caliemail'";
+                        $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
+                
+                        if ($userProfileUpdateResult) {
+
+                            echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
 
                     }
 
                 } catch (\Stripe\Exception\ApiErrorException $e) {
 
-                    header("Location: /error/genericSystemError");
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
     
                 } catch (Exception $e) {
 
-                    header("Location: /error/genericSystemError");
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
                 }
 
             } else {
 
-                header ("location: /error/genericSystemError");
+                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
             }
 
         } else {
 
-            header ("location: /error/genericSystemError");
+            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
         }
 
     } else {
 
-        header ("location: /error/genericSystemError");
+        echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
     }
 

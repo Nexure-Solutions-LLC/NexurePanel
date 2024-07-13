@@ -37,8 +37,15 @@ body {
 .lang-selector {
     padding:10px;
     border:1px solid #ddd;
+    color:black;
     background-color: #fff;
     border-radius: 4px;
+}
+
+.dark-mode .lang-selector {
+    border:1px solid #333;
+    color:#dbdbdb;
+    background-color: #222;
 }
 
 .caliweb-login-box {

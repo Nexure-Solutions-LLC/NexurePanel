@@ -59,13 +59,13 @@
 
         } else {
 
-            header ("location: /error/genericSystemError");
+            echo '<script>window.location.href = "/error/genericSystemError";</script>';
     
         }
 
     } else {
 
-        header ("location: /error/genericSystemError");
+        echo '<script>window.location.href = "/error/genericSystemError";</script>';
 
     }
 
