@@ -394,6 +394,10 @@ html[data-theme='dark'] body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.dark-mode .fillable-header {
+    background-color: #333 !important;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
