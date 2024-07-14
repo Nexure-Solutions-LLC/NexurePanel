@@ -1,6 +1,6 @@
 <?php
     $pagetitle = "Settings";
-    $pagesubtitle = "System Setup";
+    $pagesubtitle = "Updates";
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
@@ -28,9 +28,9 @@
                     <div class="caliweb-card dashboard-card">
                         <aside class="caliweb-sidebar">
                             <ul class="sidebar-list-linked">
-                                <li class="sidebar-link active"><a href="/dashboard/administration/settings/" class="sidebar-link-a">General</a></li>
+                                <li class="sidebar-link"><a href="/dashboard/administration/settings/" class="sidebar-link-a">General</a></li>
                                 <li class="sidebar-link"><a href="/license" class="sidebar-link-a">Licencing</a></li>
-                                <li class="sidebar-link"><a href="/dashboard/administration/settings/updates" class="sidebar-link-a">Updates</a></li>
+                                <li class="sidebar-link active"><a href="/dashboard/administration/settings/updates" class="sidebar-link-a">Updates</a></li>
                                 <li class="sidebar-link"><a href="/dashboard/administration/settings/about" class="sidebar-link-a">About Cali Panel</a></li>
                             </ul>
                         </aside>

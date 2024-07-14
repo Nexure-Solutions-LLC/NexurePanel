@@ -418,6 +418,28 @@ html[data-theme='dark'] body {
     border: 1px solid #323232 !important;
 }
 
+.dark-mode .sidebar-link a {
+    text-decoration: none;
+    color: #dbdbdb;
+}
+
+.dark-mode .sidebar-link a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.dark-mode .sidebar-link:hover {
+    background-color: #222222;
+    border-radius: 6px;
+    border:1px solid #333;
+}
+
+.dark-mode .horizantal-line {
+    height:1px;
+    width:100%;
+    background-color: #333;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -805,6 +827,55 @@ textarea.swal2-input {
 
 .caliweb-email-body {
     padding: 20px;
+}
+
+/* =================== Cali Web Design System Styling Styling =================== */
+
+.setttings-shifted-spacing {
+    -ms-grid-columns: .3fr 1.7fr;
+    grid-template-columns: .3fr 1.7fr;
+}
+
+.caliweb-sidebar {
+    height: 80vh;
+}
+
+.sidebar-list-linked {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-link {
+    padding:8px 10px;
+    border:1px solid transparent;
+}
+
+.sidebar-link:hover {
+    background-color: #f2f4f5;
+    border-radius: 6px;
+    border:1px solid #ddd;
+}
+
+.sidebar-link.active {
+    background-color: #f2f4f5;
+    border-radius: 6px;
+    border:1px solid #ddd;
+}
+
+.sidebar-link a {
+    text-decoration: none;
+    color: #000;
+}
+
+.sidebar-link a:hover {
+    text-decoration: none;
+}
+
+.horizantal-line {
+    height:1px;
+    width:100%;
+    background-color: #ddd;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */
