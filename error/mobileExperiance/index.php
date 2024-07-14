@@ -16,8 +16,8 @@
                         <img src="/assets/img/systemIcons/underreviewicon.webp" style="height:30px; width:30px;" />
                     </div>
                     <div>
-                        <h3 class="caliweb-login-heading license-text-dark">'.$LANG_MOBILE_EXPERIANCE_TITLE.'</h3>
-                        <p class="caliweb-login-sublink license-text-dark width-100">'.$LANG_MOBILE_EXPERIANCE_TEXT.'</p>
+                        <h3 class="caliweb-login-heading license-text-dark">'.$LANG_MOBILE_EXPERIENCE_TITLE.'</h3>
+                        <p class="caliweb-login-sublink license-text-dark width-100">'.$LANG_MOBILE_EXPERIENCE_TEXT.'</p>
                     </div>
                 </div>
 

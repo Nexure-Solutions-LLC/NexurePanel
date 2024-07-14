@@ -5,16 +5,18 @@
     $accountnumber = $_GET['account_number'];
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    $lowerrole = strtolower($userrole);
 
-    if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
+    if ($lowerrole == "authorized user") {
 
         header("location:/dashboard/customers/authorizedUserView/supportCenter");
 
-    } else if ($userrole == "Partner" || $userrole == "partner") {
+    } else if ($lowerrole == "partner") {
 
         header("location:/dashboard/partnerships/supportCenter/");
 
-    } else if ($userrole == "Administrator" || $userrole == "administrator") {
+    } else if ($lowerrole == "administrator") {
 
         header("location:/dashboard/administration/cases");
 
@@ -35,7 +37,7 @@
                 <div class="container caliweb-container">
                     <div class="" style="display:flex; align-items:center; justify-content:space-between;">
                         <div>
-                            <p class="no-padding" style="font-size:16px;">Support Center / View and Manage Cases</h4>
+                            <p class="no-padding" style="font-size:16px;">Support Center / View and Manage Cases</p>
                         </div>
                         <div>
                             <a href="" class="caliweb-button primary">Create Case</a>
@@ -51,7 +53,7 @@
                             <div class="caliweb-card dashboard-card" style="padding:20px; border:0 !important;">
                                 <div class="card-header no-padding no-margin customer-card-header" style="padding-top:20px; padding-bottom:20px; border:0;">
                                     <h6 class="no-padding" style="font-size:16px; font-weight:600;">
-                                        <?php echo $LANG_CUSTOMER_SUPORTCENTER_TITLE_TEXT; ?>
+                                        <?php echo $LANG_CUSTOMER_SUPPORT_CENTER_TITLE_TEXT; ?>
                                     </h6>
                                 </div>
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">

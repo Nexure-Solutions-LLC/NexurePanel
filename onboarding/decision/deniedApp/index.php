@@ -42,7 +42,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
-    echo '<title>Your account was denied!</title>';
+    echo '<title>'.$LANG_APPROVAL_DENIED_PAGE_TITLE.'</title>';
 
 ?>
     <section class="section" style="padding-top:0%; padding-left:10%;">
@@ -51,8 +51,8 @@
                 <div>
                     <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
-                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We are sorry, Unfortuantly we could not approve your account.</h6>
-                    <p class="caliweb-login-sublink license-text-dark width-100">Based on the information you told us we could not open an account. Please logout <a class="careers-link" href="/logout/">here</a>.</p>
+                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;"><?php echo $LANG_APPROVAL_DENIED_PAGE_HEADER; ?></h6>
+                    <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_APPROVAL_DENIED_PAGE_BODY; ?><a class="careers-link" href="/logout/">here</a>.</p>
                 </div>
             </div>
         </div>

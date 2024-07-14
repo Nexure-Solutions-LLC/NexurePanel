@@ -246,6 +246,10 @@ body {
     display: none;
 }
 
+.dark-mode .industry-results {
+    background-color: #000
+}
+
 .industry-div {
     padding: 5px;
     border-radius: 5px;
@@ -255,6 +259,10 @@ body {
 
 .industry-div:hover {
     background-color: #f1f1f1 !important;
+}
+
+.dark-mode .industry-div:hover {
+    background-color: rgba(149, 157, 165, 0.2) !important;
 }
 
 .industry-results::-webkit-scrollbar-track {
@@ -331,11 +339,13 @@ body {
 }
 
 @media (min-width: 1399px) and (max-width: 1499px) {
-
     .login-container {
         padding-bottom: 5% !important;
-        overflow-y: scroll;
+        overflow-y: auto; /* this was previously scroll - change back if things break somehow */
         background-color: #f1f1f1;
+    }
+    .dark-mode .login-container {
+        background-color: #000
     }
 
     .caliweb-login-box {
@@ -407,6 +417,10 @@ body {
         height: 100%;
         background-color: #f1f1f1;
     }
+    .dark-mode .login-container {
+        background-color: #000
+    }
+
 
     .container {
         width: 100%;
@@ -487,7 +501,7 @@ body {
 
 @media (min-width:2000px) {
 
-    /* Moves the Registration form down futher on screen that are lager
+    /* Moves the Registration form down further on screen that are larger
     like the Apple XDR Displays cause Apple is weird */
 
     .bigscreens-are-strange {

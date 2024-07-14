@@ -122,9 +122,9 @@
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="businessType" class="text-gray-label">Business Type</label>
                                 <select type="text" class="form-input" name="businessType" id="businessType" required="">
-                                    <option>Please slect a business type</option>
-                                    <option>Privatly Held Company</option>
-                                    <option>Publically Held Company</option>
+                                    <option>Please select a business type</option>
+                                    <option>Privately Held Company</option>
+                                    <option>Publicly Held Company</option>
                                 </select>
                             </div>
                         </div>

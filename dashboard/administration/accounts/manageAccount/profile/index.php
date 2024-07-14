@@ -24,11 +24,11 @@
 
     $accountnumber = $_GET['account_number'];
 
-    if (!isset($_SESSION['verification_code'])) {
+    // if (!isset($_SESSION['verification_code'])) {
 
-        header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
+        // header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
 
-    }
+    // }
 
     if ($accountnumber == "") {
 
