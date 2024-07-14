@@ -139,6 +139,7 @@ body {
     position: relative;
     margin-bottom: 5%;
     height: 90%;
+    z-index: -1 !important;
 }
 
 /* =================== Cali Web Design Dashboard Header Styles =================== */
@@ -148,7 +149,7 @@ body {
     display: block;
     padding-top: 0;
     padding-bottom: 0;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
 }
 
 .caliweb-header-search {
@@ -269,10 +270,8 @@ html[data-theme='dark'] body {
 }
 
 .dark-mode .nav-links:hover,
-.dark-mode .nav-links:hover a,
 .dark-mode .nav-links-clickable:hover {
     color: #fff !important;
-    background-color: #222;
 }
 
 .dark-mode .nav-links:hover {
@@ -290,12 +289,12 @@ html[data-theme='dark'] body {
 }
 
 .dark-mode .caliweb-card.dashboard-card {
-    background: #1d1d1d;
+    background: #141414;
     border: 1px solid #222;
 }
 
 .dark-mode .caliweb-card.dashboard-card-shrink {
-    background: #1d1d1d;
+    background: #141414;
     border: 1px solid #222;
 }
 
@@ -305,6 +304,14 @@ html[data-theme='dark'] body {
 
 .dark-mode .card-footer {
     border-top: 0;
+}
+
+.dark-mode .card-footer a {
+    color:#dbdbdb;
+}
+
+.dark-mode .card-footer a:hover {
+    color:#fff;
 }
 
 .dark-mode .card-header-account {
@@ -328,6 +335,10 @@ html[data-theme='dark'] body {
     background-color: #000 !important;
 }
 
+.dark-mode .loading-bar {
+    background-color: #222 !important;
+}
+
 .dark-mode .tab-switch-tab {
     border-bottom: 2px solid #333;
 }
@@ -341,7 +352,7 @@ html[data-theme='dark'] body {
 }
 
 .dark-mode .customer-business-card-bar {
-    background-color: #333;
+    background-color: #222;
 }
 
 .dark-mode .customer-card-header {
@@ -362,7 +373,7 @@ html[data-theme='dark'] body {
 
 .dark-mode .price-table-head,
 .dark-mode table tbody th {
-    background-color: #292929 !important;
+    background-color: #313131 !important;
 }
 
 .dark-mode .back-dark-mode {
@@ -396,6 +407,15 @@ html[data-theme='dark'] body {
 
 .dark-mode .fillable-header {
     background-color: #333 !important;
+}
+
+.dark-mode .dropdown {
+    background-color: #181818 !important;
+    border: 1px solid #272727 !important;
+}
+
+.dark-mode .dropdown li:hover {
+    border: 1px solid #323232 !important;
 }
 
 /* =================== Cali Web Design Dashboard Grid Styles =================== */

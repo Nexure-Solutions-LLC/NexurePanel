@@ -5,11 +5,17 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
     if ($userrole == "Customer" || $userrole == "customer") {
+
         header("location:/dashboard/customers");
+
     } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
+
         header("location:/dashboard/customers/authorizedUserView");
+
     } else if ($userrole == "Partner" || $userrole == "partner") {
+
         header("location:/dashboard/partnerships");
+        
     }
 
     echo '<title>'.$pagetitle.'</title>';
@@ -338,6 +344,72 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const lightModeIcon = document.getElementById("lightModeIcon");
+            const darkModeIcon = document.getElementById("darkModeIcon");
+            const graphImg = document.getElementById("graph");
+
+            function updateTheme(theme) {
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "/modules/graphSQL/themeingRequirement/index.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                xhr.onload = function() {
+
+                    if (xhr.status === 200) {
+
+                        var response = JSON.parse(xhr.responseText);
+
+                        if (response.status === 'success') {
+
+                            var currentSrc = graphImg.src.split('?')[0];
+                            graphImg.src = currentSrc + '?theme=' + response.theme + '&t=' + new Date().getTime();
+
+                        } else {
+
+                            console.error('Error setting theme:', response.message);
+
+                        }
+
+                    }
+
+                };
+
+                xhr.send("theme=" + theme);
+
+            }
+
+            lightModeIcon.addEventListener("click", function() {
+                
+                document.body.classList.remove("dark-mode");
+                updateTheme('light-mode');
+
+            });
+
+            darkModeIcon.addEventListener("click", function() {
+
+                document.body.classList.add("dark-mode");
+                updateTheme('dark-mode');
+
+            });
+
+            // Initial theme setting on page load
+
+            if (document.body.classList.contains("dark-mode")) {
+
+                updateTheme('dark-mode');
+
+            } else {
+
+                updateTheme('light-mode');
+
+            }
+        });
+    </script>
 
 <?php
 

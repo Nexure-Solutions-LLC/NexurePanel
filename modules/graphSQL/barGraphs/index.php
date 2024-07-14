@@ -1,8 +1,14 @@
 <?php
 
-    if ($_SESSION['graphCallType'] == "Sales Person Activity") {
+    function generateImagePath($basePath, $graphType, $theme) {
 
-        $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
+        return $basePath . '/' . session_id() . '_' . $theme . '_' . $graphType . '.png';
+
+    }
+
+    function createSalesPerformanceGraph($theme, $graphType, $sqlQuery) {
+
+        global $con;
 
         $width = 850;
         $height = 400;
@@ -10,7 +16,7 @@
 
         if ($theme == 'dark-mode') {
 
-            $backgroundColor = imagecolorallocate($image, 29, 29, 29);
+            $backgroundColor = imagecolorallocate($image, 20, 20, 20);
             $textColor = imagecolorallocate($image, 255, 255, 255);
             $barColor = imagecolorallocate($image, 199, 149, 245);
 
@@ -24,14 +30,13 @@
 
         imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
 
-        $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance";
-        $result = $con->query($sql);
+        $result = $con->query($sqlQuery);
 
         $data = [];
 
         if ($result->num_rows > 0) {
 
-            while($row = $result->fetch_assoc()) {
+            while ($row = $result->fetch_assoc()) {
 
                 $data[$row['salesPerson']] = $row['salesPerformance'];
 
@@ -52,101 +57,22 @@
             }
 
             $x = $margin;
-            foreach ($data as $category => $value) {
 
-                // Round the value
+            foreach ($data as $category => $value) {
 
                 $barHeight = round($value * $scale);
                 imagefilledrectangle($image, (int)$x, $height - $margin, (int)($x + $barWidth), (int)($height - $margin - $barHeight), $barColor);
-                imagettftext($image, 10, 0, (int)($x + ($barWidth / 2) - (strlen($category) * 2.5)), $height - $margin + 20, $textColor, $fontPath, $category); // Centered text
+                imagettftext($image, 10, 0, (int)($x + ($barWidth / 2) - (strlen($category) * 2.5)), $height - $margin + 20, $textColor, $fontPath, $category);
                 $x += $barWidth + $barSpacing;
 
             }
 
-            $imagePath = $_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/barGraphs/salesPerformance.png';
-
+            $imagePath = generateImagePath($_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/barGraphs', $graphType, $theme);
             imagepng($image, $imagePath);
             imagedestroy($image);
 
-            echo '<img src="/modules/graphSQL/barGraphs/salesPerformance.png?theme=' . $theme . '" alt="Bar Graph">';
+            echo '<img src="/modules/graphSQL/barGraphs/' . basename($imagePath) . '?t=' . time() . '" alt="Bar Graph">';
 
-        } else {
-
-            echo "0 results";
-
-        }
-
-    } else if ($_SESSION['graphCallType'] == "Employee Only Sales Activity") {
-
-        $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
-
-        $width = 850;
-        $height = 400;
-        $image = imagecreate($width, $height);
-
-        if ($theme == 'dark-mode') {
-
-            $backgroundColor = imagecolorallocate($image, 29, 29, 29);
-            $textColor = imagecolorallocate($image, 255, 255, 255);
-            $barColor = imagecolorallocate($image, 199, 149, 245);
-
-        } else {
-
-            $backgroundColor = imagecolorallocate($image, 255, 255, 255);
-            $textColor = imagecolorallocate($image, 0, 0, 0);
-            $barColor = imagecolorallocate($image, 199, 149, 245);
-
-        }
-
-        imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
-
-        $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance WHERE salesPerson = '$fullname'";
-        $result = $con->query($sql);
-
-        $data = [];
-        if ($result->num_rows > 0) {
-
-            while($row = $result->fetch_assoc()) {
-
-                $data[$row['salesPerson']] = $row['salesPerformance'];
-
-            }
-
-            $margin = 40;
-            $barWidth = 60;
-            $barSpacing = 80;
-            $maxValue = max($data);
-            $scale = ($height - 2 * $margin) / $maxValue;
-
-            $fontPath = $_SERVER["DOCUMENT_ROOT"].'/assets/fonts/IBMPlexSans-Regular.ttf';
-
-            if (!file_exists($fontPath)) {
-
-                die('Font file not found.');
-
-            }
-
-            $x = $margin;
-
-            foreach ($data as $category => $value) {
-
-                // Round the value
-
-                $barHeight = round($value * $scale); 
-
-                imagefilledrectangle($image, (int)$x, $height - $margin, (int)($x + $barWidth), (int)($height - $margin - $barHeight), $barColor);
-                imagettftext($image, 10, 0, (int)($x + ($barWidth / 2) - (strlen($category) * 2.5)), $height - $margin + 20, $textColor, $fontPath, $category); // Centered text
-                $x += $barWidth + $barSpacing;
-
-            }
-
-            $imagePath = $_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/barGraphs/salesPerformance.png';
-
-            imagepng($image, $imagePath);
-            imagedestroy($image);
-
-            echo '<img src="/modules/graphSQL/barGraphs/salesPerformance.png?theme=' . $theme . '" alt="Bar Graph">';
-            
         } else {
 
             echo "0 results";
@@ -154,5 +80,24 @@
         }
 
     }
-    
+
+    if ($_SESSION['graphCallType'] == "Sales Person Activity") {
+
+        $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light-mode';
+
+        $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance";
+
+        createSalesPerformanceGraph($theme, 'salesPerformance', $sql);
+
+    } else if ($_SESSION['graphCallType'] == "Employee Only Sales Activity") {
+
+        $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
+
+        $fullname = $_SESSION['fullname'];
+
+        $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance WHERE salesPerson = '$fullname'";
+
+        createSalesPerformanceGraph($theme, 'employeeSalesPerformance', $sql);
+    }
+
 ?>

@@ -2,7 +2,7 @@
 
     if ($_SESSION['graphCallType'] == "Deals by Segment") {
         
-        $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
+        $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light-mode';
 
         $width = 850;
         $height = 400;
@@ -10,8 +10,9 @@
 
         if ($theme == 'dark-mode') {
 
-            $backgroundColor = imagecolorallocate($image, 29, 29, 29);
+            $backgroundColor = imagecolorallocate($image, 20, 20, 20);
             $textColor = imagecolorallocate($image, 255, 255, 255);
+
             $colors = [
                 imagecolorallocate($image, 255, 206, 86), // Yellow
                 imagecolorallocate($image, 54, 162, 235), // Blue
@@ -20,11 +21,14 @@
                 imagecolorallocate($image, 153, 102, 255), // Purple
                 imagecolorallocate($image, 255, 159, 64)  // Orange
             ];
+
+            $white = imagecolorallocate($image, 20, 20, 20); // Dark Grey
 
         } else {
 
             $backgroundColor = imagecolorallocate($image, 255, 255, 255);
             $textColor = imagecolorallocate($image, 0, 0, 0);
+
             $colors = [
                 imagecolorallocate($image, 255, 206, 86), // Yellow
                 imagecolorallocate($image, 54, 162, 235), // Blue
@@ -34,15 +38,17 @@
                 imagecolorallocate($image, 255, 159, 64)  // Orange
             ];
 
+            $white = imagecolorallocate($image, 255, 255, 255); // White
+
         }
 
         imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
-
 
         $sql = "SELECT segment, value FROM caliweb_leadssource";
         $result = $con->query($sql);
 
         $data = [];
+
         if ($result->num_rows > 0) {
 
             while ($row = $result->fetch_assoc()) {
@@ -86,7 +92,6 @@
 
             }
 
-            $white = imagecolorallocate($image, 255, 255, 255);
             $centerX = (int)($height / 2);
             $centerY = (int)($height / 2);
             $innerRadius = (int)(($height - 20) / 2 * 0.5);
@@ -104,6 +109,7 @@
             $textBox = imagettfbbox(14, 0, $fontPath, $centerText);
             $textWidth = $textBox[2] - $textBox[0];
             $textHeight = $textBox[7] - $textBox[1];
+
             imagettftext(
                 $image,
                 14,
@@ -117,6 +123,7 @@
 
             $legendX = $height + 350;
             $legendY = 20;
+
             foreach ($data as $key => $value) {
 
                 $colorIndex = array_search($key, array_keys($data));
@@ -127,19 +134,18 @@
 
             }
 
-            $imagePath = $_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/pieCharts/leadsSource.png';
+            $uniqueFilename = session_id() . '_' . $theme . '_leadsSource.png';
+            $imagePath = $_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/pieCharts/' . $uniqueFilename;
 
             imagepng($image, $imagePath);
             imagedestroy($image);
 
-            echo '<img src="/modules/graphSQL/pieCharts/leadsSource.png?theme=' . $theme . '" alt="Doughnut Chart">';
+            echo '<img src="/modules/graphSQL/pieCharts/' . $uniqueFilename . '?t=' . time() . '" alt="Doughnut Chart">';
             
         } else {
 
             echo "0 results";
-
         }
 
     }
-
 ?>

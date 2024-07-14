@@ -12,9 +12,17 @@ html[data-theme='dark'] body {
     background-image: none !important;
 }
 
-.caliweb-navbar,
-.dark-mode .caliweb-navbar {
+.caliweb-navbar {
     box-shadow: none !important;
+    background-color: rgba(245, 245, 247, 0.72) !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+    backdrop-filter: saturate(180%) blur(20px) !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.dark-mode .caliweb-navbar {
+    background-color: rgba(22, 22, 23, 0.8) !important;
+    border-bottom: 1px solid #222 !important;
 }
 
 .systemLoads,
