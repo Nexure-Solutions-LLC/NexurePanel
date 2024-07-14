@@ -1,6 +1,6 @@
 <?php
-    $pagetitle = "Contacts";
-    $pagesubtitle = "List of Contacts";
+    $pagetitle = "Campaigns";
+    $pagesubtitle = "List of Campaigns";
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 

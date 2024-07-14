@@ -382,6 +382,19 @@
 
             ';
 
+        } else if ($pagetitle == "Settings") {
+
+            echo '
+
+                <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Settings</p>
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
+                    <li class="nav-links active"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+
+            ';
+
         }
 
     }
