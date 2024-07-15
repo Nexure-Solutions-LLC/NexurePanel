@@ -67,3 +67,8 @@ You can view a demo link [here](https://us-east.cali-cloud-compute-135-148-28-43
 ### Installation
 
 1. Clone the repository: `bash git clone https://github.com/NickDerry2023/CaliWebDesignPanel20.0.1.git`
+2. Install the panel by running the install.sh bash script.
+3. Run post installation by navigating to the panels domain then the folder /install
+4. Configure the panel and set credentials in the .ENV file.
+5. Run the cron jobs by doing: `crontab -e` and `0 * * * * /usr/bin/php /var/www/calipanel/automations/fileDeletion/index.php`
+6. Login to the admin account you created.
