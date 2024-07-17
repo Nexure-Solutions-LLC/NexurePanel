@@ -169,7 +169,7 @@
                                     <input type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="" required="" />
                                 </div>
                                 <div class="form-control">
-                                    <label for="password" class="text-gray-label">Password</label>
+                                    <label for="password" class="text-gray-label"><?php echo $LANG_LOGIN_PASSWORD ?></label>
                                     <input type="password" class="form-input" name="password" id="password" placeholder="" />
                                 </div>
                                 <div class="form-control">

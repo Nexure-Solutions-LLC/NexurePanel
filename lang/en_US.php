@@ -39,6 +39,15 @@ $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Pl
 $LANG_ID_DISCLAIMER = "We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.";
 $LANG_REGISTER_BUTTON = "Continue";
 
+// Register Page Variables
+$LANG_SELF_REGISTER_LEGAL_NAME = "Legal Name";
+$LANG_SELF_REGISTER_PHONE_NUMBER = "Phone Number";
+$LANG_SELF_REGISTER_EMAIL_ADDR = "Email Address";
+$LANG_SELF_REGISTER_PASSWORD = "Password";
+
+// Login Page Variables
+$LANG_LOGIN_PASSWORD = "Password";
+
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 

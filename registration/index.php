@@ -150,9 +150,25 @@
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
     ob_start();
-    // We cannot apply language pack here as we do not know
-    // current user state.
-    include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+    // ~~We cannot apply language pack here as we do not know
+    // current user state.~~
+
+    // actually yes we can
+        if (isset($_SESSION["lang"])) {
+
+            if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
+
+                $_SESSION["lang"] = 'en_US';
+
+            }
+            include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
+
+        } else {
+
+            include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+
+        }
+
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
 
@@ -173,19 +189,19 @@
                 <div class="caliweb-login-box-body">
                     <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="legalname" class="text-gray-label">Legal Name</label>
+                            <label for="legalname" class="text-gray-label"><?php echo $LANG_SELF_REGISTER_LEGAL_NAME ?></label>
                             <input type="text" class="form-input" name="legalname" id="legalname" placeholder="" required="" />
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="phonenumber" class="text-gray-label">Phone Number</label>
+                            <label for="phonenumber" class="text-gray-label"><?php echo $LANG_SELF_REGISTER_PHONE_NUMBER ?></label>
                             <input type="text" class="form-input" name="phonenumber" id="phonenumber" placeholder="" required="" />
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="emailaddress" class="text-gray-label">Email Address</label>
+                            <label for="emailaddress" class="text-gray-label"><?php echo $LANG_SELF_REGISTER_EMAIL_ADDR ?></label>
                             <input type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="" required="" />
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="password" class="text-gray-label">Password</label>
+                            <label for="password" class="text-gray-label"><?php echo $LANG_SELF_REGISTER_PASSWORD ?></label>
                             <input type="password" class="form-input" name="password" id="password" placeholder="" />
                         </div>
                         <div class="form-control">

@@ -14,11 +14,15 @@
         $result = mysqli_query($con, $sql);
 
         if (mysqli_num_rows($result) > 0) {
+
             $row = mysqli_fetch_assoc($result);
             $stripePublicKey = $row['publicKey'];
             $stripeSecretKey = $row['secretKey'];
+
         } else {
+
             die("Stripe API keys not found in the database.");
+
         }
 
         \Stripe\Stripe::setApiKey($stripeSecretKey);
@@ -32,7 +36,9 @@
             $stripeIDResult = mysqli_query($con, $stripeIDQuery);
 
             if (mysqli_num_rows($stripeIDResult) > 0) {
+
                 // Output table header
+
                 echo '<table style="width:100%;">
                         <tr>
                             <th style="width:25%">Cardholder Name</th>
@@ -44,13 +50,16 @@
                         </tr>';
 
                 while ($stripeIDRow = mysqli_fetch_assoc($stripeIDResult)) {
-                    $stripeCustomerId = $stripeIDRow['stripeID']; // Stripe customer ID
+
+                    $stripeCustomerId = $stripeIDRow['stripeID'];
+
                     $paymentMethods = \Stripe\PaymentMethod::all([
                         'customer' => $stripeCustomerId,
                         'type' => 'card'
                     ]);
 
                     foreach ($paymentMethods->data as $paymentMethod) {
+
                         $card = $paymentMethod->card;
                         $billingName = $paymentMethod->billing_details->name;
 
@@ -58,7 +67,9 @@
 
                         echo '<td style="width:25%;">'. $billingName .'</td>';
                         echo '<td style="width:25%;"><span class="display-flex align-center" style="align-items:center;"><span>';
+
                         if (ucfirst($card->brand) == "Visa") {
+
                             echo '
                                 <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" style="margin-right:10px;" aria-labelledby="pi-visa">
                                     <title id="pi-visa">Visa</title>
@@ -70,7 +81,9 @@
                                     ></path>
                                 </svg>
                             ';
+
                         } else if (ucfirst($card->brand) == "Mastercard") {
+
                            echo '
                                <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" style="margin-right:10px;" aria-labelledby="pi-master">
                                    <title id="pi-master">Mastercard</title>
@@ -81,7 +94,9 @@
                                    <path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path>
                                </svg>
                            ';
+
                         } else if (ucfirst($card->brand) == "Amex") {
+
                             echo '
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" style="margin-right:10px;" aria-labelledby="pi-american_express">
                                     <title id="pi-american_express">American Express</title>
@@ -95,7 +110,9 @@
                                     </g>
                                 </svg>
                             ';
+
                         } else if (ucfirst($card->brand) == "Discover") {
+
                             echo '
                                 <svg viewBox="0 0 38 24" width="38" height="24" role="img" aria-labelledby="pi-discover" style="margin-right:10px;" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <title id="pi-discover">Discover</title>
@@ -128,30 +145,43 @@
                                     </defs>
                                 </svg>
                             ';
+
                         }
                         echo '</span> <span style="margin-top:0px;">'. $card->last4 . '</span></td>';
+
                         echo '<td style="width:25%;">' . $card->exp_month . '/' . $card->exp_year . '</td>';
+
                         echo '<td style="width:25%;">' . ucfirst($card->funding) . '</td>';
+
                         echo '<td style="width:25%;"><span class="account-status-badge green" style="margin-left:0;">Active</span></td>';
+
                         echo '<td>
                                 <a href="" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:0px;">Delete</a>
                             </td>
                         ';
+
                         echo '</tr>';
                     }
+
                 }
 
                 echo '</table>';
+
             } else {
+
                 echo '<p class="no-padding font-14px" style="margin-top:-2% !important; margin-bottom:25px;">There are no payment methods for this account.<p>';
+            
             }
+
         } else if ($pagetitle == "Client" && $pagesubtitle == "Billing Center") {
 
            $stripeIDQuery = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'";
            $stripeIDResult = mysqli_query($con, $stripeIDQuery);
 
            if (mysqli_num_rows($stripeIDResult) > 0) {
+
                // Output table header
+
                echo '<table style="width:100%; margin-top:0%;">
                        <tr>
                            <th style="width:25%">Cardholder Name</th>
@@ -163,21 +193,27 @@
                        </tr>';
 
                while ($stripeIDRow = mysqli_fetch_assoc($stripeIDResult)) {
-                   $stripeCustomerId = $stripeIDRow['stripeID']; // Stripe customer ID
+
+                   $stripeCustomerId = $stripeIDRow['stripeID'];
+
                    $paymentMethods = \Stripe\PaymentMethod::all([
                        'customer' => $stripeCustomerId,
                        'type' => 'card'
                    ]);
 
                    foreach ($paymentMethods->data as $paymentMethod) {
+
                        $card = $paymentMethod->card;
                        $billingName = $paymentMethod->billing_details->name;
 
                        echo '<tr>';
 
                        echo '<td style="width:25%;">'. $billingName .'</td>';
+
                        echo '<td style="width:25%;"><span class="display-flex align-center"><span>';
+
                        if (ucfirst($card->brand) == "Visa") {
+
                            echo '
                                <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" style="margin-right:10px" aria-labelledby="pi-visa">
                                    <title id="pi-visa">Visa</title>
@@ -189,7 +225,9 @@
                                    ></path>
                                </svg>
                            ';
+
                        } else if (ucfirst($card->brand) == "Mastercard") {
+
                           echo '
                               <svg viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg" role="img" width="38" height="24" style="margin-right:10px" aria-labelledby="pi-master">
                                   <title id="pi-master">Mastercard</title>
@@ -200,7 +238,9 @@
                                   <path fill="#FF5F00" d="M22 12c0-2.4-1.2-4.5-3-5.7-1.8 1.3-3 3.4-3 5.7s1.2 4.5 3 5.7c1.8-1.2 3-3.3 3-5.7z"></path>
                               </svg>
                           ';
+
                        } else if (ucfirst($card->brand) == "Amex") {
+
                            echo '
                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 38 24" width="38" height="24" style="margin-right:10px" aria-labelledby="pi-american_express">
                                    <title id="pi-american_express">American Express</title>
@@ -214,7 +254,9 @@
                                    </g>
                                </svg>
                            ';
+
                        } else if (ucfirst($card->brand) == "Discover") {
+
                            echo '
                                <svg viewBox="0 0 38 24" width="38" height="24" role="img" aria-labelledby="pi-discover" style="margin-right:10px" fill="none" xmlns="http://www.w3.org/2000/svg">
                                    <title id="pi-discover">Discover</title>
@@ -247,23 +289,64 @@
                                    </defs>
                                </svg>
                            ';
+
                        }
+
                        echo '</span> <span style="margin-top:1px;">'. $card->last4 . '</span></td>';
+
                        echo '<td style="width:25%;">' . $card->exp_month . '/' . $card->exp_year . '</td>';
+
                        echo '<td style="width:25%;">' . ucfirst($card->funding) . '</td>';
+
                        echo '<td style="width:25%;"><span class="account-status-badge green" style="margin-left:0;">Active</span></td>';
+
                        echo '<td>
                                <a href="" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:0px;">Delete</a>
                            </td>
                        ';
+
                        echo '</tr>';
+
                    }
+
                }
 
                echo '</table>';
+
            } else {
+            
                echo '<p class="no-padding font-14px" style="margin-top:0% !important; margin-bottom:25px;">There are no payment methods for this account.<p>';
+
            }
-       }
+
+        } else if ($pagetitle == "Services" && $pagesubtitle == "Create Order") {
+
+            \Stripe\Stripe::setApiKey($stripeSecretKey);
+
+            $stripeIDQuery = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'";
+            $stripeIDResult = mysqli_query($con, $stripeIDQuery);
+
+            if (mysqli_num_rows($stripeIDResult) > 0) {
+
+                while ($stripeIDRow = mysqli_fetch_assoc($stripeIDResult)) {
+
+                    $stripeCustomerId = $stripeIDRow['stripeID'];
+
+                    $paymentMethods = \Stripe\PaymentMethod::all([
+                        'customer' => $stripeCustomerId,
+                        'type' => 'card',
+                    ]);
+
+                }
+
+            } else {
+
+                header ("location: /error/genericSystemError");
+
+            }
+
+        }
+
     }
+
 ?>

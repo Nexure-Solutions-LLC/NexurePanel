@@ -157,7 +157,7 @@
 
             ';
 
-        } else if ($pagetitle == "Customer Accounts") {
+        } else if ($pagetitle == "Customer Accounts" || $pagetitle == "Services") {
 
             echo '
 

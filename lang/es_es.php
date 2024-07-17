@@ -29,14 +29,24 @@ $LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 // Register Page Text Specifications
 
 $LANG_SELF_REGISTER_TITLE = "Autoinscripción";
-$LANG_SELF_REGISTER_SUBTITLE = "Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.";
+$LANG_SELF_REGISTER_SUBTITLE = "¡Bienvenido! Estamos emocionante tenerte. Por favor completo algunas preguntas para configurar su cuenta con nos.";
 $LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";
 $LANG_REGISTER_TITLE_PAR_2 = "Registro";
 $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registro el falló";
 $LANG_REGISTER_AUTH_ERROR_TEXT = "El proceso de registro falló por un motivo desconocido. Por favor inténtelo nuevamente o si el problema persiste comuníquese con Cali Web Design.";
 $LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha falló";
 $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "No marcaste esa pequeña y tonta casilla. Por favor, asegúrate de no ser un robot.";
+$LANG_ID_DISCLAIMER = "Somos requerido por ley preguntar su nombre, dirección, fecha de nacimiento, y otra información ayudar nos identificamos tú. Podemos requerir verificación adicional si no podemos verificarte.";
 $LANG_REGISTER_BUTTON = "Continuar";
+
+// Register Page Variables
+$LANG_SELF_REGISTER_LEGAL_NAME = "Nombre legal";
+$LANG_SELF_REGISTER_PHONE_NUMBER = "Número de teléfono";
+$LANG_SELF_REGISTER_EMAIL_ADDR = "Dirección de e-mail";
+$LANG_SELF_REGISTER_PASSWORD = "Contraseña";
+
+// Login Page Variables
+$LANG_LOGIN_PASSWORD = "Contraseña";
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 
