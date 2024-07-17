@@ -1,5 +1,22 @@
 <?php
-    include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+    session_start();
+    
+    if (isset($_SESSION["lang"])) {
+
+        if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
+
+            $_SESSION["lang"] = 'en_US';
+
+        }
+
+        include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
+
+    } else {
+
+        include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+
+    }
+
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 

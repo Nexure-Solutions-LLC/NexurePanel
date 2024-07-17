@@ -4,20 +4,21 @@
     $pagesubtitle = "Inbox";
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    
+    $lowerrole = strtolower($userrole);
 
-    if ($userrole == "Customer" || $userrole == "customer") {
-        
-        header("location:/dashboard/customers/emailSuite");
-
-    } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
-
-        header("location:/dashboard/customers/authorizedUserView/emailSuite");
-
-    } else if ($userrole == "Partner" || $userrole == "partner") {
-
-        header("location:/dashboard/partnerships/emailSuite");
-
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView/emailSuite");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships/emailSuite");
+            break;
+        case "customer":
+            header("location:/dashboard/customers/emailSuite");
+            break;
     }
+
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
     

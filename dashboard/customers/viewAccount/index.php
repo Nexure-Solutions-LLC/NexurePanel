@@ -6,21 +6,23 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
-    if ($userrole == "Authorized User" || $userrole == "authorized user") {
 
-        header("location:/dashboard/customers/authorizedUserView");
-
-    } else if ($userrole == "Partner" || $userrole == "partner") {
-
-        header("location:/dashboard/partnerships");
-
-    } else if ($userrole == "Administrator" || $userrole == "administrator") {
-
-        header("location:/dashboard/administration");
-
+    $lowerrole = strtolower($userrole);
+    
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships");
+            break;
+        case "administrator":
+            header("location:/dashboard/administration");
+            break;
     }
 
-    $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
+
+$websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
     $websiteinfo = mysqli_fetch_array($websiteresult);
 
     $customerStatus = $userinfo['accountStatus'];
@@ -43,7 +45,7 @@
 
             <section class="section caliweb-section customer-dashboard-greeting-section">
                 <div class="container caliweb-container">
-                    <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design View Account / Details</h4>
+                    <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design View Account / Details</p>
                 </div>
             </section>
 

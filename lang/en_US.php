@@ -17,6 +17,8 @@
 
 // ====================== START LOGIN LANGUAGE AREA ==========================
 
+
+
 // Login Page Text Specifications
 
 $LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
@@ -28,13 +30,15 @@ $LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 
 // Register Page Text Specifications
 
-$LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";
-$LANG_REGISTER_TITLE_PAR_2 = "Registration";
+$LANG_SELF_REGISTER_TITLE = "Self Registration";
+$LANG_SELF_REGISTER_SUBTITLE = "Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.";
 $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registration Error";
 $LANG_REGISTER_AUTH_ERROR_TEXT = "The registration process failed for an unknown reason. Please try again or if the problem persists contact Cali Web Design.";
 $LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha Error";
 $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Please make sure you're not a robot. We require this to protect against spam.";
+$LANG_ID_DISCLAIMER = "We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.";
 $LANG_REGISTER_BUTTON = "Continue";
+
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 
@@ -106,15 +110,15 @@ $LANG_MOBILE_EXPERIENCE_TEXT = "For the best experience please use a laptop or d
 
 $LANG_LOGOUT_BASE_TEXT = "You have successfully signed out.";
 $LANG_LOGOUT_SECONDARY_TEXT = "You will be automatically be redirected in";
-$LANG_LOGOUT_REDIRECT_FALLBACK_TEXT = "If you are not redirected automatically you can";
+$LANG_LOGOUT_REDIRECT_FALLBACK_TEXT = "If you are not redirected automatically, you can";
 
 // ====================== START ONBOARDING LANGUAGE AREA ==========================
 
 // Onboarding Completed Text Specifications
 
-$LANG_ONBOARD_COMPLETE_BASE_TEXT = "You have successfully completed onboarding,";
+$LANG_ONBOARD_COMPLETE_BASE_TEXT = "You have successfully completed onboarding.";
 $LANG_ONBOARD_COMPLETE_SECONDARY_TEXT = "You will be automatically be redirected in";
-$LANG_ONBOARD_COMPLETE_FALLBACK_TEXT = "If you are not redirected automatically you can";
+$LANG_ONBOARD_COMPLETE_FALLBACK_TEXT = "If you are not redirected automatically, you can";
 
 // ====================== START DASHBOARD LANGUAGE AREA ==========================
 

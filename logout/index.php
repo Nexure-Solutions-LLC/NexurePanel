@@ -4,8 +4,21 @@
 
     // Destroy session
 
-    if(session_destroy()) {
+    // Maintain language
 
+    if (isset($_SESSION["lang"])) {
+
+        $lang = $_SESSION["lang"];
+        
+    } else {
+
+        $lang = "en_US";
+
+    }
+
+    if(session_destroy()) {
+        session_start();
+        $_SESSION["lang"] = $lang;
         // Redirecting To Home Page
 
         header("Location: /logout/success");

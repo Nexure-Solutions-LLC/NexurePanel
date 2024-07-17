@@ -16,7 +16,7 @@
 
     if ($detect->isMobile() || $detect->isTablet()) {
 
-        header("Location: /error/mobileExperiance/");
+        header("Location: /error/mobileExperience/");
         exit();
 
     }
@@ -89,27 +89,24 @@
     mysqli_free_result($result);
 
     $userrole = $userinfo['userrole'];
+    $lowerrole = strtolower($userrole);
 
-    if ($userrole == "Customer" || $userrole == "customer") {
-
-        header("location:/dashboard/customers");
-
-    } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
-
-        header("location:/dashboard/customers/authorizedUserView");
-
-    } else if ($userrole == "Partner" || $userrole == "partner") {
-
-        header("location:/dashboard/partnerships");
-
-    } else if ($userrole == "Administrator" || $userrole == "administrator") {
-
-        header("location:/dashboard/administration");
-
-    } else {
-
-        header("Location: /error/genericSystemError/");
-        
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships");
+            break;
+        case "administrator":
+            header("location:/dashboard/administration");
+            break;
+        case 'customer':
+            header("location:/dashboard/customers");
+            break;
+        default:
+            header("Location: /error/genericSystemError/");
+            break;
     }
 
 ?>

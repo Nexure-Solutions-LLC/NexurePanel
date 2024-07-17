@@ -40,7 +40,44 @@
 
     }
 
-    require($_SERVER["DOCUMENT_ROOT"].'/lang/en_US.php');
+    function isSelectedLang($lang_name) {
+
+        $langPreference = "en_US";
+
+        if (isset($_SESSION["lang"])) {
+
+            $langPreference = $_SESSION["lang"];
+
+        }
+
+        if ($langPreference == $lang_name) {
+
+            return 'selected';
+
+        } else {
+
+            return '';
+
+        }
+
+    }
+
+    if (isset($_SESSION["lang"])) {
+
+        if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
+
+            $_SESSION["lang"] = 'en_US';
+
+        }
+        
+        include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
+
+    } else {
+
+        include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+
+    }
+
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
@@ -155,12 +192,14 @@
                     <nav class="caliweb-navbar-menu" id="caliweb-navigation">
                         
                     </nav>
-                    <!-- <div>
-                        <select name="langSelector" id="langSelector" class="lang-selector">
-                            <option>English</option>
-                            <option>Spanish</option>
-                        </select>
-                    </div> -->
+                    <form action="" method="POST">
+                        <div class="form-control" style="">
+                            <select type="text" class="form-input" style="padding:6px 10px" name="langPreference" id="langPreference" required="" onchange="this.form.submit()">
+                                <option value="en_US" <?php echo isSelectedLang("en_US"); ?>>English</option>
+                                <option value="es_es" <?php echo isSelectedLang("es_es"); ?>>Spanish</option>
+                            </select>
+                        </div>
+                    </form>
                     <span class="toggle-container">
                         <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
                         <span class="lnr lnr-moon"  class="toggle-input" id="darkModeIcon"></span>

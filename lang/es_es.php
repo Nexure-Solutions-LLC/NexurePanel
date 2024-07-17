@@ -28,6 +28,8 @@ $LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 
 // Register Page Text Specifications
 
+$LANG_SELF_REGISTER_TITLE = "Autoinscripción";
+$LANG_SELF_REGISTER_SUBTITLE = "Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.";
 $LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";
 $LANG_REGISTER_TITLE_PAR_2 = "Registro";
 $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registro el falló";
@@ -103,17 +105,17 @@ $LANG_MOBILE_EXPERIENCE_TEXT = "For the best experience please use a laptop or d
 
 // Logout Text Specifications
 
-$LANG_LOGOUT_BASE_TEXT = "You have successfully signed out.";
-$LANG_LOGOUT_SECONDARY_TEXT = "You will be automatically be redirected in";
-$LANG_LOGOUT_REDIRECT_FALLBACK_TEXT = "If you are not redirected automatically you can";
+$LANG_LOGOUT_BASE_TEXT = "Tienes cerró sesión con éxito";
+$LANG_LOGOUT_SECONDARY_TEXT = "Usted será redirigido en";
+$LANG_LOGOUT_REDIRECT_FALLBACK_TEXT = "Si no eres redirigido, puede";
 
 // ====================== START ONBOARDING LANGUAGE AREA ==========================
 
 // Onboarding Completed Text Specifications
 
-$LANG_ONBOARD_COMPLETE_BASE_TEXT = "You have successfully completed onboarding,";
-$LANG_ONBOARD_COMPLETE_SECONDARY_TEXT = "You will be automatically be redirected in";
-$LANG_ONBOARD_COMPLETE_FALLBACK_TEXT = "If you are not redirected automatically you can";
+$LANG_ONBOARD_COMPLETE_BASE_TEXT = "Tienes terminado inducción.";
+$LANG_ONBOARD_COMPLETE_SECONDARY_TEXT = "Usted será redirigido en";
+$LANG_ONBOARD_COMPLETE_FALLBACK_TEXT = "Si no eres redirigido, puede";
 
 // ====================== START DASHBOARD LANGUAGE AREA ==========================
 
@@ -123,7 +125,7 @@ $LANG_DASH_HOME_TITLE = ""; // Leave Blank for no Double Greeting
 $LANG_CUSTOMER_HOME_ACCOUNTS_TITLE = "cuentas";
 $LANG_QUICKACTIONS_TITLE = "Tarea Rápida";
 $LANG_EDIT_WEBSITES_TILE = "Editar unos sitio";
-$LANG_EDIT_WEBSITES_SUBTEXT = "Edit your website on the fly with an easy to use drag and drop interface.";
+$LANG_EDIT_WEBSITES_SUBTEXT = "Editar su website rápido con una interfaz fácil de arrastrar y caída"; // Edit your website on the fly with an easy to use drag and drop interface.
 $LANG_RUN_SPEEDTEST_TILE = "Ejecutar prueba de velocidad";
 $LANG_RUN_SPEEDTEST_SUBTEXT = "Wondering how fast your site is? Run a speed test to find out.";
 $LANG_BACKUPS_TILE = "Las reservas";
@@ -131,7 +133,7 @@ $LANG_BACKUPS_SUBTEXT = "Run scheduled backups and restore backups right within 
 $LANG_LOG_FILES_TILE = "Archivos de registro";
 $LANG_LOG_FILES_SUBTEXT = "View your websites logs, account logs and what your users are doing.";
 $LANG_CODE_INTEGRITY_TILE = "Integridad del código";
-$LANG_CODE_INTEGRITY_SUBTEXT = "Code Integrity allows you to protect your website.";
+$LANG_CODE_INTEGRITY_SUBTEXT = "Integridad del Código permite proteges su website.";
 $LANG_MONITORING_TILE = "Supervisión";
 $LANG_MONITORING_SUBTEXT = "Have us monitor your website for any suspicious activity.";
 $LANG_PREAPPROVED_DASH_TITLE = "Planificar para tu próximo negocio";

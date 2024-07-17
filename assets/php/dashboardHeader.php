@@ -4,7 +4,8 @@
 
     // Cali Panel Required and System Imports
 
-    require($_SERVER["DOCUMENT_ROOT"].'/lang/en_US.php');
+    //    require($_SERVER["DOCUMENT_ROOT"].'/lang/en_US.php');
+    // ^ removing this import by default - going to import later.
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -21,7 +22,7 @@
 
     if ($detect->isMobile() || $detect->isTablet()) {
 
-        header("Location: /error/mobileExperiance/");
+        header("Location: /error/mobileExperience/");
         exit();
 
     }
@@ -99,6 +100,13 @@
     // User Profile Variable Definitions
 
     $userrole = $userinfo['userrole'];
+//    $lang = $userinfo["lang"];
+    if (isset($_SESSION["lang"])) {
+        $lang = $_SESSION['lang'];
+    } else {
+        $lang = "en_US";
+    }
+
     $fullname = $userinfo['legalName'];
     $accountStatus = $userinfo['accountStatus'];
     $accountStatusReason = $userinfo['statusReason'];
@@ -117,6 +125,23 @@
     $datedataOutput = "As of $dataTimestamp";
     $userId = $_ENV['IPCHECKAPIUSER'];
     $apiKey = $_ENV['IPCHECKAPIKEY'];
+
+    // Language Definition
+    
+    $lang_preset = ($lang !== null) ? $lang : "en_US";
+
+    // Deal with possible security issues - usually impossible but just making sure.
+
+    if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$lang_preset.'.php')) {
+
+        $lang_preset = 'en_US';
+
+    }
+
+    //    echo $lang_preset.'.php';
+
+    include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$lang_preset.'.php');
+
 
     // IP Address Checking and Banning
 
@@ -337,7 +362,7 @@
 
         header("Location: /onboarding/decision/callOnlineTeam");
 
-    } else if ($accountStatus == "Under Review" && $accountStatusReason == "DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'notes' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.") {
+    } else if ($accountStatus == "Under Review" && $accountStatusReason == "DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.") {
 
         header("Location: /onboarding/decision/emailRiskTeam");
 
@@ -345,7 +370,7 @@
 
         header("Location: /onboarding/decision/presentBranch");
 
-    } else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is runing a prohibited business and their application was denied.") {
+    } else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is running a prohibited business and their application was denied.") { // fixing a grammar mistake
 
         header("Location: /onboarding/decision/deniedApp");
 
@@ -356,7 +381,6 @@
     } else if ($accountStatus == "Under Review") {
 
         header ("Location: /error/underReviewAccount");
-
     } else if ($accountStatus == "Suspended") {
 
         header ("Location: /error/suspendedAccount");

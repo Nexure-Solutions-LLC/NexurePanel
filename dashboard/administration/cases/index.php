@@ -3,21 +3,23 @@
     $pagesubtitle = "List";
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    
+    $lowerrole = strtolower($userrole);
 
-    if ($userrole == "Customer" || $userrole == "customer") {
-
-        header("location:/dashboard/customers");
-
-    } else if ($userrole == "Authorized User" || $userrole == "authorized user") {
-
-        header("location:/dashboard/customers/authorizedUserView");
-
-    } else if ($userrole == "Partner" || $userrole == "partner") {
-
-        header("location:/dashboard/partnerships");
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships");
+            break;
+        case "administrator":
+            header("location:/dashboard/administration");
+            break;
     }
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+
+echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 ?>
 
     <section class="section first-dashboard-area-cards">

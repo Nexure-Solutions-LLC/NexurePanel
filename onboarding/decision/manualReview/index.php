@@ -6,10 +6,12 @@
     use Dotenv\Dotenv;
 
     // Load environment variables from .env file
+
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
     // Get database credentials from environment variables
+
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
@@ -18,9 +20,12 @@
     }
 
     // Perform query
+
     $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
     $panelinfo = mysqli_fetch_array($result);
+
     // Free result set
+
     mysqli_free_result($result);
 
     $panelname = $panelinfo['panelName'];
@@ -69,6 +74,8 @@
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
 
     } else {
+
         header("Location: /error/licenseInvalid");
+        
     }
 ?>

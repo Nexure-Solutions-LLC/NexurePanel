@@ -7,10 +7,18 @@
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     // When form submitted, check and create user session.
-    
+
+    if (isset($_POST['langPreference'])) {
+
+        $_SESSION["lang"] = $_POST['langPreference'];
+
+    }
+
     if (isset($_SESSION['caliid'])) {
+
         header("Location: /dashboard");
         exit;
+
     }
 
     if (isset($_POST['emailaddress'])) {
@@ -23,24 +31,36 @@
         // Check user is exist in the database
 
         $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '".md5($password)."'";
-        $result = mysqli_query($con, $query) or die(mysql_error());
+        $result = mysqli_query($con, $query) or die(mysqli_error());
         $rows = mysqli_num_rows($result);
 
         if ($rows == 1) {
 
             $_SESSION['caliid'] = $cali_id;
-
             header("Location: /dashboard");
 
         } else {
-            
+
             include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
             ob_start();
 
-            include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
-            
-            echo '<title>'.$orgshortname.'- Unfied Portal</title>';
+            if (isset($_SESSION["lang"])) {
+
+                if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
+
+                    $_SESSION["lang"] = 'en_US';
+
+                }
+                include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
+
+            } else {
+
+                include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+
+            }
+
+            echo '<title>'.$orgshortname.'- Unified Portal</title>';
 
             echo '
                 <section class="login-container">
@@ -67,7 +87,7 @@
                                             <p class="caliweb-login-sublink" style="font-weight:700; padding-top:0; margin-top:0;">'.$LANG_LOGIN_AUTH_ERROR_TITLE.'</p>
                                             <p class="caliweb-login-sublink" style="font-size:12px;">'.$LANG_LOGIN_AUTH_ERROR_TEXT.'</p>
                                         </div>
-                                        <hr>
+                                        <div class="caliweb-horizantal-spacer mt-5-per"></div>
                                         <div class="form-control" style="margin-bottom:0;">
                                             <div class="caliweb-two-grid must-be-grid">
                                                 <div class="text-left">
@@ -84,6 +104,7 @@
                         </div>
                     </div>
                 </section>
+          
                 <div class="caliweb-login-footer">
                     <div class="container caliweb-container">
                         <div class="caliweb-grid-2">
@@ -107,17 +128,18 @@
             
             include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php");
         }
+
     } else {
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
 <?php 
+
     session_start();
     
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
     ob_start();
-
-    include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+    
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
 
@@ -126,9 +148,9 @@
         The Page Title specified what page the user is on in 
         the browser tab and should be included for SEO
     -->
-        <title><?php echo $orgshortname; ?> - Unfied Portal</title>
+        <title><?php echo $orgshortname; ?> - Unified Portal</title>
     <!-- Unique Website Title Tag End -->
-        
+
         <section class="login-container">
             <div class="caliweb-login-box login-only">
                 <div class="container caliweb-container">
@@ -151,22 +173,22 @@
                                     <input type="password" class="form-input" name="password" id="password" placeholder="" />
                                 </div>
                                 <div class="form-control">
-                                    <?php 
+                                    <?php
                                         $loginModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
                                         $loginModulesLookupResult = mysqli_query($con, $loginModulesLookupQuery);
-                                    
+
                                         if (mysqli_num_rows($loginModulesLookupResult) > 0) {
                                             while ($loginModulesLookupRow = mysqli_fetch_assoc($loginModulesLookupResult)) {
                                                 $loginModulesName = $loginModulesLookupRow['moduleName'];
-                                    
+
                                                 if ($loginModulesName == "Cali OAuth") {
 
-                                                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php"); 
+                                                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php");
 
                                                 }
                                             }
                                         }
-                                    
+
                                     ?>
                                     <button class="caliweb-button primary" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?></button>
                                 </div>
@@ -191,7 +213,7 @@
             <div class="container caliweb-container">
                 <div class="caliweb-grid-2">
                     <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
-                    <!-- 
+                    <!--
                         THIS TEXT IS TO GIVE CREDIT TO THE AUTHORS AND REMOVING IT
                         MAY CAUSE YOUR LICENSE TO BE REVOKED.
                     -->
@@ -208,6 +230,9 @@
         </div>
 
 <?php 
+
         include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); 
+        
     }
+    
 ?>

@@ -6,7 +6,17 @@
     // When form submitted, insert values into the database.
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        
+        session_start();
+
+        if ($_POST['langPreference']) {
+
+            $_SESSION["lang"] = $_POST['langPreference'];
+            header("location:/registration/");
+            exit;
+
+        }
+
+
         $data = array(
             'secret' => "0x1097356228F6a429882375bC5974c5a9a2631Bb3",
             'response' => $_POST['h-captcha-response']
@@ -140,7 +150,8 @@
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
     ob_start();
-
+    // We cannot apply language pack here as we do not know
+    // current user state.
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
@@ -150,14 +161,14 @@
         The Page Title specified what page the user is on in
         the browser tab and should be included for SEO
     -->
-        <title><?php echo $orgshortname; ?> - Unfied Portal</title>
+        <title><?php echo $orgshortname; ?> - Unified Portal</title>
     <!-- Unique Website Title Tag End -->
 
         <section class="login-container">
             <div class="container caliweb-container bigscreens-are-strange" style="width:42%; margin-top:2%;">
                 <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
-                    <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Self Registration</span></h3>
-                    <p style="font-size:12px; margin-top:-2%;">Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.</p>
+                    <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700"> <?php echo $LANG_SELF_REGISTER_TITLE; ?></h3>
+                    <p style="font-size:12px; margin-top:-2%;"><?php echo $LANG_SELF_REGISTER_SUBTITLE; ?></p>
                 </div>
                 <div class="caliweb-login-box-body">
                     <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
@@ -185,7 +196,7 @@
                         </div>
                         <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between;">
                             <div class="form-control width-50">
-                                <p style="font-size:14px; padding:0; margin:0;">We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.</p>
+                                <p style="font-size:14px; padding:0; margin:0;"><?php echo $LANG_ID_DISCLAIMER; ?></p>
                             </div>
                             <div class="form-control width-25">
                                 <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>

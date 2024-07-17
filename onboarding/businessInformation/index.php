@@ -59,7 +59,7 @@
 
         if ($checkBusinessIndustryRow['count'] > 0) {
 
-            $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is runing a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
+            $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is running a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
             $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
 
             $userOwnerDeleteQuery = "DELETE FROM caliweb_ownershipinformation WHERE emailAddress = '$caliemail'";

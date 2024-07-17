@@ -1,4 +1,7 @@
 <?php
+
+    // TODO: Apply language pack here. Currently not high priority.
+
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';

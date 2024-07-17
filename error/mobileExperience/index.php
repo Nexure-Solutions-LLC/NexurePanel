@@ -7,7 +7,7 @@
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
 
-    echo '<title>'.$orgshortname.' - Under Review</title>';
+    echo '<title>'.$orgshortname.' - Mobile Experience</title>';
 
     echo '<section class="section" style="padding-top:10%; padding-left:15%;">
             <div class="container caliweb-container">

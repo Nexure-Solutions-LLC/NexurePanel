@@ -4,26 +4,24 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
-    if ($userrole == "Authorized User" || $userrole == "authorized user") {
-
-        header("location:/dashboard/customers/authorizedUserView");
-
-    } else if ($userrole == "Partner" || $userrole == "partner") {
-
-        header("location:/dashboard/partnerships");
-
-    } else if ($userrole == "Administrator" || $userrole == "administrator") {
-
-        header("location:/dashboard/administration");
-
+    $lowerrole = strtolower($userrole);
+    
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships");
+            break;
+        case "administrator":
+            header("location:/dashboard/administration");
+            break;
     }
 
     $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
     $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
     mysqli_free_result($businessAccountQuery);
-
     $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
-
     $accountnumber = $userinfo['accountNumber'];
     $truncatedAccountNumber = substr($accountnumber, -4);
     $customerStatus = $userinfo['accountStatus'];
