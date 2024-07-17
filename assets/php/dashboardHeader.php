@@ -4,8 +4,6 @@
 
     // Cali Panel Required and System Imports
 
-    //    require($_SERVER["DOCUMENT_ROOT"].'/lang/en_US.php');
-    // ^ removing this import by default - going to import later.
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -100,11 +98,15 @@
     // User Profile Variable Definitions
 
     $userrole = $userinfo['userrole'];
-//    $lang = $userinfo["lang"];
+
     if (isset($_SESSION["lang"])) {
+
         $lang = $_SESSION['lang'];
+
     } else {
+
         $lang = "en_US";
+
     }
 
     $fullname = $userinfo['legalName'];
@@ -366,7 +368,7 @@
 
         header("Location: /onboarding/decision/emailRiskTeam");
 
-    } else if ($accountStatus == "Under Review" && $accountStatusReason == "Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'notes' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.") {
+    } else if ($accountStatus == "Under Review" && $accountStatusReason == "Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.") {
 
         header("Location: /onboarding/decision/presentBranch");
 
