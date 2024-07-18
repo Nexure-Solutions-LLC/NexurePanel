@@ -161,6 +161,7 @@ $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email 
                                             while ($row = mysqli_fetch_assoc($result)) {
 
                                                 // This formats the date to MM/DD/YYYY HH:MM AM/PM
+                                                
                                                 $serviceStartDateUnformattedData = $row['serviceStartDate'];
                                                 $serviceEndDateUnformattedData = $row['serviceEndDate'];
                                                 $serviceStartDateUnformatted = new DateTime($serviceStartDateUnformattedData);
@@ -175,10 +176,10 @@ $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email 
                                                 echo '<td style="width:15%;">' . $serviceEndDateFormatted . '</td>';
                                                 echo '<td style="width:10%;">$ ' . $row['serviceCost'] . '</td>';
                                                 echo '<td style="width:10%;">' . $row['serviceStatus'] . '</td>';
-                                                echo '<td style="">
-                                                        <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                        <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/deleteService/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                        <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/editService/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
+                                                echo '<td style="display-flex align-center">
+                                                        <a href="/modules/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
+                                                        <a href="/dashboard/customers/serviceManagement/deleteServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link" style="margin-right:10px;">Delete</a>
+                                                        <a href="/dashboard/customers/serviceManagement/editServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link">Edit</a>
                                                     </td>';
                                                 echo '</tr>';
                                             }

@@ -24,45 +24,66 @@
 
     $accountnumber = $_GET['account_number'];
 
-    if (!isset($_SESSION['verification_code'])) {
-        header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
-    }
-
+   // if (!isset($_SESSION['verification_code'])) {
+       // header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
+    // }
 
 
     $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
 
-    if ($customerAccountInfo != NULL) {
+    if ($accountnumber == "") {
 
-        $legalname = $customerAccountInfo['legalName'];
-        $customerSystemID = $customerAccountInfo['id'];
-        $mobilenumber = $customerAccountInfo['mobileNumber'];
-        $customerStatus = $customerAccountInfo['accountStatus'];
-        $userrole = $customerAccountInfo['userrole'];
-        $dbaccountnumber = $customerAccountInfo['accountNumber'];
-        $statusreason = $customerAccountInfo['statusReason'];
-        $accountnotes = $customerAccountInfo['accountNotes'];
+        header("location: /dashboard/administration/accounts");
 
-        if ($accountnumber != $dbaccountnumber) {
-            header("location: /dashboard/administration/accounts");
-        } else {
-            $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE id = '".$customerSystemID."'");
-            $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-            mysqli_free_result($businessAccountQuery);
+    } else {
 
-            if ($businessAccountInfo != NULL) {
-                $businessname = $businessAccountInfo['businessName'];
-                $businessindustry = $businessAccountInfo['businessIndustry'];
+        $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
+        $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
+        mysqli_free_result($customerAccountQuery);
 
-                $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE id = '".$customerSystemID."'");
-                $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
-                mysqli_free_result($websiteAccountQuery);
+        if ($customerAccountInfo != NULL) {
 
-                if ($websiteAccountInfo) {
-                    $websitedomain = $websiteAccountInfo['domainName'];
+            $legalname = $customerAccountInfo['legalName'];
+            $customeremail = $customerAccountInfo['email'];
+            $customerSystemID = $customerAccountInfo['id'];
+            $mobilenumber = $customerAccountInfo['mobileNumber'];
+            $customerStatus = $customerAccountInfo['accountStatus'];
+            $userrole = $customerAccountInfo['userrole'];
+            $dbaccountnumber = $customerAccountInfo['accountNumber'];
+            $statusreason = $customerAccountInfo['statusReason'];
+            $accountnotes = $customerAccountInfo['accountNotes'];
+
+            if ($accountnumber != $dbaccountnumber) {
+
+                header("location: /dashboard/administration/accounts");
+
+            } else {
+
+                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$customeremail."'");
+                $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
+                mysqli_free_result($businessAccountQuery);
+
+                if ($businessAccountInfo) {
+
+                    $businessname = $businessAccountInfo['businessName'];
+                    $businessindustry = $businessAccountInfo['businessIndustry'];
+
+                    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".$customeremail."'");
+                    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
+                    mysqli_free_result($websiteAccountQuery);
+
+
+                    if ($websiteAccountInfo) {
+                        $websitedomain = $websiteAccountInfo['domainName'];
+                    } else {
+                        $websitedomain = "Not Assigned";
+                    }
+
                 } else {
+                    $businessname = $legalname;
+                    $businessindustry = "Not Assigned";
                     $websitedomain = "Not Assigned";
                 }
 
@@ -173,12 +194,14 @@
 
 <?php
 
-            } else {
-                header("location: /dashboard/administration/accounts");
             }
+
+        } else {
+
+            header("location: /dashboard/administration/accounts");
+    
         }
-    } else {
-        header("location: /dashboard/administration/accounts");
+
     }
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');

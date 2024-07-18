@@ -222,9 +222,9 @@
                                                         echo '<td style="width:10%;">$ ' . $row['serviceCost'] . '</td>';
                                                         echo '<td style="width:10%;">' . $row['serviceStatus'] . '</td>';
                                                         echo '<td style="display-flex align-center">
-                                                                <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                                <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/deleteService/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                                <a href="/dashboard/administration/accounts/manageAccount/servicesManagement/'.$row['linkedServiceName'].'/editService/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
+                                                                <a href="/modules/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
+                                                                <a href="/dashboard/administration/accounts/deleteServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link" style="margin-right:10px;">Delete</a>
+                                                                <a href="/dashboard/administration/accounts/editServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link">Edit</a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
