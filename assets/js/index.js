@@ -5,7 +5,6 @@
 
 window.addEventListener("load", function() {const preloader = document.querySelector(".preloader");setTimeout(function() {preloader.classList.add("loaded");}, 1);});
 
-
 // ====================== Dashboard Calendar Plugin ======================
 
 document.addEventListener('DOMContentLoaded', function() {
