@@ -256,11 +256,11 @@
 
                 } catch (\Stripe\Exception\ApiErrorException $e) {
 
-                    echo $e;
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
     
                 } catch (Exception $e) {
 
-                    echo $e;
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
                 }            
 
