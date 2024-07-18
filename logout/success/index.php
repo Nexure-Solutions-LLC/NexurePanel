@@ -1,6 +1,10 @@
 <?php
     session_start();
-    
+
+    if (isset($_POST['langPreference'])) {
+        $_SESSION["lang"] = $_POST["langPreference"];
+    }
+
     if (isset($_SESSION["lang"])) {
 
         if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {

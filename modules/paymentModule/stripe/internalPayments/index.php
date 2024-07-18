@@ -65,7 +65,7 @@
 
                 try {
 
-                    // Run the Charge to the card on file.
+                    // Run the charge to the card on file.
 
                     $customer = \Stripe\Customer::retrieve($stripeID);
                     $defaultSource = $customer->default_source;
@@ -177,6 +177,92 @@
                     echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
                 }
+
+            } else if (($_SESSION['pagetitle']) == "Order Services as Staff") {
+
+                $customerprofilequery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'");
+                $customerprofileresult = mysqli_fetch_array($customerprofilequery);
+                mysqli_free_result($customerprofilequery);
+
+                $customerstripeID = $customerprofileresult['stripeID'];
+
+                \Stripe\Stripe::setApiKey($apikeysecret);
+
+                function formatAmountForStripe($amount) {
+
+                    return intval($amount * 100);
+
+                }
+
+                try {
+
+                    // Run the charge to the card on file for the ordered service.
+
+                    $customer = \Stripe\Customer::retrieve($customerstripeID);
+                    $defaultSource = $customer->default_source;
+
+                    $dollarAmount = $amountPrice;
+                    $stripeAmount = formatAmountForStripe($dollarAmount);
+
+                    $paymentIntent = \Stripe\PaymentIntent::create([
+                        'amount' => $stripeAmount,
+                        'currency' => 'usd',
+                        'customer' => $customerstripeID,
+                        'payment_method' => $defaultSource,
+                        'off_session' => true,
+                        'confirm' => true,
+                    ]);
+
+                    // Insert order into the database
+
+                    $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','')";
+                    $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+
+                    if ($orderInsertResult) {
+
+                        $purchasableTypeLower = strtolower($purchasableType);
+
+                        switch ($purchasableTypeLower) {
+                            case "web development":
+                                echo '<script type="text/javascript">window.location = "/modules/webDesignModule/deploy"</script>';
+                                break;
+                            case "web hosting":
+                                echo '<script type="text/javascript">window.location = "/modules/webHostModule/deploy"</script>';
+                                break;
+                            case "cloud computing":
+                                echo '<script type="text/javascript">window.location = "/modules/cloudComputeModule/deploy"</script>';
+                                break;
+                            case "seo":
+                                echo '<script type="text/javascript">window.location = "/modules/seoModule/deploy"</script>';
+                                break;
+                            case "social media management":
+                                echo '<script type="text/javascript">window.location = "/modules/seoModule/deploy"</script>';
+                                break;
+                            case "graphic design":
+                                echo '<script type="text/javascript">window.location = "/modules/seoModule/deploy"</script>';
+                                break;
+                            case "merchant proccessing":
+                                echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($paymentProccessorName).'/paymentProccessing/merchantSignup"</script>';
+                                break;
+                            
+                            // Add more depending on the business you have.
+                        }
+
+                    } else {
+
+                        echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                    }
+
+                } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                    echo $e;
+    
+                } catch (Exception $e) {
+
+                    echo $e;
+
+                }            
 
             } else {
 

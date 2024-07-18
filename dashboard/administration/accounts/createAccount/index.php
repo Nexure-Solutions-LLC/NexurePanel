@@ -267,6 +267,19 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
+    $lowerrole = strtolower($userrole);
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships");
+            break;
+        case "customer":
+            header("location:/dashboard/customers");
+            break;
+    }
+
 ?>
 
     <section class="section first-dashboard-area-cards">

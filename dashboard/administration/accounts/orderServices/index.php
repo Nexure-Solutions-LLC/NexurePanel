@@ -1,17 +1,17 @@
 <?php
 
+    unset($_SESSION['pagetitle']);
     $pagetitle = "Services";
     $pagesubtitle = "Create Order";
+    $_SESSION['pagetitle'] = "Order Services as Staff";
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     $accountnumber = $_GET['account_number'];
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
-
     // Get the menu option listing for the services.
 
-    $sql = "SELECT serviceOrProductName FROM caliweb_available_purchasables WHERE serviceOrProductStatus = 'Active'";
+    $sql = "SELECT * FROM caliweb_available_purchasables WHERE serviceOrProductStatus = 'Active'";
 
     $result = $con->query($sql);
 
@@ -21,7 +21,7 @@
 
         while($row = $result->fetch_assoc()) {
 
-            $options .= '<option>' . htmlspecialchars($row['serviceOrProductName']) . '</option>';
+            $options = '<option>' . htmlspecialchars($row['serviceOrProductName']) . '</option>';
             $serviceOrProductPrice = $row['serviceOrProductPrice'];
 
         }
@@ -50,17 +50,63 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        // Service Info Feilds
+
+        $purchasableItem = stripslashes($_REQUEST['purchasable']);
+        $purchasableType = stripslashes($_REQUEST['type']);
+        $serviceStatus = stripslashes($_REQUEST['service_status']);
+        $paymentMethodFormFeild = stripslashes($_REQUEST['payment_method']);
+        $amountPrice = stripslashes($_REQUEST['amount']);
+        $endDate = stripslashes($_REQUEST['end_date']);
+
         // System Feilds
 
         $orderdate = date("Y-m-d H:i:s");
-        
+        $accountnumber = $accountnumber;
+
+        $proccessorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
+        $proccessorInfo = mysqli_fetch_array($proccessorResult);
+        mysqli_free_result($proccessorResult);
+
+        $paymentProccessorName = $proccessorInfo['processorName'];
+
+        if ($paymentProccessorName == "Stripe") {
+
+            require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
+
+        }
 
     } else {
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
-?>
+    $lowerrole = strtolower($userrole);
+    switch ($lowerrole) {
+        case "authorized user":
+            header("location:/dashboard/customers/authorizedUserView");
+            break;
+        case "partner":
+            header("location:/dashboard/partnerships");
+            break;
+        case "customer":
+            header("location:/dashboard/customers");
+            break;
+    }
 
+    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+
+?>
+    <style>
+        input[type=number] {
+            -moz-appearance:textfield;
+        }
+
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
     <section class="section first-dashboard-area-cards">
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
@@ -93,15 +139,28 @@
                                     <div class="caliweb-grid caliweb-two-grid" style="grid-row-gap:0px !important; grid-column-gap:100px !important; margin-bottom:4%;">
                                         <div class="form-left-side" style="width:80%;">
                                             <div class="form-control">
-                                                <label for="accountstatus">Product or Service</label>
-                                                <select type="text" name="accountstatus" id="accountstatus" class="form-input">
+                                                <label for="purchasable">Purchasable Item</label>
+                                                <select type="text" name="purchasable" id="purchasable" class="form-input">
                                                     <option>Please choose an option</option>
                                                     <?php echo $options; ?>
                                                 </select>
                                             </div>
                                             <div class="form-control" style="margin-top:20px;">
-                                                <label for="accountstatus">Status</label>
-                                                <select type="text" name="accountstatus" id="accountstatus" class="form-input">
+                                                <label for="type">Item Type</label>
+                                                <select type="text" name="type" id="type" class="form-input">
+                                                    <option>Please choose an option</option>
+                                                    <option>Web Development</option>
+                                                    <option>Web Hosting</option>
+                                                    <option>Merchant Proccessing</option>
+                                                    <option>Cloud Computing</option>
+                                                    <option>SEO</option>
+                                                    <option>Social Media Management</option>
+                                                    <option>Graphic Design</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-control" style="margin-top:20px;">
+                                                <label for="service_status">Item Status</label>
+                                                <select type="text" name="service_status" id="service_status" class="form-input">
                                                     <option>Please choose an option</option>
                                                     <option>Active</option>
                                                     <option>Suspended</option>
@@ -132,12 +191,12 @@
                                                 </select>
                                             </div>
                                             <div class="form-control" style="margin-top:20px;">
-                                                <label for="legalname">Amount</label>
-                                                <input type="text" name="legalname" id="legalname" class="form-input" placeholder="0.00" value="<?php echo $serviceOrProductPrice; ?>" required="" />
+                                                <label for="amount">Amount</label>
+                                                <input type="number" min="1" step="any" name="amount" id="amount" class="form-input" placeholder="0.00" inputmode="numeric"  onwheel="return false"  value="<?php echo $serviceOrProductPrice; ?>" required="" />
                                             </div>
                                             <div class="form-control" style="margin-top:20px;">
-                                                <label for="legalname">Service Renewal/End Date</label>
-                                                <input type="date" name="legalname" id="legalname" class="form-input" />
+                                                <label for="end_date">Period Closure Date</label>
+                                                <input type="date" name="end_date" id="end_date" class="form-input" />
                                             </div>
                                         </div>
                                     </div>
