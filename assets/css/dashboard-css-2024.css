@@ -440,6 +440,18 @@ html[data-theme='dark'] body {
     background-color: #333;
 }
 
+.dark-mode .sidebar-link:hover {
+    background-color: #1d1d1d;
+    border-radius: 6px;
+    border:1px solid #333;
+}
+
+.dark-mode .sidebar-link.active {
+    background-color: #1d1d1d;
+    border-radius: 6px;
+    border:1px solid #333;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -832,12 +844,16 @@ textarea.swal2-input {
 /* =================== Cali Web Design System Styling Styling =================== */
 
 .setttings-shifted-spacing {
-    -ms-grid-columns: .3fr 1.7fr;
-    grid-template-columns: .3fr 1.7fr;
+    -ms-grid-columns: .4fr 1.4fr;
+    grid-template-columns: .4fr 1.4fr;
 }
 
 .caliweb-sidebar {
-    height: 80vh;
+    height:100%;
+}
+
+.sidebar-card {
+    height: 100vh;
 }
 
 .sidebar-list-linked {
@@ -849,6 +865,7 @@ textarea.swal2-input {
 .sidebar-link {
     padding:8px 10px;
     border:1px solid transparent;
+    margin-bottom: 5px;
 }
 
 .sidebar-link:hover {

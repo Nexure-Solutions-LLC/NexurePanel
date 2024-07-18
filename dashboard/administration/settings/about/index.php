@@ -25,10 +25,11 @@
         <div class="container width-98">
             <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
                 <div class="caliweb-settings-sidebar">
-                    <div class="caliweb-card dashboard-card">
+                    <div class="caliweb-card dashboard-card sidebar-card">
                         <aside class="caliweb-sidebar">
                             <ul class="sidebar-list-linked">
                                 <li class="sidebar-link"><a href="/dashboard/administration/settings/" class="sidebar-link-a">General</a></li>
+                                <li class="sidebar-link"><a href="/dashboard/administration/settings/ipBaning" class="sidebar-link-a">IP Baning</a></li>
                                 <li class="sidebar-link"><a href="/license" class="sidebar-link-a">Licencing</a></li>
                                 <li class="sidebar-link"><a href="/dashboard/administration/settings/updates" class="sidebar-link-a">Updates</a></li>
                                 <li class="sidebar-link active"><a href="/dashboard/administration/settings/about" class="sidebar-link-a">About Cali Panel</a></li>
@@ -44,9 +45,9 @@
                         </div>
                         <div style="padding-left:5px; padding-right:5px; width:70%;">
                             <div>
-                                <h3 style="font-size:20px; margin-top:20px;">Cali Web Design Panel 20.0.1 Web Version</h3>
-                                <p style="margin-top:20px; font-size:14px;">This software was created by Cali Web Design Corporation. This software allows the ability to run your business from one place. The software is equipt with OAuth, CRM, Payroll, Time Keeping, Merchant Proccessing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can remove and add features or develop your own features as needed for your type of business.</p>
-                                <p style="margin-top:20px; font-size:14px; margin-bottom:20px;">THE BASE CODE OF THIS SOFTWARE IS OPEN SOURCE AND FREE TO USE UNDER THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL). THE AUTHOR OF DERIVATIVE WORKS OF THIS SOFTWRE MUST NOTIFY CALI WEB DESIGN OF CHANGES. CERTAIN MODULES AND PAID VERSIONS OF THIS SOFTWARE WE DEVELOP ARE NOT OPEN SOURCE.</p>
+                                <h3 style="font-size:20px; margin-top:30px;"><?php echo $PANEL_ABOUT_TITLE_PRODUCT_NAME ?></h3>
+                                <p style="margin-top:20px; font-size:14px;"><?php echo $PANEL_ABOUT_INFO ?></p>
+                                <p style="margin-top:20px; font-size:14px; margin-bottom:20px;"><?php echo $PANEL_ABOUT_LICENSE_DISCLAIMER ?></p>
                             </div>
                             <div>
                                 <br>
@@ -66,18 +67,6 @@
 
                                 ?>
                                 <p style="margin-top:10px; font-size:14px; margin-bottom:20px;">Languages: HTML, CSS, JS, PHP and MySQL</p>
-                            </div>
-                            <div>
-                                <br>
-                                    <div class="horizantal-line"></div>
-                                <br>
-                            </div>
-                            <div class="custom-phpinfo">
-                                <?php
-                                    
-                                  //  include($_SERVER["DOCUMENT_ROOT"].'/dashboard/administration/settings/about/phpInfo/index.php');
-                                    
-                                ?>
                             </div>
                         </div>
                     </div>

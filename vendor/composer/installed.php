@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'ea0465cedba542ce6261d3820cba71e073e2a693',
+        'reference' => 'a4fd47f32d5468417d5b017b8c2f824ff28ae42e',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'ea0465cedba542ce6261d3820cba71e073e2a693',
+            'reference' => 'a4fd47f32d5468417d5b017b8c2f824ff28ae42e',
             'dev_requirement' => false,
         ),
         'authorizenet/authorizenet' => array(
@@ -188,6 +188,15 @@
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),
             'reference' => '4b18b21a5527a3d5ffdac2fd35d3ab25a9597654',
+            'dev_requirement' => false,
+        ),
+        'mustache/mustache' => array(
+            'pretty_version' => 'v2.14.2',
+            'version' => '2.14.2.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../mustache/mustache',
+            'aliases' => array(),
+            'reference' => 'e62b7c3849d22ec55f3ec425507bf7968193a6cb',
             'dev_requirement' => false,
         ),
         'paragonie/constant_time_encoding' => array(
