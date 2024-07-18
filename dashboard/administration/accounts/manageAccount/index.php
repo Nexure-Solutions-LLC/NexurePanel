@@ -214,6 +214,11 @@
                                                         $serviceStartDateFormatted = $serviceStartDateUnformatted->format('m/d/Y g:i A');
                                                         $serviceEndDateFormatted = $serviceEndDateUnformatted->format('m/d/Y g:i A');
 
+                                                        //Construct URLs
+
+                                                        $urlAccountNumber = $row['accountNumber'];
+                                                        $urlServiceName = urlencode($row['serviceName']);
+
                                                         echo '<tr>';
                                                         echo '<td style="width:20%;">' . $row['serviceName'] . '</td>';
                                                         echo '<td style="width:15%;">' . $row['serviceType'] . '</td>';
@@ -223,8 +228,8 @@
                                                         echo '<td style="width:10%;">' . $row['serviceStatus'] . '</td>';
                                                         echo '<td style="display-flex align-center">
                                                                 <a href="/modules/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                                <a href="/dashboard/administration/accounts/deleteServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                                <a href="/dashboard/administration/accounts/editServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link">Edit</a>
+                                                                <a href="/dashboard/administration/accounts/deleteServices/?account_number='.$urlAccountNumber.'&service_name='.$urlServiceName.'" class="careers-link" style="margin-right:10px;">Delete</a>
+                                                                <a href="/dashboard/administration/accounts/editServices/?account_number='.$urlAccountNumber.'&service_name='.$urlServiceName.'" class="careers-link">Edit</a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
@@ -248,7 +253,7 @@
                                             <p class="no-padding">Cases</p>
                                         </div>
                                         <div class="display-flex align-center">
-                                            <a href="/dashboard/administration/accounts/createCase/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Create Case</a>
+                                            <a href="/dashboard/administration/cases/createCase/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Create Case</a>
                                         </div>
                                     </div>
                                 </div>
@@ -295,9 +300,9 @@
                                                         echo '<td style="width:15%;">' . $row['assignedAgent'] . '</td>';
                                                         echo '<td style="width:10%;">' . $row['caseStatus'] . '</td>';
                                                         echo '<td style="display-flex align-center">
-                                                                <a href="/dashboard/administration/accounts/manageAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                                <a href="/dashboard/administration/accounts/deleteAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                                <a href="/dashboard/administration/accounts/editAccount/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
+                                                                <a href="/dashboard/administration/cases/viewCases/?account_number='.$row['accountNumber'].'&case_number='.$row['caseNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
+                                                                <a href="/dashboard/administration/cases/deleteCase/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
+                                                                <a href="/dashboard/administration/cases/editCase/?account_number='.$row['accountNumber'].'&case_number='.$row['caseNumber'].'" class="careers-link">Edit</a>
                                                             </td>';
                                                         echo '</tr>';
                                                     }
