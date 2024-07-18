@@ -1,86 +1,86 @@
 <?php
-session_start();
+    session_start();
 
-$connectedPaymentsResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE moduleName = 'Connected Payments'");
-$connectedPaymentsInfo = mysqli_fetch_array($connectedPaymentsResult);
-mysqli_free_result($connectedPaymentsResult);
+    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
-$connectedPaymentsStatus = $connectedPaymentsInfo['status'];
+    $caliemail = $_SESSION['caliid'];
 
-if ($connectedPaymentsStatus != "Active" || $connectedPaymentsStatus == NULL || $connectedPaymentsStatus == "") {
-    echo 'The Conencted Payments Module is not enabled on this panel install. Please enable it to allow customers to take payments on your businesses behalf.';
-}
+    use Stripe\Stripe;
+    use Stripe\Account;
+    use Stripe\AccountLink;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $business_name = mysqli_real_escape_string($con, $_POST['business_name']);
-    $business_address = mysqli_real_escape_string($con, $_POST['business_address']);
-    $business_phone = mysqli_real_escape_string($con, $_POST['business_phone']);
-    $business_website = mysqli_real_escape_string($con, $_POST['business_website']);
-    $business_description = mysqli_real_escape_string($con, $_POST['business_description']);
-    $revenue = mysqli_real_escape_string($con, $_POST['revenue']);
-    $industry = mysqli_real_escape_string($con, $_POST['industry']);
-    $EIN_SSN = mysqli_real_escape_string($con, $_POST['EIN_SSN']);
-    $home_address = mysqli_real_escape_string($con, $_POST['home_address']);
-    $full_legal_name = mysqli_real_escape_string($con, $_POST['full_legal_name']);
-    $ownership_amount = mysqli_real_escape_string($con, $_POST['ownership_amount']);
+    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userinfo = mysqli_fetch_array($userprofileresult);
+    mysqli_free_result($userprofileresult);
 
-    $insert_query = "INSERT INTO merchant_processing_info (user_id, business_name, business_address, business_phone, business_website, business_description, revenue, industry, EIN_SSN, home_address, full_legal_name, ownership_amount, created_at) 
-                     VALUES ('$user_id', '$business_name', '$business_address', '$business_phone', '$business_website', '$business_description', '$revenue', '$industry', '$EIN_SSN', '$home_address', '$full_legal_name', '$ownership_amount', NOW())";
+    $account_number = $userinfo['accountNumber'];
 
-    if (mysqli_query($con, $insert_query)) {
-        echo '';
-        exit();
-    } else {
-        echo '<script>alert("Error: ' . mysqli_error($con) . '"); window.location.href = "/dashboard";</script>';
-        exit();
+    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
+    $paymentgateway = mysqli_fetch_array($result);
+
+    // Free payment proccessor check result set
+
+    mysqli_free_result($result);
+
+    $apikeysecret = $paymentgateway['secretKey'];
+    $apikeypublic = $paymentgateway['publicKey'];
+    $paymentgatewaystatus = $paymentgateway['status'];
+    $paymentProccessorName = $paymentgateway['processorName'];
+
+    // Checks type of payment proccessor.
+
+    if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+
+        if ($paymentProccessorName == "Stripe") {
+
+            Stripe::setApiKey($apikeysecret);
+
+            try {
+                
+                $account = Account::create([
+                    'type' => 'custom',
+                    'country' => 'US',
+                    'email' => $caliemail,
+                    'capabilities' => [
+                        'card_payments' => ['requested' => true],
+                        'transfers' => ['requested' => true],
+                    ],
+                    'business_type' => 'individual',
+                    'business_profile' => [
+                        'url' => 'https://merchantwebsite.com',
+                    ],
+                    'tos_acceptance' => [
+                        'date' => time(),
+                        'ip' => $_SERVER['REMOTE_ADDR'],
+                    ],
+                ]);
+            
+                $_SESSION['account_id'] = $account->id;
+            
+                $accountLink = AccountLink::create([
+                    'account' => $account->id,
+                    'refresh_url' => 'https://us-east.cali-cloud-compute-135-148-28-43.caliwebdesignservices.com/modules/paymentModule/stripe/paymentProccessing/merchantSignupFlow/',
+                    'return_url' => 'https://us-east.cali-cloud-compute-135-148-28-43.caliwebdesignservices.com/modules/paymentModule/stripe/paymentProccessing/?account_number='.$account_number.'',
+                    'type' => 'account_onboarding',
+                ]);
+            
+                header('Location: ' . $accountLink->url);
+                exit;
+            
+            } catch (Exception $e) {
+
+                echo 'Error: ' . $e->getMessage();
+
+            }
+
+
+        } else {
+
+            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+        }
+
     }
-}
-
-echo '<title>'.$orgshortname.' - Enable Merchant Processing</title>';
-echo '<style></style>';
-
-echo '<section class="section">
-        <div class="container">
-            <h3>Enable Merchant Processing</h3>
-            <form method="POST" action="/enable_merchant_processing.php">
-                <label>Business Name:</label><br>
-                <input type="text" name="business_name" required><br><br>
-                
-                <label>Business Address:</label><br>
-                <input type="text" name="business_address" required><br><br>
-                
-                <label>Business Phone:</label><br>
-                <input type="tel" name="business_phone" required><br><br>
-                
-                <label>Business Website:</label><br>
-                <input type="url" name="business_website" required><br><br>
-                
-                <label>Business Description:</label><br>
-                <textarea name="business_description" rows="4" required></textarea><br><br>
-                
-                <label>Annual Revenue:</label><br>
-                <input type="text" name="revenue" required><br><br>
-                
-                <label>Industry:</label><br>
-                <input type="text" name="industry" required><br><br>
-                
-                <label>EIN/SSN:</label><br>
-                <input type="text" name="EIN_SSN" required><br><br>
-                
-                <label>Home Address:</label><br>
-                <input type="text" name="home_address" required><br><br>
-                
-                <label>Full Legal Name:</label><br>
-                <input type="text" name="full_legal_name" required><br><br>
-                
-                <label>Ownership Amount:</label><br>
-                <input type="text" name="ownership_amount" required><br><br>
-                
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-    </section>';
-
-include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php");
 
 ?>

@@ -31,11 +31,10 @@
 
             if ($result->num_rows > 0) {
 
-                while($row = $result->fetch_assoc()) {
-
-                    $options = '<option>' . htmlspecialchars($row['serviceOrProductName']) . '</option>';
-                    $serviceOrProductPrice = $row['serviceOrProductPrice'];
-
+                while ($row = $result->fetch_assoc()) {
+                    $productName = htmlspecialchars($row['serviceOrProductName']);
+                    $productPrice = htmlspecialchars($row['serviceOrProductPrice']);
+                    $options .= '<option data-price="' . $productPrice . '">' . $productName . '</option>';
                 }
 
             } else {
@@ -152,7 +151,7 @@
                                                     <div class="form-left-side" style="width:80%;">
                                                         <div class="form-control">
                                                             <label for="purchasable">Purchasable Item</label>
-                                                            <select type="text" name="purchasable" id="purchasable" class="form-input">
+                                                            <select type="text" name="purchasable" id="purchasable" onchange="updateAmount()" class="form-input">
                                                                 <option>Please choose an option</option>
                                                                 <?php echo $options; ?>
                                                             </select>
@@ -204,7 +203,7 @@
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
                                                             <label for="amount">Amount</label>
-                                                            <input type="number" min="1" step="any" name="amount" id="amount" class="form-input" placeholder="0.00" inputmode="numeric"  onwheel="return false"  value="<?php echo $serviceOrProductPrice; ?>" required="" />
+                                                            <input type="number" min="1" step="any" name="amount" id="amount" class="form-input" placeholder="0.00" inputmode="numeric"  onwheel="return false" required="" />
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
                                                             <label for="end_date">Period Closure Date</label>
@@ -220,6 +219,20 @@
                         </div>
                     </div>
                 </section>
+
+                <script>
+
+                    function updateAmount() {
+                       
+                        var serviceSelect = document.getElementById('purchasable');
+                        var amountInput = document.getElementById('amount');
+                        var selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+                        var price = selectedOption.getAttribute('data-price');
+                        amountInput.value = price;
+                        
+                    }
+
+                </script>
 
 <?php
 

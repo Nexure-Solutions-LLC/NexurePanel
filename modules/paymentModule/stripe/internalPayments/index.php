@@ -215,125 +215,114 @@
 
                     $purchasableTypeLower = strtolower($purchasableType);
 
-                    switch ($purchasableTypeLower) {
-                        case "web development":
+                    if ($purchasableTypeLower == "web development") {
+                       
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','webDesignModule')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
 
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','webDesignModule')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+                        if ($orderInsertResult) {
 
-                            if ($orderInsertResult) {
+                            echo '<script type="text/javascript">window.location = "/modules/webDesignModule/deploy"</script>';
 
-                                echo '<script type="text/javascript">window.location = "/modules/webDesignModule/deploy"</script>';
-                                break;
+                        } else {
 
-                            } else {
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+                        }
 
-                            }
+                    } else if ($purchasableTypeLower == "web hosting") {
 
-                        case "web hosting":
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','webHostModule')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
 
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','webHostModule')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+                        if ($orderInsertResult) {
 
-                            if ($orderInsertResult) {
+                            echo '<script type="text/javascript">window.location = "/modules/webHostModule/deploy"</script>';
 
-                                echo '<script type="text/javascript">window.location = "/modules/webHostModule/deploy"</script>';
-                                break;
+                        } else {
 
-                            } else {
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                            }
-
-                        case "cloud computing":
-
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','cloudComputeModule')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                            if ($orderInsertResult) {
-
-                                echo '<script type="text/javascript">window.location = "/modules/cloudComputeModule/deploy"</script>';
-                                break;
-
-                            } else {
-
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                            }
-
-                        case "seo":
-
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','seoModule')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                            if ($orderInsertResult) {
-
-                                echo '<script type="text/javascript">window.location = "/modules/seoModule/deploy"</script>';
-                                break;
-
-                            } else {
-
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                            }
-
-                        case "social media management":
-
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','socialMediaModule')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                            if ($orderInsertResult) {
-
-                                echo '<script type="text/javascript">window.location = "/modules/socialMediaModule/deploy"</script>';
-                                break;
-
-                            } else {
-
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                            }
-
-                        case "graphic design":
-
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','graphicDesignModule')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                            if ($orderInsertResult) {
-
-                                echo '<script type="text/javascript">window.location = "/modules/graphicDesignModule/deploy"</script>';
-                                break;
-
-                            } else {
-
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                            }
-
-                        case "merchant proccessing":
-
-                            $lowerPaymentProccessorName = strtolower(paymentProccessorName);
-
-                            $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','paymentModule/'$lowerPaymentProccessorName'/paymentProccessing')";
-                            $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                            if ($orderInsertResult) {
-
-                                echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($paymentProccessorName).'/paymentProccessing/merchantSignupFlow"</script>';
-                                break;
-
-                            } else {
-
-                                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                            }
+                        }
                         
-                        // Add more depending on the business you have.
-                    }
+                    } else if ($purchasableTypeLower == "cloud computing") {
 
-                    
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','cloudComputeModule')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+
+                        if ($orderInsertResult) {
+
+                            echo '<script type="text/javascript">window.location = "/modules/cloudComputeModule/deploy"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                    } else if ($purchasableTypeLower == "seo") {
+
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','seoModule')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+
+                        if ($orderInsertResult) {
+
+                            echo '<script type="text/javascript">window.location = "/modules/seoModule/deploy"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                    } else if ($purchasableTypeLower == "social media management") {
+
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','socialMediaModule')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+
+                        if ($orderInsertResult) {
+
+                            echo '<script type="text/javascript">window.location = "/modules/socialMediaModule/deploy"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                    } else if ($purchasableTypeLower == "graphic design") {
+
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','graphicDesignModule')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+
+                        if ($orderInsertResult) {
+
+                            echo '<script type="text/javascript">window.location = "/modules/graphicDesignModule/deploy"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                    } else if ($purchasableTypeLower == "merchant proccessing") {
+
+                        $lowerPaymentProccessorName = strtolower($paymentProccessorName);
+
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','paymentModule/$lowerPaymentProccessorName/paymentProccessing')";
+                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
+
+                        if ($orderInsertResult) {
+
+                            echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($paymentProccessorName).'/paymentProccessing/merchantSignupFlow"</script>';
+
+                        } else {
+
+                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                        }
+
+                    }
 
                 } catch (\Stripe\Exception\ApiErrorException $e) {
 
