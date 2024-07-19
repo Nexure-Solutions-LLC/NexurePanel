@@ -1,6 +1,10 @@
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
 <?php 
 
+    $verificationCode = rand(100000, 999999);
+
+    $_SESSION['verification_code'] = $verificationCode;
+
     session_start();
     
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
