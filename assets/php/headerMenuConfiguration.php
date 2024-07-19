@@ -395,6 +395,15 @@
 
             ';
 
+        } else if ($pagetitle == "Account Management" && $pagesubtitle == "Account Management - General") {
+
+            echo '
+                <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Profile Management</p>
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links active"><a href="/dashboard" class="nav-links-clickable">Dashboard</a></li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
         } else {
 
             // Fall back menu options so that the header does not break.

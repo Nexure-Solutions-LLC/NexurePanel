@@ -18,9 +18,12 @@ if ($accountnumber == "") {
     $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
+
     if (!$customerAccountInfo) {
+
         header("location: /dashboard/administration/accounts");
         exit();
+
     }
 
     $sql = "SELECT * FROM caliweb_notetypes";
@@ -32,9 +35,11 @@ if ($accountnumber == "") {
     if ($result->num_rows > 0) {
 
         while ($row = $result->fetch_assoc()) {
+
             $type = htmlspecialchars($row['type']);
             $preset = htmlspecialchars($row['preset']);
             $options .= '<option data-preset="' . $preset . '">' . $type . '</option>';
+
         }
 
     } else {
@@ -50,8 +55,11 @@ if ($accountnumber == "") {
         // When form submitted, insert values into the database.
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
             include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+
             // unfinished - posting the notes to a database
+
             $notetype = mysqli_real_escape_string($con, $_POST["type"]);
             $content = mysqli_real_escape_string($con, $_POST["preset"]);
             $caliemail = mysqli_real_escape_string($con, $_SESSION["caliid"]);
@@ -62,11 +70,13 @@ if ($accountnumber == "") {
 
             header("location:/dashboard/administration/accounts/manageAccount?account_number=" . $accountnumber);
             exit;
+
         } else {
 
             include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
             $lowerrole = strtolower($userrole);
+            
             switch ($lowerrole) {
                 case "authorized user":
                     header("location:/dashboard/customers/authorizedUserView");
@@ -82,6 +92,7 @@ if ($accountnumber == "") {
             echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
             ?>
+
             <style>
                 input[type=number] {
                     -moz-appearance:textfield;
@@ -97,6 +108,7 @@ if ($accountnumber == "") {
                     resize: none;
                 }
             </style>
+
             <section class="section first-dashboard-area-cards">
                 <div class="container width-98">
                     <div class="caliweb-one-grid special-caliweb-spacing">
@@ -110,7 +122,7 @@ if ($accountnumber == "") {
                                             </div>
                                             <div>
                                                 <p class="no-padding font-14px">Accounts</p>
-                                                <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">Write Account Notice</h4>
+                                                <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">Place Account Notice</h4>
                                             </div>
                                         </div>
                                         <div>
@@ -123,7 +135,7 @@ if ($accountnumber == "") {
                                 <div class="card-body">
                                     <div class="fillable-section-holder" style="margin-top:-3% !important;">
                                         <div class="fillable-header">
-                                            <p class="fillable-text">Basic Information</p>
+                                            <p class="fillable-text">Notice Information</p>
                                         </div>
                                         <div class="fillable-body">
                                             <div class="caliweb-grid caliweb-two-grid" style="grid-row-gap:0px !important; grid-column-gap:100px !important; margin-bottom:4%;">
@@ -171,8 +183,10 @@ if ($accountnumber == "") {
         }
 
     } else {
+
         // this used to return genericSystemError however its more fit for a redirection as it is
         // an invalid account number
+
         header("location: /dashboard/administration/accounts");
 
     }

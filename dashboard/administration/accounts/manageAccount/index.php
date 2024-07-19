@@ -355,7 +355,7 @@
                                 <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">
                                     <?php
                                         if (mysqli_num_rows($notesResults) == 0) {
-                                            echo "No notes have been made for this account.";
+                                            echo "<p class='no-padding font-12px'>No notes have been made for this account.</p>";
                                         }
                                     ?>
                                 </p>
@@ -366,30 +366,41 @@
                                                 <div class="card-header">
                                                     <div class="display-flex align-center" style="justify-content:space-between;">
                                                         <div>
-                                                            <p class="no-padding"><strong>'. 'Account Status' .'</strong></p>
+                                                            <p class="no-padding font-12px"><strong>'. 'Account Status' .'</strong></p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <p class="no-padding">'. $statusreason .'</p>
+                                                    <p class="no-padding font-12px">'. $statusreason .'</p>
                                                 </div>
                                             </div>';
                                     }
                                 
                                     while ($row = mysqli_fetch_assoc($notesResults)) {
+
+                                            // Formats the date to MM/DD/YYYY HH:MM AM/PM format as perfered by
+                                            // United States users. Additional formats will come soon.
+
+                                            $addedAtDateUnFormated = $row["added_at"];
+                                            $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $addedAtDateUnFormated);
+                                            $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
+
                                             echo '
-                                            <div class="caliweb-card dashboard-card">
+                                            <div class="caliweb-card dashboard-card note-card">
                                                 <div class="card-header">
-                                                    <div class="display-flex align-center" style="justify-content:space-between;">
+                                                    <div class="display-flex align-center">
+                                                        <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
+                                                            <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
+                                                        </div>
                                                         <div>
-                                                            <p class="no-padding"><strong>'. $row["notetype"].'</strong></p>
-                                                            <p class="no-padding">'. $row["added_at"].'</p>
-                                                            <p class="no-padding">'. $row["added_by"].'</p>
+                                                            <p class="no-padding font-12px"><strong>'. $row["notetype"].'</strong></p>
+                                                            <p class="no-padding font-12px">'. $addedAtDateFormated .'</p>
+                                                            <p class="no-padding font-12px">'. $row["added_by"].'</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="card-body">
-                                                    <p class="no-padding">'. $row["content"].'</p>
+                                                    <p class="no-padding font-12px">'. $row["content"].'</p>
                                                 </div>
                                             </div>
                                             ';
