@@ -17,12 +17,11 @@
 
 // ====================== START LOGIN LANGUAGE AREA ==========================
 
-
-
 // Login Page Text Specifications
 
 $LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LOGIN_TITLE_PAR_2 = "Login";
+$LANG_LOGIN_PASSWORD = "Password";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Incorrect Username or Password";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "The username or password entered is incorrect. Please try again or contact us to reset your login.";
 $LANG_LOGIN_BUTTON = "Continue";
@@ -32,6 +31,10 @@ $LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 
 $LANG_SELF_REGISTER_TITLE = "Self Registration";
 $LANG_SELF_REGISTER_SUBTITLE = "Welcome! We are excited to have you. Please fill out a few questions to setup your account with us.";
+$LANG_SELF_REGISTER_LEGAL_NAME = "Legal Name";
+$LANG_SELF_REGISTER_PHONE_NUMBER = "Phone Number";
+$LANG_SELF_REGISTER_EMAIL_ADDR = "Email Address";
+$LANG_SELF_REGISTER_PASSWORD = "Password";
 $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registration Error";
 $LANG_REGISTER_AUTH_ERROR_TEXT = "The registration process failed for an unknown reason. Please try again or if the problem persists contact Cali Web Design.";
 $LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha Error";
@@ -39,15 +42,12 @@ $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Pl
 $LANG_ID_DISCLAIMER = "We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.";
 $LANG_REGISTER_BUTTON = "Continue";
 
-// Register Page Variables
-$LANG_SELF_REGISTER_LEGAL_NAME = "Legal Name";
-$LANG_SELF_REGISTER_PHONE_NUMBER = "Phone Number";
-$LANG_SELF_REGISTER_EMAIL_ADDR = "Email Address";
-$LANG_SELF_REGISTER_PASSWORD = "Password";
+// Reset Password Text Specification
 
-// Login Page Variables
-$LANG_LOGIN_PASSWORD = "Password";
-
+$RESET_PASSWORD_LABEL_EMAIL_TEXT = "Email Address";
+$RESET_PASSWORD_LABEL_VERIFICATION_TEXT = "Verification Code";
+$RESET_PASSWORD_LABEL_NEW_PASSWORD_TEXT = "New Password";
+$RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT = "Confirm New Password";
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 

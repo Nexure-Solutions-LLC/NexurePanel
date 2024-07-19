@@ -229,44 +229,50 @@
 
     $blockedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_blocklist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     $allowedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_allowlist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
-    /* 
-
-    TODO: RE ADD THIS WHEN WE GO IN PRODUCTION THIS IS TO FIX RATE LIMIT,
-    THIS WILL ALSO FIX AND WEIRD JS ISSUED WITH AD BLOCK BUT DONT RELY ON THIS
-    THE PANEL WILL ONLY ALLOW MANUAL BLOCKING AND UNBLOCKING AUTO DETECTON
-    IS DISABLED FOR DEVELOPMENT PURPOSES, BEFORE PRODUCTION FIX THIS. 
-    TEMP USE ONLY. THIS IS NOT RELAIBLE AND SHOULD BE FIXED.
     
     function isIpBlacklistedOrProxyVpn($ip, $userId, $apiKey) {
+
         $url = "https://neutrinoapi.net/ip-probe";
         $ch = curl_init();
+
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(['ip' => $ip]));
         curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $userId", "API-Key: $apiKey"]);
+
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response, true);
 
         if (isset($data['is-hosting']) && $data['is-hosting']) {
+
             return true;
+
         }
+
         if (isset($data['is-proxy']) && $data['is-proxy']) {
+
             return true;
+
         }
+
         if (isset($data['is-vpn']) && $data['is-vpn']) {
+
             return true;
+
         }
 
         return false;
+
     }
 
     // AdBlock Checker and Browser Reject
 
     function hasAdBlocker() {
+
         if (!isset($_SESSION['ad_blocker_checked'])) {
+
             echo "<script>
                 var adBlockEnabled = false;
                 var testAd = document.createElement('div');
@@ -284,24 +290,31 @@
                     xhr.send('adBlockEnabled=' + adBlockEnabled);
                 }, 100);
             </script>";
+
             $_SESSION['ad_blocker_checked'] = true;
         }
 
         if (isset($_SESSION['adBlockEnabled']) && $_SESSION['adBlockEnabled']) {
+
             return true;
+
         }
 
         return false;
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adBlockEnabled'])) {
+
         $_SESSION['adBlockEnabled'] = $_POST['adBlockEnabled'] == 'true' ? true : false;
         exit;
+
     }
 
     function isIPSpamListed($ip, $userId, $apiKey) {
+
         $url = "https://neutrinoapi.net/host-reputation";
         $ch = curl_init();
+
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -310,19 +323,20 @@
             'list-rating' => '3',
             'zones' => ''
         ]));
+
         curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $userId", "API-Key: $apiKey"]);
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response, true);
 
         if (isset($data['is-listed']) && $data['is-listed']) {
+
             return true;
+
         }
 
         return false;
     }
-
-    */
 
     function banIp($ip) {
 
@@ -332,19 +346,24 @@
     }
 
     if (!isIpAllowed($clientIp, $allowedIpList)) {
-        /*
+
         if (isIpBlacklistedOrProxyVpn($clientIp, $userId, $apiKey)) {
+
             banIp($clientIp);
+
         }
 
         if (isIPSpamListed($clientIp, $userId, $apiKey)) {
+
             banIp($clientIp);
+
         }
 
         if (hasAdBlocker()) {
+
             banIp($clientIp);
+
         }
-        */
 
         if (isIpBlocked($clientIp, $blockedIpList)) {
 
@@ -446,7 +465,7 @@
         <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
         <?php include($_SERVER["DOCUMENT_ROOT"]."/dashboard/company/themes/index.php"); ?>
         <?php
-            if ($pagetitle == "Client") {
+            if ($pagetitle == "Client" || $pagetitle == "Account Management - Customer" || $pagetitle == "Account Management - Partners" || $pagetitle == "Account Management - Authorized User") {
 
                 echo '<link href="/assets/css/client-dashboard-css-2024.css" rel="stylesheet" type="text/css" />';
 
@@ -481,6 +500,9 @@
                 </div>
                 <div class="caliweb-nav-buttons">
                     <a href="/dashboard/accountManagement" class="caliweb-nav-button secondary"><?php echo $fullname; ?></a>
+                    <a href="/dashboard/messageCenter" class="toggle-container" style="padding: 6px 10px 5px 10px;">
+                        <span class="lnr lnr-envelope" class="toggle-input"></span>
+                    </a>
                     <span class="toggle-container">
                         <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
                         <span class="lnr lnr-moon"  class="toggle-input" id="darkModeIcon"></span>

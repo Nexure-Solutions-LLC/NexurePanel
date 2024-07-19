@@ -132,6 +132,16 @@ body {
     border-bottom: 2px solid #D49DFF;
 }
 
+.toggle-container {
+    text-decoration: none;
+    color:#000;
+}
+
+.toggle-container:hover {
+    text-decoration: none;
+    color:#000;
+}
+
 /* =================== Cali Web Design Dashboard Container Styles =================== */
 
 .container,
@@ -467,6 +477,16 @@ html[data-theme='dark'] body {
 .dark-mode .note-card {
     box-shadow: rgba(21, 21, 21, 0.2) 0px 2px 8px 0px;
     margin-bottom:15px;
+}
+
+.dark-mode .toggle-container {
+    text-decoration: none;
+    color:#DBDBDB;
+}
+
+.dark-mode .toggle-container:hover {
+    text-decoration: none;
+    color:#DBDBDB;
 }
 
 /* =================== Cali Web Design Dashboard Grid Styles =================== */

@@ -362,9 +362,12 @@
                                 <?php
                                     if ($statusreason) {
                                         echo '
-                                            <div class="caliweb-card dashboard-card">
+                                            <div class="caliweb-card dashboard-card note-card">
                                                 <div class="card-header">
-                                                    <div class="display-flex align-center" style="justify-content:space-between;">
+                                                    <div class="display-flex align-center">
+                                                        <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
+                                                            <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
+                                                        </div>
                                                         <div>
                                                             <p class="no-padding font-12px"><strong>'. 'Account Status' .'</strong></p>
                                                         </div>

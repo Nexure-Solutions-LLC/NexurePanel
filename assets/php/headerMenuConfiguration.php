@@ -66,7 +66,34 @@
                 </ul>
             ';
 
+        } else if ($pagetitle == "Account Management - Customer" || $pagetitle == "Account Management - Authorized User" || $pagetitle == "Account Management - Partner") {
+
+            echo '
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/accessAndSecurityCenter" class="nav-links-clickable">Access & Security Center</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/serviceStatus" class="nav-links-clickable">Service Status</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/supportCenter" class="nav-links-clickable">Customer Service</a></li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
+
+        } else {
+
+            // Fall back menu options so that the header does not break.
+
+            echo '
+                <ul class="caliweb-nav-links">
+                    <li class="nav-links"><a href="/dashboard/customers/" class="nav-links-clickable">Overview</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/accessAndSecurityCenter" class="nav-links-clickable">Access & Security Center</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/serviceStatus" class="nav-links-clickable">Service Status</a></li>
+                    <li class="nav-links"><a href="/dashboard/customers/supportCenter" class="nav-links-clickable">Customer Service</a></li>
+                    <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
+                </ul>
+            ';
+
         }
+
     } else if ($userrole == "Administrator" || $userrole == "administrator") {
 
         if ($pagetitle == "Administration Dashboard") {
@@ -395,15 +422,51 @@
 
             ';
 
-        } else if ($pagetitle == "Account Management" && $pagesubtitle == "Account Management - General") {
+        } else if ($pagetitle == "Account Management - Administrator") {
 
             echo '
+
                 <p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Profile Management</p>
                 <ul class="caliweb-nav-links">
-                    <li class="nav-links active"><a href="/dashboard" class="nav-links-clickable">Dashboard</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/" class="nav-links-clickable">Home</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/tasks" class="nav-links-clickable">Tasks</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/leads" class="nav-links-clickable">Leads</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/accounts" class="nav-links-clickable">Accounts</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/campaigns" class="nav-links-clickable">Campaigns</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/contacts" class="nav-links-clickable">Contacts</a></li>
+                    <li class="nav-links"><a href="/dashboard/administration/cases" class="nav-links-clickable">Cases</a></li>
+            ';
+
+            echo '
+
+                    <li class="nav-links more">
+                        <a class="nav-links-clickable more-button" href="#">More</a>
+                        <ul class="dropdown">
+                            
+                        
+            
+            ';
+
+            if (mysqli_num_rows($moduleresult) > 0) {
+
+                while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
+                    echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFreindlyName'].'</a></li>';
+
+                }
+
+            }
+
+            echo '
+                            <li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>
+                            <li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-links"><a href="/logout" class="nav-links-clickable">Sign Off</a></li>
                 </ul>
+
             ';
+            
         } else {
 
             // Fall back menu options so that the header does not break.

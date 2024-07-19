@@ -32,8 +32,8 @@
                         <div class="caliweb-login-box-body">
                             <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                                 <div class="form-control">
-                                    <label for="emailAddress" class="text-gray-label"><?php echo $RESET_PASSWORD_LABEL_EMAIL_TEXT; ?></label>
-                                    <input type="email" class="form-input" name="emailAddress" id="emailAddress" placeholder="" required="" />
+                                    <label for="verificationCode" class="text-gray-label"><?php echo $RESET_PASSWORD_LABEL_VERIFICATION_TEXT; ?></label>
+                                    <input type="text" class="form-input" name="verificationCode" id="verificationCode" placeholder="" required="" />
                                 </div>
                                 <div class="form-control">
                                     <button class="caliweb-button primary" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?></button>

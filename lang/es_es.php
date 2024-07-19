@@ -21,6 +21,7 @@
 
 $LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LOGIN_TITLE_PAR_2 = "Acceso";
+$LANG_LOGIN_PASSWORD = "Contraseña";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Nombre de usuario o contraseña incorrecta";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "El nombre de usuario o contraseña ingresado es incorrecto. Inténtelo de nuevo o contáctenos para restablecer su inicio de Acceso.";
 $LANG_LOGIN_BUTTON = "Continuar";
@@ -32,6 +33,10 @@ $LANG_SELF_REGISTER_TITLE = "Autoinscripción";
 $LANG_SELF_REGISTER_SUBTITLE = "¡Bienvenido! Estamos emocionante tenerte. Por favor completo algunas preguntas para configurar su cuenta con nos.";
 $LANG_REGISTER_TITLE_PAR_1 = "Cali Web Design";
 $LANG_REGISTER_TITLE_PAR_2 = "Registro";
+$LANG_SELF_REGISTER_LEGAL_NAME = "Nombre legal";
+$LANG_SELF_REGISTER_PHONE_NUMBER = "Número de teléfono";
+$LANG_SELF_REGISTER_EMAIL_ADDR = "Dirección de e-mail";
+$LANG_SELF_REGISTER_PASSWORD = "Contraseña";
 $LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registro el falló";
 $LANG_REGISTER_AUTH_ERROR_TEXT = "El proceso de registro falló por un motivo desconocido. Por favor inténtelo nuevamente o si el problema persiste comuníquese con Cali Web Design.";
 $LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha falló";
@@ -39,14 +44,12 @@ $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "No marcaste esa pequeña y tonta casilla. P
 $LANG_ID_DISCLAIMER = "Somos requerido por ley preguntar su nombre, dirección, fecha de nacimiento, y otra información ayudar nos identificamos tú. Podemos requerir verificación adicional si no podemos verificarte.";
 $LANG_REGISTER_BUTTON = "Continuar";
 
-// Register Page Variables
-$LANG_SELF_REGISTER_LEGAL_NAME = "Nombre legal";
-$LANG_SELF_REGISTER_PHONE_NUMBER = "Número de teléfono";
-$LANG_SELF_REGISTER_EMAIL_ADDR = "Dirección de e-mail";
-$LANG_SELF_REGISTER_PASSWORD = "Contraseña";
+// Reset Password Text Specification
 
-// Login Page Variables
-$LANG_LOGIN_PASSWORD = "Contraseña";
+$RESET_PASSWORD_LABEL_EMAIL_TEXT = "Email Address";
+$RESET_PASSWORD_LABEL_VERIFICATION_TEXT = "Verification Code";
+$RESET_PASSWORD_LABEL_NEW_PASSWORD_TEXT = "New Password";
+$RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT = "Confirm New Password";
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 
