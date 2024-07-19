@@ -50,7 +50,11 @@
             $userrole = $customerAccountInfo['userrole'];
             $dbaccountnumber = $customerAccountInfo['accountNumber'];
             $statusreason = $customerAccountInfo['statusReason'];
-            $accountnotes = $customerAccountInfo['accountNotes'];
+//             $accountnotes = $customerAccountInfo['accountNotes'];
+            // this is being deprecated ^
+
+            $notesQuery = "SELECT * FROM caliweb_accountnotes WHERE accountnumber = '" . $accountnumber . "' ORDER BY id DESC";
+            $notesResults = mysqli_query($con, $notesQuery);
 
             if ($accountnumber != $dbaccountnumber) {
 
@@ -176,18 +180,48 @@
                             </div>
                             <div class="card-body">
                                 <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">
-                                    <?php 
-                                        if ($accountnotes == NULL || $accountnotes == "") {
-
-                                            echo "There are no notes for this account.";
-
-                                        } else {
-
-                                            echo $accountnotes; 
-
-                                        }
+                                    <?php
+                                    if (mysqli_num_rows($notesResults) == 0) {
+                                        echo "No notes have been made for this account.";
+                                    }
                                     ?>
                                 </p>
+                                <?php
+                                if ($statusreason) {
+                                    echo '
+                                            <div class="caliweb-card dashboard-card">
+                                                <div class="card-header">
+                                                    <div class="display-flex align-center" style="justify-content:space-between;">
+                                                        <div>
+                                                            <p class="no-padding"><strong>'. 'Account Status' .'</strong></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="no-padding">'. $statusreason .'</p>
+                                                </div>
+                                            </div>';
+                                }
+
+                                while ($row = mysqli_fetch_assoc($notesResults)) {
+                                    echo '
+                                            <div class="caliweb-card dashboard-card">
+                                                <div class="card-header">
+                                                    <div class="display-flex align-center" style="justify-content:space-between;">
+                                                        <div>
+                                                            <p class="no-padding"><strong>'. $row["notetype"].'</strong></p>
+                                                            <p class="no-padding">'. $row["added_at"].'</p>
+                                                            <p class="no-padding">'. $row["added_by"].'</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="no-padding">'. $row["content"].'</p>
+                                                </div>
+                                            </div>
+                                            ';
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

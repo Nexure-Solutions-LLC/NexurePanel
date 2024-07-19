@@ -162,7 +162,7 @@
                                                                 <option>Please choose an option</option>
                                                                 <option>Web Development</option>
                                                                 <option>Web Hosting</option>
-                                                                <option>Merchant Proccessing</option>
+                                                                <option>Merchant Processing</option>
                                                                 <option>Cloud Computing</option>
                                                                 <option>SEO</option>
                                                                 <option>Social Media Management</option>
