@@ -74,4 +74,3 @@ You can view a demo link [here](https://us-east.cali-cloud-compute-135-148-28-43
 6. Login to the admin account you created.
 
 
-Help me 
