@@ -1,0 +1,1 @@
+Error: [2] Cannot modify header information - headers already sent by (output started at /var/www/calipanel/assets/php/loginHeader.php:171) in /var/www/calipanel/modules/employeeOnboardingModule/index.php on line 20
