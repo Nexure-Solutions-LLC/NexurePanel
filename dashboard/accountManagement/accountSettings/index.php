@@ -41,24 +41,25 @@
         <div class="container caliweb-container">
             <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
                 <div class="caliweb-settings-sidebar">
-                    <div class="caliweb-card dashboard-card">
+                    <div class="caliweb-card dashboard-card sidebar-card">
                         <aside class="caliweb-sidebar">
                             <ul class="sidebar-list-linked">
-                                <a href="/dashboard/accountManagement/" class="sidebar-link-a"><li class="sidebar-link active">Overview</li></a>
-                                <a href="/dashboard/accountManagement/AccountSettings/" class="sidebar-link-a"><li class="sidebar-link">Account Settings</li></a>
-                                <a href="/dashboard/PersonalDetails/" class="sidebar-link-a"><li class="sidebar-link">Your Personal Details</a></li></a>
-                                <a href="/dashboard/Signin/" class="sidebar-link-a"><li class="sidebar-link">Sign-in & Security</li></a>
+                                <a href="/dashboard/accountManagement/" class="sidebar-link-a"><li class="sidebar-link">Overview</li></a>
+                                <a href="/dashboard/accountManagement/accountSettings/" class="sidebar-link-a"><li class="sidebar-link active">Account Settings</li></a>
+                                <a href="/dashboard/accountManagement/personalDetails/" class="sidebar-link-a"><li class="sidebar-link">Your Personal Details</a></li></a>
+                                <a href="/dashboard/accountManagement/privacyAndSecurity/" class="sidebar-link-a"><li class="sidebar-link">Sign-in & Security</li></a>
                             </ul>
                         </aside>
                     </div>
                 </div>
                 <div class="caliweb-card dashboard-card">
-                    <div class="card-body">                
-                        <h4 class="text-bold font-size-20 no-padding">Account Management</h4>    
-                        <hr>
-                        <p>test</p>
+                    <div class="card-header">
+                        <div>
+                            <h3 class="font-size-20 no-padding">Account Settings</h3>
+                        </div>
                     </div>
-                
+                    <div class="card-body">
+                        
                     </div>
                 </div>
             </div>

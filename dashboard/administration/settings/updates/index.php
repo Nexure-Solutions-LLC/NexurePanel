@@ -25,7 +25,7 @@
         <div class="container width-98">
             <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
                 <div class="caliweb-settings-sidebar">
-                    <div class="caliweb-card dashboard-card">
+                    <div class="caliweb-card dashboard-card sidebar-card">
                         <aside class="caliweb-sidebar">
                             <ul class="sidebar-list-linked">
                                 <li class="sidebar-link"><a href="/dashboard/administration/settings/" class="sidebar-link-a">General</a></li>

@@ -161,17 +161,14 @@ $LANG_DOCUMENTATION_SECTION_TITLE = "Documentación"; // I think this would look
 // Dashboard Account Management Text Specifications
 
 $LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TITLE = "Account Settings";
-$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TEXT = "Account Settings is where you change your name, username, and even your password.";
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TEXT = "Manage Linked Relationships, Nicknames for your accounts, Contact Prefernces, Which account is your primary account, and may other account setttings.";
 $LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_LINKTEXT = "Customize Settings";
-$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_TITLE = "Payment Settings";
-$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_TEXT = "A place to edit your payment details, add or remove payment methods, change how we communicate with your bank, and more.";
-$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_LINKTEXT = "Customize Settings";
 $LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TITLE = "Personal Details";
-$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TEXT = "Change your personal details like your first and last name, your change your social security number, and many more.";
-$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TEXT = "Change your personal details like your Name, Address, Business Name, Tax ID Number, You can also chnage things like Business Industry and Phone Number.";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT = "Update Personal Details";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TITLE = "Privacy & Security";
-$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT = "Change how you log into your account, change your password, change your two factor authentication settings, and how we collect your data.";
-$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT = "Change your Email, Cali ID, MFA Settings, Password and other information on file as well as authorize OAuth services like Google and Microsoft.";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT = "Edit Privacy and Security Settings";
 
 // Services Management Text Specifications
 

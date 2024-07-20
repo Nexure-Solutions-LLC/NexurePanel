@@ -1,9 +1,9 @@
 <?php
 
 unset($_SESSION['pagetitle']);
-$pagetitle = "Notes";
-$pagesubtitle = "Write Account Notices";
-$_SESSION['pagetitle'] = "Write Account Notices";
+$pagetitle = "Customer Accounts";
+$pagesubtitle = "Place Account Notices";
+$_SESSION['pagetitle'] = "Place Account Notices";
 
 require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 

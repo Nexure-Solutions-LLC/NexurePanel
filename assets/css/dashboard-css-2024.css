@@ -894,7 +894,7 @@ textarea.swal2-input {
 }
 
 .sidebar-card {
-    height: 100vh;
+    height: 85vh;
 }
 
 .sidebar-list-linked {
@@ -944,6 +944,10 @@ textarea.swal2-input {
     background-color: #ddd;
 }
 
+.caliweb-card.dashboard-card.account-center-cards {
+    padding:4% !important;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {
@@ -986,6 +990,10 @@ textarea.swal2-input {
     .macBook-padding-top {
         padding-top:10px;
     }
+
+    .sidebar-card {
+        height: 100vh;
+    }
     
 }
 
@@ -1004,5 +1012,9 @@ textarea.swal2-input {
     .section.first-dashboard-area-cards,
     .first-dashboard-area-cards {
         margin-top:10%;
+    }
+
+    .sidebar-card {
+        height: 100vh;
     }
 }
