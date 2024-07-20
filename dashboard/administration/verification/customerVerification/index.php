@@ -1,4 +1,7 @@
 <?php
+
+    $pagetype = "Administration";
+
     session_start();
 
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");

@@ -4,6 +4,7 @@
     $pagetitle = "Customer Accounts";
     $pagesubtitle = "Place Account Notices";
     $_SESSION['pagetitle'] = "Place Account Notices";
+    $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 

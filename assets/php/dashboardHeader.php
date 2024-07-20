@@ -97,19 +97,9 @@
 
     // User Profile Variable Definitions
 
-    $userrole = $userinfo['userrole'];
-
-    if (isset($_SESSION["lang"])) {
-
-        $lang = $_SESSION['lang'];
-
-    } else {
-
-        $lang = "en_US";
-
-    }
-
     $fullname = $userinfo['legalName'];
+    $userrole = $userinfo['userrole'];
+    $lowerrole = strtolower($userrole);
     $accountStatus = $userinfo['accountStatus'];
     $accountStatusReason = $userinfo['statusReason'];
     $employeeAccessLevel = $userinfo['employeeAccessLevel'];
@@ -129,10 +119,18 @@
     $apiKey = $_ENV['IPCHECKAPIKEY'];
 
     // Language Definition
+
+    if (isset($_SESSION["lang"])) {
+
+        $lang = $_SESSION['lang'];
+
+    } else {
+
+        $lang = "en_US";
+
+    }
     
     $lang_preset = ($lang !== null) ? $lang : "en_US";
-
-    // Deal with possible security issues - usually impossible but just making sure.
 
     if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$lang_preset.'.php')) {
 
@@ -140,32 +138,28 @@
 
     }
 
-    //    echo $lang_preset.'.php';
-
     include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$lang_preset.'.php');
 
 
     // IP Address Checking and Banning
 
     function getClientIp() {
-
-        $ipaddress = '';
-        if (getenv('HTTP_CLIENT_IP'))
-            $ipaddress = getenv('HTTP_CLIENT_IP');
-        else if (getenv('HTTP_X_FORWARDED_FOR'))
-            $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-        else if (getenv('HTTP_X_FORWARDED'))
-            $ipaddress = getenv('HTTP_X_FORWARDED');
-        else if (getenv('HTTP_FORWARDED_FOR'))
-            $ipaddress = getenv('HTTP_FORWARDED_FOR');
-        else if (getenv('HTTP_FORWARDED'))
-            $ipaddress = getenv('HTTP_FORWARDED');
-        else if (getenv('REMOTE_ADDR'))
-            $ipaddress = getenv('REMOTE_ADDR');
-        else
-            $ipaddress = 'UNKNOWN';
-        return $ipaddress;
-
+        $keys = [
+            'HTTP_CLIENT_IP', 
+            'HTTP_X_FORWARDED_FOR', 
+            'HTTP_X_FORWARDED', 
+            'HTTP_FORWARDED_FOR', 
+            'HTTP_FORWARDED', 
+            'REMOTE_ADDR'
+        ];
+    
+        foreach ($keys as $key) {
+            if ($ipaddress = getenv($key)) {
+                return $ipaddress;
+            }
+        }
+    
+        return 'UNKNOWN';
     }
 
     $clientIp = getClientIp();
@@ -374,42 +368,77 @@
 
     // Checks the users account staus and send them to the right page.
     // If the user is active load the dashboard like normal.
+    // Also checks the users role instead of doing it on each page
 
-    if ($accountStatus == "Under Review" && $accountStatusReason == "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.") {
+    if ($accountStatus == "Under Review") {
 
-        header("Location: /onboarding/decision/manualReview");
+        switch ($accountStatusReason) {
+            case "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.":
+                header("Location: /onboarding/decision/manualReview");
+                break;
+            case "This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.":
+                header("Location: /onboarding/decision/callOnlineTeam");
+                break;
+            case "DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.":
+                header("Location: /onboarding/decision/emailRiskTeam");
+                break;
+            case "Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.":
+                header("Location: /onboarding/decision/presentBranch");
+                break;
+            default:
+                header("Location: /error/underReviewAccount");
+        }
 
-    } else if ($accountStatus == "Under Review" && $accountStatusReason == "This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.") {
-
-        header("Location: /onboarding/decision/callOnlineTeam");
-
-    } else if ($accountStatus == "Under Review" && $accountStatusReason == "DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.") {
-
-        header("Location: /onboarding/decision/emailRiskTeam");
-
-    } else if ($accountStatus == "Under Review" && $accountStatusReason == "Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.") {
-
-        header("Location: /onboarding/decision/presentBranch");
-
-    } else if ($accountStatus == "Closed" && $accountStatusReason == "The customer is running a prohibited business and their application was denied.") { // fixing a grammar mistake
+    } elseif ($accountStatus == "Closed" && in_array($accountStatusReason, [
+        "The customer is running a prohibited business and their application was denied.",
+        "The customer scored too high on the risk score and we cant serve this customer."
+    ])) {
 
         header("Location: /onboarding/decision/deniedApp");
 
-    }  else if ($accountStatus == "Closed" && $accountStatusReason == "The customer scored too high on the risk score and we cant serve this customer.") {
+    } else {
 
-        header("Location: /onboarding/decision/deniedApp");
+        switch ($accountStatus) {
+            case "Suspended":
+                header("Location: /error/suspendedAccount");
+                break;
+            case "Terminated":
+                header("Location: /error/terminatedAccount");
+                break;
+        }
 
-    } else if ($accountStatus == "Under Review") {
+    }
 
-        header ("Location: /error/underReviewAccount");
-    } else if ($accountStatus == "Suspended") {
+    $redirectMap = [
+        "Client" => [
+            "authorized user" => "/dashboard/customers/authorizedUserView",
+            "partner" => "/dashboard/partnerships",
+            "administrator" => "/dashboard/administration"
+        ],
+        "Administration" => [
+            "authorized user" => "/dashboard/customers/authorizedUserView",
+            "partner" => "/dashboard/partnerships",
+            "customer" => "/dashboard/customers"
+        ],
+        "Authorized User" => [
+            "customer" => "/dashboard/customers",
+            "partner" => "/dashboard/partnerships",
+            "administrator" => "/dashboard/administration"
+        ],
+        "Partners" => [
+            "authorized user" => "/dashboard/customers/authorizedUserView",
+            "administrator" => "/dashboard/administration",
+            "customer" => "/dashboard/customers"
+        ]
+    ];
 
-        header ("Location: /error/suspendedAccount");
+    $redirectUrl = $redirectMap[$pagetype][$lowerrole] ?? null;
 
-    } else if ($accountStatus == "Terminated") {
+    if ($redirectUrl) {
 
-        header ("Location: /error/terminatedAccount");
-
+        header("Location: $redirectUrl");
+        exit();
+        
     }
 
 ?>

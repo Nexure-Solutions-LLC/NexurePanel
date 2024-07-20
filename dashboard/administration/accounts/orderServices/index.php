@@ -4,6 +4,7 @@
     $pagetitle = "Services";
     $pagesubtitle = "Create Order";
     $_SESSION['pagetitle'] = "Order Services as Staff";
+    $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 

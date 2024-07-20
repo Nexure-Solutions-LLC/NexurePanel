@@ -2,6 +2,7 @@
 
     $pagetitle = "Accounts";
     $pagesubtitle = "Delete";
+    $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 

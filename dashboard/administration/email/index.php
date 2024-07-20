@@ -2,23 +2,9 @@
 
     $pagetitle = "Cali Mail";
     $pagesubtitle = "Inbox";
+    $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
-    
-    $lowerrole = strtolower($userrole);
-
-    switch ($lowerrole) {
-        case "authorized user":
-            header("location:/dashboard/customers/authorizedUserView/emailSuite");
-            break;
-        case "partner":
-            header("location:/dashboard/partnerships/emailSuite");
-            break;
-        case "customer":
-            header("location:/dashboard/customers/emailSuite");
-            break;
-    }
-
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
     
