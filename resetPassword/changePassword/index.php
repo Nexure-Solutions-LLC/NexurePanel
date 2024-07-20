@@ -1,11 +1,64 @@
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
-<?php 
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     session_start();
+
+    if (!isset($_SESSION["recoveryrequestID"]) || !isset($_SESSION["recoverycode"])) {
+        header("location:/resetPassword/");
+    }
+
+    $submittedVerificationCode = stripslashes($_SESSION["recoverycode"]);
+    $submittedVerificationCode = mysqli_real_escape_string($con, $submittedVerificationCode);
+
+    $local_email = $_SESSION["caliid"];
+    $local_email = stripslashes($local_email);
+    $local_email = mysqli_real_escape_string($con, $local_email);
+
+    $remoteQuery = "SELECT * FROM `caliweb_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
+    $queryExec = mysqli_query($con, $remoteQuery);
+    $queryRecItem = mysqli_fetch_array($queryExec);
+    $verificationCode = $queryRecItem["recoverycode"];
+
+    if ($verificationCode != $submittedVerificationCode) {
+        header("location:/resetPassword/");
+    }
+
+
+    // unset($_SESSION['verification_code']);
+    
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $newPassword = stripslashes($_REQUEST['newPassword']);
+        $newPassword = mysqli_real_escape_string($con, $newPassword);
+        $confirmNewPassword = stripslashes($_REQUEST['confirmPassword']);
+        $confirmNewPassword = mysqli_real_escape_string($con, $confirmNewPassword);
+
+        if ($newPassword == $confirmNewPassword) {
+            $query    = "UPDATE `caliweb_users` SET `password`='".hash("sha512", $newPassword)."' WHERE `email`='$local_email'";
+            $result = mysqli_query($con, $query) or die(mysqli_error());
+
+            $removeQuery = "DELETE FROM `caliweb_recoveryrequests` WHERE id = " . $_SESSION["recoveryrequestID"] . " AND recoverycode = '" . $_SESSION["recoverycode"] . "' AND email = '" . $local_email . "';";
+            $result = mysqli_query($con, $removeQuery) or die(mysqli_error());
+
+            if ($result) {
+                unset($_SESSION["recoverycode"]);
+                unset($_SESSION["recoveryrequestID"]);
+                header("Location: /resetPassword/passwordChanged");
+
+            }
+        
+        } else {
+
+            $reset_error = true;
+
+        }
+
+    }
     
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
-
-    ob_start();
     
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
@@ -39,6 +92,12 @@
                                     <label for="confirmPassword" class="text-gray-label"><?php echo $RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT; ?></label>
                                     <input type="password" class="form-input" name="confirmPassword" id="confirmPassword" placeholder="" required="" />
                                 </div>
+                                <?php if (isset($reset_error)): ?>
+                                    <div class="caliweb-error-box">
+                                        <p class="caliweb-login-sublink" style="font-weight:700; padding-top:0; margin-top:0;"><?php echo $LANG_RESETPASSWORD_ERROR_TITLE; ?></p>
+                                        <p class="caliweb-login-sublink" style="font-size:12px;"><?php echo $LANG_RESETPASSWORD_ERROR_TEXT; ?></p>
+                                    </div>
+                                <?php endif; ?>
                                 <div class="form-control">
                                     <button class="caliweb-button primary" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?></button>
                                 </div>

@@ -25,7 +25,7 @@ $LANG_LOGIN_PASSWORD = "Contraseña";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Nombre de usuario o contraseña incorrecta";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "El nombre de usuario o contraseña ingresado es incorrecto. Inténtelo de nuevo o contáctenos para restablecer su inicio de Acceso.";
 $LANG_LOGIN_BUTTON = "Continuar";
-$LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
+$LANG_LOGIN_DISCORD_BUTTON = "Continuar con Discord";
 
 // Register Page Text Specifications
 
@@ -46,11 +46,15 @@ $LANG_REGISTER_BUTTON = "Continuar";
 
 // Reset Password Text Specification
 
-$RESET_PASSWORD_LABEL_EMAIL_TEXT = "Email Address";
-$RESET_PASSWORD_LABEL_VERIFICATION_TEXT = "Verification Code";
-$RESET_PASSWORD_LABEL_NEW_PASSWORD_TEXT = "New Password";
-$RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT = "Confirm New Password";
-
+$RESET_PASSWORD_LABEL_EMAIL_TEXT = "Dirección de e-mail";
+$RESET_PASSWORD_LABEL_VERIFICATION_TEXT = "Código de verificación";
+$RESET_PASSWORD_LABEL_NEW_PASSWORD_TEXT = "Nueva Contraseña";
+$RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT = "Confirmar Nueva Contraseña";
+$LANG_PASSWORD_RESETTITLE_TEXT = "Tu contraseña ha sido cambiada";
+$LANG_PASSWORD_RESETSUCCESS_BASE_TEXT = "Has cambiado satisfactoriamente tu contraseña.";
+$LANG_PASSWORD_RESETSUCCESS_SECONDARY_TEXT = "Serás redirigido en";
+$LANG_PASSWORD_RESETSUCCESS_REDIRECTFALLBACK_TEXT = "Si no eres redirigido automáticamente, puedes ";
+$LANG_RESET_PASSWORD_STAGE_2_TEXT = ""; // TODO: DO THIS
 // ====================== START ERROR LANGUAGE AREA ==========================
 
 // License Error Text Specifications
@@ -58,7 +62,8 @@ $RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT = "Confirm New Password";
 $LANG_LICENSE_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LICENSE_TITLE_PAR_2 = "Licencia falló";
 $LANG_LICENSE_TITLE = "La clave escribiste es incorrecto o malformado."; // The key you entered is not correct or malformed.
-$LANG_LICENSE_TEXT = "To protect the Cali Web Design Panel Software you need a license to use it. The key you entered is not valid and can't be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.";
+$LANG_LICENSE_TEXT = "Para proteger este software, necesita tener una licencia para usarlo. La clave que ingresó no es válida. Contacto Cali Web Design Services para una llave genuina.";
+// To protect the Cali Web Design Panel Software you need a license to use it. The key you entered is not valid and can't be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.
 
 // Registration Disabled Text Specifications
 
@@ -90,18 +95,18 @@ $LANG_SUSPENDED_CONTACT_INFO = "Para resolver este problema, por favor llamar el
 // Account Terminated Error Text Specifications
 
 $LANG_TERMINATED_TITLE = "Su cuenta es permanente desactivada.";
-$LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated. You may no longer use Cali Web Design. This decision is final and can't be overturned.";
+$LANG_TERMINATED_TEXT = "Su cuenta de Cali Web Design ha sido terminado. Ya no podrás utilizar Cali Web Design. Esta decisión es final y no puede ser anular.";
 
 // Account Under Review Text Specifications
 
-$LANG_ACCOUNT_UNDER_REVIEW_TITLE = 'Uh-Oh! We need more information to open your account.';
-$LANG_ACCOUNT_UNDER_REVIEW_TEXT = 'We need you to complete a few steps before you can start using our platform. Complete the <a href="/onboarding/" style="font-weight:700;" class="careers-link">form</a> to verify your account.';
+$LANG_ACCOUNT_UNDER_REVIEW_TITLE = 'Necesitamos más información para abrir su cuenta.';
 
+$LANG_ACCOUNT_UNDER_REVIEW_TEXT = 'Necesitamos que complete algunos pasos antes de poder comenzar a utilizar nuestra plataforma. Completa <a href="/onboarding/" style="font-weight:700;" class="careers-link">la forma</a> para verificar su cuenta.';
 // Banned Error Text Specifications
 
-$LANG_BANNED_TITLE = "Hmmm. Your network seems a little unusual. We have banned your IP for security.";
-$LANG_BANNED_TEXT = "We cant verify the authenticity of this visit. We have banned this IP. Please disable any VPNs, Browser Extensions, or AD Blockers, and try your request again. This is an automated process.";
+$LANG_BANNED_TITLE = "Prohibimos su IP por seguridad.";
 
+$LANG_BANNED_TEXT = "We cant verify the authenticity of this visit. We have banned this IP. Please disable any VPNs, Browser Extensions, or AD Blockers, and try your request again. This is an automated process.";
 // Payment Errors Text Specifications
 
 $LANG_PAYMENT_ERROR_TITLE_PAR_1 = "Cali Web Design";
@@ -154,6 +159,21 @@ $LANG_NO_PREAPPROVED_DASH_TEXT = "No hay ofertas pre aprobado";
 $LANG_DOCUMENTATION_SECTION_TITLE = "Documentación"; // I think this would look better as "Documentation" and not "Explore Documentation"
 
 // Dashboard Account Management Text Specifications
+
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TITLE = "Account Settings";
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TEXT = "Account Settings is where you change your name, username, and even your password.";
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_TITLE = "Payment Settings";
+$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_TEXT = "A place to edit your payment details, add or remove payment methods, change how we communicate with your bank, and more.";
+$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TITLE = "Personal Details";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TEXT = "Change your personal details like your first and last name, your change your social security number, and many more.";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TITLE = "Privacy & Security";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT = "Change how you log into your account, change your password, change your two factor authentication settings, and how we collect your data.";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT = "Customize Settings";
+
+// Services Management Text Specifications
 
 $LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Servicios actuales";
 

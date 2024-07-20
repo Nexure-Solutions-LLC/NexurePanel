@@ -909,6 +909,14 @@ textarea.swal2-input {
     margin-bottom: 5px;
 }
 
+.sidebar-link-a {
+    text-decoration: none;
+}
+
+.sidebar-link-a:hover {
+    text-decoration: none;
+}
+
 .sidebar-link:hover {
     background-color: #f2f4f5;
     border-radius: 6px;

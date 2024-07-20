@@ -1,16 +1,33 @@
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
-<?php 
-
-    $verificationCode = rand(100000, 999999);
-
-    $_SESSION['verification_code'] = $verificationCode;
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     session_start();
-    
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 
-    ob_start();
-    
+    if (isset($_GET["submittedCode"])) {
+        $submittedVerificationCode = stripslashes($_GET["submittedCode"]);
+        $submittedVerificationCode = mysqli_real_escape_string($con, $submittedVerificationCode);
+
+        $local_email = $_SESSION["caliid"];
+        $local_email = stripslashes($local_email);
+        $local_email = mysqli_real_escape_string($con, $local_email);
+        $remoteQuery = "SELECT * FROM `caliweb_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
+        $queryExec = mysqli_query($con, $remoteQuery);
+        $queryRecItem = mysqli_fetch_array($queryExec);
+        $verificationCode = $queryRecItem["recoverycode"];
+
+
+        if ($submittedVerificationCode == $verificationCode) {
+            $_SESSION["recoverycode"] = $verificationCode;
+            $_SESSION["recoveryrequestID"] = $queryRecItem["id"];
+            header("Location: /resetPassword/changePassword");
+        }
+    }
+
+    include($_SERVER["DOCUMENT_ROOT"] . "/assets/php/loginHeader.php")
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
 
@@ -34,15 +51,8 @@
                     </div>
                     <div class="caliweb-login-box-content">
                         <div class="caliweb-login-box-body">
-                            <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                                <div class="form-control">
-                                    <label for="verificationCode" class="text-gray-label"><?php echo $RESET_PASSWORD_LABEL_VERIFICATION_TEXT; ?></label>
-                                    <input type="text" class="form-input" name="verificationCode" id="verificationCode" placeholder="" required="" />
-                                </div>
-                                <div class="form-control">
-                                    <button class="caliweb-button primary" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?></button>
-                                </div>
-                            </form>
+
+                            <label class="text-gray-label"><?php echo $LANG_RESET_PASSWORD_STAGE_2_TEXT; ?></label>
                         </div>
                     </div>
                 </div>

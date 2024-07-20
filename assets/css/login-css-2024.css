@@ -9,7 +9,6 @@ body {
     height: 100vh;
     background-color: #f1f1f1;
 }
-
 .wrapper {
     right: 0;
     height: 100%;
@@ -35,16 +34,16 @@ body {
 }
 
 .lang-selector {
-    padding:10px;
-    border:1px solid #ddd;
-    color:black;
+    padding: 10px;
+    border: 1px solid #ddd;
+    color: black;
     background-color: #fff;
     border-radius: 4px;
 }
 
 .dark-mode .lang-selector {
-    border:1px solid #333;
-    color:#dbdbdb;
+    border: 1px solid #333;
+    color: #dbdbdb;
     background-color: #222;
 }
 
@@ -55,7 +54,6 @@ body {
     margin: auto;
     height: 100%;
 }
-
 .login-only {
     margin-top: 4%;
 }
@@ -112,6 +110,15 @@ body {
     font-weight: 700;
 }
 
+.caliweb-header {
+    margin-bottom: 5%;
+}
+
+.header-text {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
 .caliweb-login-box-header {
     text-align: center;
     padding-bottom: 2%;
@@ -120,6 +127,7 @@ body {
 
 .caliweb-login-footer,
 .license-footer {
+    
     top: auto;
     left: 0;
     padding-top: 1%;
@@ -149,10 +157,22 @@ body {
     font-family: "IBM Plex Sans", sans-serif !important;
 }
 
+.caliweb-button.second {
+    margin-top: 4%;
+    width: 100%;
+    border-radius: 4px;
+    padding: 14px 24px;
+    background-color: #fff;
+    border: 1px solid #CCCCCC;
+    font-family: "IBM Plex Sans", sans-serif !important;
+}
+
 .caliweb-login-footer {
     background-color: #f1f1f1;
     border-top: 1px solid #ddd;
-    position: absolute;
+    position: fixed;
+    bottom:0;
+    z-index: 999;
     width: 100%;
     align-items: center;
     display: flex;
@@ -239,8 +259,8 @@ body {
     max-height: 200px;
     overflow-y: auto;
     padding: 5px;
-    margin-top:5px;
-    border-radius:8px;
+    margin-top: 5px;
+    border-radius: 8px;
     background-color: #fff;
     position: absolute;
     display: none;
@@ -341,9 +361,10 @@ body {
 @media (min-width: 1399px) and (max-width: 1499px) {
     .login-container {
         padding-bottom: 5% !important;
-        overflow-y: auto; /* this was previously scroll - change back if things break somehow */
-        background-color: #f1f1f1;
+        overflow-y: auto;
+        /* this was previously scroll - change back if things break somehow */
     }
+
     .dark-mode .login-container {
         background-color: #000
     }
@@ -415,8 +436,8 @@ body {
 @media (max-width: 1200px) {
     .login-container {
         height: 100%;
-        background-color: #f1f1f1;
     }
+
     .dark-mode .login-container {
         background-color: #000
     }

@@ -1,6 +1,6 @@
 <?php
 
-    echo '
+    $HTMLCONTENT = '
     
         <!DOCTYPE html>
         <html lang="en">
@@ -69,7 +69,7 @@
                     </div>
                     <div class="email-body">
                         <p>Hi,</p>
-                        <p>We recently recived a request for your password to be reset, If this was not you please <a href="https://caliwebdesignservices.com/contact" class="careers-link">contact us</a> immediately. If this was you please enter the following verification code: '.$emailVerificationCode.'.</p>
+                        <p>We recently recived a request for your password to be reset, If this was not you please <a href="https://caliwebdesignservices.com/contact" class="careers-link">contact us</a> immediately. If this was you, please <a href="https://' . $_SERVER["HTTP_HOST"] . '/resetPassword/verificationCode?submittedCode=' . $emailVerificationCode . '" class="careers-link">click here</a>.</p>
                         <p>— The '.$orgShortName.' team</p>
                     </div>
                     <div class="email-footer">

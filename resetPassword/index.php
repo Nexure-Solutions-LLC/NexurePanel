@@ -1,7 +1,35 @@
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
-<?php 
+<?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
     session_start();
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        $cali_id = stripslashes($_REQUEST['emailAddress']);
+        $cali_id = mysqli_real_escape_string($con, $cali_id);
+        
+        // Check user is exist in the database
+
+        $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id'";
+        $result = mysqli_query($con, $query) or die(mysqli_error());
+        $rows = mysqli_num_rows($result);
+
+        $verificationCode = rand(1000000000000000, 9999999999999999);
+        $newQuery = "INSERT INTO `caliweb_recoveryrequests` (email, recoverycode, timestamp) VALUES ('".$cali_id."', '".$verificationCode."',". time() .")";
+        $result = mysqli_query($con, $newQuery) or die(mysqli_error());
+
+        $_SESSION["verification_code"] = $verificationCode;
+        $_SESSION['caliid'] = $cali_id;
+        if ($rows != 0) {
+            include($_SERVER["DOCUMENT_ROOT"]."/resetPassword/sendEmailLogic/index.php");
+        }
+        header("location:/resetPassword/verificationCode");
+
+    }
     
     include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
 

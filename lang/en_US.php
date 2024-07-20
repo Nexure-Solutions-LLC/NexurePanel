@@ -24,6 +24,7 @@ $LANG_LOGIN_TITLE_PAR_2 = "Login";
 $LANG_LOGIN_PASSWORD = "Password";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Incorrect Username or Password";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "The username or password entered is incorrect. Please try again or contact us to reset your login.";
+$LANG_BUTTON_BACK = "Go Back";
 $LANG_LOGIN_BUTTON = "Continue";
 $LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
 
@@ -48,6 +49,13 @@ $RESET_PASSWORD_LABEL_EMAIL_TEXT = "Email Address";
 $RESET_PASSWORD_LABEL_VERIFICATION_TEXT = "Verification Code";
 $RESET_PASSWORD_LABEL_NEW_PASSWORD_TEXT = "New Password";
 $RESET_PASSWORD_LABEL_CONFIRM_NEW_PASSWORD_TEXT = "Confirm New Password";
+$LANG_PASSWORD_RESETTITLE_TEXT = "Your password has been changed";
+$LANG_PASSWORD_RESETSUCCESS_BASE_TEXT = "You have successfully changed your password.";
+$LANG_PASSWORD_RESETSUCCESS_SECONDARY_TEXT = "You will be automatically be redirected in";
+$LANG_PASSWORD_RESETSUCCESS_REDIRECTFALLBACK_TEXT = "If you are not redirected automatically, you can";
+$LANG_RESETPASSWORD_ERROR_TITLE = "Password feilds don't match";
+$LANG_RESETPASSWORD_ERROR_TEXT = "The password you chose must match in both the new password feild and the confirm password feild.";
+$LANG_RESET_PASSWORD_STAGE_2_TEXT = "An email has been sent to this email address containing a link to reset your password. Ensure that you check your Spam folder if you cannot find it.";
 
 // ====================== START ERROR LANGUAGE AREA ==========================
 
@@ -154,6 +162,21 @@ $LANG_DOCUMENTATION_SECTION_TITLE = "Documentation"; // I think this would look 
 
 // Dashboard Account Management Text Specifications
 
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TITLE = "Account Settings";
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TEXT = "Account Settings is where you change your name, username, and even your password.";
+$LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_TITLE = "Payment Settings";
+$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_TEXT = "A place to edit your payment details, add or remove payment methods, change how we communicate with your bank, and more.";
+$LANG_ACCOUNTCENTER_CARD_PAYMENTSETTINGS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TITLE = "Personal Details";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TEXT = "Change your personal details like your first and last name, your change your social security number, and many more.";
+$LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT = "Customize Settings";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TITLE = "Privacy & Security";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT = "Change how you log into your account, change your password, change your two factor authentication settings, and how we collect your data.";
+$LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT = "Customize Settings";
+
+// Services Management Text Specifications
+
 $LANG_CUSTOMER_SERVICES_TITLE_TEXT = "Current Services";
 
 // Dashboard Support Center Text Specifications
@@ -169,7 +192,8 @@ $LANG_APPROVAL_DENIED_PAGE_BODY = "Because of the information you have specified
 // Panel About Information
 
 $PANEL_ABOUT_TITLE_PRODUCT_NAME = "Cali Web Design Panel 20.0.1 Web Version";
-$PANEL_ABOUT_INFO = "This software was created by Cali Web Design Corporation. This software allows the ability to run your business from one place. The software is equipt with OAuth, CRM, Payroll, Time Keeping, Merchant Proccessing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can remove and add features or develop your own features as needed for your type of business.";
+$PANEL_ABOUT_INFO = "This software was created by Cali Web Design Corporation. This software allows the ability to run your business from one place. The software is equipped with OAuth, CRM, Payroll, Time Keeping, Merchant Processing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can add and remove features as well as develop your own features as needed for your type of business.";
 $PANEL_ABOUT_LICENSE_DISCLAIMER = "THE BASE CODE OF THIS SOFTWARE IS OPEN SOURCE AND FREE TO USE UNDER THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL). THE AUTHOR OF DERIVATIVE WORKS OF THIS SOFTWRE MUST NOTIFY CALI WEB DESIGN OF CHANGES. CERTAIN MODULES AND PAID VERSIONS OF THIS SOFTWARE WE DEVELOP ARE NOT OPEN SOURCE.";
+
 
 ?>
