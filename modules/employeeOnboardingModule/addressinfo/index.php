@@ -101,7 +101,7 @@
                         </div>
                     </div>
                     </div>
-                        <div style=" padding-bottom: 50px; display: flex; justify-content: center; gap: 20px; width: 100%;">
+                        <div style=" display: flex; justify-content: center; gap: 20px; width: 100%;">
                             <div class="form-control width-100">
                             <button class="caliweb-button second" style="text-align: left; display: flex; align-items: center; justify-content: space-between; " type="button" onclick="history.back()"><span class="lnr lnr-arrow-left"></span><?php echo $LANG_BUTTON_BACK; ?></button>
                             
