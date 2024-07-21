@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="dashboard-table">
                             <?php
-                                if ($employeeAccessLevel == "Executive") {
+                                if ($currentAccount->accessLevel->name == "Executive") {
 
                                     $sql = "SELECT * FROM caliweb_tasks";
                                     $result = mysqli_query($con, $sql);
@@ -121,7 +121,7 @@
                                             </table>
                                         ';
                                     }
-                                } else if ($employeeAccessLevel == "Manager") {
+                                } else if ($currentAccount->accessLevel->name == "Manager") {
 
                                     $sql = "SELECT * FROM caliweb_tasks";
                                     $result = mysqli_query($con, $sql);

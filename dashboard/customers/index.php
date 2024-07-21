@@ -22,7 +22,7 @@
     <section class="first-dashboard-area-cards">
         <section class="section caliweb-section customer-dashboard-greeting-section">
             <div class="container caliweb-container">
-                <h4 class="text-bold font-size-20 no-padding"><span id="greetingMessage"></span>, <?php echo $fullname; ?></h4>
+                <h4 class="text-bold font-size-20 no-padding"><span id="greetingMessage"></span>, <?php echo $currentAccount->legalName; ?></h4>
             </div>
         </section>
 

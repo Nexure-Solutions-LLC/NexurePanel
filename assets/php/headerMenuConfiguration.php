@@ -3,7 +3,7 @@
     $sql = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND `modulePositionType` = 'Staff Function'";
     $moduleresult = mysqli_query($con, $sql);
 
-    if ($userrole == "Customer" || $userrole == "customer") {
+    if ($currentAccount->role->name == "Customer" || $currentAccount->role->name == "customer") {
 
         if ($pagetitle == "Client" && $pagesubtitle == "Overview") {
             echo '
@@ -94,7 +94,7 @@
 
         }
 
-    } else if ($userrole == "Administrator" || $userrole == "administrator") {
+    } else if ($currentAccount->role->name == "Administrator" || $currentAccount->role->name == "administrator") {
 
         if ($pagetitle == "Administration Dashboard") {
 

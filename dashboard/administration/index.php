@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <?php if ($employeeAccessLevel == "Executive") { ?>
+                <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
 
-                <?php } else if ($employeeAccessLevel == "Manager") { ?>
+                <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -127,7 +127,7 @@
                     </div>
                 </div>
 
-                <?php if ($employeeAccessLevel == "Executive") { ?>
+                <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -149,7 +149,7 @@
                         </div>
                     </div>
 
-                <?php } else if ($employeeAccessLevel == "Manager") { ?>
+                <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -194,7 +194,7 @@
                     </div>
 
                 <?php } ?>
-                <?php if ($employeeAccessLevel == "Executive") { ?>
+                <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -216,7 +216,7 @@
                         </div>
                     </div>
 
-                <?php } else if ($employeeAccessLevel == "Manager") { ?>
+                <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -261,7 +261,7 @@
                     </div>
 
                 <?php } ?>
-                <?php if ($employeeAccessLevel == "Executive") { ?>
+                <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
@@ -283,7 +283,7 @@
                         </div>
                     </div>
 
-                <?php } else if ($employeeAccessLevel == "Manager") { ?>
+                <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">

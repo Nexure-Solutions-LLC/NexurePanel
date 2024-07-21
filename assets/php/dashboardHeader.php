@@ -1,4 +1,5 @@
 <?php
+
     ob_clean();
     ob_start();
 
@@ -82,28 +83,16 @@
 
     }
 
-    // Retreive Users Email Address
-
     $caliemail = $_SESSION['caliid'];
+
+    $currentAccount = new \CaliAccounts\Account($con);
+    $success = $currentAccount->fetchByEmail($caliemail);
 
     // MySQL Queries
 
     $panelresult = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = 1");
     $panelinfo = mysqli_fetch_array($panelresult);
     mysqli_free_result($panelresult);
-
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
-    $userinfo = mysqli_fetch_array($userprofileresult);
-    mysqli_free_result($userprofileresult);
-
-    // User Profile Variable Definitions
-
-    $fullname = $userinfo['legalName'];
-    $userrole = $userinfo['userrole'];
-    $lowerrole = strtolower($userrole);
-    $accountStatus = $userinfo['accountStatus'];
-    $accountStatusReason = $userinfo['statusReason'];
-    $employeeAccessLevel = $userinfo['employeeAccessLevel'];
 
     // Panel Configuration Definitions
 
@@ -371,9 +360,9 @@
     // If the user is active load the dashboard like normal.
     // Also checks the users role instead of doing it on each page
 
-    if ($accountStatus == "Under Review") {
+    if ($currentAccount->statusReason == "Under Review") {
 
-        switch ($accountStatusReason) {
+        switch ($currentAccount->statusReason) {
             case "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.":
                 header("Location: /onboarding/decision/manualReview");
                 break;
@@ -390,7 +379,7 @@
                 header("Location: /error/underReviewAccount");
         }
 
-    } elseif ($accountStatus == "Closed" && in_array($accountStatusReason, [
+    } elseif ($currentAccount->accountStatus == "Closed" && in_array($currentAccount->statusReason, [
         "The customer is running a prohibited business and their application was denied.",
         "The customer scored too high on the risk score and we cant serve this customer."
     ])) {
@@ -399,7 +388,7 @@
 
     } else {
 
-        switch ($accountStatus) {
+        switch ($currentAccount->accountStatus) {
             case "Suspended":
                 header("Location: /error/suspendedAccount");
                 break;
@@ -433,7 +422,7 @@
         ]
     ];
 
-    $redirectUrl = $redirectMap[$pagetype][$lowerrole] ?? null;
+    $redirectUrl = $redirectMap[$pagetype][strtolower($currentAccount->role->name)] ?? null;
 
     if ($redirectUrl) {
 
@@ -451,12 +440,9 @@
             'partner' => 'Account Management - Partners'
         ];
 
-        $pagetitle = isset($roleTitles[$lowerrole]) ? $roleTitles[$lowerrole] : 'Account Management';
+        $pagetitle = isset($roleTitles[strtolower($currentAccount->role->name)]) ? $roleTitles[strtolower($currentAccount->role->name)] : 'Account Management';
 
     }
-
-    $currentAccount = new \CaliAccounts\Account($con);
-    $success = $currentAccount->fetchByEmail($caliemail);
 
 ?>
 <!DOCTYPE html>
@@ -545,7 +531,7 @@
                     <input class="form-input caliweb-search-input" placeholder="Search all of <?php echo $orgShortName ?>" />
                 </div>
                 <div class="caliweb-nav-buttons">
-                    <a href="/dashboard/accountManagement" class="caliweb-nav-button secondary"><?php echo $fullname; ?></a>
+                    <a href="/dashboard/accountManagement" class="caliweb-nav-button secondary"><?php echo $currentAccount->legalName; ?></a>
                     <a href="/dashboard/messageCenter" class="toggle-container" style="padding: 6px 10px 5px 10px;">
                         <span class="lnr lnr-envelope" class="toggle-input"></span>
                     </a>

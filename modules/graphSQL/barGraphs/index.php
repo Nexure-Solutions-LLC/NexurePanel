@@ -93,7 +93,7 @@
 
         $theme = isset($_GET['theme']) ? $_GET['theme'] : 'light-mode';
 
-        $fullname = $_SESSION['fullname'];
+        $fullname = $currentAccount->legalName;
 
         $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance WHERE salesPerson = '$fullname'";
 

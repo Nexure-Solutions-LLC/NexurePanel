@@ -25,7 +25,7 @@
     $sql = "SELECT * FROM caliweb_cases";
     $result = mysqli_query($con, $sql);
 
-    switch ($employeeAccessLevel) {
+    switch ($currentAccount->accessLevel->name) {
         case "Executive":
             header("location:/modules/payroll/ceoSuite");
             break;
