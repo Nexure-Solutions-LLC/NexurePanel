@@ -9,10 +9,11 @@
     $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
     $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
     mysqli_free_result($businessAccountQuery);
+
     $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
-    $accountnumber = $userinfo['accountNumber'];
-    $truncatedAccountNumber = substr($accountnumber, -4);
-    $customerStatus = $userinfo['accountStatus'];
+
+    $truncatedAccountNumber = substr($currentAccount->accountNumber, -4);
+    $customerStatus = $currentAccount->accountStatus;
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
     
@@ -70,27 +71,7 @@
                                     <div class="customer-duedate" style="padding-top:5.5%">
                                         <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
                                             <?php
-                                                if ($customerStatus == "Active" || $customerStatus == "active") {
-
-                                                    echo "<span class='account-status-badge green' style='margin-left:0;'>Active</span>";
-
-                                                } else if ($customerStatus == "Suspended" || $customerStatus == "suspended") {
-
-                                                echo "<span class='account-status-badge red' style='margin-left:0;'>Suspended</span>";
-
-                                                } else if ($customerStatus == "Terminated" || $customerStatus == "terminated") {
-
-                                                echo "<span class='account-status-badge red-dark' style='margin-left:0;'>Terminated</span>";
-
-                                                } else if ($customerStatus == "Under Review" || $customerStatus == "under review") {
-
-                                                echo "<span class='account-status-badge yellow' style='margin-left:0;'>Under Review</span>";
-
-                                                } else if ($customerStatus == "Closed" || $customerStatus == "closed") {
-
-                                                echo "<span class='account-status-badge passive' style='margin-left:0;'>Closed</span>";
-
-                                                }
+                                                echo "<span class='account-status-badge ". $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value ."' style='margin-left:0;'>".$currentAccount->fromAccountStatus($customerStatus)."</span>";
                                             ?>
                                         </h5>
                                         <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>

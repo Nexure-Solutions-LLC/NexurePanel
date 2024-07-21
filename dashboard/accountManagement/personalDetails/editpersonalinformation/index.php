@@ -1,12 +1,12 @@
 <?php
 
-    $pagetitle = "Account Management";
-    $pagesubtitle = 'General';
-    $pagetype = "";
+$pagetitle = "Account Management";
+$pagesubtitle = 'General';
+$pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
 ?>
 
@@ -32,7 +32,7 @@
                                 <h3 class="font-size-20 no-padding">Personal Details</h3>
                             </div>
                             <div>
-                                <a href="/dashboard/accountManagement/personalDetails/editpersonalinformation" class="careers-link" style="text-decoration:none;"><span class="display-flex align-center">Edit Information <span class="lnr lnr-chevron-right" style="margin-left:10px;"></span></span></a>
+                                <a href="/dashboard/accountManagement/personalDetails/" class="careers-link" style="text-decoration:none;"><span class="display-flex align-center">Return to panel <span class="lnr lnr-chevron-right" style="margin-left:10px;"></span></span></a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div>
                             <h3 class="font-size-20 no-padding" style="font-weight:300;">Primary</h3>
                             <div class="caliweb-horizantal-spacer" style="margin-top:20px; margin-bottom:20px;"></div>
-                            <p class="font-14px">Your primary address is where you live—typically, what's on your driver's license or other government-issued ID. If you'd like us to send your mail for any accounts to a different address or addresses, choose "Add" above. (If you don't see an "Add" button, you aren't authorized to add an address.)</p>
+                            <p class="font-14px">Please fill with the corresponding fields to update your information.</p>
                         </div>
 
                         <div style="margin-left:auto; margin-right:auto; width:60%;">
@@ -50,25 +50,15 @@
                                 </div>
                                 <div>
                                     <p>
-
-                                        <?php
-
-                                            $ownershipAddressQuery = mysqli_query($con, "SELECT * FROM caliweb_ownershipinformation WHERE emailAddress = '$caliemail'");
-                                            $ownershipAddressRole = mysqli_fetch_array($ownershipAddressQuery);
-                                            mysqli_free_result($ownershipAddressQuery);
-
-                                            $ownershipAddressLine1 = $ownershipAddressRole['addressline1'];
-                                            $ownershipAddressLine2 = $ownershipAddressRole['addressline2'];
-                                            $ownershipAddressCity = $ownershipAddressRole['city'];
-                                            $ownershipAddressState = $ownershipAddressRole['state'];
-                                            $ownershipAddressPostalCode = $ownershipAddressRole['postalcode'];
-
-                                            echo $ownershipAddressLine1 ,' ', $ownershipAddressLine2;
-                                            echo '<br>';
-                                            echo $ownershipAddressCity ,' ', $ownershipAddressState ,' ', $ownershipAddressPostalCode;
-
-                                        ?>
-
+                                        <form <div class="caliweb-login-box-content caliweb-container">
+                                        <div class="caliweb-login-box-body">
+                                            <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
+                                                <div class="form-control">
+                                                    <label for="address" class="text-gray-label"></label>
+                                                    <input type="address" style="align-content: center" class="form-input" name="address" id="address" placeholder="Enter your business address here" required="" />
+                                                </div>
+                                            </form>
+                                         </div>
                                     </p>
                                 </div>
                             </div>
@@ -78,20 +68,22 @@
                                 </div>
                                 <div>
                                     <p>
-
-                                        <?php
-
-                                            echo $currentAccount->email;
-
-                                        ?>
-
+                                    <br>
+                                        <div class="caliweb-login-box-content">
+                                        <div class="caliweb-login-box-body">
+                                            <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login" style="margin-inline: auto">
+                                                <div class="form-control">
+                                                    <label for="emailaddress" class="text-gray-label"></label>
+                                                    <input  type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="Enter your business email address here" required="" />
+                                                </div>
+                                            </form>
+                                        </div>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

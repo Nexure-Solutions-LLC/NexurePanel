@@ -8,23 +8,19 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
-
-    $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
-    $websiteinfo = mysqli_fetch_array($websiteresult);
-
-    $customerStatus = $userinfo['accountStatus'];
-
-    $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
-    $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-    mysqli_free_result($businessAccountQuery);
-
-    $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
-
-    $accountnumber = $userinfo['accountNumber'];
-    $truncatedAccountNumber = substr($accountnumber, -4);
-    $customerStatus = $userinfo['accountStatus'];
-
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+
+    $storedAccountNumber = $currentAccount->accountNumber;
+
+    if ($accountnumber == $storedAccountNumber) {
+        $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
+        $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
+        mysqli_free_result($businessAccountQuery);
+
+        $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
+
+        $truncatedAccountNumber = substr($currentAccount->accountNumber, -4);
+        $customerStatus = $currentAccount->accountStatus;
 
 ?>
 
@@ -80,27 +76,9 @@
                                         <div class="customer-duedate" style="margin-top:3.5%;">
                                             <h5 style="font-weight:300; font-size:18px;" class="no-padding no-margin">
                                                 <?php
-                                                    if ($customerStatus == "Active" || $customerStatus == "active") {
 
-                                                        echo "<span class='account-status-badge green' style='margin-left:0;'>Active</span>";
+                                                echo "<span class='account-status-badge ". $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value ."' style='margin-left:0;'>".$currentAccount->fromAccountStatus($customerStatus)."</span>";
 
-                                                    } else if ($customerStatus == "Suspended" || $customerStatus == "suspended") {
-
-                                                       echo "<span class='account-status-badge red' style='margin-left:0;'>Suspended</span>";
-
-                                                    } else if ($customerStatus == "Terminated" || $customerStatus == "terminated") {
-
-                                                       echo "<span class='account-status-badge red-dark' style='margin-left:0;'>Terminated</span>";
-
-                                                    } else if ($customerStatus == "Under Review" || $customerStatus == "under review") {
-
-                                                       echo "<span class='account-status-badge yellow' style='margin-left:0;'>Under Review</span>";
-
-                                                    } else if ($customerStatus == "Closed" || $customerStatus == "closed") {
-
-                                                       echo "<span class='account-status-badge passive' style='margin-left:0;'>Closed</span>";
-
-                                                    }
                                                 ?>
                                             </h5>
                                             <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
@@ -210,4 +188,14 @@
             }
         </script>
 
-<?php include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php'); ?>
+<?php
+
+    } else {
+
+        echo '<script type="text/javascript">window.location = "/dashboard/customers/viewAccount/?account_number='.$storedAccountNumber.'"</script>';
+
+    }
+
+    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+
+?>

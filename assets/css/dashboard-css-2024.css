@@ -489,6 +489,11 @@ html[data-theme='dark'] body {
     color:#DBDBDB;
 }
 
+.dark-mode .caliweb-card.dashboard-card.account-center-cards {
+    padding:4% !important;
+    box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -946,6 +951,7 @@ textarea.swal2-input {
 
 .caliweb-card.dashboard-card.account-center-cards {
     padding:4% !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */

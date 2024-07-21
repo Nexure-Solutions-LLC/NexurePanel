@@ -7,7 +7,11 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
+    $storedAccountNumber = $currentAccount->accountNumber;
+
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+
+    if ($accountnumber == $storedAccountNumber) {
 
 ?>
 
@@ -61,4 +65,14 @@
 
         </section>
 
-<?php include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php'); ?>
+<?php
+
+    } else {
+
+        echo '<script type="text/javascript">window.location = "/dashboard/customers/billingCenter/?account_number='.$storedAccountNumber.'"</script>';
+
+    }
+
+    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+
+?>

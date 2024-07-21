@@ -6,15 +6,16 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
     use GuzzleHttp\Client;
     use IPLib\Factory;
     use Detection\MobileDetect;
 
-    session_start();        
-    
-    // Check if the user is accessing from a mobile device
+    session_start();
+
+    // Mobile Detection
 
     $detect = new MobileDetect();
 
@@ -366,7 +367,7 @@
         }
     }
 
-    // Checks the users account staus and send them to the right page.
+    // Checks the users account status and send them to the right page.
     // If the user is active load the dashboard like normal.
     // Also checks the users role instead of doing it on each page
 
@@ -440,6 +441,22 @@
         exit();
         
     }
+
+    if ($pagetitle == "Account Management") {
+
+        $roleTitles = [
+            'customer' => 'Account Management - Customer',
+            'authorized user' => 'Account Management - Authorized User',
+            'administrator' => 'Account Management - Administrator',
+            'partner' => 'Account Management - Partners'
+        ];
+
+        $pagetitle = isset($roleTitles[$lowerrole]) ? $roleTitles[$lowerrole] : 'Account Management';
+
+    }
+
+    $currentAccount = new \CaliAccounts\Account($con);
+    $success = $currentAccount->fetchByEmail($caliemail);
 
 ?>
 <!DOCTYPE html>
