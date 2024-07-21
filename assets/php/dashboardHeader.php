@@ -360,7 +360,7 @@
     // If the user is active load the dashboard like normal.
     // Also checks the users role instead of doing it on each page
 
-    if ($currentAccount->statusReason == "Under Review") {
+    if ($currentAccount->accountStatus->name == "UnderReview") {
 
         switch ($currentAccount->statusReason) {
             case "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.":
@@ -379,7 +379,7 @@
                 header("Location: /error/underReviewAccount");
         }
 
-    } elseif ($currentAccount->accountStatus == "Closed" && in_array($currentAccount->statusReason, [
+    } elseif ($currentAccount->accountStatus->name == "Closed" && in_array($currentAccount->statusReason, [
         "The customer is running a prohibited business and their application was denied.",
         "The customer scored too high on the risk score and we cant serve this customer."
     ])) {
@@ -388,7 +388,7 @@
 
     } else {
 
-        switch ($currentAccount->accountStatus) {
+        switch ($currentAccount->accountStatus->name) {
             case "Suspended":
                 header("Location: /error/suspendedAccount");
                 break;
