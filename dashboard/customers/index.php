@@ -14,7 +14,7 @@
 
     $truncatedAccountNumber = substr($currentAccount->accountNumber, -4);
     $customerStatus = $currentAccount->accountStatus;
-
+    $accountnumber = $currentAccount->accountNumber;
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
     
 ?>
