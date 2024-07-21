@@ -8,14 +8,13 @@
 
     class Task
     {
-        public string $title;
-        public string $description;
+        public string $taskName;
+        public string $taskDescription;
         public \taskStatus $status;
-        public \priorityLevel $priority;
-        public string $dueDate;
-        public string $creationDate;
-        public string $assignedTo;
-        public ?string $relatedProject;
+        public \priorityLevel $taskPriority;
+        public string $taskDueDate;
+        public string $taskStartDate;
+        public string $assignedUser;
         private $sql_connection;
 
         function __construct($con) {

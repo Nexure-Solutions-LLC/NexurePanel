@@ -72,37 +72,37 @@
         <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                 <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Onboarding</span></h3>
-                <p style="font-size:12px; margin-top:0%;">You have made the first step into getting your account. Now its time to finish and get rolling. Some information has been prefilled.</p>
+                <p style="font-size:12px; margin-top:0%;"><?php echo $LANG_ONBOARD_STARTTITLE; ?></p>
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                     <div class="caliweb-grid caliweb-two-grid">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="legalname" class="text-gray-label">Legal Name</label>
+                                <label for="legalname" class="text-gray-label"><?php echo $LANG_ONBOARD_NAMEFEILD; ?></label>
                                 <input type="text" class="form-input" name="legalname" id="legalname" value="<?php echo $fullname; ?>" required="" readonly />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="phonenumber" class="text-gray-label">Phone Number</label>
+                                <label for="phonenumber" class="text-gray-label"><?php echo $LANG_ONBOARD_PHONEFEILD; ?></label>
                                 <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $mobilenumber; ?>" required="" readonly />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="emailaddress" class="text-gray-label">Email Address</label>
+                                <label for="emailaddress" class="text-gray-label"><?php echo $LANG_ONBOARD_EMAILFEILD; ?></label>
                                 <input type="email" class="form-input" name="emailaddress" id="emailaddress" value="<?php echo $caliemail; ?>" required="" readonly />
                             </div>
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="dateofbirth" class="text-gray-label">Date of Bith (Must be 14 years or older)</label>
+                                <label for="dateofbirth" class="text-gray-label"><?php echo $LANG_ONBOARD_DOBFEILD; ?></label>
                                 <input type="date" class="form-input" name="dateofbirth" id="dateofbirth" placeholder="" requird="" />
                             </div>
                             <div style="border:1px solid green; border-radius:8px; padding:10px; margin-top:0%;">
-                                <label style="color:green; font-size:12px;">This is a secure form and will be verified with the IRS.</label>
+                                <label style="color:green; font-size:12px;"><?php echo $LANG_ONBOARD_SECUREFORMTITLE; ?></label>
                                 <div class="form-control" style="margin-top:4%;">
-                                    <label for="einssnnumber" class="text-gray-label">EIN or SSN Number</label>
+                                    <label for="einssnnumber" class="text-gray-label"><?php echo $LANG_ONBOARD_EINORSSNFEILD; ?></label>
                                     <input type="password" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" requird="" />
                                 </div>
-                                <p style="font-size:12px; padding:0; margin:0;">Why do we require this? To comply with financial regulations and provide our full rage of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.</p>
+                                <p style="font-size:12px; padding:0; margin:0;"><?php echo $LANG_ONBOARD_SUBMITDISCLAIMER; ?></p>
                             </div>
                             <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between;">
                                 <div class="form-control width-100">

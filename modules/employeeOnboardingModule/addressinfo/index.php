@@ -71,8 +71,8 @@
         </div>
         <div class="caliweb-login-box-body">
             <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                <div class="caliweb-grid caliweb-two-grid">
-                    <div>
+            <div class="caliweb-grid display: block;">
+            <div>
                         <div class="form-control" style="margin-top:-2%;">
                             <label for="addressline1" class="text-gray-label">Address Line 1</label>
                             <input type="text" class="form-input" name="addressline1" id="addressline1" placeholder="" required="" />
@@ -100,19 +100,17 @@
                             <input type="text" class="form-input" name="country" id="country" placeholder="" required="" />
                         </div>
                     </div>
+                    </div>
+                        <div style=" padding-bottom: 50px; display: flex; justify-content: center; gap: 20px; width: 100%;">
+                            <div class="form-control width-100">
+                            <button class="caliweb-button second" style="text-align: left; display: flex; align-items: center; justify-content: space-between; " type="button" onclick="history.back()"><span class="lnr lnr-arrow-left"></span><?php echo $LANG_BUTTON_BACK; ?></button>
+                            
+                            </div>
+                            <div class="form-control width-100">
+                                <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
+                            </div>
+                        </div>
                 </div>
-                <div  style="display: flex; justify-content: center; gap: 20px; width: 100%;">
-        <div class="form-control" style="display: flex; justify-content: center;">
-            <button class="caliweb-button  second " style=" text-align: left; display: flex; align-items: center; justify-content: space-between; width: 300px;" type="submit" name="submit">
-                <span class="lnr lnr-arrow-left"></span><?php echo $LANG_BUTTON_BACK; ?>
-            </button>
-        </div>
-        <div class="form-control" style="display: flex; justify-content: center;">
-            <button class="caliweb-button primary" style="text-align: left; display: flex; align-items: center; justify-content: space-between; width: 300px;" type="submit" name="submit">
-                <?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right"></span>
-            </button>
-        </div>
-    </div>
             </form>
         </div>
     </div>

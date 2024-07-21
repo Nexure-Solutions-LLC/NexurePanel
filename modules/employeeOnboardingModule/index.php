@@ -76,7 +76,7 @@
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                    <div class="caliweb-grid caliweb-two-grid">
+                    <div class="caliweb-grid display: block;">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="legalname" class="text-gray-label">Legal Name</label>
@@ -102,9 +102,9 @@
                                     <label for="einssnnumber" class="text-gray-label">EIN or SSN Number</label>
                                     <input type="password" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" requird="" />
                                 </div>
-                                <p style="font-size:12px; padding:0; margin:0;">Why do we require this? To comply with financial regulations and provide our full rage of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.</p>
+                                <p style="font-size:12px; padding:0; margin:0;">Why do we require this? To comply with financial regulations and provide our full range of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.</p>
                             </div>
-                            <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between;">
+                            <div style=" padding-bottom: 50px; display: flex; justify-content: center; gap: 20px; width: 100%;">
                                 <div class="form-control width-100">
                                     <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
                                 </div>

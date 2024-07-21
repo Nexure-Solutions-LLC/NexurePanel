@@ -131,6 +131,40 @@ $LANG_LOGOUT_REDIRECT_FALLBACK_TEXT = "If you are not redirected automatically, 
 
 // ====================== START ONBOARDING LANGUAGE AREA ==========================
 
+// Onboarding Start Text Specifications
+
+$LANG_ONBOARD_STARTTITLE = "You have made the first step into getting your account. Now its time to finish and get rolling. Some information has been prefilled.";
+$LANG_ONBOARD_NAMEFEILD = "Legal Name";
+$LANG_ONBOARD_PHONEFEILD = "Phone Number";
+$LANG_ONBOARD_EMAILFEILD = "Email Address";
+$LANG_ONBOARD_DOBFEILD = "Date of Bith (Must be 14 years or older)";
+$LANG_ONBOARD_EINORSSNFEILD = "EIN or SSN Number";
+$LANG_ONBOARD_SECUREFORMTITLE = "This is a secure form and will be verified with the IRS.";
+$LANG_ONBOARD_SUBMITDISCLAIMER = "Why do we require this? To comply with financial regulations and provide our full range of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.";
+
+// Onboarding Address Text Specifications
+
+$LANG_ONBOARD_ADDRESSPAGETITLE = "Please provide your home address so that we can make sure your location is supported.";
+$LANG_ONBOARD_ADDRESSLINE1FEILD = "Address Line 1";
+$LANG_ONBOARD_ADDRESSLINE2FEILD = "Address Line 2";
+$LANG_ONBOARD_CITYFEILD = "City";
+$LANG_ONBOARD_STATEFEILD = "State";
+$LANG_ONBOARD_POSTALCODEFEILD = "Postal Code";
+$LANG_ONBOARD_COUNTRYFEILD = "Country";
+
+// Onboarding Billing Text Specifications
+
+$LANG_ONBOARD_BILLINGTITLE = "Please provide your billing information so that you can order services without interuption.";
+
+// Onboarding Business Text Specifications
+
+$LANG_ONBOARD_BUSINESSNAME = "Business Name";
+$LANG_ONBOARD_BUSINESSINDUSTRY = "Business Industry";
+$LANG_ONBOARD_BUSINESSTYPE = "Business Type";
+$LANG_ONBOARD_BUSINESSREVENUE = "Business Revenue";
+$LANG_ONBOARD_BUSINESSREGDATE = "Business Registration Date";
+$LANG_ONBOARD_BUSINESSDESCRIPTION = "Business Description";
+
 // Onboarding Completed Text Specifications
 
 $LANG_ONBOARD_COMPLETE_BASE_TEXT = "You have successfully completed onboarding.";

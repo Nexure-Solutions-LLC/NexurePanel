@@ -179,3 +179,10 @@ else if (hrs >= 17 && hrs <= 24)
     greet = 'Good Evening';
 
 document.getElementById('greetingMessage').innerHTML = greet;
+
+
+// ======================= Employee Application ========================
+
+function showNewForm() {
+    document.getElementById('new-form').style.display = 'block';
+}

@@ -75,7 +75,7 @@
                 <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
                     <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                         <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Onboarding</span></h3>
-                        <p style="font-size:12px; margin-top:0%;">Please provide your billing information so that you can order services without interuption.</p>
+                        <p style="font-size:12px; margin-top:0%;"><?php echo $LANG_ONBOARD_BILLINGTITLE; ?></p>
                     </div>
                     <div class="caliweb-login-box-body">
                         <form action="/onboarding/requiredLogic/index.php" method="POST" id="caliweb-form-plugin"  class="caliweb-ix-form-login">

@@ -67,36 +67,36 @@
         <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                 <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Onboarding</span></h3>
-                <p style="font-size:12px; margin-top:0%;">Please provide your home address so that we can make sure your location is supported.</p>
+                <p style="font-size:12px; margin-top:0%;"><?php echo $LANG_ONBOARD_ADDRESSPAGETITLE; ?></p>
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                     <div class="caliweb-grid caliweb-two-grid">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="addressline1" class="text-gray-label">Address Line 1</label>
+                                <label for="addressline1" class="text-gray-label"><?php echo $LANG_ONBOARD_ADDRESSLINE1FEILD; ?></label>
                                 <input type="text" class="form-input" name="addressline1" id="addressline1" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="city" class="text-gray-label">City</label>
+                                <label for="city" class="text-gray-label"><?php echo $LANG_ONBOARD_CITYFEILD; ?></label>
                                 <input type="text" class="form-input" name="city" id="city" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="postalcode" class="text-gray-label">Postal Code</label>
+                                <label for="postalcode" class="text-gray-label"><?php echo $LANG_ONBOARD_POSTALCODEFEILD; ?></label>
                                 <input type="text" class="form-input" name="postalcode" id="postalcode" placeholder="" required="" />
                             </div>
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="addressline2" class="text-gray-label">Address Line 2</label>
+                                <label for="addressline2" class="text-gray-label"><?php echo $LANG_ONBOARD_ADDRESSLINE2FEILD; ?></label>
                                 <input type="text" class="form-input" name="addressline2" id="addressline2" placeholder="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="state" class="text-gray-label">State</label>
+                                <label for="state" class="text-gray-label"><?php echo $LANG_ONBOARD_STATEFEILD; ?></label>
                                 <input type="text" class="form-input" name="state" id="state" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="country" class="text-gray-label">Country</label>
+                                <label for="country" class="text-gray-label"><?php echo $LANG_ONBOARD_COUNTRYFEILD; ?></label>
                                 <input type="text" class="form-input" name="country" id="country" placeholder="" required="" />
                             </div>
                             <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between; float:right;">

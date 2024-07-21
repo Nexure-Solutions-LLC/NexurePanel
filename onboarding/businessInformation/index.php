@@ -111,16 +111,16 @@
                     <div class="caliweb-grid caliweb-two-grid">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="businessName" class="text-gray-label">Business Name</label>
+                                <label for="businessName" class="text-gray-label"><?php echo $LANG_ONBOARD_BUSINESSNAME; ?></label>
                                 <input type="text" class="form-input" name="businessName" id="businessName" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="businessIndustry" class="text-gray-label">Business Industry</label>
+                                <label for="businessIndustry" class="text-gray-label"><?php echo $LANG_ONBOARD_BUSINESSINDUSTRY; ?></label>
                                 <input type="text" class="form-input" name="businessIndustry" id="businessIndustry" placeholder="Start typing to search..." required />
                                 <div id="industryResults" class="industry-results"></div>
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="businessType" class="text-gray-label">Business Type</label>
+                                <label for="businessType" class="text-gray-label"><?php echo $LANG_ONBOARD_BUSINESSTYPE; ?></label>
                                 <select type="text" class="form-input" name="businessType" id="businessType" required="">
                                     <option>Please select a business type</option>
                                     <option>Privately Held Company</option>
@@ -130,15 +130,15 @@
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="businessRevenue" class="text-gray-label">Business Revenue</label>
+                                <label for="businessRevenue" class="text-gray-label"><?php echo $LANG_ONBOARD_BUSINESSREVENUE; ?></label>
                                 <input type="text" class="form-input" name="businessRevenue" id="businessRevenue" placeholder="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="businessRegistrationDate" class="text-gray-label">Business Registration Date</label>
+                                <label for="businessRegistrationDate" class="text-gray-label"><?php echo $LANG_ONBOARD_BUSINESSREGDATE; ?></label>
                                 <input type="date" class="form-input" name="businessRegistrationDate" id="businessRegistrationDate" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="businessDescription" class="text-gray-label">Business Description</label>
+                                <label for="businessDescription" class="text-gray-label"><?php echo $LANG_ONBOARD_BUSINESSDESCRIPTION; ?></label>
                                 <textarea style="height:150px;" type="text" class="form-input" name="buisnessDescription" id="buisnessDescription" placeholder="" required=""></textarea>
                             </div>
                             <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between; float:right;">
