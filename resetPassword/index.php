@@ -23,7 +23,7 @@
         $result = mysqli_query($con, $newQuery) or die(mysqli_error());
 
         $_SESSION["verification_code"] = $verificationCode;
-        $_SESSION['caliid'] = $cali_id;
+        $_SESSION['caliidasemail'] = $cali_id;
         if ($rows != 0) {
             include($_SERVER["DOCUMENT_ROOT"]."/resetPassword/sendEmailLogic/index.php");
         }

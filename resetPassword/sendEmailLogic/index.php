@@ -40,7 +40,7 @@
 
     $fromName = 'Cali Web Design Corporation';
     $email->SetFrom("noreply@caliwebdesignservices.com", $fromName);
-    $email->AddAddress($_SESSION['caliid']);
+    $email->AddAddress($_SESSION['caliidasemail']);
     $email->isHTML(true);
     $email->Subject = $submittedsubject;
     $email->Body = $HTMLCONTENT;

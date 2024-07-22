@@ -14,7 +14,7 @@
     $submittedVerificationCode = stripslashes($_SESSION["recoverycode"]);
     $submittedVerificationCode = mysqli_real_escape_string($con, $submittedVerificationCode);
 
-    $local_email = $_SESSION["caliid"];
+    $local_email = $_SESSION["caliidasemail"];
     $local_email = stripslashes($local_email);
     $local_email = mysqli_real_escape_string($con, $local_email);
 

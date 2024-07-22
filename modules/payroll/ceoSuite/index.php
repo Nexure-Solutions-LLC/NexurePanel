@@ -5,7 +5,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
 
-    if ($employeeAccessLevel == "Executive") {
+    if ($currentAccount->accessLevel->name == "Executive") {
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 ?>
