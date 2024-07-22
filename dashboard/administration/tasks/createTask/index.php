@@ -1,6 +1,8 @@
 <?php
+
     $pagetitle = "Tasks";
     $pagesubtitle = "Create";
+    $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 

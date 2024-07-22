@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="dashboard-table">
                         <?php
-                            if ($employeeAccessLevel == "Executive" || $employeeAccessLevel == "Manager") {
+                            if ($currentAccount->accessLevel->name == "Executive" || $currentAccount->accessLevel->name == "Manager") {
 
                                 $sql = "SELECT * FROM caliweb_cases";
                                 $result = mysqli_query($con, $sql);
