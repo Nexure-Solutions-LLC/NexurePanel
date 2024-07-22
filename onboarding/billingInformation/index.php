@@ -79,14 +79,14 @@
                     </div>
                     <div class="caliweb-login-box-body">
                         <form action="/onboarding/requiredLogic/index.php" method="POST" id="caliweb-form-plugin"  class="caliweb-ix-form-login">
-                            <div class="caliweb-grid caliweb-two-grid">
+                            <div class="caliweb-grid caliweb-two-grid no-grid-row-bottom">
                                 <div>
                                     <div id="card-element" style="padding:10px; background-color:#F8F8F8; border-radius:8px; box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; border:1px solid #ddd; margin-bottom:10%;">
                                         <!-- A Stripe Element will be inserted here. -->
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="onboarding-button-container" style="margin-top:4%;">
+                                    <div class="onboarding-button-container" style="margin-top:8%;">
                                         <button class="onboarding-button" type="submit" name="submit" style="float: right;">
                                             <span class="lnr lnr-arrow-right"></span>
                                             <span class="tooltip-text">Next Question</span>

@@ -10,45 +10,50 @@
 
 ?>
 
-    <section class="login-container">
+    <section class="login-container" style="animation: sideDrop 0.3s ease-out;">
         <div class="container caliweb-container bigscreens-are-strange" style="height: 100%;width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:4%;">
-                <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Employment Application | Work Experience</span></h3>
-                <p style="font-size:12px; margin-top:0%;">Please provide your home address so that we can make sure your location is supported.</p>
+                <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Employment Application</span></h3>
+                <p style="font-size:12px; margin-top:0%;">Please provide your work experiance from previous employers.</p>
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                     <div id="employer-forms-container">
-                        <div class="caliweb-grid" id="employer-form-1">
-                            <div class="caliweb-header">
-                                <header class="header-text">
-                                    Employer 
-                                    <span class="icon-container" style="margin-left: 98%; ;" onclick="addNewForm()">
-                                        <span class="icon-trash lnr lnr-plus" style="font-size: 20px"></span>
-                                    </span>
-                                </header>
-                            </div>    
+                        <div class="caliweb-header">
+                            <div class="header-text" style="justify-content:space-between;">
+                                Employer
+                                <span class="icon-container" onclick="addNewForm()">
+                                    <span class="icon-trash lnr lnr-plus-circle" style="font-size: 20px"></span>
+                                </span>
+                            </div>
+                        </div>    
+                        <div class="caliweb-grid caliweb-two-grid no-grid-row-bottom" id="employer-form-1">
                             <div style="margin-left:0">
                                 <div class="form-control" style="margin-top:-2%;">
-                                    <label for="addressline1" class="text-gray-label">Company Name</label>
-                                    <input type="text" class="form-input" name="addressline1[]" id="addressline1" placeholder="" required="" />
+                                    <label for="companyName" class="text-gray-label">Company Name</label>
+                                    <input type="text" class="form-input" name="companyName" id="companyName" placeholder="" required="" />
                                 </div>
                                 <div class="form-control" style="margin-top:-2%;">
-                                    <label for="city" class="text-gray-label">Dates Of Employment</label>
-                                    <input type="date" class="form-input" name="dateofbirth_start[]" id="dateofbirth_start" placeholder="" required="" /> 
-                                    <input type="date" class="form-input" name="dateofbirth_end[]" id="dateofbirth_end" placeholder="" required="" /> 
+                                    <label for="employmentDateStart" class="text-gray-label">Start Date of Employment</label>
+                                    <input type="date" class="form-input" name="employmentDateStart" id="employmentDateStart" placeholder="" required="" /> 
                                 </div>
                                 <div class="form-control" style="margin-top:-2%;">
-                                    <label for="jobtitle" class="text-gray-label">Job Title</label>
-                                    <input type="text" class="form-input" name="jobtitle[]" id="jobtitle" placeholder="" required="" />
+                                    <label for="employmentDateEnd" class="text-gray-label">End Date of Employment</label>
+                                    <input type="date" class="form-input" name="employmentDateEnd" id="employmentDateEnd" placeholder="" required="" /> 
                                 </div>
+                            </div>
+                            <div>
                                 <div class="form-control" style="margin-top:-2%;">
-                                    <label for="responsibility" class="text-gray-label">Job Responsibility </label>
-                                    <input type="text" class="form-input" name="responsibility[]" id="responsibility" placeholder="" required="" />
+                                    <label for="responsibilityFeild" class="text-gray-label">Job Responsibility </label>
+                                    <input type="text" class="form-input" name="responsibilityFeild" id="responsibilityFeild" placeholder="" required="" />
                                 </div>
                                 <div class="form-control" style="margin-top:-2%;">
                                     <label for="reason" class="text-gray-label">Reason For Leaving</label>
-                                    <input type="text" class="form-input" name="reason[]" id="reason" placeholder="" required="" />
+                                    <input type="text" class="form-input" name="reason" id="reason" placeholder="" required="" />
+                                </div>
+                                <div class="form-control" style="margin-top:-2%;">
+                                    <label for="jobtitle" class="text-gray-label">Job Title</label>
+                                    <input type="text" class="form-input" name="jobtitle" id="jobtitle" placeholder="" required="" />
                                 </div>
                             </div>
                         </div>
@@ -56,11 +61,11 @@
                     <div style="margin-top:-2%;">
                         <div id="tooltip" class="tooltip" style="display: none;">You have reached the maximum number of forms.</div>
                     </div>
-                    <div class="onboarding-button-container">
-                            <button class="onboarding-button" type="submit" name="submit" style="float: right;">
-                                <span class="lnr lnr-arrow-right"></span>
-                                <span class="tooltip-text">Next Question</span>
-                            </button>
+                    <div class="onboarding-button-container" style="margin-top:6%;">
+                        <button class="onboarding-button" href="/modules/employeeOnboardingModule/employmentEducation" type="submit" name="submit" style="float: right;">
+                            <span class="lnr lnr-arrow-right"></span>
+                            <span class="tooltip-text">Next Question</span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -87,71 +92,85 @@
     </div>
 
     <script>
+
         let formCount = 1;
         const maxForms = 3;
 
         function addNewForm() {
+
             if (formCount < maxForms) {
+
                 formCount++;
                 const container = document.getElementById('employer-forms-container');
                 const newForm = document.createElement('div');
-                newForm.classList.add('caliweb-grid');
+                newForm.classList.add('caliweb-grid', 'caliweb-two-grid', 'no-grid-row-bottom', 'mt-10-per');
                 newForm.id = `employer-form-${formCount}`;
-                newForm.innerHTML = `
-                    <div class="caliweb-header">
-                        <header class="header-text">
-                            Employer 
-                            <span class="icon-container" style="margin-left: 98%; ;" onclick="deleteForm(${formCount})">
-                                <span class="icon-trash lnr lnr-trash" style="font-size: 20px"></span>
-                                <span class="icon-overlay">X</span>
-                            </span>
-                        </header>
 
-                    </div>    
-                    <div style="margin-left:0">
+                newForm.innerHTML = `
+                    <div style="margin-left:0;">
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="addressline1-${formCount}" class="text-gray-label">Company Name</label>
-                            <input type="text" class="form-input" name="addressline1[]" id="addressline1-${formCount}" placeholder="" required="" />
+                            <label for="companyName-${formCount}" class="text-gray-label">Company Name</label>
+                            <input type="text" class="form-input" name="companyName" id="companyName-${formCount}" placeholder="" required />
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="city-${formCount}" class="text-gray-label">Dates Of Employment</label>
-                            <input type="date" class="form-input" name="dateofbirth_start[]" id="dateofbirth_start-${formCount}" placeholder="" required="" /> 
-                            <input type="date" class="form-input" name="dateofbirth_end[]" id="dateofbirth_end-${formCount}" placeholder="" required="" /> 
+                            <label for="employmentDateStart-${formCount}" class="text-gray-label">Start Date of Employment</label>
+                            <input type="date" class="form-input" name="employmentDateStart-${formCount}" id="employmentDateStart" placeholder="" required="" /> 
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="jobtitle-${formCount}" class="text-gray-label">Job Title</label>
-                            <input type="text" class="form-input" name="jobtitle[]" id="jobtitle-${formCount}" placeholder="" required="" />
+                            <label for="employmentDateEnd-${formCount}" class="text-gray-label">End Date of Employment</label>
+                            <input type="date" class="form-input" name="employmentDateEnd-${formCount}" id="employmentDateEnd" placeholder="" required="" /> 
                         </div>
+                    </div>
+                    <div>
                         <div class="form-control" style="margin-top:-2%;">
-                            <label for="responsibility-${formCount}" class="text-gray-label">Job Responsibility </label>
-                            <input type="text" class="form-input" name="responsibility[]" id="responsibility-${formCount}" placeholder="" required="" />
+                            <label for="responsibilityFeild-${formCount}" class="text-gray-label">Job Responsibility</label>
+                            <input type="text" class="form-input" name="responsibilityFeild" id="responsibilityFeild-${formCount}" placeholder="" required />
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
                             <label for="reason-${formCount}" class="text-gray-label">Reason For Leaving</label>
-                            <input type="text" class="form-input" name="reason[]" id="reason-${formCount}" placeholder="" required="" />
+                            <input type="text" class="form-input" name="reason" id="reason-${formCount}" placeholder="" required />
+                        </div>
+                        <div class="form-control" style="margin-top:-2%;">
+                            <label for="jobtitle-${formCount}" class="text-gray-label">Job Title</label>
+                            <input type="text" class="form-input" name="jobtitle" id="jobtitle-${formCount}" placeholder="" required />
                         </div>
                     </div>
                 `;
+
                 container.appendChild(newForm);
+
             } else {
+
                 showTooltip();
+
             }
+
         }
 
         function showTooltip() {
+
             const tooltip = document.getElementById('tooltip');
             tooltip.style.display = 'block';
+
             setTimeout(() => {
+
                 tooltip.style.display = 'none';
-            }, 3000); // it hides the tooltip after 3 seconds
+
+            }, 3000);
+
         }
 
         function deleteForm(formId) {
+
             const form = document.getElementById(`employer-form-${formId}`);
+
             if (form) {
+
                 form.remove();
                 formCount--;
+
             }
+
         }
     </script>
 

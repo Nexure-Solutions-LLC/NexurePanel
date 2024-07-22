@@ -17,7 +17,7 @@
 
 ?>
 
-    <section class="login-container">
+    <section class="login-container" style="animation: sideDrop 0.3s ease-out;">
         <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                 <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Employee Onboarding</span></h3>
@@ -25,7 +25,7 @@
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                    <div class="caliweb-grid display: block;">
+                    <div class="caliweb-grid caliweb-two-grid no-grid-row-bottom">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="legalname" class="text-gray-label">Legal Name</label>
@@ -35,25 +35,24 @@
                                 <label for="phonenumber" class="text-gray-label">Phone Number</label>
                                 <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $currentAccount->mobileNumber; ?>" required="" readonly />
                             </div>
+                        </div>
+                        <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="emailaddress" class="text-gray-label">Email Address</label>
                                 <input type="email" class="form-input" name="emailaddress" id="emailaddress" value="<?php echo $currentAccount->email; ?>" required="" readonly />
                             </div>
-                        </div>
-                        <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="dateofbirth" class="text-gray-label">Date of Bith (Must be 14 years or older)</label>
                                 <input type="date" class="form-input" name="dateofbirth" id="dateofbirth" placeholder="" requird="" />
                             </div>
-                            
                         </div>
-                        <div class="onboarding-button-container">
-                            <button class="onboarding-button" type="submit" name="submit" style="float: right;">
-                                <span class="lnr lnr-arrow-right"></span>
-                                <span class="tooltip-text">Next Question</span>
-                            </button>
-                        </div>
-                    <div>
+                    </div>
+                    <div class="onboarding-button-container" style="margin-top:6%;">
+                        <button class="onboarding-button" type="submit" name="submit" style="float: right;">
+                            <span class="lnr lnr-arrow-right"></span>
+                            <span class="tooltip-text">Next Question</span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
