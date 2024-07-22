@@ -334,6 +334,14 @@
 
                 }            
 
+            } else if (($_SESSION['pagetitle']) == "Client" && ($_SESSION['pagesubtitle']) == "Billing Center") {
+              
+                echo '
+                
+                    
+                
+                ';
+                
             } else {
 
                 echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
