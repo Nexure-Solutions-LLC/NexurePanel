@@ -5,16 +5,12 @@ body {
     background-color: #f1f1f1;
 }
 
-.dark-mode .license-container,
-.dark-mode .login-container,
-.dark-mode .wrapper,
-.dark-mode body {
-    background-color: #000;
-}
-
 body {
     height: 100vh;
     background-color: #f1f1f1;
+}
+.login-container{
+    animation: sideDrop 0.3s ease-out;
 }
 .wrapper {
     right: 0;
@@ -95,6 +91,18 @@ body {
     margin-top: 8%;
 }
 
+@keyframes sideDrop {
+        0% {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+    
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+}
+
 .caliweb-error-box {
     background-color: #ffe7e7;
     border-radius: 4px;
@@ -172,6 +180,60 @@ body {
     background-color: #fff;
     border: 1px solid #CCCCCC;
     font-family: "IBM Plex Sans", sans-serif !important;
+}
+
+.onboarding-button-container {
+    float: right;
+}
+
+.onboarding-button .tooltip-text {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.onboarding-button .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.onboarding-button:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.onboarding-button {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 40px;
+    position: relative;
+    display: inline-block;
+    height: 40px;
+    float: right;
+}
+
+.onboarding-button:hover {
+    background-color: #000;
+    color:white;
 }
 
 .caliweb-login-footer {
@@ -319,6 +381,24 @@ body {
 
 .dark-mode .industry-div:hover {
     background-color: rgba(149, 157, 165, 0.2) !important;
+}
+
+.dark-mode .license-container,
+.dark-mode .login-container,
+.dark-mode .wrapper,
+.dark-mode body {
+    background-color: #000;
+}
+
+.dark-mode .onboarding-button {
+    border: 1px solid #fff;
+    background-color: #000;
+    color:#fff;
+}
+
+.dark-mode .onboarding-button:hover {
+    background-color: #fff;
+    color: #000;
 }
 
 .industry-results::-webkit-scrollbar-track {

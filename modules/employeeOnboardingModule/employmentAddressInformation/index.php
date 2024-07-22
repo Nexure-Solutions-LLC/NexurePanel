@@ -6,54 +6,58 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/components/CaliEmployees/Application.php');
 
-    
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        echo '<script type="text/javascript">window.location = "/modules/employeeOnboardingModule/employmentAddressInformation"</script>';
+        echo '<script type="text/javascript">window.location = "/modules/employeeOnboardingModule/employmentPastHistory"</script>';
 
     }
-        
-        
+
     echo '<title>Complete onboarding of employment.</title>';
 
 ?>
-
     <section class="login-container">
         <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
                 <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Employee Onboarding</span></h3>
-                <p style="font-size:12px; margin-top:0%;">You have made the first step into getting employment. Now its time to finish and get rolling.</p>
+                <p style="font-size:12px; margin-top:0%;">Please provide your home address we ask for this for tax purposes and identity verification.</p>
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                    <div class="caliweb-grid display: block;">
+                    <div class="caliweb-grid caliweb-two-grid">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="legalname" class="text-gray-label">Legal Name</label>
-                                <input type="text" class="form-input" name="legalname" id="legalname" value="<?php echo $currentAccount->legalName; ?>" required="" readonly />
+                                <label for="addressline1" class="text-gray-label">Address Line 1</label>
+                                <input type="text" class="form-input" name="addressline1" id="addressline1" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="phonenumber" class="text-gray-label">Phone Number</label>
-                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $currentAccount->mobileNumber; ?>" required="" readonly />
+                                <label for="city" class="text-gray-label">City</label>
+                                <input type="text" class="form-input" name="city" id="city" placeholder="" required="" />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="emailaddress" class="text-gray-label">Email Address</label>
-                                <input type="email" class="form-input" name="emailaddress" id="emailaddress" value="<?php echo $currentAccount->email; ?>" required="" readonly />
+                                <label for="postalcode" class="text-gray-label">Postal Code</label>
+                                <input type="text" class="form-input" name="postalcode" id="postalcode" placeholder="" required="" />
                             </div>
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="dateofbirth" class="text-gray-label">Date of Bith (Must be 14 years or older)</label>
-                                <input type="date" class="form-input" name="dateofbirth" id="dateofbirth" placeholder="" requird="" />
+                                <label for="addressline2" class="text-gray-label">Address Line 2</label>
+                                <input type="text" class="form-input" name="addressline2" id="addressline2" placeholder="" />
                             </div>
-                            
+                            <div class="form-control" style="margin-top:-2%;">
+                                <label for="state" class="text-gray-label">State</label>
+                                <input type="text" class="form-input" name="state" id="state" placeholder="" required="" />
+                            </div>
+                            <div class="form-control" style="margin-top:-2%;">
+                                <label for="country" class="text-gray-label">Country</label>
+                                <input type="text" class="form-input" name="country" id="country" placeholder="" required="" />
+                            </div>
                         </div>
-                        <div class="onboarding-button-container">
-                            <button class="onboarding-button" type="submit" name="submit" style="float: right;">
-                                <span class="lnr lnr-arrow-right"></span>
-                                <span class="tooltip-text">Next Question</span>
-                            </button>
-                        </div>
-                    <div>
+                    </div>
+                    <div class="onboarding-button-container" style="margin-top:-8%;">
+                        <button class="onboarding-button" type="submit" name="submit" style="float: right;">
+                            <span class="lnr lnr-arrow-right"></span>
+                            <span class="tooltip-text">Next Question</span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -81,5 +85,5 @@
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
-
+    
 ?>

@@ -76,7 +76,7 @@
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                    <div class="caliweb-grid caliweb-two-grid">
+                    <div class="caliweb-grid caliweb-two-grid" style="grid-row-gap:0;">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="legalname" class="text-gray-label"><?php echo $LANG_ONBOARD_NAMEFEILD; ?></label>
@@ -104,10 +104,11 @@
                                 </div>
                                 <p style="font-size:12px; padding:0; margin:0;"><?php echo $LANG_ONBOARD_SUBMITDISCLAIMER; ?></p>
                             </div>
-                            <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between;">
-                                <div class="form-control width-100">
-                                    <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
-                                </div>
+                            <div class="onboarding-button-container" style="margin-top:6%;">
+                                <button class="onboarding-button" type="submit" name="submit" style="float: right;">
+                                    <span class="lnr lnr-arrow-right"></span>
+                                    <span class="tooltip-text">Next Question</span>
+                                </button>
                             </div>
                         </div>
                     <div>

@@ -99,10 +99,11 @@
                                 <label for="country" class="text-gray-label"><?php echo $LANG_ONBOARD_COUNTRYFEILD; ?></label>
                                 <input type="text" class="form-input" name="country" id="country" placeholder="" required="" />
                             </div>
-                            <div class="mt-5-per" style="display:flex; align-items:center; justify-content:space-between; float:right;">
-                                <div class="form-control width-100">
-                                    <button class="caliweb-button primary" style="text-align:left; display:flex; align-center; justify-content:space-between;" type="submit" name="submit"><?php echo $LANG_LOGIN_BUTTON; ?><span class="lnr lnr-arrow-right" style=""></span></button>
-                                </div>
+                            <div class="onboarding-button-container" style="margin-top:4%;">
+                                <button class="onboarding-button" type="submit" name="submit" style="float: right;">
+                                    <span class="lnr lnr-arrow-right"></span>
+                                    <span class="tooltip-text">Next Question</span>
+                                </button>
                             </div>
                         </div>
                     <div>
