@@ -1,9 +1,8 @@
 <?php
 
     unset($_SESSION['pagetitle']);
-    $pagetitle = "Customer Accounts";
-    $pagesubtitle = "Place Account Notices";
-    $_SESSION['pagetitle'] = "Place Account Notices";
+    $_SESSION['pagetitle'] = $pagetitle = "Customer Accounts";
+    $_SESSION['pagesubtitle'] = $pagesubtitle = "Place Account Notices";
     $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
@@ -63,10 +62,9 @@
 
                 $notetype = mysqli_real_escape_string($con, $_POST["type"]);
                 $content = mysqli_real_escape_string($con, $_POST["preset"]);
-                $caliemail = mysqli_real_escape_string($con, $_SESSION["caliid"]);
                 $added_at = date("d-m-Y H:i:sa");
 
-                $query = 'INSERT INTO `caliweb_accountnotes` (accountnumber, notetype, content, added_by, added_at) VALUES ("'. $accountnumber . '", "' . $notetype . '", "' . $content . '", "' . $caliemail . '", "' . $added_at . '"' . ');';
+                $query = 'INSERT INTO `caliweb_accountnotes` (accountnumber, notetype, content, added_by, added_at) VALUES ("'. $accountnumber . '", "' . $notetype . '", "' . $content . '", "' . $currentAccount->legalName . '", "' . $added_at . '"' . ');';
                 $result = mysqli_query($con, $query);
 
                 header("location:/dashboard/administration/accounts/manageAccount?account_number=" . $accountnumber);
@@ -75,20 +73,6 @@
             } else {
 
                 include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
-
-                $lowerrole = strtolower($userrole);
-                
-                switch ($lowerrole) {
-                    case "authorized user":
-                        header("location:/dashboard/customers/authorizedUserView");
-                        break;
-                    case "partner":
-                        header("location:/dashboard/partnerships");
-                        break;
-                    case "customer":
-                        header("location:/dashboard/customers");
-                        break;
-                }
 
                 echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 

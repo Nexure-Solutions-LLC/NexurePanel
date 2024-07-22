@@ -1,6 +1,10 @@
 <?php
-    $pagetitle = "Client";
-    $pagesubtitle = "Billing Center";
+
+    session_start();
+
+    unset($_SESSION['pagetitle']);
+    $pagetitle = $_SESSION['pagetitle'] = "Client";
+    $pagesubtitle = $_SESSION['pagesubtitle'] = "Billing Center";
     $pagetype = "Client";
 
     $accountnumber = $_GET['account_number'];
@@ -24,7 +28,7 @@
                             <p class="no-padding" style="font-size:16px;">Overview / Billing Center</p>
                         </div>
                         <div>
-                            <a href="" class="caliweb-button primary">Add Payment Method</a>
+                            <a href="/dashboard/customers/billingCenter/createPaymentMethod?account_number=<?php echo $accountnumber; ?>" class="caliweb-button primary">Add Payment Method</a>
                         </div>
                     </div>
                 </div>
