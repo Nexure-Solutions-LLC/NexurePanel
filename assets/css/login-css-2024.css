@@ -228,6 +228,18 @@ body {
     opacity: 1;
 }
 
+.check-box {
+    font-size: 15px;
+    border: 1px solid #ddd;
+    background-color: #f2f4f8;
+    border-radius: 3px;
+    padding: 5px;
+}
+.check-box:hover {
+    border: 1px solid #3978FF;
+    background-color: #F2F4F8;
+    transition: ease-in-out 0.3s all;
+}
 .onboarding-button {
     border-radius: 50%;
     border: 1px solid black;
@@ -235,6 +247,7 @@ body {
     position: relative;
     display: inline-block;
     height: 40px;
+    
     float: right;
 }
 

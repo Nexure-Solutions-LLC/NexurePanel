@@ -4,10 +4,7 @@
     $pagesubtitle = "Your applying to work at Cali Web Design.";
     $pagetype = "Work History Application Page";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/components/CaliEmployees/Application.php');
-
-    
-        
+    require($_SERVER["DOCUMENT_ROOT"].'/components/CaliEmployees/Application.php');    
         
     echo '<title>Complete onboarding of employment.</title>';
 
@@ -21,25 +18,11 @@
             </div>
             <div class="caliweb-login-box-body">
                 <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
-                    <div class="caliweb-grid caliweb-two-grid no-grid-row-bottom">
+                    <div class="caliweb-grid caliweb-one-grid no-grid-row-bottom">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="legalname" class="text-gray-label">Legal Name</label>
-                                <input type="text" class="form-input" name="legalname" id="legalname" value="<?php echo $currentAccount->legalName; ?>" required="" readonly />
-                            </div>
-                            <div class="form-control" style="margin-top:-2%;">
-                                <label for="phonenumber" class="text-gray-label">Phone Number</label>
-                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $currentAccount->mobileNumber; ?>" required="" readonly />
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-control" style="margin-top:-2%;">
-                                <label for="emailaddress" class="text-gray-label">Email Address</label>
-                                <input type="email" class="form-input" name="emailaddress" id="emailaddress" value="<?php echo $currentAccount->email; ?>" required="" readonly />
-                            </div>
-                            <div class="form-control" style="margin-top:-2%;">
-                                <label for="dateofbirth" class="text-gray-label">Date of Bith (Must be 14 years or older)</label>
-                                <input type="date" class="form-input" name="dateofbirth" id="dateofbirth" placeholder="" requird="" />
+                                <label for="avocationalDetails" class="text-gray-label">Avocational Interests Or Hobbies</label>
+                                <input type="text"  class="form-input" name="avocationalDetails" id="avocationalDetails" value="" required=""  />
                             </div>
                         </div>
                     </div>

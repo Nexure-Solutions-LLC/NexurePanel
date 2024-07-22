@@ -21,17 +21,47 @@
                     <div class="caliweb-grid caliweb-two-grid no-grid-row-bottom">
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="highschoolname" class="text-gray-label">High School Name</label>
-                                <input type="text" class="form-input" name="highschoolname" id="highschoolname" value="" required=""  />
+                                <label  class="text-gray-label">Check All That Apply</label>
+                                <div class="caliweb-grid caliweb-two-grid no-grid-row-bottom">
+                                    <div class="check-box" >
+                                        <input type="checkbox" id="communicationskills" name="communicationskills" value="communicationskills">
+                                        <label for="communicationskills">Communication Skills</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="marketingskills" name="marketingskills" value="marketingskills">
+                                        <label for="marketingskills">Marketing Skills</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="graphicdesignskills" name="graphicdesignskills" value="graphicdesignskills">
+                                        <label for="graphicdesignskills">Graphic Design Skills</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="graphicdesignskills" name="timemanagementskills" value="timemanagementskills">
+                                        <label for="timemanagementskills">Time Management</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="contentmangementskills" name="contentmangementskills" value="contentmangementskills">
+                                        <label for="contentmangementskills">Content Management Skills</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="technicalcomputerskills" name="technicalcomputerskills" value="technicalcomputerskills">
+                                        <label for="technicalcomputerskills">Technical Computer Skills</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="webanalyticsskills" name="webanalyticsskills" value="webanalyticsskills">
+                                        <label for="webanalyticsskills">Web Analytics Skills</label>
+                                    </div>
+                                    <div class="check-box">
+                                        <input type="checkbox" id="publicspeakingskills" name="publicspeakingskills" value="publicspeakingskills">
+                                        <label for="publicspeakingskills">Public Speaking</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-control" style="margin-top:-2%;">
-                                <label for="collegeoruniverstyname" class="text-gray-label">College Or University Name</label>
-                                <input type="text" class="form-input" name="collegeoruniverstyname" id="collegeoruniverstyname" value="" required=""  />
-                            </div>
+                    
                         </div>
                         <div>
                             <div class="form-control" style="margin-top:-2%;">
-                                <label for="jobrelatedtraining" class="text-gray-label">Job-related Training</label>
+                                <label for="jobrelatedtraining" class="text-gray-label">Summarize Your Skills And Qualifications</label>
                                 <input type="text" style="height:250px;" class="form-input" name="jobrelatedtraining" id="jobrelatedtraining" value="" required=""  />
                             </div>
                         </div>

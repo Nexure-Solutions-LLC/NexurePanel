@@ -6,10 +6,7 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/components/CaliEmployees/Application.php');
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        echo '<script type="text/javascript">window.location = "/modules/employeeOnboardingModule/employmentPastHistory"</script>';
-
-    }
+  
 
     echo '<title>Complete onboarding of employment.</title>';
 
@@ -304,8 +301,8 @@
                     </div>
                     <div class="onboarding-button-container" style="margin-top:6%;">
                         <button class="onboarding-button" type="submit" name="submit" style="float: right;">
-                            <span class="lnr lnr-arrow-right"></span>
-                            <span class="tooltip-text">Next Question</span>
+                                <span class="lnr lnr-arrow-right"></span>
+                                <span class="tooltip-text">Next Question</span>
                         </button>
                     </div>
                 </form>
