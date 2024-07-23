@@ -3,7 +3,7 @@
     $pagesubtitle = "Employees Listing";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     if ($currentAccount->accessLevel->name == "Executive") {
 
@@ -115,7 +115,7 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
     } else {
         header("location:/modules/payroll/employeeView");

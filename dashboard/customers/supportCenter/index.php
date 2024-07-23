@@ -6,7 +6,7 @@
 
     $accountnumber = $_GET['account_number'];
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
     $websiteinfo = mysqli_fetch_array($websiteresult);
@@ -114,4 +114,4 @@
             </section>
         </section>
 
-<?php include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php'); ?>
+<?php include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php'); ?>

@@ -18,7 +18,7 @@
     $pagesubtitle = "Initalizing";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 

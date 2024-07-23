@@ -147,7 +147,7 @@
 <?php
     session_start();
 
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     ob_start();
     // ~~We cannot apply language pack here as we do not know
@@ -242,7 +242,7 @@
             </div>
         </div>
 
-    <?php include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); ?>
+    <?php include($_SERVER["DOCUMENT_ROOT"]."/components/CaliFooters/Login.php"); ?>
 
 <?php
 

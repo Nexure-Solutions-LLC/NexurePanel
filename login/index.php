@@ -44,7 +44,7 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     if (isset($_SESSION["lang"])) {
 
@@ -146,6 +146,6 @@
 
 <?php 
     
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginFooter.php"); 
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliFooters/Login.php"); 
     
 ?>

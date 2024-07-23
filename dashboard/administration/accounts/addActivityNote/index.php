@@ -56,7 +56,7 @@
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+                include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
                 // unfinished - posting the notes to a database
 
@@ -72,7 +72,7 @@
 
             } else {
 
-                include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+                include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
                 echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
@@ -163,7 +163,7 @@
 
                 <?php
 
-                include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+                include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
             }
 

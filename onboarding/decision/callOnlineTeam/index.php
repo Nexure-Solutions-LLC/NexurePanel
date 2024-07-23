@@ -33,7 +33,7 @@
 
     if ($licenseKeyfromConfig == $licenseKeyfromDB) {
 
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     echo '<title>Your account was approved!</title>';
 
@@ -66,7 +66,7 @@
         </div>
     </div>
 <?php
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
 
     } else {
         header("Location: /error/licenseInvalid");
