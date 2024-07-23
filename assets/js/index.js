@@ -5,6 +5,29 @@
 
 window.addEventListener("load", function() {const preloader = document.querySelector(".preloader");setTimeout(function() {preloader.classList.add("loaded");}, 1);});
 
+// ====================== Account Center Sidebar Plugin ======================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggles = [
+        { buttonId: 'account-settings-toggle', menuId: 'account-settings-menu' },
+        { buttonId: 'your-personal-details-toggle', menuId: 'your-personal-details-menu' },
+        { buttonId: 'sign-in-security-toggle', menuId: 'sign-in-security-menu' }
+    ];
+
+    toggles.forEach(toggle => {
+        const button = document.getElementById(toggle.buttonId);
+        const menu = document.getElementById(toggle.menuId);
+
+        button.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const isMenuVisible = menu.style.display === 'block';
+            menu.style.display = isMenuVisible ? 'none' : 'block';
+            const arrow = button.querySelector('.arrow');
+            arrow.style.transform = isMenuVisible ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+    });
+});
+
 // ====================== Dashboard Calendar Plugin ======================
 
 document.addEventListener('DOMContentLoaded', function() {

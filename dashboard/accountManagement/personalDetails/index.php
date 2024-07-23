@@ -1,7 +1,7 @@
 <?php
 
     $pagetitle = "Account Management";
-    $pagesubtitle = 'General';
+    $pagesubtitle = 'Personal Details';
     $pagetype = "";
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
@@ -14,15 +14,12 @@
         <div class="container caliweb-container">
             <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
                 <div class="caliweb-settings-sidebar">
-                    <div class="caliweb-card dashboard-card sidebar-card">
-                        <aside class="caliweb-sidebar">
-                            <ul class="sidebar-list-linked">
-                                <a href="/dashboard/accountManagement/" class="sidebar-link-a"><li class="sidebar-link">Overview</li></a>
-                                <a href="/dashboard/accountManagement/accountSettings/" class="sidebar-link-a"><li class="sidebar-link">Account Settings</li></a>
-                                <a href="/dashboard/accountManagement/personalDetails/" class="sidebar-link-a"><li class="sidebar-link active">Your Personal Details</a></li></a>
-                                <a href="/dashboard/accountManagement/privacyAndSecurity/" class="sidebar-link-a"><li class="sidebar-link">Sign-in & Security</li></a>
-                            </ul>
-                        </aside>
+                    <div class="caliweb-card dashboard-card sidebar-card" style="overflow-y: scroll;">
+                        <?php
+
+                            include($_SERVER["DOCUMENT_ROOT"].'/components/CaliSidebars/AccountManagement.php');
+
+                        ?>
                     </div>
                 </div>
                 <div class="caliweb-card dashboard-card">
@@ -96,9 +93,8 @@
         </div>
     </section>
 
-
-
 <?php
 
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
 ?>

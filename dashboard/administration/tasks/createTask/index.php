@@ -24,6 +24,8 @@
         $taskstatus = mysqli_real_escape_string($con, $taskstatus);
         $taskdescription = stripslashes($_REQUEST['taskdescription']);
         $taskdescription = mysqli_real_escape_string($con, $taskdescription);
+        $taskpriority = stripslashes($_REQUEST['taskpriority']);
+        $taskpriority = mysqli_real_escape_string($con, $taskpriority);
 
         // System Feilds
 
@@ -31,7 +33,7 @@
 
         // Database Calls
         
-        $taskInsertRequest = "INSERT INTO `caliweb_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assigneduser','$taskdescription')";
+        $taskInsertRequest = "INSERT INTO `caliweb_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`, `taskPriority`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assigneduser','$taskdescription','$taskpriority')";
         $taskInsertResult = mysqli_query($con, $taskInsertRequest);
 
         if ($taskInsertResult) {
@@ -103,6 +105,15 @@
                                         </div>
                                         <div class="form-left-side" style="display:block; width:80%;">
                                             <div class="form-control">
+                                                <label for="taskpriority">Task Priority</label>
+                                                <select type="text" name="taskpriority" id="taskpriority" class="form-input">
+                                                    <option>Please choose an option</option>
+                                                    <option>Normal</option>
+                                                    <option>Elevated</option>
+                                                    <option>Highest</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-control" style="padding-top:10px;">
                                                 <label for="assigneduser">Assigned User</label>
                                                 <input type="email" name="assigneduser" id="assigneduser" class="form-input" placeholder="me@example.com" required="" />
                                             </div>
