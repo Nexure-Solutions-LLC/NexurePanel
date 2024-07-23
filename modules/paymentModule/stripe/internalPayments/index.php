@@ -5,29 +5,25 @@
 
     $caliemail = $_SESSION['caliid'];
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
-    $userinfo = mysqli_fetch_array($userprofileresult);
-    mysqli_free_result($userprofileresult);
-
-    $stripeID = $userinfo['stripeID'];
+    $stripeID = $currentAccount->stripe_id;
 
     $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
     $paymentgateway = mysqli_fetch_array($result);
 
-    // Free payment proccessor check result set
+    // Free payment processor check result set
 
     mysqli_free_result($result);
 
     $apikeysecret = $paymentgateway['secretKey'];
     $apikeypublic = $paymentgateway['publicKey'];
     $paymentgatewaystatus = $paymentgateway['status'];
-    $paymentProccessorName = $paymentgateway['processorName'];
+    $paymentProcessorName = $paymentgateway['processorName'];
 
-    // Checks type of payment proccessor.
+    // Checks type of payment processor.
 
     if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
-        if ($paymentProccessorName == "Stripe") {
+        if ($paymentProcessorName == "Stripe") {
 
             if (($_SESSION['pagetitle']) == "Onboarding Billing") {
 
@@ -138,10 +134,25 @@
             
                     if ($action) {
 
-                        $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = '{$action['status']}', `statusReason`='{$action['reason']}', `accountNotes`='{$action['notes']}' WHERE email = '$caliemail'";
-                        $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
-                
-                        if ($userProfileUpdateResult) {
+                        $userProfileUpdated = $currentAccount->multiChangeAttr(array(
+                            0 => array(
+                                "attName" => "accountStatus",
+                                "attValue" => $action["status"],
+                                "useStringSyntax" => true
+                            ),
+                            1 => array(
+                                "attName" => "statusReason",
+                                "attValue" => $action["reason"],
+                                "useStringSyntax" => true
+                            ),
+                            2 => array(
+                                "attName" => "accountNotes",
+                                "attValue" => $action["notes"],
+                                "useStringSyntax" => true
+                            )
+                        ));
+
+                        if ($userProfileUpdated) {
 
                             echo '<script type="text/javascript">window.location = "' . $action['redirect'] . '"</script>';
 
@@ -188,7 +199,7 @@
 
                 \Stripe\Stripe::setApiKey($apikeysecret);
 
-                function formatAmountForStripe($amount) {
+                function formatAmountForStripe(float|int $amount) {
 
                     return intval($amount * 100);
 
@@ -305,16 +316,16 @@
 
                         }
 
-                    } else if ($purchasableTypeLower == "merchant proccessing") {
+                    } else if ($purchasableTypeLower == "merchant processing") {
 
-                        $lowerPaymentProccessorName = strtolower($paymentProccessorName);
+                        $lowerPaymentProcessorName = strtolower($paymentProcessorName);
 
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','paymentModule/$lowerPaymentProccessorName/paymentProccessing')";
+                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','paymentModule/$lowerPaymentProcessorName/paymentProcessing')";
                         $orderInsertResult = mysqli_query($con, $orderInsertRequest);
 
                         if ($orderInsertResult) {
 
-                            echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($paymentProccessorName).'/paymentProccessing/merchantSignupFlow"</script>';
+                            echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($paymentProcessorName).'/paymentProcessing/merchantSignupFlow"</script>';
 
                         } else {
 

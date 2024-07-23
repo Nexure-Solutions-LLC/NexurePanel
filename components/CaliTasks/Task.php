@@ -8,6 +8,7 @@
 
     class Task
     {
+        public int $id;
         public string $taskName;
         public string $taskDescription;
         public \taskStatus $status;
@@ -128,23 +129,23 @@
 
         }
 
-        function createTask(array $taskData): bool {
-
-            $con = $this->sql_connection;
-
-            $query = "INSERT INTO `caliweb_tasks` (taskName, taskDescription, status, taskPriority, taskDueDate, taskStartDate, assignedUser) VALUES ('" 
-                    . $this->_sanitize($taskData['taskName']) . "', '"
-                    . $this->_sanitize($taskData['taskDescription']) . "', '"
-                    . $this->_sanitize($taskData['status']) . "', '"
-                    . $this->_sanitize($taskData['taskPriority']) . "', '"
-                    . $this->_sanitize($taskData['taskDueDate']) . "', '"
-                    . $this->_sanitize($taskData['taskStartDate']) . "', '"
-                    . $this->_sanitize($taskData['assignedUser']) . "');";
-            
-            $exec = mysqli_query($con, $query);
-            return (bool) $exec;
-
-        }
+//        function createTask(array $taskData): bool {
+//
+//            $con = $this->sql_connection;
+//
+//            $query = "INSERT INTO `caliweb_tasks` (taskName, taskDescription, status, taskPriority, taskDueDate, taskStartDate, assignedUser) VALUES ('"
+//                    . $this->_sanitize($taskData['taskName']) . "', '"
+//                    . $this->_sanitize($taskData['taskDescription']) . "', '"
+//                    . $this->_sanitize($taskData['status']) . "', '"
+//                    . $this->_sanitize($taskData['taskPriority']) . "', '"
+//                    . $this->_sanitize($taskData['taskDueDate']) . "', '"
+//                    . $this->_sanitize($taskData['taskStartDate']) . "', '"
+//                    . $this->_sanitize($taskData['assignedUser']) . "');";
+//
+//            $exec = mysqli_query($con, $query);
+//            return (bool) $exec;
+//
+//        }
 
         function updateTask(int $taskId, array $taskData): bool {
 
@@ -166,37 +167,84 @@
             return (bool) $exec;
         }
 
-        function fetchTaskById(int $taskId): ?array {
+        function fetchTaskById(int $taskId): bool {
 
             $data_array = $this->_query_task_data("id", (string)$taskId);
-            return $data_array ? $data_array : null;
+            if (!$data_array) {
 
-        }
-
-        function fetchAllTasks(): array {
-
-            $con = $this->sql_connection;
-            $query = "SELECT * FROM `caliweb_tasks`;";
-            $exec = mysqli_query($con, $query);
-            $tasks = [];
-            
-            while ($row = mysqli_fetch_array($exec)) {
-
-                $tasks[] = $row;
+                return false;
 
             }
 
-            return $tasks;
+
+            $enum_attrs = array(
+                "status",
+                "taskPriority",
+            );
+
+            $possible_task_statuses = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\taskStatus::cases(), 'name')), \taskStatus::cases());
+            $possible_priority_levels = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\priorityLevel::cases(), 'name')), \priorityLevel::cases());
+
+            foreach ($data_array as $key => $value) {
+                if (in_array($key, $enum_attrs)) {
+                    if ($key == "status") {
+
+                        $statusToBeSet = null;
+
+                        if (!isset($possible_roles[$this->_lower_and_clear($value)])) {
+
+                            $statusToBeSet = $possible_task_statuses["pending"];
+
+                        } else {
+
+                            $statusToBeSet = $possible_task_statuses[$this->_lower_and_clear($value)];
+
+                        }
+
+                        $this->status = $statusToBeSet;
+
+                    } elseif ($key == "taskPriority") {
+
+                        $priorityToBeSet = null;
+
+                        if (!isset($possible_priority_levels[$this->_lower_and_clear($value)])) {
+
+                            $priorityToBeSet = $possible_priority_levels[$this->_lower_and_clear("Normal")];
+
+                        } else {
+
+                            $priorityToBeSet = $possible_priority_levels[$this->_lower_and_clear($value)];
+
+                        }
+
+                        $this->taskPriority = $priorityToBeSet;
+
+                    }
+
+                } else {
+
+                    if ($key != "sql_connection" && !is_int($key)) {
+
+                        $this->{$key} = $value;
+
+                    }
+
+                }
+
+            }
+            return true;
+
         }
 
-        function deleteTask(int $taskId): bool {
 
-            $con = $this->sql_connection;
-            $query = "DELETE FROM `caliweb_tasks` WHERE id = " . $this->_sanitize((string)$taskId) . ";";
-            $exec = mysqli_query($con, $query);
-            return (bool) $exec;
-
-        }
+//        function deleteTask(int $taskId): bool {
+//
+//            $con = $this->sql_connection;
+//            $query = "DELETE FROM `caliweb_tasks` WHERE id = " . $this->_sanitize((string)$taskId) . ";";
+//            $exec = mysqli_query($con, $query);
+//            return (bool) $exec;
+//
+//        }
 
     }
 

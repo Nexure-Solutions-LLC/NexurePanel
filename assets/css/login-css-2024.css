@@ -18,6 +18,11 @@ body {
     grid-row-gap: 0 !important;
 }
 
+.arrow {
+    padding-top: 2px;
+}
+
+
 .wrapper {
     right: 0;
     height: 100%;
@@ -235,11 +240,13 @@ body {
     border-radius: 3px;
     padding: 5px;
 }
+
 .check-box:hover {
     border: 1px solid #3978FF;
     background-color: #F2F4F8;
     transition: ease-in-out 0.3s all;
 }
+
 .onboarding-button {
     border-radius: 50%;
     border: 1px solid black;
@@ -247,7 +254,7 @@ body {
     position: relative;
     display: inline-block;
     height: 40px;
-    
+
     float: right;
 }
 
@@ -408,7 +415,7 @@ body {
 .dark-mode .license-container,
 .dark-mode .login-container,
 .dark-mode .wrapper,
-.dark-mode body ,
+.dark-mode body,
 .dark-mode html {
     background-color: #000;
 }

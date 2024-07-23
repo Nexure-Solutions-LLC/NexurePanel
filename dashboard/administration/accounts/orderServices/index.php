@@ -46,13 +46,13 @@
 
             // Get the menu option listing for payment methods.
 
-            $proccessorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-            $proccessorInfo = mysqli_fetch_array($proccessorResult);
-            mysqli_free_result($proccessorResult);
+            $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
+            $processorInfo = mysqli_fetch_array($processorResult);
+            mysqli_free_result($processorResult);
 
-            $paymentProccessorName = $proccessorInfo['processorName'];
+            $paymentProcessorName = $processorInfo['processorName'];
 
-            if ($paymentProccessorName == "Stripe") {
+            if ($paymentProcessorName == "Stripe") {
 
                 require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
 
@@ -76,13 +76,13 @@
                 $orderdate = date("Y-m-d H:i:s");
                 $accountnumber = $accountnumber;
 
-                $proccessorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-                $proccessorInfo = mysqli_fetch_array($proccessorResult);
-                mysqli_free_result($proccessorResult);
+                $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
+                $processorInfo = mysqli_fetch_array($processorResult);
+                mysqli_free_result($processorResult);
 
-                $paymentProccessorName = $proccessorInfo['processorName'];
+                $paymentProcessorName = $processorInfo['processorName'];
 
-                if ($paymentProccessorName == "Stripe") {
+                if ($paymentProcessorName == "Stripe") {
 
                     require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
 
