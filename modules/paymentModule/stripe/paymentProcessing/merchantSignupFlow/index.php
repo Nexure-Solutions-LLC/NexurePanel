@@ -19,20 +19,20 @@
     $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
     $paymentgateway = mysqli_fetch_array($result);
 
-    // Free payment proccessor check result set
+    // Free payment processor check result set
 
     mysqli_free_result($result);
 
     $apikeysecret = $paymentgateway['secretKey'];
     $apikeypublic = $paymentgateway['publicKey'];
     $paymentgatewaystatus = $paymentgateway['status'];
-    $paymentProccessorName = $paymentgateway['processorName'];
+    $paymentProcessorName = $paymentgateway['processorName'];
 
-    // Checks type of payment proccessor.
+    // Checks type of payment processor.
 
     if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
-        if ($paymentProccessorName == "Stripe") {
+        if ($paymentProcessorName == "Stripe") {
 
             Stripe::setApiKey($apikeysecret);
 
@@ -60,8 +60,8 @@
             
                 $accountLink = AccountLink::create([
                     'account' => $account->id,
-                    'refresh_url' => 'https://us-east.cali-cloud-compute-135-148-28-43.caliwebdesignservices.com/modules/paymentModule/stripe/paymentProccessing/merchantSignupFlow/',
-                    'return_url' => 'https://us-east.cali-cloud-compute-135-148-28-43.caliwebdesignservices.com/modules/paymentModule/stripe/paymentProccessing/?account_number='.$account_number.'',
+                    'refresh_url' => 'https:/'.$_SERVER["HTTP_HOST"].'/modules/paymentModule/stripe/paymentProcessing/merchantSignupFlow/',
+                    'return_url' => 'https://'.$_SERVER["HTTP_HOST"].'/modules/paymentModule/stripe/paymentProcessing/?account_number='.$account_number.'',
                     'type' => 'account_onboarding',
                 ]);
             

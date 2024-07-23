@@ -1,6 +1,6 @@
 <?php
 
-enum accessLevel {
+enum priorityLevel {
     case Highest;
     case Elevated;
     case Normal;

@@ -47,13 +47,13 @@
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
 
-                                        $proccessorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-                                        $proccessorInfo = mysqli_fetch_array($proccessorResult);
-                                        mysqli_free_result($proccessorResult);
+                                        $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
+                                        $processorInfo = mysqli_fetch_array($processorResult);
+                                        mysqli_free_result($processorResult);
 
-                                        $paymentProccessorName = $proccessorInfo['processorName'];
+                                        $paymentProcessorName = $processorInfo['processorName'];
 
-                                        if ($paymentProccessorName == "Stripe") {
+                                        if ($paymentProcessorName == "Stripe") {
 
                                             require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
                                             

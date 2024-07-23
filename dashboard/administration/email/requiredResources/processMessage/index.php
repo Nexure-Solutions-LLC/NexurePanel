@@ -1,7 +1,7 @@
 <?php
 
     $pagetitle = "Cali Mail";
-    $pagesubtitle = "Message Proccessing Script";
+    $pagesubtitle = "Message Processing Script";
 
     // System Imports that are required
 

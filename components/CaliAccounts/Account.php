@@ -2,6 +2,8 @@
 
 namespace CaliAccounts;
 
+use mysqli;
+
 require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
 require($_SERVER["DOCUMENT_ROOT"] . '/components/CaliAccounts/accountStatus.php');
 require($_SERVER["DOCUMENT_ROOT"] . '/components/CaliAccounts/accessLevel.php');
@@ -32,7 +34,7 @@ class Account
     public \userRole $role;
     public \accessLevel $accessLevel;
     public ?string $ownerAuthorizedEmail;
-    private $sql_connection;
+    private mysqli $sql_connection;
 
 
     function __construct($con) {
@@ -112,8 +114,8 @@ class Account
 
     function fromUserRole(\userRole $requestedUserRole): ?string {
 
-        $possible_user_roles = array_combine(array_map(fn($item) => $item, array_column(\accessLevel::cases(), 'name')), \accessLevel::cases());
-        
+        $possible_user_roles = array_combine(array_map(fn($item) => $item, array_column(\userRole::cases(), 'name')), \userRole::cases());
+
         $idx = array_search($requestedUserRole, $possible_user_roles);
         
         if ($idx === false) {
@@ -241,6 +243,65 @@ class Account
 
     }
 
+
+    function multiChangeAttr(array $attributes): bool {
+        // [0] => { attName, attValue, useStringSyntax }
+
+        // empty array
+        if (count($attributes) == 0) {
+            return false;
+        }
+
+        // use changeAttr if only changing one attribute
+        if (count($attributes) == 1) {
+            return false;
+        }
+
+
+        $success = $this->fetchByEmail($this->email);
+
+        if (!$success) {
+
+            return false;
+
+        }
+
+        // Preset Query
+        $query = "UPDATE `caliweb_users` SET ";
+
+        foreach ($attributes as $key => $value) {
+            $att_name = $this->_sanitize($value["attName"]);
+            $att_value = $this->_sanitize($value["attValue"]);
+            $useStringSyntax = $value["useStringSyntax"];
+
+            if (!isset($this->{$att_name})) {
+                return false;
+            }
+
+            $query = $query . $att_name . " = " . ($useStringSyntax ? '"' : "") . $att_value . ($useStringSyntax ? '"' : "") . ($key == (count($attributes)-1) ? ', ' : " ");
+        }
+
+        $query = $query . 'WHERE email = "' . $this->_sanitize($this->email) . '";';
+
+
+
+        // Send the SQL query
+
+        $con = $this->sql_connection;
+
+
+        $exec = mysqli_query($con, $query);
+
+
+        // Refresh to updated
+
+        $success = $this->fetchByEmail($this->email);
+
+        return $success;
+
+    }
+
+
     function fetchByEmail(string $cali_id): bool {
 
         $con = $this->sql_connection;
@@ -296,6 +357,106 @@ class Account
 
                     $accessLevelToBeSet = null;
                     
+                    if (!isset($possible_access_levels[$this->_lower_and_clear($value)])) {
+
+                        $accessLevelToBeSet = $possible_access_levels[$this->_lower_and_clear("Retail")];
+
+                    } else {
+
+                        $accessLevelToBeSet = $possible_access_levels[$this->_lower_and_clear($value)];
+
+                    }
+
+                    $this->accessLevel = $accessLevelToBeSet;
+
+                } elseif ($key == "accountStatus") {
+
+                    $accountStatusToBeSet = null;
+
+                    if (!isset($possible_account_statuses[$this->_lower_and_clear($value)])) {
+
+                        $accountStatusToBeSet = $possible_account_statuses[$this->_lower_and_clear("Active")];
+
+                    } else {
+                        $accountStatusToBeSet = $possible_account_statuses[$this->_lower_and_clear($value)];
+
+                    }
+
+                    $this->accountStatus = $accountStatusToBeSet;
+
+                }
+
+            } else {
+
+                if ($key != "sql_connection" && !is_int($key)) {
+
+                    $this->{$key} = $value;
+
+                }
+
+            }
+
+        }
+
+        return true;
+    }
+
+
+    function fetchByAccountNumber(string $accountNumber): bool {
+
+        $con = $this->sql_connection;
+
+        $data_array = $this->_query_user_data("accountnumber", $this->_sanitize($accountNumber));
+
+        if (!$data_array) {
+
+            return false;
+
+        }
+
+        $special_attrs = array(
+            "profileIMG" => "profile_url",
+            "stripeID" => "stripe_id"
+        );
+
+        $enum_attrs = array(
+            "employeeAccessLevel",
+            "userrole",
+            "accountStatus"
+        );
+
+        $possible_roles = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\userRole::cases(), 'name')), \userRole::cases());
+        $possible_access_levels = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\accessLevel::cases(), 'name')), \accessLevel::cases());
+        $possible_account_statuses = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\accountStatus::cases(), 'name')), \accountStatus::cases());
+
+        foreach ($data_array as $key => $value) {
+
+            if (array_key_exists($key, $special_attrs)) {
+
+                $this->{$special_attrs[$key]} = $value;
+
+            } elseif (array_search($key, $enum_attrs) !== false) {
+
+                if ($key == "userrole") {
+
+                    $role_to_be_set = null;
+
+                    if (!isset($possible_roles[$this->_lower_and_clear($value)])) {
+
+                        $role_to_be_set = $possible_roles["customer"];
+
+                    } else {
+
+                        $role_to_be_set = $possible_roles[$this->_lower_and_clear($value)];
+
+                    }
+
+                    $this->role = $role_to_be_set;
+
+                } elseif ($key == "employeeAccessLevel") {
+
+                    $accessLevelToBeSet = null;
+
                     if (!isset($possible_access_levels[$this->_lower_and_clear($value)])) {
 
                         $accessLevelToBeSet = $possible_access_levels[$this->_lower_and_clear("Retail")];

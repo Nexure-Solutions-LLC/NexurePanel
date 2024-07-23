@@ -35,25 +35,25 @@
         
     }
 
-    // Check if Payment Proccessing Module is loaded in and if its Stripe
+    // Check if Payment Processing Module is loaded in and if its Stripe
 
     $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
     $paymentgateway = mysqli_fetch_array($result);
 
-    // Free payment proccessor check result set
+    // Free payment processor check result set
 
     mysqli_free_result($result);
 
     $apikeysecret = $paymentgateway['secretKey'];
     $apikeypublic = $paymentgateway['publicKey'];
     $paymentgatewaystatus = $paymentgateway['status'];
-    $paymentProccessorName = $paymentgateway['processorName'];
+    $paymentProcessorName = $paymentgateway['processorName'];
 
-    // Checks type of payment proccessor.
+    // Checks type of payment processor.
 
     if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
-        if ($paymentProccessorName == "Stripe") {
+        if ($paymentProcessorName == "Stripe") {
 
             include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
 

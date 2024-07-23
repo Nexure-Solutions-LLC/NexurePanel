@@ -80,12 +80,15 @@ echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
                                         </div>
                                     </p>
                                 </div>
+                           </div>
                             </div>
-                        </div>
-                    </div>
+                       </div>
+                     </div>
                 </div>
             </div>
         </div>
+
+
     </section>
 
 

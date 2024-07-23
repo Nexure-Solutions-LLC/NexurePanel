@@ -89,13 +89,13 @@
                 $apikeysecret = $paymentgateway['secretKey'];
                 $apikeypublic = $paymentgateway['publicKey'];
                 $paymentgatewaystatus = $paymentgateway['status'];
-                $paymentProccessorName = $paymentgateway['processorName'];
+                $paymentProcessorName = $paymentgateway['processorName'];
 
-                // Checks type of payment proccessor.
+                // Checks type of payment processor.
 
                 if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
-                    if ($paymentProccessorName == "Stripe") {
+                    if ($paymentProcessorName == "Stripe") {
 
                         \Stripe\Stripe::setApiKey($apikeysecret);
 
