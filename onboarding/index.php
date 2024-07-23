@@ -1,7 +1,7 @@
 <?php
 
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     $caliemail = $_SESSION['caliid'];
 
@@ -138,6 +138,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
 
 ?>

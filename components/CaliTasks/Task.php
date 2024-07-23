@@ -129,24 +129,6 @@
 
         }
 
-//        function createTask(array $taskData): bool {
-//
-//            $con = $this->sql_connection;
-//
-//            $query = "INSERT INTO `caliweb_tasks` (taskName, taskDescription, status, taskPriority, taskDueDate, taskStartDate, assignedUser) VALUES ('"
-//                    . $this->_sanitize($taskData['taskName']) . "', '"
-//                    . $this->_sanitize($taskData['taskDescription']) . "', '"
-//                    . $this->_sanitize($taskData['status']) . "', '"
-//                    . $this->_sanitize($taskData['taskPriority']) . "', '"
-//                    . $this->_sanitize($taskData['taskDueDate']) . "', '"
-//                    . $this->_sanitize($taskData['taskStartDate']) . "', '"
-//                    . $this->_sanitize($taskData['assignedUser']) . "');";
-//
-//            $exec = mysqli_query($con, $query);
-//            return (bool) $exec;
-//
-//        }
-
         function updateTask(int $taskId, array $taskData): bool {
 
             $con = $this->sql_connection;
@@ -235,16 +217,6 @@
             return true;
 
         }
-
-
-//        function deleteTask(int $taskId): bool {
-//
-//            $con = $this->sql_connection;
-//            $query = "DELETE FROM `caliweb_tasks` WHERE id = " . $this->_sanitize((string)$taskId) . ";";
-//            $exec = mysqli_query($con, $query);
-//            return (bool) $exec;
-//
-//        }
 
     }
 

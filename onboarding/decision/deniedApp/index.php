@@ -40,7 +40,7 @@
 
     if ($licenseKeyfromConfig == $licenseKeyfromDB) {
 
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     echo '<title>'.$LANG_APPROVAL_DENIED_PAGE_TITLE.'</title>';
 
@@ -71,7 +71,7 @@
         </div>
     </div>
 <?php
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
 
     } else {
         header("Location: /error/licenseInvalid");

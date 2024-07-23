@@ -3,7 +3,7 @@
     $pagesubtitle = 'General';
     $pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 ?>
@@ -14,40 +14,31 @@
                 <div class="caliweb-card dashboard-card sidebar-card">
                     <aside class="caliweb-sidebar">
                         <ul class="sidebar-list-linked">
-                            <li class="sidebar-link">
+                            <li class="sidebar-link-a drop-menu-item-sidebar">
                                 <a href="/dashboard/accountManagement/" class="sidebar-link-a">Overview</a>
                             </li>
                             <li>
-                                <a id="account-settings-toggle" href="/dashboard/accountManagement/accountSettings/" class="sidebar-link-a drop-menu-item-sidebar" style="margin-bottom: 4px; font-size: 15px; display:flex; justify-content: space-between;">
+                                <a id="account-settings-toggle" href="/dashboard/accountManagement/accountSettings/" class="sidebar-link-a drop-menu-item-sidebar active" style="margin-bottom: 4px; font-size: 15px; display:flex; justify-content: space-between;">
                                     Account Settings
                                     <i class="lnr lnr-chevron-down arrow" style="padding-top:2px;"></i>
                                 </a>
-                                <ul id="account-settings-menu" class="sub-menu" style="padding:0; list-style:none; display: none;">
-                                    <li class="sidebar-link">
-                                        <a href="#" class="sidebar-link-a">Paperless</a>
-                                    </li>
-                                    <li class="sidebar-link">
-                                        <a href="#" class="sidebar-link-a">Travel</a>
-                                    </li>
-                                    <li class="sidebar-link">
-                                        <a href="#" class="sidebar-link-a">Set Nickname</a>
-                                    </li>
-                                    <li class="sidebar-link">
+                                <ul id="account-settings-menu" class="caliweb-sidebar-sub-menu">
+                                    <li class="sidebar-link account-settings-sidebar-link">
                                         <a href="#" class="sidebar-link-a">Integrations</a>
                                     </li>
-                                    <li class="sidebar-link">
+                                    <li class="sidebar-link account-settings-sidebar-link">
                                         <a href="#" class="sidebar-link-a">Show Or Hide Account</a>
                                     </li>
-                                    <li class="sidebar-link">
+                                    <li class="sidebar-link account-settings-sidebar-link">
                                         <a href="#" class="sidebar-link-a">Set Primary Account</a>
                                     </li>
-                                    <li class="sidebar-link">
+                                    <li class="sidebar-link account-settings-sidebar-link">
                                         <a href="#" class="sidebar-link-a">Nickname Account</a>
                                     </li>
-                                    <li class="sidebar-link">
+                                    <li class="sidebar-link account-settings-sidebar-link">
                                         <a href="#" class="sidebar-link-a">Manage Custom Groups</a>
                                     </li>
-                                    <li class="sidebar-link">
+                                    <li class="sidebar-link account-settings-sidebar-link">
                                         <a href="#" class="sidebar-link-a">Manage Linked Accounts</a>
                                     </li>
                                 </ul>
@@ -57,12 +48,40 @@
                                     Your Personal Details
                                     <i class="lnr lnr-chevron-down arrow" style="padding-top:2px;"></i>
                                 </a>
+                                <ul id="personal-details-menu" class="caliweb-sidebar-sub-menu">
+                                    <li class="sidebar-link account-settings-sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Address</a>
+                                    </li>
+                                    <li class="sidebar-link account-settings-sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Phone Number</a>
+                                    </li>
+                                    <li class="sidebar-link account-settings-sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Email</a>
+                                    </li>
+                                    <li class="sidebar-link account-settings-sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Preferred Language</a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
                                 <a id="privacy-security-toggle" href="/dashboard/accountManagement/privacyAndSecurity/" class="sidebar-link-a drop-menu-item-sidebar" style="margin-bottom: 4px; font-size: 15px; display:flex; justify-content: space-between;">
                                     Sign-In Security
                                     <i class="lnr lnr-chevron-down arrow" style="padding-top:2px;"></i>
                                 </a>
+                                <ul id="privacy-security-menu" class="caliweb-sidebar-sub-menu">
+                                    <li class="sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Username</a>
+                                    </li>
+                                    <li class="sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Password</a>
+                                    </li>
+                                    <li class="sidebar-link">
+                                        <a href="#" class="sidebar-link-a">Security Word</a>
+                                    </li>
+                                    <li class="sidebar-link">
+                                        <a href="#" class="sidebar-link-a">MFA Settings</a>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                     </aside>

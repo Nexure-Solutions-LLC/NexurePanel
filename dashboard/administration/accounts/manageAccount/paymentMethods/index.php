@@ -4,7 +4,7 @@
     $pagesubtitle = "Payment Methods";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
@@ -80,11 +80,11 @@
     <section class="section first-dashboard-area-cards">
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <?php include($_SERVER["DOCUMENT_ROOT"].'/assets/php/accountHeader.php'); ?>
+                <?php include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Account.php'); ?>
                 <div class="caliweb-two-grid special-caliweb-spacing account-grid-modified">
                     <div>
                         <div class="caliweb-card dashboard-card">
-                            <?php include($_SERVER["DOCUMENT_ROOT"].'/assets/php/accountMenuSelector.php'); ?>
+                            <?php include($_SERVER["DOCUMENT_ROOT"].'/components/CaliMenus/Account.php'); ?>
                             <div class="caliweb-card dashboard-card">
                                 <div class="card-header">
                                     <div class="display-flex align-center" style="justify-content:space-between;">
@@ -215,6 +215,6 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
 ?>

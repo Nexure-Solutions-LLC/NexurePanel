@@ -61,7 +61,7 @@
 
     if ($licenseKeyfromConfig == $licenseKeyfromDB) {
 
-    include($_SERVER["DOCUMENT_ROOT"]."/assets/php/loginHeader.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     echo '<title>You have been signed out of your Cali account.</title>';
 
@@ -140,7 +140,7 @@
 
     </script>
 <?php
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/loginFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
 
     } else {
 

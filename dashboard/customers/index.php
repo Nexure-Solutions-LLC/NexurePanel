@@ -4,7 +4,7 @@
     $pagesubtitle = "Overview";
     $pagetype = "Client";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
     $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
@@ -185,6 +185,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
 ?>

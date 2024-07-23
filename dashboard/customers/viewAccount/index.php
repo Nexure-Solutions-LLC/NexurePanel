@@ -6,7 +6,7 @@
 
     $accountnumber = $_GET['account_number'];
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardHeader.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
@@ -196,6 +196,6 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"].'/assets/php/dashboardFooter.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
 ?>
