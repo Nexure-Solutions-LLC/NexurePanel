@@ -83,6 +83,9 @@
                     case "Customer Service":
                         renderNavLinks('Customer Service', $currentAccount->accountNumber);
                         break;
+                    default:
+                        renderNavLinks('Overview', $currentAccount->accountNumber);
+                        break;
                 }
                 break;
             case in_array($pagetitle, ["Account Management - Customer", "Account Management - Authorized User", "Account Management - Partner"]) ? $pagetitle : false:

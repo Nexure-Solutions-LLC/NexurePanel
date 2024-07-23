@@ -142,6 +142,10 @@ body {
     color: #000;
 }
 
+.with-border-special {
+    border:1px solid #ddd;
+}
+
 /* =================== Cali Web Design Dashboard Container Styles =================== */
 
 .container,
@@ -493,6 +497,16 @@ html[data-theme='dark'] body {
     box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
 }
 
+.dark-mode .drop-menu-item-sidebar,
+.dark-mode .sidebar-link-a .drop-menu-item-sidebar,
+.dark-mode .sidebar-link-a {
+    color:#dbdbdb !important;
+}
+
+.dark-mode .with-border-special {
+    border:1px solid #222;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -742,6 +756,11 @@ textarea.swal2-input {
     font-weight: 700;
 }
 
+.website-info-content {
+    vertical-align: top;
+    width:100%;
+}
+
 /* =================== Cali Web Design Dashboard Image Thumbnail =================== */
 
 .thumb-web-img {
@@ -754,7 +773,7 @@ textarea.swal2-input {
     padding: 0px;
     position: relative;
     width: 35%;
-    height: 35vh;
+    height: 40vh;
     margin-right: 40px;
 }
 
