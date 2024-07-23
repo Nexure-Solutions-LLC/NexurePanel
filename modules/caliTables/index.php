@@ -1,420 +1,205 @@
 <?php
-    if ($_SESSION['graphCallType'] == "Dashboard Tasks Table") {
 
-        $sql = "SELECT * FROM caliweb_tasks";
-        $result = mysqli_query($con, $sql);
+    if (!function_exists('renderTableHeader')) {
 
-        if (mysqli_num_rows($result) > 0) {
-
-            // Output table header
-
+        function renderTableHeader($headers) {
             echo '<table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Task Name</th>
-                        <th style="width:20%; ">Task Start Date</th>
-                        <th style="width:20%; ">Task Due Date</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>';
-
-            // Output table rows
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                // This formats the date to MM/DD/YYYY HH:MM AM/PM
-
-                $tasksStatusColorAssignment = $row['status'];
-                $taskStartDateUnformattedData = $row['taskStartDate'];
-                $taskDueDateUnformattedData = $row['taskDueDate'];
-                $taskStartDateUnformatted = new DateTime($taskStartDateUnformattedData);
-                $taskDueDateUnformatted = new DateTime($taskDueDateUnformattedData);
-                $taskStartDateFormatted = $taskStartDateUnformatted->format('m/d/Y g:i A');
-                $taskDueDateFormatted = $taskDueDateUnformatted->format('m/d/Y g:i A');
-
-                echo '<tr>';
-                    echo '<td style="width:20%; ">' . $row['taskName'] . '</td>';
-                    echo '<td style="width:20%; ">' . $taskStartDateFormatted . '</td>';
-                    echo '<td style="width:20%; ">' . $taskDueDateFormatted . '</td>';
-
-                    if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
-
-                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    }
-
-                echo '</tr>';
-
+                    <tr>';
+            foreach ($headers as $header) {
+                echo "<th style='width:20%; '>{$header}</th>";
             }
-
-            echo '</table>';
-        } else {
-            echo '
-                <table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Task Name</th>
-                        <th style="width:20%; ">Task Start Date</th>
-                        <th style="width:20%; ">Task Due Date</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>
-                    <tr>
-                        <td style="width:20%; ">There are no Tasks</td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                    </tr>
-                </table>
-            ';
-        }
-    } else if ($_SESSION['graphCallType'] == "Dashboard Cases Table") {
-
-        $sql = "SELECT * FROM caliweb_cases";
-        $result = mysqli_query($con, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            // Output table header
-
-            echo '<table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Case Created</th>
-                        <th style="width:20%; ">Case Closed</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>';
-
-            // Output table rows
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                // This formats the date to MM/DD/YYYY HH:MM AM/PM
-
-                $caseStatusColorAssignment = $row['caseStatus'];
-                $caseCreateDateUnformattedData = $row['caseCreateDate'];
-                $caseCloseDateUnformattedData = $row['caseCloseDate'];
-                $caseCreateDateUnformatted = new DateTime($caseCreateDateUnformattedData);
-                $caseCloseDateUnformatted = new DateTime($caseCloseDateUnformattedData);
-                $caseCreateDateFormatted = $caseCreateDateUnformatted->format('m/d/Y g:i A');
-                $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
-
-                echo '<tr>';
-                    echo '<td style="width:20%; ">' . $row['customerName'] . '</td>';
-                    echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
-                    echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
-
-                    if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
-
-                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-                       
-                    } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    }
-
-                echo '</tr>';
-
-            }
-
-            echo '</table>';
-
-        } else {
-
-            echo '
-                <table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Case Created</th>
-                        <th style="width:20%; ">Case Closed</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>
-                    <tr>
-                        <td style="width:20%; ">There are no Cases</td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                    </tr>
-                </table>
-            ';
-
+            echo '</tr>';
         }
 
-    } else if ($_SESSION['graphCallType'] == "Dashboard Tasks Table Employee Only") {
+    }
 
-        $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$fullname'";
-        $result = mysqli_query($con, $sql);
+    if (!function_exists('renderTableRow')) {
 
-        if (mysqli_num_rows($result) > 0) {
+        function renderTableRow($rowData) {
 
-            // Output table header
+            echo '<tr>';
 
-            echo '<table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Task Name</th>
-                        <th style="width:20%; ">Task Start Date</th>
-                        <th style="width:20%; ">Task Due Date</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>';
+            foreach ($rowData as $data) {
 
-            // Output table rows
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                // This formats the date to MM/DD/YYYY HH:MM AM/PM
-
-                $tasksStatusColorAssignment = $row['status'];
-                $taskStartDateUnformattedData = $row['taskStartDate'];
-                $taskDueDateUnformattedData = $row['taskDueDate'];
-                $taskStartDateUnformatted = new DateTime($taskStartDateUnformattedData);
-                $taskDueDateUnformatted = new DateTime($taskDueDateUnformattedData);
-                $taskStartDateFormatted = $taskStartDateUnformatted->format('m/d/Y g:i A');
-                $taskDueDateFormatted = $taskDueDateUnformatted->format('m/d/Y g:i A');
-
-                echo '<tr>';
-                    echo '<td style="width:20%; ">' . $row['taskName'] . '</td>';
-                    echo '<td style="width:20%; ">' . $taskStartDateFormatted . '</td>';
-                    echo '<td style="width:20%; ">' . $taskDueDateFormatted . '</td>';
-
-                    if ($tasksStatusColorAssignment == "Completed" || $tasksStatusColorAssignment == "Completed") {
-
-                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    } else if ($tasksStatusColorAssignment == "Overdue" || $tasksStatusColorAssignment == "overdue") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    } else if ($tasksStatusColorAssignment == "Pending" || $tasksStatusColorAssignment == "pending") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    } else if ($tasksStatusColorAssignment == "Stuck" || $tasksStatusColorAssignment == "stuck") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge red-dark" style="margin-left:0;">' . $row['status'] . '</span></td>';
-
-                    }
-
-                echo '</tr>';
+                echo "<td style='width:20%; '>{$data}</td>";
 
             }
 
-            echo '</table>';
-
-        } else {
-
-            echo '
-                <table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Task Name</th>
-                        <th style="width:20%; ">Task Start Date</th>
-                        <th style="width:20%; ">Task Due Date</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>
-                    <tr>
-                        <td style="width:20%; ">There are no Tasks</td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                    </tr>
-                </table>
-            ';
-
-        }
-    } else if ($_SESSION['graphCallType'] == "Dashboard Cases Table Employee Only") {
-
-        $sql = "SELECT * FROM caliweb_cases WHERE assignedAgent = '$fullname'";
-        $result = mysqli_query($con, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            // Output table header
-
-            echo '<table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Case Title</th>
-                        <th style="width:20%; ">Case Created</th>
-                        <th style="width:20%; ">Case Closed</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>';
-
-            // Output table rows
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                // This formats the date to MM/DD/YYYY HH:MM AM/PM
-
-                $caseStatusColorAssignment = $row['caseStatus'];
-                $caseCreateDateUnformattedData = $row['caseCreateDate'];
-                $caseCloseDateUnformattedData = $row['caseCloseDate'];
-                $caseCreateDateUnformatted = new DateTime($caseCreateDateUnformattedData);
-                $caseCloseDateUnformatted = new DateTime($caseCloseDateUnformattedData);
-                $caseCreateDateFormatted = $caseCreateDateUnformatted->format('m/d/Y g:i A');
-                $caseCloseDateFormatted = $caseCloseDateUnformatted->format('m/d/Y g:i A');
-
-                echo '<tr>';
-                    echo '<td style="width:20%; ">' . $row['customerName'] . '</td>';
-                    echo '<td style="width:20%; ">' . $row['caseTitle'] . '</td>';
-                    echo '<td style="width:20%; ">' . $caseCreateDateFormatted . '</td>';
-                    echo '<td style="width:20%; ">' . $caseCloseDateFormatted . '</td>';
-
-                    if ($caseStatusColorAssignment == "Open" || $caseStatusColorAssignment == "open") {
-
-                        echo '<td style="width:20%; "><span class="account-status-badge green" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    } else if ($caseStatusColorAssignment == "Closed" || $caseStatusColorAssignment == "closed") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge passive" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    } else if ($caseStatusColorAssignment == "Pending" || $caseStatusColorAssignment == "pending") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge yellow" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    } else if ($caseStatusColorAssignment == "On Hold" || $caseStatusColorAssignment == "on hold") {
-
-                       echo '<td style="width:20%; "><span class="account-status-badge red" style="margin-left:0;">' . $row['caseStatus'] . '</span></td>';
-
-                    }
-                    
-                echo '</tr>';
-
-            }
-
-            echo '</table>';
-
-        } else {
-
-            echo '
-                <table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Case Created</th>
-                        <th style="width:20%; ">Case Closed</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>
-                    <tr>
-                        <td style="width:20%; ">There are no Cases</td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                    </tr>
-                </table>
-            ';
+            echo '</tr>';
         }
 
-    } else if ($_SESSION['graphCallType'] == "Dashboard Leads Table") {
+    }
 
-        $sql = "SELECT * FROM caliweb_leads";
-        $result = mysqli_query($con, $sql);
-
-        if (mysqli_num_rows($result) > 0) {
-
-            // Output table header
-
-            echo '<table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Assigned To</th>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Account Number</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>';
-
-            // Output table rows
-
-            while ($row = mysqli_fetch_assoc($result)) {
-                
-
-
-            }
-
-            echo '</table>';
-
-        } else {
-
-            echo '
-                <table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Assigned To</th>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Account Number</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>
-                    <tr>
-                        <td style="width:20%; ">There are no Leads</td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                    </tr>
-                </table>
-            ';
-
+    if (!function_exists('formatDate')) {
+        function formatDate($date) {
+            $dateObj = new DateTime($date);
+            return $dateObj->format('m/d/Y g:i A');
         }
+    }
 
-    } else if ($_SESSION['graphCallType'] == "Dashboard Leads Table Employee Only") {
+    if (!function_exists('getStatusBadge')) {
 
-        $sql = "SELECT * FROM caliweb_leads WHERE assignedAgent = '$fullname'";
-        $result = mysqli_query($con, $sql);
+        function getStatusBadge($status) {
 
-        if (mysqli_num_rows($result) > 0) {
+            $status = $status;
 
-            // Output table header
+            $statusClasses = [
+                "Completed" => "green",
+                "Overdue" => "red",
+                "Pending" => "yellow",
+                "Stuck" => "red-dark",
+                "Open" => "green",
+                "Closed" => "passive",
+                "On hold" => "red"
+            ];
 
-            echo '<table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Assigned To</th>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Account Number</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>';
-
-            // Output table rows
-
-            while ($row = mysqli_fetch_assoc($result)) {
-
-                
-
-            }
-
-            echo '</table>';
-
-        } else {
-
-            echo '
-                <table style="width:100%; margin-top:1%;">
-                    <tr>
-                        <th style="width:20%; ">Assigned To</th>
-                        <th style="width:20%; ">Customer Name</th>
-                        <th style="width:20%; ">Account Number</th>
-                        <th style="width:20%; ">Status</th>
-                    </tr>
-                    <tr>
-                        <td style="width:20%; ">There are no Leads</td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                        <td style="width:20%; "></td>
-                    </tr>
-                </table>
-            ';
+            $class = $statusClasses[$status] ?? 'default';
+            return "<span class='account-status-badge {$class}' style='margin-left:0;'>{$status}</span>";
 
         }
 
     }
-    
+
+    if (!function_exists('renderTable')) {
+
+        function renderTable($result, $headers, $rowCallback, $emptyMessage) {
+
+            if (mysqli_num_rows($result) > 0) {
+
+                renderTableHeader($headers);
+
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    $rowCallback($row);
+
+                }
+
+                echo '</table>';
+
+            } else {
+
+                echo "<p class='font-14px'>{$emptyMessage}</p>";
+
+            }
+
+        }
+        
+    }
+
+    if ($_SESSION['graphCallType'] == "Dashboard Tasks Table") {
+
+        $sql = "SELECT * FROM caliweb_tasks";
+        $result = mysqli_query($con, $sql);
+        $headers = ["Task Name", "Task Start Date", "Task Due Date", "Status"];
+
+        renderTable($result, $headers, function($row) {
+
+            $rowData = [
+                $row['taskName'],
+                formatDate($row['taskStartDate']),
+                formatDate($row['taskDueDate']),
+                getStatusBadge($row['status'])
+            ];
+
+            renderTableRow($rowData);
+
+        }, "No Tasks found.");
+
+    } elseif ($_SESSION['graphCallType'] == "Dashboard Cases Table") {
+
+        $sql = "SELECT * FROM caliweb_cases";
+        $result = mysqli_query($con, $sql);
+        $headers = ["Customer Name", "Case Created", "Case Closed", "Status"];
+
+        renderTable($result, $headers, function($row) {
+
+            $rowData = [
+                $row['customerName'],
+                formatDate($row['caseCreateDate']),
+                formatDate($row['caseCloseDate']),
+                getStatusBadge($row['caseStatus'])
+            ];
+
+            renderTableRow($rowData);
+
+        }, "No Cases found.");
+
+    } elseif ($_SESSION['graphCallType'] == "Dashboard Tasks Table Employee Only") {
+
+        $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$fullname'";
+        $result = mysqli_query($con, $sql);
+        $headers = ["Task Name", "Task Start Date", "Task Due Date", "Status"];
+
+        renderTable($result, $headers, function($row) {
+
+            $rowData = [
+                $row['taskName'],
+                formatDate($row['taskStartDate']),
+                formatDate($row['taskDueDate']),
+                getStatusBadge($row['status'])
+            ];
+            renderTableRow($rowData);
+
+        }, "No Tasks found.");
+
+    } elseif ($_SESSION['graphCallType'] == "Dashboard Cases Table Employee Only") {
+
+        $sql = "SELECT * FROM caliweb_cases WHERE assignedAgent = '$fullname'";
+        $result = mysqli_query($con, $sql);
+        $headers = ["Customer Name", "Case Title", "Case Created", "Case Closed", "Status"];
+
+        renderTable($result, $headers, function($row) {
+
+            $rowData = [
+                $row['customerName'],
+                $row['caseTitle'],
+                formatDate($row['caseCreateDate']),
+                formatDate($row['caseCloseDate']),
+                getStatusBadge($row['caseStatus'])
+            ];
+
+            renderTableRow($rowData);
+
+        }, "No Cases found.");
+
+    } elseif ($_SESSION['graphCallType'] == "Dashboard Leads Table") {
+
+        $sql = "SELECT * FROM caliweb_leads";
+        $result = mysqli_query($con, $sql);
+        $headers = ["Assigned To", "Customer Name", "Account Number", "Status"];
+
+        renderTable($result, $headers, function($row) {
+
+            $rowData = [
+                $row['assignedAgent'],
+                $row['customerName'],
+                $row['accountNumber'],
+                $row['status']
+            ];
+
+            renderTableRow($rowData);
+
+        }, "No Leads found.");
+
+    } elseif ($_SESSION['graphCallType'] == "Dashboard Leads Table Employee Only") {
+
+        $sql = "SELECT * FROM caliweb_leads WHERE assignedAgent = '$fullname'";
+        $result = mysqli_query($con, $sql);
+        $headers = ["Assigned To", "Customer Name", "Account Number", "Status"];
+
+        renderTable($result, $headers, function($row) {
+
+            $rowData = [
+                $row['assignedAgent'],
+                $row['customerName'],
+                $row['accountNumber'],
+                $row['status']
+            ];
+
+            renderTableRow($rowData);
+
+        }, "No Leads found.");
+
+    }
+
 ?>

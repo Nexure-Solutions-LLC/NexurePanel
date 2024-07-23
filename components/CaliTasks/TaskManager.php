@@ -19,54 +19,91 @@ class TaskManager {
     private mysqli $sql_connection;
 
     function __construct(mysqli $sql_connection) {
+
         $this->sql_connection = $sql_connection;
+
     }
 
     function getAllTasks(): array
     {
+
         $fixed_tasks = array();
+
         foreach ($this->tasks as $key => $value) {
+
             $fixed_tasks[$value->id] = $value;
+
         }
+
         return $fixed_tasks;
+
     }
 
     function getTasksBySpecifiedAttributes(array $attributes): array
     {
+
         $tasks = $this->getAllTasks();
         $exempt_tasks = array();
+
         foreach ($attributes as $key => $value) {
+
             foreach ($tasks as $index => $task) {
+
                 if (!isset($task->{$key})) {
+
                     continue;
+
                 }
+
                 if ($task->{$key} != $value) {
+
                     if (in_array($task, $exempt_tasks)) {
+
                         $exempt_tasks[] = $task;
+
                     }
+
                 }
+
             }
+
         }
+
         $final_array = array();
+
         foreach ($tasks as $i => $t) {
+
             if (!in_array($t, $exempt_tasks)) {
+
                 $final_array[$t->id] = $t;
+
             }
+
         }
+
         return $final_array;
+
     }
 
     function upsertInternalTaskById(int $task_id): Task {
+
         $con = $this->sql_connection;
         $tasks = $this->tasks;
+
         if (array_key_exists($task_id, $tasks)) {
+
             return $tasks[$task_id];
+
         }
+
         $task = new Task($con);
         $task->fetchTaskById($task_id);
         $tasks[$task->id] = $task;
+
         return $task;
+
     }
+    
 }
 
 
