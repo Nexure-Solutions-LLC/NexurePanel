@@ -205,6 +205,7 @@ $LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT = "Customize Settings";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TITLE = "Privacy & Security";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT = "Change how you log into your account, change your password, change your two factor authentication settings, and how we collect your data.";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT = "Customize Settings";
+$LANG_AUTH_DISCORD_BUTTON = "Authorize with Discord";
 
 // Services Management Text Specifications
 

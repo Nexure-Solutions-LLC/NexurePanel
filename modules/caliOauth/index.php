@@ -12,7 +12,7 @@
     // of needing to fill our registration form our you can just quickly
     // authenticate.
 
-    // Load Custom login Modules Such as Sign-In with Discord or Sign-In With Google, or Okta Authentication
+    // Load Custom login Modules Such as Sign-In with Discord, Google, or Okta Authentication
 
     $authModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $authModulesLookupResult = mysqli_query($con, $authModulesLookupQuery);
@@ -27,35 +27,31 @@
             // This extra check is to prevent users from trying to load a module from the
             // URL bar directly, it requires this module to load it.
 
+            $pathPrefix = $_SESSION['pagetitle'] == "Account Management" ? "/accountAuthorization" : "";
+
             switch ($authModulesName) {
                 case "Discord OAuth":
-                    $authModulesName = "Discord OAuth";
                     $authModulesDepends = "Present";
-                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/discord/index.php");
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/discord{$pathPrefix}/index.php";
                     break;
                 case "GitHub OAuth":
-                    $authModulesName = "GitHub OAuth";
                     $authModulesDepends = "Present";
-                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/github/index.php");
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/github{$pathPrefix}/index.php";
                     break;
                 case "Google OAuth":
-                    $authModulesName = "Google OAuth";
                     $authModulesDepends = "Present";
-                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/google/index.php");
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/google{$pathPrefix}/index.php";
                     break;
                 case "Okta OAuth":
-                    $authModulesName = "Okta OAuth";
                     $authModulesDepends = "Present";
-                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/okta/index.php");
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/okta{$pathPrefix}/index.php";
                     break;
                 case "Apple OAuth":
-                    $authModulesName = "Apple OAuth";
                     $authModulesDepends = "Present";
-                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/apple/index.php");
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/apple{$pathPrefix}/index.php";
                     break;
             }
         }
-        
     }
   
 ?>
