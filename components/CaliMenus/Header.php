@@ -77,6 +77,9 @@
                     case "Billing Center":
                         renderNavLinks('Billing', $currentAccount->accountNumber);
                         break;
+                    case "Service Status":
+                        renderNavLinks('Service Status', $currentAccount->accountNumber);
+                        break;
                     case "Access and Security":
                         renderNavLinks('Access & Security Center', $currentAccount->accountNumber);
                         break;
