@@ -1,6 +1,11 @@
 <?php
+
+    session_start();
+    unset($_SESSION['pagetitle']);
+
     $pagetitle = "Account Management";
     $pagesubtitle = 'Account Settings';
+    $_SESSION['pagetitle'] = "Account Management";
     $pagetype = "";
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
@@ -26,26 +31,28 @@
             <div class="caliweb-card dashboard-card">
                 <h4 class="text-bold font-size-20 no-padding" style="margin-top:1%;">Integrations</h4>
                 <div class="caliweb-grid caliweb-one-grid">
-                    <p style="margin-bottom:6%;"><strong>OAuth Authorizations</strong></p>
-                    <?php
+                    <p style="margin-top:2%; font-size:14px;">List of OAuth Authorization Providers</p>
+                    <div style="width:40%; margin-top:-4%;">
+                        <?php
 
-                        if (mysqli_num_rows($accountModulesLookupResult) > 0) {
+                            if (mysqli_num_rows($accountModulesLookupResult) > 0) {
 
-                            while ($accountModulesLookupRow = mysqli_fetch_assoc($accountModulesLookupResult)) {
+                                while ($accountModulesLookupRow = mysqli_fetch_assoc($accountModulesLookupResult)) {
 
-                                $accountModulesName = $accountModulesLookupRow['moduleName'];
+                                    $accountModulesName = $accountModulesLookupRow['moduleName'];
 
-                                if ($accountModulesName == "Cali OAuth") {
+                                    if ($accountModulesName == "Cali OAuth") {
 
-                                    include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php");
+                                        include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php");
+
+                                    }
 
                                 }
 
                             }
 
-                        }
-
-                    ?>
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>

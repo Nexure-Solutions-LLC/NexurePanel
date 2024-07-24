@@ -203,6 +203,7 @@ $LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT = "Update Personal Details";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TITLE = "Privacy & Security";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT = "Change your Email, Cali ID, MFA Settings, Password and other information on file as well as authorize OAuth services like Google and Microsoft.";
 $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT = "Edit Privacy and Security Settings";
+$LANG_AUTH_DISCORD_BUTTON = "Authorize with Discord";
 
 // Services Management Text Specifications
 
