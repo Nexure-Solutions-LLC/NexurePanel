@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a4fd47f32d5468417d5b017b8c2f824ff28ae42e',
+        'reference' => '127347b29ea0ad06744e773203a04af2b9009907',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a4fd47f32d5468417d5b017b8c2f824ff28ae42e',
+            'reference' => '127347b29ea0ad06744e773203a04af2b9009907',
             'dev_requirement' => false,
         ),
         'authorizenet/authorizenet' => array(
@@ -251,6 +251,15 @@
             'install_path' => __DIR__ . '/../phpstan/phpdoc-parser',
             'aliases' => array(),
             'reference' => '536889f2b340489d328f5ffb7b02bb6b183ddedc',
+            'dev_requirement' => false,
+        ),
+        'phpstan/phpstan' => array(
+            'pretty_version' => '1.11.7',
+            'version' => '1.11.7.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../phpstan/phpstan',
+            'aliases' => array(),
+            'reference' => '52d2bbfdcae7f895915629e4694e9497d0f8e28d',
             'dev_requirement' => false,
         ),
         'psr/cache' => array(
