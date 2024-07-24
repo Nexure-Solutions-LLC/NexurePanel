@@ -15,6 +15,7 @@
     $truncatedAccountNumber = substr($currentAccount->accountNumber, -4);
     $customerStatus = $currentAccount->accountStatus;
     $accountnumber = $currentAccount->accountNumber;
+
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
     
 ?>
@@ -45,7 +46,7 @@
 
                                         } else {
 
-                                            echo strtoupper($fullname);
+                                            echo strtoupper($currentAccount->legalName);
                                             
                                         }
                                     ?>

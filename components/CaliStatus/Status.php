@@ -4,8 +4,6 @@
     ob_start();
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
 
     $caliemail = $_SESSION['caliid'];
