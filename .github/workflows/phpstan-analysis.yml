@@ -1,0 +1,29 @@
+name: "PHPStan"
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  schedule:
+    - cron: '26 1 * * 4'
+
+jobs:
+  phpstan:
+    name: PHPStan Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4' # Adjust the PHP version as needed
+
+    - name: Install dependencies
+      run: composer install
+
+    - name: Run PHPStan
+      run: ./vendor/bin/phpstan analyse
