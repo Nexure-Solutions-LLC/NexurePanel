@@ -25,14 +25,14 @@
                     </div>
                 </div>
                 <div class="caliweb-one-grid special-caliweb-spacing">
-                    <div class="caliweb-card dashboard-card">
+                    <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:85vh;">
                         <div>
                             <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-Logo.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
                             <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-WhiteLogo.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
                         </div>
                         <div style="padding-left:5px; padding-right:5px; width:70%;">
                             <div>
-                                <h3 style="font-size:20px; margin-top:30px;"><?php echo $PANEL_ABOUT_TITLE_PRODUCT_NAME ?></h3>
+                                <h3 style="font-size:20px; margin-top:30px; margin-bottom:4%;"><?php echo $PANEL_ABOUT_TITLE_PRODUCT_NAME ?></h3>
                                 <p style="margin-top:20px; font-size:14px;"><?php echo $PANEL_ABOUT_INFO ?></p>
                                 <p style="margin-top:20px; font-size:14px; margin-bottom:20px;"><?php echo $PANEL_ABOUT_LICENSE_DISCLAIMER ?></p>
                             </div>
@@ -53,7 +53,16 @@
                                     echo "<p style='margin-top:10px; font-size:14px;'>Operating System: " . php_uname('s') . " " . php_uname('r') . "</p>";
 
                                 ?>
-                                <p style="margin-top:10px; font-size:14px; margin-bottom:20px;">Languages: HTML, CSS, JS, PHP and MySQL</p>
+                                <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Languages: HTML, CSS, JS, PHP and MySQL</p>
+                            </div>
+                            <div id="phpinfo" style="margin-top:6%;">
+                                <?php
+                                    ob_start();
+                                    phpinfo();
+                                    $pinfo = ob_get_contents();
+                                    ob_end_clean();
+                                    echo (str_replace("module_Zend Optimizer", "module_Zend_Optimizer", preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $pinfo)));
+                                ?>
                             </div>
                         </div>
                     </div>

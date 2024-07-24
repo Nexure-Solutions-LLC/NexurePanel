@@ -23,8 +23,6 @@
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
 <?php include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php"); ?>
 
-<?php include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php"); ?>
-
     <!-- 
         Unique Website Title Tag Start 
         The Page Title specified what page the user is on in 

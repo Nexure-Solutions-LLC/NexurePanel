@@ -4,14 +4,10 @@
     $pagesubtitle = "Customer Service";
     $pagetype = "Client";
 
-    $accountnumber = $_GET['account_number'];
-
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
     $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
     $websiteinfo = mysqli_fetch_array($websiteresult);
-
-    $customerStatus = $userinfo['accountStatus'];
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
@@ -46,7 +42,7 @@
                                     <?php
 
                                         // Fetch data from MySQL table
-                                        $sql = "SELECT * FROM caliweb_cases WHERE emailAddress = '".$caliemail."'";
+                                        $sql = "SELECT * FROM caliweb_cases WHERE emailAddress = '".$currentAccount->email."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned

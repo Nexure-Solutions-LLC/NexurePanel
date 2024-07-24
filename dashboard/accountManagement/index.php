@@ -24,7 +24,8 @@
                 </div>
                 <div class="caliweb-one-grid special-caliweb-spacing">
                     <div class="caliweb-card dashboard-card">
-                        <div class="caliweb-two-grid special-caliweb-spacing" style="height:0vh;">
+                        <h4 class="text-bold font-size-20 no-padding" style="margin-top:1%;">Overview</h4>
+                        <div class="caliweb-two-grid special-caliweb-spacing" style="height:0vh; margin-top:2%;">
                             <div class="caliweb-card dashboard-card account-center-cards">
                                 <div class="card-body">
                                     <h4 class="text-bold font-size-20 no-padding"><?php echo $LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TITLE; ?></h4>

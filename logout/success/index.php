@@ -1,65 +1,4 @@
 <?php
-    session_start();
-
-    if (isset($_POST['langPreference'])) {
-        $_SESSION["lang"] = $_POST["langPreference"];
-    }
-
-    if (isset($_SESSION["lang"])) {
-
-        if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
-
-            $_SESSION["lang"] = 'en_US';
-
-        }
-
-        include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
-
-    } else {
-
-        include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
-
-    }
-
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-
-    use Dotenv\Dotenv;
-
-    // Load environment variables from .env file
-
-    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
-    $dotenv->load();
-
-    // Get database credentials from environment variables
-
-    $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
-
-    if (mysqli_connect_errno()) {
-
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        exit();
-
-    }
-
-    // Perform query
-
-    $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
-    $panelinfo = mysqli_fetch_array($result);
-
-    // Free result set
-
-    mysqli_free_result($result);
-
-    $panelname = $panelinfo['panelName'];
-    $paneldomain = $panelinfo['panelDomain'];
-    $orgshortname = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
-    $licenseKeyfromDB = $panelinfo['panelKey'];
-
-
-    if ($licenseKeyfromConfig == $licenseKeyfromDB) {
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
@@ -140,11 +79,7 @@
 
     </script>
 <?php
+
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
 
-    } else {
-
-        header("Location: /error/licenseInvalid");
-        
-    }
 ?>

@@ -1002,6 +1002,51 @@ textarea.swal2-input {
     border:1px solid #aaa4ff;
 }
 
+/* =================== Cali Web Design Dashboard PHP Info Styling =================== */
+
+#phpinfo {
+    width: 100%;
+}
+
+#phpinfo table {
+    width: 100%;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+#phpinfo table,
+#phpinfo th,
+#phpinfo td {
+    width: 100%;
+    min-width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#phpinfo h1,
+#phpinfo h2 {
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+#phpinfo h2 {
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#phpinfo p {
+    font-size:14px !important;
+}
+
+#phpinfo .p,
+#phpinfo .e,
+#phpinfo .h,
+#phpinfo .v,
+#phpinfo .vr {
+    width: 50% !important;
+    font-size:14px !important;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {
