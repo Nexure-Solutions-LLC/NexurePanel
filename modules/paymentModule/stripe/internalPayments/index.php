@@ -1,9 +1,13 @@
 <?php
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
     $caliemail = $_SESSION['caliid'];
+
+    $currentAccount = new \CaliAccounts\Account($con);
+    $success = $currentAccount->fetchByEmail($caliemail);
 
     $stripeID = $currentAccount->stripe_id;
 
