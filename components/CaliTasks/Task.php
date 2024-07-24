@@ -218,6 +218,14 @@
 
         }
 
+        function refresh(): bool {
+            if (!isset($this->id)) {
+                return false;
+            }
+            $this->fetchTaskById($this->id);
+            return true;
+        }
+
     }
 
 ?>

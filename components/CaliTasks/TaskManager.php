@@ -16,12 +16,41 @@ class TaskManager {
     // as well as perform actions that effect more than one task.
 
     private array $tasks;
+    public bool $isFetched = false;
+
     private mysqli $sql_connection;
 
     function __construct(mysqli $sql_connection) {
 
         $this->sql_connection = $sql_connection;
 
+    }
+    private function _sanitize(string $data): string {
+
+        $con = $this->sql_connection;
+        $data = stripslashes($data);
+        $data = mysqli_real_escape_string($con, $data);
+        return $data;
+
+    }
+
+    private function _idQuery(int $task_id): ?array {
+        $query = "SELECT * FROM `caliweb_tasks` WHERE id = $this->id;";
+        $con = $this->sql_connection;
+        $exec = $con->query($query);
+        return $exec->fetch_array() ?? null;
+    }
+
+    private function _allQuery(): ?array {
+        $con = $this->sql_connection;
+        $query = "SELECT * FROM `caliweb_tasks`";
+        $exec = $con->query($query);
+        return $exec->fetch_all();
+    }
+
+    public function hasBeenFetched(): bool
+    {
+        return $this->isFetched;
     }
 
     function getAllTasks(): array
@@ -38,6 +67,32 @@ class TaskManager {
         return $fixed_tasks;
 
     }
+
+    private function _ensureExistence(int $task_id): bool {
+
+    }
+
+    private function _addToInternalTaskArray(Task $task_item): void {
+        $this->tasks[$task_item->id] = $task_item;
+        return;
+    }
+
+    function fetchAllTasks(): bool
+    {
+        if ($this->hasBeenFetched()) {
+            return false;
+        }
+        $all_db_tasks = $this->_allQuery();
+
+        foreach ($all_db_tasks as $_ => $task) {
+            $task_item = new Task($this->sql_connection);
+            $task_item->fetchTaskById($task['id']);
+            $this->_addToInternalTaskArray($task_item);
+        }
+        return true;
+    }
+
+
 
     function getTasksBySpecifiedAttributes(array $attributes): array
     {
