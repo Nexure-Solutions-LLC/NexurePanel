@@ -7,12 +7,6 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
-    if (isset($_POST['langPreference'])) {
-
-        $_SESSION["lang"] = $_POST['langPreference'];
-
-    }
-
     if (isset($_SESSION['caliid'])) {
 
         header("Location: /dashboard");
@@ -45,21 +39,6 @@
     }
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
-
-    if (isset($_SESSION["lang"])) {
-
-        if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
-
-            $_SESSION["lang"] = 'en_US';
-
-        }
-        include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
-
-    } else {
-
-        include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
-
-    }
 
     echo '<title>'.$orgshortname.'- Unified Portal</title>';
 

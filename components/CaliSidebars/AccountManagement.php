@@ -7,30 +7,30 @@
             "Account Settings" => [
                 "url" => "/dashboard/accountManagement/accountSettings/",
                 "subLinks" => [
-                    "Integrations" => "#",
-                    "Show Or Hide Account" => "#",
-                    "Set Primary Account" => "#",
-                    "Nickname Account" => "#",
-                    "Manage Custom Groups" => "#",
-                    "Manage Linked Accounts" => "#"
+                    "Integrations" => "/dashboard/accountManagement/accountSettings/integrations",
+                    "Show Or Hide Account" => "/dashboard/accountManagement/accountSettings/showOrHideAccounts",
+                    "Set Primary Account" => "/dashboard/accountManagement/accountSettings/setPrimaryAccount",
+                    "Nickname Account" => "/dashboard/accountManagement/accountSettings/nicknameAccounts",
+                    "Manage Custom Groups" => "/dashboard/accountManagement/accountSettings/manageCustomGroups",
+                    "Manage Linked Accounts" => "/dashboard/accountManagement/accountSettings/managedLinked"
                 ]
             ],
             "Your Personal Details" => [
                 "url" => "/dashboard/accountManagement/personalDetails/",
                 "subLinks" => [
-                    "Address" => "#",
-                    "Phone Number" => "#",
-                    "Email" => "#",
-                    "Preferred Language" => "#"
+                    "Address" => "/dashboard/accountManagement/personalDetails/addressInformation",
+                    "Phone Number" => "/dashboard/accountManagement/personalDetails/phoneInformation",
+                    "Email" => "/dashboard/accountManagement/personalDetails/emailInformation",
+                    "Preferred Language" => "/dashboard/accountManagement/personalDetails/languageInformation"
                 ]
             ],
             "Sign-In Security" => [
                 "url" => "/dashboard/accountManagement/privacyAndSecurity/",
                 "subLinks" => [
-                    "Username" => "#",
-                    "Password" => "#",
-                    "Security Word" => "#",
-                    "MFA Settings" => "#"
+                    "Username" => "/dashboard/accountManagement/privacyAndSecurity/username",
+                    "Password" => "/dashboard/accountManagement/privacyAndSecurity/password",
+                    "Security Word" => "/dashboard/accountManagement/privacyAndSecurity/securityWord",
+                    "MFA Settings" => "/dashboard/accountManagement/privacyAndSecurity/mfaSettings"
                 ]
             ]
         ];

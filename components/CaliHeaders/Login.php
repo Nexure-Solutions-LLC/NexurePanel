@@ -1,5 +1,7 @@
 <?php
 
+    session_start();
+
     function errorHandler($errno, $errstr, $errfile, $errline) {
 
         $log_timestamp = date("d-m-Y H:i:sa");
@@ -62,22 +64,6 @@
 
     }
 
-    if (isset($_SESSION["lang"])) {
-
-        if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
-
-            $_SESSION["lang"] = 'en_US';
-
-        }
-        
-        include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
-
-    } else {
-
-        include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
-
-    }
-
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
@@ -95,6 +81,14 @@
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
         exit();
+    }
+
+    // Check Language
+
+    if (isset($_POST['langPreference'])) {
+
+        $_SESSION["lang"] = $_POST['langPreference'];
+
     }
 
     // Perform query
@@ -209,6 +203,21 @@
                 </div>
 <?php 
     
+        if (isset($_SESSION["lang"])) {
+
+            if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
+
+                $_SESSION["lang"] = 'en_US';
+
+            }
+            include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
+
+        } else {
+
+            include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
+
+        }
+
     } else {
 
     header("Location: /error/licenseInvalid");

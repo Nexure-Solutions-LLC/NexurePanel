@@ -20,7 +20,7 @@
                         <p class="width-50 font-14px" style="margin-left:auto; max-width: 650px; margin-right:auto;">Cali Web Design offers stellar world-class uptime and network availability. Listed below are all our services and their status. If there is an outage it would be reported here.</p>
                         </div>
                     </div>
-                    <div class="service-status-bar width-75" style=" font-size: 18px; font-weight: 400;!important; margin-left:auto; margin-right:auto;">
+                    <div class="service-status-bar width-75" style="font-size:14px; font-weight:400;!important; margin-left:auto; margin-right:auto;">
                         <div class="circle"></div>All Services Currently Online
                         <span class="tooltip-text">
                             Operational For 69420 Days
@@ -35,7 +35,7 @@
                 <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">API</p>
+                                <p style="font-size:16px; font-weight:500;">Cali Web Design Website</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -66,7 +66,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">API</p>
+                                <p style="font-size:16px; font-weight:500;">Cali Web Design Email Services (Cali Mail)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -97,7 +97,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">API</p>
+                                <p style="font-size:16px; font-weight:500;">Cali Web Design Management Portal (Cali Panel)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -128,7 +128,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">API</p>
+                                <p style="font-size:16px; font-weight:500;">Cali Web Design Host Server #1 (US1 - US-East)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -159,7 +159,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">API</p>
+                                <p style="font-size:16px; font-weight:500;">Cali Web Design Host Server #2 (US2 - US-West)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -190,7 +190,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">API</p>
+                                <p style="font-size:16px; font-weight:500;">Cali Web Design Host Server #3 (EU1 - Germany)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight: 500; text-align:right; ">69% Uptime</p>

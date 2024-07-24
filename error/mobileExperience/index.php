@@ -1,11 +1,6 @@
 <?php
-    ob_clean();
-    ob_start();
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
-    include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
 
     echo '<title>'.$orgshortname.' - Mobile Experience</title>';
 
