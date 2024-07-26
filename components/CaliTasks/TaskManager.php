@@ -2,12 +2,13 @@
 
 namespace CaliTasks;
 
+use CaliGenerics\GenericManager;
 use mysqli;
 
 include($_SERVER["DOCUMENT_ROOT"] . "/components/CaliTasks/Task.php");
 
 
-class TaskManager {
+class TaskManager extends GenericManager {
     // Task Manager allows for routine administration of CRUD
     // operations on tasks, as well as keeping an internal list
     // of all the tasks that are in the database.
@@ -15,15 +16,18 @@ class TaskManager {
     // This is so that the code can get all of the task objects
     // as well as perform actions that effect more than one task.
 
-    private array $tasks;
-    public bool $isFetched = false;
-
-    private mysqli $sql_connection;
-
     function __construct(mysqli $sql_connection) {
-
-        $this->sql_connection = $sql_connection;
-
+        parent::__construct(
+            $sql_connection,
+            array(
+                "status" => array(0 => \taskStatus::class, 1 => "Pending"),
+                "taskPriority" => array(0 => \priorityLevel::class, 1 => "Normal")
+            )
+        );
+        $this->_setQueryingIdentifier("id");
+        $this->queryingIdentifierIsString = false;
+        $this->InheritableSubclass = Task::class;
+        $this->_setCollectionToQuery("caliweb_tasks");
     }
     private function _sanitize(string $data): string {
 
@@ -55,42 +59,10 @@ class TaskManager {
 
     function getAllTasks(): array
     {
-
-        $fixed_tasks = array();
-
-        foreach ($this->tasks as $key => $value) {
-
-            $fixed_tasks[$value->id] = $value;
-
-        }
-
-        return $fixed_tasks;
-
+        $this->fetchAllGenerics();
+        
     }
 
-    private function _ensureExistence(int $task_id): bool {
-
-    }
-
-    private function _addToInternalTaskArray(Task $task_item): void {
-        $this->tasks[$task_item->id] = $task_item;
-        return;
-    }
-
-    function fetchAllTasks(): bool
-    {
-        if ($this->hasBeenFetched()) {
-            return false;
-        }
-        $all_db_tasks = $this->_allQuery();
-
-        foreach ($all_db_tasks as $_ => $task) {
-            $task_item = new Task($this->sql_connection);
-            $task_item->fetchTaskById($task['id']);
-            $this->_addToInternalTaskArray($task_item);
-        }
-        return true;
-    }
 
 
 

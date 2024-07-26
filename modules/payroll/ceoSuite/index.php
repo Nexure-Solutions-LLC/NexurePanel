@@ -52,7 +52,7 @@
                                         while ($row = mysqli_fetch_assoc($result)) {
 
                                             echo '<tr>';
-                                                echo '<td style="width:20%;">' . $row['employeeName'] . ' - '. $row['employeeIDNumber'] .'</td>';
+                                                echo '<td style="width:20%;">' . $row['employeeName'] . '  ('. $row['employeeIDNumber'] .')</td>';
                                                 echo '<td style="width:10%;">' . $row['employeeTimeType'] . '</td>';
                                                 echo '<td style="width:10%;">' . $row['employeePayType'] . '</td>';
                                                 echo '<td style="width:10%;">' . $row['employeeWorkedHours'] . '</td>';

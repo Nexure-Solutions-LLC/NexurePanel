@@ -26,4 +26,4 @@ jobs:
       run: composer install
 
     - name: Run PHPStan
-      run: ./vendor/bin/phpstan analyse -c ./.github/workflows/phpstan.neon
+      run: ./vendor/bin/phpstan analyse -c ~/.github/workflows/phpstan.neon
