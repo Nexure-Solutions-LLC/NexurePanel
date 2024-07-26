@@ -55,7 +55,7 @@
                                                         <p style="font-size:12px; margin-top:10px;">Edit your websites quickly and seamlessly.</p>
                                                     </div>
                                                 </a>
-                                                <a href="/modules/shellinabox" style="text-decoration:none;" class="dark-mode-white">
+                                                <a href="/modules/webDesignModule/terminal/" style="text-decoration:none;" class="dark-mode-white">
                                                     <div class="caliweb-web-manage-btn">
                                                         <p style="font-weight:700; display:flex; align-items:center;">
                                                             <img src="/assets/img/systemIcons/terminal.png" style="height:20px; margin-right:10px; width:20px;" /> 

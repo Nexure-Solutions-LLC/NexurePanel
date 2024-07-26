@@ -33,12 +33,12 @@
                     <div class="accounts-overview">
                         <div class="caliweb-card dashboard-card" style="padding:0;">
                             <div class="card-header no-padding no-margin customer-card-header" style="padding:20px;">
-                                <h6 class="no-padding" style="font-size:16px; font-weight:600;">
+                                <h6 class="no-padding" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
                                     <?php echo $orgShortName.' '.$LANG_CUSTOMER_HOME_ACCOUNTS_TITLE; ?>
                                 </h6>
                             </div>
                             <div class="card-body">
-                                <h6 class="no-padding customer-business-card-bar" style="font-size:14px; font-weight:600;">
+                                <h6 class="no-padding customer-business-card-bar" style="font-size:14px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
                                     <?php
                                         if ($businessname !== null) {
 
@@ -52,7 +52,7 @@
                                     ?>
                                 </h6>
                                 <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
-                                    <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600;">
+                                    <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
                                         <?php echo $orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
                                     </h6>
                                     <div class="caliweb-button-section">   
