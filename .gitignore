@@ -2,4 +2,6 @@
 .env
 modules/webDesignModule/terminal
 modules/webDesignModule/siteBuilder
+license/
 license
+license/*
