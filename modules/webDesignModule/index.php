@@ -8,6 +8,8 @@
 
     if (strtolower($currentAccount->role->name) == "customer") {
 
+    $domainName = "caliwebdesignservices.com";
+
 ?>
 
         <!-- HTML Content will be injected here for customer users view. -->
@@ -37,73 +39,101 @@
                     <div class="caliweb-one-grid" style="grid-row-gap: 32px;">
                         <div class="caliweb-card dashboard-card" style="padding:30px;">
                             <div class="card-header no-margin">
-                                <div class="display-flex">
-                                    <div class="image-fluid thumb-web-img width-25">
+                                <div class="caliweb-grid caliweb-two-grid" style="grid-template-columns: .6fr 1.5fr; grid-row-gap: 0px;">
+                                    <div class="image-fluid thumb-web-img">
                                         <img src="https://image.thum.io/get/https://caliwebdesignservices.com" alt="Website Preview" style="width:100%; height:100%;">
                                     </div>
                                     <div class="website-info-content">
-
-                                        <div class="website-top-part">
-                                            <div>
-                                                <h4 style="font-size:24px; padding:0; margin:0; margin-top:1%; margin-bottom:2%;">caliwebdesignservices.com</h4>
-                                            </div>
-                                            <div class="caliweb-horizantal-spacer" style="margin-top:15px; margin-bottom:15px;"></div>
-                                            <div>
-                                                <p style="margin-bottom:5px;">Front End Languages: HTML, CSS, JS</p>
-                                                <p style="margin-bottom:5px;">Back End Languages: PHP</p>
-                                                <p style="margin-bottom:5px;">Database System: MySQL (MariaDB)</p>
-                                            </div>
-                                            <div class="caliweb-horizantal-spacer" style="margin-top:15px; margin-bottom:15px;"></div>
-                                            <div class="display-block">
-                                                <p style="margin-bottom:5px; margin-right:15px;">Setup Date: 01/01/1970</p>
-                                                <p style="margin-bottom:5px;">Next Billing Date: 11/30/2038</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="caliweb-horizantal-spacer" style="margin-top:15px; margin-bottom:3%;"></div>
-
                                         <div class="website-bottom-part">
                                             <div class="caliweb-grid caliweb-four-grid" style="grid-column-gap:20px; grid-row-gap:30px;">
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/website-builder.png" alt="Edit Website Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">Edit Website</p>
+                                                <a href="/modules/webDesignModule/siteBuilder" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/website-builder.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Edit Website</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">Edit your websites quickly and seamlessly.</p>
                                                     </div>
                                                 </a>
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/terminal.png" alt="Terminal Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">Terminal</p>
+                                                <a href="/modules/shellinabox" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/terminal.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Terminal</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">Run commands using the command line for your website.</p>
                                                     </div>
                                                 </a>
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/folder.png" alt="File Manager Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">File Manager</p>
+                                                <a href="/modules/webDesignModule/fileManager" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/folder.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">File Manager</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">Edit your websites files, change permissions or delete files.</p>
                                                     </div>
                                                 </a>
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/log-file.png" alt="Logs Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">System Logs</p>
+                                                <a href="/modules/webDesignModule/logFiles" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/log-file.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">System Logs</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">View your websites IP, access logs and visitor logs.</p>
                                                     </div>
                                                 </a>
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/page-speed.png" alt="File Manager Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">Speed Test</p>
+                                                <a href="/modules/webDesignModule/speedTest" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/page-speed.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Speed Test</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">Review insights into how your websites speed is performing.</p>
                                                     </div>
                                                 </a>
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/synchronize.png" alt="Backups Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">Backups Enabled</p>
+                                                <a href="/modules/webDesignModule/backupServices" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/synchronize.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Backups</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">We call this the oops zone, Create or restore backups here.</p>
                                                     </div>
                                                 </a>
-                                                <a href="" style="text-decoration:none;" class="dark-mode-white">
-                                                    <div class="display-flex align-center website-buttons">
-                                                        <img src="/assets/img/systemIcons/cloudflare.png" alt="Cloudflare Icon" width="25px" height="25px" />
-                                                        <p style="padding-left:10px;">Cloudflare not configured</p>
+                                                <a href="/modules/webDesignModule/cloudflareSync" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/cloudflare.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Cloudflare</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">Manage your Cloudflare services right from our system.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="/modules/webDesignModule/sslTLSSecurity" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/encrypt.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">SSL/TLS Security</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">This section manages your websites secutity settings.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="/modules/webDesignModule/monitoringServices" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/monitoring.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Monitoring</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">This section manages your monitoring service with.</p>
+                                                    </div>
+                                                </a>
+                                                <a href="/modules/webDesignModule/gitHub" style="text-decoration:none;" class="dark-mode-white">
+                                                    <div class="caliweb-web-manage-btn">
+                                                        <p style="font-weight:700; display:flex; align-items:center;">
+                                                            <img src="/assets/img/systemIcons/github.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                            <span style="font-family: 'Mona Sans', sans-serif;">Manage GitHub</span>
+                                                        </p>
+                                                        <p style="font-size:12px; margin-top:10px;">Push, Pull and Deploy to GitHub effortlessly.</p>
                                                     </div>
                                                 </a>
                                             </div>
@@ -118,10 +148,13 @@
                             <div class="card-footer" style="margin-top:1%;">
                                 <div class="display-flex align-center" style="justify-content:space-between; width:100%;">
                                     <div class="width-50">
-                                        <p class="font-14px">Directory: /var/www/websitedirectory/caliwebdesignservices</p>
+                                        <p class="font-14px">Directory: /var/www/vhosts/<?php if (!empty($domainName)) {
+                                            $folderName = str_replace('.com', '', $domainName);
+                                            echo $folderName;
+                                        } ?></p>
                                     </div>
                                     <div class="width-50" style="float:right; text-align:right;">
-                                        <p class="font-14px">System IP: 122.133.144.155</p>
+                                        <p class="font-14px">System IP: <?php echo $_SERVER['SERVER_ADDR']; ?></p>
                                     </div>
                                 </div>
                             </div>

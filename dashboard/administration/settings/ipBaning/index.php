@@ -16,7 +16,7 @@
                         <aside class="caliweb-sidebar">
                             <ul class="sidebar-list-linked">
                                 <li class="sidebar-link active"><a href="/dashboard/administration/settings/" class="sidebar-link-a">General</a></li>
-                                <li class="sidebar-link"><a href="/dashboard/administration/settings/ipBaning" class="sidebar-link-a">IP Baning</a></li>
+                                <li class="sidebar-link"><a href="/dashboard/administration/settings/ipBaning" class="sidebar-link-a">IP Banning</a></li>
                                 <li class="sidebar-link"><a href="/license" class="sidebar-link-a">Licencing</a></li>
                                 <li class="sidebar-link"><a href="/dashboard/administration/settings/updates" class="sidebar-link-a">Updates</a></li>
                                 <li class="sidebar-link"><a href="/dashboard/administration/settings/about" class="sidebar-link-a">About Cali Panel</a></li>

@@ -23,6 +23,8 @@ html[data-theme='dark'] body {
 .dark-mode .caliweb-navbar {
     background-color: rgba(22, 22, 23, 0.8) !important;
     border-bottom: 1px solid #222 !important;
+    -webkit-backdrop-filter: saturate(180%) blur(20px) !important;
+    backdrop-filter: saturate(180%) blur(20px) !important;
 }
 
 .systemLoads,

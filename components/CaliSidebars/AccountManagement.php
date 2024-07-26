@@ -48,7 +48,7 @@
 
                     $subActiveClass = ($pagetitle === "Account Management" && $pagesubtitle === $sectionName && $subLinkName === $subLinkName) ? 'active' : '';
 
-                    echo "<li class='sidebar-link account-settings-sidebar-link'><a href='{$subLinkUrl}' class='sidebar-link-a $subActiveClass'>{$subLinkName}</a></li>";
+                    echo "<a href='{$subLinkUrl}' class='sidebar-link-a $subActiveClass'><li class='sidebar-link account-settings-sidebar-link'>{$subLinkName}</li></a>";
 
                 }
 
@@ -58,7 +58,7 @@
 
                 $activeClass = ($pagetitle === "Account Management" && $pagesubtitle === $sectionName) ? 'active' : '';
 
-                echo "<li class='sidebar-link-a drop-menu-item-sidebar $activeClass'><a href='{$sectionData}' class='sidebar-link-a'>{$sectionName}</a></li>";
+                echo "<a href='{$sectionData}' class='sidebar-link-a'><li class='sidebar-link-a drop-menu-item-sidebar $activeClass'>{$sectionName}</li></a>";
 
             }
         }

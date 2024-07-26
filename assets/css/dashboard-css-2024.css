@@ -507,6 +507,22 @@ html[data-theme='dark'] body {
     border:1px solid #222;
 }
 
+.dark-mode .caliweb-web-manage-btn {
+    border: 1px solid #303030;
+    background-color: #303030;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+}
+
+.dark-mode .caliweb-web-manage-btn:hover {
+    border: 1px solid #676cff;
+    background-color: #0e0e0e;
+    box-shadow: none;
+    backdrop-filter: blur(5px);
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -772,8 +788,8 @@ textarea.swal2-input {
     display: flex;
     padding: 0px;
     position: relative;
-    width: 35%;
-    height: 45vh;
+    width: 100%;
+    height: 55vh;
     margin-right: 40px;
 }
 
@@ -782,6 +798,24 @@ textarea.swal2-input {
     width: 100%;
     height: auto;
     border-radius: 0px;
+}
+
+.caliweb-web-manage-btn {
+    border: 1px solid #eee;
+    background-color: #f2f3f5;
+    padding: 20px;
+    border-radius: 10px;
+    animation: dropIn 0.3s ease-in;
+
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+}
+
+.caliweb-web-manage-btn:hover {
+    border: 1px solid #676cff;
+    background-color: #f0f0f0;
+    box-shadow: none;
+    backdrop-filter: blur(5px);
 }
 
 /* =================== Cali Web Design Dashboard Modals =================== */

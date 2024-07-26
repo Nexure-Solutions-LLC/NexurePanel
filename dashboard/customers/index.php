@@ -88,7 +88,7 @@
                                 <div class="caliweb-three-grid mt-5-per customer-grid-quick-actions">
                                     <?php 
 
-                                        $moduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFreindlyName` = 'Websites'");
+                                        $moduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFriendlyName` = 'Websites'");
                                         $moduleInfo = mysqli_fetch_array($moduleResult);
                                         mysqli_free_result($moduleResult);
 
@@ -132,7 +132,7 @@
                                     </div>
                                     <?php
 
-                                        $codemoduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFreindlyName` = 'Security'");
+                                        $codemoduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFriendlyName` = 'Security'");
                                         $codemoduleInfo = mysqli_fetch_array($codemoduleResult);
                                         mysqli_free_result($codemoduleResult);
 
