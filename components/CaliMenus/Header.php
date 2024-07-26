@@ -24,14 +24,17 @@
         echo '<ul class="caliweb-nav-links">';
 
         foreach ($links as $name => $url) {
+
             $activeClass = $activeLink === $name ? 'active' : '';
             echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable\">$name</a></li>";
+
         }
 
         echo '</ul>';
     }
 
     function renderAdminNavLinks($activeLink, $moduleresult, $departmentresult, $currentAccountRole) {
+
         if (mysqli_num_rows($departmentresult) > 0) {
 
             while ($departmentrow = mysqli_fetch_assoc($departmentresult)) {
@@ -46,6 +49,7 @@
                     'Cases' => '/dashboard/administration/cases',
                     'Sign Off' => '/logout'
                 ];
+
                 // Define department visibility
 
                 $departmentVisibility = [
@@ -56,6 +60,7 @@
                     'Board of Directors' => array_keys($adminLinks),
                     'Development Department' => array_keys($adminLinks),
                 ];
+
                 // Determine which links to show based on department
                 
                 $visibleLinks = ($currentAccountRole === 'Executive') ? array_keys($adminLinks) : $departmentVisibility[$departmentrow['employeeDepartment']];
@@ -63,10 +68,14 @@
                 echo '<ul class="caliweb-nav-links">';
                 
                 foreach ($adminLinks as $name => $url) {
+
                     if (in_array($name, $visibleLinks)) {
+
                         $activeClass = $activeLink === $name ? 'active' : '';
                         echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable\">$name</a></li>";
+                    
                     }
+                    
                 }
 
                 echo '<li class="nav-links more">

@@ -9,14 +9,15 @@ include($_SERVER["DOCUMENT_ROOT"] . "/components/CaliTasks/Task.php");
 
 
 class TaskManager extends GenericManager {
+
     // Task Manager allows for routine administration of CRUD
     // operations on tasks, as well as keeping an internal list
     // of all the tasks that are in the database.
-    //
     // This is so that the code can get all of the task objects
     // as well as perform actions that effect more than one task.
 
     function __construct(mysqli $sql_connection) {
+
         parent::__construct(
             $sql_connection,
             array(
@@ -24,11 +25,14 @@ class TaskManager extends GenericManager {
                 "taskPriority" => array(0 => \priorityLevel::class, 1 => "Normal")
             )
         );
+
         $this->_setQueryingIdentifier("id");
         $this->queryingIdentifierIsString = false;
         $this->InheritableSubclass = Task::class;
         $this->_setCollectionToQuery("caliweb_tasks");
+
     }
+
     private function _sanitize(string $data): string {
 
         $con = $this->sql_connection;
@@ -39,27 +43,35 @@ class TaskManager extends GenericManager {
     }
 
     private function _idQuery(int $task_id): ?array {
+
         $query = "SELECT * FROM `caliweb_tasks` WHERE id = $this->id;";
         $con = $this->sql_connection;
         $exec = $con->query($query);
         return $exec->fetch_array() ?? null;
+
     }
 
     private function _allQuery(): ?array {
+
         $con = $this->sql_connection;
         $query = "SELECT * FROM `caliweb_tasks`";
         $exec = $con->query($query);
         return $exec->fetch_all();
+
     }
 
     public function hasBeenFetched(): bool
     {
+
         return $this->isFetched;
+
     }
 
     function getAllTasks(): array
     {
+
         $this->fetchAllGenerics();
+
         
     }
 

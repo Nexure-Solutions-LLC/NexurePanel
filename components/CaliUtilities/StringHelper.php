@@ -6,8 +6,11 @@ use mysqli;
 
 class StringHelper
 {
+    
     public function lower_and_clear(string $data): string {
+
         return str_replace(" ", "", strtolower($data));
+
     }
 
     public function join_and_trim(string $data): string {
@@ -24,4 +27,5 @@ class StringHelper
         $data = mysqli_real_escape_string($con, $data);
         return $data;
     }
+
 }

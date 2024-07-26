@@ -83,6 +83,7 @@
             $_SESSION["lang"] = 'en_US';
 
         }
+        
         include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
 
     } else {

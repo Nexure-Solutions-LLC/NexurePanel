@@ -9,7 +9,9 @@ class TransformHelpers
 
     function __construct()
     {
+
         $this->helper = new StringHelper();
+        
     }
 
 

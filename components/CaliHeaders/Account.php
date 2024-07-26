@@ -9,6 +9,7 @@
                     <h4 class="text-bold font-size-16 no-padding display-flex align-center">
                         <?php echo $businessname; ?> - <?php echo $accountnumber; ?>
                         <?php
+
                             $statusClasses = [
                                 "Active" => "green",
                                 "Suspended" => "red",
@@ -16,8 +17,10 @@
                                 "Under Review" => "yellow",
                                 "Closed" => "passive"
                             ];
+                            
                             $statusClass = $statusClasses[ucwords(strtolower($customerStatus))] ?? 'default';
                             echo "<span class='account-status-badge $statusClass'>{$customerStatus}</span>";
+
                         ?>
                     </h4>
                 </div>
@@ -30,6 +33,7 @@
         <div class="card-body width-75 macBook-styling-hotfix">
             <div class="display-flex align-center width-100 padding-20px-no-top macBook-padding-top">
                 <?php
+
                     $details = [
                         'Type' => ($userrole === 'customer' || $userrole === 'Customer') ? 'Customer - Direct' : (($userrole === 'partner' || $userrole === 'Partner') ? 'Partner - Affiliate' : 'Unknown'),
                         'Phone' => $mobilenumber,
@@ -40,8 +44,11 @@
                     ];
                     
                     foreach ($details as $label => $value) {
+
                         echo "<div class='width-60'><p class='no-padding font-14px'>{$label}</p><p class='no-padding font-14px'>{$value}</p></div>";
+                    
                     }
+
                 ?>
                 <div class="width-100">
                     <p class="no-padding font-14px">Industry</p>
