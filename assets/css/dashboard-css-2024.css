@@ -495,6 +495,8 @@ html[data-theme='dark'] body {
 .dark-mode .caliweb-card.dashboard-card.account-center-cards {
     padding: 4% !important;
     box-shadow: rgba(37, 37, 37, 0.2) 0px 2px 8px 0px;
+    background-color: #222222;
+    border:1px solid #333;
 }
 
 .dark-mode .drop-menu-item-sidebar,
@@ -788,8 +790,8 @@ textarea.swal2-input {
     display: flex;
     padding: 0px;
     position: relative;
-    width: 100%;
-    height: 55vh;
+    width: 90%;
+    height: 44vh;
     margin-right: 40px;
 }
 
@@ -1126,6 +1128,11 @@ textarea.swal2-input {
 
     .sidebar-card {
         height: 100vh;
+    }
+
+    .thumb-web-img {
+        width: 100%;
+        height: 55vh;
     }
 
 }

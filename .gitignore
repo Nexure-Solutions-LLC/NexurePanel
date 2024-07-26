@@ -1,4 +1,4 @@
 *.env
 .env
-modules/shellinabox
+modules/webDesignModule/terminal
 modules/webDesignModule/siteBuilder
