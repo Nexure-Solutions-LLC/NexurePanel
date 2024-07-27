@@ -87,6 +87,71 @@ class GenericInheritable
         return true;
 
     }
+
+    protected function isSetup(): bool {
+        return isset($this->{$this->primaryIdentifier});
+    }
+
+    public function Refresh(): bool {
+        if (!$this->isSetup()) {
+            return false;
+        }
+        return $this->fetchByPrimaryIdentifier($this->{$this->primaryIdentifier});
+    }
+
+    public function UpdateAttr(string $att_name, $att_val, bool $rawDataisString): bool {
+        if (!$this->isSetup()) {
+            return false;
+        }
+
+        // always refresh data before updating
+        $isRefreshed = $this->Refresh();
+        if (!$isRefreshed) {
+            return false;
+        }
+
+        if (gettype($att_val) == "object") {
+            $att_val = $this->helper->join_and_trim($att_val->name);
+        }
+
+        $query = "UPDATE `$this->collectionToQuery` SET $this->helper->sanitize($this->sql_connection, $att_name) = " . ($rawDataisString ? "'" : "") . $this->helper->sanitize($this->sql_connection, $att_val) . ($rawDataisString ? "'" : "") . " WHERE $this->helper->sanitize($this->sql_connection, $this->primaryIdentifier) = " . ($this->primaryIdentifierIsString ? "'" : "") . $this->helper->sanitize($this->sql_connection, $this->{$this->primaryIdentifier}) . ($this->primaryIdentifierIsString ? "'" : "") . ";";
+        $this->sql_connection->query($query);
+        return $this->Refresh();
+    }
+
+    public function MultiUpdateAttr(array $massDataArray): bool {
+        // Example data structure:
+        // array( [0] => array(attName, attVal, isString), ... )
+
+        if (!$this->isSetup()) {
+            return false;
+        }
+
+        // always refresh data before updating
+        $isRefreshed = $this->Refresh();
+        if (!$isRefreshed) {
+            return false;
+        }
+
+        $baseQuery = "UPDATE `$this->collectionToQuery` SET ";
+        if (count($massDataArray) == 0) {
+            // this command can not operate when no attributes are being change
+            // this is to prevent an invalid sql command from being executed
+            // on the server
+            return false;
+        }
+
+        foreach ($massDataArray as $index => $data_array) {
+            $attName = $data_array[0];
+            $attValue = $data_array[1];
+            $isString = $data_array[2];
+
+            $baseQuery = $baseQuery . $this->helper->sanitize($this->sql_connection, $attName) . " = " . ($isString ? "'" : "") . $this->helper->sanitize($this->sql_connection, $attValue) . ($isString ? "'" : "") . ($index == (count($massDataArray) - 1) ? ", " : " ");
+        };
+//        $baseQuery = $baseQuery . "WHERE " . $this->helper->sanitize()
+
+        return true;
+    }
     
 }
 

@@ -24,9 +24,9 @@
         public string $taskStartDate;
         public string $assignedUser;
 
-        function __construct($con)
+        function __construct($con, $manager)
         {
-            parent::__construct($con, "caliweb_tasks", "id");
+            parent::__construct($con, $manager);
             // primaryIdentifier may not be used at this time
             // because I don't think it supports non-string keys
             // however when it is added it should become more mainstream for
