@@ -2,7 +2,7 @@
 
     // Cali Web Design OAuth Module
     // Version: 1.0.4
-    // (C) Copyright Cali Web Design Corporation - All rights reserved
+    // (C) Copyright Cali Web Design Services LLC - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is included in the Cali Panel software by default
