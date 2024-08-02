@@ -2,7 +2,7 @@
 
     // Cali Web Design Chase Module
     // Version: 1.2.5
-    // (C) Copyright Cali Web Design Corporation - All rights reserved
+    // (C) Copyright Cali Web Design Services LLC - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
     // Employee Payments Sub Module for Cali Web Design Chase Module
 

@@ -49,7 +49,7 @@
                     MAY CAUSE YOUR LICENSE TO BE REVOKED.
                 -->
                 <div class="">
-                    <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Corporation - All rights reserved. It is illegal to copy this website.</p>
+                    <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
                 <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
                 <div class="list-links-footer">

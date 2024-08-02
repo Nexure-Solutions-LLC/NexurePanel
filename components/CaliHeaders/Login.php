@@ -128,12 +128,12 @@
             \____/\__,_/_/_/     |__/|__/\___/_.___/  /_____/\___/____/_/\__, /_/ /_/ 
                                                                         /____/        
 
-            This site was created by Cali Web Design Corporation. http://www.caliwebdesignservices.com
+            This site was created by Cali Web Design Services LLC. http://www.caliwebdesignservices.com
             Last Published: Fri Feb 2 2024 at 08:38:52 PM (Pacific Daylight Time US and Canada) 
 
             Creator/Developer: Cali Web Design Development Team, Michael Brinkley, Nick Derry, All logos other 
             than ours go to their respectful owners. Images are provided by undraw.co as well as pexels.com 
-            and are opensource svgs, or images to use by Cali Web Design Corporation.
+            and are opensource svgs, or images to use by Cali Web Design Services LLC.
 
             Website Registration Code: 49503994-20344
             Registration Date: July 09 2022
