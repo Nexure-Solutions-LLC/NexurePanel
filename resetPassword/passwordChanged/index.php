@@ -64,76 +64,85 @@
 
     if ($licenseKeyfromConfig == $licenseKeyfromDB) {
 
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
+        include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
-    echo '<title>You have been signed out of your Cali account.</title>';
+        try {
+
+            echo '<title>You have been signed out of your Cali account.</title>';
 
 ?>
-    <section class="section" style="padding-top:0%; padding-left:10%;">
-        <div class="container caliweb-container">
-            <div style="display:flex; align-items:center;">
-                <div>
-                    <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
-                    <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
-                    <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;"><?php echo $LANG_PASSWORD_RESETTITLE_TEXT; ?>.</h6>
-                    <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_PASSWORD_RESETSUCCESS_BASE_TEXT; ?> <?php echo $LANG_PASSWORD_RESETSUCCESS_SECONDARY_TEXT; ?> <span id="countdown"></span>. <?php echo $LANG_PASSWORD_RESETSUCCESS_REDIRECTFALLBACK_TEXT; ?> <a href="/login" class="careers-link">click here</a>.</p>
+            <section class="section" style="padding-top:0%; padding-left:10%;">
+                <div class="container caliweb-container">
+                    <div style="display:flex; align-items:center;">
+                        <div>
+                            <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
+                            <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
+                            <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;"><?php echo $LANG_PASSWORD_RESETTITLE_TEXT; ?>.</h6>
+                            <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_PASSWORD_RESETSUCCESS_BASE_TEXT; ?> <?php echo $LANG_PASSWORD_RESETSUCCESS_SECONDARY_TEXT; ?> <span id="countdown"></span>. <?php echo $LANG_PASSWORD_RESETSUCCESS_REDIRECTFALLBACK_TEXT; ?> <a href="/login" class="careers-link">click here</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="caliweb-login-footer license-footer">
+                <div class="container caliweb-container">
+                    <div class="caliweb-grid-2">
+                        <div class="">
+                            <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Corporation - All rights reserved. It is illegal to copy this website.</p>
+                        </div>
+                        <div class="list-links-footer">
+                            <a href="'.$paneldomain.'/terms">Terms of Service</a>
+                            <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="caliweb-login-footer license-footer">
-        <div class="container caliweb-container">
-            <div class="caliweb-grid-2">
-                <div class="">
-                    <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Corporation - All rights reserved. It is illegal to copy this website.</p>
-                </div>
-                <div class="list-links-footer">
-                    <a href="'.$paneldomain.'/terms">Terms of Service</a>
-                    <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script>
+            <script>
 
-        // Function to start countdown
+                // Function to start countdown
 
-        function startCountdown(seconds, redirectUrl) {
+                function startCountdown(seconds, redirectUrl) {
 
-            var countdownElement = document.getElementById('countdown');
-            var remainingSeconds = seconds;
-            
-            var countdownInterval = setInterval(function() {
+                    var countdownElement = document.getElementById('countdown');
+                    var remainingSeconds = seconds;
+                    
+                    var countdownInterval = setInterval(function() {
 
-                countdownElement.innerHTML = remainingSeconds;
-                remainingSeconds--;
-                
-                if (remainingSeconds < 0) {
+                        countdownElement.innerHTML = remainingSeconds;
+                        remainingSeconds--;
+                        
+                        if (remainingSeconds < 0) {
 
-                    clearInterval(countdownInterval);
-                    window.location.href = redirectUrl;
+                            clearInterval(countdownInterval);
+                            window.location.href = redirectUrl;
+
+                        }
+
+                    }, 1000);
 
                 }
 
-            }, 1000);
+                // Start the countdown when the page loads
 
-        }
+                window.onload = function() {
 
-        // Start the countdown when the page loads
+                    startCountdown(5, '/login');
 
-        window.onload = function() {
+                };
 
-            startCountdown(5, '/login');
-
-        };
-
-    </script>
+            </script>
 <?php
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
+            include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+
+        } 
 
     } else {
 
         header("Location: /error/licenseInvalid");
-        
+    
     }
+
 ?>

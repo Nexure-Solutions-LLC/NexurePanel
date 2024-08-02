@@ -83,6 +83,14 @@
 
     }
 
+    // Initalize Sentry
+
+    \Sentry\init([
+        'dsn' => $_ENV['SENTRY_DSN'],
+        'traces_sample_rate' => 1.0,
+        'profiles_sample_rate' => 1.0,
+    ]);
+
     $caliemail = $_SESSION['caliid'];
 
     $currentAccount = new \CaliAccounts\Account($con);

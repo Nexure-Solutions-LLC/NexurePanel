@@ -30,36 +30,44 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        $dateofbirth = stripslashes($_REQUEST['dateofbirth']);
-        $dateofbirth = mysqli_real_escape_string($con, $dateofbirth);
-        $einssnnumber = stripslashes($_REQUEST['einssnnumber']);
-        $einssnnumber = mysqli_real_escape_string($con, $einssnnumber);
-
-        $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
-        $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
-
-        function encryptSSN($ssn, $encryptKey, $encryptIv) {
-
-            $cipher = 'aes-256-cbc';
-            $encrypted = openssl_encrypt($ssn, $cipher, $encryptKey, 0, $encryptIv);
-            return base64_encode($encrypted . '::' . $encryptIv);
-
-        }
         
-        $encryptedeinssnumber = encryptSSN($einssnnumber, $encryptKey, $encryptIv);
+        try {
 
-        $query = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$fullname','$mobilenumber','$caliemail','$dateofbirth','$encryptedeinssnumber','','','','','','')";
-        $result   = mysqli_query($con, $query);
+            $dateofbirth = stripslashes($_REQUEST['dateofbirth']);
+            $dateofbirth = mysqli_real_escape_string($con, $dateofbirth);
+            $einssnnumber = stripslashes($_REQUEST['einssnnumber']);
+            $einssnnumber = mysqli_real_escape_string($con, $einssnnumber);
 
-        if ($result) {
+            $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
+            $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
 
-            echo '<script type="text/javascript">window.location = "/onboarding/addressInformation"</script>';
+            function encryptSSN($ssn, $encryptKey, $encryptIv) {
 
-        } else {
+                $cipher = 'aes-256-cbc';
+                $encrypted = openssl_encrypt($ssn, $cipher, $encryptKey, 0, $encryptIv);
+                return base64_encode($encrypted . '::' . $encryptIv);
 
-            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+            }
+            
+            $encryptedeinssnumber = encryptSSN($einssnnumber, $encryptKey, $encryptIv);
 
+            $query = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$fullname','$mobilenumber','$caliemail','$dateofbirth','$encryptedeinssnumber','','','','','','')";
+            $result   = mysqli_query($con, $query);
+
+            if ($result) {
+
+                echo '<script type="text/javascript">window.location = "/onboarding/addressInformation"</script>';
+
+            } else {
+
+                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+            }
+        
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+            
         }
 
     }

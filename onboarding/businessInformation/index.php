@@ -35,63 +35,71 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $businessName = stripslashes($_REQUEST['businessName']);
-        $businessName = mysqli_real_escape_string($con, $businessName);
-        $businessIndustry = stripslashes($_REQUEST['businessIndustry']);
-        $businessIndustry = mysqli_real_escape_string($con, $businessIndustry);
-        $businessType = stripslashes($_REQUEST['businessType']);
-        $businessType = mysqli_real_escape_string($con, $businessType);
-        $businessRevenue = stripslashes($_REQUEST['businessRevenue']);
-        $businessRevenue = mysqli_real_escape_string($con, $businessRevenue);
-        $businessRegistrationDate = stripslashes($_REQUEST['businessRegistrationDate']);
-        $businessRegistrationDate = mysqli_real_escape_string($con, $businessRegistrationDate);
-        $businessDescription = stripslashes($_REQUEST['buisnessDescription']);
-        $businessDescription = mysqli_real_escape_string($con, $businessDescription);
+        try {
 
-        // This software has an automatic approval and denial feature based on
-        // a list of supported business industires compared against the user selection.
-        // If the industry isnt supported the panel will reject the application and
-        // send them to the denial screen.
+            $businessName = stripslashes($_REQUEST['businessName']);
+            $businessName = mysqli_real_escape_string($con, $businessName);
+            $businessIndustry = stripslashes($_REQUEST['businessIndustry']);
+            $businessIndustry = mysqli_real_escape_string($con, $businessIndustry);
+            $businessType = stripslashes($_REQUEST['businessType']);
+            $businessType = mysqli_real_escape_string($con, $businessType);
+            $businessRevenue = stripslashes($_REQUEST['businessRevenue']);
+            $businessRevenue = mysqli_real_escape_string($con, $businessRevenue);
+            $businessRegistrationDate = stripslashes($_REQUEST['businessRegistrationDate']);
+            $businessRegistrationDate = mysqli_real_escape_string($con, $businessRegistrationDate);
+            $businessDescription = stripslashes($_REQUEST['buisnessDescription']);
+            $businessDescription = mysqli_real_escape_string($con, $businessDescription);
 
-        $checkBusinessIndustryQuery = "SELECT COUNT(*) as count FROM `caliweb_restrictedbusinesses` WHERE `businessIndustry` = '$businessIndustry'";
-        $checkBusinessIndustryResult = mysqli_query($con, $checkBusinessIndustryQuery);
-        $checkBusinessIndustryRow = mysqli_fetch_assoc($checkBusinessIndustryResult);
+            // This software has an automatic approval and denial feature based on
+            // a list of supported business industires compared against the user selection.
+            // If the industry isnt supported the panel will reject the application and
+            // send them to the denial screen.
 
-        if ($checkBusinessIndustryRow['count'] > 0) {
+            $checkBusinessIndustryQuery = "SELECT COUNT(*) as count FROM `caliweb_restrictedbusinesses` WHERE `businessIndustry` = '$businessIndustry'";
+            $checkBusinessIndustryResult = mysqli_query($con, $checkBusinessIndustryQuery);
+            $checkBusinessIndustryRow = mysqli_fetch_assoc($checkBusinessIndustryResult);
 
-            $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is running a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
-            $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
+            if ($checkBusinessIndustryRow['count'] > 0) {
 
-            $userOwnerDeleteQuery = "DELETE FROM caliweb_ownershipinformation WHERE emailAddress = '$caliemail'";
+                $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is running a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
+                $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
+
+                $userOwnerDeleteQuery = "DELETE FROM caliweb_ownershipinformation WHERE emailAddress = '$caliemail'";
+                
+                $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Denied','$businessRegistrationDate','$businessDescription','True')";
+                $submitBusinessInformationResult = mysqli_query($con, $submitBusinessInformationQuery);
+
+                if ($userProfileUpdateResult && $userOwnerDeleteQuery && $submitBusinessInformationResult) {
+
+                    echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
+
+                } else {
+
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+                }
+
+            } else {
+
+                $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Active','$businessRegistrationDate','$businessDescription','False')";
+                $submitBusinessInformationResult   = mysqli_query($con, $submitBusinessInformationQuery);
+
+                if ($submitBusinessInformationResult) {
+
+                    echo '<script type="text/javascript">window.location = "/onboarding/billingInformation"</script>';
+        
+                } else {
+        
+                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+        
+                }
+
+            }
+
+        } catch (\Throwable $exception) {
             
-            $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Denied','$businessRegistrationDate','$businessDescription','True')";
-            $submitBusinessInformationResult = mysqli_query($con, $submitBusinessInformationQuery);
-
-            if ($userProfileUpdateResult && $userOwnerDeleteQuery && $submitBusinessInformationResult) {
-
-                echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
-
-            } else {
-
-                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-            }
-
-        } else {
-
-            $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Active','$businessRegistrationDate','$businessDescription','False')";
-            $submitBusinessInformationResult   = mysqli_query($con, $submitBusinessInformationQuery);
-
-            if ($submitBusinessInformationResult) {
-
-                echo '<script type="text/javascript">window.location = "/onboarding/billingInformation"</script>';
-    
-            } else {
-    
-                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-    
-            }
-
+            \Sentry\captureException($exception);
+            
         }
 
     }

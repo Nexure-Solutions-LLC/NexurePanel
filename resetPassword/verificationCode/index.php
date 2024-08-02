@@ -8,23 +8,35 @@
     session_start();
 
     if (isset($_GET["submittedCode"])) {
-        $submittedVerificationCode = stripslashes($_GET["submittedCode"]);
-        $submittedVerificationCode = mysqli_real_escape_string($con, $submittedVerificationCode);
 
-        $local_email = $_SESSION["resetPassswordEmail"];
-        $local_email = stripslashes($local_email);
-        $local_email = mysqli_real_escape_string($con, $local_email);
-        $remoteQuery = "SELECT * FROM `caliweb_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
-        $queryExec = mysqli_query($con, $remoteQuery);
-        $queryRecItem = mysqli_fetch_array($queryExec);
-        $verificationCode = $queryRecItem["recoverycode"];
+        try {
+
+            $submittedVerificationCode = stripslashes($_GET["submittedCode"]);
+            $submittedVerificationCode = mysqli_real_escape_string($con, $submittedVerificationCode);
+
+            $local_email = $_SESSION["resetPassswordEmail"];
+            $local_email = stripslashes($local_email);
+            $local_email = mysqli_real_escape_string($con, $local_email);
+            $remoteQuery = "SELECT * FROM `caliweb_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
+            $queryExec = mysqli_query($con, $remoteQuery);
+            $queryRecItem = mysqli_fetch_array($queryExec);
+            $verificationCode = $queryRecItem["recoverycode"];
 
 
-        if ($submittedVerificationCode == $verificationCode) {
-            $_SESSION["recoverycode"] = $verificationCode;
-            $_SESSION["recoveryrequestID"] = $queryRecItem["id"];
-            header("Location: /resetPassword/changePassword");
+            if ($submittedVerificationCode == $verificationCode) {
+
+                $_SESSION["recoverycode"] = $verificationCode;
+                $_SESSION["recoveryrequestID"] = $queryRecItem["id"];
+                header("Location: /resetPassword/changePassword");
+                
+            }
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+            
         }
+
     }
 
     include($_SERVER["DOCUMENT_ROOT"] . "/components/CaliHeaders/Login.php")

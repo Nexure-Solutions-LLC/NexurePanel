@@ -91,6 +91,14 @@
 
     }
 
+    // Initalize Sentry
+
+    \Sentry\init([
+        'dsn' => $_ENV['SENTRY_DSN'],
+        'traces_sample_rate' => 1.0,
+        'profiles_sample_rate' => 1.0,
+    ]);
+
     // Perform query
 
     $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");

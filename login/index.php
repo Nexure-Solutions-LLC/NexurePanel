@@ -16,24 +16,32 @@
 
     if (isset($_POST['emailaddress'])) {
 
-        $cali_id = stripslashes($_REQUEST['emailaddress']);
-        $cali_id = mysqli_real_escape_string($con, $cali_id);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        
-        $query = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '". hash("sha512", $password)."'";
-        $result = mysqli_query($con, $query);
+        try {
 
-        if (mysqli_num_rows($result) == 1) {
+            $cali_id = stripslashes($_REQUEST['emailaddress']);
+            $cali_id = mysqli_real_escape_string($con, $cali_id);
+            $password = stripslashes($_REQUEST['password']);
+            $password = mysqli_real_escape_string($con, $password);
             
-            $_SESSION['caliid'] = $cali_id;
-            header("Location: /dashboard");
-            exit;
+            $query = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '". hash("sha512", $password)."'";
+            $result = mysqli_query($con, $query);
 
-        } else {
+            if (mysqli_num_rows($result) == 1) {
+                
+                $_SESSION['caliid'] = $cali_id;
+                header("Location: /dashboard");
+                exit;
 
-            $login_error = true;
+            } else {
 
+                $login_error = true;
+
+            }
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+            
         }
 
     }

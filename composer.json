@@ -12,6 +12,7 @@
         "mobiledetect/mobiledetectlib": "^4.8",
         "ezyang/htmlpurifier": "^4.17",
         "mustache/mustache": "^2.14",
-        "phpstan/phpstan": "^1.11"
+        "phpstan/phpstan": "^1.11",
+        "sentry/sentry": "^4.8"
     }
 }

@@ -2,53 +2,66 @@
 
     session_start();
 
-
-    // Set the type of script so that the panel knows what email template
-    // to use. Installers of this panel can change the email templates
-    // in the /modules/emailIntegrations/templates.
-
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
     use Dotenv\Dotenv;
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    $scriptType = "Reset Password";
+    \Sentry\init([
+        'dsn' => $_ENV['SENTRY_DSN'],
+        'traces_sample_rate' => 1.0,
+        'profiles_sample_rate' => 1.0,
+    ]);
 
-    $emailVerificationCode = $_SESSION['verification_code'];
+    try {
 
-    $smtp_debug = true;
+        // Set the type of script so that the panel knows what email template
+        // to use. Installers of this panel can change the email templates
+        // in the /modules/emailIntegrations/templates.
 
-    $email = new PHPMailer(true);
+        $scriptType = "Reset Password";
 
-    $email->IsSMTP();
-    $email->SMTPAuth = true;
-    $email->SMTPSecure = 'ssl';
-    $email->Host = "mail.caliwebdesignservices.com";
-    $email->Port = 465;
+        $emailVerificationCode = $_SESSION['verification_code'];
 
-    $envNoReplyEmail = $_ENV['NO_REPLY_EMAIL'];
-    $envNoReplyPassword = $_ENV['NO_REPLY_PASSWORD'];
+        $smtp_debug = true;
 
-    $email->Username = $envNoReplyEmail;
-    $email->Password = $envNoReplyPassword;
+        $email = new PHPMailer(true);
 
-    $submittedsubject = "Here is your requested Cali Web Design verification code"; 
+        $email->IsSMTP();
+        $email->SMTPAuth = true;
+        $email->SMTPSecure = 'ssl';
+        $email->Host = "mail.caliwebdesignservices.com";
+        $email->Port = 465;
 
-    include($_SERVER["DOCUMENT_ROOT"]."/modules/emailIntegrations/index.php"); 
+        $envNoReplyEmail = $_ENV['NO_REPLY_EMAIL'];
+        $envNoReplyPassword = $_ENV['NO_REPLY_PASSWORD'];
 
-    $fromName = 'Cali Web Design Corporation';
-    $email->SetFrom("noreply@caliwebdesignservices.com", $fromName);
-    $email->AddAddress($_SESSION['resetPassswordEmail']);
-    $email->isHTML(true);
-    $email->Subject = $submittedsubject;
-    $email->Body = $HTMLCONTENT;
+        $email->Username = $envNoReplyEmail;
+        $email->Password = $envNoReplyPassword;
 
-    if(!$email->Send()) {
+        $submittedsubject = "Here is your requested Cali Web Design verification code"; 
 
-        echo '<p>System Error: '. $email->ErrorInfo .'</p>';
-    
+        include($_SERVER["DOCUMENT_ROOT"]."/modules/emailIntegrations/index.php"); 
+
+        $fromName = 'Cali Web Design Corporation';
+        $email->SetFrom("noreply@caliwebdesignservices.com", $fromName);
+        $email->AddAddress($_SESSION['resetPassswordEmail']);
+        $email->isHTML(true);
+        $email->Subject = $submittedsubject;
+        $email->Body = $HTMLCONTENT;
+
+        if(!$email->Send()) {
+
+            echo '<p>System Error: '. $email->ErrorInfo .'</p>';
+        
+        }
+
+    } catch (\Throwable $exception) {
+            
+        \Sentry\captureException($exception);
+        
     }
 
 ?>

@@ -52,6 +52,10 @@
             
                     echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
             
+                } catch (\Throwable $exception) {
+            
+                    \Sentry\captureException($exception);
+                    
                 }
             
             } else if (($_SESSION['pagetitle']) == "Create Authorized User Payment Method") {
@@ -191,6 +195,10 @@
 
                     echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
+                } catch (\Throwable $exception) {
+            
+                    \Sentry\captureException($exception);
+                    
                 }
 
             } else if (($_SESSION['pagetitle']) == "Order Services as Staff") {
@@ -347,7 +355,11 @@
 
                     echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
 
-                }            
+                } catch (\Throwable $exception) {
+            
+                    \Sentry\captureException($exception);
+                    
+                }         
 
             } else if (($_SESSION['pagetitle']) == "Client" && ($_SESSION['pagesubtitle']) == "Billing Center") {
               
