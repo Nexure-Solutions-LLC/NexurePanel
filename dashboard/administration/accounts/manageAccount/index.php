@@ -369,12 +369,18 @@
                                 
                                     while ($row = mysqli_fetch_assoc($notesResults)) {
 
-                                            // Formats the date to MM/DD/YYYY HH:MM AM/PM format as perfered by
+                                            // Formats the date to MM/DD/YYYY HH:MM AM/PM format as preferred by
                                             // United States users. Additional formats will come soon.
 
                                             $addedAtDateUnFormated = $row["added_at"];
                                             $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $addedAtDateUnFormated);
-                                            $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
+                                            if ($addedAtDateModify != false) {
+                                                $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
+                                            } else {
+                                                $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', "01-01-1970 00:00:00");
+                                                $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
+                                            }
+
 
                                             echo '
                                             <div class="caliweb-card dashboard-card note-card">
