@@ -25,12 +25,15 @@ This is the official repository for the new Cali Web Design Panel that will run 
 
 - **PHP** (with Composer)
 - **MySQL**
-- **Linux**
+- **Linux/Ubuntu**
 - **NGINX**
 - **HTML**
 - **CSS**
 - **JavaScript**
 - **Pre done ENV Files**
+- **Sentry API**
+- **Twilio API**
+- **Host Reputation API from Neutrino**
 
 ---
 
@@ -55,12 +58,15 @@ You can view a demo link [here](https://us-east.cali-cloud-compute-135-148-28-43
 
 ### Prerequisites
 
-- PHP
+- PHP (Version 8.1)
 - Composer
 - MySQL
 - Git
-- Linux
+- Linux (Ubuntu Server 22.04.4 LTS)
 - NGINX
+- Sentry API [Get Free Plan](https://sentry.io/) 
+- Twilio API [Get Account](https://www.twilio.com/)
+- Neutrino API (Uses Host Reputation API) [Request Access](https://www.neutrinoapi.com/)
 
 ---
 
