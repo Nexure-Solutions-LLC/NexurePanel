@@ -18,87 +18,136 @@ class TaskManager extends GenericManager {
 
     function __construct(mysqli $sql_connection) {
 
-        parent::__construct(
-            $sql_connection,
-            array(
-                "status" => array(0 => \taskStatus::class, 1 => "Pending"),
-                "taskPriority" => array(0 => \priorityLevel::class, 1 => "Normal")
-            )
-        );
+        try {
 
-        $this->_setQueryingIdentifier("id");
-        $this->queryingIdentifierIsString = false;
-        $this->InheritableSubclass = Task::class;
-        $this->_setCollectionToQuery("caliweb_tasks");
+            parent::__construct(
+                $sql_connection,
+                array(
+                    "status" => array(0 => \taskStatus::class, 1 => "Pending"),
+                    "taskPriority" => array(0 => \priorityLevel::class, 1 => "Normal")
+                )
+            );
+
+            $this->_setQueryingIdentifier("id");
+            $this->queryingIdentifierIsString = false;
+            $this->InheritableSubclass = Task::class;
+            $this->_setCollectionToQuery("caliweb_tasks");
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     private function _sanitize(string $data): string {
 
-        $con = $this->sql_connection;
-        $data = stripslashes($data);
-        $data = mysqli_real_escape_string($con, $data);
-        return $data;
+        try {
+
+            $con = $this->sql_connection;
+            $data = stripslashes($data);
+            $data = mysqli_real_escape_string($con, $data);
+            return $data;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     private function _idQuery(int $task_id): ?array {
 
-        $query = "SELECT * FROM `caliweb_tasks` WHERE id = $this->id;";
-        $con = $this->sql_connection;
-        $exec = $con->query($query);
-        return $exec->fetch_array() ?? null;
+        try {
+
+            $query = "SELECT * FROM `caliweb_tasks` WHERE id = $this->id;";
+            $con = $this->sql_connection;
+            $exec = $con->query($query);
+            return $exec->fetch_array() ?? null;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     private function _allQuery(): ?array {
 
-        $con = $this->sql_connection;
-        $query = "SELECT * FROM `caliweb_tasks`";
-        $exec = $con->query($query);
-        return $exec->fetch_all();
+        try {
+
+            $con = $this->sql_connection;
+            $query = "SELECT * FROM `caliweb_tasks`";
+            $exec = $con->query($query);
+            return $exec->fetch_all();
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     public function hasBeenFetched(): bool
     {
 
-        return $this->isFetched;
+        try {
+
+            return $this->isFetched;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     function getAllTasks(): array
     {
 
-        $this->fetchAllGenerics();
+        try {
+
+            $this->fetchAllGenerics();
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
         
     }
 
-
-
-
     function getTasksBySpecifiedAttributes(array $attributes): array
     {
 
-        $tasks = $this->getAllTasks();
-        $exempt_tasks = array();
+        try {
 
-        foreach ($attributes as $key => $value) {
+            $tasks = $this->getAllTasks();
+            $exempt_tasks = array();
 
-            foreach ($tasks as $index => $task) {
+            foreach ($attributes as $key => $value) {
 
-                if (!isset($task->{$key})) {
+                foreach ($tasks as $index => $task) {
 
-                    continue;
+                    if (!isset($task->{$key})) {
 
-                }
+                        continue;
 
-                if ($task->{$key} != $value) {
+                    }
 
-                    if (in_array($task, $exempt_tasks)) {
+                    if ($task->{$key} != $value) {
 
-                        $exempt_tasks[] = $task;
+                        if (in_array($task, $exempt_tasks)) {
+
+                            $exempt_tasks[] = $task;
+
+                        }
 
                     }
 
@@ -106,40 +155,54 @@ class TaskManager extends GenericManager {
 
             }
 
-        }
+            
 
-        $final_array = array();
+            $final_array = array();
 
-        foreach ($tasks as $i => $t) {
+            foreach ($tasks as $i => $t) {
 
-            if (!in_array($t, $exempt_tasks)) {
+                if (!in_array($t, $exempt_tasks)) {
 
-                $final_array[$t->id] = $t;
+                    $final_array[$t->id] = $t;
+
+                }
 
             }
 
-        }
+            return $final_array;
 
-        return $final_array;
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     function upsertInternalTaskById(int $task_id): Task {
 
-        $con = $this->sql_connection;
-        $tasks = $this->tasks;
+        try {
 
-        if (array_key_exists($task_id, $tasks)) {
+            $con = $this->sql_connection;
+            $tasks = $this->tasks;
 
-            return $tasks[$task_id];
+            if (array_key_exists($task_id, $tasks)) {
 
+                return $tasks[$task_id];
+
+            }
+
+            $task = new Task($con);
+            $task->fetchTaskById($task_id);
+            $tasks[$task->id] = $task;
+
+            return $task;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
         }
-
-        $task = new Task($con);
-        $task->fetchTaskById($task_id);
-        $tasks[$task->id] = $task;
-
-        return $task;
 
     }
     
