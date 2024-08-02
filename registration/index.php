@@ -6,107 +6,116 @@
     // When form submitted, insert values into the database.
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        session_start();
 
-        if ($_POST['langPreference']) {
+        try {
 
-            $_SESSION["lang"] = $_POST['langPreference'];
-            header("location:/registration/");
-            exit;
+            session_start();
 
-        }
+            if ($_POST['langPreference']) {
 
-
-        $data = array(
-            'secret' => "0x1097356228F6a429882375bC5974c5a9a2631Bb3",
-            'response' => $_POST['h-captcha-response']
-        );
-
-        $verify = curl_init();
-
-
-        curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
-        curl_setopt($verify, CURLOPT_POST, true);
-        curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
-
-
-        $response = curl_exec($verify);
-        $responseData = json_decode($response);
-
-
-        if($responseData->success) {
-
-            $legalname = stripslashes($_REQUEST['legalname']);
-            $legalname = mysqli_real_escape_string($con, $legalname);
-            $caliid = stripslashes($_REQUEST['emailaddress']);
-            $caliid = mysqli_real_escape_string($con, $caliid);
-            $mobilenumber = stripslashes($_REQUEST['phonenumber']);
-            $mobilenumber = mysqli_real_escape_string($con, $mobilenumber);
-            $password = stripslashes($_REQUEST['password']);
-            $password = mysqli_real_escape_string($con, $password);
-            $registrationdate = date("Y-m-d H:i:s");
-            $accountnumber = substr(str_shuffle("0123456789"), 0, 12);
-            $dispnone = stripslashes($_REQUEST['dispnone']);
-            $dispnone = mysqli_real_escape_string($con, $dispnone);
-
-            $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
-            $builtaccountnumber = $accountnumber_starting.$accountnumber;
-
-            function generateRandomPrefix($length = 3) {
-
-                $characters = 'abcdefghijklmnopqrstuvwxyz';
-                $prefix = '';
-
-                for ($i = 0; $i < $length; $i++) {
-
-                    $prefix .= $characters[rand(0, strlen($characters) - 1)];
-
-                }
-
-                return $prefix;
+                $_SESSION["lang"] = $_POST['langPreference'];
+                header("location:/registration/");
+                exit;
 
             }
-            
-            $randomPrefix = generateRandomPrefix(5);
 
-            if ($dispnone == "") {
 
-                if (mysqli_connect_errno()) {
-                    echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                    exit();
+            $data = array(
+                'secret' => "0x1097356228F6a429882375bC5974c5a9a2631Bb3",
+                'response' => $_POST['h-captcha-response']
+            );
+
+            $verify = curl_init();
+
+
+            curl_setopt($verify, CURLOPT_URL, "https://hcaptcha.com/siteverify");
+            curl_setopt($verify, CURLOPT_POST, true);
+            curl_setopt($verify, CURLOPT_POSTFIELDS, http_build_query($data));
+            curl_setopt($verify, CURLOPT_RETURNTRANSFER, true);
+
+
+            $response = curl_exec($verify);
+            $responseData = json_decode($response);
+
+
+            if($responseData->success) {
+
+                $legalname = stripslashes($_REQUEST['legalname']);
+                $legalname = mysqli_real_escape_string($con, $legalname);
+                $caliid = stripslashes($_REQUEST['emailaddress']);
+                $caliid = mysqli_real_escape_string($con, $caliid);
+                $mobilenumber = stripslashes($_REQUEST['phonenumber']);
+                $mobilenumber = mysqli_real_escape_string($con, $mobilenumber);
+                $password = stripslashes($_REQUEST['password']);
+                $password = mysqli_real_escape_string($con, $password);
+                $registrationdate = date("Y-m-d H:i:s");
+                $accountnumber = substr(str_shuffle("0123456789"), 0, 12);
+                $dispnone = stripslashes($_REQUEST['dispnone']);
+                $dispnone = mysqli_real_escape_string($con, $dispnone);
+
+                $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
+                $builtaccountnumber = $accountnumber_starting.$accountnumber;
+
+                function generateRandomPrefix($length = 3) {
+
+                    $characters = 'abcdefghijklmnopqrstuvwxyz';
+                    $prefix = '';
+
+                    for ($i = 0; $i < $length; $i++) {
+
+                        $prefix .= $characters[rand(0, strlen($characters) - 1)];
+
+                    }
+
+                    return $prefix;
+
                 }
-            
-                // Perform query
+                
+                $randomPrefix = generateRandomPrefix(5);
 
-                $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-                $paymentgateway = mysqli_fetch_array($result);
+                if ($dispnone == "") {
 
-                // Free result set
+                    if (mysqli_connect_errno()) {
+                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                        exit();
+                    }
+                
+                    // Perform query
 
-                mysqli_free_result($result);
-            
-                $apikeysecret = $paymentgateway['secretKey'];
-                $apikeypublic = $paymentgateway['publicKey'];
-                $paymentgatewaystatus = $paymentgateway['status'];
-                $paymentProcessorName = $paymentgateway['processorName'];
+                    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
+                    $paymentgateway = mysqli_fetch_array($result);
 
-                // Checks type of payment processor.
+                    // Free result set
 
-                if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+                    mysqli_free_result($result);
+                
+                    $apikeysecret = $paymentgateway['secretKey'];
+                    $apikeypublic = $paymentgateway['publicKey'];
+                    $paymentgatewaystatus = $paymentgateway['status'];
+                    $paymentProcessorName = $paymentgateway['processorName'];
 
-                    if ($paymentProcessorName == "Stripe") {
+                    // Checks type of payment processor.
 
-                        \Stripe\Stripe::setApiKey($apikeysecret);
+                    if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
-                        $cu = \Stripe\Customer::create(array(
-                            'name' => $legalname,
-                            'email' => $caliid,
-                            'phone' => $mobilenumber,
-                            'description' => "Account Number: ".$builtaccountnumber, 
-                        ));
+                        if ($paymentProcessorName == "Stripe") {
 
-                        $SS_STRIPE_ID =  $cu['id'];
+                            \Stripe\Stripe::setApiKey($apikeysecret);
+
+                            $cu = \Stripe\Customer::create(array(
+                                'name' => $legalname,
+                                'email' => $caliid,
+                                'phone' => $mobilenumber,
+                                'description' => "Account Number: ".$builtaccountnumber, 
+                            ));
+
+                            $SS_STRIPE_ID =  $cu['id'];
+
+                        } else {
+
+                            header ("location: /error/genericSystemError");
+
+                        }
 
                     } else {
 
@@ -114,32 +123,33 @@
 
                     }
 
-                } else {
+                    $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`) VALUES ('$caliid','".hash("sha512", $password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','Customer','Retail','')";
+                    $result   = mysqli_query($con, $query);
 
-                    header ("location: /error/genericSystemError");
+                    if ($result) {
 
-                }
+                        echo '<script type="text/javascript">window.location = "/login"</script>';
 
-                $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`) VALUES ('$caliid','".hash("sha512", $password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','Customer','Retail','')";
-                $result   = mysqli_query($con, $query);
+                    } else {
 
-                if ($result) {
+                        header ("location: /error/genericSystemError");
 
-                    echo '<script type="text/javascript">window.location = "/login"</script>';
-
-                } else {
-
-                    header ("location: /error/genericSystemError");
+                    }
 
                 }
+
+            } else {
+
+                header ("location: /error/genericSystemError");
 
             }
 
-        } else {
-
-            header ("location: /error/genericSystemError");
-
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
         }
+        
     } else {    
 
 ?>

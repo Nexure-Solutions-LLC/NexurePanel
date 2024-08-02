@@ -72,8 +72,11 @@
 
                 echo 'Error: ' . $e->getMessage();
 
-            }
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
 
+            } 
 
         } else {
 

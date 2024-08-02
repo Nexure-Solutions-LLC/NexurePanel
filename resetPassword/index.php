@@ -9,25 +9,33 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $cali_id = stripslashes($_REQUEST['emailAddress']);
-        $cali_id = mysqli_real_escape_string($con, $cali_id);
-        
-        // Check user is exist in the database
+        try {
 
-        $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id'";
-        $result = mysqli_query($con, $query) or die(mysqli_error());
-        $rows = mysqli_num_rows($result);
+            $cali_id = stripslashes($_REQUEST['emailAddress']);
+            $cali_id = mysqli_real_escape_string($con, $cali_id);
+            
+            // Check user is exist in the database
 
-        $verificationCode = rand(1000000000000000, 9999999999999999);
-        $newQuery = "INSERT INTO `caliweb_recoveryrequests` (email, recoverycode, timestamp) VALUES ('".$cali_id."', '".$verificationCode."',". time() .")";
-        $result = mysqli_query($con, $newQuery) or die(mysqli_error());
+            $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id'";
+            $result = mysqli_query($con, $query) or die(mysqli_error());
+            $rows = mysqli_num_rows($result);
 
-        $_SESSION["verification_code"] = $verificationCode;
-        $_SESSION['resetPassswordEmail'] = $cali_id;
-        if ($rows != 0) {
-            include($_SERVER["DOCUMENT_ROOT"]."/resetPassword/sendEmailLogic/index.php");
+            $verificationCode = rand(1000000000000000, 9999999999999999);
+            $newQuery = "INSERT INTO `caliweb_recoveryrequests` (email, recoverycode, timestamp) VALUES ('".$cali_id."', '".$verificationCode."',". time() .")";
+            $result = mysqli_query($con, $newQuery) or die(mysqli_error());
+
+            $_SESSION["verification_code"] = $verificationCode;
+            $_SESSION['resetPassswordEmail'] = $cali_id;
+            if ($rows != 0) {
+                include($_SERVER["DOCUMENT_ROOT"]."/resetPassword/sendEmailLogic/index.php");
+            }
+            header("location:/resetPassword/verificationCode");
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+            
         }
-        header("location:/resetPassword/verificationCode");
 
     }
     

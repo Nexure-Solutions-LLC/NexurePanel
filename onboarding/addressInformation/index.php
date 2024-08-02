@@ -31,30 +31,38 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        $addressline1 = stripslashes($_REQUEST['addressline1']);
-        $addressline1 = mysqli_real_escape_string($con, $addressline1);
-        $addressline2 = stripslashes($_REQUEST['addressline2']);
-        $addressline2 = mysqli_real_escape_string($con, $addressline2);
-        $city = stripslashes($_REQUEST['city']);
-        $city = mysqli_real_escape_string($con, $city);
-        $state = stripslashes($_REQUEST['state']);
-        $state = mysqli_real_escape_string($con, $state);
-        $postalcode = stripslashes($_REQUEST['postalcode']);
-        $postalcode = mysqli_real_escape_string($con, $postalcode);
-        $country = stripslashes($_REQUEST['country']);
-        $country = mysqli_real_escape_string($con, $country);
+        try {
 
-        $query = "UPDATE `caliweb_ownershipinformation` SET `addressline1`='$addressline1',`addressline2`='$addressline2',`city`='$city',`state`='$state',`postalcode`='$postalcode',`country`='$country' WHERE `emailAddress` = '$caliemail'";
-        $result   = mysqli_query($con, $query);
+            $addressline1 = stripslashes($_REQUEST['addressline1']);
+            $addressline1 = mysqli_real_escape_string($con, $addressline1);
+            $addressline2 = stripslashes($_REQUEST['addressline2']);
+            $addressline2 = mysqli_real_escape_string($con, $addressline2);
+            $city = stripslashes($_REQUEST['city']);
+            $city = mysqli_real_escape_string($con, $city);
+            $state = stripslashes($_REQUEST['state']);
+            $state = mysqli_real_escape_string($con, $state);
+            $postalcode = stripslashes($_REQUEST['postalcode']);
+            $postalcode = mysqli_real_escape_string($con, $postalcode);
+            $country = stripslashes($_REQUEST['country']);
+            $country = mysqli_real_escape_string($con, $country);
 
-        if ($result) {
+            $query = "UPDATE `caliweb_ownershipinformation` SET `addressline1`='$addressline1',`addressline2`='$addressline2',`city`='$city',`state`='$state',`postalcode`='$postalcode',`country`='$country' WHERE `emailAddress` = '$caliemail'";
+            $result   = mysqli_query($con, $query);
 
-            echo '<script type="text/javascript">window.location = "/onboarding/businessInformation"</script>';
+            if ($result) {
 
-        } else {
+                echo '<script type="text/javascript">window.location = "/onboarding/businessInformation"</script>';
 
-            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+            } else {
 
+                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+
+            }
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+            
         }
 
     }

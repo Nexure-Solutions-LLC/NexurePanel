@@ -31,30 +31,40 @@
     // unset($_SESSION['verification_code']);
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $newPassword = stripslashes($_REQUEST['newPassword']);
-        $newPassword = mysqli_real_escape_string($con, $newPassword);
-        $confirmNewPassword = stripslashes($_REQUEST['confirmPassword']);
-        $confirmNewPassword = mysqli_real_escape_string($con, $confirmNewPassword);
 
-        if ($newPassword == $confirmNewPassword) {
-            $query    = "UPDATE `caliweb_users` SET `password`='".hash("sha512", $newPassword)."' WHERE `email`='$local_email'";
-            $result = mysqli_query($con, $query) or die(mysqli_error());
+        try {
 
-            $removeQuery = "DELETE FROM `caliweb_recoveryrequests` WHERE id = " . $_SESSION["recoveryrequestID"] . " AND recoverycode = '" . $_SESSION["recoverycode"] . "' AND email = '" . $local_email . "';";
-            $result = mysqli_query($con, $removeQuery) or die(mysqli_error());
+            $newPassword = stripslashes($_REQUEST['newPassword']);
+            $newPassword = mysqli_real_escape_string($con, $newPassword);
+            $confirmNewPassword = stripslashes($_REQUEST['confirmPassword']);
+            $confirmNewPassword = mysqli_real_escape_string($con, $confirmNewPassword);
 
-            if ($result) {
-                unset($_SESSION["recoverycode"]);
-                unset($_SESSION["recoveryrequestID"]);
-                header("Location: /resetPassword/passwordChanged");
+            if ($newPassword == $confirmNewPassword) {
+
+                $query    = "UPDATE `caliweb_users` SET `password`='".hash("sha512", $newPassword)."' WHERE `email`='$local_email'";
+                $result = mysqli_query($con, $query) or die(mysqli_error());
+
+                $removeQuery = "DELETE FROM `caliweb_recoveryrequests` WHERE id = " . $_SESSION["recoveryrequestID"] . " AND recoverycode = '" . $_SESSION["recoverycode"] . "' AND email = '" . $local_email . "';";
+                $result = mysqli_query($con, $removeQuery) or die(mysqli_error());
+
+                if ($result) {
+                    unset($_SESSION["recoverycode"]);
+                    unset($_SESSION["recoveryrequestID"]);
+                    header("Location: /resetPassword/passwordChanged");
+
+                }
+            
+            } else {
+
+                $reset_error = true;
 
             }
-        
-        } else {
 
-            $reset_error = true;
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
 
-        }
+        }  
 
     }
     
