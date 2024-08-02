@@ -24,27 +24,59 @@ class GenericManager
 
     function __construct(mysqli $sql_connection, array $schema) {
 
-        $this->schema = $schema;
-        $this->sql_connection = $sql_connection;
-        $this->helper = new StringHelper();
+        try {
+
+            $this->schema = $schema;
+            $this->sql_connection = $sql_connection;
+            $this->helper = new StringHelper();
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     protected function _setQueryingIdentifier(string $queryIdentifier) {
 
-        $this->queryingIdentifier = $queryIdentifier;
+        try {
+
+            $this->queryingIdentifier = $queryIdentifier;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     protected function _setCollectionToQuery(string $collection) {
 
-        $this->collectionToQuery = $collection;
+        try {
+
+            $this->collectionToQuery = $collection;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     protected function _setQueryingIdentifierType(bool $isString) {
 
-        $this->queryingIdentifierIsString = $isString;
+        try {
+
+            $this->queryingIdentifierIsString = $isString;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
@@ -52,76 +84,116 @@ class GenericManager
 
     private function isSetup(): bool {
 
-        return (isset($this->collectionToQuery) && isset($this->queryingIdentifier));
+        try {
+
+            return (isset($this->collectionToQuery) && isset($this->queryingIdentifier));
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     protected function _query_main_identifier(string $att_val): ?array {
 
-        if (!$this->isSetup()) {
+        try {
 
-            return null;
+            if (!$this->isSetup()) {
 
+                return null;
+
+            }
+
+            $con = $this->sql_connection;
+            $query = "SELECT * FROM `$this->collectionToQuery` WHERE " . $this->helper->sanitize($con, $this->queryingIdentifier) . " = ". ($this->queryingIdentifierIsString ? "'" : "") ."" . $this->helper->sanitize($con, $att_val) . "". ($this->queryingIdentifierIsString ? "'" : "") .";";
+            return $con->query($query)->fetch_array();
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
         }
-
-        $con = $this->sql_connection;
-        $query = "SELECT * FROM `$this->collectionToQuery` WHERE " . $this->helper->sanitize($con, $this->queryingIdentifier) . " = ". ($this->queryingIdentifierIsString ? "'" : "") ."" . $this->helper->sanitize($con, $att_val) . "". ($this->queryingIdentifierIsString ? "'" : "") .";";
-        return $con->query($query)->fetch_array();
 
     }
 
     protected function _queryAllData(): ?array {
 
-        $con = $this->sql_connection;
-        $query = "SELECT * FROM `$this->collectionToQuery`";
-        $exec = $con->query($query);
-        return $exec->fetch_all();
+        try {
+
+            $con = $this->sql_connection;
+            $query = "SELECT * FROM `$this->collectionToQuery`";
+            $exec = $con->query($query);
+            return $exec->fetch_all();
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 
     protected function fetchAllGenerics(): bool {
 
-        if (!$this->isSetup()) {
+        try {
 
-            // GenericManager needs to be setup to function
-            // correctly.
+            if (!$this->isSetup()) {
 
-            return false;
+                // GenericManager needs to be setup to function
+                // correctly.
 
+                return false;
+
+            }
+
+            if (count($this->generics) != 0) {
+
+                // Fetch all generics should not be used in a case that isn't
+                // of initial fetching.
+
+                return false;
+
+            }
+
+            $all_data = $this->_queryAllData();
+
+            foreach ($all_data as $_ => $generic) {
+
+                $GenericItem = new $this->InheritableSubclass(
+
+                    $this->sql_connection, $this
+
+                );
+
+                $GenericItem->fetchByPrimaryIdentifier($generic[$this->queryingIdentifier]);
+
+                $this->generics[$generic[$this->queryingIdentifier]] = $GenericItem;
+
+            }
+
+            return true;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
         }
-
-        if (count($this->generics) != 0) {
-
-            // Fetch all generics should not be used in a case that isn't
-            // of initial fetching.
-
-            return false;
-
-        }
-
-        $all_data = $this->_queryAllData();
-
-        foreach ($all_data as $_ => $generic) {
-
-            $GenericItem = new $this->InheritableSubclass(
-
-                $this->sql_connection, $this
-
-            );
-
-            $GenericItem->fetchByPrimaryIdentifier($generic[$this->queryingIdentifier]);
-
-            $this->generics[$generic[$this->queryingIdentifier]] = $GenericItem;
-
-        }
-
-        return true;
 
     }
 
     protected function getOneGenericByPrimaryIdentifier(string $att_val) {
+
+        try {
         
-        return $this->generics[$att_val] ?? null;
+            return $this->generics[$att_val] ?? null;
+
+        } catch (\Throwable $exception) {
+            
+            \Sentry\captureException($exception);
+        
+        }
 
     }
 

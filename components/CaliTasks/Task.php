@@ -36,30 +36,52 @@
 
         function updateTask(int $taskId, array $taskData): bool {
 
-            $con = $this->sql_connection;
+            try {
 
-            $setString = '';
+                $con = $this->sql_connection;
 
-            foreach ($taskData as $key => $value) {
+                $setString = '';
 
-                $setString .= $this->helper->sanitize($con, $key) . " = '" . $this->helper->sanitize($con, $value) . "', ";
+                foreach ($taskData as $key => $value) {
+
+                    $setString .= $this->helper->sanitize($con, $key) . " = '" . $this->helper->sanitize($con, $value) . "', ";
+                }
+
+                $setString = rtrim($setString, ', ');
+
+                $query = "UPDATE `caliweb_tasks` SET " . $setString . " WHERE id = " . $this->helper->sanitize($con, (string)$taskId) . ";";
+
+                $exec = mysqli_query($con, $query);
+
+                return (bool) $exec;
+
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+            
             }
 
-            $setString = rtrim($setString, ', ');
-
-            $query = "UPDATE `caliweb_tasks` SET " . $setString . " WHERE id = " . $this->helper->sanitize($con, (string)$taskId) . ";";
-
-            $exec = mysqli_query($con, $query);
-
-            return (bool) $exec;
         }
 
         function refresh(): bool {
-            if (!isset($this->id)) {
-                return false;
+
+            try {
+
+                if (!isset($this->id)) {
+
+                    return false;
+
+                }
+
+                $this->fetchTaskById($this->id);
+                return true;
+
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+            
             }
-            $this->fetchTaskById($this->id);
-            return true;
+            
         }
 
     }

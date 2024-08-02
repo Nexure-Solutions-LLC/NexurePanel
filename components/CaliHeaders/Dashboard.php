@@ -7,14 +7,26 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
-    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+    $dotenv->load();
+
+    // Initalize Sentry
+
+    \Sentry\init([
+        'dsn' => $_ENV['SENTRY_DSN'],
+        'traces_sample_rate' => 1.0,
+        'profiles_sample_rate' => 1.0,
+    ]);
+
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
 
     use GuzzleHttp\Client;
     use IPLib\Factory;
     use Detection\MobileDetect;
-
-    session_start();
 
     // Mobile Detection
 
@@ -68,12 +80,6 @@
 
     }
 
-    // Initialize DotEnv for PHP
-
-    use Dotenv\Dotenv;
-
-    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
-    $dotenv->load();
     $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
@@ -82,14 +88,6 @@
         exit();
 
     }
-
-    // Initalize Sentry
-
-    \Sentry\init([
-        'dsn' => $_ENV['SENTRY_DSN'],
-        'traces_sample_rate' => 1.0,
-        'profiles_sample_rate' => 1.0,
-    ]);
 
     $caliemail = $_SESSION['caliid'];
 
