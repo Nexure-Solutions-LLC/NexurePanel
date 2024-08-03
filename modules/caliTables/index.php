@@ -3,12 +3,26 @@
     if (!function_exists('renderTableHeader')) {
 
         function renderTableHeader($headers) {
-            echo '<table style="width:100%; margin-top:1%;">
-                    <tr>';
-            foreach ($headers as $header) {
-                echo "<th style='width:20%; '>{$header}</th>";
+
+            try {
+
+                echo '<table style="width:100%; margin-top:1%;">
+                        <tr>';
+
+                foreach ($headers as $header) {
+
+                    echo "<th style='width:20%; '>{$header}</th>";
+
+                }
+
+                echo '</tr>';
+
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+                
             }
-            echo '</tr>';
+
         }
 
     }
@@ -17,44 +31,73 @@
 
         function renderTableRow($rowData) {
 
-            echo '<tr>';
+            try {
 
-            foreach ($rowData as $data) {
+                echo '<tr>';
 
-                echo "<td style='width:20%; '>{$data}</td>";
+                foreach ($rowData as $data) {
 
+                    echo "<td style='width:20%; '>{$data}</td>";
+
+                }
+
+                echo '</tr>';
+
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+                
             }
 
-            echo '</tr>';
         }
 
     }
 
     if (!function_exists('formatDate')) {
+        
         function formatDate($date) {
-            $dateObj = new DateTime($date);
-            return $dateObj->format('m/d/Y g:i A');
+
+            try {
+
+                $dateObj = new DateTime($date);
+                return $dateObj->format('m/d/Y g:i A');
+
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+                
+            }
+
         }
+        
     }
 
     if (!function_exists('getStatusBadge')) {
 
         function getStatusBadge($status) {
 
-            $status = $status;
+            try {
 
-            $statusClasses = [
-                "Completed" => "green",
-                "Overdue" => "red",
-                "Pending" => "yellow",
-                "Stuck" => "red-dark",
-                "Open" => "green",
-                "Closed" => "passive",
-                "On hold" => "red"
-            ];
+                $status = $status;
 
-            $class = $statusClasses[$status] ?? 'default';
-            return "<span class='account-status-badge {$class}' style='margin-left:0;'>{$status}</span>";
+                $statusClasses = [
+                    "Completed" => "green",
+                    "Overdue" => "red",
+                    "Pending" => "yellow",
+                    "Stuck" => "red-dark",
+                    "Open" => "green",
+                    "Closed" => "passive",
+                    "On hold" => "red"
+                ];
+
+                $class = $statusClasses[$status] ?? 'default';
+                return "<span class='account-status-badge {$class}' style='margin-left:0;'>{$status}</span>";
+
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+                
+            }
 
         }
 
@@ -64,22 +107,30 @@
 
         function renderTable($result, $headers, $rowCallback, $emptyMessage) {
 
-            if (mysqli_num_rows($result) > 0) {
+            try {
 
-                renderTableHeader($headers);
+                if (mysqli_num_rows($result) > 0) {
 
-                while ($row = mysqli_fetch_assoc($result)) {
+                    renderTableHeader($headers);
 
-                    $rowCallback($row);
+                    while ($row = mysqli_fetch_assoc($result)) {
+
+                        $rowCallback($row);
+
+                    }
+
+                    echo '</table>';
+
+                } else {
+
+                    echo "<p class='font-14px'>{$emptyMessage}</p>";
 
                 }
 
-                echo '</table>';
-
-            } else {
-
-                echo "<p class='font-14px'>{$emptyMessage}</p>";
-
+            } catch (\Throwable $exception) {
+            
+                \Sentry\captureException($exception);
+                
             }
 
         }
