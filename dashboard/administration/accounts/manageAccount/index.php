@@ -374,13 +374,7 @@
 
                                             $addedAtDateUnFormated = $row["added_at"];
                                             $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $addedAtDateUnFormated);
-                                            if ($addedAtDateModify != false) {
-                                                $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
-                                            } else {
-                                                $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', "01-01-1970 00:00:00");
-                                                $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
-                                            }
-
+                                            $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
 
                                             echo '
                                             <div class="caliweb-card dashboard-card note-card">

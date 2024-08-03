@@ -62,7 +62,7 @@
 
                 $notetype = mysqli_real_escape_string($con, $_POST["type"]);
                 $content = mysqli_real_escape_string($con, $_POST["preset"]);
-                $added_at = date("d-m-Y H:i:sa");
+                $added_at = date("d-m-Y h:i:sa");
 
                 $query = 'INSERT INTO `caliweb_accountnotes` (accountnumber, notetype, content, added_by, added_at) VALUES ("'. $accountnumber . '", "' . $notetype . '", "' . $content . '", "' . $currentAccount->legalName . '", "' . $added_at . '"' . ');';
                 $result = mysqli_query($con, $query);
