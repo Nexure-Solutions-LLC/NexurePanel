@@ -39,8 +39,8 @@
                         'Phone' => $mobilenumber,
                         'Website' => $websitedomain,
                         'Owner' => $legalname,
-                        'Last Interaction' => '01/01/1970',
-                        'Next Interaction' => '01/19/2038'
+                        'First Interaction' => $firstinteractiondate,
+                        'Last Interaction' => $lastinteractiondate
                     ];
                     
                     foreach ($details as $label => $value) {

@@ -38,10 +38,34 @@
             $userrole = $customerAccountInfo['userrole'];
             $dbaccountnumber = $customerAccountInfo['accountNumber'];
             $statusreason = $customerAccountInfo['statusReason'];
-//             $accountnotes = $customerAccountInfo['accountNotes'];
-            // this is being deprecated ^
+            $firstinteractiondate = $customerAccountInfo['firstInteractionDate'];
 
-            $notesQuery = "SELECT * FROM caliweb_accountnotes WHERE accountnumber = '" . $accountnumber . "' ORDER BY id DESC";
+            $newInteractionDate = date('Y-m-d H:i:s');
+
+            $updateInteractionDateQuery = mysqli_query($con, "UPDATE `caliweb_users` SET `lastInteractionDate`='$newInteractionDate' WHERE accountnumber = '" . $accountnumber . "'");
+
+            // Update the last interaction date
+            
+            $updateInteractionDateQuery = mysqli_query($con, "UPDATE `caliweb_users` SET `lastInteractionDate`='$newInteractionDate' WHERE accountnumber='$accountnumber'");
+
+            if ($updateInteractionDateQuery) {
+
+                // Fetch the updated last interaction date
+
+                $fetchInteractionDateQuery = mysqli_query($con, "SELECT `lastInteractionDate` FROM `caliweb_users` WHERE accountnumber='$accountnumber'");
+                
+                if ($fetchInteractionDateQuery) {
+
+                    $customerAccountInfo = mysqli_fetch_array($fetchInteractionDateQuery);
+                    mysqli_free_result($fetchInteractionDateQuery);
+                    $lastinteractiondate = $customerAccountInfo['lastInteractionDate'] ?? null;
+
+                }
+
+            }
+
+
+            $notesQuery = "SELECT * FROM caliweb_accountnotes WHERE accountnumber = '$accountnumber' ORDER BY id DESC";
             $notesResults = mysqli_query($con, $notesQuery);
 
 
