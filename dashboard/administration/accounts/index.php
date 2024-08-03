@@ -99,7 +99,12 @@
                                                 <th>Actions</th>
                                             </tr>
                                             <tr>
-                                                <td colspan="6" style="text-align:center;">There are no Accounts</td>
+                                                <td style="width:20%;">There are no Accounts</td>
+                                                <td style="width:20%;"></td>
+                                                <td style="width:20%;"></td>
+                                                <td style="width:20%;"></td>
+                                                <td style="width:20%;"></td>
+                                                <td style="width:10%;"></td>
                                             </tr>
                                         </table>';
 

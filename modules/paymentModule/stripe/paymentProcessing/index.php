@@ -2,77 +2,68 @@
     $pagetitle = "Connected Payments";
     $pagesubtitle = "Home";
     $pagetype = "Administration";
+    
+    $accountnumber = $_GET['account_number'] ?? '';
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
-    
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 
-    ob_start();
+    if (!$accountnumber) {
 
-    $accountnumber = $_GET['account_number'];
+        header("location: /dashboard/administration/accounts");
+        exit;
 
-   // if (!isset($_SESSION['verification_code'])) {
-       // header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
-    // }
+    }
 
+    // Prepare the SQL Statement to get all the users info later.
 
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
 
-    if ($accountnumber == "") {
+    if (!$customerAccountInfo) {
 
         header("location: /dashboard/administration/accounts");
+        exit;
 
-    } else {
+    }
 
-        $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
-        $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
-        mysqli_free_result($customerAccountQuery);
+    // Account Specific Data Storage and Variable Declaration
 
-        if ($customerAccountInfo != NULL) {
+    $legalname = $customerAccountInfo['legalName'];
+    $customeremail = $customerAccountInfo['email'];
+    $mobilenumber = $customerAccountInfo['mobileNumber'];
+    $customerStatus = $customerAccountInfo['accountStatus'];
+    $userrole = $customerAccountInfo['userrole'];
+    $dbaccountnumber = $customerAccountInfo['accountNumber'];
+    $statusreason = $customerAccountInfo['statusReason'];
 
-            $legalname = $customerAccountInfo['legalName'];
-            $customeremail = $customerAccountInfo['email'];
-            $customerSystemID = $customerAccountInfo['id'];
-            $mobilenumber = $customerAccountInfo['mobileNumber'];
-            $customerStatus = $customerAccountInfo['accountStatus'];
-            $userrole = $customerAccountInfo['userrole'];
-            $dbaccountnumber = $customerAccountInfo['accountNumber'];
-            $statusreason = $customerAccountInfo['statusReason'];
-            $accountnotes = $customerAccountInfo['accountNotes'];
+    // Account Notes Section
 
-            if ($accountnumber != $dbaccountnumber) {
+    $notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
 
-                header("location: /dashboard/administration/accounts");
+    // Get the Interaction Dates Information for the Account Header
 
-            } else {
+    $newInteractionDate = date('Y-m-d H:i:s');
+    mysqli_query($con, "UPDATE caliweb_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='$accountnumber'");
 
-                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$customeremail."'");
-                $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-                mysqli_free_result($businessAccountQuery);
+    $firstinteractiondate = isset($customerAccountInfo['firstInteractionDate']) ? $customerAccountInfo['firstInteractionDate'] : null;
+    $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='$accountnumber'"))['lastInteractionDate'] ?? null;
 
-                if ($businessAccountInfo) {
+    // Business Sepecific Data Storage and Variable Declaration for the customers business
 
-                    $businessname = $businessAccountInfo['businessName'];
-                    $businessindustry = $businessAccountInfo['businessIndustry'];
+    $businessAccountInfo = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"));
+    $businessname = $businessAccountInfo['businessName'] ?? $legalname;
+    $businessindustry = $businessAccountInfo['businessIndustry'] ?? "Not Assigned";
+    $websitedomain = $businessAccountInfo ? (mysqli_fetch_array(mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"))['domainName'] ?? "Not Assigned") : "Not Assigned";
 
-                    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".$customeremail."'");
-                    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
-                    mysqli_free_result($websiteAccountQuery);
+    // Fetch website info
 
+    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$customeremail'");
+    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
+    mysqli_free_result($websiteAccountQuery);
 
-                    if ($websiteAccountInfo) {
-                        $websitedomain = $websiteAccountInfo['domainName'];
-                    } else {
-                        $websitedomain = "Not Assigned";
-                    }
-
-                } else {
-                    $businessname = $legalname;
-                    $businessindustry = "Not Assigned";
-                    $websitedomain = "Not Assigned";
-                }
+    $websitedomain = $websiteAccountInfo['domainName'] ?? 'Not Assigned';
 
 
 ?>
@@ -92,7 +83,16 @@
                             <div class="caliweb-one-grid special-caliweb-spacing">
                                 <div class="caliweb-card dashboard-card">
                                     <div class="card-body">                
-                                        <h4 class="text-bold font-size-20 no-padding">Payments Home</h4>
+                                        <div class="display-flex align-center" style="justify-content:space-between;">
+                                            <div>
+                                                <h4 class="text-bold font-size-20 no-padding">Payments Home</h4>
+                                            </div>
+                                            <div>
+                                                <a href="" class="caliweb-button secondary red no-margin margin-10px-right" style="padding:6px 24px;">Disable Merchant</a>
+                                                <a href="" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Pause Payouts</a>
+                                                <a href="" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Change Terms</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                                         <p class="no-padding">Customers</p>
                                     </div>
                                     <div class="card-body">                
-                                        <h4 class="text-bold font-size-20 no-padding">2</h4>
+                                        
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
@@ -163,7 +163,7 @@
                                         <p class="no-padding">Failed Payments</p>
                                     </div>
                                     <div class="card-body">                
-                                        <h4 class="text-bold font-size-20 no-padding">3</h4>
+                                        
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
@@ -180,16 +180,6 @@
     </section>
 
 <?php
-
-            }
-
-        } else {
-
-            header("location: /dashboard/administration/accounts");
-    
-        }
-
-    }
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
