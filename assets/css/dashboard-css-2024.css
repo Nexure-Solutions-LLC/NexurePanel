@@ -1083,6 +1083,14 @@ textarea.swal2-input {
     font-size:14px !important;
 }
 
+.caliweb-button.secondary.red {
+    background-color: #ffd8d8;
+}
+
+.caliweb-button.secondary.red:hover {
+    background-color: #ffbbbb;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {

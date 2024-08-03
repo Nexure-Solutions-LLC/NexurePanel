@@ -102,6 +102,54 @@
 
     }
 
+    function renderPaymentNavLinks($activeLink, $moduleresult, $currentAccountRole, $accountnumber) {
+
+        $paymentLinks = [
+            'Home' => '/modules/paymentModule/stripe/paymentProcessing/?account_number='.$accountnumber,
+            'Transactions' => '/modules/paymentModule/stripe/paymentProcessing/transactions/?account_number='.$accountnumber,
+            'Customers' => '/modules/paymentModule/stripe/paymentProcessing/customers/?account_number='.$accountnumber,
+            'Product Catalog' => '/modules/paymentModule/stripe/paymentProcessing/productCatalog/?account_number='.$accountnumber,
+            'Invoices' => '/modules/paymentModule/stripe/paymentProcessing/invoices/?account_number='.$accountnumber,
+            'Tax' => '/modules/paymentModule/stripe/paymentProcessing/tax/?account_number='.$accountnumber,
+            'Reports' => '/modules/paymentModule/stripe/paymentProcessing/reports/?account_number='.$accountnumber,
+            'Sign Off' => '/logout'
+        ];
+
+        $visibleLinks = array_keys($paymentLinks);
+        
+        echo '<ul class="caliweb-nav-links">';
+        
+        foreach ($paymentLinks as $name => $url) {
+
+            if (in_array($name, $visibleLinks)) {
+
+                $activeClass = $activeLink === $name ? 'active' : '';
+                echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable\">$name</a></li>";
+            
+            }
+            
+        }
+
+        echo '<li class="nav-links more">
+                <a class="nav-links-clickable more-button" href="#">More</a>
+                <ul class="dropdown">';
+        
+        if (mysqli_num_rows($moduleresult) > 0) {
+
+            while ($modulerow = mysqli_fetch_assoc($moduleresult)) {
+
+                echo '<li class="nav-links"><a href="'.$modulerow['modulePath'].'" class="nav-links-clickable">'.$modulerow['moduleFriendlyName'].'</a></li>';
+
+            }
+
+        }
+
+        echo '<li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>';
+        echo '<li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>';
+        echo '</ul></li></ul>';
+
+    }
+
     if ($currentAccount->fromUserRole($currentAccount->role) == "Customer") {
 
         switch ($pagetitle) {
@@ -157,10 +205,8 @@
                 renderAdminNavLinks('Accounts', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Connected Payments":
-                if ($pagesubtitle == "Home") {
-                    echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Payments Cloud</p>';
-                    renderAdminNavLinks('Dashboard', $moduleresult, $departmentresult, $currentAccount->role->name);
-                }
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Payments Cloud</p>';
+                renderPaymentNavLinks('Payments Cloud', $moduleresult, $currentAccount->role->name, $accountnumber);
                 break;
             case "Tasks":
                 echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>';
