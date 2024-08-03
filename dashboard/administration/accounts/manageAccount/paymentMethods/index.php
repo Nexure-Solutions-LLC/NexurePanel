@@ -5,75 +5,73 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    echo '<title>' . $pagetitle . ' - ' . $pagesubtitle . '</title>';
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    $accountnumber = $_GET['account_number'] ?? '';
 
-    ob_start();
+    if (!$accountnumber) {
+        header("location: /dashboard/administration/accounts");
+        exit;
+    }
 
-    $accountnumber = $_GET['account_number'];
+    $accountnumberEsc = mysqli_real_escape_string($con, $accountnumber);
 
-    // if (!isset($_SESSION['verification_code'])) {
+    // Fetch customer account info
 
-       // header("location: /dashboard/administration/verification/customerVerification/?account_number=$accountnumber");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumberEsc'");
+    $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
+    mysqli_free_result($customerAccountQuery);
 
-    // }
-
-    if ($accountnumber == "") {
+    if (!$customerAccountInfo) {
 
         header("location: /dashboard/administration/accounts");
+        exit;
 
-    } else {
+    }
 
-        $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
-        $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
-        mysqli_free_result($customerAccountQuery);
+    // Account Specific Data Storage and Variable Declaration
 
-        if ($customerAccountInfo != NULL) {
+    $legalname = $customerAccountInfo['legalName'];
+    $customeremail = $customerAccountInfo['email'];
+    $mobilenumber = $customerAccountInfo['mobileNumber'];
+    $customerStatus = $customerAccountInfo['accountStatus'];
+    $userrole = $customerAccountInfo['userrole'];
+    $dbaccountnumber = $customerAccountInfo['accountNumber'];
+    $statusreason = $customerAccountInfo['statusReason'];
 
-            $legalname = $customerAccountInfo['legalName'];
-            $customeremail = $customerAccountInfo['email'];
-            $customerSystemID = $customerAccountInfo['id'];
-            $mobilenumber = $customerAccountInfo['mobileNumber'];
-            $customerStatus = $customerAccountInfo['accountStatus'];
-            $userrole = $customerAccountInfo['userrole'];
-            $dbaccountnumber = $customerAccountInfo['accountNumber'];
-            $statusreason = $customerAccountInfo['statusReason'];
-//             $accountnotes = $customerAccountInfo['accountNotes'];
-            // this is being deprecated ^
+    // Account Notes Section
 
-            $notesQuery = "SELECT * FROM caliweb_accountnotes WHERE accountnumber = '" . $accountnumber . "' ORDER BY id DESC";
-            $notesResults = mysqli_query($con, $notesQuery);
+    $notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
 
+    // Get the Interaction Dates Information for the Account Header
 
-            if ($accountnumber != $dbaccountnumber) {
+    $firstinteractiondate = isset($customerAccountInfo['firstInteractionDate']) ? $customerAccountInfo['firstInteractionDate'] : null;
+    $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='$accountnumber'"))['lastInteractionDate'] ?? null;
 
-                header("location: /dashboard/administration/accounts");
+    // Business Sepecific Data Storage and Variable Declaration for the customers business
 
-            } else {
+    $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '$customeremail'");
+    $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
+    mysqli_free_result($businessAccountQuery);
 
-                $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$customeremail."'");
-                $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-                mysqli_free_result($businessAccountQuery);
+    $businessname = $businessAccountInfo['businessName'] ?? 'Not Assigned';
+    $businessindustry = $businessAccountInfo['businessIndustry'] ?? 'Not Assigned';
 
-                if ($businessAccountInfo != NULL) {
+    // Fetch payment processor info
 
-                    $businessname = $businessAccountInfo['businessName'];
-                    $businessindustry = $businessAccountInfo['businessIndustry'];
+    $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
+    $processorInfo = mysqli_fetch_array($processorResult);
+    mysqli_free_result($processorResult);
 
-                    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".$customeremail."'");
-                    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
-                    mysqli_free_result($websiteAccountQuery);
+    $paymentProcessorName = $processorInfo['processorName'] ?? '';
 
-                    if ($websiteAccountInfo) {
+    // Fetch website info
 
-                        $websitedomain = $websiteAccountInfo['domainName'];
+    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$customeremail'");
+    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
+    mysqli_free_result($websiteAccountQuery);
 
-                    } else {
-
-                        $websitedomain = "Not Assigned";
-
-                    }
-
+    $websitedomain = $websiteAccountInfo['domainName'] ?? 'Not Assigned';
 
 ?>
 
@@ -98,23 +96,11 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="dashboard-table">
-                                        <table style="width:100%;">
-                                            <?php
-
-                                                $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-                                                $processorInfo = mysqli_fetch_array($processorResult);
-                                                mysqli_free_result($processorResult);
-
-                                                $paymentProcessorName = $processorInfo['processorName'];
-
-                                                if ($paymentProcessorName == "Stripe") {
-
-                                                    require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
-
-                                                }
-
-                                            ?>
-                                        </table>
+                                        <?php
+                                            if ($paymentProcessorName == "Stripe") {
+                                                require($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -133,63 +119,47 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">
-                                    <?php
-                                        if (mysqli_num_rows($notesResults) == 0) {
-                                            echo "<p class='no-padding font-12px'>No notes have been made for this account.</p>";
-                                        }
-                                    ?>
-                                </p>
-                                <?php
-                                    if ($statusreason) {
-                                        echo '
-                                            <div class="caliweb-card dashboard-card note-card">
-                                                <div class="card-header">
-                                                    <div class="display-flex align-center">
-                                                        <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
-                                                            <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
-                                                        </div>
-                                                        <div>
-                                                            <p class="no-padding font-12px"><strong>'. 'Account Status' .'</strong></p>
-                                                        </div>
-                                                    </div>
+                                <?php if (mysqli_num_rows($notesResults) == 0): ?>
+                                    <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">No notes have been made for this account.</p>
+                                <?php endif; ?>
+                                <?php if ($statusreason): ?>
+                                    <div class="caliweb-card dashboard-card note-card">
+                                        <div class="card-header">
+                                            <div class="display-flex align-center">
+                                                <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
+                                                    <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                                 </div>
-                                                <div class="card-body">
-                                                    <p class="no-padding font-12px">'. $statusreason .'</p>
-                                                </div>
-                                            </div>';
-                                    }
-                                
-                                    while ($row = mysqli_fetch_assoc($notesResults)) {
-
-                                            // Formats the date to MM/DD/YYYY HH:MM AM/PM format as perfered by
-                                            // United States users. Additional formats will come soon.
-
-                                            $addedAtDateUnFormated = $row["added_at"];
-                                            $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $addedAtDateUnFormated);
-                                            $addedAtDateFormated = $addedAtDateModify->format('m/d/Y h:i A');
-
-                                            echo '
-                                            <div class="caliweb-card dashboard-card note-card">
-                                                <div class="card-header">
-                                                    <div class="display-flex align-center">
-                                                        <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
-                                                            <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
-                                                        </div>
-                                                        <div>
-                                                            <p class="no-padding font-12px"><strong>'. $row["notetype"].'</strong></p>
-                                                            <p class="no-padding font-12px">'. $addedAtDateFormated .'</p>
-                                                            <p class="no-padding font-12px">'. $row["added_by"].'</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p class="no-padding font-12px">'. $row["content"].'</p>
+                                                <div>
+                                                    <p class="no-padding font-12px"><strong>Account Status</strong></p>
                                                 </div>
                                             </div>
-                                            ';
-                                    }
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="no-padding font-12px"><?= $statusreason ?></p>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                                <?php 
+                                    while ($row = mysqli_fetch_assoc($notesResults)): 
+                                    $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $row['added_at'])->format('Y-m-d H:i:s');
                                 ?>
+                                    <div class="caliweb-card dashboard-card note-card" style="margin-bottom:10px;">
+                                        <div class="card-header">
+                                            <div class="display-flex align-center">
+                                                <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
+                                                    <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
+                                                </div>
+                                                <div>
+                                                    <p class="no-padding font-12px"><strong>Note Added:</strong></p>
+                                                    <p class="no-padding font-12px"><?= $addedAtDateModify ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="no-padding font-12px"><?= $row['content'] ?></p>
+                                        </div>
+                                    </div>
+                                <?php endwhile; ?>
                             </div>
                         </div>
                     </div>
@@ -199,21 +169,6 @@
     </section>
 
 <?php
-                } else {
-
-                    header("location: /dashboard/administration/accounts");
-
-                }
-
-            }
-
-        } else {
-
-            header("location: /dashboard/administration/accounts");
-            
-        }
-
-    }
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
 
