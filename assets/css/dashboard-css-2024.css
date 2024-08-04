@@ -439,46 +439,33 @@ html[data-theme='dark'] body {
     background-color: #333 !important;
 }
 
-.dark-mode .dropdown {
-    background-color: #181818 !important;
-    border: 1px solid #272727 !important;
-}
-
-.dark-mode .dropdown li:hover {
-    border: 1px solid #323232 !important;
-}
-
-.dark-mode .sidebar-link a {
-    text-decoration: none;
-    color: #dbdbdb;
-}
-
-.dark-mode .sidebar-link a:hover {
-    text-decoration: none;
-    color: #fff;
-}
-
-.dark-mode .sidebar-link {
-    background-color: #222222;
+.dark-mode .sidebar-link,
+.dark-mode .account-settings-sidebar-link,
+.dark-mode .drop-menu-item-sidebar {
+    border: 1px solid #141414;
+    background-color: #141414;
     border-radius: 6px;
+}
+
+.dark-mode .sidebar-link:hover,
+.dark-mode .account-settings-sidebar-link:hover,
+.dark-mode .drop-menu-item-sidebar:hover {
+    background-color: #0a0a0a;
+    border: 1px solid #222;
+}
+
+.dark-mode .sidebar-link.active,
+.dark-mode .account-settings-sidebar-link.active,
+.dark-mode .drop-menu-item-sidebar.active,
+.dark-mode .drop-menu-item-sidebar.active {
+    background-color: #0a0a0a;
+    border: 1px solid #aaa4ff;
 }
 
 .dark-mode .horizantal-line {
     height: 1px;
     width: 100%;
     background-color: #333;
-}
-
-.dark-mode .sidebar-link:hover {
-    background-color: #1d1d1d;
-    border-radius: 6px;
-    border: 1px solid #333;
-}
-
-.dark-mode .sidebar-link.active {
-    background-color: #1d1d1d;
-    border-radius: 6px;
-    border: 1px solid #333;
 }
 
 .dark-mode .note-card {
@@ -948,8 +935,8 @@ textarea.swal2-input {
 /* =================== Cali Web Design System Styling Styling =================== */
 
 .setttings-shifted-spacing {
-    -ms-grid-columns: .4fr 1.4fr;
-    grid-template-columns: .4fr 1.4fr;
+    -ms-grid-columns: .35fr 1.6fr;
+    grid-template-columns: .35fr 1.6fr;
 }
 
 .caliweb-sidebar {
@@ -964,48 +951,63 @@ textarea.swal2-input {
     list-style: none;
     padding: 0;
     margin: 0;
-    padding-bottom:30px;
+    padding-bottom: 30px;
 }
 
-.sidebar-link {
-    padding: 7px 10px;
+.sidebar-link,
+.account-settings-sidebar-link,
+.drop-menu-item-sidebar {
+    padding: 6px 10px;
     border: 1px solid transparent;
     margin-top: 4px;
     margin-bottom: 4px;
     font-size: 14px;
     text-decoration: none;
     list-style: none;
-
-}
-
-.sidebar-link-a:hover {
-    text-decoration: none;
-}
-
-.sidebar-link {
-    background-color: #f2f4f5;
+    border: 1px solid #fff;
+    background-color: #fff;
     border-radius: 6px;
 }
 
-.sidebar-link:hover {
+.sidebar-link-a,
+.sidebar-link-a:hover,
+.account-settings-sidebar-link,
+.account-settings-sidebar-link:hover,
+.drop-menu-item-sidebar,
+.drop-menu-item-sidebar:hover {
+    text-decoration: none !important;
+}
+
+.sidebar-link:hover,
+.account-settings-sidebar-link:hover,
+.drop-menu-item-sidebar:hover {
     background-color: #f2f4f5;
     border-radius: 6px;
     border: 1px solid #ddd;
 }
 
-.sidebar-link.active {
+.sidebar-link.active,
+.account-settings-sidebar-link.active,
+.drop-menu-item-sidebar.active,
+.drop-menu-item-sidebar.active {
     background-color: #f2f4f5;
     border-radius: 6px;
     border: 1px solid #aaa4ff;
 }
 
-.sidebar-link a {
-    text-decoration: none;
-    color: #000;
+.drop-menu-item-sidebar {
+    border-radius: 6px;
+    padding: 6px 10px;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-family: "IBM Plex Sans", sans-serif;
 }
 
-.sidebar-link a:hover {
-    text-decoration: none;
+.caliweb-sidebar-sub-menu {
+    padding: 0px;
+    padding-left:15px;
+    list-style: none;
+    display: none;
 }
 
 .horizantal-line {
@@ -1016,30 +1018,7 @@ textarea.swal2-input {
 
 .caliweb-card.dashboard-card.account-center-cards {
     padding: 4% !important;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.drop-menu-item-sidebar {
-    border-radius: 6px;
-    padding:10px;
-    text-decoration: none !important;
-    font-size:14px;
-    font-family: "IBM Plex Sans", sans-serif;
-}
-
-.caliweb-sidebar-sub-menu {
-    padding:0; 
-    list-style:none; 
-    display: none;
-}
-
-.account-settings-sidebar-link {
-    padding-left: 20px;
-}
-
-.drop-menu-item-sidebar.active {
-    background-color: #f2f4f5;
-    border:1px solid #aaa4ff;
+    background-color: #f7f6f6;
 }
 
 /* =================== Cali Web Design Dashboard PHP Info Styling =================== */

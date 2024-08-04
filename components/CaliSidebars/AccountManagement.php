@@ -41,7 +41,7 @@
 
             if (is_array($sectionData)) {
 
-                echo "<li><a id='" . strtolower(str_replace(' ', '-', $sectionName)) . "-toggle' href='{$sectionData['url']}' class='sidebar-link-a drop-menu-item-sidebar $activeClass' style='margin-bottom: 4px; font-size: 15px; display:flex; justify-content: space-between;'>{$sectionName}<i class='lnr lnr-chevron-down arrow' style='padding-top:2px;'></i></a>";
+                echo "<li><a id='" . strtolower(str_replace(' ', '-', $sectionName)) . "-toggle' href='{$sectionData['url']}' class='sidebar-link-a drop-menu-item-sidebar $activeClass' style='margin-bottom: 4px; display:flex; justify-content: space-between;'>{$sectionName}<i class='lnr lnr-chevron-down arrow' style='padding-top:2px;'></i></a>";
                 echo "<ul id='" . strtolower(str_replace(' ', '-', $sectionName)) . "-menu' class='caliweb-sidebar-sub-menu'>";
                 
                 foreach ($sectionData['subLinks'] as $subLinkName => $subLinkUrl) {
