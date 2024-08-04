@@ -197,7 +197,7 @@
                 break;
             case "Your Calendar and Planner":
                 echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Calendar</p>';
-                renderAdminNavLinks('Tasks', $moduleresult, $departmentresult, $currentAccount->role->name);
+                renderAdminNavLinks('Calendar', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Customer Accounts":
             case "Services":
