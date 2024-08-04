@@ -14,6 +14,7 @@
         <section class="section first-dashboard-area-cards">
             <div class="container width-98">
                 <div class="caliweb-three-grid special-caliweb-spacing">
+
                     <div class="caliweb-card dashboard-card">
                         <div class="card-body">                
                             <h4 class="text-bold font-size-20 no-padding">Engage with your Customers</h4>
@@ -30,11 +31,18 @@
                         </div>
                     </div>
 
+
                     <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">Sales Person Activity</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>Sales Person Activity</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -51,12 +59,19 @@
                                 <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
                             </div>
                         </div>
+
 
                     <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
 
+
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">Sales Person Activity</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>Sales Person Activity</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -74,11 +89,18 @@
                             </div>
                         </div>
 
+
                     <?php } else { ?>
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">Your Sales Activity</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>Your Sales Activity</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -96,23 +118,40 @@
                             </div>
                         </div>
 
+
                     <?php } ?>
+
 
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
-                            <p class="no-padding">Team Pipeline</p>
+                            <div class="display-flex align-center">
+                                <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                    <img src="/assets/img/systemIcons/opportunityicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                </div>
+                                <p class="no-padding"><strong>All Opportunities</strong></p>
+                            </div>
                         </div>
-                        <div class="card-body">                
-                            <h4 class="text-bold font-size-20 no-padding">2</h4>
+                        <div class="card-body">   
+                            <div class="" style="margin-left:auto; margin-right:auto; text-align:center; padding-bottom:4%;">
+                                <img src="/assets/img/graphicsVectorDrawings/opportunitiesNoContent.svg" style="width:40%; height:20vh; margin-top:2%;" alt="Pie Chart Not Found Graphic Vector" >
+                                <p style="margin-top:4%; font-size:14px;">Track progress as you find opportunities.</p>
+                            </div>             
                         </div>
                         <div class="card-footer">
                             <a href="" class="careers-link">View Report</a>
                             <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
                         </div>
                     </div>
+
+
                     <div class="caliweb-card dashboard-card">
                         <div class="card-header">
-                            <p class="no-padding">Leads by Source</p>
+                            <div class="display-flex align-center">
+                                <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                    <img src="/assets/img/systemIcons/leadsbysourceicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                </div>
+                                <p class="no-padding"><strong>Leads by Source</strong></p>
+                            </div>
                         </div>
                         <div class="card-body">
                                 <?php
@@ -133,7 +172,12 @@
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">Today's Tasks</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>Today's Tasks</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -155,7 +199,12 @@
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">Today's Tasks</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>Today's Tasks</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -177,7 +226,12 @@
                         
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">Today's Tasks</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>Today's Tasks</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">
 
@@ -196,11 +250,19 @@
                         </div>
 
                     <?php } ?>
+
+
                     <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">All Cases</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>All Cases</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">   
 
@@ -218,11 +280,18 @@
                             </div>
                         </div>
 
+
                     <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">All Cases</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>All Cases</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">      
 
@@ -240,11 +309,18 @@
                             </div>
                         </div>
 
+
                     <?php } else { ?>  
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">My Cases</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>My Cases</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">   
 
@@ -262,12 +338,21 @@
                             </div>
                         </div>
 
+
                     <?php } ?>
+
+
                     <?php if ($currentAccount->accessLevel->name == "Executive") { ?>
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">All Leads</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>All Leads</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">                
                                 
@@ -285,11 +370,18 @@
                             </div>
                         </div>
 
+
                     <?php } else if ($currentAccount->accessLevel->name == "Manager") { ?>
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">All Leads</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>All Leads</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">     
 
@@ -307,11 +399,18 @@
                             </div>
                         </div>
 
+
                     <?php } else { ?>  
+
 
                         <div class="caliweb-card dashboard-card">
                             <div class="card-header">
-                                <p class="no-padding">My Leads</p>
+                                <div class="display-flex align-center">
+                                    <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
+                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    </div>
+                                    <p class="no-padding"><strong>My Leads</strong></p>
+                                </div>
                             </div>
                             <div class="card-body">    
                                             
@@ -329,7 +428,9 @@
                             </div>
                         </div>
 
+
                     <?php } ?>
+
                     
                 </div>
             </div>
