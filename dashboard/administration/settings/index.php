@@ -4,6 +4,7 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/settingsTables/index.php');
 
     echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
 ?>
@@ -26,7 +27,39 @@
                 </div>
                 <div class="caliweb-one-grid special-caliweb-spacing">
                     <div class="caliweb-card dashboard-card">
-                        Content
+                        <div>
+                            <h3 style="font-size:18px; margin-top:10px; margin-bottom:4%;">Company Information</h3>
+                             <div class="dashboard-table">
+                                <?php
+
+                                    fetchAndDisplayTable(
+                                        $con,
+                                        "SELECT * FROM caliweb_panelconfig WHERE id = 1",
+                                        ['DBA Name', 'Company Legal Name', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Payment Descriptor'],
+                                        ['organizationShortName', 'organization', 'organizationAddress', 'organizationCity', 'organizationState', 'organizationZipcode', 'organizationCountry', 'paymentDescriptor'],
+                                        ['10%', '17%', '20%', '10%', '10%', '8%', '12%', '15%']
+                                    );
+
+                                ?>
+                            </div>
+                            <br>
+                                <div class="horizantal-line"></div>
+                            <br>
+                            <h3 style="font-size:18px; margin-top:10px; margin-top:1%; margin-bottom:4%;">Primary Contact Information</h3>
+                             <div class="dashboard-table">
+                                <?php
+
+                                    fetchAndDisplayTable(
+                                        $con,
+                                        "SELECT * FROM caliweb_users WHERE id = 1",
+                                        ['Legal Name', 'Phone Number', 'Email', 'Role', 'Access Level', 'Account Status', 'Email Verification', 'Setup Date'],
+                                        ['legalName', 'mobileNumber', 'email', 'userrole', 'employeeAccessLevel', 'accountStatus', 'emailVerfied', 'registrationDate'],
+                                        ['10%', '12%', '23%', '10%', '10%', '10%', '12%', '15%']
+                                    );
+
+                                ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

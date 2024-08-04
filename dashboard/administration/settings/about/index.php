@@ -56,15 +56,15 @@
                                 <p style="margin-top:10px; font-size:14px;">Languages: HTML, CSS, JS, PHP and MySQL</p>
                                 <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Cali Web Design Services LLC, Nick Derry, Mikey W, Mikey Brinkley, Nathan Schwartz, Aiden Webb.</p>
                             </div>
-                            <div id="phpinfo" style="margin-top:6%;">
+                            <!-- <div id="phpinfo" style="margin-top:6%;">
                                 <?php
-                                    ob_start();
-                                    phpinfo();
-                                    $pinfo = ob_get_contents();
-                                    ob_end_clean();
-                                    echo (str_replace("module_Zend Optimizer", "module_Zend_Optimizer", preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $pinfo)));
+                                    // ob_start();
+                                    // phpinfo();
+                                    // $pinfo = ob_get_contents();
+                                    // ob_end_clean();
+                                    // echo (str_replace("module_Zend Optimizer", "module_Zend_Optimizer", preg_replace('%^.*<body>(.*)</body>.*$%ms', '$1', $pinfo)));
                                 ?>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
