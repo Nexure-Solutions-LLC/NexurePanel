@@ -43,9 +43,9 @@
                             </div>
                             <div>
                                 <p style="margin-top:10px; font-size:14px;">Software Name: Cali Web Design Panel (Cali Panel)</p>
-                                <p style="margin-top:10px; font-size:14px;">Version: 20.0.1 Developer Beta 1</p>
-                                <p style="margin-top:10px; font-size:14px;">Release Date: 06/21/2024 8:42:05 PM (Eastern Time)</p>
-                                <p style="margin-top:10px; font-size:14px;">Edition: Cali Panel Free and Open Source</p>
+                                <p style="margin-top:10px; font-size:14px;">Version: 20.0.1 Developer Beta 2</p>
+                                <p style="margin-top:10px; font-size:14px;">Release Date: 08/03/2024 10:18:22 PM (Eastern Time)</p>
+                                <p style="margin-top:10px; font-size:14px;">Edition: Cali Panel Developer Edition</p>
                                 <?php
 
                                     echo "<p style='margin-top:10px; font-size:14px;'>Current PHP Version: " . phpversion() . "</p>";
