@@ -144,7 +144,14 @@
             
         } else {
 
-            echo "0 results";
+            echo '
+                <div class="" style="margin-left:auto; margin-right:auto; text-align:center; padding-bottom:4%;">
+                    <img src="/assets/img/graphicsVectorDrawings/leadsBySourceNoContent.svg" style="width:40%; height:20vh; margin-top:2%;" alt="Pie Chart Not Found Graphic Vector" >
+                    <p style="margin-top:4%; font-size:14px;">Track progress as you qualify leads.</p>
+                </div>
+
+            ';
+            
         }
 
     }

@@ -52,3 +52,24 @@
     left: 5px;
     z-index: 1;
 }
+
+.dark-mode #calendar {
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    border-left: 1px solid #333;
+}
+
+.dark-mode .time-slot,
+.dark-mode .day-events {
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+}
+
+.dark-mode .time-header {
+    border-right: 1px solid #333;
+}
+
+.dark-mode .day-header {
+    background-color: #141414;
+    border-right: 1px solid #333;
+}
