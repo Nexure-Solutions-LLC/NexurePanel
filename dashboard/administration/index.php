@@ -11,7 +11,7 @@
     try {
 ?>
 
-        <section class="section first-dashboard-area-cards">
+        <section class="section first-dashboard-area-cards" style="padding-top:2%;">
             <div class="container width-98">
                 <div class="caliweb-three-grid special-caliweb-spacing">
 

@@ -187,6 +187,10 @@ html[data-theme='dark'] body {
 .dark-mode .status-data-bar-box {
     border: 1px solid #222;
 }
+
+.loading-bar-inner {
+    background-color: #9fe4f9 !important;
+}
 @keyframes ping {
     0% {
         transform: scale(1);

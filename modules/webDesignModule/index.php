@@ -1,18 +1,91 @@
 <?php
 
-    $pagetitle = "Client";
-    $pagesubtitle = "Web Design Services Managment";
-    $pagetype = "Client";
+    // Uninitialized values to prevent page load failure
+
+    $pagetitle = 'Web Design Services Management';
+    $pagesubtitle = '';
+    $pagetype = '';
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
+    $accountnumber = $_GET['account_number'] ?? '';
+
+    function setPageTitleAndType($role) {
+
+        $titles = [
+            'customer' => 'Client',
+            'authorized user' => 'Authorized User',
+            'administrator' => 'Administration',
+            'partner' => 'Partners',
+        ];
+
+        if (isset($titles[strtolower($role)])) {
+
+            return [
+                'title' => $titles[strtolower($role)],
+                'type' => $titles[strtolower($role)]
+            ];
+
+        } else {
+
+            echo "Error: Undefined role. Please contact the system administrator.";
+            exit();
+
+        }
+
+    }
+
+    if (isset($currentAccount->role->name)) {
+
+        $pageInfo = setPageTitleAndType($currentAccount->role->name);
+        $pagesubtitle = $pageInfo['title'];
+        $pagetype = $pageInfo['type'];
+
+    }
+
+    function fetchCustomerAccount($con, $accountnumber) {
+
+        $query = "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'";
+        $result = mysqli_query($con, $query);
+        $info = mysqli_fetch_array($result);
+        mysqli_free_result($result);
+
+        return $info;
+
+    }
+
+    function displayPageTitle($pagetitle, $pagesubtitle) {
+
+        echo '<title>' . $pagetitle . ' - ' . $pagesubtitle . '</title>';
+
+    }
+
     if (strtolower($currentAccount->role->name) == "customer") {
 
-    $domainName = "caliwebdesignservices.com";
+        $accountnumber = $_GET['account_number'] ?? '';
+
+        if (!$accountnumber) {
+
+            header("location: /dashboard/customers/");
+            exit;
+
+        }
+
+        $customerAccountInfo = fetchCustomerAccount($con, $accountnumber);
+
+        if (!$customerAccountInfo) {
+
+            header("location: /dashboard/administration/accounts");
+            exit;
+
+        }
+
+        $domainName = "caliwebdesignservices.com";
+        displayPageTitle($pagetitle, $pagesubtitle);
 
 ?>
 
-        <!-- HTML Content will be injected here for customer users view. -->
+        <!-- HTML Content for customer users view -->
 
         <section class="first-dashboard-area-cards">
 
@@ -199,31 +272,59 @@
 
         </section>
 
-
+ 
 <?php
 
     } else if (strtolower($currentAccount->role->name) == "authorized user") {
-
+        
+        displayPageTitle($pagetitle, $pagesubtitle);
+    
 ?>
 
-        <!-- HTML Content will be injected here for authorized users view. -->
-
+    <!-- HTML Content for authorized users view -->
 
 <?php
 
     } else if (strtolower($currentAccount->role->name) == "administrator") {
 
+        if (!$accountnumber) {
+
+            header("location: /dashboard/administration/accounts/");
+            exit;
+
+        }
+
+        $domainName = "caliwebdesignservices.com";
+
+        $customerAccountInfo = fetchCustomerAccount($con, $accountnumber);
+        displayPageTitle($pagetitle, $pagesubtitle);
+
 ?>
 
-        <!-- HTML Content will be injected here for admin users view. -->
 
-<?php
+        <!-- HTML Content for administrators view -->
 
-    } else if (strtolower($currentAccount->role->name) == "partner") {
+        <section class="section first-dashboard-area-cards" style="padding-top:2%;">
+            <div class="container width-98">
+                <div class="caliweb-two-grid special-caliweb-spacing" style="grid-template-columns: .6fr 1.5fr; grid-row-gap: 0px;">
 
-?>
+                    <div class="caliweb-card dashboard-card">
+                        <div class="card-body">                
+                            <div class="image-fluid thumb-web-img">
+                                <img src="https://image.thum.io/get/https://caliwebdesignservices.com" alt="Website Preview" style="width:100%; height:100%;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="caliweb-card dashboard-card">
+                        <div class="card-body">                
+                            
+                        </div>
+                    </div>
 
-        <!-- HTML Content will be injected here for partners view. -->
+                </div>
+            </div>
+        </section>
+
 
 <?php
 

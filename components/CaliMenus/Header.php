@@ -224,6 +224,10 @@
                 echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>';
                 renderAdminNavLinks('Dashboard', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
+            case "Web Design Services Management":
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Software Development Cloud</p>';
+                renderAdminNavLinks('Web Design', $moduleresult, $departmentresult, $currentAccount->role->name);
+                break;
             default:
                 renderAdminNavLinks('Dashboard', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
