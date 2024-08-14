@@ -13,7 +13,7 @@
 
     $storedAccountNumber = $currentAccount->accountNumber;
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
     if ($accountnumber == $storedAccountNumber) {
 

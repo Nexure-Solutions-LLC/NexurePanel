@@ -191,7 +191,7 @@
     } elseif ($currentAccount->fromUserRole($currentAccount->role) == "Administrator") {
 
         switch ($pagetitle) {
-            case "Administration Dashboard":
+            case "Home":
                 echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Dashboard</p>';
                 renderAdminNavLinks('Home', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;

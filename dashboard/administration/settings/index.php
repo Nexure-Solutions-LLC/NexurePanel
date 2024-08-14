@@ -6,7 +6,7 @@
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
     include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/settingsTables/index.php');
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 ?>
 
     <section class="section first-dashboard-area-cards">

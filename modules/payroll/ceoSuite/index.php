@@ -7,7 +7,7 @@
 
     if ($currentAccount->accessLevel->name == "Executive") {
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 ?>
 
     <section class="section first-dashboard-area-cards">

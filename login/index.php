@@ -48,7 +48,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
-    echo '<title>'.$orgshortname.'- Unified Portal</title>';
+    echo '<title>'.$orgshortname.' | Unified Portal</title>';
 
 ?>
 

@@ -20,7 +20,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
     $sql = "SELECT * FROM caliweb_cases";
     $result = mysqli_query($con, $sql);

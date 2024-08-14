@@ -103,7 +103,9 @@
     // Panel Configuration Definitions
 
     $panelName = $panelinfo['panelName'];
+    $panelVersionName = $panelinfo['panelVersion'];
     $orgShortName = $panelinfo['organizationShortName'];
+    $orglegalName = $panelinfo['organization'];
     $orglogolight = $panelinfo['organizationLogoLight'];
     $orglogodark = $panelinfo['organizationLogoDark'];
 
@@ -440,10 +442,10 @@
     if ($pagetitle == "Account Management") {
 
         $roleTitles = [
-            'customer' => 'Account Management - Customer',
-            'authorized user' => 'Account Management - Authorized User',
-            'administrator' => 'Account Management - Administrator',
-            'partner' => 'Account Management - Partners'
+            'customer' => 'Account Management | Customer',
+            'authorized user' => 'Account Management | Authorized User',
+            'administrator' => 'Account Management | Administrator',
+            'partner' => 'Account Management | Partners'
         ];
 
         $pagetitle = isset($roleTitles[strtolower($currentAccount->role->name)]) ? $roleTitles[strtolower($currentAccount->role->name)] : 'Account Management';

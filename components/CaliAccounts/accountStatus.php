@@ -7,6 +7,7 @@ enum accountStatus
     case Closed;
     case Suspended;
     case Terminated;
+    case Restricted;
 }
 
 ?>

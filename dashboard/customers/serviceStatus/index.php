@@ -7,7 +7,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php'); 
     
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 ?>
 
     <section class="first-dashboard-area-cards">

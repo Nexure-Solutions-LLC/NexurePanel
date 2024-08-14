@@ -7,6 +7,7 @@ enum statusColor: string
     case Closed = "passive";
     case Suspended = "red";
     case Terminated = "red-dark";
+    case Restricted = "red-restricted";
 }
 
 ?>
