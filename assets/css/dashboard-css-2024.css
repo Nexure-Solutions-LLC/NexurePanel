@@ -1078,6 +1078,10 @@ textarea.swal2-input {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
 }
 
+.dashboard-admin-cards-withtoolbar {
+    padding-bottom:9px !important;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {
@@ -1130,9 +1134,13 @@ textarea.swal2-input {
         height: 55vh;
     }
 
+    .dashboard-admin-cards-withtoolbar {
+        padding-bottom: 25px !important;
+    }
+
 }
 
-@media (max-width: 1289px) {
+@media (min-width: 1021px) and (max-width: 1280px) {
     .caliweb-three-grid.customer-grid-quick-actions {
         -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
@@ -1146,10 +1154,40 @@ textarea.swal2-input {
 
     .section.first-dashboard-area-cards,
     .first-dashboard-area-cards {
-        margin-top: 10%;
+        margin-top: 0%;
     }
 
     .sidebar-card {
         height: 100vh;
+    }
+
+    .dashboard-admin-cards-withtoolbar {
+        padding-bottom: 25px !important;
+    }
+}
+
+@media (max-width: 1020px) {
+    .caliweb-three-grid.customer-grid-quick-actions {
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .container,
+    .container.caliweb-container,
+    .container.caliweb-navbar-container {
+        width: 95% !important;
+    }
+
+    .section.first-dashboard-area-cards,
+    .first-dashboard-area-cards {
+        margin-top: 15%;
+    }
+
+    .sidebar-card {
+        height: 100vh;
+    }
+
+    .dashboard-admin-cards-withtoolbar {
+        padding-bottom: 0px !important;
     }
 }
