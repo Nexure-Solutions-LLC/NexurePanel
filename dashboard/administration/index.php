@@ -11,7 +11,7 @@
     try {
 ?>
 
-        <section class="section first-dashboard-area-cards" style="padding-bottom:9px;">
+        <section class="section first-dashboard-area-cards dashboard-admin-cards-withtoolbar">
             <div class="container width-98" style="margin-bottom:1%;">
                 <div class="caliweb-three-grid special-caliweb-spacing">
 
@@ -437,7 +437,7 @@
 
             <section class="caliweb-pricing-bar">
                 <div class="container" style="width:100%; max-width:98%;">
-                    <div class="caliweb-two-grid" style="align-items:center;">
+                    <div class="caliweb-two-grid" style="align-items:center; -ms-grid-columns: 1fr 1fr; grid-template-columns: 1fr 1fr;">
                         <div class="pricing-content-new">
                             <p style="font-size:14px;">Licensed to: <?php echo $orglegalName; ?></p>
                         </div>
