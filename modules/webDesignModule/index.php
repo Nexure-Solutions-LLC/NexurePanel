@@ -56,7 +56,7 @@
 
     function displayPageTitle($pagetitle, $pagesubtitle) {
 
-        echo '<title>' . $pagetitle . ' - ' . $pagesubtitle . '</title>';
+        echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
     }
 

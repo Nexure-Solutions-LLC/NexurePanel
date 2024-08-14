@@ -6,7 +6,7 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
     // When form submitted, insert values into the database.
 

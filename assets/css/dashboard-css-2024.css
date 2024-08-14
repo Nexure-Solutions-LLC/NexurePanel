@@ -273,7 +273,6 @@ body {
 html[data-theme='dark'] body {
     overflow-x: hidden;
     background-color: #1f1f1f;
-    background-image: url("/assets/img/dashboardBackground/mainDarkBackground.webp") !important;
     color: #DBDBDB !important;
 }
 
@@ -655,7 +654,8 @@ html[data-theme='dark'] body {
     color: #585A1A;
 }
 
-.account-status-badge.red {
+.account-status-badge.red,
+.account-status-badge.red-restricted {
     border: 1px solid #FF9090;
     background-color: #FFE1E1;
     color: #AD3434;
@@ -1072,6 +1072,10 @@ textarea.swal2-input {
 
 .caliweb-button.secondary.red:hover {
     background-color: #ffbbbb;
+}
+
+.caliweb-pricing-bar {
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */

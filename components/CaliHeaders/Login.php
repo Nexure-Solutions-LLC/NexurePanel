@@ -110,6 +110,8 @@
 
     $panelname = $panelinfo['panelName'];
     $paneldomain = $panelinfo['panelDomain'];
+    $panelName = $panelinfo['panelName'];
+    $panelVersionName = $panelinfo['panelVersion'];
     $orgshortname = $panelinfo['organizationShortName'];
     $orglogolight = $panelinfo['organizationLogoLight'];
     $orglogodark = $panelinfo['organizationLogoDark'];

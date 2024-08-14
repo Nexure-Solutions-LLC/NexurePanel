@@ -20,7 +20,7 @@
             break;
     }
 
-    echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
 ?>
     <style>

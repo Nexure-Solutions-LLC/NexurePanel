@@ -105,7 +105,7 @@
 
     if (!function_exists('renderTable')) {
 
-        function renderTable($result, $headers, $rowCallback, $emptyMessage) {
+        function renderTable($result, $headers, $rowCallback, $emptyMessage, $emptyTableImage) {
 
             try {
 
@@ -123,8 +123,13 @@
 
                 } else {
 
-                    echo "<p class='font-14px'>{$emptyMessage}</p>";
+                    echo "
 
+                        <div style='margin-left:auto; margin-right:auto; text-align:center; padding-bottom:4%;'>
+                            <img src='/assets/img/graphicsVectorDrawings/$emptyTableImage.svg' style='width:40%; margin-top:2%; height:20vh;' alt='No Content'>
+                        <p style='margin-top:4%; font-size:14px;'>$emptyMessage</p></div>
+
+                    ";
                 }
 
             } catch (\Throwable $exception) {
@@ -154,7 +159,8 @@
 
             renderTableRow($rowData);
 
-        }, "No Tasks found.");
+        }, 
+        "No Tasks found.", "tasksTableNoContent");
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Cases Table") {
 
@@ -173,7 +179,7 @@
 
             renderTableRow($rowData);
 
-        }, "No Cases found.");
+        }, "No Cases found.", "casesTableNoContent");
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Tasks Table Employee Only") {
 
@@ -191,7 +197,7 @@
             ];
             renderTableRow($rowData);
 
-        }, "No Tasks found.");
+        }, "No Tasks found.", "tasksTableNoContent");
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Cases Table Employee Only") {
 
@@ -211,7 +217,7 @@
 
             renderTableRow($rowData);
 
-        }, "No Cases found.");
+        }, "No Cases found.", "casesTableNoContent");
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Leads Table") {
 
@@ -230,7 +236,7 @@
 
             renderTableRow($rowData);
 
-        }, "No Leads found.");
+        }, "No Leads found.", "leadsTableNoContent");
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Leads Table Employee Only") {
 
@@ -249,7 +255,7 @@
 
             renderTableRow($rowData);
 
-        }, "No Leads found.");
+        }, "No Leads found.", "leadsTableNoContent");
 
     }
 

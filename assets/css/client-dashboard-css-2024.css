@@ -188,6 +188,30 @@ html[data-theme='dark'] body {
     border: 1px solid #222;
 }
 
+.dark-mode .account-status-banner {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid #222;
+    color: #ff6161;
+    border-radius: 8px;
+    background-color: #0c0c0c;
+}
+
+.account-status-banner {
+    margin-left:20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:10px;
+    border: 1px solid #eee;
+    color:#ff6161;
+    border-radius: 8px;
+    background-color: #f1f1f1;
+}
+
 .loading-bar-inner {
     background-color: #9fe4f9 !important;
 }

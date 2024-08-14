@@ -18,7 +18,7 @@
         $customerStatus = $currentAccount->accountStatus;
         $accountnumber = $currentAccount->accountNumber;
 
-        echo '<title>'.$pagetitle.' - '.$pagesubtitle.'</title>';
+        echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
     
 ?>
 
@@ -40,6 +40,7 @@
                                     </h6>
                                 </div>
                                 <div class="card-body">
+
                                     <h6 class="no-padding customer-business-card-bar" style="font-size:14px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
                                         <?php
                                             if ($businessname !== null) {
@@ -53,6 +54,7 @@
                                             }
                                         ?>
                                     </h6>
+
                                     <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
                                         <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
                                             <?php echo $orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
@@ -61,25 +63,72 @@
                                             <a href="/dashboard/customers/viewAccount/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary">View Account</a>
                                         </div>
                                     </div>
+
+                                    <?php
+
+                                        if (strtolower($currentAccount->accountStatus->name) == "restricted") {
                                 
-                                    <div class="caliweb-three-grid" style="padding:20px;">
-                                        <div class="customer-balance">
-                                            <h5 style="font-weight:600; font-size:40px;" class="no-padding no-margin">$0.00</h5>
-                                            <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Owed Balance</p>
-                                        </div>
-                                        <div class="customer-duedate" style="padding-top:7%">
-                                            <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">July 12, 2024</h5>
-                                            <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
-                                        </div>
-                                        <div class="customer-duedate" style="padding-top:5.5%">
-                                            <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
-                                                <?php
-                                                    echo "<span class='account-status-badge ". $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value ."' style='margin-left:0;'>".$currentAccount->fromAccountStatus($customerStatus)."</span>";
-                                                ?>
-                                            </h5>
-                                            <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
-                                        </div>
-                                    </div>
+                                            echo '
+
+                                                <div class="account-status-banner" id="accountRestricted">
+
+                                                    <p style="font-size:14px;">We have restricted this account and reopended it to protect your services. If you have any questions please contact us.</p>
+
+                                                </div>
+
+                                                <div class="caliweb-three-grid" style="padding:20px;">
+                                                    <div class="customer-balance">
+                                                        <h5 style="font-weight:600; font-size:40px;" class="no-padding no-margin">——</h5>
+                                                        <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Owed Balance</p>
+                                                    </div>
+                                                    <div class="customer-duedate" style="padding-top:7%">
+                                                        <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">——</h5>
+                                                        <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
+                                                    </div>
+                                                    <div class="customer-duedate" style="padding-top:5.5%">
+                                                        <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
+                                                           
+                                                            <span class="account-status-badge '. $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value .'" style="margin-left:0;">'.$currentAccount->fromAccountStatus($customerStatus).'</span>
+                                                            
+                                                        </h5>
+                                                        <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
+                                                    </div>
+                                                </div>
+
+                                            ';
+
+                                        } else {
+
+                                    ?>
+
+                                            <div class="caliweb-three-grid" style="padding:20px;">
+                                                <div class="customer-balance">
+                                                    <h5 style="font-weight:600; font-size:40px;" class="no-padding no-margin">$0.00</h5>
+                                                    <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Owed Balance</p>
+                                                </div>
+                                                <div class="customer-duedate" style="padding-top:7%">
+                                                    <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">July 12, 2024</h5>
+                                                    <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
+                                                </div>
+                                                <div class="customer-duedate" style="padding-top:5.5%">
+                                                    <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
+                                                        <?php
+
+                                                            echo "<span class='account-status-badge ". $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value ."' style='margin-left:0;'>".$currentAccount->fromAccountStatus($customerStatus)."</span>";
+                                                        
+                                                        ?>
+                                                    </h5>
+                                                    <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
+                                                </div>
+                                            </div>
+
+                                    
+                                    <?php
+
+                                        }
+
+                                    ?>
+
                                 </div>
                             </div>
                         </div>

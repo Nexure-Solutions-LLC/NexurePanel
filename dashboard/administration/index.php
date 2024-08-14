@@ -1,18 +1,18 @@
 <?php
     session_start();
     
-    $pagetitle = "Administration Dashboard";
+    $pagetitle = "Home";
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
-    echo '<title>'.$pagetitle.'</title>';
+    echo '<title>'.$pagetitle.' | '.$orgShortName.'</title>';
 
     try {
 ?>
 
-        <section class="section first-dashboard-area-cards" style="padding-top:2%;">
-            <div class="container width-98">
+        <section class="section first-dashboard-area-cards" style="padding-bottom:9px;">
+            <div class="container width-98" style="margin-bottom:1%;">
                 <div class="caliweb-three-grid special-caliweb-spacing">
 
                     <div class="caliweb-card dashboard-card">
@@ -434,6 +434,20 @@
                     
                 </div>
             </div>
+
+            <section class="caliweb-pricing-bar">
+                <div class="container" style="width:100%; max-width:98%;">
+                    <div class="caliweb-two-grid" style="align-items:center;">
+                        <div class="pricing-content-new">
+                            <p style="font-size:14px;">Licensed to: <?php echo $orglegalName; ?></p>
+                        </div>
+                        <div class="pricing-button-content-new">
+                            <p style="font-size:14px; float:right;">Version: <?php echo $panelVersionName; ?></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </section>
 
         <script>

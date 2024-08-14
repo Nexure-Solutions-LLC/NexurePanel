@@ -221,7 +221,7 @@ $LANG_APPROVAL_DENIED_PAGE_BODY = "Because of the information you have specified
 
 // Panel About Information
 
-$PANEL_ABOUT_TITLE_PRODUCT_NAME = "Cali Web Design Panel 20.0.1 Web Version";
+$PANEL_ABOUT_TITLE_PRODUCT_NAME = "Cali Web Design Panel ".$panelVersionName." Web Version";
 $PANEL_ABOUT_INFO = "This software was created by Cali Web Design Services LLC. This software allows the ability to run your business from one place. The software is equipt with OAuth, CRM, Payroll, Time Keeping, Merchant Processing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can remove and add features or develop your own features as needed for your type of business.";
 $PANEL_ABOUT_LICENSE_DISCLAIMER = "THE BASE CODE OF THIS SOFTWARE IS OPEN SOURCE AND FREE TO USE UNDER THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL). THE AUTHOR OF DERIVATIVE WORKS OF THIS SOFTWRE MUST NOTIFY CALI WEB DESIGN OF CHANGES. CERTAIN MODULES AND PAID VERSIONS OF THIS SOFTWARE WE DEVELOP ARE NOT OPEN SOURCE.";
 
