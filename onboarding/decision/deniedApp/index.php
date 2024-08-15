@@ -12,7 +12,7 @@
 
     // Get database credentials from environment variables
 
-    $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
+    $variableDefinitionX->licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
 
@@ -30,15 +30,15 @@
 
     mysqli_free_result($result);
 
-    $panelname = $panelinfo['panelName'];
-    $paneldomain = $panelinfo['panelDomain'];
-    $orgshortname = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
-    $licenseKeyfromDB = $panelinfo['panelKey'];
+    $variableDefinitionX->panelName = $panelinfo['panelName'];
+    $variableDefinitionX->paneldomain = $panelinfo['panelDomain'];
+    $variableDefinitionX->orgShortName = $panelinfo['organizationShortName'];
+    $variableDefinitionX->orglogolight = $panelinfo['organizationLogoLight'];
+    $variableDefinitionX->orglogodark = $panelinfo['organizationLogoDark'];
+    $variableDefinitionX->licenseKeyfromDB = $panelinfo['panelKey'];
 
 
-    if ($licenseKeyfromConfig == $licenseKeyfromDB) {
+    if ($variableDefinitionX->licenseKeyfromConfig == $variableDefinitionX->licenseKeyfromDB) {
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
@@ -49,8 +49,8 @@
         <div class="container caliweb-container">
             <div style="display:flex; align-items:center;">
                 <div>
-                    <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
-                    <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
+                    <img src="<?php echo $variableDefinitionX->orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
+                    <img src="<?php echo $variableDefinitionX->orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
                     <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;"><?php echo $LANG_APPROVAL_DENIED_PAGE_HEADER; ?></h6>
                     <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_APPROVAL_DENIED_PAGE_BODY; ?><a class="careers-link" href="/logout/">here</a>.</p>
                 </div>
@@ -64,8 +64,8 @@
                     <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
                 <div class="list-links-footer">
-                    <a href="'.$paneldomain.'/terms">Terms of Service</a>
-                    <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
+                    <a href="'.$variableDefinitionX->paneldomain.'/terms">Terms of Service</a>
+                    <a href="'.$variableDefinitionX->paneldomain.'/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>

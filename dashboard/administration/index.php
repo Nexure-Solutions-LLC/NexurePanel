@@ -6,7 +6,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
-    echo '<title>'.$pagetitle.' | '.$orgShortName.'</title>';
+    echo '<title>'.$pagetitle.' | '.$variableDefinitionX->orgShortName.'</title>';
 
     try {
 ?>
@@ -56,7 +56,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Report</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -85,7 +85,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Report</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Report</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -139,7 +139,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="" class="careers-link">View Report</a>
-                            <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                            <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="" class="careers-link">View Report</a>
-                            <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                            <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                         </div>
                     </div>
 
@@ -191,7 +191,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Tasks</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -218,7 +218,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Tasks</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -245,7 +245,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Tasks</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -276,7 +276,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Cases</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -305,7 +305,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Cases</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -334,7 +334,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Cases</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -366,7 +366,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Report</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -395,7 +395,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Report</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -424,7 +424,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="" class="careers-link">View Report</a>
-                                <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                             </div>
                         </div>
 
@@ -439,10 +439,10 @@
                 <div class="container" style="width:100%; max-width:98%;">
                     <div class="caliweb-two-grid" style="align-items:center; -ms-grid-columns: 1fr 1fr; grid-template-columns: 1fr 1fr;">
                         <div class="pricing-content-new">
-                            <p style="font-size:14px;">Licensed to: <?php echo $orglegalName; ?></p>
+                            <p style="font-size:14px;">Licensed to: <?php echo $variableDefinitionX->orglegalName; ?></p>
                         </div>
                         <div class="pricing-button-content-new">
-                            <p style="font-size:14px; float:right;">Version: <?php echo $panelVersionName; ?></p>
+                            <p style="font-size:14px; float:right;">Version: <?php echo $variableDefinitionX->panelVersionName; ?></p>
                         </div>
                     </div>
                 </div>

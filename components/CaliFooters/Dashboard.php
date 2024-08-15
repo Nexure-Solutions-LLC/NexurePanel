@@ -3,8 +3,8 @@
         <div class="preloader">
           <div style="margin-left:auto;margin-right:auto;max-width:80%;">
               <div class="logo" style="margin-top:-6%;">
-                  <img src="<?php echo $orglogolight; ?>" width="150px" loading="lazy" alt="Light Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
-                  <img src="<?php echo $orglogodark; ?>" width="150px" loading="lazy" alt="Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
+                  <img src="<?php echo $variableDefinitionX->orglogolight; ?>" width="150px" loading="lazy" alt="Light Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
+                  <img src="<?php echo $variableDefinitionX->orglogodark; ?>" width="150px" loading="lazy" alt="Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
               </div>
               <div style="margin-top:6%;" class="loading-bar">
                   <div class="loading-bar-inner"></div>
@@ -15,5 +15,7 @@
     </body>
 </html>
 <?php
+
+    
 
 ?>

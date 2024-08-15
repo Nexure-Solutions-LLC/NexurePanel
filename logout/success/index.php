@@ -9,8 +9,8 @@
         <div class="container caliweb-container">
             <div style="display:flex; align-items:center;">
                 <div>
-                    <img src="<?php echo $orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
-                    <img src="<?php echo $orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
+                    <img src="<?php echo $variableDefinitionX->orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
+                    <img src="<?php echo $variableDefinitionX->orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
                     <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">We hope you have a good <span id="lblGreetings"></span>.</h6>
                     <p class="caliweb-login-sublink license-text-dark width-100"><?php echo $LANG_LOGOUT_BASE_TEXT; ?> <?php echo $LANG_LOGOUT_SECONDARY_TEXT; ?> <span id="countdown"></span>. <?php echo $LANG_LOGOUT_REDIRECT_FALLBACK_TEXT; ?> <a href="/login" class="careers-link">click here</a>.</p>
                 </div>
@@ -24,8 +24,8 @@
                     <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
                 <div class="list-links-footer">
-                    <a href="'.$paneldomain.'/terms">Terms of Service</a>
-                    <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
+                    <a href="'.$variableDefinitionX->paneldomain.'/terms">Terms of Service</a>
+                    <a href="'.$variableDefinitionX->paneldomain.'/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>

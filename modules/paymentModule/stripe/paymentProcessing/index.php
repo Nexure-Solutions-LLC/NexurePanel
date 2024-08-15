@@ -107,7 +107,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
-                                        <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                        <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card">
@@ -119,7 +119,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
-                                        <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                        <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card">
@@ -131,7 +131,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
-                                        <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                        <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card">
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
-                                        <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                        <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card">
@@ -155,7 +155,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Cases</a>
-                                        <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                        <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card">
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="" class="careers-link">View Report</a>
-                                        <p class="no-padding"><?php echo $datedataOutput; ?> UTC</p>
+                                        <p class="no-padding"><?php echo $variableDefinitionX->datedataOutput; ?> UTC</p>
                                     </div>
                                 </div>
                             </div>

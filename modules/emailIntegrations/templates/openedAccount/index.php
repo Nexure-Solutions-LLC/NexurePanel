@@ -65,17 +65,17 @@
             <body>
                 <div class="email-container">
                     <div class="email-header">
-                        <img src="'.$orglogolight.'" alt="'.$orgShortName.' Logo">
+                        <img src="'.$variableDefinitionX->orglogolight.'" alt="'.$variableDefinitionX->orgShortName.' Logo">
                     </div>
                     <div class="email-body">
                         <p>Hi,</p>
-                        <p>Congradulations your account was opened! We thank you for choosing '.$orgShortName.' we hope you build amazing things with our platform. Now that your account is opened you can see it in your '.$orgShortName.' portal.</p>
-                        <p>— The '.$orgShortName.' team</p>
+                        <p>Congradulations your account was opened! We thank you for choosing '.$variableDefinitionX->orgShortName.' we hope you build amazing things with our platform. Now that your account is opened you can see it in your '.$variableDefinitionX->orgShortName.' portal.</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
                     </div>
                     <div class="email-footer">
-                        <p>This email relates to your '.$orgShortName.' account.<br>
+                        <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>
                         Need to refer to this message? Use this ID: <strong>'.$emailID.'</strong></p>
-                        <p>'.$orgShortName.', P.O. Box 415 Nottingham, PA 19363 US</p>
+                        <p>'.$variableDefinitionX->orgShortName.', P.O. Box 415 Nottingham, PA 19363 US</p>
                     </div>
                 </div>
             </body>

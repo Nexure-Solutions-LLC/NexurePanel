@@ -48,7 +48,7 @@
         The Page Title specified what page the user is on in 
         the browser tab and should be included for SEO
     -->
-        <title><?php echo $orgshortname; ?> - Unified Portal</title>
+        <title><?php echo $variableDefinitionX->orgShortName; ?> - Unified Portal</title>
     <!-- Unique Website Title Tag End -->
 
         <section class="login-container">
@@ -56,8 +56,8 @@
                 <div class="container caliweb-container">
                     <div class="caliweb-login-box-header">
                         <h3 class="caliweb-login-heading">
-                            <a href="<?php echo $paneldomain; ?>">
-                                <img src="<?php echo $orglogosquare; ?>" width="72px" height="70px" loading="lazy" alt="<?php echo $panelname; ?> Logo" class="login-box-logo-header">
+                            <a href="<?php echo $variableDefinitionX->paneldomain; ?>">
+                                <img src="<?php echo $variableDefinitionX->orglogosquare; ?>" width="72px" height="70px" loading="lazy" alt="<?php echo $variableDefinitionX->panelName; ?> Logo" class="login-box-logo-header">
                             </a>
                         </h3>
                     </div>
@@ -83,8 +83,8 @@
                     </div>
                     <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
                     <div class="list-links-footer">
-                        <a href="<?php echo $paneldomain; ?>/terms">Terms of Service</a>
-                        <a href="<?php echo $paneldomain; ?>/privacy">Privacy Policy</a>
+                        <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
+                        <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>
                     </div>
                 </div>
             </div>

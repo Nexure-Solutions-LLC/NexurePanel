@@ -1,5 +1,5 @@
 <script>
-    var stripe = Stripe('<?php echo $apikeypublic; ?>');
+    var stripe = Stripe('<?php echo $variableDefinitionX->apiKeypublic; ?>');
 
     var elements = stripe.elements();
 

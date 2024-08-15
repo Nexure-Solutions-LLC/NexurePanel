@@ -65,17 +65,17 @@
             <body>
                 <div class="email-container">
                     <div class="email-header">
-                        <img src="'.$orglogolight.'" alt="'.$orgShortName.' Logo">
+                        <img src="'.$variableDefinitionX->orglogolight.'" alt="'.$variableDefinitionX->orgShortName.' Logo">
                     </div>
                     <div class="email-body">
                         <p>Hi,</p>
-                        <p>We recently recived a request for a '.$orgShortName.' account. Unfortuantly we could not open this account. More information about this denial will be mailed to the address that you supplied to us. You can reapply in 30 days if you belive this decision was made in error.</p>
-                        <p>— The '.$orgShortName.' team</p>
+                        <p>We recently recived a request for a '.$variableDefinitionX->orgShortName.' account. Unfortuantly we could not open this account. More information about this denial will be mailed to the address that you supplied to us. You can reapply in 30 days if you belive this decision was made in error.</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
                     </div>
                     <div class="email-footer">
-                        <p>This email relates to your '.$orgShortName.' account.<br>
+                        <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>
                         Need to refer to this message? Use this ID: <strong>'.$emailID.'</strong></p>
-                        <p>'.$orgShortName.', P.O. Box 415 Nottingham, PA 19363 US</p>
+                        <p>'.$variableDefinitionX->orgShortName.', P.O. Box 415 Nottingham, PA 19363 US</p>
                     </div>
                 </div>
             </body>

@@ -18,20 +18,20 @@
 
     mysqli_free_result($result);
 
-    $apikeysecret = $paymentgateway['secretKey'];
-    $apikeypublic = $paymentgateway['publicKey'];
+    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
+    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
     $paymentgatewaystatus = $paymentgateway['status'];
     $paymentProcessorName = $paymentgateway['processorName'];
 
     // Checks type of payment processor.
 
-    if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
         if ($paymentProcessorName == "Stripe") {
 
             if (($_SESSION['pagetitle']) == "Onboarding Billing") {
 
-                \Stripe\Stripe::setApiKey($apikeysecret);
+                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
             
                 $token = json_decode(file_get_contents('php://input'), true)['token'];
         
@@ -65,7 +65,7 @@
 
             } else if (($_SESSION['pagetitle']) == "Onboarding Complete") {
 
-                \Stripe\Stripe::setApiKey($apikeysecret);
+                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
 
                 try {
 
@@ -209,7 +209,7 @@
 
                 $customerstripeID = $customerprofileresult['stripeID'];
 
-                \Stripe\Stripe::setApiKey($apikeysecret);
+                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
 
                 function formatAmountForStripe(float|int $amount) {
 

@@ -5,6 +5,7 @@
     require($_SERVER["DOCUMENT_ROOT"].'/lang/en_US.php');
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
 
     use Detection\MobileDetect;
 
@@ -66,9 +67,15 @@
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
-    // Get database credentials from environment variables
+    // Initalize the variable class and function from Cali Utilities 
 
-    $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
+    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+    $variableDefinitionX->variablesHeader($con);
+
+    $passableUserId = $variableDefinitionX->userId;
+    $passableApiKey = $variableDefinitionX->apiKey;
+
+    // Get database credentials from environment variables
 
     if (mysqli_connect_errno()) {
 

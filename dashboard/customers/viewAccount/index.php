@@ -41,7 +41,7 @@
                                     <div class="display-flex align-top">
                                         <div>
                                             <p style="font-size:14px; font-weight:600;">
-                                                <?php echo $orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
+                                                <?php echo $variableDefinitionX->orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
                                             </p>
                                             <p style="font-size:12px; margin-top:5px;">
                                                 <?php
