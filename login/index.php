@@ -48,7 +48,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
-    echo '<title>'.$orgshortname.' | Unified Portal</title>';
+    echo '<title>'.$variableDefinitionX->orgShortName.' | Unified Portal</title>';
 
 ?>
 
@@ -57,8 +57,8 @@
             <div class="container caliweb-container">
                 <div class="caliweb-login-box-header">
                     <h3 class="caliweb-login-heading">
-                        <a href="<?php echo $paneldomain; ?>">
-                            <img src="<?php echo $orglogosquare; ?>" width="72px" height="70px" loading="lazy" alt="<?php echo $panelname; ?> Logo" class="login-box-logo-header">
+                        <a href="<?php echo $variableDefinitionX->paneldomain; ?>">
+                            <img src="<?php echo $variableDefinitionX->orglogosquare; ?>" width="72px" height="70px" loading="lazy" alt="<?php echo $variableDefinitionX->panelName; ?> Logo" class="login-box-logo-header">
                         </a>
                     </h3>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="caliweb-login-box-body">
                         <form action="" method="POST" id="caliweb-form-plugin" class="caliweb-ix-form-login">
                             <div class="form-control">
-                                <label for="emailaddress" class="text-gray-label"><?php echo $orgshortname; ?> ID:</label>
+                                <label for="emailaddress" class="text-gray-label"><?php echo $variableDefinitionX->orgShortName; ?> ID:</label>
                                 <input type="email" class="form-input" name="emailaddress" id="emailaddress" placeholder="" required="" />
                             </div>
                             <div class="form-control">
@@ -124,8 +124,8 @@
                     <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
                 <div class="list-links-footer">
-                    <a href="<?php echo $paneldomain; ?>/terms">Terms of Service</a>
-                    <a href="<?php echo $paneldomain; ?>/privacy">Privacy Policy</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>

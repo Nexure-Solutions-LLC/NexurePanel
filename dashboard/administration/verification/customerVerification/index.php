@@ -70,7 +70,7 @@
         }
     }
 
-    echo '<title>'.$orgshortname.' - Security Quiz</title>';
+    echo '<title>'.$variableDefinitionX->orgShortName.' - Security Quiz</title>';
     echo '<style></style>';
 
     echo '<section class="section" style="padding-top:5%; padding-left:0%; padding-bottom:8%;">
@@ -168,8 +168,8 @@
                         <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                     </div>
                     <div class="list-links-footer">
-                        <a href="'.$paneldomain.'/terms">Terms of Service</a>
-                        <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
+                        <a href="'.$variableDefinitionX->paneldomain.'/terms">Terms of Service</a>
+                        <a href="'.$variableDefinitionX->paneldomain.'/privacy">Privacy Policy</a>
                     </div>
                 </div>
             </div>

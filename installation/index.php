@@ -112,13 +112,13 @@
 
     mysqli_free_result($result);
 
-    $panelname = $panelinfo['panelName'];
-    $paneldomain = $panelinfo['panelDomain'];
-    $orgshortname = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
-    $orglogosquare = $panelinfo['organizationLogoSquare'];
-    $licenseKeyfromDB = $panelinfo['panelKey'];
+    $variableDefinitionX->panelName = $panelinfo['panelName'];
+    $variableDefinitionX->paneldomain = $panelinfo['panelDomain'];
+    $variableDefinitionX->orgShortName = $panelinfo['organizationShortName'];
+    $variableDefinitionX->orglogolight = $panelinfo['organizationLogoLight'];
+    $variableDefinitionX->orglogodark = $panelinfo['organizationLogoDark'];
+    $variableDefinitionX->orglogosquare = $panelinfo['organizationLogoSquare'];
+    $variableDefinitionX->licenseKeyfromDB = $panelinfo['panelKey'];
 
 ?>
 
@@ -150,8 +150,8 @@
             <div class="container caliweb-container">
                 <div class="caliweb-login-box-header">
                     <h3 class="caliweb-login-heading">
-                        <a href="<?php echo $paneldomain; ?>">
-                            <img src="<?php echo $orglogosquare; ?>" width="72px" height="70px" loading="lazy" alt="<?php echo $panelname; ?> Logo" class="login-box-logo-header">
+                        <a href="<?php echo $variableDefinitionX->paneldomain; ?>">
+                            <img src="<?php echo $variableDefinitionX->orglogosquare; ?>" width="72px" height="70px" loading="lazy" alt="<?php echo $variableDefinitionX->panelName; ?> Logo" class="login-box-logo-header">
                         </a>
                     </h3>
                 </div>
@@ -172,8 +172,8 @@
                     <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
                 <div class="list-links-footer">
-                    <a href="<?php echo $paneldomain; ?>/terms">Terms of Service</a>
-                    <a href="<?php echo $paneldomain; ?>/privacy">Privacy Policy</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>

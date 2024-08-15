@@ -66,6 +66,7 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
 
     use Dotenv\Dotenv;
 
@@ -74,9 +75,6 @@
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
-    // Get database credentials from environment variables
-
-    $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -99,26 +97,15 @@
         'profiles_sample_rate' => 1.0,
     ]);
 
-    // Perform query
+    // Initalize the variable class and function from Cali Utilities 
 
-    $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
-    $panelinfo = mysqli_fetch_array($result);
+    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+    $variableDefinitionX->variablesHeader($con);
 
-    // Free result set
+    $passableUserId = $variableDefinitionX->userId;
+    $passableApiKey = $variableDefinitionX->apiKey;
 
-    mysqli_free_result($result);
-
-    $panelname = $panelinfo['panelName'];
-    $paneldomain = $panelinfo['panelDomain'];
-    $panelName = $panelinfo['panelName'];
-    $panelVersionName = $panelinfo['panelVersion'];
-    $orgshortname = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
-    $orglogosquare = $panelinfo['organizationLogoSquare'];
-    $licenseKeyfromDB = $panelinfo['panelKey'];
-
-    if ($licenseKeyfromConfig == $licenseKeyfromDB) {
+    if ($variableDefinitionX->licenseKeyfromConfig == $variableDefinitionX->licenseKeyfromDB) {
 
 ?>
         <!DOCTYPE html>

@@ -2,7 +2,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
-    echo '<title>'.$orgshortname.' - Mobile Experience</title>';
+    echo '<title>'.$variableDefinitionX->orgShortName.' - Mobile Experience</title>';
 
     echo '<section class="section" style="padding-top:10%; padding-left:15%;">
             <div class="container caliweb-container">
@@ -29,8 +29,8 @@
                         <p class="caliweb-login-footer-text">&copy; 2024 - Cali Web Design Services LLC - All rights reserved. It is illegal to copy this website.</p>
                     </div>
                     <div class="list-links-footer">
-                        <a href="'.$paneldomain.'/terms">Terms of Service</a>
-                        <a href="'.$paneldomain.'/privacy">Privacy Policy</a>
+                        <a href="'.$variableDefinitionX->paneldomain.'/terms">Terms of Service</a>
+                        <a href="'.$variableDefinitionX->paneldomain.'/privacy">Privacy Policy</a>
                     </div>
                 </div>
             </div>

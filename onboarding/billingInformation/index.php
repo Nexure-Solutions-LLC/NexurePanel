@@ -44,8 +44,8 @@
 
     mysqli_free_result($result);
 
-    $apikeysecret = $paymentgateway['secretKey'];
-    $apikeypublic = $paymentgateway['publicKey'];
+    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
+    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
     $paymentgatewaystatus = $paymentgateway['status'];
     $paymentProcessorName = $paymentgateway['processorName'];
 
@@ -53,11 +53,11 @@
 
     // Checks type of payment processor.
 
-    if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
         if ($paymentProcessorName == "Stripe") {
 
-            \Stripe\Stripe::setApiKey($apikeysecret);
+            \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
                 
             $customer = \Stripe\Customer::retrieve($stripeID);
             $customerData = $customer;
@@ -74,7 +74,7 @@
             <section class="login-container">
                 <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
                     <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
-                        <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Onboarding</span></h3>
+                        <h3 class="caliweb-login-heading"><?php echo $variableDefinitionX->orgShortName; ?> <span style="font-weight:700">Onboarding</span></h3>
                         <p style="font-size:12px; margin-top:0%;"><?php echo $LANG_ONBOARD_BILLINGTITLE; ?></p>
                     </div>
                     <div class="caliweb-login-box-body">
@@ -111,8 +111,8 @@
                         </div>
                         <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
                         <div class="list-links-footer">
-                            <a href="<?php echo $paneldomain; ?>/terms">Terms of Service</a>
-                            <a href="<?php echo $paneldomain; ?>/privacy">Privacy Policy</a>
+                            <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
+                            <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>
                         </div>
                     </div>
                 </div>

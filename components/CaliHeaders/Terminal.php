@@ -7,14 +7,27 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
-    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+    $dotenv->load();
+
+    // Initalize Sentry
+
+    \Sentry\init([
+        'dsn' => $_ENV['SENTRY_DSN'],
+        'traces_sample_rate' => 1.0,
+        'profiles_sample_rate' => 1.0,
+    ]);
+
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
 
     use GuzzleHttp\Client;
     use IPLib\Factory;
     use Detection\MobileDetect;
-
-    session_start();
 
     // Mobile Detection
 
@@ -68,14 +81,6 @@
 
     }
 
-    // Initialize DotEnv for PHP
-
-    use Dotenv\Dotenv;
-
-    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
-    $dotenv->load();
-    $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
-
     if (mysqli_connect_errno()) {
 
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -83,39 +88,22 @@
 
     }
 
-    // Initalize Sentry
-
-    \Sentry\init([
-        'dsn' => $_ENV['SENTRY_DSN'],
-        'traces_sample_rate' => 1.0,
-        'profiles_sample_rate' => 1.0,
-    ]);
+    // Initalize the signed in users information from Cali Accounts
 
     $caliemail = $_SESSION['caliid'];
 
     $currentAccount = new \CaliAccounts\Account($con);
     $success = $currentAccount->fetchByEmail($caliemail);
 
-    // MySQL Queries
+    
+    // Initalize the variable class and function from Cali Utilities
 
-    $panelresult = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = 1");
-    $panelinfo = mysqli_fetch_array($panelresult);
-    mysqli_free_result($panelresult);
+    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+    $variableDefinitionX->variablesHeader($con);
 
-    // Panel Configuration Definitions
+    $passableUserId = $variableDefinitionX->userId;
+    $passableApiKey = $variableDefinitionX->apiKey;
 
-    $panelName = $panelinfo['panelName'];
-    $orgShortName = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
-    $orglogosquare = $panelinfo['organizationLogoSquare'];
-
-    // Generic Variable Definitions
-
-    $dataTimestamp = date("M d, Y \a\\t h:i A");
-    $datedataOutput = "As of $dataTimestamp";
-    $userId = $_ENV['IPCHECKAPIUSER'];
-    $apiKey = $_ENV['IPCHECKAPIKEY'];
 
     // Language Definition
 
@@ -223,7 +211,7 @@
     $blockedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_blocklist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     $allowedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_allowlist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     
-    function isIpBlacklistedOrProxyVpn($ip, $userId, $apiKey) {
+    function isIpBlacklistedOrProxyVpn($ip, $passableUserId, $passableApiKey) {
 
         $url = "https://neutrinoapi.net/ip-probe";
         $ch = curl_init();
@@ -232,7 +220,7 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(['ip' => $ip]));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $userId", "API-Key: $apiKey"]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $passableUserId", "API-Key: $passableApiKey"]);
 
         $response = curl_exec($ch);
         curl_close($ch);
@@ -303,7 +291,7 @@
 
     }
 
-    function isIPSpamListed($ip, $userId, $apiKey) {
+    function isIPSpamListed($ip, $passableUserId, $passableApiKey) {
 
         $url = "https://neutrinoapi.net/host-reputation";
         $ch = curl_init();
@@ -317,7 +305,7 @@
             'zones' => ''
         ]));
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $userId", "API-Key: $apiKey"]);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $passableUserId", "API-Key: $passableApiKey"]);
         $response = curl_exec($ch);
         curl_close($ch);
         $data = json_decode($response, true);
@@ -340,13 +328,13 @@
 
     if (!isIpAllowed($clientIp, $allowedIpList)) {
 
-        if (isIpBlacklistedOrProxyVpn($clientIp, $userId, $apiKey)) {
+        if (isIpBlacklistedOrProxyVpn($clientIp, $passableUserId, $passableApiKey)) {
 
             banIp($clientIp);
 
         }
 
-        if (isIPSpamListed($clientIp, $userId, $apiKey)) {
+        if (isIPSpamListed($clientIp, $passableUserId, $passableApiKey)) {
 
             banIp($clientIp);
 
@@ -443,10 +431,10 @@
     if ($pagetitle == "Account Management") {
 
         $roleTitles = [
-            'customer' => 'Account Management - Customer',
-            'authorized user' => 'Account Management - Authorized User',
-            'administrator' => 'Account Management - Administrator',
-            'partner' => 'Account Management - Partners'
+            'customer' => 'Account Management | Customer',
+            'authorized user' => 'Account Management | Authorized User',
+            'administrator' => 'Account Management | Administrator',
+            'partner' => 'Account Management | Partners'
         ];
 
         $pagetitle = isset($roleTitles[strtolower($currentAccount->role->name)]) ? $roleTitles[strtolower($currentAccount->role->name)] : 'Account Management';

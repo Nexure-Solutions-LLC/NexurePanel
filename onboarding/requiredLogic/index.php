@@ -22,14 +22,14 @@
 
             mysqli_free_result($result);
 
-            $apikeysecret = $paymentgateway['secretKey'];
-            $apikeypublic = $paymentgateway['publicKey'];
+            $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
+            $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
             $paymentgatewaystatus = $paymentgateway['status'];
             $paymentProcessorName = $paymentgateway['processorName'];
 
             // Checks type of payment processor.
 
-            if ($apikeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+            if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
 
                 if ($paymentProcessorName == "Stripe") {
 

@@ -14,7 +14,7 @@
     <section class="login-container" style="animation: sideDrop 0.3s ease-out;">
         <div class="container caliweb-container bigscreens-are-strange" style="width:50%; margin-top:4%;">
             <div class="caliweb-login-box-header" style="text-align:left; margin-bottom:7%;">
-                <h3 class="caliweb-login-heading"><?php echo $orgshortname; ?> <span style="font-weight:700">Employee Onboarding</span></h3>
+                <h3 class="caliweb-login-heading"><?php echo $variableDefinitionX->orgShortName; ?> <span style="font-weight:700">Employee Onboarding</span></h3>
                 <p style="font-size:12px; margin-top:0%;">Please provide your home address we ask for this for tax purposes and identity verification.</p>
             </div>
             <div class="caliweb-login-box-body">
@@ -322,8 +322,8 @@
                 </div>
                 <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
                 <div class="list-links-footer">
-                    <a href="<?php echo $paneldomain; ?>/terms">Terms of Service</a>
-                    <a href="<?php echo $paneldomain; ?>/privacy">Privacy Policy</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@
         The Page Title specified what page the user is on in 
         the browser tab and should be included for SEO
     -->
-    <title><?php echo $orgshortname; ?> - Registration Disabled</title>
+    <title><?php echo $variableDefinitionX->orgShortName; ?> - Registration Disabled</title>
     <!-- Unique Website Title Tag End -->
 
     <section class="section" style="padding-top:5%; padding-left:5%;">
@@ -53,8 +53,8 @@
                 </div>
                 <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
                 <div class="list-links-footer">
-                    <a href="<?php echo $paneldomain; ?>/terms">Terms of Service</a>
-                    <a href="<?php echo $paneldomain; ?>/privacy">Privacy Policy</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
+                    <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>

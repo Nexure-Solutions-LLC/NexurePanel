@@ -65,17 +65,17 @@
             <body>
                 <div class="email-container">
                     <div class="email-header">
-                        <img src="'.$orglogolight.'" alt="'.$orgShortName.' Logo">
+                        <img src="'.$variableDefinitionX->orglogolight.'" alt="'.$variableDefinitionX->orgShortName.' Logo">
                     </div>
                     <div class="email-body">
                         <p>Hi,</p>
                         <p>We recently recived a request for your password to be reset, If this was not you please <a href="https://caliwebdesignservices.com/contact" class="careers-link">contact us</a> immediately. If this was you, please <a href="https://' . $_SERVER["HTTP_HOST"] . '/resetPassword/verificationCode?submittedCode=' . $emailVerificationCode . '" class="careers-link">click here</a>.</p>
-                        <p>— The '.$orgShortName.' team</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
                     </div>
                     <div class="email-footer">
-                        <p>This email relates to your '.$orgShortName.' account.<br>
+                        <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>
                         Need to refer to this message? Use this ID: <strong>'.$emailID.'</strong></p>
-                        <p>'.$orgShortName.', P.O. Box 415 Nottingham, PA 19363 US</p>
+                        <p>'.$variableDefinitionX->orgShortName.', P.O. Box 415 Nottingham, PA 19363 US</p>
                     </div>
                 </div>
             </body>

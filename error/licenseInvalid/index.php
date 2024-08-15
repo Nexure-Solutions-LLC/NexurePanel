@@ -12,7 +12,7 @@
 
     // Get database credentials from environment variables
 
-    $licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
+    $variableDefinitionX->licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
 
     if (mysqli_connect_errno()) {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -27,14 +27,14 @@
 
     mysqli_free_result($result);
 
-    $panelname = $panelinfo['panelName'];
-    $paneldomain = $panelinfo['panelDomain'];
-    $orgshortname = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
-    $licenseKeyfromDB = $panelinfo['panelKey'];
+    $variableDefinitionX->panelName = $panelinfo['panelName'];
+    $variableDefinitionX->paneldomain = $panelinfo['panelDomain'];
+    $variableDefinitionX->orgShortName = $panelinfo['organizationShortName'];
+    $variableDefinitionX->orglogolight = $panelinfo['organizationLogoLight'];
+    $variableDefinitionX->orglogodark = $panelinfo['organizationLogoDark'];
+    $variableDefinitionX->licenseKeyfromDB = $panelinfo['panelKey'];
 
-    if ($licenseKeyfromConfig != $licenseKeyfromDB) {
+    if ($variableDefinitionX->licenseKeyfromConfig != $variableDefinitionX->licenseKeyfromDB) {
 
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
@@ -74,7 +74,7 @@
                 The Page Title specified what page the user is on in 
                 the browser tab and should be included for SEO
             -->
-                <title><?php echo $orgshortname; ?> - License Error</title>
+                <title><?php echo $variableDefinitionX->orgShortName; ?> - License Error</title>
             <!-- Unique Website Title Tag End -->
 
             <section class="section" style="padding-top:5%; padding-left:5%;">

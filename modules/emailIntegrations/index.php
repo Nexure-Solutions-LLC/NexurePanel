@@ -21,10 +21,10 @@
     $panelinfo = mysqli_fetch_array($panelresult);
     mysqli_free_result($panelresult);
 
-    $panelName = $panelinfo['panelName'];
-    $orgShortName = $panelinfo['organizationShortName'];
-    $orglogolight = $panelinfo['organizationLogoLight'];
-    $orglogodark = $panelinfo['organizationLogoDark'];
+    $variableDefinitionX->panelName = $panelinfo['panelName'];
+    $variableDefinitionX->orgShortName = $panelinfo['organizationShortName'];
+    $variableDefinitionX->orglogolight = $panelinfo['organizationLogoLight'];
+    $variableDefinitionX->orglogodark = $panelinfo['organizationLogoDark'];
 
     function guidv4($data = null) {
 

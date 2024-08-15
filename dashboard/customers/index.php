@@ -36,7 +36,7 @@
                             <div class="caliweb-card dashboard-card" style="padding:0;">
                                 <div class="card-header no-padding no-margin customer-card-header" style="padding:20px;">
                                     <h6 class="no-padding" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
-                                        <?php echo $orgShortName.' '.$LANG_CUSTOMER_HOME_ACCOUNTS_TITLE; ?>
+                                        <?php echo $variableDefinitionX->orgShortName.' '.$LANG_CUSTOMER_HOME_ACCOUNTS_TITLE; ?>
                                     </h6>
                                 </div>
                                 <div class="card-body">
@@ -57,7 +57,7 @@
 
                                     <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
                                         <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
-                                            <?php echo $orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
+                                            <?php echo $variableDefinitionX->orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
                                         </h6>
                                         <div class="caliweb-button-section">   
                                             <a href="/dashboard/customers/viewAccount/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary">View Account</a>
@@ -198,7 +198,7 @@
                                                         <div>
                                                             <img class="customer-quick-actions-img" src="/assets/img/systemIcons/integrity.png" />
                                                             <p class="text-bold no-padding no-margin font-14px">'.$LANG_CODE_INTEGRITY_TILE.'</p>
-                                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">'.$orgShortName.' '.$LANG_CODE_INTEGRITY_SUBTEXT.'</p>
+                                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">'.$variableDefinitionX->orgShortName.' '.$LANG_CODE_INTEGRITY_SUBTEXT.'</p>
                                                         </div>
                                                     </a>
                                                 ';
