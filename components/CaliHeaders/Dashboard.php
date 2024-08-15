@@ -421,6 +421,15 @@
 
     $redirectUrl = $redirectMap[$pagetype][strtolower($currentAccount->role->name)] ?? null;
 
+    $clientPages = [
+        "Client",
+        "Customer",
+        "Account Management | Customer",
+        "Account Management | Partners",
+        "Account Management | Authorized User",
+        "Web Design Services Management | Client"
+    ];
+
     if ($redirectUrl) {
 
         header("Location: $redirectUrl");
@@ -494,14 +503,14 @@
         <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
         <?php include($_SERVER["DOCUMENT_ROOT"]."/dashboard/company/themes/index.php"); ?>
         <?php
-            if ($pagetitle == "Client" || $pagetitle == "Account Management - Customer" || $pagetitle == "Account Management - Partners" || $pagetitle == "Account Management - Authorized User") {
+            if (in_array($pagetitle, $clientPages) || $pagesubtitle == "Client" || $pagetype == "Client") {
 
                 echo '<link href="/assets/css/client-dashboard-css-2024.css" rel="stylesheet" type="text/css" />';
 
             } else {
 
                 echo '';
-                
+
             }
         ?>
         <script type="text/javascript">   
