@@ -503,7 +503,8 @@
         <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
         <?php include($_SERVER["DOCUMENT_ROOT"]."/dashboard/company/themes/index.php"); ?>
         <?php
-            if (in_array($pagetitle, $clientPages) || $pagesubtitle == "Client" || $pagetype == "Client") {
+        
+            if (in_array($pagetitle, $clientPages) || (isset($pagesubtitle) && $pagesubtitle == "Client") || $pagetype == "Client") {
 
                 echo '<link href="/assets/css/client-dashboard-css-2024.css" rel="stylesheet" type="text/css" />';
 
@@ -512,6 +513,7 @@
                 echo '';
 
             }
+
         ?>
         <script type="text/javascript">   
             window.antiFlicker = {
