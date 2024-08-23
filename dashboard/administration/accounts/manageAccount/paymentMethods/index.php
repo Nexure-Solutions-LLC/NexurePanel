@@ -57,14 +57,6 @@
     $businessname = $businessAccountInfo['businessName'] ?? 'Not Assigned';
     $businessindustry = $businessAccountInfo['businessIndustry'] ?? 'Not Assigned';
 
-    // Fetch payment processor info
-
-    $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-    $processorInfo = mysqli_fetch_array($processorResult);
-    mysqli_free_result($processorResult);
-
-    $paymentProcessorName = $processorInfo['processorName'] ?? '';
-
     // Fetch website info
 
     $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$customeremail'");
@@ -97,7 +89,7 @@
                                 <div class="card-body">
                                     <div class="dashboard-table">
                                         <?php
-                                            if ($paymentProcessorName == "Stripe") {
+                                            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
                                                 require($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
                                             }
                                         ?>

@@ -110,12 +110,12 @@
         $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
         $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
         $paymentgatewaystatus = $paymentgateway['status'];
-        $paymentProcessorName = $paymentgateway['processorName'];
+        $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
 
         // Checks type of payment processor.
-        if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+        if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
 
-            if ($paymentProcessorName == "Stripe") {
+            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
                 \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
 
@@ -427,7 +427,7 @@
                                                 <label for="businessname">Business Name</label>
                                                 <input type="text" name="businessname" id="businessname" class="form-input" placeholder="Little Internet Widgets Ltd." required="" />
                                             </div>
-                                            <div class="form-control">
+                                            <div class="form-control" style="padding-top:10px;">
                                                 <label for="einorssn">Business Tax ID</label>
                                                 <input type="text" name="einorssn" id="einorssn" class="form-input" placeholder="12-3456789" required="" />
                                             </div>

@@ -52,13 +52,13 @@
                                     $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
                                     $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
                                     $paymentgatewaystatus = $paymentgateway['status'];
-                                    $paymentProcessorName = $paymentgateway['processorName'];
+                                    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
 
                                     // Checks type of payment processor.
 
-                                    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+                                    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
 
-                                        if ($paymentProcessorName == "Stripe") {
+                                        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
                                             require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
                                         
