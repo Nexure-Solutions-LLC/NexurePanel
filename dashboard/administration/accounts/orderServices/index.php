@@ -1,9 +1,7 @@
 <?php
 
-    unset($_SESSION['pagetitle']);
     $pagetitle = "Services";
     $pagesubtitle = "Create Order";
-    $_SESSION['pagetitle'] = "Order Services as Staff";
     $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
@@ -15,6 +13,8 @@
         header("location: /dashboard/administration/accounts");
 
     } else {
+
+        include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
         $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
         $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
@@ -44,14 +44,6 @@
 
             }
 
-            // Get the menu option listing for payment methods.
-
-            $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-            $processorInfo = mysqli_fetch_array($processorResult);
-            mysqli_free_result($processorResult);
-
-            $variableDefinitionX->paymentProcessorName = $processorInfo['processorName'];
-
             if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
                 require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
@@ -76,12 +68,6 @@
                 $orderdate = date("Y-m-d H:i:s");
                 $accountnumber = $accountnumber;
 
-                $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-                $processorInfo = mysqli_fetch_array($processorResult);
-                mysqli_free_result($processorResult);
-
-                $variableDefinitionX->paymentProcessorName = $processorInfo['processorName'];
-
                 if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
                     require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
@@ -89,8 +75,6 @@
                 }
 
             } else {
-
-                include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
                 echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 

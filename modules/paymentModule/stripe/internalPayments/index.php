@@ -1,390 +1,228 @@
 <?php
 
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
+
+    require $_SERVER["DOCUMENT_ROOT"].'/configuration/index.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
     $caliemail = $_SESSION['caliid'];
-
-    $currentAccount = new \CaliAccounts\Account($con);
-    $success = $currentAccount->fetchByEmail($caliemail);
-
     $stripeID = $currentAccount->stripe_id;
 
-    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-    $paymentgateway = mysqli_fetch_array($result);
+    function handleError($message) {
 
-    // Free payment processor check result set
-
-    mysqli_free_result($result);
-
-    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-    $paymentgatewaystatus = $paymentgateway['status'];
-    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
-
-    // Checks type of payment processor.
-
-    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
-
-        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
-
-            if (($_SESSION['pagetitle']) == "Onboarding Billing") {
-
-                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
-            
-                $token = json_decode(file_get_contents('php://input'), true)['token'];
+        echo $message;
+        exit;
         
-                try {
-        
-                    $source = \Stripe\Customer::createSource(
-                        $stripeID,
-                        ['source' => $token]
-                    );
-        
-                    echo '<script>window.location.href = "/onboarding/completeOnboarding";</script>';
-        
-                } catch (\Stripe\Exception\ApiErrorException $e) {
-            
-                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-            
-                } catch (Exception $e) {
-            
-                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-            
-                } catch (\Throwable $exception) {
-            
-                    \Sentry\captureException($exception);
-                    
+    }
+
+    function redirect($url) {
+
+        echo "<script type='text/javascript'>window.location = '$url'</script>";
+        exit;
+
+    }
+
+    function formatAmountForStripe($amount) {
+
+        return intval($amount * 100); // Converts dollars to cents
+
+    }
+
+    function getModulePath($serviceName) {
+
+        global $con; // Ensure the database connection is accessible in this function
+
+        $serviceName = mysqli_real_escape_string($con, $serviceName);
+        $query = "SELECT modulePath FROM caliweb_modules WHERE matchingService = '$serviceName'";
+        $result = mysqli_query($con, $query);
+
+        if ($result && mysqli_num_rows($result) > 0) {
+
+            $row = mysqli_fetch_assoc($result);
+            return $row['modulePath'];
+
+        }
+
+        return ''; // Return an empty string if no matching module is found
+
+    }
+
+    if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
+
+        \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+
+        if ($pagetitle === "Onboarding Billing") {
+
+            $token = json_decode(file_get_contents('php://input'), true)['token'] ?? '';
+
+            try {
+
+                \Stripe\Customer::createSource($stripeID, ['source' => $token]);
+                redirect("/onboarding/completeOnboarding");
+
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                redirect("/error/genericSystemError");
+
+            } catch (Exception $e) {
+
+                redirect("/error/genericSystemError");
+
+            } catch (\Throwable $exception) {
+
+                \Sentry\captureException($exception);
+
+            }
+
+        } elseif ($pagetitle === "Onboarding Complete") {
+            try {
+
+                $customer = \Stripe\Customer::retrieve($stripeID);
+                $defaultSource = $customer->default_source;
+
+                if (!$defaultSource) {
+
+                    redirect("/onboarding/decision/deniedApp");
+
                 }
-            
-            } else if (($_SESSION['pagetitle']) == "Create Authorized User Payment Method") {
 
-                // If users other than the account holder wants to add their own payment
-                // method the logic for that is going to go here.
+                $paymentIntent = \Stripe\PaymentIntent::create([
+                    'amount' => 125,
+                    'currency' => 'usd',
+                    'customer' => $stripeID,
+                    'payment_method' => $defaultSource,
+                    'off_session' => true,
+                    'confirm' => true,
+                ]);
 
-            } else if (($_SESSION['pagetitle']) == "Onboarding Complete") {
+                $retrievedPaymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntent->id);
+                $riskScore = $retrievedPaymentIntent->charges->data[0]->outcome->risk_score ?? null;
 
-                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+                $actions = [
+                    ['min' => 0, 'max' => 15, 'status' => 'Active', 'redirect' => '/onboarding/decision/approvedApp'],
+                    ['min' => 16, 'max' => 25, 'status' => 'Under Review', 'redirect' => '/onboarding/decision/manualReview'],
+                    ['min' => 26, 'max' => 35, 'status' => 'Under Review', 'redirect' => '/onboarding/decision/callOnlineTeam'],
+                    ['min' => 36, 'max' => 45, 'status' => 'Under Review', 'redirect' => '/onboarding/decision/emailRiskTeam'],
+                    ['min' => 46, 'max' => 60, 'status' => 'Under Review', 'redirect' => '/onboarding/decision/presentBranch'],
+                    ['min' => 61, 'max' => 70, 'status' => 'Closed', 'redirect' => '/onboarding/decision/deniedApp'],
+                ];
 
-                try {
+                $action = array_filter($actions, fn($a) => $riskScore >= $a['min'] && $riskScore <= $a['max']);
+                $action = reset($action);
 
-                    // Run the charge to the card on file.
+                if ($action) {
 
-                    $customer = \Stripe\Customer::retrieve($stripeID);
-                    $defaultSource = $customer->default_source;
-
-                    if (!$defaultSource) {
-
-                        echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
-
-                    }
-
-                    $paymentIntent = \Stripe\PaymentIntent::create([
-                        'amount' => 125,
-                        'currency' => 'usd',
-                        'customer' => $stripeID,
-                        'payment_method' => $defaultSource,
-                        'off_session' => true,
-                        'confirm' => true,
+                    $userProfileUpdated = $currentAccount->multiChangeAttr([
+                        ["attName" => "accountStatus", "attValue" => $action["status"], "useStringSyntax" => true],
+                        ["attName" => "statusReason", "attValue" => $action["reason"] ?? '', "useStringSyntax" => true],
+                        ["attName" => "accountNotes", "attValue" => $action["notes"] ?? '', "useStringSyntax" => true],
                     ]);
 
-                    // Run the Risk Score on the last payment taken and review the score.  
+                    if ($userProfileUpdated) {
 
-                    $retrievedPaymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntent->id);
-
-                    if (isset($retrievedPaymentIntent->charges->data[0]->outcome->risk_score)) {
-
-                        $riskScore = $retrievedPaymentIntent->charges->data[0]->outcome->risk_score;
+                        redirect($action['redirect']);
 
                     } else {
 
-                        $riskScore = null;
-                        
-                        $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='The customer could not be scored on the risk scoring system. Make sure the system is not in test mode. If it is not then ask the customer to pay using another payment method.' WHERE email = '$caliemail'";
-                        $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
-                
-                        if ($userProfileUpdateResult) {
-
-                            echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                        exit;
+                        redirect("/error/genericSystemError");
 
                     }
-                    
-                    $actions = [
-                        ['min' => 0, 'max' => 15, 'status' => 'Active', 'reason' => '', 'notes' => '', 'redirect' => '/onboarding/decision/approvedApp'],
-                        ['min' => 16, 'max' => 25, 'status' => 'Under Review', 'reason' => 'The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.', 'notes' => 'The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.', 'redirect' => '/onboarding/decision/manualReview'],
-                        ['min' => 26, 'max' => 35, 'status' => 'Under Review', 'reason' => 'This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.', 'notes' => 'This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.', 'redirect' => '/onboarding/decision/callOnlineTeam'],
-                        ['min' => 36, 'max' => 45, 'status' => 'Under Review', 'reason' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'notes' => 'DO NOT ASSIST OVER PHONE. Have customer email the internal risk team. FOR INTERNAL RISK TEAM. The customer flagged high on Stripe. Check with Stripe to see further actions.', 'redirect' => '/onboarding/decision/emailRiskTeam'],
-                        ['min' => 46, 'max' => 60, 'status' => 'Under Review', 'reason' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'notes' => 'Customer needs to verify identity at a branch, do not assist over the phone or email. Close after 60 days if they dont present to a branch.', 'redirect' => '/onboarding/decision/presentBranch'],
-                        ['min' => 61, 'max' => 70, 'status' => 'Closed', 'reason' => 'The customer scored too high on the risk score and we cant serve this customer.', 'notes' => 'The customer scored too high on the risk score and we cant serve this customer.', 'redirect' => '/onboarding/decision/deniedApp'],
-                    ];
-                    
-                    $action = null;
 
-                    foreach ($actions as $a) {
+                } else {
 
-                        if ($riskScore >= $a['min'] && $riskScore <= $a['max']) {
+                    $updateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='Make sure the system is not in test mode.' WHERE email = '$caliemail'";
+                    $updateResult = mysqli_query($con, $updateQuery);
 
-                            $action = $a;
-                            break;
+                    if ($updateResult) {
 
-                        }
+                        redirect("/onboarding/decision/deniedApp");
+                    } else {
 
+                        redirect("/error/genericSystemError");
                     }
-            
-                    if ($action) {
 
-                        $userProfileUpdated = $currentAccount->multiChangeAttr(array(
-                            0 => array(
-                                "attName" => "accountStatus",
-                                "attValue" => $action["status"],
-                                "useStringSyntax" => true
-                            ),
-                            1 => array(
-                                "attName" => "statusReason",
-                                "attValue" => $action["reason"],
-                                "useStringSyntax" => true
-                            ),
-                            2 => array(
-                                "attName" => "accountNotes",
-                                "attValue" => $action["notes"],
-                                "useStringSyntax" => true
-                            )
-                        ));
+                }
 
-                        if ($userProfileUpdated) {
+            } catch (\Stripe\Exception\ApiErrorException $e) {
 
-                            echo '<script type="text/javascript">window.location = "' . $action['redirect'] . '"</script>';
+                redirect("/error/genericSystemError");
 
-                        } else {
+            } catch (Exception $e) {
 
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+                redirect("/error/genericSystemError");
 
-                        }
+            } catch (\Throwable $exception) {
+
+                \Sentry\captureException($exception);
+
+            }
+
+        } elseif ($pagetitle === "Services" || $pagetitle === "Create Order") {
+
+            $customerprofilequery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'");
+            $customerprofileresult = mysqli_fetch_array($customerprofilequery);
+            mysqli_free_result($customerprofilequery);
+
+            $customerstripeID = $customerprofileresult['stripeID'] ?? '';
+            $amountPrice = formatAmountForStripe($amountPrice);
+
+            try {
+
+                $customer = \Stripe\Customer::retrieve($customerstripeID);
+                $defaultSource = $customer->default_source;
+
+                \Stripe\PaymentIntent::create([
+                    'amount' => $amountPrice,
+                    'currency' => 'usd',
+                    'customer' => $customerstripeID,
+                    'payment_method' => $defaultSource,
+                    'off_session' => true,
+                    'confirm' => true,
+                ]);
+
+                $module = getModulePath($purchasableType);
+
+                if ($module) {
+
+                    $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','$module')";
+                    
+                    if (mysqli_query($con, $orderInsertRequest)) {
+
+                        $pagetitle = "Internal Payments";
+                        $pagesubtitle = "Order Success";
+                        $pagetype = "Administration";
+
+                        redirect("/modules/$module/deploy");
 
                     } else {
 
-                        $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='The customer could not be scored on the risk scoring system. Make sure the system is not in test mode. If it is not then ask the customer to pay using another payment method.' WHERE email = '$caliemail'";
-                        $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
-                
-                        if ($userProfileUpdateResult) {
-
-                            echo '<script type="text/javascript">window.location = "/onboarding/decision/deniedApp"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
+                        redirect("/error/genericSystemError");
 
                     }
-
-                } catch (\Stripe\Exception\ApiErrorException $e) {
-
-                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-    
-                } catch (Exception $e) {
-
-                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                } catch (\Throwable $exception) {
-            
-                    \Sentry\captureException($exception);
-                    
                 }
+            } catch (\Stripe\Exception\ApiErrorException $e) {
 
-            } else if (($_SESSION['pagetitle']) == "Order Services as Staff") {
+                redirect("/error/genericSystemError");
 
-                $customerprofilequery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'");
-                $customerprofileresult = mysqli_fetch_array($customerprofilequery);
-                mysqli_free_result($customerprofilequery);
+            } catch (Exception $e) {
 
-                $customerstripeID = $customerprofileresult['stripeID'];
+                redirect("/error/genericSystemError");
 
-                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+            } catch (\Throwable $exception) {
 
-                function formatAmountForStripe(float|int $amount) {
-
-                    return intval($amount * 100);
-
-                }
-
-                try {
-
-                    // Run the charge to the card on file for the ordered service.
-
-                    $customer = \Stripe\Customer::retrieve($customerstripeID);
-                    $defaultSource = $customer->default_source;
-
-                    $dollarAmount = $amountPrice;
-                    $stripeAmount = formatAmountForStripe($dollarAmount);
-
-                    $paymentIntent = \Stripe\PaymentIntent::create([
-                        'amount' => $stripeAmount,
-                        'currency' => 'usd',
-                        'customer' => $customerstripeID,
-                        'payment_method' => $defaultSource,
-                        'off_session' => true,
-                        'confirm' => true,
-                    ]);
-
-                    $purchasableTypeLower = strtolower($purchasableType);
-
-                    if ($purchasableTypeLower == "web development") {
-                       
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','webDesignModule')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/webDesignModule/deploy"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                    } else if ($purchasableTypeLower == "web hosting") {
-
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','webHostModule')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/webHostModule/deploy"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-                        
-                    } else if ($purchasableTypeLower == "cloud computing") {
-
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','cloudComputeModule')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/cloudComputeModule/deploy"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                    } else if ($purchasableTypeLower == "seo") {
-
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','seoModule')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/seoModule/deploy"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                    } else if ($purchasableTypeLower == "social media management") {
-
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','socialMediaModule')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/socialMediaModule/deploy"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                    } else if ($purchasableTypeLower == "graphic design") {
-
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','graphicDesignModule')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/graphicDesignModule/deploy"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                    } else if ($purchasableTypeLower == "merchant processing") {
-
-                        $lowerPaymentProcessorName = strtolower($variableDefinitionX->paymentProcessorName);
-
-                        $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','paymentModule/$lowerPaymentProcessorName/paymentProcessing')";
-                        $orderInsertResult = mysqli_query($con, $orderInsertRequest);
-
-                        if ($orderInsertResult) {
-
-                            echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($variableDefinitionX->paymentProcessorName).'/paymentProcessing/merchantSignupFlow"</script>';
-
-                        } else {
-
-                            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                        }
-
-                    }
-
-                } catch (\Stripe\Exception\ApiErrorException $e) {
-
-                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-    
-                } catch (Exception $e) {
-
-                    echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
-                } catch (\Throwable $exception) {
-            
-                    \Sentry\captureException($exception);
-                    
-                }         
-
-            } else if (($_SESSION['pagetitle']) == "Client" && ($_SESSION['pagesubtitle']) == "Billing Center") {
-              
-                echo '
-                
-                    
-                
-                ';
-                
-            } else {
-
-                echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+                \Sentry\captureException($exception);
 
             }
 
         } else {
 
-            echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
+            redirect("/error/genericSystemError");
 
         }
 
     } else {
 
-        echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-
+        redirect("/error/genericSystemError");
+        
     }
 
 ?>
