@@ -39,10 +39,6 @@
     $dbaccountnumber = $customerAccountInfo['accountNumber'];
     $statusreason = $customerAccountInfo['statusReason'];
 
-    // Check the account number to ensure its a real account number
-
-    
-
     // Account Notes Section
 
     $notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
