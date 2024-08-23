@@ -27,6 +27,8 @@
         $userrole = mysqli_real_escape_string($con, $userrole);
         $accesslevel = stripslashes($_REQUEST['accesslevel']);
         $accesslevel = mysqli_real_escape_string($con, $accesslevel);
+        $dateofbirth = stripslashes($_REQUEST['dateofbirth']);
+        $dateofbirth = mysqli_real_escape_string($con, $dateofbirth);
 
         // Address Information
 
@@ -53,6 +55,8 @@
         $businessrevenue = mysqli_real_escape_string($con, $businessrevenue);
         $accountnotes = stripslashes($_REQUEST['accountnotes']);
         $accountnotes = mysqli_real_escape_string($con, $accountnotes);
+        $einorssn = stripslashes($_REQUEST['einorssn']);
+        $einorssn = mysqli_real_escape_string($con, $einorssn);
 
         // System Feilds
 
@@ -183,7 +187,7 @@
 
                             // Handle non-employee insertion into ownership information and businesses
 
-                            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$einorssn', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
                             $addressInsertResult = mysqli_query($con, $addressInsertRequest);
                     
                             if ($addressInsertResult) {
@@ -212,8 +216,10 @@
                     }
 
                 } else {
+
                     // Handle non-employee insertion into ownership information and businesses
-                    $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                    
+                    $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$einorssn', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
                     $addressInsertResult = mysqli_query($con, $addressInsertRequest);
             
                     if ($addressInsertResult) {
@@ -231,9 +237,9 @@
                 }
             } else {
 
-
                 // Handle non-employee insertion into ownership information and businesses
-                $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '', '', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+
+                $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$einorssn', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
                 $addressInsertResult = mysqli_query($con, $addressInsertRequest);
         
                 if ($addressInsertResult) {
@@ -320,6 +326,10 @@
                                         </div>
                                         <div class="form-left-side" style="display:block; width:80%;">
                                             <div class="form-control">
+                                                <label for="dateofbirth">Date of Birth</label>
+                                                <input type="date" name="dateofbirth" id="dateofbirth" class="form-input" placeholder="01/01/1999" required="" />
+                                            </div>
+                                            <div class="form-control" style="padding-top:10px;">
                                                 <label for="accountstatus">Account Status</label>
                                                 <select type="text" name="accountstatus" id="accountstatus" class="form-input">
                                                     <option>Please choose an option</option>
@@ -404,6 +414,10 @@
                                             <div class="form-control">
                                                 <label for="businessname">Business Name</label>
                                                 <input type="text" name="businessname" id="businessname" class="form-input" placeholder="Little Internet Widgets Ltd." required="" />
+                                            </div>
+                                            <div class="form-control">
+                                                <label for="einorssn">Business Tax ID</label>
+                                                <input type="text" name="einorssn" id="einorssn" class="form-input" placeholder="12-3456789" required="" />
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="businessindustry">Business Industry</label>
