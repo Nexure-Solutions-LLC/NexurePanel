@@ -56,6 +56,22 @@
                 $this->licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
                 $this->licenseKeyfromDB = $panelinfo['panelKey'];
 
+                // Payment Proccessing Variable Definitions
+                // Perform payment processor check query
+
+                $paymentproccessresult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
+                $paymentgateway = mysqli_fetch_array($paymentproccessresult);
+
+                // Free payment processor check result set
+
+                mysqli_free_result($paymentproccessresult);
+
+                $this->apiKeysecret = $paymentgateway['secretKey'];
+                $this->apiKeypublic = $paymentgateway['publicKey'];
+                $this->paymentgatewaystatus = strtolower($paymentgateway['status']);
+                $this->paymentProcessorName = $paymentgateway['processorName'];
+
+
             } catch (\Throwable $exception) {
             
                 \Sentry\captureException($exception);

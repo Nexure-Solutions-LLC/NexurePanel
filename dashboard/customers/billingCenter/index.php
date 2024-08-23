@@ -51,9 +51,9 @@
                                         $processorInfo = mysqli_fetch_array($processorResult);
                                         mysqli_free_result($processorResult);
 
-                                        $paymentProcessorName = $processorInfo['processorName'];
+                                        $variableDefinitionX->paymentProcessorName = $processorInfo['processorName'];
 
-                                        if ($paymentProcessorName == "Stripe") {
+                                        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
                                             require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
                                             

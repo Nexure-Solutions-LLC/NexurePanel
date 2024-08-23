@@ -21,13 +21,13 @@
     $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
     $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
     $paymentgatewaystatus = $paymentgateway['status'];
-    $paymentProcessorName = $paymentgateway['processorName'];
+    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
 
     // Checks type of payment processor.
 
-    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "Active" || $paymentgatewaystatus == "active") {
+    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
 
-        if ($paymentProcessorName == "Stripe") {
+        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
             if (($_SESSION['pagetitle']) == "Onboarding Billing") {
 
@@ -330,14 +330,14 @@
 
                     } else if ($purchasableTypeLower == "merchant processing") {
 
-                        $lowerPaymentProcessorName = strtolower($paymentProcessorName);
+                        $lowerPaymentProcessorName = strtolower($variableDefinitionX->paymentProcessorName);
 
                         $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','paymentModule/$lowerPaymentProcessorName/paymentProcessing')";
                         $orderInsertResult = mysqli_query($con, $orderInsertRequest);
 
                         if ($orderInsertResult) {
 
-                            echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($paymentProcessorName).'/paymentProcessing/merchantSignupFlow"</script>';
+                            echo '<script type="text/javascript">window.location = "/modules/paymentModule/'.strtolower($variableDefinitionX->paymentProcessorName).'/paymentProcessing/merchantSignupFlow"</script>';
 
                         } else {
 
