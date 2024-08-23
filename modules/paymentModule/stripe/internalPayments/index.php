@@ -163,7 +163,8 @@
             mysqli_free_result($customerprofilequery);
 
             $customerstripeID = $customerprofileresult['stripeID'] ?? '';
-            $amountPrice = formatAmountForStripe($amountPrice);
+            $amountPrice = $amountPrice;
+            $stripeAmount = formatAmountForStripe($amountPrice);
 
             try {
 
@@ -171,7 +172,7 @@
                 $defaultSource = $customer->default_source;
 
                 \Stripe\PaymentIntent::create([
-                    'amount' => $amountPrice,
+                    'amount' => $stripeAmount,
                     'currency' => 'usd',
                     'customer' => $customerstripeID,
                     'payment_method' => $defaultSource,
@@ -191,7 +192,7 @@
                         $pagesubtitle = "Order Success";
                         $pagetype = "Administration";
 
-                        redirect("/modules/$module/deploy");
+                        redirect("$module/deploy");
 
                     } else {
 

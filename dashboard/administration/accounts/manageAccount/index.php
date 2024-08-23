@@ -126,7 +126,7 @@
                                                 ['serviceName', 'serviceType', 'serviceStartDate', 'serviceEndDate', 'serviceCost', 'serviceStatus'],
                                                 ['20%', '15%', '15%', '15%', '10%', '10%'],
                                                 [
-                                                    'View' => "/modules/{linkedServiceName}/?account_number={accountNumber}",
+                                                    'View' => "{linkedServiceName}/?account_number={accountNumber}",
                                                     'Edit' => "/dashboard/administration/accounts/editServices/?account_number={urlAccountNumber}&service_name={urlServiceName}",
                                                     'Delete' => "/dashboard/administration/accounts/deleteServices/?account_number={urlAccountNumber}&service_name={urlServiceName}"
                                                 ]
