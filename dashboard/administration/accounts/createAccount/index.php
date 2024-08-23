@@ -64,6 +64,18 @@
         $accountnumber = substr(str_shuffle("0123456789"), 0, 12);
         $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
         $builtaccountnumber = $accountnumber_starting.$accountnumber;
+        $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
+        $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
+
+        function encryptSSN($ssn, $encryptKey, $encryptIv) {
+
+            $cipher = 'aes-256-cbc';
+            $encrypted = openssl_encrypt($ssn, $cipher, $encryptKey, 0, $encryptIv);
+            return base64_encode($encrypted . '::' . $encryptIv);
+
+        }
+            
+        $encryptedeinssnumber = encryptSSN($einorssn, $encryptKey, $encryptIv);
 
         function generateRandomPrefix($length = 3) {
 
@@ -187,7 +199,7 @@
 
                             // Handle non-employee insertion into ownership information and businesses
 
-                            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$einorssn', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
                             $addressInsertResult = mysqli_query($con, $addressInsertRequest);
                     
                             if ($addressInsertResult) {
@@ -219,7 +231,7 @@
 
                     // Handle non-employee insertion into ownership information and businesses
                     
-                    $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$einorssn', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                    $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
                     $addressInsertResult = mysqli_query($con, $addressInsertRequest);
             
                     if ($addressInsertResult) {
@@ -239,7 +251,7 @@
 
                 // Handle non-employee insertion into ownership information and businesses
 
-                $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$einorssn', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+                $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
                 $addressInsertResult = mysqli_query($con, $addressInsertRequest);
         
                 if ($addressInsertResult) {
