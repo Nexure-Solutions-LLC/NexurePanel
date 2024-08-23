@@ -3,288 +3,195 @@
     $pagesubtitle = "Create";
     $pagetype = "Administration";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
 
-    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
+    echo "<title>{$pagetitle} | {$pagesubtitle}</title>";
 
-    // When form submitted, insert values into the database.
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // This gets the feilds for the customer registration system. This pulls it from the html
+        // form and remmoves symbols or charaters that can be used for SQL injections.
+        
+        $fields = [
+            'legalname', 'emailaddress', 'phonenumber', 'password', 
+            'accountstatus', 'userrole', 'accesslevel', 'dateofbirth',
+            'streetaddress', 'additionaladdress', 'city', 'state', 
+            'postalcode', 'country', 'businessname', 'businessindustry', 
+            'businessrevenue', 'accountnotes', 'einorssn'
+        ];
 
-        // Personal Information Section
+        foreach ($fields as $field) {
 
-        $legalname = stripslashes($_REQUEST['legalname']);
-        $legalname = mysqli_real_escape_string($con, $legalname);
-        $caliid = stripslashes($_REQUEST['emailaddress']);
-        $caliid = mysqli_real_escape_string($con, $caliid);
-        $mobilenumber = stripslashes($_REQUEST['phonenumber']);
-        $mobilenumber = mysqli_real_escape_string($con, $mobilenumber);
-        $password = stripslashes($_REQUEST['password']);
-        $password = mysqli_real_escape_string($con, $password);
-        $accountstatus = stripslashes($_REQUEST['accountstatus']);
-        $accountstatus = mysqli_real_escape_string($con, $accountstatus);
-        $userrole = stripslashes($_REQUEST['userrole']);
-        $userrole = mysqli_real_escape_string($con, $userrole);
-        $accesslevel = stripslashes($_REQUEST['accesslevel']);
-        $accesslevel = mysqli_real_escape_string($con, $accesslevel);
-        $dateofbirth = stripslashes($_REQUEST['dateofbirth']);
-        $dateofbirth = mysqli_real_escape_string($con, $dateofbirth);
+            $$field = mysqli_real_escape_string($con, stripslashes($_REQUEST[$field]));
 
-        // Address Information
+        }
 
-        $streetaddress = stripslashes($_REQUEST['streetaddress']);
-        $streetaddress = mysqli_real_escape_string($con, $streetaddress);
-        $additionaladdress = stripslashes($_REQUEST['additionaladdress']);
-        $additionaladdress = mysqli_real_escape_string($con, $additionaladdress);
-        $city = stripslashes($_REQUEST['city']);
-        $city = mysqli_real_escape_string($con, $city);
-        $state = stripslashes($_REQUEST['state']);
-        $state = mysqli_real_escape_string($con, $state);
-        $postalcode = stripslashes($_REQUEST['postalcode']);
-        $postalcode = mysqli_real_escape_string($con, $accesslevel);
-        $country = stripslashes($_REQUEST['country']);
-        $country = mysqli_real_escape_string($con, $country);
-
-        // Additional Information
-
-        $businessname = stripslashes($_REQUEST['businessname']);
-        $businessname = mysqli_real_escape_string($con, $businessname);
-        $businessindustry = stripslashes($_REQUEST['businessindustry']);
-        $businessindustry = mysqli_real_escape_string($con, $businessindustry);
-        $businessrevenue = stripslashes($_REQUEST['businessrevenue']);
-        $businessrevenue = mysqli_real_escape_string($con, $businessrevenue);
-        $accountnotes = stripslashes($_REQUEST['accountnotes']);
-        $accountnotes = mysqli_real_escape_string($con, $accountnotes);
-        $einorssn = stripslashes($_REQUEST['einorssn']);
-        $einorssn = mysqli_real_escape_string($con, $einorssn);
-
-        // System Feilds
+        // This is variable definitions 
 
         $registrationdate = date("Y-m-d H:i:s");
-        $accountnumber = substr(str_shuffle("0123456789"), 0, 12);
-        $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
-        $builtaccountnumber = $accountnumber_starting.$accountnumber;
+        $builtaccountnumber = $_ENV['ACCOUNTSTARTNUMBER'] . substr(str_shuffle("0123456789"), 0, 12);
+
+        // Social Security / Employer Identification Numbers encryption logic.
+
         $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
         $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
 
-        function encryptSSN($ssn, $encryptKey, $encryptIv) {
+        $encryptedeinssnumber = base64_encode(openssl_encrypt($einorssn, 'aes-256-cbc', $encryptKey, 0, $encryptIv) . '::' . $encryptIv);
 
-            $cipher = 'aes-256-cbc';
-            $encrypted = openssl_encrypt($ssn, $cipher, $encryptKey, 0, $encryptIv);
-            return base64_encode($encrypted . '::' . $encryptIv);
+        // Database table prefix for customers who make their own SQL databases.
 
-        }
-            
-        $encryptedeinssnumber = encryptSSN($einorssn, $encryptKey, $encryptIv);
+        $randomPrefix = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'), 0, 5);
 
-        function generateRandomPrefix($length = 3) {
+        // Checks to see if a payment system is active to add the customer into it, if it is then it checks to see what
+        // proccessor it is, if its Stripe then it proceedes, if not throws error as Stripe is the only supported system
+        // as of right now.
+  
+        if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->status === "active") {
 
-            $characters = 'abcdefghijklmnopqrstuvwxyz';
-            $prefix = '';
-
-            for ($i = 0; $i < $length; $i++) {
-
-                $prefix .= $characters[rand(0, strlen($characters) - 1)];
-
-            }
-
-            return $prefix;
-
-        }
-        
-        $randomPrefix = generateRandomPrefix(5);
-
-        if (mysqli_connect_errno()) {
-
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-            exit();
-
-        }
-    
-        // Perform query
-        $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-        $paymentgateway = mysqli_fetch_array($result);
-        // Free result set
-        mysqli_free_result($result);
-    
-        $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-        $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-        $paymentgatewaystatus = $paymentgateway['status'];
-        $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
-
-        // Checks type of payment processor.
-        if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
-
-            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+            if ($variableDefinitionX->paymentProcessorName === "Stripe") {
 
                 \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
 
-                $cu = \Stripe\Customer::create(array(
+                $cu = \Stripe\Customer::create([
                     'name' => $legalname,
-                    'email' => $caliid,
-                    'phone' => $mobilenumber,
-                    'description' => "Account Number: ".$builtaccountnumber, 
-                ));
+                    'email' => $emailaddress,
+                    'phone' => $phonenumber,
+                    'description' => "Account Number: " . $builtaccountnumber,
+                ]);
 
-                $SS_STRIPE_ID =  $cu['id'];
+                $SS_STRIPE_ID = $cu['id'];
 
             } else {
 
-                header ("location: /error/genericSystemError");
-
-            }
-
-        } else {
-
-            header ("location: /error/genericSystemError");
-
-        }
-
-        $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES ('$caliid', '".hash("sha512", $password)."', '$legalname', '$mobilenumber', '$accountstatus', '', '$registrationdate', '$accountnotes', '$builtaccountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
-        $accountInsertResult = mysqli_query($con, $accountInsertRequest);
-
-        if ($accountInsertResult) {
-
-            // Runs a check to see if it's an employee to add the account to the employee payroll module.
-            // Logins are treated as customer accounts until they are not. One system for all.
-
-            if ($accesslevel != "Retail" && $accesslevel != "Wholesale" && $accesslevel != "Referral" && $accesslevel != "Undefined") {
-        
-                $moduleCheckQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND `modulePositionType` = 'Staff Function'";
-                $moduleCheckResult = mysqli_query($con, $moduleCheckQuery);
-        
-                if (mysqli_num_rows($moduleCheckResult) > 0) {
-
-                    while ($moduleCheckRow = mysqli_fetch_assoc($moduleCheckResult)) {
-
-                        $moduleCheckName = $moduleCheckRow['moduleName'];
-        
-                        if ($moduleCheckName == "Cali Payroll") {
-
-                            // Generate Employee IDs
-
-                            $checkEmployeeIDsQuery = "SELECT employeeIDNumber FROM caliweb_payroll ORDER BY id DESC LIMIT 1";
-                            $checkEmployeeIDsResult = $con->query($checkEmployeeIDsQuery);
-        
-                            if ($checkEmployeeIDsResult->num_rows > 0) {
-
-                                $checkEmployeeIDsRow = $checkEmployeeIDsResult->fetch_assoc();
-                                $employeeLastID = intval($checkEmployeeIDsRow['employeeIDNumber']);
-                                $employeeNewID = $employeeLastID + 1;
-
-                            } else {
-
-                                $employeeNewID = 4;
-
-                            }
-        
-                            $employeeFormattedID = sprintf('%08d', $employeeNewID);
-        
-                            // Insert the new employee record
-
-                            $employeeInsertRequest = "INSERT INTO `caliweb_payroll`(`employeeName`, `employeeIDNumber`, `employeePayType`, `employeeEmail`, `employeeTimeType`, `employeeHireDate`, `employeeTerminationDate`, `employeeRehireDate`, `employeePayRate`, `employeeWorkedHours`, `employeeExpectedPay`, `employeeActualPay`, `employeePhoneNumber`, `employeeExtension`, `employeeAddressLine1`, `employeeAddressLine2`, `employeeCity`, `employeeState`, `employeePostalCode`, `employeeCountry`, `employeeDateOfBirth`, `employeeSSNNumber`, `employeeDepartment`, `employeeNotes`, `employeeStatus`, `bankRoutingNumber`, `bankAccountNumber`, `bankAccountType`, `fundingType`) VALUES ('$legalname','$employeeFormattedID','Salary','$caliid','Full-Time','$registrationdate','0000-00-00','0000-00-00','0.00','0.00','0.00','0.00','$mobilenumber','0000','$streetaddress','$additionaladdress','$city','$state','$postalcode','$country','0000-00-00','000-00-0000','Not Assigned','','$accountstatus','000000000','000000000','Undefined','Standard ACH')";
-                            $employeeInsertResult = mysqli_query($con, $employeeInsertRequest);
-        
-                            if ($employeeInsertResult) {
-
-                                header("location: /modules/payroll");
-
-                            } else {
-
-                                header("location: /error/genericSystemError");
-
-                            }
-
-                        } else {
-
-                            // Handle non-employee insertion into ownership information and businesses
-
-                            $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
-                            $addressInsertResult = mysqli_query($con, $addressInsertRequest);
-                    
-                            if ($addressInsertResult) {
-
-                                $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
-                                $businessInsertResult = mysqli_query($con, $businessInsertRequest);
-                    
-                                if ($businessInsertResult) {
-
-                                    echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
-
-                                } else {
-
-                                    header("location: /error/genericSystemError");
-
-                                }
-
-                            } else {
-
-                                header("location: /error/genericSystemError");
-
-                            }
-
-                        }
-
-                    }
-
-                } else {
-
-                    // Handle non-employee insertion into ownership information and businesses
-                    
-                    $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
-                    $addressInsertResult = mysqli_query($con, $addressInsertRequest);
-            
-                    if ($addressInsertResult) {
-                        $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
-                        $businessInsertResult = mysqli_query($con, $businessInsertRequest);
-            
-                        if ($businessInsertResult) {
-                            echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
-                        } else {
-                            header("location: /error/genericSystemError");
-                        }
-                    } else {
-                        header("location: /error/genericSystemError");
-                    }
-                }
-            } else {
-
-                // Handle non-employee insertion into ownership information and businesses
-
-                $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$legalname', '$mobilenumber', '$caliid', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
-                $addressInsertResult = mysqli_query($con, $addressInsertRequest);
-        
-                if ($addressInsertResult) {
-
-                    $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessname', '', '$businessindustry', '$businessrevenue', '$caliid', 'Active', '0000-00-00', '', 'false')";
-                    $businessInsertResult = mysqli_query($con, $businessInsertRequest);
-        
-                    if ($businessInsertResult) {
-                        
-                        echo '<script type="text/javascript">window.location = "/dashboard/administration/accounts"</script>';
-
-                    } else {
-
-                        header("location: /error/genericSystemError");
-
-                    }
-
-                } else {
-                    header("location: /error/genericSystemError");
-
-                }
+                header("location: /error/genericSystemError");
+                exit;
 
             }
 
         } else {
 
             header("location: /error/genericSystemError");
-            
+            exit;
+
         }
 
+        // Peroforms the database entry into MySQL.
+
+        $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
+            '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '$accountnotes', '$builtaccountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
+
+        if (mysqli_query($con, $accountInsertRequest)) {
+
+            handleEmployeeOrBusinessInsert($con, $legalname, $emailaddress, $registrationdate, $phonenumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $dateofbirth, $encryptedeinssnumber, $businessname, $businessindustry, $businessrevenue, $accountstatus, $accesslevel);
+        
+        } else {
+
+            header("location: /error/genericSystemError");
+
+        }
     } else {
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+        include($_SERVER["DOCUMENT_ROOT"] . '/components/CaliHeaders/Dashboard.php');
+
+    }
+
+    // Employee or Business function to determine what tables get data sent to them.
+
+    function handleEmployeeOrBusinessInsert($con, $legalname, $email, $registrationdate, $phonenumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $dateofbirth, $encryptedeinssnumber, $businessname, $businessindustry, $businessrevenue, $accountstatus, $accesslevel) {
+        
+        if (in_array($accesslevel, ["Retail", "Wholesale", "Referral", "Undefined"])) {
+
+            insertOwnershipInformationAndBusiness($con, $legalname, $phonenumber, $email, $dateofbirth, $encryptedeinssnumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $businessname, $businessindustry, $businessrevenue);
+        
+        } else {
+
+            $moduleCheckResult = mysqli_query($con, "SELECT moduleName FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Staff Function'");
+            $hasPayrollModule = false;
+
+            while ($moduleCheckRow = mysqli_fetch_assoc($moduleCheckResult)) {
+
+                if ($moduleCheckRow['moduleName'] === "Cali Payroll") {
+
+                    $hasPayrollModule = true;
+                    break;
+
+                }
+
+            }
+
+            if ($hasPayrollModule) {
+
+                $employeeNewID = getNextEmployeeID($con);
+                $employeeFormattedID = sprintf('%08d', $employeeNewID);
+
+                $employeeInsertRequest = "INSERT INTO `caliweb_payroll`(`employeeName`, `employeeIDNumber`, `employeePayType`, `employeeEmail`, `employeeTimeType`, `employeeHireDate`, `employeeTerminationDate`, `employeeRehireDate`, `employeePayRate`, `employeeWorkedHours`, `employeeExpectedPay`, `employeeActualPay`, `employeePhoneNumber`, `employeeExtension`, `employeeAddressLine1`, `employeeAddressLine2`, `employeeCity`, `employeeState`, `employeePostalCode`, `employeeCountry`, `employeeDateOfBirth`, `employeeSSNNumber`, `employeeDepartment`, `employeeNotes`, `employeeStatus`, `bankRoutingNumber`, `bankAccountNumber`, `bankAccountType`, `fundingType`) VALUES (
+                    '$legalname','$employeeFormattedID','Salary','$email','Full-Time','$registrationdate','0000-00-00','0000-00-00','0.00','0.00','0.00','0.00','$phonenumber','0000','$streetaddress','$additionaladdress','$city','$state','$postalcode','$country','$dateofbirth','000-00-0000','Not Assigned','','$accountstatus','000000000','000000000','Undefined','Standard ACH')";
+                
+                if (mysqli_query($con, $employeeInsertRequest)) {
+
+                    header("location: /modules/payroll");
+
+                } else {
+
+                    header("location: /error/genericSystemError");
+
+                }
+
+            } else {
+
+                insertOwnershipInformationAndBusiness($con, $legalname, $phonenumber, $email, $dateofbirth, $encryptedeinssnumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $businessname, $businessindustry, $businessrevenue);
+            }
+
+        }
+
+    }
+
+    // Employee ID number generation function.
+
+    function getNextEmployeeID($con) {
+
+        $checkEmployeeIDsResult = mysqli_query($con, "SELECT employeeIDNumber FROM caliweb_payroll ORDER BY id DESC LIMIT 1");
+
+        if ($row = mysqli_fetch_assoc($checkEmployeeIDsResult)) {
+
+            return intval($row['employeeIDNumber']) + 1;
+
+        } else {
+
+            return 4;
+        }
+
+    }
+    
+    // Ownership table insert.
+
+    function insertOwnershipInformationAndBusiness($con, $legalname, $phonenumber, $email, $dateofbirth, $encryptedeinssnumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $businessname, $businessindustry, $businessrevenue) {
+        
+        $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES (
+            '$legalname', '$phonenumber', '$email', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
+
+        if (mysqli_query($con, $addressInsertRequest)) {
+
+            $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES (
+                '$businessname', '', '$businessindustry', '$businessrevenue', '$email', '', '', '', 'false')";
+
+            if (mysqli_query($con, $businessInsertRequest)) {
+
+                header("location: /");
+
+            } else {
+
+                header("location: /error/genericSystemError");
+
+            }
+
+        } else {
+
+            header("location: /error/genericSystemError");
+
+        }
+
+    }
 
 ?>
 
@@ -459,7 +366,5 @@
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
-
-    }
 
 ?>
