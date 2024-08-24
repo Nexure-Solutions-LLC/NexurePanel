@@ -47,8 +47,6 @@
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
 
-                                        $variableDefinitionX->paymentProcessorName = $processorInfo['processorName'];
-
                                         if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
                                             require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
