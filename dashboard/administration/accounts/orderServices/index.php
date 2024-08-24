@@ -142,6 +142,20 @@
                                                                 <option>Please choose an option</option>
                                                                 <option>Web Development</option>
                                                                 <option>Web Hosting</option>
+                                                                <?php
+                                                                
+                                                                    $discordmoduleQuery = mysqli_query($con, "SELECT moduleStatus FROM caliweb_modules WHERE moduleName = 'Cali Discord Hosting' LIMIT 1");
+                                                                    $discordmoduleInfo = mysqli_fetch_array($discordmoduleQuery);
+
+                                                                    $discordmoduleStatus = $discordmoduleInfo['moduleStatus'];
+
+                                                                    if ((strtolower($discordmoduleStatus)) == "active") {
+
+                                                                        echo '<option>Discord Hosting</option>';
+
+                                                                    }
+
+                                                                ?>
                                                                 <option>Merchant Processing</option>
                                                                 <option>Cloud Computing</option>
                                                                 <option>SEO</option>
