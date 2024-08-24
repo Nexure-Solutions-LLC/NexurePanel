@@ -23,16 +23,22 @@
         ];
 
         foreach ($deleteQueries as $query) {
+
             if (!mysqli_query($con, $query)) {
+
                 header("location: /error/genericSystemError");
                 exit;
+                
             }
+
         }
 
         header("location: /dashboard/administration/accounts");
 
     } else {
+
         header("location: /error/genericSystemError");
+
     }
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
