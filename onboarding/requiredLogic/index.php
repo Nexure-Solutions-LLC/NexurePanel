@@ -2,34 +2,26 @@
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
 
     $caliemail = $_SESSION['caliid'];
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
-    $userinfo = mysqli_fetch_array($userprofileresult);
-    mysqli_free_result($userprofileresult);
+    $currentAccount = new \CaliAccounts\Account($con);
+    $success = $currentAccount->fetchByEmail($caliemail);
 
-    $stripeID = $userinfo['stripeID'];
+    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+    $variableDefinitionX->variablesHeader($con);
+
+    $stripeID = $currentAccount->stripe_id;
 
     if (($_SESSION['pagetitle']) == "Onboarding Billing") {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-            $paymentgateway = mysqli_fetch_array($result);
-
-            // Free payment processor check result set
-
-            mysqli_free_result($result);
-
-            $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-            $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-            $paymentgatewaystatus = $paymentgateway['status'];
-            $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
-
             // Checks type of payment processor.
 
-            if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
+            if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
                 if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 

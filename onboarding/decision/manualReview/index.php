@@ -2,6 +2,7 @@
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
 
     use Dotenv\Dotenv;
 
@@ -38,8 +39,6 @@
 
     if ($variableDefinitionX->licenseKeyfromConfig == $variableDefinitionX->licenseKeyfromDB) {
 
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
-
     echo '<title>Your account was approved!</title>';
 
 ?>
@@ -71,6 +70,7 @@
         </div>
     </div>
 <?php
+
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
 
     } else {
@@ -78,4 +78,5 @@
         header("Location: /error/licenseInvalid");
         
     }
+    
 ?>
