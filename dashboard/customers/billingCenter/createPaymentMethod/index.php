@@ -42,18 +42,6 @@
                             <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                 <?php
 
-                                    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-                                    $paymentgateway = mysqli_fetch_array($result);
-
-                                    // Free payment processor check result set
-
-                                    mysqli_free_result($result);
-
-                                    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-                                    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-                                    $paymentgatewaystatus = $paymentgateway['status'];
-                                    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
-
                                     // Checks type of payment processor.
 
                                     if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
