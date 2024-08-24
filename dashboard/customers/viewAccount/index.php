@@ -191,7 +191,7 @@
                                                 echo '<td style="width:10%;">$ ' . $row['serviceCost'] . '</td>';
                                                 echo '<td style="width:10%;">' . $row['serviceStatus'] . '</td>';
                                                 echo '<td style="display-flex align-center">
-                                                        <a href="/modules/'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
+                                                        <a href="'.$row['linkedServiceName'].'/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
                                                         <a href="/dashboard/customers/serviceManagement/deleteServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link" style="margin-right:10px;">Delete</a>
                                                         <a href="/dashboard/customers/serviceManagement/editServices/?account_number='.$row['accountNumber'].'&service_name='.$row['linkedServiceName'].'" class="careers-link">Edit</a>
                                                     </td>';

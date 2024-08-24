@@ -2,8 +2,8 @@
 
     // Uninitialized values to prevent page load failure
 
-    $pagetitle = 'Web Design Services Management';
-    $pagesubtitle = '';
+    $pagetitle = '';
+    $pagesubtitle = 'Web Design Services Management';
     $pagetype = '';
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
@@ -38,7 +38,8 @@
     if (isset($currentAccount->role->name)) {
 
         $pageInfo = setPageTitleAndType($currentAccount->role->name);
-        $pagesubtitle = $pageInfo['title'];
+        $pagetitle = $pageInfo['title'];
+        $pagesubtitle =  $pagesubtitle;
         $pagetype = $pageInfo['type'];
 
     }
@@ -82,6 +83,16 @@
 
         $domainName = "caliwebdesignservices.com";
         displayPageTitle($pagetitle, $pagesubtitle);
+
+        if (in_array($pagetitle, $clientPages) || (isset($pagesubtitle) && $pagesubtitle == "Client") || $pagetype == "Client") {
+
+            echo '<link href="/assets/css/client-dashboard-css-2024.css" rel="stylesheet" type="text/css" />';
+
+        } else {
+
+            echo '';
+
+        }
 
 ?>
 

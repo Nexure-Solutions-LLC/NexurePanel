@@ -1082,6 +1082,22 @@ textarea.swal2-input {
     padding-bottom:9px !important;
 }
 
+/* Cali Web Design Terminal/Bot Output */
+
+.botOutputfromDocker {
+    background-color: #000;
+    border-radius: 0px;
+    height:350px;
+    margin-top:2%;
+    color:#dbdbdb;
+    font-size:14px !important;
+    padding:20px;
+}
+
+.botOutputfromDocker p {
+    font-size: 14px !important;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {
