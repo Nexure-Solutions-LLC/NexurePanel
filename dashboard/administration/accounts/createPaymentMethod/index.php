@@ -27,6 +27,7 @@
 
     $query = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumberEscaped'";
     $result = mysqli_query($con, $query);
+    
     $customerAccountInfo = mysqli_fetch_array($result);
     mysqli_free_result($result);
 
