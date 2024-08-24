@@ -47,10 +47,6 @@
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
 
-                                        $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig");
-                                        $processorInfo = mysqli_fetch_array($processorResult);
-                                        mysqli_free_result($processorResult);
-
                                         $variableDefinitionX->paymentProcessorName = $processorInfo['processorName'];
 
                                         if ($variableDefinitionX->paymentProcessorName == "Stripe") {

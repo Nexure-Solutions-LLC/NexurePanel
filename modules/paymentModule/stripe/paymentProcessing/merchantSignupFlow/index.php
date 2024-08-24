@@ -3,6 +3,8 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
 
     $caliemail = $_SESSION['caliid'];
 
@@ -10,23 +12,17 @@
     use Stripe\Account;
     use Stripe\AccountLink;
 
+    $currentAccount = new \CaliAccounts\Account($con);
+    $success = $currentAccount->fetchByEmail($caliemail);
+
+    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+    $variableDefinitionX->variablesHeader($con);
+
     $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($userprofileresult);
     mysqli_free_result($userprofileresult);
 
     $account_number = $userinfo['accountNumber'];
-
-    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-    $paymentgateway = mysqli_fetch_array($result);
-
-    // Free payment processor check result set
-
-    mysqli_free_result($result);
-
-    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-    $paymentgatewaystatus = $paymentgateway['status'];
-    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
 
     // Checks type of payment processor.
 
