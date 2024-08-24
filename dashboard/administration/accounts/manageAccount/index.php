@@ -139,6 +139,33 @@
                             <div class="caliweb-card dashboard-card" style="margin-top:10px; margin-bottom:2%;">
                                 <div class="card-header">
                                     <div class="display-flex align-center" style="justify-content:space-between;">
+                                        <p class="no-padding">Files and Documents</p>
+                                        <a href="/dashboard/administration/accounts/fileUpload/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Upload File</a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="dashboard-table">
+                                        <?php
+
+                                            fetchAndDisplayTable(
+                                                $con,
+                                                "SELECT * FROM caliweb_fileRecords WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
+                                                ['File Name', 'Type', 'Upload Date', 'Actions'],
+                                                ['fileDisplayName', 'fileType', 'fileUploadDate'],
+                                                ['10%', '20%', '15%'],
+                                                [
+                                                    'Download' => "{filePath}",
+                                                    'Delete' => "/dashboard/administration/accounts/fileDeletion/?file_path={filePath}"
+                                                ]
+                                            );
+
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caliweb-card dashboard-card" style="margin-top:10px; margin-bottom:2%;">
+                                <div class="card-header">
+                                    <div class="display-flex align-center" style="justify-content:space-between;">
                                         <p class="no-padding">Cases</p>
                                         <a href="/dashboard/administration/cases/createCase/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Create Case</a>
                                     </div>
