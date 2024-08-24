@@ -9,53 +9,42 @@
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/vendor/autoload.php');
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
 
+    unset($_SESSION['pagetitle']);
     $pagetitle = "Onboarding Complete";
     $_SESSION['pagetitle'] = $pagetitle;
 
     $caliemail = $_SESSION['caliid'];
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
-    $userinfo = mysqli_fetch_array($userprofileresult);
-    mysqli_free_result($userprofileresult);
+    $currentAccount = new \CaliAccounts\Account($con);
+    $success = $currentAccount->fetchByEmail($caliemail);
 
-    $accountStatus = $userinfo['accountStatus'];
+    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+    $variableDefinitionX->variablesHeader($con);
 
-    if ($accountStatus == "Active") {
+    if ($currentAccount->accountStatus->name == "Active") {
 
         header ("Location: /dashboard/customers/");
 
-    } else if ($accountStatus == "Suspended") {
+    } else if ($currentAccount->accountStatus->name == "Suspended") {
 
         header ("Location: /error/suspendedAccount");
 
-    } else if ($accountStatus == "Terminated") {
+    } else if ($currentAccount->accountStatus->name == "Terminated") {
 
         header ("Location: /error/terminatedAccount");
         
     }
 
-    // Check if Payment Processing Module is loaded in and if its Stripe
-
-    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-    $paymentgateway = mysqli_fetch_array($result);
-
-    // Free payment processor check result set
-
-    mysqli_free_result($result);
-
-    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-    $paymentgatewaystatus = $paymentgateway['status'];
-    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
-
     // Checks type of payment processor.
 
-    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
+    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
         if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
-            include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+            require($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
 
         } else {
 

@@ -1,4 +1,5 @@
 <?php
+
     ob_start();
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
@@ -6,6 +7,11 @@
     // When form submitted, insert values into the database.
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
+
+        $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+        $variableDefinitionX->variablesHeader($con);
 
         try {
 
@@ -79,24 +85,10 @@
                         echo "Failed to connect to MySQL: " . mysqli_connect_error();
                         exit();
                     }
-                
-                    // Perform query
-
-                    $result = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-                    $paymentgateway = mysqli_fetch_array($result);
-
-                    // Free result set
-
-                    mysqli_free_result($result);
-                
-                    $variableDefinitionX->apiKeysecret = $paymentgateway['secretKey'];
-                    $variableDefinitionX->apiKeypublic = $paymentgateway['publicKey'];
-                    $paymentgatewaystatus = $paymentgateway['status'];
-                    $variableDefinitionX->paymentProcessorName = $paymentgateway['processorName'];
 
                     // Checks type of payment processor.
 
-                    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
+                    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
                         if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
@@ -111,15 +103,7 @@
 
                             $SS_STRIPE_ID =  $cu['id'];
 
-                        } else {
-
-                            header ("location: /error/genericSystemError");
-
                         }
-
-                    } else {
-
-                        header ("location: /error/genericSystemError");
 
                     }
 

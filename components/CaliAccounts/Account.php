@@ -289,18 +289,11 @@ class Account
 
         try {
 
-            // [0] => { attName, attValue, useStringSyntax }
-
-            // empty array
-            if (count($attributes) == 0) {
+            if (count($attributes) === 0) {
                 return false;
             }
 
-            // use changeAttr if only changing one attribute
-            if (count($attributes) == 1) {
-                return false;
-            }
-
+            // Fetch current data by email
 
             $success = $this->fetchByEmail($this->email);
 
@@ -310,43 +303,49 @@ class Account
 
             }
 
-            // Preset Query
             $query = "UPDATE `caliweb_users` SET ";
 
-            foreach ($attributes as $key => $value) {
-                $att_name = $this->_sanitize($value["attName"]);
-                $att_value = $this->_sanitize($value["attValue"]);
-                $useStringSyntax = $value["useStringSyntax"];
+            $setClauses = [];
+
+            foreach ($attributes as $attribute) {
+
+                $att_name = $this->_sanitize($attribute["attName"]);
+                $att_value = $this->_sanitize($attribute["attValue"]);
+                $useStringSyntax = $attribute["useStringSyntax"] ?? true;
+
+                // Check if attribute exists in the object
 
                 if (!isset($this->{$att_name})) {
+
                     return false;
+
                 }
 
-                $query = $query . $att_name . " = " . ($useStringSyntax ? '"' : "") . $att_value . ($useStringSyntax ? '"' : "") . ($key == (count($attributes)-1) ? ', ' : " ");
+                $setClauses[] = $att_name . " = " . ($useStringSyntax ? "'" : "") . $att_value . ($useStringSyntax ? "'" : "");
             }
 
-            $query = $query . 'WHERE email = "' . $this->_sanitize($this->email) . '";';
+            // Combine SET clauses and complete the query
 
+            $query .= implode(', ', $setClauses) . ' WHERE email = "' . $this->_sanitize($this->email) . '";';
 
-
-            // Send the SQL query
+            // Execute the SQL query
 
             $con = $this->sql_connection;
 
-
             $exec = mysqli_query($con, $query);
 
-
-            // Refresh to updated
+            // Refresh and return success status
 
             $success = $this->fetchByEmail($this->email);
 
             return $success;
 
         } catch (\Throwable $exception) {
-            
+
             \Sentry\captureException($exception);
-        
+            
+            return false;
+
         }
 
     }
