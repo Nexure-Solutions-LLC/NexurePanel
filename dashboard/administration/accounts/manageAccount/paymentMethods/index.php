@@ -89,9 +89,17 @@
                                 <div class="card-body">
                                     <div class="dashboard-table">
                                         <?php
-                                            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
-                                                require($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+
+                                            if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
+
+                                                if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+                                                    require($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+
+                                                }
+                                            
                                             }
+                                            
                                         ?>
                                     </div>
                                 </div>

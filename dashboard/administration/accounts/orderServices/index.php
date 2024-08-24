@@ -44,9 +44,13 @@
 
             }
 
-            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+            if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
-                require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+                if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+                    require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+
+                }
 
             }
 
@@ -68,9 +72,13 @@
                 $orderdate = date("Y-m-d H:i:s");
                 $accountnumber = $accountnumber;
 
-                if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+                if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
-                    require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
+                    if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+                        require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
+
+                    }
 
                 }
 

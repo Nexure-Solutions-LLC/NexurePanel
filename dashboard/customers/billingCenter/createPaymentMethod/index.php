@@ -44,7 +44,7 @@
 
                                     // Checks type of payment processor.
 
-                                    if ($variableDefinitionX->apiKeysecret != "" && $paymentgatewaystatus == "active") {
+                                    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
                                         if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
