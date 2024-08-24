@@ -6,41 +6,33 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
 
-    $lowerrole = strtolower($userrole);
-    
-    switch ($lowerrole) {
-        case "authorized user":
-            header("location:/dashboard/customers/authorizedUserView");
-            break;
-        case "partner":
-            header("location:/dashboard/partnerships");
-            break;
-        case "customer":
-            header("location:/dashboard/customers");
-            break;
-    }
+    $accountNumber = $_GET['account_number'] ?? '';
 
-    $accountNumber = $_GET['account_number'];
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountNumber)."'");
+    $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
+    mysqli_free_result($customerAccountQuery);
 
-    if ($accountNumber != "" || $accountNumber != NULL) {
+    $customeremail = $customerAccountInfo['email'];
 
-        $accountDeleteRequest = "DELETE FROM `caliweb_users` WHERE `accountNumber`= '$accountNumber'";
-        $accountDeleteResult = mysqli_query($con, $accountDeleteRequest);
+    if ($accountNumber) {
 
-        if ($accountDeleteResult) {
+        $deleteQueries = [
+            "DELETE FROM `caliweb_users` WHERE `accountNumber` = '$accountNumber'",
+            "DELETE FROM `caliweb_businesses` WHERE `email` = '$customeremail'",
+            "DELETE FROM `caliweb_ownershipinformation` WHERE `emailAddress` = '$customeremail'"
+        ];
 
-            header ("location: /dashboard/administration/accounts");
-
-        } else {
-
-            header ("location: /error/genericSystemError");
-    
+        foreach ($deleteQueries as $query) {
+            if (!mysqli_query($con, $query)) {
+                header("location: /error/genericSystemError");
+                exit;
+            }
         }
 
+        header("location: /dashboard/administration/accounts");
+
     } else {
-
-        header ("location: /error/genericSystemError");
-
+        header("location: /error/genericSystemError");
     }
 
     include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
