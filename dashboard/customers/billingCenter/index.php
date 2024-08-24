@@ -47,10 +47,14 @@
                                 <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
                                     <?php
 
-                                        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+                                        if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
-                                            require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
-                                            
+                                            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+                                                require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+                                                
+                                            }
+                                        
                                         }
 
                                     ?>
