@@ -5,11 +5,7 @@
     $pagesubtitle = "";
     $pagetype = "";
 
-
-    require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/System/Dashboard.php");
-    
-
-    $stripeID = $currentAccount->stripe_id;
+    require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Onboarding/MiddleLogic/index.php");
 
     if (($_SESSION['pagetitle']) == "Onboarding Billing") {
 
