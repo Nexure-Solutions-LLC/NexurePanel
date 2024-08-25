@@ -49,9 +49,9 @@
                                         return $decrypted;
                                     }
 
-                                    // Gets the info from a table that unfortuantly isnt encrypted but will be very shortly
+                                    // FIXED: Gets the info from a table that unfortuantly isnt encrypted but will be very shortly
                                     // then gets the email 1st part and the email 2nd part and builds an email address
-                                    // to authenitcate with.
+                                    // to authenitcate with. THIS NOW IS NOW ENCRYPTED AND SECURE.
 
                                     $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
                                     $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
@@ -110,7 +110,7 @@
     <script>
         function loadEmailContent(emailNumber) {
 
-            fetch(`/dashboard/administration/email/requiredResources/proccessMessage/?emailNumber=${emailNumber}`)
+            fetch(`/dashboard/administration/email/requiredResources/processMessage/?emailNumber=${emailNumber}`)
 
                 .then(response => {
 
