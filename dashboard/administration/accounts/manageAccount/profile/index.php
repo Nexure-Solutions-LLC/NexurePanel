@@ -4,6 +4,7 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
     $accountnumber = $_GET['account_number'] ?? '';
