@@ -10,6 +10,11 @@
     require($_SERVER["DOCUMENT_ROOT"].'/vendor/autoload.php');
     include($_SERVER["DOCUMENT_ROOT"].'/dashboard/administration/email/requiredResources/requiredFunctions/index.php');
 
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+    $dotenv->load();
+
     $config = HTMLPurifier_Config::createDefault();
     $purifier = new HTMLPurifier($config);
 
@@ -27,12 +32,46 @@
 
         while ($emailWebClientLoginRow = mysqli_fetch_assoc($emailWebClientLoginResult)) {
 
-            $caliMailUsername = $emailWebClientLoginRow['email'];
-            $caliMailDomain = $emailWebClientLoginRow['domain'];
-            $caliMailPasword = $emailWebClientLoginRow['password'];
-            $caliMailBuiltEmail = $caliMailUsername.'@'.$caliMailDomain;
+            function decrypt($data, $key, $iv) {
 
-            $inbox = imap_open($hostName, $caliMailBuiltEmail, $caliMailPasword) or die('Cannot connect to IMAP server: ' . imap_last_error());
+                $cipher = 'aes-256-cbc';
+                $decoded_data = base64_decode($data, true);
+
+                if ($decoded_data === false) {
+
+                    throw new Exception('Base64 decoding failed.');
+
+                }
+
+                $decrypted = openssl_decrypt($decoded_data, $cipher, $key, OPENSSL_RAW_DATA, $iv);
+
+                if ($decrypted === false) {
+
+                    throw new Exception('Decryption failed: ' . openssl_error_string());
+
+                }
+
+                return $decrypted;
+            }
+
+            // FIXED: Gets the info from a table that unfortuantly isnt encrypted but will be very shortly
+            // then gets the email 1st part and the email 2nd part and builds an email address
+            // to authenitcate with. THIS NOW IS NOW ENCRYPTED AND SECURE.
+
+            $encryptKey = hex2bin($_ENV['ENCRYPTION_KEY']);
+            $encryptIv = hex2bin($_ENV['ENCRYPTION_IV']);
+
+            $encryptedCaliMailUsername = $emailWebClientLoginRow['email'];
+            $encryptedCaliMailPassword = $emailWebClientLoginRow['password'];
+
+            $decryptedCaliMailUsername = decrypt($encryptedCaliMailUsername, $encryptKey, $encryptIv);
+            $decryptedCaliMailPassword = decrypt($encryptedCaliMailPassword, $encryptKey, $encryptIv);
+
+            $caliMailDomain = $emailWebClientLoginRow['domain'];
+            $caliMailBuiltEmail = $decryptedCaliMailUsername.'@'.$caliMailDomain;
+
+
+            $inbox = imap_open($hostName, $caliMailBuiltEmail, $decryptedCaliMailPassword) or die('Cannot connect to IMAP server: ' . imap_last_error());
             $overview = imap_fetch_overview($inbox, $emailNumber, 0)[0];
             $structure = imap_fetchstructure($inbox, $emailNumber);
 
