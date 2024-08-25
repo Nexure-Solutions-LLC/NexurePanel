@@ -711,6 +711,7 @@
         public $customeremail;
         public $mobilenumber;
         public $customerStatus;
+        public $customerStripeID;
         public $userrole;
         public $dbaccountnumber;
         public $statusreason;
@@ -858,6 +859,8 @@
             $this->mobilenumber = $this->customerAccountInfo['mobileNumber'];
 
             $this->customerStatus = $this->customerAccountInfo['accountStatus'];
+
+            $this->customerStripeID = $this->customerAccountInfo['stripeID'];
 
             $this->userrole = $this->customerAccountInfo['userrole'];
 
