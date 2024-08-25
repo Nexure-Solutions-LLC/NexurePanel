@@ -32,23 +32,23 @@
             switch ($authModulesName) {
                 case "Discord OAuth":
                     $authModulesDepends = "Present";
-                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//discord{$pathPrefix}/index.php";
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth/discord{$pathPrefix}/index.php";
                     break;
                 case "GitHub OAuth":
                     $authModulesDepends = "Present";
-                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//github{$pathPrefix}/index.php";
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth/github{$pathPrefix}/index.php";
                     break;
                 case "Google OAuth":
                     $authModulesDepends = "Present";
-                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//google{$pathPrefix}/index.php";
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth/google{$pathPrefix}/index.php";
                     break;
                 case "Okta OAuth":
                     $authModulesDepends = "Present";
-                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//okta{$pathPrefix}/index.php";
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth/okta{$pathPrefix}/index.php";
                     break;
                 case "Apple OAuth":
                     $authModulesDepends = "Present";
-                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//apple{$pathPrefix}/index.php";
+                    include $_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth/apple{$pathPrefix}/index.php";
                     break;
             }
         }
