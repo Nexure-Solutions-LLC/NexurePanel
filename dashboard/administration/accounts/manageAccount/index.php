@@ -52,9 +52,9 @@
                                                 ['legalName', 'mobileNumber', 'userrole', 'accountStatus'],
                                                 ['25%', '20%', '20%', '20%'],
                                                 [
-                                                    'View' => "/dashboard/administration/accounts/manageAccount/{accountNumber}",
-                                                    'Edit' => "/dashboard/administration/accounts/editAccount/{accountNumber}",
-                                                    'Delete' => "/dashboard/administration/accounts/deleteAccount/{accountNumber}"
+                                                    'View' => "/dashboard/administration/accounts/manageAccount/?account_number={accountNumber}&account_type=authorized_user",
+                                                    'Edit' => "/dashboard/administration/accounts/editAccount/?account_number={accountNumber}&account_type=authorized_user",
+                                                    'Delete' => "/dashboard/administration/accounts/deleteAccount/?account_number={accountNumber}&account_type=authorized_user"
                                                 ]
                                             );
 
@@ -154,6 +154,71 @@
                             </div>
                             <div class="card-body">
                                 <!-- Insights content here -->
+                                <div class="caliweb-grid caliweb-three-grid" style="grid-row-gap:0!important; padding:0; margin:0;">
+                                    <div>
+                                        <?php
+
+                                            // Gets the total amount spent with Cali Web Design by totaling
+                                            // the amount of payments a given customer has made.
+
+                                            $totalAmount = 0;
+
+                                            if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
+
+                                                if ($variableDefinitionX->paymentProcessorName === "Stripe") {
+
+                                                    \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+
+                                                        function getTotalPayments($customerId) {
+
+                                                            $totalAmount = 0;
+
+                                                            try {
+                                                                
+                                                                $charges = \Stripe\Charge::all(['customer' => $customerId]);
+
+                                                                foreach ($charges as $charge) {
+
+                                                                    $totalAmount += $charge->amount;
+
+                                                                }
+
+                                                            } catch (Exception $e) {
+
+                                                                echo 'Error: ' . $e->getMessage();
+
+                                                            }
+
+                                                            return $totalAmount / 100;
+                                                        }
+
+                                                        $totalPayments = getTotalPayments($manageAccountDefinitionR->customerStripeID);
+
+                                                } else {
+
+                                                    echo '';
+
+                                                }
+
+                                            } else {
+
+                                                echo '';
+
+                                            }
+
+                                        ?>
+                                        <p style="font-size:12px; color:grey;">Total Spend</p>
+                                        <p style="font-size:16px; font-weight:600;">$<?php echo number_format($totalPayments, 2); ?></p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size:12px; color:grey;">Customer Since</p>
+                                        <p style="font-size:16px; font-weight:600;">2024</p>
+                                    </div>
+                                    <div>
+                                        <p style="font-size:12px; color:grey;">Tax Status</p>
+                                        <p style="font-size:16px; font-weight:600;">Taxable</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="caliweb-card dashboard-card">

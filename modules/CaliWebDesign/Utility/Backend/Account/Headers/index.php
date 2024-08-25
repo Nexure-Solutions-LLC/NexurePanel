@@ -7,7 +7,7 @@
                 <div>
                     <p class="no-padding font-14px" style="padding-bottom:4px;">Account</p>
                     <h4 class="text-bold font-size-16 no-padding display-flex align-center">
-                        <?php echo $manageAccountDefinitionR->businessindustry; ?> - <?php echo $accountnumber; ?>
+                        <?php echo $manageAccountDefinitionR->businessname; ?> - <?php echo $accountnumber; ?>
                         <?php
 
                             $statusClasses = [
