@@ -212,11 +212,58 @@
                                     </div>
                                     <div>
                                         <p style="font-size:12px; color:grey;">Customer Since</p>
-                                        <p style="font-size:16px; font-weight:600;">2024</p>
+
+                                        <?php
+
+                                            $registrationYear = date('Y', strtotime($manageAccountDefinitionR->regdateformattedfinal));
+
+                                        ?>
+
+                                        <p style="font-size:16px; font-weight:600;"><?php echo $registrationYear; ?></p>
                                     </div>
                                     <div>
                                         <p style="font-size:12px; color:grey;">Tax Status</p>
-                                        <p style="font-size:16px; font-weight:600;">Taxable</p>
+
+                                        <?php
+
+                                            
+
+                                            if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
+
+                                                if ($variableDefinitionX->paymentProcessorName === "Stripe") {
+
+                                                    \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+
+                                                    $customer = \Stripe\Customer::retrieve($manageAccountDefinitionR->customerStripeID);
+
+                                                    $taxExempt = ucfirst($customer->tax_exempt);
+
+                                                    if ($taxExempt == "None") {
+
+                                                        $taxStatus = "Taxable";
+
+                                                    } else {
+
+                                                        $taxStatus = $taxExempt;
+
+                                                    }
+
+
+                                                } else {
+
+                                                    echo '';
+
+                                                }
+
+                                            } else {
+
+                                                echo '';
+
+                                            }
+
+                                        ?>
+
+                                        <p style="font-size:16px; font-weight:600;"><?php echo $taxStatus; ?></p>
                                     </div>
                                 </div>
                             </div>
