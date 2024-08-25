@@ -5,6 +5,7 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
     $accountnumber = $_GET['account_number'] ?? '';
@@ -16,57 +17,10 @@
 
     }
 
-    // Prepare the SQL Statement to get all the users info later.
+    $accountnumberEsc = mysqli_real_escape_string($con, $accountnumber);
 
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
-    $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
-    mysqli_free_result($customerAccountQuery);
-
-    if (!$customerAccountInfo) {
-
-        header("location: /dashboard/administration/accounts");
-        exit;
-
-    }
-
-    // Account Specific Data Storage and Variable Declaration
-
-    $legalname = $customerAccountInfo['legalName'];
-    $customeremail = $customerAccountInfo['email'];
-    $mobilenumber = $customerAccountInfo['mobileNumber'];
-    $customerStatus = $customerAccountInfo['accountStatus'];
-    $userrole = $customerAccountInfo['userrole'];
-    $dbaccountnumber = $customerAccountInfo['accountNumber'];
-    $statusreason = $customerAccountInfo['statusReason'];
-
-    // Account Notes Section
-
-    $notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
-
-    // Get the Interaction Dates Information for the Account Header
-
-    $newInteractionDate = date('Y-m-d H:i:s');
-    mysqli_query($con, "UPDATE caliweb_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='$accountnumber'");
-
-    $firstinteractiondate = isset($customerAccountInfo['firstInteractionDate']) ? $customerAccountInfo['firstInteractionDate'] : null;
-    $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='$accountnumber'"))['lastInteractionDate'] ?? null;
-
-    // Business Sepecific Data Storage and Variable Declaration for the customers business
-
-    $businessAccountInfo = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"));
-    $businessname = $businessAccountInfo['businessName'] ?? $legalname;
-    $businessindustry = $businessAccountInfo['businessIndustry'] ?? "Not Assigned";
-    $websitedomain = $businessAccountInfo ? (mysqli_fetch_array(mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"))['domainName'] ?? "Not Assigned") : "Not Assigned";
-
-    // Fetch website info
-
-    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$customeremail'");
-    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
-    mysqli_free_result($websiteAccountQuery);
-
-    $websitedomain = $websiteAccountInfo['domainName'] ?? 'Not Assigned';
-
-    // Function to load the tables.
+    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
 
@@ -210,10 +164,10 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <?php if (mysqli_num_rows($notesResults) == 0): ?>
+                                <?php if (mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0): ?>
                                     <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">No notes have been made for this account.</p>
                                 <?php endif; ?>
-                                <?php if ($statusreason): ?>
+                                <?php if ($manageAccountDefinitionR->statusreason): ?>
                                     <div class="caliweb-card dashboard-card note-card">
                                         <div class="card-header">
                                             <div class="display-flex align-center">
@@ -226,13 +180,13 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <p class="no-padding font-12px"><?= $statusreason ?></p>
+                                            <p class="no-padding font-12px"><?= $manageAccountDefinitionR->statusreason ?></p>
                                         </div>
                                     </div>
                                 <?php endif; ?>
                                 <?php 
-                                    while ($row = mysqli_fetch_assoc($notesResults)): 
-                                    $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $row['added_at'])->format('Y-m-d H:i:s');
+                                    while ($row = mysqli_fetch_assoc($manageAccountDefinitionR->notesResults)): 
+                                    $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $row['added_at'])->format('M d, Y \a\\t h:i A');
                                 ?>
                                     <div class="caliweb-card dashboard-card note-card" style="margin-bottom:10px;">
                                         <div class="card-header">
@@ -242,6 +196,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="no-padding font-12px"><strong>Note Added:</strong></p>
+                                                    <p class="no-padding font-12px"><?= $row["added_by"] ?></p>
                                                     <p class="no-padding font-12px"><?= $addedAtDateModify ?></p>
                                                 </div>
                                             </div>

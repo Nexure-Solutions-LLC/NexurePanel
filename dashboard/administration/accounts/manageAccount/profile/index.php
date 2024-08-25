@@ -15,73 +15,8 @@
 
     $accountnumberEsc = mysqli_real_escape_string($con, $accountnumber);
 
-    // Fetch customer account info
-
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumberEsc'");
-    $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
-    mysqli_free_result($customerAccountQuery);
-
-    if (!$customerAccountInfo) {
-
-        header("location: /dashboard/administration/accounts");
-        exit;
-
-    }
-
-    // Account Specific Data Storage and Variable Declaration
-
-    $legalname = $customerAccountInfo['legalName'];
-    $customeremail = $customerAccountInfo['email'];
-    $mobilenumber = $customerAccountInfo['mobileNumber'];
-    $customerStatus = $customerAccountInfo['accountStatus'];
-    $userrole = $customerAccountInfo['userrole'];
-    $dbaccountnumber = $customerAccountInfo['accountNumber'];
-    $statusreason = $customerAccountInfo['statusReason'];
-    
-    // Account Dates and Date Fomatting
-
-    $regdate = $customerAccountInfo['registrationDate'];
-    $regdateformatted = new DateTime($regdate);
-    $regdateformattedfinal = $regdateformatted->format('F j, Y g:i A');
-
-    $statusdate = $customerAccountInfo['statusDate'];
-    $statusdateformatted = new DateTime($regdate);
-    $statusdateformattedfinal = $statusdateformatted->format('F j, Y g:i A');
-
-    $emailverifydate = $customerAccountInfo['emailVerifiedDate'];
-    $emailverifydateformatted = new DateTime($regdate);
-    $emailverifydateformattedfinal = $emailverifydateformatted->format('F j, Y g:i A');
-
-    // Email Verification Status
-
-    $emailverifystatus = ucfirst($customerAccountInfo['emailVerfied']);
-
-    // Account Notes Section
-
-    $notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
-
-    // Get the Interaction Dates Information for the Account Header
-
-    $firstinteractiondate = isset($customerAccountInfo['firstInteractionDate']) ? $customerAccountInfo['firstInteractionDate'] : null;
-    $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='$accountnumber'"))['lastInteractionDate'] ?? null;
-
-    // Business Sepecific Data Storage and Variable Declaration for the customers business
-
-    $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '$customeremail'");
-    $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-    mysqli_free_result($businessAccountQuery);
-
-    $businessname = $businessAccountInfo['businessName'] ?? 'Not Assigned';
-    $businessindustry = $businessAccountInfo['businessIndustry'] ?? 'Not Assigned';
-
-    // Fetch website info
-
-    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$customeremail'");
-    $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
-    mysqli_free_result($websiteAccountQuery);
-
-    $websitedomain = $websiteAccountInfo['domainName'] ?? 'Not Assigned';
-
+    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
 ?>
 
@@ -169,17 +104,17 @@
                                 <div class="card-body">
                                     <div class="caliweb-two-grid">
                                         <div>
-                                            <p style="margin-bottom:10px; font-size:14px;">Legal Name: <?php echo $legalname; ?></p>
-                                            <p style="margin-bottom:10px; font-size:14px;">Mobile Number: <?php echo $mobilenumber; ?></p>
-                                            <p style="margin-bottom:10px; font-size:14px;">Email Address: <?php echo $customeremail; ?></p>
-                                            <p style="margin-bottom:10px; font-size:14px;">Registration Date: <?php echo $regdateformattedfinal; ?></p>
-                                            <p style="margin-bottom:10px; font-size:14px;">Last Status Update: <?php echo $statusdateformattedfinal; ?></p>
+                                            <p style="margin-bottom:10px; font-size:14px;">Legal Name: <?php echo $manageAccountDefinitionR->legalname; ?></p>
+                                            <p style="margin-bottom:10px; font-size:14px;">Mobile Number: <?php echo $manageAccountDefinitionR->mobilenumber; ?></p>
+                                            <p style="margin-bottom:10px; font-size:14px;">Email Address: <?php echo $manageAccountDefinitionR->customeremail; ?></p>
+                                            <p style="margin-bottom:10px; font-size:14px;">Registration Date: <?php echo $manageAccountDefinitionR->regdateformattedfinal; ?></p>
+                                            <p style="margin-bottom:10px; font-size:14px;">Last Status Update: <?php echo $manageAccountDefinitionR->statusdateformattedfinal; ?></p>
                                         </div>
                                         <div>
                                              <p style="margin-bottom:10px; font-size:14px;">Account Number: <?php echo $accountnumber; ?></p>
-                                             <p style="margin-bottom:10px; font-size:14px;">Account Standing: <?php echo $customerStatus; ?></p>
-                                             <p style="margin-bottom:10px; font-size:14px;">Email Verification Status: <?php echo $emailverifystatus; ?></p>
-                                             <p style="margin-bottom:10px; font-size:14px;">Email Verified On: <?php echo $emailverifydateformattedfinal; ?></p>
+                                             <p style="margin-bottom:10px; font-size:14px;">Account Standing: <?php echo $manageAccountDefinitionR->customerStatus; ?></p>
+                                             <p style="margin-bottom:10px; font-size:14px;">Email Verification Status: <?php echo $manageAccountDefinitionR->emailverifystatus; ?></p>
+                                             <p style="margin-bottom:10px; font-size:14px;">Email Verified On: <?php echo $manageAccountDefinitionR->emailverifydateformattedfinal; ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -199,10 +134,10 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <?php if (mysqli_num_rows($notesResults) == 0): ?>
+                                <?php if (mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0): ?>
                                     <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">No notes have been made for this account.</p>
                                 <?php endif; ?>
-                                <?php if ($statusreason): ?>
+                                <?php if ($manageAccountDefinitionR->statusreason): ?>
                                     <div class="caliweb-card dashboard-card note-card">
                                         <div class="card-header">
                                             <div class="display-flex align-center">
@@ -215,13 +150,13 @@
                                             </div>
                                         </div>
                                         <div class="card-body">
-                                            <p class="no-padding font-12px"><?= $statusreason ?></p>
+                                            <p class="no-padding font-12px"><?= $manageAccountDefinitionR->statusreason ?></p>
                                         </div>
                                     </div>
                                 <?php endif; ?>
                                 <?php 
-                                    while ($row = mysqli_fetch_assoc($notesResults)): 
-                                    $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $row['added_at'])->format('Y-m-d H:i:s');
+                                    while ($row = mysqli_fetch_assoc($manageAccountDefinitionR->notesResults)): 
+                                    $addedAtDateModify = DateTime::createFromFormat('d-m-Y h:i:sa', $row['added_at'])->format('M d, Y \a\\t h:i A');
                                 ?>
                                     <div class="caliweb-card dashboard-card note-card" style="margin-bottom:10px;">
                                         <div class="card-header">
@@ -231,6 +166,7 @@
                                                 </div>
                                                 <div>
                                                     <p class="no-padding font-12px"><strong>Note Added:</strong></p>
+                                                    <p class="no-padding font-12px"><?= $row["added_by"] ?></p>
                                                     <p class="no-padding font-12px"><?= $addedAtDateModify ?></p>
                                                 </div>
                                             </div>

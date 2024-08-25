@@ -8,15 +8,14 @@
 
     try {
 
-        $businessAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".$caliemail."'");
-        $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-        mysqli_free_result($businessAccountQuery);
-
-        $businessname = ($businessAccountInfo !== null) ? $businessAccountInfo['businessName'] : null;
-
         $truncatedAccountNumber = substr($currentAccount->accountNumber, -4);
         $customerStatus = $currentAccount->accountStatus;
         $accountnumber = $currentAccount->accountNumber;
+
+        $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+        $manageAccountDefinitionR->manageAccount($con, $accountnumber);
+
+        $businessname = ($manageAccountDefinitionR->businessname !== null) ? $manageAccountDefinitionR->businessname : null;
 
         echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
     
