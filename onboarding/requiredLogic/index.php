@@ -1,13 +1,12 @@
 <?php
 
     $pagetitle = "Onboarding Billing";
-    $_SESSION['pagetitle'] = $pagetitle;
     $pagesubtitle = "";
     $pagetype = "";
 
-    require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Onboarding/MiddleLogic/index.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Onboarding/MiddleLogic/index.php");
 
-    if (($_SESSION['pagetitle']) == "Onboarding Billing") {
+    if ($pagetitle == "Onboarding Billing") {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

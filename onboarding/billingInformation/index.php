@@ -35,7 +35,7 @@
         
     }
 
-    echo '<title>Complete onbording of your new account.</title>';
+    echo '<title>Complete onboarding of your new account.</title>';
 
 ?>
 
