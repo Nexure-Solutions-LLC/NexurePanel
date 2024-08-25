@@ -7,7 +7,7 @@
                 <div>
                     <p class="no-padding font-14px" style="padding-bottom:4px;">Account</p>
                     <h4 class="text-bold font-size-16 no-padding display-flex align-center">
-                        <?php echo $businessname; ?> - <?php echo $accountnumber; ?>
+                        <?php echo $manageAccountDefinitionR->businessindustry; ?> - <?php echo $accountnumber; ?>
                         <?php
 
                             $statusClasses = [
@@ -18,8 +18,8 @@
                                 "Closed" => "passive"
                             ];
                             
-                            $statusClass = $statusClasses[ucwords(strtolower($customerStatus))] ?? 'default';
-                            echo "<span class='account-status-badge $statusClass'>{$customerStatus}</span>";
+                            $statusClass = $statusClasses[ucwords(strtolower($manageAccountDefinitionR->customerStatus))] ?? 'default';
+                            echo "<span class='account-status-badge $statusClass'>{$manageAccountDefinitionR->customerStatus}</span>";
 
                         ?>
                     </h4>
@@ -35,12 +35,12 @@
                 <?php
 
                     $details = [
-                        'Type' => ($userrole === 'customer' || $userrole === 'Customer') ? 'Customer - Direct' : (($userrole === 'partner' || $userrole === 'Partner') ? 'Partner - Affiliate' : 'Unknown'),
-                        'Phone' => $mobilenumber,
-                        'Website' => $websitedomain,
-                        'Owner' => $legalname,
-                        'First Interaction' => $firstinteractiondate,
-                        'Last Interaction' => $lastinteractiondate
+                        'Type' => ($manageAccountDefinitionR->userrole === 'customer' || $manageAccountDefinitionR->userrole === 'Customer') ? 'Customer - Direct' : (($manageAccountDefinitionR->userrole === 'partner' || $manageAccountDefinitionR->userrole === 'Partner') ? 'Partner - Affiliate' : 'Unknown'),
+                        'Phone' => $manageAccountDefinitionR->mobilenumber,
+                        'Website' => $manageAccountDefinitionR->websitedomain,
+                        'Owner' => $manageAccountDefinitionR->legalname,
+                        'First Interaction' => $manageAccountDefinitionR->firstinteractiondate,
+                        'Last Interaction' => $manageAccountDefinitionR->lastinteractiondate
                     ];
                     
                     foreach ($details as $label => $value) {
@@ -52,7 +52,7 @@
                 ?>
                 <div class="width-100">
                     <p class="no-padding font-14px">Industry</p>
-                    <p class="no-padding font-14px"><?php echo $businessindustry; ?></p>
+                    <p class="no-padding font-14px"><?php echo $manageAccountDefinitionR->businessindustry; ?></p>
                 </div>
             </div>
         </div>

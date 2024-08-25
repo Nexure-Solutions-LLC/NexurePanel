@@ -33,7 +33,7 @@
         if ($pagetitle == "Customer Accounts" && $pagesubtitle == "Payment Methods") {
 
 
-            $account = new \CaliAccounts\Account($con);
+            $account = new \CaliWebDesign\Accounts\AccountHandler($con);
             $account->fetchByAccountNumber($accountnumber);
 
 

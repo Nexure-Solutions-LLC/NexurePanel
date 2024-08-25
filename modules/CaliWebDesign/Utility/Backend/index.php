@@ -684,8 +684,9 @@
 
     use CaliWebDesign\Utility;
 
-    class VariableDefinitions {
-
+    class VariableDefinitions
+    {
+        
         public $panelName;
         public $panelVersionName;
         public $paneldomain;
@@ -700,61 +701,241 @@
         public $apiKey;
         public $licenseKeyfromConfig;
         public $licenseKeyfromDB;
+        public $apiKeysecret;
+        public $apiKeypublic;
+        public $paymentgatewaystatus;
+        public $paymentProcessorName;
 
-        public function variablesHeader($con) {
+        public $customerAccountInfo;
+        public $legalname;
+        public $customeremail;
+        public $mobilenumber;
+        public $customerStatus;
+        public $userrole;
+        public $dbaccountnumber;
+        public $statusreason;
+        public $firstinteractiondate;
+        public $lastinteractiondate;
+        public $businessname;
+        public $businessindustry;
+        public $websitedomain;
+        public $notesResults;
+
+        public $regdate;
+        public $regdateformatted;
+        public $regdateformattedfinal;
+
+        public $statusdate;
+        public $statusdateformatted;
+        public $statusdateformattedfinal;
+
+        public $emailverifydate;
+        public $emailverifydateformatted;
+        public $emailverifydateformattedfinal;
+
+        public function variablesHeader($con)
+        {
 
             try {
 
-                // Connect to the database to initialize the panelinfo variable
+                // Initialize panel information
 
-                $panelresult = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = 1");
-                $panelinfo = mysqli_fetch_array($panelresult);
-                mysqli_free_result($panelresult);
+                $panelinfo = $this->fetchSingleRow($con, 'caliweb_panelconfig', 1);
+                $this->initializePanelConfig($panelinfo);
 
-                // Panel Configuration Definitions
+                // Set generic variable definitions
 
-                $this->panelName = $panelinfo['panelName'];
-                $this->panelVersionName = $panelinfo['panelVersion'];
-                $this->paneldomain = $panelinfo['panelDomain'];
-                $this->orgShortName = $panelinfo['organizationShortName'];
-                $this->orglegalName = $panelinfo['organization'];
-                $this->orglogolight = $panelinfo['organizationLogoLight'];
-                $this->orglogodark = $panelinfo['organizationLogoDark'];
-                $this->orglogosquare = $panelinfo['organizationLogoSquare'];
+                $this->setGenericVariables();
 
-                // Generic Variable Definitions
-
-                $this->dataTimestamp = date("M d, Y \a\\t h:i A");
-                $this->datedataOutput = "As of " . $this->dataTimestamp;
-                $this->userId = $_ENV['IPCHECKAPIUSER'];
-                $this->apiKey = $_ENV['IPCHECKAPIKEY'];
-
-                // License Key Variable Definitions
+                // Initialize license key
 
                 $this->licenseKeyfromConfig = $_ENV['LICENCE_KEY'];
                 $this->licenseKeyfromDB = $panelinfo['panelKey'];
 
-                // Payment Proccessing Variable Definitions
-                // Perform payment processor check query
+                // Initialize payment processor information
 
-                $paymentproccessresult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE id = '1'");
-                $paymentgateway = mysqli_fetch_array($paymentproccessresult);
-
-                // Free payment processor check result set
-
-                mysqli_free_result($paymentproccessresult);
-
-                $this->apiKeysecret = $paymentgateway['secretKey'];
-                $this->apiKeypublic = $paymentgateway['publicKey'];
-                $this->paymentgatewaystatus = strtolower($paymentgateway['status']);
-                $this->paymentProcessorName = $paymentgateway['processorName'];
-
-
+                $paymentgateway = $this->fetchSingleRow($con, 'caliweb_paymentconfig', 1);
+                $this->initializePaymentProcessor($paymentgateway);
+                
             } catch (\Throwable $exception) {
-            
+
                 \Sentry\captureException($exception);
-            
+
             }
+
+        }
+
+        private function fetchSingleRow($con, $table, $condition) {
+
+            $query = "SELECT * FROM $table WHERE $condition LIMIT 1";
+
+            $result = mysqli_query($con, $query);
+
+            if (!$result) {
+
+                \Sentry\captureException("Query failed: " . mysqli_error($con));
+
+                throw new Exception("Query failed: " . mysqli_error($con));
+
+            }
+
+            $row = mysqli_fetch_array($result);
+
+            mysqli_free_result($result);
+
+            return $row;
+
+        }
+
+        private function initializePanelConfig($panelinfo)
+        {
+
+            $this->panelName = $panelinfo['panelName'];
+
+            $this->panelVersionName = $panelinfo['panelVersion'];
+
+            $this->paneldomain = $panelinfo['panelDomain'];
+
+            $this->orgShortName = $panelinfo['organizationShortName'];
+
+            $this->orglegalName = $panelinfo['organization'];
+
+            $this->orglogolight = $panelinfo['organizationLogoLight'];
+
+            $this->orglogodark = $panelinfo['organizationLogoDark'];
+
+            $this->orglogosquare = $panelinfo['organizationLogoSquare'];
+
+        }
+
+        private function setGenericVariables()
+        {
+
+            $this->dataTimestamp = date("M d, Y \a\\t h:i A");
+
+            $this->datedataOutput = "As of " . $this->dataTimestamp;
+
+            $this->userId = $_ENV['IPCHECKAPIUSER'];
+
+            $this->apiKey = $_ENV['IPCHECKAPIKEY'];
+
+        }
+
+        private function initializePaymentProcessor($paymentgateway)
+        {
+
+            $this->apiKeysecret = $paymentgateway['secretKey'];
+
+            $this->apiKeypublic = $paymentgateway['publicKey'];
+
+            $this->paymentgatewaystatus = strtolower($paymentgateway['status']);
+
+            $this->paymentProcessorName = $paymentgateway['processorName'];
+
+        }
+
+        public function manageAccount($con, $accountnumber)
+        {
+
+            // Prepare the SQL Statement to get all the user's info
+
+            $this->customerAccountInfo = $this->fetchSingleRow($con, 'caliweb_users', "accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
+
+            if (!$this->customerAccountInfo) {
+
+                header("location: /dashboard/administration/accounts");
+
+                exit;
+                
+            }
+
+            // Account Specific Data Storage and Variable Declaration
+
+            $this->legalname = $this->customerAccountInfo['legalName'];
+
+            $this->customeremail = $this->customerAccountInfo['email'];
+
+            $this->mobilenumber = $this->customerAccountInfo['mobileNumber'];
+
+            $this->customerStatus = $this->customerAccountInfo['accountStatus'];
+
+            $this->userrole = $this->customerAccountInfo['userrole'];
+
+            $this->dbaccountnumber = $this->customerAccountInfo['accountNumber'];
+
+            $this->statusreason = $this->customerAccountInfo['statusReason'];
+
+            // Account Notes Section
+
+            $this->notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."' ORDER BY id DESC");
+
+            // Get the Interaction Dates Information for the Account Header
+
+            $newInteractionDate = date('Y-m-d H:i:s');
+
+            mysqli_query($con, "UPDATE caliweb_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'");
+
+            $this->firstinteractiondate = $this->customerAccountInfo['firstInteractionDate'] ?? null;
+
+            $this->lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'"))['lastInteractionDate'] ?? null;
+
+            // Business Specific Data Storage and Variable Declaration for the Customer's Business
+
+            $businessAccountInfo = $this->fetchSingleRow($con, 'caliweb_businesses', "email = '".mysqli_real_escape_string($con, $this->customeremail)."'");
+
+            $this->businessname = $businessAccountInfo['businessName'] ?? $this->legalname;
+
+            $this->businessindustry = $businessAccountInfo['businessIndustry'] ?? "Not Assigned";
+
+            $this->websitedomain = $this->getWebsiteDomain($con, $this->customeremail, $businessAccountInfo);
+
+            // Fetch website info
+
+            $websiteAccountInfo = $this->fetchSingleRow($con, 'caliweb_websites', "email = '".mysqli_real_escape_string($con, $this->customeremail)."'");
+
+            $this->websitedomain = $websiteAccountInfo['domainName'] ?? 'Not Assigned';
+
+            // Account Dates and Date Formatting
+
+            $regdate = $this->customerAccountInfo['registrationDate'];
+
+            $regdateformatted = new \DateTime($regdate);
+
+            $this->regdateformattedfinal = $regdateformatted->format('F j, Y g:i A');
+
+            $statusdate = $this->customerAccountInfo['statusDate'];
+
+            $statusdateformatted = new \DateTime($statusdate);
+
+            $this->statusdateformattedfinal = $statusdateformatted->format('F j, Y g:i A');
+
+            $emailverifydate = $this->customerAccountInfo['emailVerifiedDate'];
+
+            $emailverifydateformatted = new \DateTime($emailverifydate);
+
+            $this->emailverifydateformattedfinal = $emailverifydateformatted->format('F j, Y g:i A');
+
+            // Email Verification Status
+
+            $this->emailverifystatus = ucfirst($this->customerAccountInfo['emailVerfied']);
+
+
+
+
+        }
+
+        private function getWebsiteDomain($con, $customeremail, $businessAccountInfo)
+        {
+
+            if (!$businessAccountInfo) {
+
+                return "Not Assigned";
+
+            }
+
+            $websiteInfo = $this->fetchSingleRow($con, 'caliweb_websites', "email = '".mysqli_real_escape_string($con, $customeremail)."'");
+
+            return $websiteInfo['domainName'] ?? "Not Assigned";
 
         }
 
