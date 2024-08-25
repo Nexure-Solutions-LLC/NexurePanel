@@ -39,7 +39,7 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"] . "/components/CaliHeaders/Login.php")
+    include($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php")
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
 
@@ -92,6 +92,6 @@
 
 <?php 
 
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliFooters/Login.php"); 
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); 
     
 ?>

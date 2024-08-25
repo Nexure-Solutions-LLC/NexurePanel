@@ -4,7 +4,7 @@
     $pagesubtitle = "Details";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
     $accountnumber = $_GET['account_number'] ?? '';
@@ -68,18 +68,18 @@
 
     // Function to load the tables.
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/accountTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
 
 ?>
 
     <section class="section first-dashboard-area-cards">
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <?php include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Account.php'); ?>
+                <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Headers/index.php'); ?>
                 <div class="caliweb-two-grid special-caliweb-spacing account-grid-modified">
                     <div>
                         <div class="caliweb-card dashboard-card">
-                            <?php include($_SERVER["DOCUMENT_ROOT"].'/components/CaliMenus/Account.php'); ?>
+                            <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Menus/index.php'); ?>
                             <div class="caliweb-card dashboard-card">
                                 <div class="card-header">
                                     <div class="display-flex align-center" style="justify-content:space-between;">
@@ -261,6 +261,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

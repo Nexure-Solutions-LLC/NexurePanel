@@ -4,7 +4,7 @@
     $pagesubtitle = 'Privacy and Security';
     $pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -17,7 +17,7 @@
                     <div class="caliweb-card dashboard-card sidebar-card" style="overflow-y: scroll;">
                         <?php
 
-                            include($_SERVER["DOCUMENT_ROOT"].'/components/CaliSidebars/AccountManagement.php');
+                            include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Sidebars/index.php');
 
                         ?>
                     </div>
@@ -38,6 +38,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

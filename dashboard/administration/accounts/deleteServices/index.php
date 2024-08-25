@@ -4,7 +4,7 @@
     $pagesubtitle = "Delete";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountNumber = $_GET['account_number'];
     $serviceName = $_GET['service_name'];
@@ -30,6 +30,6 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

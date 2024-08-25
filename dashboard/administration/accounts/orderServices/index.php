@@ -14,7 +14,7 @@
 
     } else {
 
-        include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
         $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
         $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
@@ -230,7 +230,7 @@
 
 <?php
 
-                include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+                include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
             }
         

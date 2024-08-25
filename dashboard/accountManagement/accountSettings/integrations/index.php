@@ -8,7 +8,7 @@
     $_SESSION['pagetitle'] = "Account Management";
     $pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
@@ -23,7 +23,7 @@
                 <div class="caliweb-card dashboard-card sidebar-card" style="overflow-y: scroll;">
                     <?php
 
-                        include($_SERVER["DOCUMENT_ROOT"].'/components/CaliSidebars/AccountManagement.php');
+                        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Sidebars/index.php');
 
                     ?>
                 </div>
@@ -43,7 +43,7 @@
 
                                     if ($accountModulesName == "Cali OAuth") {
 
-                                        include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php");
+                                        include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//index.php");
 
                                     }
 
@@ -61,6 +61,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

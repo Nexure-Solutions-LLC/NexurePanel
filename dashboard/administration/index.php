@@ -4,7 +4,7 @@
     $pagetitle = "Home";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$variableDefinitionX->orgShortName.'</title>';
 
@@ -50,7 +50,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Sales Person Activity";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/barGraphs/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/graphSQL/barGraphs/index.php');
                                 ?>
 
                             </div>
@@ -79,7 +79,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Sales Person Activity";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/barGraphs/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/graphSQL/barGraphs/index.php');
                                 ?>
 
                             </div>
@@ -108,7 +108,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Employee Only Sales Activity";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/barGraphs/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/graphSQL/barGraphs/index.php');
                                 ?>
 
                             </div>
@@ -159,7 +159,7 @@
                                     $graphCallType = "Deals by Segment";
                                     $_SESSION['graphCallType'] = $graphCallType;
 
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/graphSQL/pieCharts/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/graphSQL/pieCharts/index.php');
                                 ?>
                         </div>
                         <div class="card-footer">
@@ -185,7 +185,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Tasks Table";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -212,7 +212,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Tasks Table";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -239,7 +239,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Tasks Table Employee Only";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -270,7 +270,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Cases Table";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -299,7 +299,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Cases Table";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -328,7 +328,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Cases Table Employee Only";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -360,7 +360,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Leads Table";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -389,7 +389,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Leads Table";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -418,7 +418,7 @@
                                     unset($_SESSION['graphCallType']);
                                     $graphCallType = "Dashboard Leads Table Employee Only";
                                     $_SESSION['graphCallType'] = $graphCallType;
-                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/caliTables/index.php');
+                                    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/index.php');
                                 ?>
 
                             </div>
@@ -460,7 +460,7 @@
                 function updateTheme(theme) {
 
                     const xhr = new XMLHttpRequest();
-                    xhr.open("POST", "/modules/graphSQL/themeingRequirement/index.php", true);
+                    xhr.open("POST", "/modules/CaliWebDesign/Utility/graphSQL/themeingRequirement/index.php", true);
                     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                     xhr.onload = function() {
@@ -518,7 +518,7 @@
 
 <?php
 
-        include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
     } catch (\Throwable $exception) {
             

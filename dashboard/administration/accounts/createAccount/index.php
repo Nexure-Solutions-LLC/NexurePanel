@@ -89,11 +89,9 @@
             header("location: /error/genericSystemError");
 
         }
-    } else {
-
-        include($_SERVER["DOCUMENT_ROOT"] . '/components/CaliHeaders/Dashboard.php');
-
     }
+
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     // Employee or Business function to determine what tables get data sent to them.
 
@@ -365,6 +363,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

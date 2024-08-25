@@ -1,7 +1,7 @@
 *.env
 .env
-modules/webDesignModule/terminal
-modules/webDesignModule/siteBuilder
+modules/CaliWebDesign/Websites/terminal
+modules/CaliWebDesign/Websites/siteBuilder
 license/
 license
 license/*
