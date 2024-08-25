@@ -4,7 +4,7 @@
     $pagesubtitle = "Your account has been placed in an additional review";
     $pagetype = "Status Page";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/components/CaliStatus/Status.php');
+    require($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Status/Headers/index.php');
 
     echo '<title>'.$variableDefinitionX->orgShortName.' - Under Review</title>';
 

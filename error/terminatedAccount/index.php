@@ -4,7 +4,7 @@
     $pagesubtitle = "Your account has been terminated";
     $pagetype = "Status Page";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/components/CaliStatus/Status.php');
+    require($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Status/Headers/index.php');
 
     echo '<title>'.$variableDefinitionX->orgShortName.' - Terminated</title>';
 
