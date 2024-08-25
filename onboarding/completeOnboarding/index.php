@@ -6,13 +6,11 @@
 
     // Inital Checks
 
-    unset($_SESSION['pagetitle']);
     $pagetitle = "Onboarding Complete";
-    $_SESSION['pagetitle'] = $pagetitle;
     $pagesubtitle = "";
     $pagetype = "";
 
-    require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Onboarding/Complete/index.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Onboarding/Complete/index.php");
 
     // Checks type of payment processor.
 
@@ -20,7 +18,7 @@
 
         if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
-            require($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+            include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
 
         } else {
 

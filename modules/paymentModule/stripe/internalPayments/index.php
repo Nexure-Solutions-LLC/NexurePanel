@@ -49,7 +49,7 @@
 
         \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
 
-        if ($pagetitle === "Onboarding Billing" || $_SESSION['pagetitle'] === "Onboarding Billing") {
+        if ($pagetitle == "Onboarding Billing") {
 
             $token = json_decode(file_get_contents('php://input'), true)['token'] ?? '';
 
@@ -72,7 +72,7 @@
 
             }
 
-        } elseif ($pagetitle === "Onboarding Complete" || $_SESSION['pagetitle'] === "Onboarding Complete") {
+        } elseif ($pagetitle == "Onboarding Complete") {
 
             try {
 
@@ -111,15 +111,11 @@
 
                 if ($action) {
 
-                    var_dump($action);
-
                     $userProfileUpdated = $currentAccount->multiChangeAttr([
                         ["attName" => "accountStatus", "attValue" => $action["status"], "useStringSyntax" => true],
                         ["attName" => "statusReason", "attValue" => $action["reason"] ?? '', "useStringSyntax" => true],
                         ["attName" => "accountNotes", "attValue" => $action["notes"] ?? '', "useStringSyntax" => true],
                     ]);
-
-                    var_dump($userProfileUpdated);
 
                     if ($userProfileUpdated) {
 
