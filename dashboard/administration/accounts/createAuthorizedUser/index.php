@@ -1,9 +1,10 @@
 <?php
-    $pagetitle = "Authorizer Create";
+    $pagetitle = "Authorized Create";
     $pagesubtitle = "Create";
     $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountnumber = $_GET['account_number'] ?? '';
 
@@ -14,13 +15,77 @@
 
     }
 
+    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR->manageAccount($con, $accountnumber);
+
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+        // This gets the feilds for the customer registration system. This pulls it from the html
+        // form and remmoves symbols or charaters that can be used for SQL injections.
         
+        $fields = [
+            'legalname', 'emailaddress', 'phonenumber', 'password', 
+            'accountstatus', 'userrole', 'accesslevel'
+        ];
+
+        foreach ($fields as $field) {
+
+            $$field = mysqli_real_escape_string($con, stripslashes($_REQUEST[$field]));
+
+        }
+
+        // This is variable definitions 
+
+        $registrationdate = date("Y-m-d H:i:s");
+        $ownerOwnedEmail = $manageAccountDefinitionR->customeremail;
+
+        $randomPrefix = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'), 0, 5);
+
+        if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
+
+            if ($variableDefinitionX->paymentProcessorName === "Stripe") {
+
+                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+
+                $cu = \Stripe\Customer::create([
+                    'name' => $legalname,
+                    'email' => $emailaddress,
+                    'phone' => $phonenumber,
+                    'description' => "Account Number: " . $accountnumber,
+                ]);
+
+                $SS_STRIPE_ID = $cu['id'];
+
+            } else {
+
+                header("location: /error/genericSystemError");
+                exit;
+
+            }
+
+        } else {
+
+            header("location: /error/genericSystemError");
+            exit;
+
+        }
+
+        // Peroforms the database entry into MySQL.
+
+        $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
+            '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '', '$accountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '$ownerOwnedEmail', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
+
+        if (mysqli_query($con, $accountInsertRequest)) {
+
+            header("location: /dashboard/administration/accounts/manageAccount/?account_number={$accountnumber}");
+        
+        } else {
+
+            header("location: /error/genericSystemError");
+
+        }
 
     }
-
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo "<title>{$pagetitle} | {$pagesubtitle}</title>";
 
@@ -75,10 +140,6 @@
                                             </div>
                                         </div>
                                         <div class="form-left-side" style="display:block; width:80%;">
-                                            <div class="form-control">
-                                                <label for="dateofbirth">Date of Birth</label>
-                                                <input type="date" name="dateofbirth" id="dateofbirth" class="form-input" placeholder="01/01/1999" required="" />
-                                            </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="accountstatus">Account Status</label>
                                                 <select type="text" name="accountstatus" id="accountstatus" class="form-input">

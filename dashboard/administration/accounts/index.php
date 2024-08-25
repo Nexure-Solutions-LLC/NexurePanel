@@ -36,7 +36,7 @@
                         <div class="dashboard-table">
                             <?php
 
-                                $sql = "SELECT * FROM caliweb_users WHERE userrole <> 'administrator'";
+                                $sql = "SELECT * FROM caliweb_users WHERE userrole <> 'administrator' AND userrole <> 'authorized user'";
                                 $result = mysqli_query($con, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {

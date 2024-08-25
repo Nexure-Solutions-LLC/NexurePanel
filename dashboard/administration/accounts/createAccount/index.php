@@ -4,6 +4,7 @@
     $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo "<title>{$pagetitle} | {$pagesubtitle}</title>";
 
@@ -46,7 +47,7 @@
         // proccessor it is, if its Stripe then it proceedes, if not throws error as Stripe is the only supported system
         // as of right now.
   
-        if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->status === "active") {
+        if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
 
             if ($variableDefinitionX->paymentProcessorName === "Stripe") {
 
@@ -90,8 +91,6 @@
 
         }
     }
-
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     // Employee or Business function to determine what tables get data sent to them.
 
