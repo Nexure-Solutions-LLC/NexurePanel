@@ -8,9 +8,9 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
+        require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/index.php");
 
-        $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
+        $variableDefinitionX = new \CaliWebDesign\Generic\VariableDefinitions();
         $variableDefinitionX->variablesHeader($con);
 
         try {

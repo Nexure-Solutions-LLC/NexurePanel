@@ -1,11 +1,10 @@
 <?php
+    $pagetitle = "Onboarding Billing";
+    $pagetype = "Client";
+    $_SESSION['pagetitle'] = $pagetitle;
 
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
-
-    $pagetitle = "Onboarding Billing";
-    $_SESSION['pagetitle'] = $pagetitle;
 
     // Check the user account
 
