@@ -52,9 +52,9 @@
                                                 ['legalName', 'mobileNumber', 'userrole', 'accountStatus'],
                                                 ['25%', '20%', '20%', '20%'],
                                                 [
-                                                    'View' => "/dashboard/administration/accounts/manageAccount/?account_number={accountNumber}&account_type=authorized_user",
-                                                    'Edit' => "/dashboard/administration/accounts/editAccount/?account_number={accountNumber}&account_type=authorized_user",
-                                                    'Delete' => "/dashboard/administration/accounts/deleteAccount/?account_number={accountNumber}&account_type=authorized_user"
+                                                    'View' => "/dashboard/administration/accounts/manageAccount/?account_number={accountNumber}&account_type=".urlencode('Authorized User'),
+                                                    'Edit' => "/dashboard/administration/accounts/editAccount/?account_number={accountNumber}&account_type=".urlencode('Authorized User'),
+                                                    'Delete' => "/dashboard/administration/accounts/deleteAccount/?account_number={accountNumber}&account_type=".urlencode('Authorized User')
                                                 ]
                                             );
 

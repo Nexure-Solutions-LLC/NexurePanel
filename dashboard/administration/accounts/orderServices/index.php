@@ -48,7 +48,7 @@
 
                 if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
-                    require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+                    include ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
 
                 }
 

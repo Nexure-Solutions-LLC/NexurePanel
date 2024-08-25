@@ -170,11 +170,11 @@
         if (mysqli_query($con, $addressInsertRequest)) {
 
             $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES (
-                '$businessname', '', '$businessindustry', '$businessrevenue', '$email', '', '', '', 'false')";
+                '$businessname', '', '$businessindustry', '$businessrevenue', '$email', 'Active', '0000-00-00', '', 'false')";
 
             if (mysqli_query($con, $businessInsertRequest)) {
 
-                header("location: /");
+                header("location: /dashboard/administration/accounts");
 
             } else {
 
