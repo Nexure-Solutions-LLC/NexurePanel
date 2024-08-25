@@ -4,10 +4,10 @@
     $pagesubtitle = "Overview";
     $pagetype = "Authorized User";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
 ?>
 
 <?php
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 ?>

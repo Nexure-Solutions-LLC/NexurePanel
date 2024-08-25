@@ -4,7 +4,7 @@
     $pagesubtitle = "List";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
     echo "<title>$pagetitle | $pagesubtitle</title>";
 
 ?>
@@ -123,4 +123,4 @@
     </div>
 </section>
 
-<?php include($_SERVER["DOCUMENT_ROOT"] . '/components/CaliFooters/Dashboard.php'); ?>
+<?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php'); ?>

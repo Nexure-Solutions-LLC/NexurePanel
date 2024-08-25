@@ -1,7 +1,8 @@
 <?php
 
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
 
     $pagetitle = "Onboarding Billing";
     $_SESSION['pagetitle'] = $pagetitle;
@@ -125,5 +126,5 @@
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/clientside.php");
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
 ?>

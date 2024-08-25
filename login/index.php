@@ -46,7 +46,7 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
 
     echo '<title>'.$variableDefinitionX->orgShortName.' | Unified Portal</title>';
 
@@ -84,7 +84,7 @@
 
                                             if ($loginModulesName == "Cali OAuth") {
 
-                                                include($_SERVER["DOCUMENT_ROOT"]."/modules/caliOauth/index.php");
+                                                include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//index.php");
 
                                             }
                                         }
@@ -133,6 +133,6 @@
 
 <?php 
     
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliFooters/Login.php"); 
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); 
     
 ?>

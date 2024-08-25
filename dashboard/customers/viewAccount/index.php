@@ -6,7 +6,7 @@
 
     $accountnumber = $_GET['account_number'];
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -245,6 +245,6 @@
 
     }
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

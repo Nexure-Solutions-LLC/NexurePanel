@@ -1,6 +1,6 @@
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
 
     echo '<title>You have been signed out of your Cali account.</title>';
 
@@ -80,6 +80,6 @@
     </script>
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
 
 ?>

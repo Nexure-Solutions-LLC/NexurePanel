@@ -1,6 +1,6 @@
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"]."/components/CaliHeaders/Login.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
 
     echo '<title>'.$variableDefinitionX->orgShortName.' - Generic Error</title>';
 
@@ -43,6 +43,6 @@
             </div>
         </div>';
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Login.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
 
 ?>

@@ -3,7 +3,7 @@
     $pagesubtitle = "About";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliHeaders/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 ?>
@@ -74,6 +74,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/components/CaliFooters/Dashboard.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

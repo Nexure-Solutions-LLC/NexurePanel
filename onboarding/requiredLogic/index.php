@@ -1,17 +1,6 @@
 <?php
-    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliUtilities/VariableDefinitions.php");
-    require($_SERVER["DOCUMENT_ROOT"] . "/components/CaliAccounts/Account.php");
 
-    $caliemail = $_SESSION['caliid'];
-
-    $currentAccount = new \CaliAccounts\Account($con);
-    $success = $currentAccount->fetchByEmail($caliemail);
-
-    $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
-    $variableDefinitionX->variablesHeader($con);
+    require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/System/Dashboard.php");
 
     $stripeID = $currentAccount->stripe_id;
 
