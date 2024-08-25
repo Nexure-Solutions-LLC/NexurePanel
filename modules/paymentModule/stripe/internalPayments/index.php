@@ -156,7 +156,7 @@
 
             }
 
-        } elseif ($pagetitle === "Services" || $pagetitle === "Create Order") {
+        } elseif ($pagetitle == "Services" && $pagesubtitle == "Create Order") {
 
             $customerprofilequery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'");
             $customerprofileresult = mysqli_fetch_array($customerprofilequery);
@@ -180,7 +180,7 @@
                     'confirm' => true,
                 ]);
 
-                $module = getModulePath($purchasableType);
+                $module = getModulePath($purchasableItem);
 
                 if ($module) {
 
@@ -200,6 +200,7 @@
 
                     }
                 }
+
             } catch (\Stripe\Exception\ApiErrorException $e) {
 
                 redirect("/error/genericSystemError");
