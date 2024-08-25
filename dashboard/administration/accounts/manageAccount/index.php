@@ -195,9 +195,9 @@
                                                     <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                                 </div>
                                                 <div>
-                                                    <p class="no-padding font-12px"><strong>Note Added:</strong></p>
-                                                    <p class="no-padding font-12px"><?= $row["added_by"] ?></p>
-                                                    <p class="no-padding font-12px"><?= $addedAtDateModify ?></p>
+                                                    <p class="no-padding font-12px"><strong>Note Added</strong></p>
+                                                    <p class="no-padding font-12px">Author: <?= $row["added_by"] ?></p>
+                                                    <p class="no-padding font-12px">Date: <?= $addedAtDateModify ?></p>
                                                 </div>
                                             </div>
                                         </div>
