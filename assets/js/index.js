@@ -33,88 +33,89 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $(document).ready(function () {
 
-    $('#systemSearch').on('input', function () {
+    // Generic function to set up search functionality
 
-        var searchTerm = $(this).val().trim().toLowerCase();
-        var resultsContainer = $('#systemSearchResults');
-        resultsContainer.empty();
+    function setupSearch(inputSelector, resultsContainerSelector, endpoint, formatResult) {
+        $(inputSelector).on('input', function () {
+            var searchTerm = $(this).val().trim().toLowerCase();
+            var resultsContainer = $(resultsContainerSelector);
+            resultsContainer.empty();
 
-        $.ajax({
-            url: '/modules/CaliWebDesign/Utility/Backend/Search/index.php',
-            dataType: 'json',
-            data: {
-                term: searchTerm
-            },
-            success: function (data) {
+            $.ajax({
+                url: endpoint,
+                dataType: 'json',
+                data: { term: searchTerm },
+                success: function (data) {
+                    resultsContainer.empty();
 
-                resultsContainer.empty();
-
-                for (var category in data) {
-
-                    if (data.hasOwnProperty(category)) {
-
-                        var categoryTitle = $('<div class="fillable-header" style="margin-top:5px; margin-bottom:5px; padding:10px; border-radius:4px;"><p class= "fillable-text">' + category.charAt(0).toUpperCase() + category.slice(1) + '</p></div>');
-                        
-                        resultsContainer.append(categoryTitle);
-
-                        data[category].forEach(function (item) {
-
-                            var firstField = Object.values(item)[0];
-
-                            var otherFields = Object.values(item).slice(1).join(' • ');
-
-                            var itemDiv = $('<div class="systemwide-search-div"></div>');
-
-                            itemDiv.append('<div><strong>' + firstField + '</strong></div>');
-
-                            itemDiv.append('<div>' + otherFields + '</div>');
+                    if (Array.isArray(data)) {
+                        data.forEach(function (item) {
+                            var itemDiv = $('<div class="indivdual-search-div"></div>');
+                            itemDiv.html(formatResult(item));
 
                             itemDiv.on('click', function () {
-
-                                $('#systemSearch').val(itemText);
-
+                                $(inputSelector).val(Object.values(item).find(val => val.includes(searchTerm))); // Adjust if necessary
                                 resultsContainer.hide();
-
                             });
 
                             resultsContainer.append(itemDiv);
-
                         });
+                    } else {
+                        for (var category in data) {
+                            if (data.hasOwnProperty(category)) {
+                                var categoryTitle = $('<div class="fillable-header" style="margin-top:5px; margin-bottom:5px; padding:10px; border-radius:4px;"><p class="fillable-text">' + category.charAt(0).toUpperCase() + category.slice(1) + '</p></div>');
+                                resultsContainer.append(categoryTitle);
 
+                                data[category].forEach(function (item) {
+                                    var itemDiv = $('<div class="systemwide-search-div"></div>');
+                                    itemDiv.html(formatResult(item));
+
+                                    itemDiv.on('click', function () {
+                                        $(inputSelector).val(Object.values(item).find(val => val.includes(searchTerm))); // Adjust if necessary
+                                        resultsContainer.hide();
+                                    });
+
+                                    resultsContainer.append(itemDiv);
+                                });
+                            }
+                        }
                     }
 
+                    if (searchTerm.length > 0 && Object.keys(data).length > 0) {
+                        resultsContainer.show();
+                    } else {
+                        resultsContainer.hide();
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
                 }
-
-                if (searchTerm.length > 0 && Object.keys(data).length > 0) {
-
-                    resultsContainer.show();
-
-                } else {
-
-                    resultsContainer.hide();
-
-                }
-
-            },
-
-            error: function (xhr, status, error) {
-
-                console.error('AJAX Error:', status, error);
-                
-            }
-
+            });
         });
 
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest(resultsContainerSelector).length && !$(e.target).is(inputSelector)) {
+                $(resultsContainerSelector).hide();
+            }
+        });
+    }
+
+    // Initialize searches with specific endpoints and formatting
+    
+    setupSearch('#systemSearch', '#systemSearchResults', '/modules/CaliWebDesign/Utility/Backend/Search/index.php', function (item) {
+        return '<strong>' + Object.values(item)[0] + '</strong><br>' + Object.values(item).slice(1).join(' • ');
     });
 
-    $(document).on('click', function (e) {
+    setupSearch('#assignedagent', '#assignedagentresults', '/dashboard/administration/cases/createCase/agentSearchLogic/index.php', function (agent) {
+        return agent.legalName + ' (' + agent.email + ')';
+    });
 
-        if (!$(e.target).closest('#systemSearchResults').length && !$(e.target).is('#systemSearch')) {
+    setupSearch('#customersearch', '#customersearchresults', '/dashboard/administration/cases/createCase/customerSearchLogic/index.php', function (customer) {
+        return customer.legalName + ' (' + customer.accountNumber + ')';
+    });
 
-            $('#systemSearchResults').hide();
-
-        }
-
+    setupSearch('#assignedemployee', '#assignedemployeeresults', '/dashboard/administration/tasks/createTask/agentSearchLogic/index.php', function (agent) {
+        return agent.legalName + ' (' + agent.email + ')';
     });
 
 });
