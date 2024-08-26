@@ -80,9 +80,8 @@
 
                                                 echo '<td style="width:20%;">' . $row['accountStatus'] . '</td>';
                                                 echo '<td style="display-flex align-center">
-                                                        <a href="/dashboard/administration/accounts/manageAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                        <a href="/dashboard/administration/accounts/deleteAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                        <a href="/dashboard/administration/accounts/editAccount/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
+                                                        <a href="/dashboard/accountManagement/" class="careers-link" style="margin-right:10px;">View</a>
+                                                        <a href="/dashboard/accountManagement/personalDetails" class="careers-link">Edit</a>
                                                     </td>';
                                                 echo '</tr>';
 
@@ -146,9 +145,9 @@
 
                                                 echo '<td style="width:20%;">' . $row['accountStatus'] . '</td>';
                                                 echo '<td style="display-flex align-center">
-                                                        <a href="/dashboard/administration/accounts/manageAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">View</a>
-                                                        <a href="/dashboard/administration/accounts/deleteAccount/?account_number='.$row['accountNumber'].'" class="careers-link" style="margin-right:10px;">Delete</a>
-                                                        <a href="/dashboard/administration/accounts/editAccount/?account_number='.$row['accountNumber'].'" class="careers-link">Edit</a>
+                                                        <a href="/dashboard/customers" class="careers-link" style="margin-right:10px;">View</a>
+                                                        <a href="/dashboard/customers" class="careers-link" style="margin-right:10px;">Delete</a>
+                                                        <a href="/dashboard/customers" class="careers-link">Edit</a>
                                                     </td>';
                                                 echo '</tr>';
                                             }

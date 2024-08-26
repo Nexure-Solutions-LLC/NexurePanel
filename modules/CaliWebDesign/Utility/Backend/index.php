@@ -942,6 +942,40 @@
 
         }
 
+        public function getActiveClientModulesOptions($con) {
+            $options = '';
+
+            $query = "SELECT * FROM caliweb_modules";
+
+            $result = mysqli_query($con, $query);
+
+            if ($result) {
+
+                while ($row = mysqli_fetch_array($result)) {
+
+                    $moduleCatagoryCheckStatus = strtolower($row['moduleStatus']);
+                    
+                    $moduleCatagoryCheckName = htmlspecialchars($row['moduleFriendlyName']);
+
+                    $moduleCatagoryCheckPosType = strtolower($row['modulePositionType']);
+
+                    $moduleCatagoryCheckDependsOn = strtolower($row['moduleDependsOn']);
+
+                    if ($moduleCatagoryCheckStatus === "active" && 
+                        $moduleCatagoryCheckPosType === "client function" && 
+                        empty($moduleCatagoryCheckDependsOn)) {
+
+                        $options .= '<option>' . $moduleCatagoryCheckName . '</option>';
+                    }
+
+                }
+
+                mysqli_free_result($result);
+            }
+
+            return $options;
+        }
+
     }
 
     class GenericInheritable
@@ -1409,10 +1443,12 @@
         function __construct($con, $manager)
         {
             parent::__construct($con, $manager);
+
             // primaryIdentifier may not be used at this time
             // because I don't think it supports non-string keys
             // however when it is added it should become more mainstream for
             // fetching-by-primary-identifier
+
         }
 
 
@@ -1668,6 +1704,62 @@
 
         }
         
+    }
+
+    namespace CaliWebDesign\MarketingCloud;
+
+    class CampaignsSystem {
+
+        protected $con;
+
+        public function __construct($con) {
+
+            $this->con = $con;
+
+        }
+
+        public function loadAdPartners() {
+
+            $query = "SELECT * FROM caliweb_modules WHERE moduleName = 'Cali Marketing Cloud'";
+
+            $result = mysqli_query($this->con, $query);
+
+            if (mysqli_num_rows($result) > 0) {
+
+                $adPartners = ['Meta Marketing Services', 'Google Marketing Services', 'X Marketing Services', 'TikTok Marketing Services'];
+
+                $partnersLoaded = [];
+
+                foreach ($adPartners as $partner) {
+
+                    $partnerQuery = "SELECT * FROM caliweb_modules WHERE moduleName = ? AND moduleDependsOn = 'Cali Marketing Cloud'";
+
+                    $stmt = mysqli_prepare($this->con, $partnerQuery);
+
+                    mysqli_stmt_bind_param($stmt, "s", $partner);
+
+                    mysqli_stmt_execute($stmt);
+
+                    $partnerResult = mysqli_stmt_get_result($stmt);
+
+                    if (mysqli_num_rows($partnerResult) > 0) {
+
+                        $partnersLoaded[] = $partner;
+                    }
+
+                    mysqli_stmt_close($stmt);
+                }
+
+                return $partnersLoaded;
+
+            } else {
+
+                return [];
+                
+            }
+
+        }
+
     }
 
 ?>

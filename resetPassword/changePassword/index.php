@@ -32,6 +32,26 @@
     
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        $current_time = time();
+
+        // Check if the last submission time is stored in the session
+        
+        if (isset($_SESSION['last_submit_time'])) {
+
+            $time_diff = $current_time - $_SESSION['last_submit_time'];
+
+            if ($time_diff < 5) {
+
+                header("Location: /error/rateLimit");
+                exit;
+
+            }
+        }
+
+        // If the rate limit check passes, update the last submission time
+
+        $_SESSION['last_submit_time'] = $current_time;
+
         try {
 
             $newPassword = stripslashes($_REQUEST['newPassword']);

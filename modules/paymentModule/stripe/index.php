@@ -317,7 +317,7 @@
 
            }
 
-        } else if ($pagetitle == "Services" && $pagesubtitle == "Create Order") {
+        } elseif ($pagetitle == "Services" && $pagesubtitle == "Create Order") {
 
             \Stripe\Stripe::setApiKey($stripeSecretKey);
 

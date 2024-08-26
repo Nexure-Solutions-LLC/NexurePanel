@@ -56,7 +56,6 @@
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-                include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
                 $current_time = time();
 
@@ -78,17 +77,8 @@
 
                 $_SESSION['last_submit_time'] = $current_time;
 
-                // Continue with processing the form data
-
-                $notetype = mysqli_real_escape_string($con, $_POST["type"]);
-                $content = mysqli_real_escape_string($con, $_POST["preset"]);
-                $added_at = date("d-m-Y h:i:sa");
-
-                $query = 'INSERT INTO `caliweb_accountnotes` (accountnumber, notetype, content, added_by, added_at) VALUES ("' . $accountnumber . '", "' . $notetype . '", "' . $content . '", "' . $currentAccount->legalName . '", "' . $added_at . '");';
-                $result = mysqli_query($con, $query);
-
-                header("location:/dashboard/administration/accounts/manageAccount?account_number=" . $accountnumber);
-                exit;
+                
+                
 
             } else {
 
@@ -118,7 +108,7 @@
                     <div class="container width-98">
                         <div class="caliweb-one-grid special-caliweb-spacing">
                             <div class="caliweb-card dashboard-card">
-                                <form method="POST" action="" id="caliwebdesign-panel-form">
+                                <form method="POST" action="">
                                     <div class="card-header">
                                         <div class="display-flex align-center" style="justify-content: space-between;">
                                             <div class="display-flex align-center">
@@ -127,35 +117,27 @@
                                                 </div>
                                                 <div>
                                                     <p class="no-padding font-14px">Accounts</p>
-                                                    <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">Place Account Notice</h4>
+                                                    <h4 class="text-bold font-size-20 no-padding" style="padding-bottom:0px; padding-top:5px;">Team Assignment</h4>
                                                 </div>
                                             </div>
                                             <div>
                                                 <button class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;" type="submit" name="submit">Save</button>
-                                                <a href="/dashboard/administration/accounts/addActivityNote/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Clear Form</a>
-                                                <a href="/dashboard/administration/accounts/manageAccount/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Exit</a>
+                                                <a href="/dashboard/administration/accounts/addAccountTeam/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Clear Form</a>
+                                                <a href="/dashboard/administration/accounts/manageAccount/profile/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Exit</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="fillable-section-holder" style="margin-top:-3% !important;">
                                             <div class="fillable-header">
-                                                <p class="fillable-text">Notice Information</p>
+                                                <p class="fillable-text">Team Information</p>
                                             </div>
                                             <div class="fillable-body">
                                                 <div class="caliweb-grid caliweb-two-grid" style="grid-row-gap:0px !important; grid-column-gap:100px !important; margin-bottom:4%;">
                                                     <div class="form-left-side" style="width:80%;">
-                                                        <div class="form-control" style="margin-top:20px;">
-                                                            <label for="type">Note Type</label>
-                                                            <select type="text" name="type" id="type" class="form-input" onchange="updatePreset()">
-                                                                <option>Please choose an option</option>
-                                                                <?php echo $options ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-control" style="margin-top:20px;">
-                                                            <label for="preset">Account Note</label>
-                                                            <textarea type="text" name="preset" id="preset" class="form-input" style="min-width: 500px; min-height: 125px"></textarea>
-                                                        </div>
+                                                        
+                                                        NULL
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -166,20 +148,6 @@
                         </div>
                     </div>
                 </section>
-
-                <script>
-
-                    function updatePreset() {
-
-                        var serviceSelect = document.getElementById('type');
-                        var presetInput = document.getElementById('preset');
-                        var selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
-                        var preset = selectedOption.getAttribute('data-preset');
-                        presetInput.value = preset;
-
-                    }
-
-                </script>
 
                 <?php
 

@@ -1075,11 +1075,15 @@ textarea.swal2-input {
 }
 
 .caliweb-pricing-bar {
+    position: fixed !important;
+}
+
+.caliweb-pricing-bar {
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px !important;
 }
 
 .dashboard-admin-cards-withtoolbar {
-    padding-bottom:9px !important;
+    padding-bottom:4% !important;
 }
 
 /* Cali Web Design Terminal/Bot Output */
@@ -1151,7 +1155,7 @@ textarea.swal2-input {
     }
 
     .dashboard-admin-cards-withtoolbar {
-        padding-bottom: 25px !important;
+        padding-bottom: 4% !important;
     }
 
 }
@@ -1178,7 +1182,7 @@ textarea.swal2-input {
     }
 
     .dashboard-admin-cards-withtoolbar {
-        padding-bottom: 25px !important;
+        padding-bottom: 8% !important;
     }
 }
 
@@ -1204,6 +1208,6 @@ textarea.swal2-input {
     }
 
     .dashboard-admin-cards-withtoolbar {
-        padding-bottom: 0px !important;
+        padding-bottom: 10% !important;
     }
 }
