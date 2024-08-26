@@ -81,7 +81,7 @@
 
     <div id="event-modal" class="modal">
         <div class="modal-content">
-            <h6 style="font-size:14px; font-weight:600; padding:0; margin:0;">Create New Event</h6>
+            <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Create New Event</h6>
             
             <form id="event-form">
                 <input type="hidden" id="event-date" name="date">

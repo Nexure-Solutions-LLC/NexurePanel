@@ -217,7 +217,7 @@
 
         <div id="accountModal" class="modal">
             <div class="modal-content">
-                <h6 style="font-size:14px; font-weight:600; padding:0; margin:0;">Full Account Number</h6>
+                <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Full Account Number</h6>
                 <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">Full Account Number: <?php echo $accountnumber; ?></p>
                 <p style="font-size:14px; padding-bottom:30px;">This account number will be used to identify your account. Keep this number safe.</p>
                 <div style="display:flex; align-items:right; justify-content:right;">
