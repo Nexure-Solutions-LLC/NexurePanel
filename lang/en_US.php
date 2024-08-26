@@ -41,6 +41,8 @@ $LANG_REGISTER_AUTH_ERROR_TEXT = "The registration process failed for an unknown
 $LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha Error";
 $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Please make sure you're not a robot. We require this to protect against spam.";
 $LANG_ID_DISCLAIMER = "We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.";
+$LANG_REG_SUBMIT_ERROR_TITLE = "There is an account with this email.";
+$LANG_REG_SUBMIT_ERROR_TEXT = "This email is currently taken by another user. Please login or reset your password instead.";
 $LANG_REGISTER_BUTTON = "Continue";
 
 // Reset Password Text Specification
