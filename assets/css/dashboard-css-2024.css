@@ -851,6 +851,14 @@ textarea.swal2-input {
     cursor: pointer;
 }
 
+.modal-content div button {
+    padding:8px 12px !important;
+}
+
+.modal-content div a {
+    padding: 8px 12px !important;
+}
+
 /* =================== Cali Web Design Cali Mail Styling =================== */
 
 .caliweb-email-listing-container {
