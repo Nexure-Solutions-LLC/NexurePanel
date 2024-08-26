@@ -121,6 +121,7 @@
     // IP Address Checking and Banning
 
     function getClientIp() {
+
         $keys = [
             'HTTP_CLIENT_IP', 
             'HTTP_X_FORWARDED_FOR', 
@@ -129,68 +130,39 @@
             'HTTP_FORWARDED', 
             'REMOTE_ADDR'
         ];
-    
+
         foreach ($keys as $key) {
+
             if ($ipaddress = getenv($key)) {
+
                 return $ipaddress;
+
             }
+
         }
-    
+
         return 'UNKNOWN';
     }
 
     $clientIp = getClientIp();
 
-    function isIpBlocked($ip, $blockedIpList) {
+    function isIpBlocked($ip, $con) {
 
-        $ip = Factory::addressFromString($ip);
-        if ($ip === null) {
+        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'blacklist'";
 
-            return false;
+        if ($stmt = $con->prepare($query)) {
 
-        }
+            $stmt->bind_param('s', $ip);
 
-        foreach ($blockedIpList as $blockedIp) {
+            $stmt->execute();
 
-            $range = Factory::rangeFromString($blockedIp);
+            $result = $stmt->get_result();
 
-            if ($range !== null && $range->contains($ip)) {
+            $count = $result->fetch_array()[0];
+            
+            $stmt->close();
 
-                return true;
-
-            } elseif ($blockedIp === (string)$ip) {
-
-                return true;
-
-            }
-
-        }
-
-        return false;
-    }
-
-    function isIpAllowed($ip, $allowedIpList) {
-
-        $ip = Factory::addressFromString($ip);
-
-        if ($ip === null) {
-
-            return false;
-        }
-
-        foreach ($allowedIpList as $allowedIp) {
-
-            $range = Factory::rangeFromString($allowedIp);
-
-            if ($range !== null && $range->contains($ip)) {
-
-                return true;
-
-            } elseif ($allowedIp === (string)$ip) {
-
-                return true;
-
-            }
+            return $count > 0;
 
         }
 
@@ -198,9 +170,30 @@
 
     }
 
-    $blockedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_blocklist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    $allowedIpList = file($_SERVER['DOCUMENT_ROOT'].'/dashboard/company/defaultValues/ip_allowlist.txt', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    
+    function isIpAllowed($ip, $con) {
+
+        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'whitelist'";
+
+        if ($stmt = $con->prepare($query)) {
+
+            $stmt->bind_param('s', $ip);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            $count = $result->fetch_array()[0];
+
+            $stmt->close();
+
+            return $count > 0;
+
+        }
+
+        return false;
+
+    }
+
     function isIpBlacklistedOrProxyVpn($ip, $passableUserId, $passableApiKey) {
 
         $url = "https://neutrinoapi.net/ip-probe";
@@ -238,12 +231,9 @@
 
     }
 
-    // AdBlock Checker and Browser Reject
-
     function hasAdBlocker() {
 
         if (!isset($_SESSION['ad_blocker_checked'])) {
-
             echo "<script>
                 var adBlockEnabled = false;
                 var testAd = document.createElement('div');
@@ -263,6 +253,7 @@
             </script>";
 
             $_SESSION['ad_blocker_checked'] = true;
+
         }
 
         if (isset($_SESSION['adBlockEnabled']) && $_SESSION['adBlockEnabled']) {
@@ -272,11 +263,13 @@
         }
 
         return false;
+
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adBlockEnabled'])) {
 
         $_SESSION['adBlockEnabled'] = $_POST['adBlockEnabled'] == 'true' ? true : false;
+
         exit;
 
     }
@@ -312,11 +305,14 @@
     function banIp($ip) {
 
         header("Location: /error/bannedUser");
+
         exit;
 
     }
 
-    if (!isIpAllowed($clientIp, $allowedIpList)) {
+    // Assuming $pdo is your PDO connection
+
+    if (!isIpAllowed($clientIp, $con)) {
 
         if (isIpBlacklistedOrProxyVpn($clientIp, $passableUserId, $passableApiKey)) {
 
@@ -336,11 +332,12 @@
 
         }
 
-        if (isIpBlocked($clientIp, $blockedIpList)) {
+        if (isIpBlocked($clientIp, $con)) {
 
             banIp($clientIp);
 
         }
+
     }
 
     // Checks the users account status and send them to the right page.
