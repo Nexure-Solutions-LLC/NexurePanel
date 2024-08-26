@@ -1086,7 +1086,7 @@ textarea.swal2-input {
     padding-bottom:4% !important;
 }
 
-/* Cali Web Design Terminal/Bot Output */
+/* =================== Cali Web Design Terminal/Bot Output =================== */
 
 .botOutputfromDocker {
     background-color: #000;
@@ -1100,6 +1100,87 @@ textarea.swal2-input {
 
 .botOutputfromDocker p {
     font-size: 14px !important;
+}
+
+/* =================== Search System =================== */
+
+.indivdual-search-results {
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+    width:25%;
+}
+
+.dark-mode .indivdual-search-results {
+    background-color: #000;
+    border:1px solid #222;
+}
+
+.indivdual-search-div {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px !important;
+    transition: ease-in-out 0.3s all;
+}
+
+.indivdual-search-div:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.dark-mode .indivdual-search-div:hover {
+    background-color: rgba(149, 157, 165, 0.2) !important;
+}
+
+.indivdual-search-results::-webkit-scrollbar-track {
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+}
+
+.systemwide-search-results {
+    border: 1px solid #ccc;
+    max-height: 350px;
+    overflow-y: auto;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 8px;
+    background-color: #fff;
+    position: absolute;
+    display: none;
+    width: 57%;
+    z-index:999;
+}
+
+.dark-mode .systemwide-search-results {
+    background-color: #000;
+    border: 1px solid #222;
+}
+
+.systemwide-search-div {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px !important;
+    transition: ease-in-out 0.3s all;
+}
+
+.systemwide-search-div:hover {
+    background-color: #f1f1f1 !important;
+}
+
+.dark-mode .systemwide-search-div:hover {
+    background-color: rgba(149, 157, 165, 0.2) !important;
+}
+
+.systemwide-search-results::-webkit-scrollbar-track {
+    border-top-right-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
 }
 
 /* =================== Cali Web Design Dashboard Preloader =================== */

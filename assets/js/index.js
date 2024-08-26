@@ -28,6 +28,97 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+// ====================== Cali Web Design Search System ======================
+
+$(document).ready(function () {
+
+    $('#systemSearch').on('input', function () {
+
+        var searchTerm = $(this).val().trim().toLowerCase();
+        var resultsContainer = $('#systemSearchResults');
+        resultsContainer.empty();
+
+        $.ajax({
+            url: '/modules/CaliWebDesign/Utility/Backend/Search/index.php',
+            dataType: 'json',
+            data: {
+                term: searchTerm
+            },
+            success: function (data) {
+
+                resultsContainer.empty();
+
+                for (var category in data) {
+
+                    if (data.hasOwnProperty(category)) {
+
+                        var categoryTitle = $('<div class="fillable-header" style="margin-top:5px; margin-bottom:5px; padding:10px; border-radius:4px;"><p class= "fillable-text">' + category.charAt(0).toUpperCase() + category.slice(1) + '</p></div>');
+                        
+                        resultsContainer.append(categoryTitle);
+
+                        data[category].forEach(function (item) {
+
+                            var firstField = Object.values(item)[0];
+
+                            var otherFields = Object.values(item).slice(1).join(' • ');
+
+                            var itemDiv = $('<div class="systemwide-search-div"></div>');
+
+                            itemDiv.append('<div><strong>' + firstField + '</strong></div>');
+
+                            itemDiv.append('<div>' + otherFields + '</div>');
+
+                            itemDiv.on('click', function () {
+
+                                $('#systemSearch').val(itemText);
+
+                                resultsContainer.hide();
+
+                            });
+
+                            resultsContainer.append(itemDiv);
+
+                        });
+
+                    }
+
+                }
+
+                if (searchTerm.length > 0 && Object.keys(data).length > 0) {
+
+                    resultsContainer.show();
+
+                } else {
+
+                    resultsContainer.hide();
+
+                }
+
+            },
+
+            error: function (xhr, status, error) {
+
+                console.error('AJAX Error:', status, error);
+                
+            }
+
+        });
+
+    });
+
+    $(document).on('click', function (e) {
+
+        if (!$(e.target).closest('#systemSearchResults').length && !$(e.target).is('#systemSearch')) {
+
+            $('#systemSearchResults').hide();
+
+        }
+
+    });
+
+});
+
 // ====================== Dashboard Calendar Plugin ======================
 
 document.addEventListener('DOMContentLoaded', function() {
