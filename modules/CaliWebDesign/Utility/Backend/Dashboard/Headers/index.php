@@ -98,7 +98,8 @@
                     </a>
                 </div>
                 <div class="caliweb-header-search">
-                    <input class="form-input caliweb-search-input" placeholder="Search all of <?php echo $variableDefinitionX->orgShortName ?>" />
+                    <input class="form-input caliweb-search-input" id="systemSearch" placeholder="Search all of <?php echo $variableDefinitionX->orgShortName ?>" />
+                    <div id="systemSearchResults" class="systemwide-search-results"></div>
                 </div>
                 <div class="caliweb-nav-buttons">
                     <a href="/dashboard/accountManagement" class="caliweb-nav-button secondary"><?php echo $currentAccount->legalName; ?></a>

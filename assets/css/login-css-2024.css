@@ -394,13 +394,15 @@ body {
 }
 
 .dark-mode .industry-results {
-    background-color: #000
+    background-color: #000;
+    border: 1px solid #222;
 }
 
 .industry-div {
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 12px !important;
     transition: ease-in-out 0.3s all;
 }
 

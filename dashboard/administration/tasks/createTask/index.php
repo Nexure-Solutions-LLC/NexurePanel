@@ -6,8 +6,6 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
-    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
-
     // When form submitted, insert values into the database.
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -38,8 +36,8 @@
         $taskname = mysqli_real_escape_string($con, $taskname);
         $duedate = stripslashes($_REQUEST['duedate']);
         $duedate = mysqli_real_escape_string($con, $duedate);
-        $assigneduser = stripslashes($_REQUEST['assigneduser']);
-        $assigneduser = mysqli_real_escape_string($con, $assigneduser);
+        $assignedemployee = stripslashes($_REQUEST['assignedemployee']);
+        $assignedemployee = mysqli_real_escape_string($con, $assignedemployee);
         $taskstatus = stripslashes($_REQUEST['taskstatus']);
         $taskstatus = mysqli_real_escape_string($con, $taskstatus);
         $taskdescription = stripslashes($_REQUEST['taskdescription']);
@@ -53,7 +51,7 @@
 
         // Database Calls
         
-        $taskInsertRequest = "INSERT INTO `caliweb_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`, `taskPriority`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assigneduser','$taskdescription','$taskpriority')";
+        $taskInsertRequest = "INSERT INTO `caliweb_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`, `taskPriority`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assignedemployee','$taskdescription','$taskpriority')";
         $taskInsertResult = mysqli_query($con, $taskInsertRequest);
 
         if ($taskInsertResult) {
@@ -70,6 +68,8 @@
     } else {
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+
+    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
 ?>
 
@@ -106,7 +106,7 @@
                                         <div class="form-left-side" style="width:80%;">
                                             <div class="form-control">
                                                 <label for="taskname">Task Name</label>
-                                                <input type="text" name="taskname" id="taskname" class="form-input" placeholder="John Doe" required="" />
+                                                <input type="text" name="taskname" id="taskname" class="form-input" placeholder="Place your task name here." required="" />
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="duedate">Due Date</label>
@@ -134,8 +134,9 @@
                                                 </select>
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
-                                                <label for="assigneduser">Assigned User</label>
-                                                <input type="email" name="assigneduser" id="assigneduser" class="form-input" placeholder="me@example.com" required="" />
+                                                <label for="assignedemployee">Assigned Employee</label>
+                                                <input type="email" name="assignedemployee" id="assignedemployee" class="form-input" placeholder="me@example.com" required="" />
+                                                <div id="assignedemployeeresults" class="indivdual-search-results"></div>
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="taskdescription">Task Description</label>
@@ -151,6 +152,78 @@
             </div>
         </div>
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#assignedemployee').on('input', function() {
+
+                var searchTerm = $(this).val().trim().toLowerCase();
+                var resultsContainer = $('#assignedemployeeresults');
+                resultsContainer.empty();
+
+                $.ajax({
+
+                    url: '/dashboard/administration/tasks/createTask/agentSearchLogic/index.php',
+                    dataType: 'json',
+
+                    data: {
+                        term: searchTerm
+                    },
+
+                    success: function(data) {
+
+                        data.forEach(function(agent) {
+
+                            var item = $('<div class="indivdual-search-div">' + agent.legalName + ' (' + agent.email + ')</div>');
+
+                            item.on('click', function() {
+
+                                $('#assignedemployee').val(agent.email);
+                                resultsContainer.hide();
+
+                            });
+
+                            resultsContainer.append(item);
+
+                        });
+
+                        if (searchTerm.length > 0) {
+
+                            resultsContainer.show();
+
+                        } else {
+
+                            resultsContainer.hide();
+
+                        }
+
+                    },
+
+                    error: function(xhr, status, error) {
+
+                        console.error('AJAX Error:', status, error);
+
+                    }
+
+                });
+
+            });
+
+            $(document).on('click', function(e) {
+
+                if (!$(e.target).closest('#assignedemployeeresults').length && !$(e.target).is('#assignedemployee')) {
+
+                    $('#assignedemployeeresults').hide();
+
+                }
+
+            });
+            
+        });
+    </script>
 
 <?php
 
