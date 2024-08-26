@@ -1,56 +1,96 @@
 <?php
 
-require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
+    namespace CaliWebDesign\Search;
 
-header('Content-Type: application/json');
+    class SearchSystem
+    {
+        private $con;
 
-$term = isset($_GET['term']) ? $_GET['term'] : '';
+        public function __construct($dbConnection)
+        {
+            $this->con = $dbConnection;
+        }
 
-$searchTerm = '%' . $term . '%';
+        public function search($term)
+        {
 
-// Initialize an array to hold the categorized results
-$searchResults = [];
+            $searchTerm = '%' . $term . '%';
 
-// Query for Users (Customers)
-$userQuery = "SELECT legalName, email, accountNumber FROM caliweb_users WHERE (legalName LIKE ? OR accountNumber LIKE ? OR email LIKE ?)";
-$userStatement = $con->prepare($userQuery);
-$userStatement->bind_param('sss', $searchTerm, $searchTerm, $searchTerm);
-$userStatement->execute();
-$userResult = $userStatement->get_result();
+            $searchResults = [];
 
-$searchResults['customers'] = [];
-while ($row = $userResult->fetch_assoc()) {
-    $searchResults['customers'][] = $row;
-}
+            // Search in Users (Customers)
 
-// Query for Cases
-$casesQuery = "SELECT caseNumber, caseTitle FROM caliweb_cases WHERE (caseNumber LIKE ? OR caseTitle LIKE ?)";
-$casesStatement = $con->prepare($casesQuery);
-$casesStatement->bind_param('ss', $searchTerm, $searchTerm);
-$casesStatement->execute();
-$casesResult = $casesStatement->get_result();
+            $searchResults['customers'] = $this->searchUsers($searchTerm);
 
-$searchResults['cases'] = [];
-while ($row = $casesResult->fetch_assoc()) {
-    $searchResults['cases'][] = $row;
-}
+            // Search in Cases
 
-// Query for Tasks
-$tasksQuery = "SELECT taskName, taskDescription FROM caliweb_tasks WHERE (taskName LIKE ? OR taskDescription LIKE ?)";
-$tasksStatement = $con->prepare($tasksQuery);
-$tasksStatement->bind_param('ss', $searchTerm, $searchTerm);
-$tasksStatement->execute();
-$tasksResult = $tasksStatement->get_result();
+            $searchResults['cases'] = $this->searchCases($searchTerm);
 
-$searchResults['tasks'] = [];
-while ($row = $tasksResult->fetch_assoc()) {
-    $searchResults['tasks'][] = $row;
-}
+            // Search in Tasks
 
-// You can add more queries for other categories like projects, invoices, etc.
+            $searchResults['tasks'] = $this->searchTasks($searchTerm);
 
-// Output the categorized results as JSON
-echo json_encode($searchResults);
+            return $searchResults;
+
+        }
+
+        private function searchUsers($searchTerm)
+        {
+
+            $query = "SELECT legalName, email, accountNumber FROM caliweb_users WHERE (legalName LIKE ? OR accountNumber LIKE ? OR email LIKE ?)";
+
+            $statement = $this->con->prepare($query);
+
+            $statement->bind_param('sss', $searchTerm, $searchTerm, $searchTerm);
+
+            $statement->execute();
+
+            return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        }
+
+        private function searchCases($searchTerm)
+        {
+
+            $query = "SELECT caseNumber, caseTitle FROM caliweb_cases WHERE (caseNumber LIKE ? OR caseTitle LIKE ?)";
+
+            $statement = $this->con->prepare($query);
+
+            $statement->bind_param('ss', $searchTerm, $searchTerm);
+
+            $statement->execute();
+
+            return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        }
+
+        private function searchTasks($searchTerm)
+        {
+
+            $query = "SELECT taskName, taskDescription FROM caliweb_tasks WHERE (taskName LIKE ? OR taskDescription LIKE ?)";
+
+            $statement = $this->con->prepare($query);
+
+            $statement->bind_param('ss', $searchTerm, $searchTerm);
+
+            $statement->execute();
+
+            return $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+
+        }
+    }
+
+    require $_SERVER['DOCUMENT_ROOT'] . '/configuration/index.php';
+
+    $searchSystem = new SearchSystem($con);
+
+    $term = isset($_GET['term']) ? $_GET['term'] : '';
+
+    $results = $searchSystem->search($term);
+
+
+    header('Content-Type: application/json');
+
+    echo json_encode($results);
 
 ?>
