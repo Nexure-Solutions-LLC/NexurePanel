@@ -1,12 +1,13 @@
 <?php
 
     ob_start();
+    session_start();
 
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
     
     // When form submitted, insert values into the database.
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['emailaddress'])) {
 
         $current_time = time();
 
@@ -28,22 +29,7 @@
 
         $_SESSION['last_submit_time'] = $current_time;
 
-        require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/index.php");
-
-        $variableDefinitionX = new \CaliWebDesign\Generic\VariableDefinitions();
-        $variableDefinitionX->variablesHeader($con);
-
         try {
-
-            session_start();
-
-            if ($_POST['langPreference']) {
-
-                $_SESSION["lang"] = $_POST['langPreference'];
-                header("location:/registration/");
-                exit;
-
-            }
 
 
             $data = array(
@@ -82,61 +68,72 @@
                 $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
                 $builtaccountnumber = $accountnumber_starting.$accountnumber;
 
-                function generateRandomPrefix($length = 3) {
+                $checkCaliID = "SELECT * FROM caliweb_users WHERE `email` = '$caliid'";
+                $resultCaliIDCheck = mysqli_query($con, $checkCaliID);
 
-                    $characters = 'abcdefghijklmnopqrstuvwxyz';
-                    $prefix = '';
+                if (mysqli_num_rows($resultCaliIDCheck) == 1) {
 
-                    for ($i = 0; $i < $length; $i++) {
+                    $register_error = true;
 
-                        $prefix .= $characters[rand(0, strlen($characters) - 1)];
+                } else {
 
-                    }
+                    function generateRandomPrefix($length = 3) {
 
-                    return $prefix;
+                        $characters = 'abcdefghijklmnopqrstuvwxyz';
+                        $prefix = '';
 
-                }
-                
-                $randomPrefix = generateRandomPrefix(5);
+                        for ($i = 0; $i < $length; $i++) {
 
-                if ($dispnone == "") {
-
-                    if (mysqli_connect_errno()) {
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        exit();
-                    }
-
-                    // Checks type of payment processor.
-
-                    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
-
-                        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
-
-                            \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
-
-                            $cu = \Stripe\Customer::create(array(
-                                'name' => $legalname,
-                                'email' => $caliid,
-                                'phone' => $mobilenumber,
-                                'description' => "Account Number: ".$builtaccountnumber, 
-                            ));
-
-                            $SS_STRIPE_ID =  $cu['id'];
+                            $prefix .= $characters[rand(0, strlen($characters) - 1)];
 
                         }
 
+                        return $prefix;
+
                     }
+                
+                    $randomPrefix = generateRandomPrefix(5);
 
-                    $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES ('$caliid','".hash("sha512", $password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','Customer','Retail','','$registrationdate','0000-00-00 00:00:00','en-US')";
-                    $result   = mysqli_query($con, $query);
+                    if ($dispnone == "") {
 
-                    if ($result) {
+                        if (mysqli_connect_errno()) {
+                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
+                            exit();
+                        }
 
-                        echo '<script type="text/javascript">window.location = "/login"</script>';
+                        // Checks type of payment processor.
 
-                    } else {
+                        if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
-                        header ("location: /error/genericSystemError");
+                            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+                                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+
+                                $cu = \Stripe\Customer::create(array(
+                                    'name' => $legalname,
+                                    'email' => $caliid,
+                                    'phone' => $mobilenumber,
+                                    'description' => "Account Number: ".$builtaccountnumber, 
+                                ));
+
+                                $SS_STRIPE_ID =  $cu['id'];
+
+                            }
+
+                        }
+
+                        $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES ('$caliid','".hash("sha512", $password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','','$SS_STRIPE_ID','','','Customer','Retail','','$registrationdate','0000-00-00 00:00:00','en-US')";
+                        $result   = mysqli_query($con, $query);
+
+                        if ($result) {
+
+                            echo '<script type="text/javascript">window.location = "/login"</script>';
+
+                        } else {
+
+                            header ("location: /error/genericSystemError");
+
+                        }
 
                     }
 
@@ -154,34 +151,7 @@
         
         }
         
-    } else {    
-
-?>
-<!-- Universal Rounded Floating Cali Web Design Header Bar start -->
-<?php
-    session_start();
-
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
-
-    ob_start();
-    // ~~We cannot apply language pack here as we do not know
-    // current user state.~~
-
-    // actually yes we can
-        if (isset($_SESSION["lang"])) {
-
-            if (!file_exists($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php')) {
-
-                $_SESSION["lang"] = 'en_US';
-
-            }
-            include($_SERVER["DOCUMENT_ROOT"].'/lang/'.$_SESSION["lang"].'.php');
-
-        } else {
-
-            include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
-
-        }
+    }
 
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar End -->
@@ -221,6 +191,12 @@
                         <div class="form-control">
                             <input type="text" class="form-input" style="display:none;" name="dispnone" id="dispnone" placeholder="" />
                         </div>
+                        <?php if (isset($register_error)): ?>
+                            <div class="caliweb-error-box" style="margin-bottom:2%; margin-top:-1%;">
+                                <p class="caliweb-login-sublink" style="font-weight:700; padding-top:0; margin-top:0;"><?php echo $LANG_REG_SUBMIT_ERROR_TITLE; ?></p>
+                                <p class="caliweb-login-sublink" style="font-size:12px;"><?php echo $LANG_REG_SUBMIT_ERROR_TEXT; ?></p>
+                            </div>
+                        <?php endif; ?>
                         <div style="padding-top:2%;">
                             <div class="h-captcha" id="h-captcha" data-sitekey="509db1ec-9483-4051-aea3-8ba88d8bbc8e"></div>
                         </div>
@@ -256,10 +232,8 @@
             </div>
         </div>
 
-    <?php include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); ?>
-
-<?php
-
-    }
-
+<?php 
+    
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); 
+    
 ?>
