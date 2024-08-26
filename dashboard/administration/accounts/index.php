@@ -79,7 +79,7 @@
                                                 <td style="width:20%;">' . $row['mobileNumber'] . '</td>
                                                 <td style="width:20%;">' . $accountType . '</td>
                                                 <td style="width:20%;"><span class="account-status-badge ' . $statusClass . '" style="margin-left:0;">' . $row['accountStatus'] . '</span></td>
-                                                <td><a href="/dashboard/administration/accounts/manageAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a href="/dashboard/administration/accounts/deleteAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/accounts/editAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
+                                                <td><a href="/dashboard/administration/accounts/manageAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a onclick="openModal(\'' . $row['accountNumber'] . '\')" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/accounts/editAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
                                                 </td>
                                             </tr>';
 
@@ -117,6 +117,30 @@
             </div>
         </div>
     </section>
+
+    <div id="accountModal" class="modal">
+        <div class="modal-content">
+            <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Delete customer's account?</h6>
+            <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">What you are about to do is permenant and can't be undone. Are you sure you would like to delete this customer. You will need to remake their account if you would like to restore it.</p>
+            <div style="display:flex; align-items:right; justify-content:right;">
+                <a id="deleteLink" href="#" class="caliweb-button secondary red" style="margin-right:20px;">Delete Account</a>
+                <button class="caliweb-button primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("accountModal");
+
+        function openModal(accountNumber) {
+            deleteLink.href = "/dashboard/administration/accounts/deleteAccount/?account_number=" + encodeURIComponent(accountNumber);
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
 
 <?php 
 

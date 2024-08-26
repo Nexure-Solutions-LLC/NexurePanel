@@ -70,7 +70,7 @@
                                                 <td style='width:20%;'>{$row['assignedUser']}</td>
                                                 <td style='width:20%;'><span class='account-status-badge {$statusColors[$status]}' style='margin-left:0;'>{$row['status']}</span></td>
                                                 <td class=''>
-                                                    <a href='/dashboard/administration/tasks/viewTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px; margin-right:10px;'>View</a><a href='/dashboard/administration/tasks/deleteTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px; margin-right:10px;'>Delete</a><a href='/dashboard/administration/tasks/editTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px;'>Edit</a>
+                                                    <a href='/dashboard/administration/tasks/viewTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px; margin-right:10px;'>View</a><a onclick='openModal(\"{$row['id']}\")' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px; margin-right:10px;'>Delete</a><a href='/dashboard/administration/tasks/editTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px;'>Edit</a>
                                                 </td>
                                             </tr>";
 
@@ -122,5 +122,29 @@
         </div>
     </div>
 </section>
+
+    <div id="tasksModal" class="modal">
+        <div class="modal-content">
+            <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Delete this task?</h6>
+            <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">What you are about to do is permenant and can't be undone. Are you sure you would like to delete this task. You will need to remake the task if you would like to restore it.</p>
+            <div style="display:flex; align-items:right; justify-content:right;">
+                <a id="deleteLink" href="#" class="caliweb-button secondary red" style="margin-right:20px;">Delete Task</a>
+                <button class="caliweb-button primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("tasksModal");
+
+        function openModal(taskID) {
+            deleteLink.href = "/dashboard/administration/tasks/deleteTask/?task_id=" + encodeURIComponent(taskID);
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
 
 <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php'); ?>
