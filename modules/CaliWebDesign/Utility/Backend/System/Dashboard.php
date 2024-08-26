@@ -436,5 +436,5 @@
         $pagetitle = isset($roleTitles[strtolower($currentAccount->role->name)]) ? $roleTitles[strtolower($currentAccount->role->name)] : 'Account Management';
 
     }
-
+    
 ?>
