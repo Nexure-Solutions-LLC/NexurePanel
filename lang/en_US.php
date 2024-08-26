@@ -80,6 +80,13 @@ $LANG_GENERIC_ERROR_TITLE_PAR_2 = "System Error";
 $LANG_GENERIC_ERROR_TITLE = "We encountered an unexpected error.";
 $LANG_GENERIC_ERROR_TEXT = "The action you performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Cali Web Design.";
 
+// Rate Limit Error Text Specification
+
+$LANG_RATELIMIT_ERROR_TITLE_PAR_1 = "Cali Web Design";
+$LANG_RATELIMIT_ERROR_TITLE_PAR_2 = "Rate Limit Error";
+$LANG_RATELIMIT_ERROR_TITLE = "We rate limited you for our protection.";
+$LANG_RATELIMIT_ERROR_TEXT = "The action you performed was done too quickly and our systems arent able to process the second request. We cant work that fast! Please try again in 5 seconds. If you need assistance please contact Cali Web Design.";
+
 // Customer Security Quiz Text Specifications
 
 $LANG_CUSTOMER_VERIFICATION_TITLE_PAR_1 = "Cali Web Design";

@@ -16,11 +16,10 @@
 
         include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
-        $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
-        $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
-        mysqli_free_result($customerAccountQuery);
+        $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+        $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
-        if ($customerAccountInfo != NULL) {
+        if ($manageAccountDefinitionR->customerAccountInfo != NULL) {
 
             // Get the menu option listing for the services.
 
@@ -48,7 +47,7 @@
 
                 if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
-                    include ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
+                    require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/index.php');
 
                 }
 
@@ -57,6 +56,26 @@
             // When form submitted, insert values into the database.
 
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                $current_time = time();
+
+                // Check if the last submission time is stored in the session
+                
+                if (isset($_SESSION['last_submit_time'])) {
+
+                    $time_diff = $current_time - $_SESSION['last_submit_time'];
+
+                    if ($time_diff < 5) {
+
+                        header("Location: /error/rateLimit");
+                        exit;
+
+                    }
+                }
+
+                // If the rate limit check passes, update the last submission time
+
+                $_SESSION['last_submit_time'] = $current_time;
 
                 // Service Info Feilds
 
@@ -140,27 +159,13 @@
                                                             <label for="type">Item Type</label>
                                                             <select type="text" name="type" id="type" class="form-input">
                                                                 <option>Please choose an option</option>
-                                                                <option>Web Development</option>
-                                                                <option>Web Hosting</option>
                                                                 <?php
-                                                                
-                                                                    $discordmoduleQuery = mysqli_query($con, "SELECT moduleStatus FROM caliweb_modules WHERE moduleName = 'Cali Discord Hosting' LIMIT 1");
-                                                                    $discordmoduleInfo = mysqli_fetch_array($discordmoduleQuery);
 
-                                                                    $discordmoduleStatus = $discordmoduleInfo['moduleStatus'];
-
-                                                                    if ((strtolower($discordmoduleStatus)) == "active") {
-
-                                                                        echo '<option>Discord Hosting</option>';
-
-                                                                    }
+                                                                    $variableDefinitions = new \CaliWebDesign\Generic\VariableDefinitions();
+                                                                    $catagoryoptions = $variableDefinitions->getActiveClientModulesOptions($con);
 
                                                                 ?>
-                                                                <option>Merchant Processing</option>
-                                                                <option>Cloud Computing</option>
-                                                                <option>SEO</option>
-                                                                <option>Social Media Management</option>
-                                                                <option>Graphic Design</option>
+                                                                <?php echo $catagoryoptions; ?>
                                                             </select>
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">

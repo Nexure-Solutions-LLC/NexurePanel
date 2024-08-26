@@ -55,6 +55,7 @@ $LANG_PASSWORD_RESETSUCCESS_BASE_TEXT = "Has cambiado satisfactoriamente tu cont
 $LANG_PASSWORD_RESETSUCCESS_SECONDARY_TEXT = "Serás redirigido en";
 $LANG_PASSWORD_RESETSUCCESS_REDIRECTFALLBACK_TEXT = "Si no eres redirigido automáticamente, puedes ";
 $LANG_RESET_PASSWORD_STAGE_2_TEXT = ""; // TODO: DO THIS
+
 // ====================== START ERROR LANGUAGE AREA ==========================
 
 // License Error Text Specifications
@@ -63,6 +64,7 @@ $LANG_LICENSE_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LICENSE_TITLE_PAR_2 = "Licencia falló";
 $LANG_LICENSE_TITLE = "La clave escribiste es incorrecto o malformado."; // The key you entered is not correct or malformed.
 $LANG_LICENSE_TEXT = "Para proteger este software, necesita tener una licencia para usarlo. La clave que ingresó no es válida. Contacto Cali Web Design Services para una llave genuina.";
+
 // To protect the Cali Web Design Panel Software you need a license to use it. The key you entered is not valid and can't be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.
 
 // Registration Disabled Text Specifications
@@ -78,6 +80,15 @@ $LANG_GENERIC_ERROR_TITLE_PAR_1 = "Cali Web Design";
 $LANG_GENERIC_ERROR_TITLE_PAR_2 = "El error de el sistema";
 $LANG_GENERIC_ERROR_TITLE = "Vimos un error de inesperado"; // We encountered an unexpected error.
 $LANG_GENERIC_ERROR_TEXT = "La acción ejecutaste tiene fallida. Arreglaremos rápido. Estamos triste para problemos. Debería hablar a Cali Web Design."; // The action you performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Cali Web Design
+
+// Rate Limit Error Text Specification
+
+$LANG_RATELIMIT_ERROR_TITLE_PAR_1 = "Cali Web Design";
+$LANG_RATELIMIT_ERROR_TITLE_PAR_2 = "Rate Limit Error";
+$LANG_RATELIMIT_ERROR_TITLE = "We rate limited you for our protection.";
+$LANG_RATELIMIT_ERROR_TEXT = "The action you performed was done too quickly and our systems arent able to process the second request. We cant work that fast! Please try again in 5 seconds. If you need assistance please contact Cali Web Design.";
+
+
 // Customer Security Quiz Text Specifications
 
 $LANG_CUSTOMER_VERIFICATION_TITLE_PAR_1 = "Cali Web Design";

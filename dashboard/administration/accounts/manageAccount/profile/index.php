@@ -33,6 +33,9 @@
                                     <div>
                                         <p class="no-padding">Account Teams</p>
                                     </div>
+                                    <div class="display-flex align-center">
+                                        <a href="/dashboard/administration/accounts/addAccountTeam/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Assign Team</a>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -68,7 +71,7 @@
 
                                     } else {
 
-                                        echo '<p class="no-padding font-14px" style="margin-top:-2% !important; margin-bottom:25px;">There are no teams for this profile.<p>';
+                                        echo '<p class="no-padding font-14px" style="margin-top:-2% !important; margin-bottom:0px;">There are no teams for this profile.<p>';
 
                                     }
                                 ?>
