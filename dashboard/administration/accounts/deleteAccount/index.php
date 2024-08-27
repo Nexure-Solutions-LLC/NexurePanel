@@ -24,38 +24,30 @@
 
     }
 
-    if ($accountType === 'Customer') {
+    $checkAccountQuery = "SELECT COUNT(*) AS count FROM `caliweb_users` WHERE `accountNumber` = ?";
+    $stmt = $con->prepare($checkAccountQuery);
+    $stmt->bind_param('s', $accountNumber);
+    $stmt->execute();
+    $stmt->bind_result($accountCount);
+    $stmt->fetch();
+    $stmt->close();
 
-        // Query for the owner's account information
-
-        $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountNumber)."' AND userrole = 'Customer'");
-   
-    } else {
-
-        // Query for the authorized user's account information
-
-        $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountNumber)."' AND userrole = '".mysqli_real_escape_string($con, $accountType)."'");
-    
-    }
-
-    $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
-    mysqli_free_result($customerAccountQuery);
-
-    if (!$customerAccountInfo) {
+    if ($accountCount == 0) {
         header("location: /error/genericSystemError");
         exit;
     }
 
-    $customeremail = $customerAccountInfo['email'];
+    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR->manageAccount($con, $accountNumber);
 
-    if ($accountType === 'owner') {
+    if ($accountType === 'Customer') {
 
         // Delete the owner and all related information
 
         $deleteQueries = [
             "DELETE FROM `caliweb_users` WHERE `accountNumber` = '$accountNumber'",
-            "DELETE FROM `caliweb_businesses` WHERE `email` = '$customeremail'",
-            "DELETE FROM `caliweb_ownershipinformation` WHERE `emailAddress` = '$customeremail'"
+            "DELETE FROM `caliweb_businesses` WHERE `email` = '$manageAccountDefinitionR->customeremail'",
+            "DELETE FROM `caliweb_ownershipinformation` WHERE `emailAddress` = '$manageAccountDefinitionR->customeremail'"
         ];
 
     } else {
