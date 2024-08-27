@@ -6,29 +6,54 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
-    $accountNumber = $_GET['account_number'];
-    $serviceName = $_GET['service_name'];
+    $accountNumber = $_GET['account_number'] ?? '';
+    $serviceID = $_GET['service_id'] ?? '';
 
-    if ($accountNumber != "" || $accountNumber != NULL) {
+    if (!$accountNumber) {
 
-        $serviceDeleteRequest = "DELETE FROM `caliweb_services` WHERE `accountNumber`= '$accountNumber' AND `serviceName` = '$serviceName'";
-        $serviceDeleteResult = mysqli_query($con, $serviceDeleteRequest);
-
-        if ($serviceDeleteResult) {
-
-            header ("location: /dashboard/administration/accounts/manageAccount/?account_number=$accountNumber");
-
-        } else {
-
-            header ("location: /error/genericSystemError");
-    
-        }
-
-    } else {
-
-        header ("location: /error/genericSystemError");
+        header("location: /error/genericSystemError");
+        exit;
 
     }
+
+    if (!$serviceID) {
+
+        header("location: /error/genericSystemError");
+        exit;
+
+    }
+
+    $checkServiceQuery = "SELECT COUNT(*) AS count FROM `caliweb_services` WHERE `accountNumber` = ? AND `serviceIdentifier` = ?";
+    $stmt = $con->prepare($checkServiceQuery);
+    $stmt->bind_param('ss', $accountNumber, $serviceID);
+    $stmt->execute();
+    $stmt->bind_result($serviceCount);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($serviceCount == 0) {
+
+        header("location: /error/genericSystemError");
+        exit;
+
+    }
+
+    $deleteQueries = [
+        "DELETE FROM `caliweb_services` WHERE `accountNumber`= '$accountNumber' AND `serviceIdentifier` = '$serviceID'"
+    ];
+
+    foreach ($deleteQueries as $query) {
+
+        if (!mysqli_query($con, $query)) {
+
+            header("location: /error/genericSystemError");
+            exit;
+
+        }
+
+    }
+
+    header("location: /dashboard/administration/accounts/manageAccount/?account_number=$accountNumber");
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 

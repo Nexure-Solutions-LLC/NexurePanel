@@ -197,8 +197,7 @@
                                                                     ?>
 
                                                                     <option value="<?php echo $paymentMethod->id; ?>">
-                                                                        <img src="<?php echo $logo; ?>" alt="<?php echo $card->brand; ?>" style="width: 20px; height: auto;">
-                                                                        <?php echo $card->brand; ?> ending in <?php echo $card->last4; ?>
+                                                                        <?php echo ucfirst($card->brand); ?> ending in <?php echo $card->last4; ?>
                                                                     </option>
 
                                                                 <?php endforeach; ?>

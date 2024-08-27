@@ -983,6 +983,46 @@
             }
 
             return $options;
+
+        }
+
+        public function getTeamsOptions($con) {
+
+            $query = "SELECT * FROM `caliweb_available_teams`";
+
+            $result = mysqli_query($con, $query);
+
+            if (!$result) {
+
+                header("location: /error/genericSystemError");
+                exit;
+
+            }
+
+            // Start building the options HTML
+            $options = '';
+
+            while ($row = mysqli_fetch_assoc($result)) {
+
+                $teamName = $row['teamName'];
+                $teamAlias = $row['teamAlias'];
+                $teamType = $row['teamType'];
+
+                $formattedOption = sprintf(
+                    '%s - %s - %s',
+                    htmlspecialchars($teamName),
+                    htmlspecialchars($teamAlias),
+                    htmlspecialchars($teamType)
+                );
+
+                $options .= '<option value="' . htmlspecialchars($formattedOption) . '">' . $formattedOption . '</option>';
+
+            }
+
+            mysqli_free_result($result);
+
+            return $options;
+
         }
 
     }
