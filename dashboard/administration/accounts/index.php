@@ -7,6 +7,7 @@
     unset($_SESSION['verification_code']);
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
 
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
@@ -36,79 +37,18 @@
                         <div class="dashboard-table">
                             <?php
 
-                                $sql = "SELECT * FROM caliweb_users WHERE userrole <> 'administrator' AND userrole <> 'authorized user'";
-                                $result = mysqli_query($con, $sql);
-
-                                if (mysqli_num_rows($result) > 0) {
-
-                                    echo '<table style="width:100%;">
-                                            <tr>
-                                                <th style="width:30%;">Company/Account Number</th>
-                                                <th style="width:20%;">Owner</th>
-                                                <th style="width:20%;">Phone</th>
-                                                <th style="width:20%;">Type</th>
-                                                <th style="width:10%;">Status</th>
-                                                <th>Actions</th>
-                                            </tr>';
-
-                                    while ($row = mysqli_fetch_assoc($result)) {
-
-                                        $accountStatusColorAssignment = strtolower($row['accountStatus']);
-                                        $businessAccountQuery = mysqli_query($con, "SELECT businessName FROM caliweb_businesses WHERE email = '" . $row['email'] . "'");
-                                        $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
-                                        mysqli_free_result($businessAccountQuery);
-
-                                        $businessname = $businessAccountInfo['businessName'] ?? $row['legalName'];
-                                        $accountNumber = '•••• ' . substr($row['accountNumber'], -4);
-                                        $userrole = strtolower($row["userrole"]);
-                                        $accountType = $userrole === "customer" ? "Customer - Direct" : ($userrole === "partner" ? "Partner - Affiliate" : "Unknown");
-
-                                        $statusClasses = [
-                                            "active" => "green",
-                                            "suspended" => "red",
-                                            "under review" => "yellow",
-                                            "terminated" => "red-dark",
-                                            "closed" => "passive"
-                                        ];
-
-                                        $statusClass = $statusClasses[$accountStatusColorAssignment] ?? "unknown";
-
-                                        echo '<tr>
-                                                <td style="width:30%;">' . $businessname . ' (' . $accountNumber . ')</td>
-                                                <td style="width:20%;">' . $row['legalName'] . '</td>
-                                                <td style="width:20%;">' . $row['mobileNumber'] . '</td>
-                                                <td style="width:20%;">' . $accountType . '</td>
-                                                <td style="width:20%;"><span class="account-status-badge ' . $statusClass . '" style="margin-left:0;">' . $row['accountStatus'] . '</span></td>
-                                                <td><a href="/dashboard/administration/accounts/manageAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">View</a><a onclick="openModal(\'' . $row['accountNumber'] . '\')" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:10px;">Delete</a><a href="/dashboard/administration/accounts/editAccount/?account_number=' . $row['accountNumber'] . '" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
-                                                </td>
-                                            </tr>';
-
-                                    }
-
-                                    echo '</table>';
-
-                                } else {
-
-                                    echo '<table style="width:100%;">
-                                            <tr>
-                                                <th style="width:30%;">Company/Account Number</th>
-                                                <th style="width:20%;">Owner</th>
-                                                <th style="width:20%;">Phone</th>
-                                                <th style="width:20%;">Type</th>
-                                                <th style="width:10%;">Status</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:20%;">There are no Accounts</td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:10%;"></td>
-                                            </tr>
-                                        </table>';
-
-                                }
+                                accountsHomeListingTable(
+                                    $con,
+                                    "SELECT * FROM caliweb_users WHERE userrole <> 'administrator' AND userrole <> 'authorized user'",
+                                    ['Company/Account Number', 'Owner', 'Phone', 'Type', 'Status', 'Actions'],
+                                    ['accountNumber', 'legalName', 'mobileNumber', 'userrole', 'accountStatus'],
+                                    ['30%', '20%', '20%', '20%', '10%'],
+                                    [
+                                        'View' => "/dashboard/administration/accounts/manageAccount/?account_number={accountNumber}",
+                                        'Edit' => "/dashboard/administration/accounts/editAccount/?account_number={accountNumber}",
+                                        'Delete' => "openModal({accountNumber})"
+                                    ]
+                                );
 
                             ?>
                         </div>

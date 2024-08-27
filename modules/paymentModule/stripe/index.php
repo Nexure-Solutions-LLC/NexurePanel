@@ -173,7 +173,7 @@
 
         } else if ($pagetitle == "Client" && $pagesubtitle == "Billing Center") {
 
-           $stripeIDQuery = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'";
+           $stripeIDQuery = "SELECT * FROM caliweb_users WHERE email = '$customeremail'";
            $stripeIDResult = mysqli_query($con, $stripeIDQuery);
 
            if (mysqli_num_rows($stripeIDResult) > 0) {
@@ -322,6 +322,7 @@
             \Stripe\Stripe::setApiKey($stripeSecretKey);
 
             $stripeIDQuery = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'";
+
             $stripeIDResult = mysqli_query($con, $stripeIDQuery);
 
             if (mysqli_num_rows($stripeIDResult) > 0) {

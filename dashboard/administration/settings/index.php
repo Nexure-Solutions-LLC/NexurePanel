@@ -32,7 +32,7 @@
                              <div class="dashboard-table">
                                 <?php
 
-                                    fetchAndDisplayTable(
+                                    settingsManageListingTable(
                                         $con,
                                         "SELECT * FROM caliweb_panelconfig WHERE id = 1",
                                         ['DBA Name', 'Company Legal Name', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Payment Descriptor'],
@@ -49,7 +49,7 @@
                              <div class="dashboard-table">
                                 <?php
 
-                                    fetchAndDisplayTable(
+                                    settingsManageListingTable(
                                         $con,
                                         "SELECT * FROM caliweb_users WHERE id = 1",
                                         ['Legal Name', 'Phone Number', 'Email', 'Role', 'Access Level', 'Account Status', 'Email Verification', 'Setup Date'],

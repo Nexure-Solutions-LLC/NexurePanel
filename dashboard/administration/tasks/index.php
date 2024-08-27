@@ -5,6 +5,8 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/taskTables/index.php');
+    
     echo "<title>$pagetitle | $pagesubtitle</title>";
 
 ?>
@@ -34,86 +36,35 @@
                         <?php
 
                             $sql = "SELECT * FROM caliweb_tasks";
-                            $result = mysqli_query($con, $sql);
 
-                            function displayTasks($result, $accessLevel) {
+                            function displayTasks($con, $baseSql, $accessLevel, $currentUser) {
 
-                                if (mysqli_num_rows($result) > 0) {
+                                if ($accessLevel === "Executive" || $accessLevel === "Manager") {
 
-                                    echo '<table style="width:100%; margin-top:-3%;">
-                                            <tr>
-                                                <th style="width:20%;">Task Name</th>
-                                                <th style="width:20%;">Task Start Date</th>
-                                                <th style="width:20%;">Task Due Date</th>
-                                                <th style="width:20%;">Assigned To</th>
-                                                <th style="width:20%;">Status</th>
-                                                <th style="width:20%;">Actions</th>
-                                            </tr>';
-
-                                    while ($row = mysqli_fetch_assoc($result)) {
-
-                                        $status = strtolower($row['status']);
-                                        $statusColors = [
-                                            'completed' => 'green',
-                                            'overdue' => 'red',
-                                            'pending' => 'yellow',
-                                            'stuck' => 'red-dark'
-                                        ];
-
-                                        $startDate = (new DateTime($row['taskStartDate']))->format('F j, Y g:i A');
-                                        $dueDate = (new DateTime($row['taskDueDate']))->format('F j, Y g:i A');
-
-                                        echo "<tr>
-                                                <td style='width:20%;'>{$row['taskName']}</td>
-                                                <td style='width:20%;'>$startDate</td>
-                                                <td style='width:20%;'>$dueDate</td>
-                                                <td style='width:20%;'>{$row['assignedUser']}</td>
-                                                <td style='width:20%;'><span class='account-status-badge {$statusColors[$status]}' style='margin-left:0;'>{$row['status']}</span></td>
-                                                <td class=''>
-                                                    <a href='/dashboard/administration/tasks/viewTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px; margin-right:10px;'>View</a><a onclick='openModal(\"{$row['id']}\")' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px; margin-right:10px;'>Delete</a><a href='/dashboard/administration/tasks/editTask/?task_id={$row['id']}' class='caliweb-button secondary no-margin margin-10px-right' style='padding:6px 24px;'>Edit</a>
-                                                </td>
-                                            </tr>";
-
-                                    }
-
-                                    echo '</table>';
+                                    $sql = $baseSql;
 
                                 } else {
 
-                                    echo '<table style="width:100%; margin-top:-3%;">
-                                            <tr>
-                                                <th style="width:20%;">Task Name</th>
-                                                <th style="width:20%;">Task Start Date</th>
-                                                <th style="width:20%;">Task Due Date</th>
-                                                <th style="width:20%;">Assigned To</th>
-                                                <th style="width:20%;">Status</th>
-                                                <th style="width:20%;">Actions</th>
-                                            </tr>
-                                            <tr>
-                                                <td style="width:20%;">There are no Tasks</td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:20%;"></td>
-                                                <td style="width:10%;"></td>
-                                            </tr>
-                                        </table>';
+                                    $sql = $baseSql . " WHERE assignedUser = '{$currentUser}'";
 
                                 }
 
+                                tasksHomeListingTable(
+                                    $con,
+                                    $sql,
+                                    ['Task Name', 'Start Date', 'Due Date', 'Assigned To', 'Status', 'Actions'],
+                                    ['taskName', 'taskStartDate', 'taskDueDate', 'assignedUser', 'status'],
+                                    ['30%', '20%', '20%', '20%', '10%'],
+                                    [
+                                        'View' => "/dashboard/administration/tasks/viewTask/?task_id={id}",
+                                        'Edit' => "/dashboard/administration/tasks/editTask/?task_id={id}",
+                                        'Delete' => "openModal({id})"
+                                    ]
+                                );
+
                             }
 
-                            if ($currentAccount->accessLevel->name == "Executive" || $currentAccount->accessLevel->name == "Manager") {
-                                
-                                displayTasks($result, $currentAccount->accessLevel->name);
-
-                            } else {
-
-                                $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$currentAccount->legalName'";
-                                $result = mysqli_query($con, $sql);
-                                displayTasks($result, "User");
-
-                            }
+                            displayTasks($con, $sql, $currentAccount->accessLevel->name, $currentAccount->legalName);
 
                         ?>
                     </div>

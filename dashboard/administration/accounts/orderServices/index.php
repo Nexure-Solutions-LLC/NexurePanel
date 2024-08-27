@@ -86,6 +86,10 @@
                 $amountPrice = stripslashes($_REQUEST['amount']);
                 $endDate = stripslashes($_REQUEST['end_date']);
 
+                $currentYear = date('Y');
+                $randomServiceIDNumber = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+                $serviceIDBuilt = "CWD-$currentYear-$randomServiceIDNumber";
+
                 // System Feilds
 
                 $orderdate = date("Y-m-d H:i:s");

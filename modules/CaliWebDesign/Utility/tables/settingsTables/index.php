@@ -1,6 +1,6 @@
 <?php
 
-    function fetchAndDisplayTable($con, $sql, $headers, $columns, $columnWidths, $actionUrls = []) {
+    function settingsManageListingTable($con, $sql, $headers, $columns, $columnWidths, $actionUrls = []) {
 
         try {
 
@@ -9,11 +9,11 @@
             if (mysqli_num_rows($result) > 0) {
 
                 echo '<table style="width:100%;">';
-                echo renderTableHeaders($headers, $columnWidths);
+                echo settingsManageListingHeaders($headers, $columnWidths);
 
                 while ($row = mysqli_fetch_assoc($result)) {
 
-                    echo renderTableRow($row, $columns, $columnWidths, $actionUrls);
+                    echo settingsManageListingRow($row, $columns, $columnWidths, $actionUrls);
 
                 }
 
@@ -35,7 +35,7 @@
 
     }
 
-    function renderTableHeaders($headers, $columnWidths) {
+    function settingsManageListingHeaders($headers, $columnWidths) {
 
         try {
 
@@ -59,7 +59,7 @@
 
     }
 
-    function renderTableRow($row, $columns, $columnWidths, $actionUrls) {
+    function settingsManageListingRow($row, $columns, $columnWidths, $actionUrls) {
 
         try {
 
@@ -74,7 +74,7 @@
 
             if ($actionUrls) {
 
-                $rowHtml .= renderActionUrls($row, $actionUrls);
+                $rowHtml .= settingsManageListingURLs($row, $actionUrls);
 
             }
 
@@ -89,7 +89,7 @@
 
     }
 
-    function renderActionUrls($row, $actionUrls) {
+    function settingsManageListingURLs($row, $actionUrls) {
 
         try {
 

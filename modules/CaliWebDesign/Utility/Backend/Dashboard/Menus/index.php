@@ -14,7 +14,7 @@
 
         $links = [
             'Overview' => '/dashboard/customers/',
-            'Billing' => '/dashboard/customers/billingCenter?account_number=' . $accountNumber,
+            'Billing' => '/dashboard/customers/billingCenter',
             'Access & Security Center' => '/dashboard/customers/accessAndSecurityCenter',
             'Service Status' => '/dashboard/customers/serviceStatus',
             'Customer Service' => '/dashboard/customers/supportCenter',
