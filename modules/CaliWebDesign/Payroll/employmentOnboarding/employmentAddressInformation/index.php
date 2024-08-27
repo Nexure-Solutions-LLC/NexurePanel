@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="postalcode" class="text-gray-label">Postal Code</label>
-                                <input type="text" class="form-input" name="postalcode" id="postalcode" placeholder="" required="" />
+                                <input type="number" class="form-input" name="postalcode" id="postalcode" placeholder="" required="" />
                             </div>
                         </div>
                         <div>

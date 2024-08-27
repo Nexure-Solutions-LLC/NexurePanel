@@ -26,7 +26,9 @@
                 </div>
             </div>
             <div class="display-flex align-center">
-                <a href="" class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
+                <a href="/dashboard/administration/accounts/modifyProfile/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
+                <a href="/dashboard/administration/accounts/alterBalance/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Alter Balance</a>
+                <a href="/dashboard/administration/accounts/chargeCustomer/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Pay on Account</a>
                 <a href="/dashboard/administration/accounts/viewAsOwner/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">View as Owner</a>
             </div>
         </div>

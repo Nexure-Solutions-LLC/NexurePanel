@@ -206,7 +206,7 @@
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
                                                             <label for="amount">Amount</label>
-                                                            <input type="number" min="1" step="any" name="amount" id="amount" class="form-input" placeholder="0.00" inputmode="numeric"  onwheel="return false" required="" />
+                                                            <input type="number" maxlength="9" step="any" name="amount" id="amount" class="form-input" placeholder="0.00" inputmode="numeric"  onwheel="return false" required="" />
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
                                                             <label for="end_date">Period Closure Date</label>

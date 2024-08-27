@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="phonenumber" class="text-gray-label">Phone Number</label>
-                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $currentAccount->mobileNumber; ?>" required="" readonly />
+                                <input type="number" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $currentAccount->mobileNumber; ?>" required="" readonly />
                             </div>
                         </div>
                         <div>

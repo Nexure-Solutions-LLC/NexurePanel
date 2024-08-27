@@ -112,7 +112,7 @@
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="phonenumber" class="text-gray-label"><?php echo $LANG_ONBOARD_PHONEFEILD; ?></label>
-                                <input type="text" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $mobilenumber; ?>" required="" readonly />
+                                <input type="number" class="form-input" name="phonenumber" id="phonenumber" value="<?php echo $mobilenumber; ?>" maxlength="10" inputmode="numeric" required="" readonly />
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="emailaddress" class="text-gray-label"><?php echo $LANG_ONBOARD_EMAILFEILD; ?></label>
@@ -128,7 +128,7 @@
                                 <label style="color:green; font-size:12px;"><?php echo $LANG_ONBOARD_SECUREFORMTITLE; ?></label>
                                 <div class="form-control" style="margin-top:4%;">
                                     <label for="einssnnumber" class="text-gray-label"><?php echo $LANG_ONBOARD_EINORSSNFEILD; ?></label>
-                                    <input type="password" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" requird="" />
+                                    <input type="password" class="form-input" name="einssnnumber" id="einssnnumber" placeholder="" maxlength="9" inputmode="numeric" requird="" />
                                 </div>
                                 <p style="font-size:12px; padding:0; margin:0;"><?php echo $LANG_ONBOARD_SUBMITDISCLAIMER; ?></p>
                             </div>
