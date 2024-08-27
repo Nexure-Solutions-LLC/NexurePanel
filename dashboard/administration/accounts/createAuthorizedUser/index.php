@@ -132,7 +132,7 @@
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="phonenumber">Phone Number</label>
-                                                <input type="text" name="phonenumber" id="phonenumber" class="form-input" placeholder="11234567890" required="" />
+                                                <input type="number" name="phonenumber" id="phonenumber" class="form-input" placeholder="11234567890" required="" />
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="password">Password</label>

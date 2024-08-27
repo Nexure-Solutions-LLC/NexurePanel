@@ -225,40 +225,7 @@
 
                                         <?php
 
-                                            
-
-                                            if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
-
-                                                if ($variableDefinitionX->paymentProcessorName === "Stripe") {
-
-                                                    \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
-
-                                                    $customer = \Stripe\Customer::retrieve($manageAccountDefinitionR->customerStripeID);
-
-                                                    $taxExempt = ucfirst($customer->tax_exempt);
-
-                                                    if ($taxExempt == "None") {
-
-                                                        $taxStatus = "Taxable";
-
-                                                    } else {
-
-                                                        $taxStatus = $taxExempt;
-
-                                                    }
-
-
-                                                } else {
-
-                                                    echo '';
-
-                                                }
-
-                                            } else {
-
-                                                echo '';
-
-                                            }
+                                            $taxStatus = getTaxStatus($manageAccountDefinitionR->customerStripeID);
 
                                         ?>
 

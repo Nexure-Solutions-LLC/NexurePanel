@@ -111,7 +111,7 @@
                             </div>
                             <div class="form-control" style="margin-top:-2%;">
                                 <label for="postalcode" class="text-gray-label"><?php echo $LANG_ONBOARD_POSTALCODEFEILD; ?></label>
-                                <input type="text" class="form-input" name="postalcode" id="postalcode" placeholder="" required="" />
+                                <input type="number" class="form-input" name="postalcode" id="postalcode" placeholder="12345" inputmode="numeric" maxlength="6" required="" />
                             </div>
                         </div>
                         <div>

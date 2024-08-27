@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="form-control" style="margin-top:-2%;">
                                     <label for="refrencePhoneNumber" class="text-gray-label">Refrence Phone Number</label>
-                                    <input type="text" class="form-input" name="refrencePhoneNumber" id="refrencePhoneNumber" placeholder="" required="" /> 
+                                    <input type="number" class="form-input" name="refrencePhoneNumber" id="refrencePhoneNumber" inputmode="numeric" placeholder="" required="" /> 
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="form-control" style="margin-top:-2%;">
                                     <label for="refrencePhoneNumber" class="text-gray-label">Refrence Phone Number</label>
-                                    <input type="text" class="form-input" name="refrencePhoneNumber" id="refrencePhoneNumber" placeholder="" required="" /> 
+                                    <input type="number" class="form-input" name="refrencePhoneNumber" id="refrencePhoneNumber" inputmode="numeric" placeholder="" required="" /> 
                                 </div>
                             </div>
                 `;

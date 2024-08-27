@@ -178,7 +178,7 @@
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
                             <label for="phonenumber" class="text-gray-label"><?php echo $LANG_SELF_REGISTER_PHONE_NUMBER ?></label>
-                            <input type="text" class="form-input" name="phonenumber" id="phonenumber" placeholder="" required="" />
+                            <input type="number" class="form-input" name="phonenumber" id="phonenumber" placeholder="" inputmode="numeric" maxlength="10" required="" />
                         </div>
                         <div class="form-control" style="margin-top:-2%;">
                             <label for="emailaddress" class="text-gray-label"><?php echo $LANG_SELF_REGISTER_EMAIL_ADDR ?></label>

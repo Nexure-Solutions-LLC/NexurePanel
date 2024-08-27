@@ -241,11 +241,11 @@
 
                 } catch (\Stripe\Exception\ApiErrorException $e) {
 
-                    echo $e;
+                    redirect("/error/genericSystemError");
 
                 } catch (Exception $e) {
 
-                    echo $e;
+                    redirect("/error/genericSystemError");
 
                 } catch (\Throwable $exception) {
 
@@ -255,29 +255,140 @@
 
             }
 
+            function updateCreditBalance($customerId, $amount) {
+
+                try {
+                    
+                    $amountInCents = $amount * 100;
+
+                    $customer = \Stripe\Customer::retrieve($customerId);
+
+                    $customer->balance = $amountInCents;
+
+                    $customer->save();
+
+                    return "Success";
+
+                } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (Exception $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (\Throwable $exception) {
+
+                    \Sentry\captureException($exception);
+
+                }
+
+            }
+
+            function chargeCustomer($customerId, $amount) {
+
+                try {
+                    
+                    $amountInCents = $amount * 100;
+
+                    $customer = \Stripe\Customer::retrieve($customerId);
+
+                    $defaultSource = $customer->default_source;
+
+                    \Stripe\PaymentIntent::create([
+                        'amount' => $amountInCents,
+                        'currency' => 'usd',
+                        'customer' => $customerId,
+                        'payment_method' => $defaultSource,
+                        'off_session' => true,
+                        'confirm' => true,
+                    ]);
+
+                    $currentBalance = isset($customer->balance) ? $customer->balance : 0;
+
+                    $newBalance = $currentBalance - $amountInCents;
+
+                    $customer->balance = $newBalance;
+
+                    $customer->save();
+
+                    return "Success";
+
+                } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (Exception $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (\Throwable $exception) {
+
+                    \Sentry\captureException($exception);
+
+                }
+                
+            }
+
             function getTotalPayments($customerId) {
 
-                    $totalAmount = 0;
+                $totalAmount = 0;
 
-                    try {
-                        
-                        $charges = \Stripe\Charge::all(['customer' => $customerId]);
+                try {
+                    
+                    $charges = \Stripe\Charge::all(['customer' => $customerId]);
 
-                        foreach ($charges as $charge) {
+                    foreach ($charges as $charge) {
 
-                            $totalAmount += $charge->amount;
-
-                        }
-
-                    } catch (Exception $e) {
-
-                        echo 'Error: ' . $e->getMessage();
+                        $totalAmount += $charge->amount;
 
                     }
 
-                    return $totalAmount / 100;
-                    
+                } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (Exception $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (\Throwable $exception) {
+
+                    \Sentry\captureException($exception);
+
                 }
+
+                return $totalAmount / 100;
+                
+            }
+
+            function getTaxStatus($customerId) {
+
+                try {
+
+                    $customer = \Stripe\Customer::retrieve($customerId);
+
+                    $taxExempt = isset($customer->tax_exempt) ? ucfirst($customer->tax_exempt) : "None";
+
+                    $taxStatus = ($taxExempt == "None") ? "Taxable" : $taxExempt;
+
+                    return $taxStatus;
+
+                } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (Exception $e) {
+
+                    redirect("/error/genericSystemError");
+
+                } catch (\Throwable $exception) {
+
+                    \Sentry\captureException($exception);
+
+                }
+
+            }
 
         }
 
