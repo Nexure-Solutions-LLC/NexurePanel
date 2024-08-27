@@ -4,11 +4,30 @@
     $pagesubtitle = "Create";
     $pagetype = "Administration";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     // When form submitted, insert values into the database.
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        // Personal Information Section
+
+        $taskname = stripslashes($_REQUEST['taskname']);
+        $taskname = mysqli_real_escape_string($con, $taskname);
+        $duedate = stripslashes($_REQUEST['duedate']);
+        $duedate = mysqli_real_escape_string($con, $duedate);
+        $assignedemployee = stripslashes($_REQUEST['assignedemployee']);
+        $assignedemployee = mysqli_real_escape_string($con, $assignedemployee);
+        $taskstatus = stripslashes($_REQUEST['taskstatus']);
+        $taskstatus = mysqli_real_escape_string($con, $taskstatus);
+        $taskdescription = stripslashes($_REQUEST['taskdescription']);
+        $taskdescription = mysqli_real_escape_string($con, $taskdescription);
+        $taskpriority = stripslashes($_REQUEST['taskpriority']);
+        $taskpriority = mysqli_real_escape_string($con, $taskpriority);
+
+        // System Feilds
+
+        $taskstartdate = date("Y-m-d H:i:s");
 
         $current_time = time();
 
@@ -30,25 +49,6 @@
 
         $_SESSION['last_submit_time'] = $current_time;
 
-        // Personal Information Section
-
-        $taskname = stripslashes($_REQUEST['taskname']);
-        $taskname = mysqli_real_escape_string($con, $taskname);
-        $duedate = stripslashes($_REQUEST['duedate']);
-        $duedate = mysqli_real_escape_string($con, $duedate);
-        $assignedemployee = stripslashes($_REQUEST['assignedemployee']);
-        $assignedemployee = mysqli_real_escape_string($con, $assignedemployee);
-        $taskstatus = stripslashes($_REQUEST['taskstatus']);
-        $taskstatus = mysqli_real_escape_string($con, $taskstatus);
-        $taskdescription = stripslashes($_REQUEST['taskdescription']);
-        $taskdescription = mysqli_real_escape_string($con, $taskdescription);
-        $taskpriority = stripslashes($_REQUEST['taskpriority']);
-        $taskpriority = mysqli_real_escape_string($con, $taskpriority);
-
-        // System Feilds
-
-        $taskstartdate = date("Y-m-d H:i:s");
-
         // Database Calls
         
         $taskInsertRequest = "INSERT INTO `caliweb_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`, `taskPriority`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assignedemployee','$taskdescription','$taskpriority')";
@@ -65,9 +65,7 @@
 
         }
 
-    } else {
-
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    }
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -156,7 +154,5 @@
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
-
-    }
 
 ?>
