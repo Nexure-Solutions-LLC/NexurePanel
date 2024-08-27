@@ -5,6 +5,25 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
+
+    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
+
+        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+            include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+
+        } else {
+
+            header ("location: /error/genericSystemError");
+
+        }
+
+    } else {
+
+        echo 'There are no payment modules available to service this request.';
+
+    }
     
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -21,8 +40,6 @@
 
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
-
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
 
 ?>
 
@@ -45,7 +62,7 @@
                                     <div class="dashboard-table">
                                         <?php
 
-                                            fetchAndDisplayTable(
+                                            accountsManageListingTable(
                                                 $con,
                                                 "SELECT * FROM caliweb_users WHERE userrole = 'authorized user' AND accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['Name', 'Phone', 'Type', 'Status', 'Actions'],
@@ -73,16 +90,16 @@
                                     <div class="dashboard-table">
                                         <?php
 
-                                            fetchAndDisplayTable(
+                                            accountsManageListingTable(
                                                 $con,
                                                 "SELECT * FROM caliweb_services WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
-                                                ['Service Name', 'Type', 'Started', 'Renewal', 'Cost', 'Status', 'Actions'],
-                                                ['serviceName', 'serviceType', 'serviceStartDate', 'serviceEndDate', 'serviceCost', 'serviceStatus'],
-                                                ['20%', '15%', '15%', '15%', '10%', '10%'],
+                                                ['Service ID', 'Service Name', 'Type', 'Started', 'Renewal', 'Cost', 'Status', 'Actions'],
+                                                ['serviceIdentifier', 'serviceName', 'serviceType', 'serviceStartDate', 'serviceEndDate', 'serviceCost', 'serviceStatus'],
+                                                ['15%', '20%', '15%', '12%', '12%', '8%', '8%'],
                                                 [
                                                     'View' => "{linkedServiceName}/?account_number={accountNumber}",
-                                                    'Edit' => "/dashboard/administration/accounts/editServices/?account_number={urlAccountNumber}&service_name={urlServiceName}",
-                                                    'Delete' => "/dashboard/administration/accounts/deleteServices/?account_number={urlAccountNumber}&service_name={urlServiceName}"
+                                                    'Edit' => "/dashboard/administration/accounts/editServices/?account_number={accountNumber}&service_id={serviceIdentifier}",
+                                                    'Delete' => "/dashboard/administration/accounts/deleteServices/?account_number={accountNumber}&service_id={serviceIdentifier}"
                                                 ]
                                             );
 
@@ -101,7 +118,7 @@
                                     <div class="dashboard-table">
                                         <?php
 
-                                            fetchAndDisplayTable(
+                                            accountsManageListingTable(
                                                 $con,
                                                 "SELECT * FROM caliweb_fileRecords WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['File Name', 'Type', 'Upload Date', 'Actions'],
@@ -128,7 +145,7 @@
                                     <div class="dashboard-table">
                                         <?php
 
-                                            fetchAndDisplayTable(
+                                            accountsManageListingTable(
                                                 $con,
                                                 "SELECT * FROM caliweb_cases WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['Case Number', 'Case Title', 'Created Date', 'Closed Date', 'Assigned Agent', 'Status', 'Actions'],
@@ -154,7 +171,29 @@
                             </div>
                             <div class="card-body">
                                 <!-- Insights content here -->
-                                <div class="caliweb-grid caliweb-three-grid" style="grid-row-gap:0!important; padding:0; margin:0;">
+                                <div class="caliweb-grid caliweb-three-grid" style="grid-row-gap:0!important; padding:0; margin:0; margin-bottom:20px;">
+                                    <div>
+
+                                        <p style="font-size:12px; color:grey;">Balance</p>
+
+                                        <p style="font-size:16px; font-weight:600;">
+
+                                            <?php echo '$'.getCreditBalance($manageAccountDefinitionR->customerStripeID); ?>
+                                        
+                                        </p>
+
+                                    </div>
+                                    <div>
+
+                                        <p style="font-size:12px; color:grey;">Due Date</p>
+
+                                        <p style="font-size:16px; font-weight:600;">Aug 27 2024</p>
+
+                                    </div>
+                                    <div></div>
+                                </div>
+                                <div class="caliweb-horizantal-spacer"></div>
+                                <div class="caliweb-grid caliweb-three-grid" style="grid-row-gap:0!important; padding:0; margin:0; margin-top:20px;">
                                     <div>
                                         <?php
 
@@ -162,49 +201,9 @@
                                             // the amount of payments a given customer has made.
 
                                             $totalAmount = 0;
+                                            
+                                            $totalPayments = getTotalPayments($manageAccountDefinitionR->customerStripeID);
 
-                                            if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
-
-                                                if ($variableDefinitionX->paymentProcessorName === "Stripe") {
-
-                                                    \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
-
-                                                        function getTotalPayments($customerId) {
-
-                                                            $totalAmount = 0;
-
-                                                            try {
-                                                                
-                                                                $charges = \Stripe\Charge::all(['customer' => $customerId]);
-
-                                                                foreach ($charges as $charge) {
-
-                                                                    $totalAmount += $charge->amount;
-
-                                                                }
-
-                                                            } catch (Exception $e) {
-
-                                                                echo 'Error: ' . $e->getMessage();
-
-                                                            }
-
-                                                            return $totalAmount / 100;
-                                                        }
-
-                                                        $totalPayments = getTotalPayments($manageAccountDefinitionR->customerStripeID);
-
-                                                } else {
-
-                                                    echo '';
-
-                                                }
-
-                                            } else {
-
-                                                echo '';
-
-                                            }
 
                                         ?>
                                         <p style="font-size:12px; color:grey;">Total Spend</p>

@@ -5,6 +5,8 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
+
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
     $accountnumber = $_GET['account_number'] ?? '';
@@ -20,8 +22,6 @@
 
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
-
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
 
 ?>
 
@@ -48,7 +48,7 @@
                                     <div class="dashboard-table">
                                         <?php
 
-                                            fetchAndDisplayTable(
+                                            accountsManageListingTable(
                                                 $con,
                                                 "SELECT * FROM caliweb_users WHERE userrole = 'authorized user'",
                                                 ['Company', 'Owner', 'Phone', 'Type', 'Status', 'Actions'],

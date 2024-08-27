@@ -31,7 +31,9 @@
         global $con; // Ensure the database connection is accessible in this function
 
         $serviceName = mysqli_real_escape_string($con, $serviceName);
+
         $query = "SELECT modulePath FROM caliweb_modules WHERE matchingService = '$serviceName'";
+
         $result = mysqli_query($con, $query);
 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -217,7 +219,65 @@
 
         } else {
 
-            redirect("/error/genericSystemError");
+            function getCreditBalance($customerId) {
+
+                try {
+
+                    $customer = \Stripe\Customer::retrieve($customerId);
+
+                    $creditBalance = isset($customer->balance) ? $customer->balance : 0;
+
+                    $formattedBalance = number_format($creditBalance / 100, 2);
+
+                    if ($creditBalance < 0) {
+
+                        return "<span style='color: #ff6161;'>" . $formattedBalance . "</span>";
+
+                    } else {
+
+                        return  $formattedBalance;
+
+                    }
+
+                } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                    echo $e;
+
+                } catch (Exception $e) {
+
+                    echo $e;
+
+                } catch (\Throwable $exception) {
+
+                    \Sentry\captureException($exception);
+
+                }
+
+            }
+
+            function getTotalPayments($customerId) {
+
+                    $totalAmount = 0;
+
+                    try {
+                        
+                        $charges = \Stripe\Charge::all(['customer' => $customerId]);
+
+                        foreach ($charges as $charge) {
+
+                            $totalAmount += $charge->amount;
+
+                        }
+
+                    } catch (Exception $e) {
+
+                        echo 'Error: ' . $e->getMessage();
+
+                    }
+
+                    return $totalAmount / 100;
+                    
+                }
 
         }
 

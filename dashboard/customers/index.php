@@ -6,14 +6,35 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
+    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
+
+        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+            include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+
+        } else {
+
+            header ("location: /error/genericSystemError");
+
+        }
+
+    } else {
+
+        echo 'There are no payment modules available to service this request.';
+
+    }
+
     try {
 
-        $truncatedAccountNumber = substr($currentAccount->accountNumber, -4);
+        $accountNumbers = $currentAccount->accountNumber;
+
+        $accountNumberArray = explode(',', $accountNumbers);
+
         $customerStatus = $currentAccount->accountStatus;
-        $accountnumber = $currentAccount->accountNumber;
 
         $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
-        $manageAccountDefinitionR->manageAccount($con, $accountnumber);
+
+        $manageAccountDefinitionR->manageAccount($con, $accountNumbers);
 
         $businessname = ($manageAccountDefinitionR->businessname !== null) ? $manageAccountDefinitionR->businessname : null;
 
@@ -54,75 +75,69 @@
                                         ?>
                                     </h6>
 
-                                    <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
-                                        <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
-                                            <?php echo $variableDefinitionX->orgShortName; ?> Standard (...<?php echo $truncatedAccountNumber; ?>)
-                                        </h6>
-                                        <div class="caliweb-button-section">   
-                                            <a href="/dashboard/customers/viewAccount/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary">View Account</a>
-                                        </div>
-                                    </div>
-
                                     <?php
 
-                                        if (strtolower($currentAccount->accountStatus->name) == "restricted") {
-                                
+                                        foreach ($accountNumberArray as $accountNumber) {
+
+                                            $accountNumber = trim($accountNumber);
+
+                                            $truncatedAccountNumber = substr($accountNumber, -4);
+
+                                            $displayedBusinessName = $businessname !== null ? strtoupper($businessname) : strtoupper($currentAccount->legalName);
+
+                                            if (strtolower($currentAccount->accountStatus->name) == "restricted") {
+
+                                                $balance = '——';
+
+                                                $dueDate = '——';
+
+                                                $statusMessage = '
+
+                                                    <div class="account-status-banner" id="accountRestricted">
+                                                        <p style="font-size:14px;">We have restricted this account and reopened it to protect your services. If you have any questions, please contact us.</p>
+                                                    </div>
+
+                                                ';
+
+                                            } else {
+
+                                                $stripeID = $currentAccount->stripe_id;
+
+                                                $balance = '$'.getCreditBalance($stripeID);
+
+                                                $dueDate = 'July 12, 2024';
+
+                                                $statusMessage = '';
+
+                                            }
+
                                             echo '
-
-                                                <div class="account-status-banner" id="accountRestricted">
-
-                                                    <p style="font-size:14px;">We have restricted this account and reopended it to protect your services. If you have any questions please contact us.</p>
-
+                            
+                                                <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
+                                                    <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: \'IBM Plex Sans\', sans-serif;">' . $variableDefinitionX->orgShortName . ' Standard (...' . $truncatedAccountNumber . ')</h6>
+                                                    <div class="caliweb-button-section">   
+                                                        <a href="/dashboard/customers/viewAccount/?account_number=' . urlencode($accountNumber) . '" class="caliweb-button secondary">View Account</a>
+                                                    </div>
                                                 </div>
-
+                                                ' . $statusMessage . '
                                                 <div class="caliweb-three-grid" style="padding:20px;">
                                                     <div class="customer-balance">
-                                                        <h5 style="font-weight:600; font-size:40px;" class="no-padding no-margin">——</h5>
+                                                        <h5 style="font-weight:600; font-size:40px;" class="no-padding no-margin">' . $balance . '</h5>
                                                         <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Owed Balance</p>
                                                     </div>
                                                     <div class="customer-duedate" style="padding-top:7%">
-                                                        <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">——</h5>
+                                                        <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">' . $dueDate . '</h5>
                                                         <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
                                                     </div>
                                                     <div class="customer-duedate" style="padding-top:5.5%">
                                                         <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
-                                                           
-                                                            <span class="account-status-badge '. $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value .'" style="margin-left:0;">'.$currentAccount->fromAccountStatus($customerStatus).'</span>
-                                                            
+                                                            <span class="account-status-badge ' . $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value . '" style="margin-left:0;">' . $currentAccount->fromAccountStatus($customerStatus) . '</span>
                                                         </h5>
                                                         <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
                                                     </div>
                                                 </div>
 
                                             ';
-
-                                        } else {
-
-                                    ?>
-
-                                            <div class="caliweb-three-grid" style="padding:20px;">
-                                                <div class="customer-balance">
-                                                    <h5 style="font-weight:600; font-size:40px;" class="no-padding no-margin">$0.00</h5>
-                                                    <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Owed Balance</p>
-                                                </div>
-                                                <div class="customer-duedate" style="padding-top:7%">
-                                                    <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">July 12, 2024</h5>
-                                                    <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
-                                                </div>
-                                                <div class="customer-duedate" style="padding-top:5.5%">
-                                                    <h5 style="font-weight:700; font-size:18px;" class="no-padding no-margin">
-                                                        <?php
-
-                                                            echo "<span class='account-status-badge ". $currentAccount->transformStringToStatusColor($currentAccount->fromAccountStatus($customerStatus))->value ."' style='margin-left:0;'>".$currentAccount->fromAccountStatus($customerStatus)."</span>";
-                                                        
-                                                        ?>
-                                                    </h5>
-                                                    <p style="font-size:12px; padding-top:10px;" class="no-padding no-margin">Account Standing</p>
-                                                </div>
-                                            </div>
-
-                                    
-                                    <?php
 
                                         }
 
@@ -183,11 +198,15 @@
                                         <?php
 
                                             $codemoduleResult = mysqli_query($con, "SELECT * FROM caliweb_modules WHERE `moduleFriendlyName` = 'Security'");
+
                                             $codemoduleInfo = mysqli_fetch_array($codemoduleResult);
+                                            
                                             mysqli_free_result($codemoduleResult);
 
                                             $codeIntNameModuleCheck = $codemoduleInfo['moduleName'];
+
                                             $codeIntStatusModuleCheck = $codemoduleInfo['moduleStatus'];
+
                                             $codeIntPathModule= $codemoduleInfo['modulePath'];
 
                                             if ($codeIntNameModuleCheck == "Cali Code Integrity" && $codeIntStatusModuleCheck == "Active") {

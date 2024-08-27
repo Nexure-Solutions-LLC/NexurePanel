@@ -7,15 +7,12 @@
     $pagesubtitle = $_SESSION['pagesubtitle'] = "Billing Center";
     $pagetype = "Client";
 
-    $accountnumber = $_GET['account_number'];
-
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-
-    $storedAccountNumber = $currentAccount->accountNumber;
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
-    if ($accountnumber == $storedAccountNumber) {
+    $customeremail = $currentAccount->email;
+
 
 ?>
 
@@ -28,7 +25,7 @@
                             <p class="no-padding" style="font-size:16px;">Overview / Billing Center</p>
                         </div>
                         <div>
-                            <a href="/dashboard/customers/billingCenter/createPaymentMethod?account_number=<?php echo $accountnumber; ?>" class="caliweb-button primary">Add Payment Method</a>
+                            <a href="/dashboard/customers/billingCenter/createPaymentMethod" class="caliweb-button primary">Add Payment Method</a>
                         </div>
                     </div>
                 </div>
@@ -68,12 +65,6 @@
         </section>
 
 <?php
-
-    } else {
-
-        echo '<script type="text/javascript">window.location = "/dashboard/customers/billingCenter/?account_number='.$storedAccountNumber.'"</script>';
-
-    }
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 

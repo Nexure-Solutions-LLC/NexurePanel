@@ -42,7 +42,7 @@
                                 <div class="dashboard-table" style="margin-top:4%;">
                                     <?php
 
-                                        fetchAndDisplayTable(
+                                        settingsManageListingTable(
                                             $con,
                                             "SELECT * FROM caliweb_networks WHERE listType = '".strtolower('whitelist')."'",
                                             ['IP Address', 'Type'],
@@ -66,7 +66,7 @@
                                 <div class="dashboard-table" style="margin-top:4%;">
                                     <?php
 
-                                        fetchAndDisplayTable(
+                                        settingsManageListingTable(
                                             $con,
                                             "SELECT * FROM caliweb_networks WHERE listType = '".strtolower('blacklist')."'",
                                             ['IP Address', 'Type'],

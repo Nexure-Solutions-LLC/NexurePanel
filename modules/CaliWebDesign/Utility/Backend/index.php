@@ -483,7 +483,9 @@
                 );
 
                 $possible_roles = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\userRole::cases(), 'name')), \userRole::cases());
+
                 $possible_access_levels = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\accessLevel::cases(), 'name')), \accessLevel::cases());
+                
                 $possible_account_statuses = array_combine(array_map(fn($item) => $this->_lower_and_clear($item), array_column(\accountStatus::cases(), 'name')), \accountStatus::cases());
 
                 foreach ($data_array as $key => $value) {
@@ -580,16 +582,23 @@
         public function join_and_trim(string $data): string {
 
             $pieces = preg_split('/(?=[A-Z])/', $data);
+
             $joined = implode(" ", $pieces);
+
             $joined = trim($joined);
+
             return $joined;
 
         }
 
         public function sanitize(mysqli $con, string $data): string {
+
             $data = stripslashes($data);
+
             $data = mysqli_real_escape_string($con, $data);
+
             return $data;
+
         }
 
     }
