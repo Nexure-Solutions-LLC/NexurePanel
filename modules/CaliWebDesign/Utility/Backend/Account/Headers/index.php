@@ -32,13 +32,13 @@
                 <a href="/dashboard/administration/accounts/viewAsOwner/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">View as Owner</a>
             </div>
         </div>
-        <div class="card-body width-75 macBook-styling-hotfix">
+        <div class="card-body width-100 macBook-styling-hotfix">
             <div class="display-flex align-center width-100 padding-20px-no-top macBook-padding-top">
                 <?php
 
                     $details = [
                         'Type' => ($manageAccountDefinitionR->userrole === 'customer' || $manageAccountDefinitionR->userrole === 'Customer') ? 'Customer - Direct' : (($manageAccountDefinitionR->userrole === 'partner' || $manageAccountDefinitionR->userrole === 'Partner') ? 'Partner - Affiliate' : 'Unknown'),
-                        'Phone' => $manageAccountDefinitionR->mobilenumber,
+                        'Phone' => '+'.$manageAccountDefinitionR->mobilenumber,
                         'Website' => $manageAccountDefinitionR->websitedomain,
                         'Owner' => $manageAccountDefinitionR->legalname,
                         'First Interaction' => $manageAccountDefinitionR->firstinteractiondate,
@@ -47,7 +47,7 @@
                     
                     foreach ($details as $label => $value) {
 
-                        echo "<div class='width-60'><p class='no-padding font-14px'>{$label}</p><p class='no-padding font-14px'>{$value}</p></div>";
+                        echo "<div style='width:75%;'><p class='no-padding font-14px'>{$label}</p><p class='no-padding font-14px'>{$value}</p></div>";
                     
                     }
 
