@@ -64,6 +64,10 @@
 
         }
 
+    } else {
+
+        header("location: /dashboard/customers");
+
     }
 
 ?>
