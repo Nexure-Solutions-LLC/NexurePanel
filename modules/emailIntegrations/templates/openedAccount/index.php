@@ -1,6 +1,6 @@
 <?php
 
-    echo '
+    $HTMLCONTENT = '
     
         <!DOCTYPE html>
         <html lang="en">
@@ -69,8 +69,8 @@
                     </div>
                     <div class="email-body">
                         <p>Hi,</p>
-                        <p>Congradulations your account was opened! We thank you for choosing '.$variableDefinitionX->orgShortName.' we hope you build amazing things with our platform. Now that your account is opened you can see it in your '.$variableDefinitionX->orgShortName.' portal.</p>
-                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
+                        <p>Congratulations your account was opened! We thank you for choosing '.$variableDefinitionX->orgShortName.' we hope you build amazing things with our platform. Now that your account is opened you can see it in your '.$variableDefinitionX->orgShortName.' portal.</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' Team</p>
                     </div>
                     <div class="email-footer">
                         <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>

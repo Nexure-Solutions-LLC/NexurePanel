@@ -70,7 +70,7 @@
                     <div class="email-body">
                         <p>Hi,</p>
                         <p>We recently recived a request for your password to be reset, If this was not you please <a href="https://caliwebdesignservices.com/contact" class="careers-link">contact us</a> immediately. If this was you, please <a href="https://' . $_SERVER["HTTP_HOST"] . '/resetPassword/verificationCode?submittedCode=' . $emailVerificationCode . '" class="careers-link">click here</a>.</p>
-                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' Team</p>
                     </div>
                     <div class="email-footer">
                         <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>

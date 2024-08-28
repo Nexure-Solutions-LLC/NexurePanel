@@ -70,7 +70,7 @@
                     <div class="email-body">
                         <p>Hi,</p>
                         <p>Your '.$variableDefinitionX->orgShortName.' account has be closed. This may be because you requested us to close it or because we closed it from our end. We thank you for choosing '.$variableDefinitionX->orgShortName.' and wish you the best of luck moving forward.</p>
-                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' Team</p>
                     </div>
                     <div class="email-footer">
                         <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>

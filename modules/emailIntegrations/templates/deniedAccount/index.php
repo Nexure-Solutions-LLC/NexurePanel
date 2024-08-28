@@ -70,7 +70,7 @@
                     <div class="email-body">
                         <p>Hi,</p>
                         <p>We recently recived a request for a '.$variableDefinitionX->orgShortName.' account. Unfortuantly we could not open this account. More information about this denial will be mailed to the address that you supplied to us. You can reapply in 30 days if you belive this decision was made in error.</p>
-                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' Team</p>
                     </div>
                     <div class="email-footer">
                         <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>

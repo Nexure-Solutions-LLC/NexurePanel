@@ -118,7 +118,7 @@
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
     } else {
-        header("location:/modules/payroll/employeeView");
+        header("location:/modules/CaliWebDesign/Payroll/employeeView");
     }
 
 ?>

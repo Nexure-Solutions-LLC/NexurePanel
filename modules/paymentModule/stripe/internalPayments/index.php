@@ -3,9 +3,6 @@
     require $_SERVER["DOCUMENT_ROOT"].'/configuration/index.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
-    $caliemail = $_SESSION['caliid'];
-    $stripeID = $currentAccount->stripe_id;
-
     function handleError($message) {
 
         echo $message;
@@ -53,6 +50,9 @@
 
         if ($pagetitle == "Onboarding Billing") {
 
+            $caliemail = $_SESSION['caliid'];
+            $stripeID = $currentAccount->stripe_id;
+
             $token = json_decode(file_get_contents('php://input'), true)['token'] ?? '';
 
             try {
@@ -75,6 +75,9 @@
             }
 
         } elseif ($pagetitle == "Onboarding Complete") {
+
+            $caliemail = $_SESSION['caliid'];
+            $stripeID = $currentAccount->stripe_id;
 
             try {
 
@@ -218,6 +221,31 @@
             }
 
         } else {
+
+            function add_customer($legalname, $emailaddress, $phonenumber, $builtaccountnumber) {
+
+                $cu = \Stripe\Customer::create([
+                    'name' => $legalname,
+                    'email' => $emailaddress,
+                    'phone' => $phonenumber,
+                    'description' => "Account Number: " . $builtaccountnumber,
+                ]);
+
+                $SS_STRIPE_ID = $cu['id'];
+
+                return $SS_STRIPE_ID;
+
+            }
+
+            function delete_customer($stripeid) {
+
+                $customer = \Stripe\Customer::retrieve($stripeid);
+
+                $customer->delete();
+
+                return true;
+
+            }
 
             function getCreditBalance($customerId) {
 

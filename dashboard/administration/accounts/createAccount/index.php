@@ -46,35 +46,26 @@
         // Checks to see if a payment system is active to add the customer into it, if it is then it checks to see what
         // proccessor it is, if its Stripe then it proceedes, if not throws error as Stripe is the only supported system
         // as of right now.
-  
-        if ($variableDefinitionX->apiKeysecret && $variableDefinitionX->paymentgatewaystatus === "active") {
 
-            if ($variableDefinitionX->paymentProcessorName === "Stripe") {
+        if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
-                \Stripe\Stripe::setApiKey($variableDefinitionX->apiKeysecret);
+            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
 
-                $cu = \Stripe\Customer::create([
-                    'name' => $legalname,
-                    'email' => $emailaddress,
-                    'phone' => $phonenumber,
-                    'description' => "Account Number: " . $builtaccountnumber,
-                ]);
-
-                $SS_STRIPE_ID = $cu['id'];
+                include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
 
             } else {
 
-                header("location: /error/genericSystemError");
-                exit;
+                header ("location: /error/genericSystemError");
 
             }
 
         } else {
 
-            header("location: /error/genericSystemError");
-            exit;
+            echo 'There are no payment modules available to service this request.';
 
         }
+
+        $SS_STRIPE_ID = add_customer($legalname, $emailaddress, $phonenumber, $builtaccountnumber);
 
         // Peroforms the database entry into MySQL.
 
@@ -82,6 +73,15 @@
             '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '$accountnotes', '$builtaccountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
 
         if (mysqli_query($con, $accountInsertRequest)) {
+
+            include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/SendEmail/index.php');
+
+            sendEmailAccountRegistration(
+                "Account Opened", 
+                $emailaddress, 
+                $legalname, 
+                "[Important Information] - Hello from Cali Web Design Services"
+            );
 
             handleEmployeeOrBusinessInsert($con, $legalname, $emailaddress, $registrationdate, $phonenumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $dateofbirth, $encryptedeinssnumber, $businessname, $businessindustry, $businessrevenue, $accountstatus, $accesslevel);
         

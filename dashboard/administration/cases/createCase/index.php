@@ -1,10 +1,15 @@
 <?php
 
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+
     $pagetitle = "Cases";
     $pagesubtitle = "Create";
     $pagetype = "Administration";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     // When form submitted, insert values into the database.
 
@@ -32,33 +37,29 @@
 
         // Personal Information Section
 
-        $taskname = stripslashes($_REQUEST['taskname']);
-        $taskname = mysqli_real_escape_string($con, $taskname);
-        $duedate = stripslashes($_REQUEST['duedate']);
-        $duedate = mysqli_real_escape_string($con, $duedate);
-        $assigneduser = stripslashes($_REQUEST['assigneduser']);
-        $assigneduser = mysqli_real_escape_string($con, $assigneduser);
-        $assigneduser = stripslashes($_REQUEST['assigneduser']);
-        $assigneduser = mysqli_real_escape_string($con, $assigneduser);
-        $taskstatus = stripslashes($_REQUEST['taskstatus']);
-        $taskstatus = mysqli_real_escape_string($con, $taskstatus);
-        $taskdescription = stripslashes($_REQUEST['taskdescription']);
-        $taskdescription = mysqli_real_escape_string($con, $taskdescription);
-        $taskpriority = stripslashes($_REQUEST['taskpriority']);
-        $taskpriority = mysqli_real_escape_string($con, $taskpriority);
+        $casetitle = stripslashes($_REQUEST['casetitle']);
+        $casetitle = mysqli_real_escape_string($con, $casetitle);
+        $customersearch = stripslashes($_REQUEST['customersearch']);
+        $customersearch = mysqli_real_escape_string($con, $customersearch);
+        $casestatus = stripslashes($_REQUEST['casestatus']);
+        $casestatus = mysqli_real_escape_string($con, $casestatus);
+        $assignedagent = stripslashes($_REQUEST['assignedagent']);
+        $assignedagent = mysqli_real_escape_string($con, $assignedagent);
+        $casedescription = stripslashes($_REQUEST['casedescription']);
+        $casedescription = mysqli_real_escape_string($con, $casedescription);
 
         // System Feilds
 
-        $taskstartdate = date("Y-m-d H:i:s");
+        $casecreated = date("Y-m-d H:i:s");
 
         // Database Calls
         
-        $taskInsertRequest = "";
-        $taskInsertResult = mysqli_query($con, $taskInsertRequest);
+        $caseInsertRequest = "INSERT INTO `caliweb_cases`(`caseNumber`, `emailAddress`, `customerName`, `caseTitle`, `caseCreateDate`, `caseCloseDate`, `caseStatus`, `caseDescription`, `assignedAgent`, `assignedDepartment`, `accountNumber`) VALUES ('','$customersearch','','$casetitle','$casecreated','0000-00-00','$casestatus','$casedescription','$assignedagent','','')";
+        $caseInsertResult = mysqli_query($con, $caseInsertRequest);
 
-        if ($taskInsertResult) {
+        if ($caseInsertResult) {
 
-            header ("location: /dashboard/administration/tasks");
+            header ("location: /dashboard/administration/cases");
         
 
         } else {
@@ -67,9 +68,7 @@
 
         }
 
-    } else {
-
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    }
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -150,7 +149,5 @@
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
-
-    }
 
 ?>

@@ -150,7 +150,7 @@
                                                     <label for="balance">New Balance</label>
                                                     <input type="number" maxlength="8" name="balance" id="balance" class="form-input" style="min-width: 500px;" inputmode="numeric" step="0.01" placeholder="340.28" />
 
-                                                    <p style="font-size:14px; margin-top:6%;">NOTICE: When entering balances do not include the currency symbol. Stripe automatically handles the currency.</p>
+                                                    <p style="font-size:14px; margin-top:6%;">NOTICE: When entering balances do not include the currency symbol. The payments module will automatically handle the currency.</p>
                                                 </div>
                                             </div>
                                         </div>

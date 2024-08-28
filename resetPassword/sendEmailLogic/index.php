@@ -2,7 +2,7 @@
 
     session_start();
 
-     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
+    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
     use Dotenv\Dotenv;
