@@ -3,7 +3,6 @@
     $pagesubtitle = "Create";
     $pagetype = "Administration";
 
-    require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     echo "<title>{$pagetitle} | {$pagesubtitle}</title>";
