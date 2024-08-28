@@ -112,6 +112,18 @@
 
         }
 
+        $userEmail = $currentAccount->email;
+
+        $query = "SELECT domainName FROM caliweb_websites WHERE email = ?";
+
+        $statement = $con->prepare($query);
+
+        $statement->bind_param("s", $userEmail);
+
+        $statement->execute();
+
+        $result = $statement->get_result();
+
 ?>
 
             <!-- HTML Content for customer users view -->
@@ -125,12 +137,33 @@
                                 <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design Web Development / Home Page</p>
                             </div>
                             <div class="width-25">
-                                <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
-                                    <option>caliwebdesignservices.com</option>
-                                    <option>website2.com</option>
-                                    <option>website3.com</option>
-                                    <option>website4.com</option>
-                                </select>
+                                <?php
+
+                                    if ($result->num_rows > 0) {
+
+                                        echo '<select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">';
+
+                                        while ($row = $result->fetch_assoc()) {
+
+                                            echo '<option>' . htmlspecialchars($row['domainName']) . '</option>';
+
+                                        }
+
+                                        echo '</select>';
+
+                                    } else {
+
+                                        echo '
+                                        
+                                            <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
+                                                <option>No domains available</option>
+                                            </select>
+                                            
+                                        ';
+
+                                    }
+
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -303,6 +336,8 @@
 
     
     <?php
+
+        $statement->close();
 
         } else if (strtolower($currentAccount->role->name) == "authorized user") {
             
