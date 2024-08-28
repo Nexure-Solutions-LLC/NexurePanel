@@ -49,30 +49,6 @@
 
     }
 
-    $sql = "SELECT * FROM caliweb_notetypes";
-
-    $result = $con->query($sql);
-
-    $options = '';
-
-    if ($result->num_rows > 0) {
-
-        while ($row = $result->fetch_assoc()) {
-
-            $type = htmlspecialchars($row['type']);
-            $preset = htmlspecialchars($row['preset']);
-            $options .= '<option data-preset="' . $preset . '">' . $type . '</option>';
-
-        }
-
-    } else {
-
-        $options = '';
-
-    }
-
-    $options .= '<option data-preset="' . "" . '">' . "Other" . '</option>';
-
     if ($customerAccountInfo != NULL) {
 
         // When form submitted, insert values into the database.

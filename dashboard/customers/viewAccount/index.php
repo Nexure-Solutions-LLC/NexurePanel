@@ -58,7 +58,10 @@
 
             <section class="section caliweb-section customer-dashboard-greeting-section">
                 <div class="container caliweb-container">
-                    <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design View Account / Details</p>
+                    <div class="display-flex align-center" style="justify-content:space-between">
+                        <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design View Account / Details</p>
+                        <a href="javascript:void(0)" class="caliweb-button secondary" onclick="openPaymentModal()">Pay Balance</a>
+                    </div>
                 </div>
             </section>
 
@@ -191,8 +194,29 @@
             </div>
         </div>
 
+        <div id="paybalanceModal" class="modal">
+            <div class="modal-content">
+                <form method="POST" action="/dashboard/customers/viewAccount/makePayment/?account_number=<?php echo $accountnumber; ?>">
+                    <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Pay account balance?</h6>
+                    <div style="font-size:14px; padding-top:30px; padding-bottom:30px;">
+                        <div class="form-control">
+                            <input class="form-input" id="balanceNumber" type="numeric" maxlenghth="10" name="balanceNumber" style="width:25%;" placeholder="65.00" />
+                        </div>
+                    </div>
+                    <p style="font-size:14px; padding-bottom:10px;">Please specify how much you would like to pay. Payments will post immediatly, you may need to refresh the page if the balance does not update.</p>
+                    <p style="font-size:14px; padding-bottom:10px;">NOTE: You can make a payment larger than the balance if you want to prepay for services.</p>
+                    <p style="font-size:14px; padding-bottom:30px;">Please do not include the currency, simply type the numeric value.</p>
+                    <div style="display:flex; align-items:right; justify-content:right;">
+                        <button class="caliweb-button primary" type="submit" name="submit">Submit Payment</button>
+                        <button class="caliweb-button secondary" onclick="closePaymentModal()">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         <script>
             var modal = document.getElementById("accountModal");
+            var modalPayBalance = document.getElementById("paybalanceModal");
 
             function openModal() {
                 modal.style.display = "block";
@@ -201,6 +225,15 @@
             function closeModal() {
                 modal.style.display = "none";
             }
+
+            function openPaymentModal() {
+                modalPayBalance.style.display = "block";
+            }
+
+            function closePaymentModal() {
+                modalPayBalance.style.display = "none";
+            }
+
         </script>
 
 <?php
