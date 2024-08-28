@@ -40,6 +40,26 @@
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountNumber);
 
+    if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
+
+        if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+            include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+
+        } else {
+
+            header ("location: /error/genericSystemError");
+
+        }
+
+    } else {
+
+        echo 'There are no payment modules available to service this request.';
+
+    }
+
+    delete_customer($manageAccountDefinitionR->customerStripeID);
+
     if ($accountType === 'Customer') {
 
         // Delete the owner and all related information
@@ -59,6 +79,7 @@
         ];
 
     }
+
 
     foreach ($deleteQueries as $query) {
 

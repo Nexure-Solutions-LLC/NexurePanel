@@ -689,6 +689,73 @@
 
     }
 
+    class TaskView {
+
+        public $taskname;
+        public $taskdescription;
+        public $taskpriority;
+        public $taskstartdate;
+        public $taskduedate;
+        public $assigneduser;
+        public $status;
+
+        public function manageTask($con, $taskID)
+        {
+
+            // Prepare the SQL Statement to get all the user's info
+
+            $this->taskInfo = $this->fetchSingleRow($con, 'caliweb_tasks', "id = '".mysqli_real_escape_string($con, $taskID)."'");
+
+            if (!$this->taskInfo) {
+
+                header("location: /dashboard/administration/accounts");
+
+                exit;
+                
+            }
+
+            // Task Specific Data Storage and Variable Declaration
+
+            $this->taskname = $this->taskInfo['taskName'];
+
+            $this->taskdescription = $this->taskInfo['taskDescription'];
+
+            $this->taskpriority = $this->taskInfo['taskPriority'];
+
+            $this->taskstartdate = $this->taskInfo['taskStartDate'];
+
+            $this->taskduedate = $this->taskInfo['taskDueDate'];
+
+            $this->assigneduser = $this->taskInfo['assignedUser'];
+
+            $this->status = $this->taskInfo['status'];
+
+        }
+
+         private function fetchSingleRow($con, $table, $condition) {
+
+            $query = "SELECT * FROM $table WHERE $condition LIMIT 1";
+
+            $result = mysqli_query($con, $query);
+
+            if (!$result) {
+
+                \Sentry\captureException("Query failed: " . mysqli_error($con));
+
+                throw new Exception("Query failed: " . mysqli_error($con));
+
+            }
+
+            $row = mysqli_fetch_array($result);
+
+            mysqli_free_result($result);
+
+            return $row;
+
+        }
+
+    }
+
     namespace CaliWebDesign\Generic;
 
     use CaliWebDesign\Utility;
@@ -930,9 +997,6 @@
             // Email Verification Status
 
             $this->emailverifystatus = ucfirst($this->customerAccountInfo['emailVerfied']);
-
-
-
 
         }
 

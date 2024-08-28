@@ -21,6 +21,8 @@
     $panelinfo = mysqli_fetch_array($panelresult);
     mysqli_free_result($panelresult);
 
+    $variableDefinitionX = new stdClass();
+
     $variableDefinitionX->panelName = $panelinfo['panelName'];
     $variableDefinitionX->orgShortName = $panelinfo['organizationShortName'];
     $variableDefinitionX->orglogolight = $panelinfo['organizationLogoLight'];
@@ -41,7 +43,7 @@
     
     $emailID = guidv4();
 
-    $emailVerificationCode = $_SESSION['verification_code'];
+    $emailVerificationCode = isset($_SESSION['verification_code']) ? $_SESSION['verification_code'] : null;
 
     switch ($scriptType) {
         case "Reset Password":

@@ -70,7 +70,7 @@
                     <div class="email-body">
                         <p>Hi,</p>
                         <p>'.$variableDefinitionX->orgShortName.' here, We are reaching out with a bit of bad news. We can no longer support your business on our platform and have terminated your access. This is a final decision and no one at '.$variableDefinitionX->orgShortName.' can overturn it.</p>
-                        <p>— The '.$variableDefinitionX->orgShortName.' team</p>
+                        <p>— The '.$variableDefinitionX->orgShortName.' Team</p>
                     </div>
                     <div class="email-footer">
                         <p>This email relates to your '.$variableDefinitionX->orgShortName.' account.<br>
