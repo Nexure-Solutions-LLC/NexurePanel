@@ -5,6 +5,7 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/contactTables/index.php');
     
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -34,7 +35,22 @@
                     <div class="card-body">
                         <div class="dashboard-table">
                             
-                            NULL
+                            <?php
+
+                                contactsHomeListingTable(
+                                    $con,
+                                    "SELECT * FROM caliweb_ownershipinformation",
+                                    ['Legal Name', 'Email', 'Date of Birth', 'Address Line 1', 'Address Line 2', 'City', 'State', 'Postal Code', 'Country', 'Actions'],
+                                    ['legalName', 'emailAddress', 'dateOfBirth', 'addressline1', 'addressline2', 'city', 'state', 'postalcode', 'country'],
+                                    ['14%', '15%', '10%', '15%', '10%', '8%', '5%', '8%', '10%'],
+                                    [
+                                        'View' => "/dashboard/administration/contacts/manageContact/?id={id}",
+                                        'Edit' => "/dashboard/administration/contacts/editContact/?id={id}",
+                                        'Delete' => "openModal({id})"
+                                    ]
+                                );
+
+                            ?>
 
                         </div>
                     </div>
