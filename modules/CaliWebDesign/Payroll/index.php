@@ -22,9 +22,6 @@
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
-    $sql = "SELECT * FROM caliweb_cases";
-    $result = mysqli_query($con, $sql);
-
     switch ($currentAccount->accessLevel->name) {
         case "Executive":
             header("location:/modules/CaliWebDesign/Payroll/ceoSuite");
