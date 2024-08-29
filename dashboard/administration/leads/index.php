@@ -19,7 +19,7 @@
                         <div class="display-flex align-center" style="justify-content: space-between;">
                             <div class="display-flex align-center">
                                 <div class="no-padding margin-10px-right icon-size-formatted">
-                                    <img src="/assets/img/systemIcons/leadsicon.png" alt="Leads Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    <img src="/assets/img/systemIcons/leadsicon.png" alt="Leads Page Icon" style="background-color:#fff9dd;" class="client-business-andor-profile-logo" />
                                 </div>
                                 <div>
                                     <p class="no-padding font-14px">Leads</p>

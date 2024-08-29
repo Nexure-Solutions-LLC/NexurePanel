@@ -39,7 +39,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Sales Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>Sales Person Activity</strong></p>
                                 </div>
@@ -68,7 +68,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Sales Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>Sales Person Activity</strong></p>
                                 </div>
@@ -97,7 +97,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/salesicon.png" alt="Sales Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>Your Sales Activity</strong></p>
                                 </div>
@@ -126,7 +126,7 @@
                         <div class="card-header">
                             <div class="display-flex align-center">
                                 <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                    <img src="/assets/img/systemIcons/opportunityicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    <img src="/assets/img/systemIcons/opportunityicon.png" alt="Opportunities Icon" style="background-color:#e3f8fa;" class="client-business-andor-profile-logo" />
                                 </div>
                                 <p class="no-padding"><strong>All Opportunities</strong></p>
                             </div>
@@ -148,7 +148,7 @@
                         <div class="card-header">
                             <div class="display-flex align-center">
                                 <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                    <img src="/assets/img/systemIcons/leadsbysourceicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    <img src="/assets/img/systemIcons/leadsbysourceicon.png" alt="Leads by Source Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                 </div>
                                 <p class="no-padding"><strong>Leads by Source</strong></p>
                             </div>
@@ -174,7 +174,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Icon" style="background-color:#e3f8fa;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>Today's Tasks</strong></p>
                                 </div>
@@ -201,7 +201,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Icon" style="background-color:#e3f8fa;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>Today's Tasks</strong></p>
                                 </div>
@@ -228,7 +228,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/tasksicon.png" alt="Tasks Icon" style="background-color:#e3f8fa;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>Today's Tasks</strong></p>
                                 </div>
@@ -259,7 +259,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/cases.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Cases Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>All Cases</strong></p>
                                 </div>
@@ -288,7 +288,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/cases.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Cases Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>All Cases</strong></p>
                                 </div>
@@ -317,7 +317,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/cases.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Cases Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>My Cases</strong></p>
                                 </div>
@@ -349,7 +349,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Leads Icon" style="background-color:#fff9dd;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>All Leads</strong></p>
                                 </div>
@@ -378,7 +378,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Leads Icon" style="background-color:#fff9dd;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>All Leads</strong></p>
                                 </div>
@@ -407,7 +407,7 @@
                             <div class="card-header">
                                 <div class="display-flex align-center">
                                     <div class="no-padding icon-size-formatted" style="height:35px; width:35px; margin-right:10px;">
-                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Tasks Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/leadsicon.png" alt="Leads Icon" style="background-color:#fff9dd;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <p class="no-padding"><strong>My Leads</strong></p>
                                 </div>

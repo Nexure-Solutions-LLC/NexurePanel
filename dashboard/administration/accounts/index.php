@@ -40,9 +40,9 @@
                                 accountsHomeListingTable(
                                     $con,
                                     "SELECT * FROM caliweb_users WHERE userrole <> 'administrator' AND userrole <> 'authorized user'",
-                                    ['Company/Account Number', 'Owner', 'Phone', 'Type', 'Status', 'Actions'],
-                                    ['accountNumber', 'legalName', 'mobileNumber', 'userrole', 'accountStatus'],
-                                    ['30%', '20%', '20%', '20%', '10%'],
+                                    ['Company/Account Number', 'Owner', 'Phone', 'Type', 'DB Prefix', 'Status', 'Actions'],
+                                    ['accountNumber', 'legalName', 'mobileNumber', 'userrole', 'accountDBPrefix', 'accountStatus'],
+                                    ['30%', '20%', '15%', '15%', '10%', '20%'],
                                     [
                                         'View' => "/dashboard/administration/accounts/manageAccount/?account_number={accountNumber}",
                                         'Edit' => "/dashboard/administration/accounts/editAccount/?account_number={accountNumber}",

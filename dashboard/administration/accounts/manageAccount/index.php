@@ -51,6 +51,21 @@
                     <div>
                         <div class="caliweb-card dashboard-card">
                             <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Menus/index.php'); ?>
+                            <?php
+
+                                $duplicateCheck = $manageAccountDefinitionR->checkForDuplicateAccount(
+                                    $accountnumber, 
+                                    $manageAccountDefinitionR->legalname, 
+                                    $manageAccountDefinitionR->customeremail, 
+                                    $manageAccountDefinitionR->businessname, 
+                                    $manageAccountDefinitionR->websitedomain, 
+                                    $manageAccountDefinitionR->businessindustry, 
+                                    $con
+                                );
+
+                                echo $duplicateCheck['status'];
+
+                            ?>
                             <div class="caliweb-card dashboard-card">
                                 <div class="card-header">
                                     <div class="display-flex align-center" style="justify-content:space-between;">
@@ -176,7 +191,7 @@
 
                                         <p style="font-size:12px; color:grey;">Balance</p>
 
-                                        <p style="font-size:16px; font-weight:600;">
+                                        <p style="font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;">
 
                                             <?php echo '$'.getCreditBalance($manageAccountDefinitionR->customerStripeID); ?>
                                         
@@ -187,7 +202,7 @@
 
                                         <p style="font-size:12px; color:grey;">Due Date</p>
 
-                                        <p style="font-size:16px; font-weight:600;">Aug 27 2024</p>
+                                        <p style="font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;">Aug 27 2024</p>
 
                                     </div>
                                     <div></div>
@@ -207,7 +222,7 @@
 
                                         ?>
                                         <p style="font-size:12px; color:grey;">Total Spend</p>
-                                        <p style="font-size:16px; font-weight:600;">$<?php echo number_format($totalPayments, 2); ?></p>
+                                        <p style="font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;">$<?php echo number_format($totalPayments, 2); ?></p>
                                     </div>
                                     <div>
                                         <p style="font-size:12px; color:grey;">Customer Since</p>
@@ -218,7 +233,7 @@
 
                                         ?>
 
-                                        <p style="font-size:16px; font-weight:600;"><?php echo $registrationYear; ?></p>
+                                        <p style="font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;"><?php echo $registrationYear; ?></p>
                                     </div>
                                     <div>
                                         <p style="font-size:12px; color:grey;">Tax Status</p>
@@ -229,7 +244,7 @@
 
                                         ?>
 
-                                        <p style="font-size:16px; font-weight:600;"><?php echo $taxStatus; ?></p>
+                                        <p style="font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;"><?php echo $taxStatus; ?></p>
                                     </div>
                                 </div>
                             </div>
