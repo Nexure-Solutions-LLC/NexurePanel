@@ -1120,6 +1120,31 @@ textarea.swal2-input {
     font-size: 14px !important;
 }
 
+/* =================== Cali Web Design Message Center Styles =================== */
+
+.messageCenterTopTools {
+    margin-bottom:30px;
+}
+
+.messageDMs {
+    background-color: #f2f3f5;
+    border:1px solid #eee;
+    padding:10px;
+    border-radius: 6px;
+}
+
+.messageSentUser {
+    font-size: 12px;
+    color:#646464;
+    font-weight:normal;
+    padding-bottom:15px;
+}
+
+.messagePreviewContent {
+    font-size:12px;
+    font-weight: normal;
+}
+
 /* =================== Search System =================== */
 
 .indivdual-search-results {
