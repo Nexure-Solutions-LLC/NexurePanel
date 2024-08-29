@@ -59,7 +59,7 @@
                                     <div class="card-header">
                                         <div class="display-flex align-center">
                                             <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
-                                                <img src="/assets/img/systemIcons/event.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
+                                                <img src="/assets/img/systemIcons/event.png" alt="Events Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
                                             </div>
                                             <div>
                                                 <p class="no-padding font-12px"><strong>Event Name</strong></p>

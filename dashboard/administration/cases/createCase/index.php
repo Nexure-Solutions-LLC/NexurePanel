@@ -83,7 +83,7 @@
                             <div class="display-flex align-center" style="justify-content: space-between;">
                                 <div class="display-flex align-center">
                                     <div class="no-padding margin-10px-right icon-size-formatted">
-                                        <img src="/assets/img/systemIcons/cases.png" alt="Cases Page Icon" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                        <img src="/assets/img/systemIcons/cases.png" alt="Cases Page Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                                     </div>
                                     <div>
                                         <p class="no-padding font-14px">Cases</p>

@@ -36,6 +36,8 @@
             <div class="display-flex align-center width-100 padding-20px-no-top macBook-padding-top">
                 <?php
 
+                    $truncatedIndustry = truncateString($manageAccountDefinitionR->businessindustry, 30);
+
                     $details = [
                         'Type' => ($manageAccountDefinitionR->userrole === 'customer' || $manageAccountDefinitionR->userrole === 'Customer') ? 'Customer - Direct' : (($manageAccountDefinitionR->userrole === 'partner' || $manageAccountDefinitionR->userrole === 'Partner') ? 'Partner - Affiliate' : 'Unknown'),
                         'Phone' => '+'.$manageAccountDefinitionR->mobilenumber,
@@ -54,7 +56,7 @@
                 ?>
                 <div class="width-100">
                     <p class="no-padding font-14px">Industry</p>
-                    <p class="no-padding font-14px"><?php echo $manageAccountDefinitionR->businessindustry; ?></p>
+                    <p class="no-padding font-14px"><?php echo $truncatedIndustry; ?></p>
                 </div>
             </div>
         </div>

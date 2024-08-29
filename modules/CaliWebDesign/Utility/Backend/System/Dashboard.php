@@ -436,5 +436,17 @@
         $pagetitle = isset($roleTitles[strtolower($currentAccount->role->name)]) ? $roleTitles[strtolower($currentAccount->role->name)] : 'Account Management';
 
     }
+
+    function truncateString($string, $length = 30) {
+
+        if (strlen($string) > $length) {
+
+            return substr($string, 0, $length) . '...';
+
+        }
+
+        return $string;
+        
+    }
     
 ?>

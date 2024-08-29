@@ -231,48 +231,61 @@
     function accountsHomeListingRow($con, $row, $columns, $columnWidths, $actionUrls = []) {
 
         try {
+             
             $rowHtml = '<tr>';
+
+            $email = $row['email'];
+
+            $businessQuery = "
+                SELECT 
+                    (SELECT businessName FROM caliweb_businesses WHERE email = '{$email}') AS businessName, 
+                    (SELECT employeeAccessLevel FROM caliweb_users WHERE email = '{$email}') AS employeeAccessLevel
+            ";
+
+            $businessInfo = mysqli_fetch_assoc(mysqli_query($con, $businessQuery));
+
+            $businessname = $businessInfo['businessName'] ?? $row['legalName'];
+
+            $usertype = $businessInfo['employeeAccessLevel'];
+
+            $formattingMap = [
+                'accountNumber' => function($value) use ($businessname) {
+                    return "{$businessname} (•••• " . substr($value, -4) . ")";
+                },
+                'userrole' => function($value) use ($usertype) {
+                    return "{$value} - {$usertype}";
+                },
+                'accountDBPrefix' => function($value) {
+                    return strtoupper($value);
+                },
+                'accountStatus' => function($value) {
+                    return accountsHomeListingStatus($value);
+                }
+            ];
 
             foreach ($columns as $index => $column) {
 
-                $accountNumber = substr($row[$column], -4);
+                $width = $columnWidths[$index] ?? 'auto';
 
-                $width = isset($columnWidths[$index]) ? $columnWidths[$index] : 'auto';
+                if (isset($formattingMap[$column])) {
 
-                $businessAccountQuery = mysqli_query($con, "SELECT businessName FROM caliweb_businesses WHERE email = '" . $row['email'] . "'");
 
-                $businessAccountInfo = mysqli_fetch_array($businessAccountQuery);
+                    $formattedValue = $formattingMap[$column]($row[$column]);
 
-                mysqli_free_result($businessAccountQuery);
-
-                $businessname = $businessAccountInfo['businessName'] ?? $row['legalName'];
-
-                if ($column == 'accountNumber') {
-
-                    // Truncate and format account number
-
-                    $formattedAccountNumber = '•••• ' . substr($row[$column], -4);
-
-                    $rowHtml .= "<td style='width:{$width};'>{$businessname} ({$formattedAccountNumber})</td>";
-
-                } else if ($column == 'accountStatus') {
-
-                    // Render special status
-
-                    $rowHtml .= "<td style='width:{$width};'>" . accountsHomeListingStatus($row[$column]) . "</td>";
+                    $rowHtml .= "<td style='width:{$width};'>{$formattedValue}</td>";
 
                 } else {
 
                     $rowHtml .= "<td style='width:{$width};'>{$row[$column]}</td>";
 
                 }
-
+                
             }
 
             if ($actionUrls) {
 
-                $rowHtml .= accountsHomeListingURLs($accountNumber, $row, $actionUrls);
-
+                $rowHtml .= accountsHomeListingURLs(substr($row['accountNumber'], -4), $row, $actionUrls);
+                
             }
 
             $rowHtml .= '</tr>';

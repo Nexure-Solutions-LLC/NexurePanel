@@ -1000,6 +1000,97 @@
 
         }
 
+        public function checkForDuplicateAccount($accountNumber, $ownerName, $email, $businessName, $websiteDomain, $industry, $con) {
+
+            $query = "
+                SELECT 
+                    u.accountNumber AS userAccountNumber,
+                    o.legalName AS ownershipLegalName,
+                    o.emailAddress AS ownershipEmail,
+                    b.businessName AS businessName,
+                    w.domainName AS websiteDomain,
+                    b.businessIndustry AS businessIndustry
+                FROM caliweb_users u
+                LEFT JOIN caliweb_ownershipinformation o ON u.email = o.emailAddress
+                LEFT JOIN caliweb_businesses b ON u.email = b.email
+                LEFT JOIN caliweb_websites w ON u.email = w.email
+                WHERE u.accountNumber = ? 
+                OR (o.legalName = ? AND u.email = ? AND b.businessName = ?)
+                OR (w.domainName = ? AND b.businessIndustry = ? AND b.businessName = ?)
+            ";
+            
+            $stmt = $con->prepare($query);
+
+            if ($stmt === false) {
+
+                die('Prepare failed: ' . htmlspecialchars($con->error));
+
+            }
+
+            $stmt->bind_param("sssssss", $accountNumber, $ownerName, $email, $businessName, $websiteDomain, $industry, $businessName);
+            
+            if (!$stmt->execute()) {
+
+                die('Execute failed: ' . htmlspecialchars($stmt->error));
+
+            }
+            
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows >= 2) {
+
+                $duplicates = [];
+
+                while ($row = $result->fetch_assoc()) {
+
+                    $duplicates[] = $row;
+
+                }
+
+                $HTMLCONTENT = "
+                
+                    <div class='caliweb-card dashboard-card' style='margin-bottom:10px;'>
+                        <div class='display-flex align-center'>
+                            <div class='no-padding margin-10px-right icon-size-formatted'>
+                                <img src='/assets/img/systemIcons/duplicateaccounticon.png' alt='Client Logo and/or Business Logo' style='background-color:#fff9dd;' class='client-business-andor-profile-logo' />
+                            </div>
+                            <p class='no-padding' style='font-weight:800;'>We found a potential duplicate of this account.</p>
+                        </div>
+                    </div>
+
+                ";
+
+                return [
+
+                    "status" => $HTMLCONTENT,
+
+                ];
+
+            } else {
+
+                $HTMLCONTENT = "
+                
+                    <div class='caliweb-card dashboard-card' style='margin-bottom:10px;'>
+                        <div class='display-flex align-center'>
+                            <div class='no-padding margin-10px-right icon-size-formatted'>
+                                <img src='/assets/img/systemIcons/duplicateaccounticon.png' alt='Client Logo and/or Business Logo' style='background-color:#fff9dd;' class='client-business-andor-profile-logo' />
+                            </div>
+                            <p class='no-padding' style='font-weight:800; font-family: Mona Sans, sans-serif;'>We found no potential duplicates of this account.</p>
+                        </div>
+                    </div>
+
+                ";
+
+                return [
+
+                    "status" => $HTMLCONTENT,
+
+                ];
+
+            }
+
+        }
+
         private function getWebsiteDomain($con, $customeremail, $businessAccountInfo)
         {
 
