@@ -516,6 +516,15 @@ html[data-theme='dark'] body {
     backdrop-filter: blur(5px);
 }
 
+.dark-mode .dropdown {
+    background-color: #000;
+    border: 1px solid #111;
+}
+
+.dark-mode .dropdown .nav-links:hover {
+    border: 1px solid #333 !important;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
