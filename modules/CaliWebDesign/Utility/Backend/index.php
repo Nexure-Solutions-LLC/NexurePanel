@@ -1180,6 +1180,34 @@
 
         }
 
+        public function calculateDueDate($accountNumber) {
+
+            global $con;
+            
+            $query = "SELECT serviceStartDate, serviceType FROM caliweb_services WHERE accountNumber = ?";
+
+            $stmt = $con->prepare($query);
+
+            $stmt->bind_param("s", $accountNumber);
+
+            $stmt->execute();
+
+            $stmt->bind_result($serviceStartDate, $serviceType);
+
+            $stmt->fetch();
+
+            $stmt->close();
+            
+            if (!$serviceStartDate || !$serviceType) {
+
+                return "——";
+
+            }
+
+            return "——";
+
+        }
+
     }
 
     class GenericInheritable

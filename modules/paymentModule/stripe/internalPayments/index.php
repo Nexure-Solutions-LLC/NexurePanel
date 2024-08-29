@@ -58,6 +58,7 @@
             try {
 
                 \Stripe\Customer::createSource($stripeID, ['source' => $token]);
+                
                 redirect("/onboarding/completeOnboarding");
 
             } catch (\Stripe\Exception\ApiErrorException $e) {
@@ -187,9 +188,23 @@
 
                 $module = getModulePath($purchasableItem);
 
+                function generateUniqueCode() {
+
+                    $year = date('Y');
+                    
+                    $randomDigits = mt_rand(10000, 99999);
+                    
+                    $uniqueCode = "CWD-$year-$randomDigits";
+                    
+                    return $uniqueCode;
+
+                }
+
+                $serviceID = generateUniqueCode();
+
                 if ($module) {
 
-                    $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`) VALUES ('$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','$module')";
+                    $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceIdentifier`, `serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`, `serviceCatagory`) VALUES ('$serviceID', '$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','$module','$purchasableCatagory')";
                     
                     if (mysqli_query($con, $orderInsertRequest)) {
 
@@ -220,6 +235,34 @@
 
             }
 
+        } else if ($pagetitle == "Administration Add Card to File") {
+
+            $stripeID = $_SESSION['stripe_id'];
+            
+            $accountnumber = $_SESSION['ACCOUNTNUMBERCUST'];
+
+            $token = json_decode(file_get_contents('php://input'), true)['token'] ?? '';
+
+            try {
+
+                \Stripe\Customer::createSource($stripeID, ['source' => $token]);
+                
+                redirect("/dashboard/administration/accounts/manageAccount/paymentMethods/?account_number=$accountnumber");
+
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                redirect("/error/genericSystemError");
+
+            } catch (Exception $e) {
+
+                redirect("/error/genericSystemError");
+
+            } catch (\Throwable $exception) {
+
+                \Sentry\captureException($exception);
+
+            }
+            
         } else {
 
             function add_customer($legalname, $emailaddress, $phonenumber, $builtaccountnumber) {

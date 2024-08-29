@@ -36,8 +36,6 @@
 
     }
 
-    $accountnumberEsc = mysqli_real_escape_string($con, $accountnumber);
-
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
@@ -202,7 +200,13 @@
 
                                         <p style="font-size:12px; color:grey;">Due Date</p>
 
-                                        <p style="font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;">Aug 27 2024</p>
+                                        <?php
+
+                                            $dueDate =  $manageAccountDefinitionR->calculateDueDate($accountnumber);
+
+                                            echo "<p style='font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;'>$dueDate</p>";
+
+                                        ?>
 
                                     </div>
                                     <div></div>
