@@ -5,3 +5,26 @@ Feel free to customize the panel all you want.
 Do not remove the copyright text.
 
 */
+
+body,
+html,
+.login-container {
+    background-image: none !important;
+    background: linear-gradient(to right, #FFFFFF, #ffbcbc) !important;
+}
+
+::selection {
+    color: #ffbcbc !important;
+}
+
+.loading-bar-inner {
+    background-color: #ffbcbc !important;
+}
+
+.careers-link {
+    color: rgb(102, 12, 7);
+}
+
+.careers-link:hover {
+    color: #d56c6c;
+}
