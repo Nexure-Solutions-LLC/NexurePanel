@@ -60,6 +60,66 @@
                                 ?>
                             </div>
                         </div>
+                        <div>
+                            <h3 style="font-size:18px; margin-top:4%; margin-bottom:4%;">System Options</h3>
+                            <form method="POST">
+                                <div class="caliweb-grid caliweb-three-grid" style="grid-row-gap:0; margin:0; padding:0;">
+                                    <div>
+                                        <div class="form-control" style="margin-top:-2%;">
+                                            <label for="panelTheme">Panel Theme</label>
+                                            <br>
+                                            <select class="form-input" style="width:100%;" name="panelTheme" id="panelTheme">
+                                                <option>Cali Default</option>
+                                                <option>Cali Classic</option>
+                                                <option>Cali Purple</option>
+                                                <option>Cali Green</option>
+                                                <option>Cali Orange</option>
+                                                <option>Cali Red</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-control" style="margin-top:6%;">
+                                            <label for="panelMaintenanceMode">Maintenance Mode</label>
+                                            <br>
+                                            <select class="form-input" style="width:100%;" name="panelMaintenanceMode" id="panelMaintenanceMode">
+                                                <option>False (Default)</option>
+                                                <option>True</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-control">
+                                            <div class="form-control" style="margin-top:-2%;">
+                                                <label for="paymentDescriptor">Payment Descriptor</label>
+                                                <br>
+                                                <input type="text" class="form-input" style="width:100%;" name="paymentDescriptor" id="paymentDescriptor" placeholder="LITTLEINTERNETWIDGETS" />
+                                            </div>
+                                            <div class="form-control" style="margin-top:6%;">
+                                                <label for="registrationMode">Registration Enabled</label>
+                                                <br>
+                                                <select class="form-input" style="width:100%;" name="registrationMode" id="registrationMode">
+                                                    <option>True (Default)</option>
+                                                    <option>False</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div>
+                                        <div class="form-control">
+                                            <div class="form-control" style="margin-top:-2%;">
+                                                <label for="logoWide">Upload Wide Logo (For Dashboard Pages)</label>
+                                                <br>
+                                                <input type="file" class="form-input" style="width:100%;" name="logoWide" id="logoWide" />
+                                            </div>
+                                            <div class="form-control" style="margin-top:6%;">
+                                                <label for="logoSquare">Upload Square Logo (For Login Pages)</label>
+                                                <br>
+                                                <input type="file" class="form-input" style="width:100%;" name="logoSquare" id="logoSquare" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
