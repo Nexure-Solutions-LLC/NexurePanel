@@ -81,6 +81,7 @@
 
                 $purchasableItem = stripslashes($_REQUEST['purchasable']);
                 $purchasableType = stripslashes($_REQUEST['type']);
+                $purchasableCatagory = stripslashes($_REQUEST['catagory']);
                 $serviceStatus = stripslashes($_REQUEST['service_status']);
                 $paymentMethodFormFeild = stripslashes($_REQUEST['payment_method']);
                 $amountPrice = stripslashes($_REQUEST['amount']);
@@ -160,8 +161,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
-                                                            <label for="type">Item Type</label>
-                                                            <select type="text" name="type" id="type" class="form-input">
+                                                            <label for="type">Item Catagory</label>
+                                                            <select type="text" name="catagory" id="catagory" class="form-input">
                                                                 <option>Please choose an option</option>
                                                                 <?php
 
@@ -173,6 +174,17 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
+                                                            <label for="type">Item Type</label>
+                                                            <select type="text" name="type" id="type" class="form-input">
+                                                                <option>Please choose an option</option>
+                                                                <option>One-Time</option>
+                                                                <option>Monthly</option>
+                                                                <option>Yearly</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-left-side" style="display:block; width:80%;">
+                                                        <div class="form-control">
                                                             <label for="service_status">Item Status</label>
                                                             <select type="text" name="service_status" id="service_status" class="form-input">
                                                                 <option>Please choose an option</option>
@@ -182,9 +194,7 @@
                                                                 <option>Inactive</option>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-left-side" style="display:block; width:80%;">
-                                                        <div class="form-control">
+                                                        <div class="form-control" style="margin-top:20px;">
                                                             <label for="payment_method">Payment Method</label>
                                                             <select name="payment_method" id="payment_method" class="form-input">
                                                                 <option>Please choose an option</option>
