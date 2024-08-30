@@ -147,15 +147,58 @@
                                 <div class="actionButtons">
                                     <div class="display-flex align-center">
                                         <div>
-                                            <button class="caliweb-button secondary red" onclick="" name="" type="">Stop</button>
-                                            <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Start</button>
+                                            <button class="caliweb-button secondary" onclick="" name="" type="">Start</button>
+                                            <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Stop</button>
                                             <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Restart</button>
+                                            <button class="caliweb-button secondary red" style="margin-left:10px;" onclick="" name="" type="">Destroy</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="botOutputfromDocker">
-                                <p>This bot is not started.</p>
+                            <div class="caliweb-grid caliweb-two-grid" style="grid-template-columns: 1.5fr .5fr; grid-row-gap: 0px; grid-column-gap:40px;">
+                                <div class="botOutputfromDocker">
+                                    <p>This bot is not started.</p>
+                                </div>
+                                <div class="website-info-content" style="margin-top:10%;">
+                                    <div class="website-bottom-part">
+                                        <div class="caliweb-grid caliweb-one-grid" style="grid-column-gap:20px; grid-row-gap:20px;">
+                                            <a href="/modules/CaliWebDesign/Discord/botManagement/terminal/" style="text-decoration:none;" class="dark-mode-white">
+                                                <div class="caliweb-web-manage-btn">
+                                                    <p style="font-weight:700; display:flex; align-items:center;">
+                                                        <img src="/assets/img/systemIcons/terminal.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                        <span style="font-family: 'Mona Sans', sans-serif;">Terminal</span>
+                                                    </p>
+                                                    <p style="font-size:12px; margin-top:10px;">Run commands using the command line for your bot.</p>
+                                                </div>
+                                            </a>
+                                            <a href="/modules/CaliWebDesign/Discord/botManagement/fileManager" style="text-decoration:none;" class="dark-mode-white">
+                                                <div class="caliweb-web-manage-btn">
+                                                    <p style="font-weight:700; display:flex; align-items:center;">
+                                                        <img src="/assets/img/systemIcons/folder.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                        <span style="font-family: 'Mona Sans', sans-serif;">File Manager</span>
+                                                    </p>
+                                                    <p style="font-size:12px; margin-top:10px;">Edit your bots files, change permissions or delete files.</p>
+                                                </div>
+                                            </a>
+                                            <a href="/modules/CaliWebDesign/Discord/botManagement/gitHub" style="text-decoration:none;" class="dark-mode-white">
+                                                <div class="caliweb-web-manage-btn">
+                                                    <p style="font-weight:700; display:flex; align-items:center;">
+                                                        <img src="/assets/img/systemIcons/github.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                        <span style="font-family: 'Mona Sans', sans-serif;">Manage GitHub</span>
+                                                    </p>
+                                                    <p style="font-size:12px; margin-top:10px;">Push from and Pull or Deploy to GitHub effortlessly.</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="caliweb-card dashboard-card" style="padding:30px;">
+                            <div class="card-header no-padding no-margin customer-card-header" style="padding-top:20px; padding-bottom:20px; border:0;">
+                                <h6 class="no-padding" style="font-size:16px; font-weight:600;">
+                                    <?php echo 'Configuration'; ?>
+                                </h6>
                             </div>
                         </div>
                     </div>

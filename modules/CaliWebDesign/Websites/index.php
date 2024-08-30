@@ -268,7 +268,7 @@
                                                                 <img src="/assets/img/systemIcons/github.png" style="height:20px; margin-right:10px; width:20px;" /> 
                                                                 <span style="font-family: 'Mona Sans', sans-serif;">Manage GitHub</span>
                                                             </p>
-                                                            <p style="font-size:12px; margin-top:10px;">Push, Pull and Deploy to GitHub effortlessly.</p>
+                                                            <p style="font-size:12px; margin-top:10px;">Push from and Pull or Deploy to GitHub effortlessly.</p>
                                                         </div>
                                                     </a>
                                                 </div>
