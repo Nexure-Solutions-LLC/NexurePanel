@@ -17,15 +17,15 @@
 
     if ($accountStatus == "Active") {
 
-        header ("Location: /dashboard/customers/");
+        echo '<script type="text/javascript">window.location = "Location: /dashboard/customers/"</script>';
 
     } else if ($accountStatus == "Suspended") {
 
-        header ("Location: /error/suspendedAccount");
+        echo '<script type="text/javascript">window.location = "Location: /error/suspendedAccount/"</script>';
 
     } else if ($accountStatus == "Terminated") {
 
-        header ("Location: /error/terminatedAccount");
+        echo '<script type="text/javascript">window.location = "Location: /error/terminatedAccount/"</script>';
         
     }
 

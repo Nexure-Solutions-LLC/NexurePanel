@@ -123,6 +123,30 @@
         </div>
     </section>
 
+    <div id="paymentMethodModal" class="modal">
+        <div class="modal-content">
+            <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Delete customer's payment information?</h6>
+            <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">What you are about to do is permenant and can't be undone. Are you sure you would like to delete this customer payment method. You will no longer be able to charge this customer.</p>
+            <div style="display:flex; align-items:right; justify-content:right;">
+                <a id="deleteLink" href="#" class="caliweb-button secondary red" style="margin-right:20px;">Delete Payment Method</a>
+                <button class="caliweb-button primary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modal = document.getElementById("paymentMethodModal");
+
+        function openModal(accountnumber, paymentCardID) {
+            deleteLink.href = "/dashboard/administration/accounts/deletePaymentMethod/?account_number=" + encodeURIComponent(accountnumber) + "&payment_card_id=" + encodeURIComponent(paymentCardID);
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
+
 <?php
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
