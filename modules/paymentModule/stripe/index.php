@@ -1,6 +1,8 @@
 <?php
     $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE processorName = 'Stripe'");
+
     $processorInfo = mysqli_fetch_array($processorResult);
+
     mysqli_free_result($processorResult);
 
     $paymentProcessorStatus = $processorInfo['status'];
@@ -11,12 +13,15 @@
         // This part also checks to see if the key exists in our database.
 
         $sql = "SELECT publicKey, secretKey FROM caliweb_paymentconfig LIMIT 1";
+
         $result = mysqli_query($con, $sql);
 
         if (mysqli_num_rows($result) > 0) {
 
             $row = mysqli_fetch_assoc($result);
+
             $stripePublicKey = $row['publicKey'];
+
             $stripeSecretKey = $row['secretKey'];
 
         } else {
@@ -34,6 +39,7 @@
 
 
             $account = new \CaliWebDesign\Accounts\AccountHandler($con);
+
             $account->fetchByAccountNumber($accountnumber);
 
             $stripeCustomerId = $account->stripe_id;
@@ -62,7 +68,10 @@
                     foreach ($paymentMethods->data as $paymentMethod) {
 
                         $card = $paymentMethod->card;
+
                         $billingName = $paymentMethod->billing_details->name;
+
+                        $cardid = $paymentMethod->id;
 
                         echo '<tr>';
 
@@ -174,7 +183,7 @@
                         echo '<td style="width:25%;"><span class="account-status-badge green" style="margin-left:0;">Active</span></td>';
 
                         echo '<td>
-                                <a href="javascript:void(0)" onclick="openModal({accountnumber, paymentCardID})" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:0px;">Delete</a>
+                                <a href="javascript:void(0)" onclick="openModal(\'' . $accountnumber . '\', \'' . $cardid . '\')" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:0px;">Delete</a>
                             </td>
                         ';
 
@@ -215,6 +224,7 @@
                     foreach ($paymentMethods->data as $paymentMethod) {
 
                        $card = $paymentMethod->card;
+
                        $billingName = $paymentMethod->billing_details->name;
 
                        echo '<tr>';

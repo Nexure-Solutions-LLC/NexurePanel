@@ -268,6 +268,14 @@
             
         } else {
 
+            function delete_paymentmethod($payment_id) {
+
+                $paymentMethod = \Stripe\PaymentMethod::retrieve($payment_id);
+                
+                $paymentMethod->detach();
+
+            }
+
             function add_customer($legalname, $emailaddress, $phonenumber, $builtaccountnumber) {
 
                 $cu = \Stripe\Customer::create([
