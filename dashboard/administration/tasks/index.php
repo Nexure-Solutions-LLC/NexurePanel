@@ -77,7 +77,7 @@
     <div id="tasksModal" class="modal">
         <div class="modal-content">
             <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Delete this task?</h6>
-            <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">What you are about to do is permenant and can't be undone. Are you sure you would like to delete this task. You will need to remake the task if you would like to restore it.</p>
+            <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">What you are about to do is permanent and can't be undone. Are you sure you would like to delete this task. You will need to remake the task if you would like to restore it.</p>
             <div style="display:flex; align-items:right; justify-content:right;">
                 <a id="deleteLink" href="#" class="caliweb-button secondary red" style="margin-right:20px;">Delete Task</a>
                 <button class="caliweb-button primary" onclick="closeModal()">Close</button>
