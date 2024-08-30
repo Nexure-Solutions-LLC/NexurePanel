@@ -7,6 +7,10 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        $data = json_decode(file_get_contents('php://input'), true);
+        
+        $_SESSION['stripe_token'] = $data['token'];
+
         // Checks type of payment processor.
 
         $pagetitle = "Administration Add Card to File";

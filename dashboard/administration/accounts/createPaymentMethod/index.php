@@ -46,7 +46,7 @@
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
                 <div class="caliweb-card dashboard-card">
-                    <form method="POST" id="caliweb-form-plugin" action="/dashboard/administration/accounts/createPaymentMethod/addCardLogic">
+                    <form method="POST" id="caliweb-form-plugin" action="/dashboard/administration/accounts/createPaymentMethod/addCardLogic/index.php">
                         <div class="card-header">
                             <div class="display-flex align-center" style="justify-content: space-between;">
                                 <div class="display-flex align-center">
@@ -143,7 +143,7 @@
 
                     var token = result.token.id;
 
-                    fetch('/dashboard/administration/accounts/createPaymentMethod/addCardLogic', {
+                    fetch('/dashboard/administration/accounts/createPaymentMethod/addCardLogic/index.php', {
 
                         method: 'POST',
                         headers: {
