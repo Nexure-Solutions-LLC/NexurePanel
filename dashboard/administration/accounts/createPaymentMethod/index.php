@@ -21,10 +21,12 @@
 
     }
 
-    $_SESSION['ACCOUNTNUMBERCUST'] = $accountnumber;
-
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
+
+    $_SESSION['ACCOUNTNUMBERCUST'] = $accountnumber;
+
+    $_SESSION['stripe_id'] = $manageAccountDefinitionR->customerStripeID;
 
     echo '<title>' . htmlspecialchars($pagetitle) . ' | ' . htmlspecialchars($pagesubtitle) . '</title>';
 
@@ -155,7 +157,7 @@
 
                         if (response.ok) {
 
-                            window.location.href = '/dashboard/administration/accounts/manageAccount/paymentMethods/?account_number=<?php echo $accountnumber; ?>)';
+                            window.location.href = '/dashboard/administration/accounts/manageAccount/paymentMethods/?account_number=<?php echo $accountnumber; ?>';
 
                         } else {
 
