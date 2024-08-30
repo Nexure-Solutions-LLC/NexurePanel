@@ -5,7 +5,12 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
+
+    unset($_SESSION['stripe_token']);
+    unset($_SESSION['ACCOUNTNUMBERCUST']);
+    unset($_SESSION['stripe_id']);
 
     $accountnumber = $_GET['account_number'] ?? '';
 
