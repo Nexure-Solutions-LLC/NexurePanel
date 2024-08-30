@@ -1,5 +1,5 @@
 <?php
-    $pagetitle = "Administration Add Card to File";
+    $pagetitle = "Customer Add Card to File";
     $pagesubtitle = "";
     $pagetype = "";
 

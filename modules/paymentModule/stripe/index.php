@@ -227,6 +227,8 @@
 
                        $billingName = $paymentMethod->billing_details->name;
 
+                       $cardid = $paymentMethod->id;
+
                        echo '<tr>';
 
                        echo '<td style="width:25%;">'. $billingName .'</td>';
@@ -338,7 +340,7 @@
                        echo '<td style="width:25%;"><span class="account-status-badge green" style="margin-left:0;">Active</span></td>';
 
                        echo '<td>
-                               <a href="" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:0px;">Delete</a>
+                               <a href="javascript:void(0)" onclick="openModal(\'' . $customeremail . '\', \'' . $cardid . '\')" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px; margin-right:0px;">Delete</a>
                            </td>
                        ';
 

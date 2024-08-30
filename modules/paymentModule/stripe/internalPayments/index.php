@@ -241,9 +241,6 @@
             
             $accountnumber = $_SESSION['ACCOUNTNUMBERCUST'];
 
-            var_dump($_SESSION['ACCOUNTNUMBERCUST']);
-            var_dump($_SESSION['stripe_id']);
-
             $token = $_SESSION['stripe_token'];
 
             try {
@@ -251,6 +248,32 @@
                 \Stripe\Customer::createSource($stripeID, ['source' => $token]);
                 
                 redirect("/dashboard/administration/accounts/manageAccount/paymentMethods/?account_number=$accountnumber");
+
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                redirect("/error/genericSystemError");
+
+            } catch (Exception $e) {
+
+                redirect("/error/genericSystemError");
+
+            } catch (\Throwable $exception) {
+
+                \Sentry\captureException($exception);
+
+            }
+            
+        } else if ($pagetitle == "Customer Add Card to File") {
+
+            $stripeID = $_SESSION['stripe_id'];
+
+            $token = $_SESSION['stripe_token'];
+
+            try {
+
+                \Stripe\Customer::createSource($stripeID, ['source' => $token]);
+                
+                redirect("/dashboard/customers/billingCenter/");
 
             } catch (\Stripe\Exception\ApiErrorException $e) {
 
