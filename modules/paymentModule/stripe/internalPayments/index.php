@@ -241,6 +241,9 @@
             
             $accountnumber = $_SESSION['ACCOUNTNUMBERCUST'];
 
+            var_dump($_SESSION['ACCOUNTNUMBERCUST']);
+            var_dump($_SESSION['stripe_id']);
+
             $token = json_decode(file_get_contents('php://input'), true)['token'] ?? '';
 
             try {
