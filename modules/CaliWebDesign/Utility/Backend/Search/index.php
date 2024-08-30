@@ -4,6 +4,7 @@
 
     class SearchSystem
     {
+        
         private $con;
 
         public function __construct($dbConnection)
@@ -80,17 +81,39 @@
         }
     }
 
-    require $_SERVER['DOCUMENT_ROOT'] . '/configuration/index.php';
+    require ($_SERVER['DOCUMENT_ROOT'] . '/configuration/index.php');
 
-    $searchSystem = new SearchSystem($con);
+    require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
 
-    $term = isset($_GET['term']) ? $_GET['term'] : '';
+    require ($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/index.php');
 
-    $results = $searchSystem->search($term);
+    $caliemail = $_SESSION['caliid'];
+
+    $currentAccount = new \CaliWebDesign\Accounts\AccountHandler($con);
+
+    $success = $currentAccount->fetchByEmail($caliemail);
+
+    $userrole = $currentAccount->role->name;
+
+    if ($userrole == "Administrator") {
+
+        $searchSystem = new SearchSystem($con);
+
+        $term = isset($_GET['term']) ? $_GET['term'] : '';
+
+        $results = $searchSystem->search($term);
 
 
-    header('Content-Type: application/json');
+        header('Content-Type: application/json');
 
-    echo json_encode($results);
+        echo json_encode($results);
+
+    } else {
+
+        header('Content-Type: application/json');
+
+        echo json_encode('This feature is unavailable for security reasons.');
+
+    }
 
 ?>
