@@ -8,7 +8,7 @@
     $pagesubtitle = "Create Payment Method";
     $pagetype = "Administration";
 
-    require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
     // Retrieve account number from query parameters and check the account number and if its present
 
@@ -21,40 +21,10 @@
 
     }
 
-    // Fetch customer account information
+    $_SESSION['ACCOUNTNUMBERCUST'] = $accountnumber;
 
-    $accountnumberEscaped = mysqli_real_escape_string($con, $accountnumber);
-
-    $query = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumberEscaped'";
-    $result = mysqli_query($con, $query);
-    
-    $customerAccountInfo = mysqli_fetch_array($result);
-    mysqli_free_result($result);
-
-    // Check the customer information value to ensure its not empty or null
-
-    if (!$customerAccountInfo) {
-
-        echo '<script type="text/javascript">window.location = "/error/genericSystemError"</script>';
-        exit;
-
-    }
-
-    // Handle form submission
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-        // Check the payment proccessor to see if its stripe. When form is submitted
-
-        if ($variableDefinitionX->paymentProcessorName === "Stripe") {
-
-            require($_SERVER["DOCUMENT_ROOT"] . '/modules/paymentModule/stripe/internalPayments/index.php');
-
-        }
-
-    }
-
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
     echo '<title>' . htmlspecialchars($pagetitle) . ' | ' . htmlspecialchars($pagesubtitle) . '</title>';
 
@@ -74,7 +44,7 @@
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
                 <div class="caliweb-card dashboard-card">
-                    <form method="POST" action="">
+                    <form method="POST" id="caliweb-form-plugin" action="/dashboard/administration/accounts/createPaymentMethod/addCardLogic">
                         <div class="card-header">
                             <div class="display-flex align-center" style="justify-content: space-between;">
                                 <div class="display-flex align-center">
@@ -128,9 +98,90 @@
         </div>
     </section>
 
+    <script>
+        var stripe = Stripe('<?php echo $variableDefinitionX->apiKeypublic; ?>');
+
+        var elements = stripe.elements();
+
+        var style = {
+            base: {
+                color: '#32325d',
+                fontFamily: 'Arial, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                },
+                backgroundColor: '#f8f8f8',
+                padding: '10px',
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+        
+        var cardElement = elements.create('card', { style: style });
+
+        cardElement.mount('#card-element');
+
+        var form = document.getElementById('caliweb-form-plugin');
+
+        form.addEventListener('submit', function(event) {
+            
+            event.preventDefault();
+
+            stripe.createToken(cardElement).then(function(result) {
+
+                if (result.error) {
+
+                    console.error(result.error.message);
+
+                } else {
+
+                    var token = result.token.id;
+
+                    fetch('/dashboard/administration/accounts/createPaymentMethod/addCardLogic', {
+
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ token: token }),
+
+                    })
+
+                    .then(function(response) {
+
+                        if (response.ok) {
+
+                            window.location.href = '/dashboard/administration/accounts/manageAccount/paymentMethods/?account_number=<?php echo $accountnumber; ?>)';
+
+                        } else {
+
+                            throw new Error('Network response was not ok.');
+
+                        }
+
+                    })
+
+                    .catch(function(error) {
+
+                        console.error('Error:', error);
+                        window.location.href = '/error/genericSystemError/';
+
+                    });
+
+                }
+
+            });
+
+        });
+
+    </script>
+
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"] . "/modules/paymentModule/stripe/internalPayments/clientside.php");
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

@@ -23,15 +23,15 @@
 
     if ($accountStatus == "Active") {
 
-        header ("Location: /dashboard/customers/");
+        echo '<script type="text/javascript">window.location = "Location: /dashboard/customers/"</script>';
 
     } else if ($accountStatus == "Suspended") {
 
-        header ("Location: /error/suspendedAccount");
+        echo '<script type="text/javascript">window.location = "Location: /error/suspendedAccount/"</script>';
 
     } else if ($accountStatus == "Terminated") {
 
-        header ("Location: /error/terminatedAccount");
+        echo '<script type="text/javascript">window.location = "Location: /error/terminatedAccount/"</script>';
         
     }
 
@@ -122,8 +122,10 @@
         </div>
     </div>
 
+
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/clientside.php");
+    include($_SERVER["DOCUMENT_ROOT"] . "/modules/paymentModule/stripe/internalPayments/clientside.php");
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
+
 ?>
