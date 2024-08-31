@@ -553,6 +553,12 @@ html[data-theme='dark'] body {
     color: #fff !important;
 }
 
+.dark-mode .caliweb-error-box,
+.dark-mode .caliweb-error-box p,
+.dark-mode .caliweb-error-box h3 {
+    color: black !important;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -1065,6 +1071,13 @@ textarea.swal2-input {
 .caliweb-card.dashboard-card.account-center-cards {
     padding: 4% !important;
     background-color: #f7f6f6;
+}
+
+.caliweb-error-box {
+    background-color: #ffdad9;
+    padding:20px;
+    border:1px solid #eee;
+    border-radius: 6px;
 }
 
 /* =================== Cali Web Design Dashboard PHP Info Styling =================== */
