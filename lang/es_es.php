@@ -26,6 +26,10 @@ $LANG_LOGIN_AUTH_ERROR_TITLE = "Nombre de usuario o contraseña incorrecta";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "El nombre de usuario o contraseña ingresado es incorrecto. Inténtelo de nuevo o contáctenos para restablecer su inicio de Acceso.";
 $LANG_LOGIN_BUTTON = "Continuar";
 $LANG_LOGIN_DISCORD_BUTTON = "Continuar con Discord";
+$LANG_LOGIN_GOOGLE_BUTTON = "Continuar con Google";
+$LANG_LOGIN_OKTA_BUTTON = "Continuar con Okta";
+$LANG_LOGIN_GITHUB_BUTTON = "Continuar con GitHub";
+$LANG_LOGIN_APPLE_BUTTON = "Continuar con Apple";
 
 // Register Page Text Specifications
 
