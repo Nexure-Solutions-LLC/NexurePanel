@@ -113,16 +113,16 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Syst
                 <div id="systemSearchResults" class="systemwide-search-results"></div>
             </div>
             <div class="caliweb-nav-buttons display-flex align-center">
-                <a href="/dashboard/accountManagement" class="display-flex align-center profile-block">
+                <a href="/dashboard/accountManagement" class="display-flex align-center profile-block dark-mode-white">
                     <?php
 
-                        if ($currentAccount->profile_url != "") {
+                    if ($currentAccount->profile_url != "") {
 
-                            echo '<img src="' . $currentAccount->profile_url . '" class="profileImage" />';
-                        } else {
+                        echo '<img src="' . $currentAccount->profile_url . '" class="profileImage" />';
+                    } else {
 
-                            echo '<img src="/assets/img/profileImages/default.png" class="profileImage" />';
-                        }
+                        echo '<img src="/assets/img/profileImages/default.png" class="profileImage" />';
+                    }
 
                     ?><span><?php echo $currentAccount->legalName; ?></span>
                 </a>
