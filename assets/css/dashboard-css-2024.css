@@ -585,6 +585,10 @@ html[data-theme='dark'] body {
     border: 1px solid #222 !important;
 }
 
+.dark-mode .profile-block:hover {
+    background-color: #232323;
+}
+
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
