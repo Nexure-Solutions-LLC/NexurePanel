@@ -152,6 +152,20 @@ body {
     grid-row-gap: 0 !important;
 }
 
+.dashboard-system-status {
+    font-size:12px;
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    border-radius:8px;
+    margin-right:12px;
+    transition: all ease-in-out 0.3s;
+}
+
+.dashboard-system-status:hover {
+    background-color: #f2f3f5;
+}
+
 /* =================== Cali Web Design Dashboard Container Styles =================== */
 
 .container,
