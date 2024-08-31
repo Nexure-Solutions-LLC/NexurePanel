@@ -42,53 +42,67 @@
 
         $randomPrefix = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'), 0, 5);
 
-        // Checks to see if a payment system is active to add the customer into it, if it is then it checks to see what
-        // proccessor it is, if its Stripe then it proceedes, if not throws error as Stripe is the only supported system
-        // as of right now.
+        // Check duplicate accounts
 
-        if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
+        $checkCaliID = "SELECT * FROM caliweb_users WHERE `email` = '$emailaddress'";
+        $resultCaliIDCheck = mysqli_query($con, $checkCaliID);
 
-            if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+        if (mysqli_num_rows($resultCaliIDCheck) == 1) {
 
-                include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+            $register_error = true;
+
+        } else {
+
+            // Checks to see if a payment system is active to add the customer into it, if it is then it checks to see what
+            // proccessor it is, if its Stripe then it proceedes, if not throws error as Stripe is the only supported system
+            // as of right now.
+
+            if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
+
+                if ($variableDefinitionX->paymentProcessorName == "Stripe") {
+
+                    include($_SERVER["DOCUMENT_ROOT"]."/modules/paymentModule/stripe/internalPayments/index.php");
+
+                } else {
+
+                    header ("location: /error/genericSystemError");
+
+                }
 
             } else {
 
-                header ("location: /error/genericSystemError");
+                echo 'There are no payment modules available to service this request.';
 
             }
 
-        } else {
+            $SS_STRIPE_ID = add_customer($legalname, $emailaddress, $phonenumber, $builtaccountnumber);
 
-            echo 'There are no payment modules available to service this request.';
+            // Peroforms the database entry into MySQL.
 
-        }
+            $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
+                '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '$accountnotes', '$builtaccountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
 
-        $SS_STRIPE_ID = add_customer($legalname, $emailaddress, $phonenumber, $builtaccountnumber);
+            if (mysqli_query($con, $accountInsertRequest)) {
 
-        // Peroforms the database entry into MySQL.
+                include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/SendEmail/index.php');
 
-        $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
-            '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '$accountnotes', '$builtaccountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
+                sendEmailAccountRegistration(
+                    "Account Opened", 
+                    $emailaddress, 
+                    $legalname, 
+                    "[Important Information] - Hello from Cali Web Design Services"
+                );
 
-        if (mysqli_query($con, $accountInsertRequest)) {
+                handleEmployeeOrBusinessInsert($con, $legalname, $emailaddress, $registrationdate, $phonenumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $dateofbirth, $encryptedeinssnumber, $businessname, $businessindustry, $businessrevenue, $accountstatus, $accesslevel);
+            
+            } else {
 
-            include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/SendEmail/index.php');
+                header("location: /error/genericSystemError");
 
-            sendEmailAccountRegistration(
-                "Account Opened", 
-                $emailaddress, 
-                $legalname, 
-                "[Important Information] - Hello from Cali Web Design Services"
-            );
-
-            handleEmployeeOrBusinessInsert($con, $legalname, $emailaddress, $registrationdate, $phonenumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $dateofbirth, $encryptedeinssnumber, $businessname, $businessindustry, $businessrevenue, $accountstatus, $accesslevel);
-        
-        } else {
-
-            header("location: /error/genericSystemError");
+            }
 
         }
+
     }
 
     // Employee or Business function to determine what tables get data sent to them.
@@ -220,6 +234,14 @@
                                     <p class="fillable-text">Personal Information</p>
                                 </div>
                                 <div class="fillable-body">
+
+                                    <?php if (isset($register_error)): ?>
+                                        <div class="caliweb-error-box" style="margin-bottom:2%; margin-top:2%;">
+                                            <p class="caliweb-login-sublink" style="font-weight:700; padding-top:0; margin-top:0;">Duplicate email has been detected.</p>
+                                            <p class="caliweb-login-sublink" style="font-size:12px; margin-top:5px;">There is a user with this email. Please use a diffrent email or have the customer reset their password.</p>
+                                        </div>
+                                    <?php endif; ?>
+
                                     <div class="caliweb-grid caliweb-two-grid" style="grid-row-gap:0px !important; grid-column-gap:100px !important;">
                                         <div class="form-left-side" style="width:80%;">
                                             <div class="form-control">
