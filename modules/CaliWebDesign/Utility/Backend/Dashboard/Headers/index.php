@@ -112,8 +112,22 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Syst
                 <input class="form-input caliweb-search-input" id="systemSearch" placeholder="Search all of <?php echo $variableDefinitionX->orgShortName ?>" />
                 <div id="systemSearchResults" class="systemwide-search-results"></div>
             </div>
-            <div class="caliweb-nav-buttons">
-                <a href="/dashboard/accountManagement" class="caliweb-nav-button secondary"><?php echo $currentAccount->legalName; ?></a>
+            <div class="caliweb-nav-buttons display-flex align-center">
+                <a href="/dashboard/accountManagement">
+                    <?php 
+
+                        if ($currentAccount->profile_url != "") {
+
+                            echo '<img src="'.$currentAccount->profile_url.'" class="profileImage" />';
+
+                        } else {
+
+                            echo '<img src="/assets/img/profileImages/default.png" class="profileImage" />';
+
+                        }
+
+                    ?>
+                </a>
                 <a href="/dashboard/messageCenter" class="toggle-container" style="padding: 6px 10px 5px 10px;">
                     <span class="lnr lnr-envelope" class="toggle-input"></span>
                 </a>
