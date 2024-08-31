@@ -28,3 +28,28 @@ html,
 .careers-link:hover {
     color: #63ba54;
 }
+
+.sidebar-link.active,
+.account-settings-sidebar-link.active,
+.drop-menu-item-sidebar.active,
+.drop-menu-item-sidebar.active {
+    background-color: #f2f4f5;
+    border-radius: 6px;
+    border: 1px solid #86d978 !important;
+}
+
+.dark-mode .sidebar-link.active,
+.dark-mode .account-settings-sidebar-link.active,
+.dark-mode .drop-menu-item-sidebar.active,
+.dark-mode .drop-menu-item-sidebar.active {
+    background-color: #0a0a0a;
+    border: 1px solid #86d978 !important;
+}
+
+.dark-mode body,
+.dark-mode html,
+.dark-mode .login-container,
+html[data-theme='dark'] body {
+    background-image: none !important;
+    background: linear-gradient(to left, #a8a8a8, #0d4803) !important;
+}

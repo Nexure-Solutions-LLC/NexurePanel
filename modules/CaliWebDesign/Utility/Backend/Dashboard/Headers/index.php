@@ -131,7 +131,7 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Syst
                 <?php include($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Dashboard/Menus/index.php"); ?>
             </nav>
             <div class="systemLoads display-flex align-center">
-                <a href="/dashboard/administration/systemStatus" style="text-decoration:none;">
+                <a href="/dashboard/administration/systemStatus" class="dark-mode-white" style="text-decoration:none;">
                     <div class="dashboard-system-status">
                         <p class="display-flex align-center" style="font-size:14px;"><img src="/assets/img/systemIcons/serviceStatus.png" style="height:20px; width:20px; margin-right:10px;" /> <span>All services are online</span></p>
                     </div>

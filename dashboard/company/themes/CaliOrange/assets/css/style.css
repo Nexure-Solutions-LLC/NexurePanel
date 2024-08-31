@@ -10,7 +10,7 @@ body,
 html,
 .login-container {
     background-image: none !important;
-    background: linear-gradient(to right, #FFFFFF, #e8cc85) !important;
+    background: linear-gradient(to right, #FFFFFF, #e8b885) !important;
 }
 
 ::selection {
@@ -27,4 +27,29 @@ html,
 
 .careers-link:hover {
     color: #ebb042;
+}
+
+.sidebar-link.active,
+.account-settings-sidebar-link.active,
+.drop-menu-item-sidebar.active,
+.drop-menu-item-sidebar.active {
+    background-color: #f2f4f5;
+    border-radius: 6px;
+    border: 1px solid #e8b885 !important;
+}
+
+.dark-mode .sidebar-link.active,
+.dark-mode .account-settings-sidebar-link.active,
+.dark-mode .drop-menu-item-sidebar.active,
+.dark-mode .drop-menu-item-sidebar.active {
+    background-color: #0a0a0a;
+    border: 1px solid #e8b885 !important;
+}
+
+.dark-mode body,
+.dark-mode html,
+.dark-mode .login-container,
+html[data-theme='dark'] body {
+    background-image: none !important;
+    background: linear-gradient(to left, #a8a8a8, #9a590f) !important;
 }

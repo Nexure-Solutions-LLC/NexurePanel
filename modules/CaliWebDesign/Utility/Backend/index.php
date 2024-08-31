@@ -771,6 +771,7 @@
         public $orglogosquare;
         public $orglogolight;
         public $orglogodark;
+        public $paymentProcessorName;
         public $dataTimestamp;
         public $datedataOutput;
         public $userId;
@@ -780,7 +781,7 @@
         public $apiKeysecret;
         public $apiKeypublic;
         public $paymentgatewaystatus;
-        public $paymentProcessorName;
+        public $paymentDescriptor;
 
         public $customerAccountInfo;
         public $legalname;
@@ -882,6 +883,8 @@
             $this->orglogodark = $panelinfo['organizationLogoDark'];
 
             $this->orglogosquare = $panelinfo['organizationLogoSquare'];
+
+            $this->paymentDescriptor = $panelinfo['paymentDescriptor'];
 
         }
 
