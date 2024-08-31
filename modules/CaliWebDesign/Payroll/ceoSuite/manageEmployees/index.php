@@ -8,6 +8,17 @@
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
+    $employeeIDNumber = $_GET['employee_number'] ?? '';
+
+    if (!$employeeIDNumber) {
+
+        header("location: /modules/CaliWebDesign/Payroll/ceoSuite/");
+        exit;
+    }
+
+    $manageEmployeeDefinitionE = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageEmployeeDefinitionE->manageEmployee($con, $employeeIDNumber);
+
 ?>
 
     <section class="section first-dashboard-area-cards">

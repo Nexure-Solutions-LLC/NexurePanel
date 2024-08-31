@@ -792,8 +792,8 @@
         public $userrole;
         public $dbaccountnumber;
         public $statusreason;
-        public $firstinteractiondate;
-        public $lastinteractiondate;
+        public $firstinteractiondateformattedfinal;
+        public $lastinteractiondateformattedfinal;
         public $businessname;
         public $businessindustry;
         public $websitedomain;
@@ -810,6 +810,20 @@
         public $emailverifydate;
         public $emailverifydateformatted;
         public $emailverifydateformattedfinal;
+
+        public $employeeAccountInfo;
+        public $employeename;
+        public $employeepaytype;
+        public $employeeemail;
+        public $employeepayrate;
+        public $employeecurrentpay;
+        public $employeeworkedhours;
+        public $employeephonenumber;
+        public $employeedepartment;
+        public $employeehiredateformattedfinal;
+        public $employeerehiredateformattedfinal;
+        public $employeetermhiredateformattedfinal;
+
 
         public function variablesHeader($con)
         {
@@ -957,9 +971,17 @@
 
             mysqli_query($con, "UPDATE caliweb_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'");
 
-            $this->firstinteractiondate = $this->customerAccountInfo['firstInteractionDate'] ?? null;
+            $firstinteractiondate = $this->customerAccountInfo['firstInteractionDate'] ?? null;
 
-            $this->lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'"))['lastInteractionDate'] ?? null;
+            $firstinteractiondateformatted = new \DateTime($firstinteractiondate);
+
+            $this->firstinteractiondateformattedfinal = $firstinteractiondateformatted->format('F j, Y g:i A');
+
+            $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'"))['lastInteractionDate'] ?? null;
+
+            $lastinteractiondateformatted = new \DateTime($lastinteractiondate);
+
+            $this->lastinteractiondateformattedfinal = $lastinteractiondateformatted->format('F j, Y g:i A');
 
             // Business Specific Data Storage and Variable Declaration for the Customer's Business
 
@@ -1000,6 +1022,59 @@
             // Email Verification Status
 
             $this->emailverifystatus = ucfirst($this->customerAccountInfo['emailVerfied']);
+
+        }
+
+        public function manageEmployee($con, $employeeIDNumber) {
+
+            // Same as the manage account function but for staff and the payroll module.
+
+            // Prepare the SQL Statement to get all the employee's info
+
+            $this->employeeAccountInfo = $this->fetchSingleRow($con, 'caliweb_payroll', "employeeIDNumber = '" . mysqli_real_escape_string($con, $employeeIDNumber) . "'");
+
+            if (!$this->employeeAccountInfo) {
+
+                header("location: /modules/CaliWebDesign/Payroll/ceoSuite/");
+
+                exit;
+            }
+
+            // Employee Specific Data Storage and Variable Declaration
+
+            $this->employeename = $this->employeeAccountInfo['employeeName'];
+
+            $this->employeepaytype = $this->employeeAccountInfo['employeePayType'];
+
+            $this->employeeemail = $this->employeeAccountInfo['employeeEmail'];
+
+            $this->employeepayrate = $this->employeeAccountInfo['employeePayRate'];
+
+            $this->employeecurrentpay = $this->employeeAccountInfo['employeeActualPay'];
+
+            $this->employeeworkedhours = $this->employeeAccountInfo['employeeWorkedHours'];
+
+            $this->employeephonenumber = $this->employeeAccountInfo['employeePhoneNumber'];
+
+            $this->employeedepartment = $this->employeeAccountInfo['employeeDepartment'];
+
+            $employeehiredate = $this->employeeAccountInfo['employeeHireDate'];
+
+            $employeehiredateformatted = new \DateTime($employeehiredate);
+
+            $this->employeehiredateformattedfinal = $employeehiredateformatted->format('F j, Y g:i A');
+
+            $employeerehiredate = $this->employeeAccountInfo['employeeRehireDate'];
+
+            $employeerehiredateformatted = new \DateTime($employeerehiredate);
+
+            $this->employeerehiredateformattedfinal = $employeerehiredateformatted->format('F j, Y g:i A');
+
+            $employeetermdate = $this->employeeAccountInfo['employeeTerminationDate'];
+
+            $employeetermdateformatted = new \DateTime($employeetermdate);
+
+            $this->employeetermhiredateformattedfinal = $employeetermdateformatted->format('F j, Y g:i A');
 
         }
 
