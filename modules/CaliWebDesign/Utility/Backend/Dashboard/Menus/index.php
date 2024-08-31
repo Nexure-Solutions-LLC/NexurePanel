@@ -12,6 +12,7 @@
             'Overview' => '/dashboard/customers/',
             'Billing' => '/dashboard/customers/billingCenter',
             'Access & Security Center' => '/dashboard/customers/accessAndSecurityCenter',
+            'Order Services' => '/dashboard/customers/lightingServices',
             'Service Status' => '/dashboard/customers/serviceStatus',
             'Customer Service' => '/dashboard/customers/supportCenter',
             'Sign Off' => '/logout'

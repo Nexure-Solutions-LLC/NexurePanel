@@ -9,13 +9,17 @@
     $accountnumber = $currentAccount->accountNumber;
 
     if (!$accountnumber) {
+
         header("Location:/error/genericSystemError");
+        
     }
 
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
     $upperrole = $manageAccountDefinitionR->userrole;
+
     $lowerrole = strtolower($upperrole);
 
     switch ($lowerrole) {
