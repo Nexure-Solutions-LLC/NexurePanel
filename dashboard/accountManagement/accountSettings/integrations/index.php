@@ -32,7 +32,7 @@
                 <h4 class="text-bold font-size-20 no-padding" style="margin-top:1%;">Integrations</h4>
                 <div class="caliweb-grid caliweb-one-grid">
                     <p style="margin-top:2%; font-size:14px;">List of OAuth Authorization Providers</p>
-                    <div style="width:40%; margin-top:-4%;">
+                    <div class="caliweb-grid caliweb-one-grid" style="width:40%; grid-row-gap:0; margin-top:-3%;">
                         <?php
 
                             if (mysqli_num_rows($accountModulesLookupResult) > 0) {
@@ -43,7 +43,7 @@
 
                                     if ($accountModulesName == "Cali OAuth") {
 
-                                        include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//index.php");
+                                        include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth/index.php");
 
                                     }
 

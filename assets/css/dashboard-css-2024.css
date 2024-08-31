@@ -188,6 +188,17 @@ body {
     z-index: -1 !important;
 }
 
+.profileImage {
+    border-radius: 999px;
+    border:1px solid #ddd;
+    height:35px;
+    width:35px;
+    padding:0;
+    margin-left:10px;
+    margin-right:10px;
+    margin-top:4px;
+}
+
 /* =================== Cali Web Design Dashboard Header Styles =================== */
 
 .caliweb-navbar {
@@ -557,6 +568,10 @@ html[data-theme='dark'] body {
 .dark-mode .caliweb-error-box p,
 .dark-mode .caliweb-error-box h3 {
     color: black !important;
+}
+
+.dark-mode .profileImage {
+    border: 1px solid #222 !important;
 }
 
 /* =================== Cali Web Design Dashboard Grid Styles =================== */
