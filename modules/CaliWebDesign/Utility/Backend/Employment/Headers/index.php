@@ -7,8 +7,8 @@
                 <div>
                     <p class="no-padding font-14px" style="padding-bottom:4px;">Employee</p>
                     <h4 class="text-bold font-size-16 no-padding display-flex align-center">
-                        Aiden Webb - 00000006
-                        
+                        <?php echo $manageEmployeeDefinitionE->employeename; ?> - <?php echo $employeeIDNumber; ?>
+
                         <span class='account-status-badge green'>Active</span>
                     </h4>
                 </div>
@@ -17,37 +17,32 @@
                 <a href="" class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;">Edit</a>
             </div>
         </div>
-        <div class="card-body width-75 macBook-styling-hotfix">
+        <div class="card-body width-100 macBook-styling-hotfix">
             <div class="display-flex align-center width-100 padding-20px-no-top macBook-padding-top">
-                
-                <div class="width-100">
-                    <p class="no-padding font-14px">Department</p>
-                    <p class="no-padding font-14px">Development Team</p>
-                </div>
-                <div class="width-100">
-                    <p class="no-padding font-14px">Phone Number</p>
-                    <p class="no-padding font-14px">803-XXX-XXXX</p>
-                </div>
-                <div class="width-100">
-                    <p class="no-padding font-14px">Hire Date</p>
-                    <p class="no-padding font-14px">April 1st, 2024</p>
-                </div>
-                <div class="width-100">
-                    <p class="no-padding font-14px">Termination Date</p>
-                    <p class="no-padding font-14px">April 1st, 2024</p>
-                </div>
-                <div class="width-100">
-                    <p class="no-padding font-14px">Rehire Date</p>
-                    <p class="no-padding font-14px">April 1st, 2024</p>
-                </div>
-                <div class="width-100">
-                    <p class="no-padding font-14px">Current Pay</p>
-                    <p class="no-padding font-14px">$8,201.28</p>
-                </div>
-                <div class="width-100">
-                    <p class="no-padding font-14px">Worked Houres</p>
-                    <p class="no-padding font-14px">69.89</p>
-                </div>
+
+                <?php
+
+                    $employeeDetails = [
+                        "Department" => $manageEmployeeDefinitionE->employeedepartment,
+                        "Phone Number" => $manageEmployeeDefinitionE->employeephonenumber,
+                        "Hire Date" => $manageEmployeeDefinitionE->employeehiredateformattedfinal,
+                        "Termination Date" => $manageEmployeeDefinitionE->employeetermhiredateformattedfinal,
+                        "Rehire Date" => $manageEmployeeDefinitionE->employeerehiredateformattedfinal,
+                        "Current Pay" => "$" . $manageEmployeeDefinitionE->employeecurrentpay,
+                        "Worked Hours" => $manageEmployeeDefinitionE->employeeworkedhours
+                    ];
+
+                    foreach ($employeeDetails as $label => $value) {
+
+                        echo '<div class="width-100">';
+                            echo '<p class="no-padding font-14px">' . htmlspecialchars($label) . '</p>';
+                            echo '<p class="no-padding font-14px">' . htmlspecialchars($value) . '</p>';
+                        echo '</div>';
+
+                    }
+
+                ?>
+
             </div>
         </div>
     </div>

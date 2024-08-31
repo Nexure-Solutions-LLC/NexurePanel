@@ -43,8 +43,8 @@
                         'Phone' => '+'.$manageAccountDefinitionR->mobilenumber,
                         'Website' => $manageAccountDefinitionR->websitedomain,
                         'Owner' => $manageAccountDefinitionR->legalname,
-                        'First Interaction' => $manageAccountDefinitionR->firstinteractiondate,
-                        'Last Interaction' => $manageAccountDefinitionR->lastinteractiondate
+                        'First Interaction' => $manageAccountDefinitionR->firstinteractiondateformattedfinal,
+                        'Last Interaction' => $manageAccountDefinitionR->lastinteractiondateformattedfinal
                     ];
                     
                     foreach ($details as $label => $value) {
