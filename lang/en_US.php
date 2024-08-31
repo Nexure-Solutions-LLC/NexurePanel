@@ -27,6 +27,10 @@ $LANG_LOGIN_AUTH_ERROR_TEXT = "The username or password entered is incorrect. Pl
 $LANG_BUTTON_BACK = "Go Back";
 $LANG_LOGIN_BUTTON = "Continue";
 $LANG_LOGIN_DISCORD_BUTTON = "Sign In with Discord";
+$LANG_LOGIN_GOOGLE_BUTTON = "Sign In with Google";
+$LANG_LOGIN_OKTA_BUTTON = "Sign In with Okta";
+$LANG_LOGIN_GITHUB_BUTTON = "Sign In with GitHub";
+$LANG_LOGIN_APPLE_BUTTON = "Sign In with Apple";
 
 // Register Page Text Specifications
 
