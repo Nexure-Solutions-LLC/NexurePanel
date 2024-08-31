@@ -8,8 +8,10 @@
 
     echo '<title>' . $pagetitle . '</title>';
 
+    $accountnumber = $currentAccount->accountNumber;
+
     $eventsDefinitionW = new \CaliWebDesign\Calendar\CalendarComponents();
-    $eventsDefinitionW->eventsRetrive($con);
+    $eventsDefinitionW->eventsRetrive($con, $accountnumber);
 
 ?>
 
