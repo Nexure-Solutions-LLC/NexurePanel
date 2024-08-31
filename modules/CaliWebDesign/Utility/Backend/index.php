@@ -2078,10 +2078,11 @@
     {
 
         public $eventsresponse;
+        public $accountnumber;
 
-        public function eventsRetrive($con) {
+        public function eventsRetrive($con, $accountnumber) {
 
-            $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM caliweb_events ORDER BY eventTimeDate DESC");
+            $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM caliweb_events WHERE accountNumber = '$accountnumber' ORDER BY eventTimeDate DESC");
 
         }
 
