@@ -3,6 +3,7 @@
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
     require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/index.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/license/licensecheck.php");
 
     session_start();
 
