@@ -43,7 +43,7 @@
                             </div>
                             <div>
                                 <p style="margin-top:10px; font-size:14px;">Software Name: Cali Web Design Panel (Cali Panel)</p>
-                                <p style="margin-top:10px; font-size:14px;">Version: <?php echo $variableDefinitionX->panelVersionName; ?> Developer Beta 2</p>
+                                <p style="margin-top:10px; font-size:14px;">Version: <?php echo $variableDefinitionX->panelVersionName; ?> Developer Beta 3</p>
                                 <p style="margin-top:10px; font-size:14px;">Release Date: 08/03/2024 10:18:22 PM (Eastern Time)</p>
                                 <p style="margin-top:10px; font-size:14px;">Edition: Cali Panel Developer Edition</p>
                                 <?php
