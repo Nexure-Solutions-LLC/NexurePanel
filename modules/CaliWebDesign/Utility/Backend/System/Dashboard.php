@@ -5,6 +5,7 @@
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
     require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/index.php");
+    require($_SERVER["DOCUMENT_ROOT"] . "/license/licensecheck.php");
     require_once($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
 
     ob_clean();
