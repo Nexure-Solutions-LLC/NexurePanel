@@ -5,25 +5,88 @@
     $pagetitle = "Login Page";
     $_SESSION['pagetitle'] = $pagetitle;
 
-    require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
-
     if (isset($_SESSION['caliid'])) {
 
         header("Location: /dashboard");
+        
         exit;
 
     }
 
+    if (isset($_POST['emailaddress'])) {
+
+        require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
+
+        try {
+
+            $cali_id = stripslashes($_REQUEST['emailaddress']);
+
+            $cali_id = mysqli_real_escape_string($con, $cali_id);
+
+            $password = stripslashes($_REQUEST['password']);
+
+            $password = mysqli_real_escape_string($con, $password);
+
+            $client_ip = $_SERVER['REMOTE_ADDR'];
+
+            $query = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '" . hash("sha512", $password) . "'";
+
+            $result = mysqli_query($con, $query);
+
+            if (mysqli_num_rows($result) == 1) {
+
+                unset($_SESSION['failed_attempts']);
+
+                $_SESSION['caliid'] = $cali_id;
+
+                header("Location: /dashboard");
+
+                exit;
+            } else {
+
+                if (!isset($_SESSION['failed_attempts'])) {
+
+                    $_SESSION['failed_attempts'] = 0;
+                }
+
+                $_SESSION['failed_attempts']++;
+
+                if ($_SESSION['failed_attempts'] > 5) {
+
+                    $ban_query = "INSERT INTO `caliweb_networks` (`ipAddress`, `listType`) VALUES ('$client_ip', 'Blacklist')";
+
+                    mysqli_query($con, $ban_query);
+
+                    header("location: /error/bannedUser");
+                }
+
+
+                $login_error = true;
+            }
+        } catch (\Throwable $exception) {
+
+            \Sentry\captureException($exception);
+        }
+    }
+
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+
+
+    $passableUserId = $variableDefinitionX->userId;
+    $passableApiKey = $variableDefinitionX->apiKey;
+
+
     // IP Address Checking and Banning
 
-    function getClientIp() {
+    function getClientIp()
+    {
 
         $keys = [
-            'HTTP_CLIENT_IP', 
-            'HTTP_X_FORWARDED_FOR', 
-            'HTTP_X_FORWARDED', 
-            'HTTP_FORWARDED_FOR', 
-            'HTTP_FORWARDED', 
+            'HTTP_CLIENT_IP',
+            'HTTP_X_FORWARDED_FOR',
+            'HTTP_X_FORWARDED',
+            'HTTP_FORWARDED_FOR',
+            'HTTP_FORWARDED',
             'REMOTE_ADDR'
         ];
 
@@ -32,9 +95,7 @@
             if ($ipaddress = getenv($key)) {
 
                 return $ipaddress;
-
             }
-
         }
 
         return 'UNKNOWN';
@@ -42,7 +103,8 @@
 
     $clientIp = getClientIp();
 
-    function isIpBlocked($ip, $con) {
+    function isIpBlocked($ip, $con)
+    {
 
         $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'blacklist'";
 
@@ -55,18 +117,17 @@
             $result = $stmt->get_result();
 
             $count = $result->fetch_array()[0];
-            
+
             $stmt->close();
 
             return $count > 0;
-
         }
 
         return false;
-
     }
 
-    function isIpAllowed($ip, $con) {
+    function isIpAllowed($ip, $con)
+    {
 
         $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'whitelist'";
 
@@ -83,14 +144,13 @@
             $stmt->close();
 
             return $count > 0;
-
         }
 
         return false;
-
     }
 
-    function isIpBlacklistedOrProxyVpn($ip, $passableUserId, $passableApiKey) {
+    function isIpBlacklistedOrProxyVpn($ip, $passableUserId, $passableApiKey)
+    {
 
         $url = "https://neutrinoapi.net/ip-probe";
         $ch = curl_init();
@@ -108,58 +168,52 @@
         if (isset($data['is-hosting']) && $data['is-hosting']) {
 
             return true;
-
         }
 
         if (isset($data['is-proxy']) && $data['is-proxy']) {
 
             return true;
-
         }
 
         if (isset($data['is-vpn']) && $data['is-vpn']) {
 
             return true;
-
         }
 
         return false;
-
     }
 
-    function hasAdBlocker() {
+    function hasAdBlocker()
+    {
 
         if (!isset($_SESSION['ad_blocker_checked'])) {
             echo "<script>
-                var adBlockEnabled = false;
-                var testAd = document.createElement('div');
-                testAd.innerHTML = '&nbsp;';
-                testAd.className = 'adsbox';
-                document.body.appendChild(testAd);
-                window.setTimeout(function() {
-                    if (testAd.offsetHeight === 0) {
-                        adBlockEnabled = true;
-                    }
-                    testAd.remove();
-                    var xhr = new XMLHttpRequest();
-                    xhr.open('POST', 'check_ad_blocker.php', true);
-                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                    xhr.send('adBlockEnabled=' + adBlockEnabled);
-                }, 100);
-            </script>";
+                    var adBlockEnabled = false;
+                    var testAd = document.createElement('div');
+                    testAd.innerHTML = '&nbsp;';
+                    testAd.className = 'adsbox';
+                    document.body.appendChild(testAd);
+                    window.setTimeout(function() {
+                        if (testAd.offsetHeight === 0) {
+                            adBlockEnabled = true;
+                        }
+                        testAd.remove();
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('POST', 'check_ad_blocker.php', true);
+                        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr.send('adBlockEnabled=' + adBlockEnabled);
+                    }, 100);
+                </script>";
 
             $_SESSION['ad_blocker_checked'] = true;
-
         }
 
         if (isset($_SESSION['adBlockEnabled']) && $_SESSION['adBlockEnabled']) {
 
             return true;
-
         }
 
         return false;
-
     }
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adBlockEnabled'])) {
@@ -167,10 +221,10 @@
         $_SESSION['adBlockEnabled'] = $_POST['adBlockEnabled'] == 'true' ? true : false;
 
         exit;
-
     }
 
-    function isIPSpamListed($ip, $passableUserId, $passableApiKey) {
+    function isIPSpamListed($ip, $passableUserId, $passableApiKey)
+    {
 
         $url = "https://neutrinoapi.net/host-reputation";
         $ch = curl_init();
@@ -192,18 +246,17 @@
         if (isset($data['is-listed']) && $data['is-listed']) {
 
             return true;
-
         }
 
         return false;
     }
 
-    function banIp($ip) {
+    function banIp($ip)
+    {
 
         header("Location: /error/bannedUser");
 
         exit;
-
     }
 
     // Assuming $pdo is your PDO connection
@@ -213,90 +266,23 @@
         if (isIpBlacklistedOrProxyVpn($clientIp, $passableUserId, $passableApiKey)) {
 
             banIp($clientIp);
-
         }
 
         if (isIPSpamListed($clientIp, $passableUserId, $passableApiKey)) {
 
             banIp($clientIp);
-
         }
 
         if (hasAdBlocker()) {
 
             banIp($clientIp);
-
         }
 
         if (isIpBlocked($clientIp, $con)) {
 
             banIp($clientIp);
-
         }
-
     }
-
-    if (isset($_POST['emailaddress'])) {
-
-        try {
-
-            $cali_id = stripslashes($_REQUEST['emailaddress']);
-
-            $cali_id = mysqli_real_escape_string($con, $cali_id);
-
-            $password = stripslashes($_REQUEST['password']);
-
-            $password = mysqli_real_escape_string($con, $password);
-
-            $client_ip = $_SERVER['REMOTE_ADDR'];
-            
-            $query = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '". hash("sha512", $password)."'";
-
-            $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) == 1) {
-                
-                unset($_SESSION['failed_attempts']);
-
-                $_SESSION['caliid'] = $cali_id;
-
-                header("Location: /dashboard");
-
-                exit;
-
-            } else {
-
-                if (!isset($_SESSION['failed_attempts'])) {
-
-                    $_SESSION['failed_attempts'] = 0;
-
-                }
-
-                $_SESSION['failed_attempts']++;
-
-                if ($_SESSION['failed_attempts'] > 5) {
-
-                    $ban_query = "INSERT INTO `caliweb_networks` (`ipAddress`, `listType`) VALUES ('$client_ip', 'Blacklist')";
-
-                    mysqli_query($con, $ban_query);
-
-                    header("location: /error/bannedUser");
-                }
-
-
-                $login_error = true;
-
-            }
-
-        } catch (\Throwable $exception) {
-            
-            \Sentry\captureException($exception);
-            
-        }
-
-    }
-
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
 
     echo '<title>'.$variableDefinitionX->orgShortName.' | Unified Portal</title>';
 
