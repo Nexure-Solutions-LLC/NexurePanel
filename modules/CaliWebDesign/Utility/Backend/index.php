@@ -2072,4 +2072,19 @@
 
     }
 
+    namespace CaliWebDesign\Calendar;
+
+    class CalendarComponents
+    {
+
+        public $eventsresponse;
+
+        public function eventsRetrive($con) {
+
+            $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM caliweb_events ORDER BY eventTimeDate DESC");
+
+        }
+
+    }
+
 ?>
