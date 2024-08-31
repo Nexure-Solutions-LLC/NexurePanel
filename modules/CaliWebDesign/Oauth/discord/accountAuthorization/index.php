@@ -10,10 +10,13 @@
     use Dotenv\Dotenv;
 
     $discord_dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/modules/CaliWebDesign/Oauth/discord");
+
     $discord_dotenv->load();
 
     $discord_client_id = $_ENV['DISCORD_CLIENT_ID'];
+
     $discord_client_secret = $_ENV['DISCORD_CLIENT_SECRET'];
+
     $discord_newauth_redirect_uri = $_ENV['DISCORD_REDIRECT_NEWAUTH_URI'];
 
     if ($_SESSION['pagetitle'] == "Account Management") {
@@ -56,6 +59,7 @@
                     $discord_access_token = $discord_token_data['access_token'];
 
                     $discord_curl = curl_init('https://discord.com/api/users/@me');
+                    
                     curl_setopt($discord_curl, CURLOPT_HTTPHEADER, array(
                         'Authorization: Bearer ' . $discord_access_token
                     ));
@@ -71,6 +75,7 @@
                     $discord_id = $discord_user_data['id'];
                     
                     $update_query = "UPDATE `caliweb_users` SET `discord_id` = '$discord_id' WHERE `email` = '".$_SESSION['caliid']."'";
+
                     mysqli_query($con, $update_query);
 
                     echo '<script type="text/javascript">window.location = "/dashboard/accountManagement/accountSettings/integrations"</script>';
