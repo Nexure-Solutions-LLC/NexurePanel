@@ -210,6 +210,15 @@ body {
     padding:4px 10px;
 }
 
+.profile-block:focus {
+    text-decoration: none !important;
+}
+
+.settings-area {
+    margin-top:4%;
+    width:40%;
+}
+
 /* =================== Cali Web Design Dashboard Header Styles =================== */
 
 .caliweb-navbar {

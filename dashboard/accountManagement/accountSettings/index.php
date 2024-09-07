@@ -20,8 +20,15 @@
                 </div>
             </div>
             <div class="caliweb-card dashboard-card">
-                <h4 class="text-bold font-size-20 no-padding">d</h4>
-                <!-- DO NOT PUT USER PERSONAL INFO IN THIS FILE -->
+                <h4 class="text-bold font-size-20 no-padding">Account Settings</h4>
+                <p style="margin-top:10px; font-size:14px;">Update your account information like profile photo, integrations, account nicknames, and more.</p>
+                <div class="settings-area">
+                    <form action="" method="POST">
+
+                        <input type="file" class="form-input"  />
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
