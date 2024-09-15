@@ -1,56 +1,92 @@
 <?php
 
-    $pagetitle = "Account Management";
-    $pagesubtitle = 'General';
-    $pagetype = "";
+$pagetitle = "Account Management";
+$pagesubtitle = 'General';
+$pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
-    echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
+$accountModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
+$accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
+
+echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
 ?>
 
-    <section class="section first-dashboard-area-cards">
-        <div class="container caliweb-container">
-            <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
-                <div class="caliweb-settings-sidebar">
-                    <div class="caliweb-card dashboard-card sidebar-card" style="overflow-y: scroll;">
-                        <?php
+<section class="section first-dashboard-area-cards">
+    <div class="container caliweb-container">
+        <div class="caliweb-one-grid special-caliweb-spacing">
+            <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:85vh;">
+                <h3 style="font-size:18px; margin-top:10px;">Account Settings</h3>
+                <div class="caliweb-grid caliweb-two-grid newRedesignedSettingsSpacing">
+                    <div class="settings-area">
+                        <div class="profile-edit">
+                            <p style="font-weight:800; padding-bottom:4%; margin-top:0; padding-top:0;">Edit the information on file</p>
+                            <form class="" method="POST" action="">
+                                <div class="form-control">
+                                    <label for="emailAddress">Email Address</label>
+                                    <input class="form-input" type="email" name="emailAddress" placeholder="me@example.com" />
+                                </div>
+                                <div class="form-control textAreaSpacing">
+                                    <label for="emailAddress">Phone Number</label>
+                                    <input class="form-input" type="text" name="phoneNumber" placeholder="1123456789" />
+                                </div>
+                                <div class="form-control textAreaSpacing">
+                                    <label for="emailAddress">Password</label>
+                                    <input class="form-input" type="password" name="password" placeholder="Super Secret Password" />
+                                </div>
+                                <div class="form-control textAreaSpacing">
+                                    <label for="emailAddress">Confirm Password</label>
+                                    <input class="form-input" type="password" name="confirmPassword" placeholder="Super Secret Password" />
+                                </div>
+                                <div class="form-control buttonArea">
+                                    <button name="submit" type="submit" class="caliweb-button primary">Update Information</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="integrations">
+                            <p style="font-weight:800; padding-bottom:4%;">Integrations</p>
+                            <?php
 
-                            include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Sidebars/index.php');
+                            if (mysqli_num_rows($accountModulesLookupResult) > 0) {
 
-                        ?>
+                                while ($accountModulesLookupRow = mysqli_fetch_assoc($accountModulesLookupResult)) {
+
+                                    $accountModulesName = $accountModulesLookupRow['moduleName'];
+
+                                    if ($accountModulesName == "Cali OAuth") {
+
+                                        include($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Oauth/index.php");
+                                    }
+                                }
+                            }
+
+                            ?>
+                        </div>
+                        <div class="integrations">
+                            <p style="font-weight:800; padding-bottom:4%;">Danger Zone</p>
+                            <div class="" style="padding-top:6%;">
+                                <button class="caliweb-button primary red">Close Account</button>
+                                <button class="caliweb-button primary">Delete Personal Data</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="caliweb-one-grid special-caliweb-spacing">
-                    <div class="caliweb-card dashboard-card">
-                        <h4 class="text-bold font-size-20 no-padding" style="margin-top:1%;">Overview</h4>
-                        <div class="caliweb-two-grid special-caliweb-spacing" style="height:0vh; margin-top:2%; grid-column-gap:20px !important; grid-row-gap:20px !important;">
-                            <div class="caliweb-card dashboard-card account-center-cards">
-                                <div class="card-body">
-                                    <h4 class="text-bold font-size-20 no-padding"><?php echo $LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TITLE; ?></h4>
-                                    <p class="font-12px" style="padding-top:20px;"><?php echo $LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_TEXT; ?></p</div>
+                    <div class="profile-area">
+                        <div class="caliweb-card dashboard-card account-center-cards">
+                            <div class="" style="display:flex; justify-content:space-between; vertical-align:top;">
+                                <div class="profileInfoText">
+                                    <p style="font-weight:800;">Current Information on File</p>
+                                    <div class="accountInfoArea">
+                                        <p style="font-size:14px; margin-bottom:10px;">Legal Name: <?php echo $currentAccount->legalName; ?></p>
+                                        <p style="font-size:14px; margin-bottom:10px;">Phone Number: <?php echo $currentAccount->mobileNumber; ?></p>
+                                        <p style="font-size:14px; margin-bottom:10px;">Email Address: <?php echo $currentAccount->email; ?></p>
+                                        <p style="font-size:14px; margin-bottom:10px;">Account Number: <?php echo $currentAccount->accountNumber; ?></p>
+                                        <p style="font-size:14px; margin-bottom:10px;">Email Verified: True</p>
+                                        <p style="font-size:14px;">Account Status: Active</p>
+                                    </div>
                                 </div>
-                                <div style="margin-top:20px;">
-                                    <a href="/dashboard/accountManagement/accountSettings/" class="careers-link" style="text-decoration:none;"><span class="display-flex align-center"><?php echo $LANG_ACCOUNTCENTER_CARD_ACCOUNTSETTINGS_LINKTEXT; ?> <span class="lnr lnr-chevron-right" style="margin-left:10px;"></span></span></a>
-                                </div>
-                            </div>
-                            <div class="caliweb-card dashboard-card account-center-cards">
-                                <div class="card-body">
-                                    <h4 class="text-bold font-size-20 no-padding"><?php echo $LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TITLE; ?></h4>
-                                    <p class="font-12px" style="padding-top:20px;"><?php echo $LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_TEXT; ?></p</div>
-                                </div>
-                                <div style="margin-top:20px;">
-                                    <a href="/dashboard/accountManagement/personalDetails/" class="careers-link" style="text-decoration:none;"><span class="display-flex align-center"><?php echo $LANG_ACCOUNTCENTER_CARD_PERSONALDETAILS_LINKTEXT; ?> <span class="lnr lnr-chevron-right" style="margin-left:10px;"></span></span></a>
-                                </div>
-                            </div>
-                            <div class="caliweb-card dashboard-card account-center-cards">
-                                <div class="card-body">
-                                    <h4 class="text-bold font-size-20 no-padding"><?php echo $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TITLE; ?></h4>
-                                    <p class="font-12px" style="padding-top:20px;"><?php echo $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_TEXT; ?></p</div>
-                                </div>
-                                <div style="margin-top:20px;">
-                                    <a href="/dashboard/accountManagement/privacyAndSecurity/" class="careers-link" style="text-decoration:none;"><span class="display-flex align-center"><?php echo $LANG_ACCOUNTCENTER_CARD_PRIVACYANDSECURITY_LINKTEXT; ?> <span class="lnr lnr-chevron-right" style="margin-left:10px;"></span></span></a>
+                                <div class="profileInfoProfileImage">
+                                    <img src="" class="profileImage" style="height:70px; width:70px;" />
                                 </div>
                             </div>
                         </div>
@@ -58,10 +94,10 @@
                 </div>
             </div>
         </div>
-    </section>
+</section>
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>
