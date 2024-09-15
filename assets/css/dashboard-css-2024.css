@@ -1309,6 +1309,50 @@ textarea.swal2-input {
     border-bottom-right-radius: 8px !important;
 }
 
+/* =================== Cali Web Design Account Center Styling =================== */
+
+.newRedesignedSettingsSpacing {
+    grid-column-gap: 90px;
+    grid-row-gap: 10px !important;
+}
+
+.settings-area {
+    width:100%;
+}
+
+.profile-area {
+    margin-top:4%;
+}
+
+.textAreaSpacing {
+    margin-top:20px;
+}
+
+.buttonArea {
+    margin-top:6%;
+}
+
+.integrations {
+    width:50%;
+    margin-top:6%;
+}
+
+.accountInfoArea {
+    margin-top:4%;
+}
+
+.caliweb-button.primary.red {
+    background-color: #ffbbbb;
+    border:1px solid #ffdad9;
+    color:#000;
+}
+
+.caliweb-button.primary.red:hover {
+    background-color: #f79292;
+    border: 1px solid #f79292;
+    color: #000;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {
