@@ -1,7 +1,5 @@
 <?php
 
-
-    
-
+    // The deployment script.
 
 ?>
