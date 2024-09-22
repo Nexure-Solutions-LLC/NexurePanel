@@ -132,26 +132,26 @@ if (strtolower($currentAccount->role->name) == "customer") {
                     <div class="width-25">
                         <?php
 
-                        if ($result->num_rows > 0) {
+                            if ($result->num_rows > 0) {
 
-                            echo '<select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">';
+                                echo '<select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">';
 
-                            while ($row = $result->fetch_assoc()) {
+                                while ($row = $result->fetch_assoc()) {
 
-                                echo '<option>' . htmlspecialchars($row['domainName']) . '</option>';
-                            }
+                                    echo '<option>' . htmlspecialchars($row['domainName']) . '</option>';
+                                }
 
-                            echo '</select>';
-                        } else {
+                                echo '</select>';
+                            } else {
 
-                            echo '
-                                        
-                                            <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
-                                                <option>No domains available</option>
-                                            </select>
+                                echo '
                                             
-                                        ';
-                        }
+                                    <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
+                                        <option>No domains available</option>
+                                    </select>
+                                    
+                                ';
+                            }
 
                         ?>
                     </div>

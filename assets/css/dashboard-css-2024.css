@@ -1353,6 +1353,13 @@ textarea.swal2-input {
     color: #000;
 }
 
+/* =================== Cali Web Design Domain Checker Styling =================== */
+
+.domain-search {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
 /* =================== Cali Web Design Dashboard Preloader =================== */
 
 .loading-bar-inner {
