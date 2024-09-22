@@ -75,7 +75,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:85vh;">
+                <div class="caliweb-card dashboard-card custom-padding-account-card" style="padding-bottom:0; background-color: #f1f1f1">
+                    <div class="card-header-account" style="margin-bottom:0; border-bottom:0;">
+                        <div class="display-flex align-center">
+                            <div class="no-padding margin-10px-right icon-size-formatted">
+                                <img src="/assets/img/systemIcons/settingsicon.png" alt="Settings Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
+                            </div>
+                            <div>
+                                <p class="no-padding font-14px" style="padding-bottom:4px;">Settings</p>
+                                <h4 class="text-bold font-size-16 no-padding display-flex align-center">
+                                    General
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:73.5vh;">
                     <div>
                         <h3 style="font-size:18px; margin-top:10px; margin-bottom:4%;">Company Information</h3>
                         <div class="dashboard-table">

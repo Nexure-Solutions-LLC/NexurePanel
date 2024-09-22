@@ -89,6 +89,7 @@
 
                 }
 
+                echo '<li class="nav-links"><a href="/modules/CaliWebDesign/DomainManagement/checker" class="nav-links-clickable">Domain Checker</a></li>';
                 echo '<li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>';
                 echo '<li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>';
                 echo '</ul></li></ul>';
@@ -141,6 +142,7 @@
 
         }
 
+        echo '<li class="nav-links"><a href="/modules/CaliWebDesign/DomainManagement/checker" class="nav-links-clickable">Domain Checker</a></li>';
         echo '<li class="nav-links"><a href="/dashboard/administration/settings" class="nav-links-clickable">System Settings</a></li>';
         echo '<li class="nav-links"><a href="/dashboard/administration/email" class="nav-links-clickable">Corporate Email</a></li>';
         echo '</ul></li></ul>';
