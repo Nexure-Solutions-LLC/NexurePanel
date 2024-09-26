@@ -5,6 +5,7 @@
     $pagetype = "Administration";
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/leadTables/index.php');
     
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -34,7 +35,39 @@
                     <div class="card-body">
                         <div class="dashboard-table">
                             
-                            NULL
+                            <?php
+
+                                $sql = "SELECT * FROM caliweb_leads";
+
+                                function displayTasks($con, $baseSql, $accessLevel, $currentUser)
+                                {
+
+                                    if ($accessLevel === "Executive" || $accessLevel === "Manager") {
+
+                                        $sql = $baseSql;
+
+                                    } else {
+
+                                        $sql = $baseSql . " WHERE assignedAgent = '{$currentUser}'";
+                                    }
+
+                                    leadsHomeListingTable(
+                                        $con,
+                                        $sql,
+                                        ['Assigned Agent', 'Customer Name', 'Account Number', 'Status', 'Actions'],
+                                        ['assignedAgent', 'customerName', 'accountNumber', 'status'],
+                                        ['30%', '20%', '20%', '20%', '10%'],
+                                        [
+                                            'View' => "/dashboard/administration/leads/viewLead/?task_id={id}",
+                                            'Edit' => "/dashboard/administration/tasks/editLead/?task_id={id}",
+                                            'Delete' => "openModal({id})"
+                                        ]
+                                    );
+                                }
+
+                                displayTasks($con, $sql, $currentAccount->accessLevel->name, $currentAccount->legalName);
+
+                            ?>
 
                         </div>
                     </div>
