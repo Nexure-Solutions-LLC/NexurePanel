@@ -1,12 +1,17 @@
 <?php
 
-// Uninitialized values to prevent page load failure
+    // Uninitialized values to prevent page load failure
 
-$pagetitle = '';
-$pagesubtitle = 'Domain Services Management';
-$pagetype = '';
+    $pagetitle = '';
+    $pagesubtitle = 'Domain Services Management';
+    $pagetype = '';
 
-include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    use Dotenv\Dotenv;
+
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+
+    $discord_dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . "/modules/CaliWebDesign/DomainManagement/checker");
+    $discord_dotenv->load();
 
 ?>
 
@@ -45,11 +50,13 @@ include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dash
                             <?php
 
                             if (isset($_GET['domain'])) {
+
                                 $domain = $_GET['domain'];
-                                $apiKey = 'h1Jkp37ks1gW_YcHwL9a2gxjZTjs16NCrST';
-                                $apiSecret = 'Csrp3hvjDxrm45f6juzNEp';
+                                $apiKey = $_ENV['GODADDY_KEY'];
+                                $apiSecret = $_ENV['GODADDY_SECRET'];
 
                                 // Function to check domain availability using GoDaddy API
+
                                 function checkDomainAvailability($apiKey, $apiSecret, $domain)
                                 {
                                     $url = "https://api.godaddy.com/v1/domains/available?domain={$domain}";
@@ -67,16 +74,20 @@ include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dash
                                 }
 
                                 // Check domain availability
+
                                 $availability = checkDomainAvailability($apiKey, $apiSecret, $domain);
 
                                 // Display the result
+
                                 if ($availability['available']) {
                                     echo "<span style='background-color:#D0FFBD; color:#000; border-radius:8px; padding:10px;' class='badge-exact'>Domain Available</span><br><br><p class='mobile-para-domain' style='width:100%; margin-top:1%; font-size:16px;'>The domain <strong>{$domain}</strong> is available for purchase.</p>";
                                 } else {
                                     echo "<span style='background-color:#FFBDBD; color:#000; border-radius:8px; padding:10px;' class='badge-exact'>Domain Not Available</span><br><br><p class='mobile-para-domain' style='width:100%; margin-top:1%; font-size:16px;'>Oh-no! The domain <strong>{$domain}</strong> is already registered. You may continue <a href='#'>searching</a> for another one.</p>";
                                 }
                             } else {
+
                                 // Handle case when the domain parameter is not provided
+
                                 echo "";
                             }
 
