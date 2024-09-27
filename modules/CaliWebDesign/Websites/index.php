@@ -132,26 +132,26 @@ if (strtolower($currentAccount->role->name) == "customer") {
                     <div class="width-25">
                         <?php
 
-                            if ($result->num_rows > 0) {
+                        if ($result->num_rows > 0) {
 
-                                echo '<select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">';
+                            echo '<select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">';
 
-                                while ($row = $result->fetch_assoc()) {
+                            while ($row = $result->fetch_assoc()) {
 
-                                    echo '<option>' . htmlspecialchars($row['domainName']) . '</option>';
-                                }
+                                echo '<option>' . htmlspecialchars($row['domainName']) . '</option>';
+                            }
 
-                                echo '</select>';
-                            } else {
+                            echo '</select>';
+                        } else {
 
-                                echo '
+                            echo '
                                             
                                     <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
                                         <option>No domains available</option>
                                     </select>
                                     
                                 ';
-                            }
+                        }
 
                         ?>
                     </div>
@@ -365,6 +365,104 @@ if (strtolower($currentAccount->role->name) == "customer") {
                         <div class="caliweb-card dashboard-card">
 
                             <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Websites/Backend/Menus/index.php'); ?>
+
+                            <div class="website-info-content">
+                                <div class="website-bottom-part">
+                                    <div class="caliweb-grid caliweb-three-grid" style="grid-column-gap:20px; grid-row-gap:30px;">
+                                        <a href="/modules/CaliWebDesign/Websites/siteBuilder" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/website-builder.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Edit Website</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">Edit your websites quickly and seamlessly.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/terminal/" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/terminal.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Terminal</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">Run commands using the command line for your website.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/fileManager" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/folder.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">File Manager</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">Edit your websites files, change permissions or delete files.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/logFiles" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/log-file.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">System Logs</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">View your websites IP, access logs and visitor logs.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/speedTest" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/page-speed.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Speed Test</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">Review insights into how your websites speed is performing.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/backupServices" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/synchronize.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Backups</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">We call this the oops zone, Create or restore backups here.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/cloudflareSync" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/cloudflare.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Cloudflare</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">Manage your Cloudflare services right from our system.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/sslTLSSecurity" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/encrypt.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">SSL/TLS Security</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">This section manages your websites secutity settings.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/monitoringServices" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/monitoring.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Monitoring</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">This section manages your monitoring service with.</p>
+                                            </div>
+                                        </a>
+                                        <a href="/modules/CaliWebDesign/Websites/gitHub" style="text-decoration:none;" class="dark-mode-white">
+                                            <div class="caliweb-web-manage-btn">
+                                                <p style="font-weight:700; display:flex; align-items:center;">
+                                                    <img src="/assets/img/systemIcons/github.png" style="height:20px; margin-right:10px; width:20px;" />
+                                                    <span style="font-family: 'Mona Sans', sans-serif;">Manage GitHub</span>
+                                                </p>
+                                                <p style="font-size:12px; margin-top:10px;">Push from and Pull or Deploy to GitHub effortlessly.</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
 
                         </div>
                     </div>
