@@ -5,6 +5,7 @@
     $pagetype = "";
 
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
 
     $accountModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
@@ -30,7 +31,43 @@
             <div>
                 <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Account/Management/Headers/index.php'); ?>
                 <div class="caliweb-card dashboard-card" style="margin-top:1%;">
+                    <div class="display-flex align-center" style="justify-content:space-between;">
+                        <div>
+                            <h3 style="font-size:18px; padding-top:0%; margin-bottom:4%;">Personal Information</h3>
+                        </div>
+                    </div>
+                    <div class="dashboard-table" style="margin-top:4%;">
+                        <?php
 
+                            settingsManageListingTable(
+                                $con,
+                                "SELECT * FROM caliweb_users WHERE email = '" . $currentAccount->email . "'",
+                                ['Legal Name', 'Email', 'Mobile Number', 'Account Number', 'Role'],
+                                ['legalName', 'email', 'mobileNumber', 'accountNumber', 'userrole'],
+                                ['20%', '20%', '20%', '20%', '20%']
+                            );
+
+                        ?>
+                    </div>
+                    <br>
+                    <div class="display-flex align-center" style="justify-content:space-between;">
+                        <div>
+                            <h3 style="font-size:18px; padding-top:4%; margin-bottom:4%;">Address Information</h3>
+                        </div>
+                    </div>
+                    <div class="dashboard-table" style="margin-top:4%;">
+                        <?php
+
+                            settingsManageListingTable(
+                                $con,
+                                "SELECT * FROM caliweb_ownershipinformation WHERE emailAddress = '" . $currentAccount->email . "'",
+                                ['Address Line 1', 'Address Line 2', 'City', 'State', 'Country', 'Postal Code'],
+                                ['addressline1', 'addressline2', 'city', 'state', 'country', 'postalcode'],
+                                ['40%', '20%', '10%', '10%', '10%']
+                            );
+
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
