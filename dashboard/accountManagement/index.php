@@ -20,7 +20,7 @@
             <div class="caliweb-card dashboard-card sidebar-card">
                 <aside class="caliweb-sidebar">
                     <ul class="sidebar-list-linked">
-                        <li class="sidebar-link active"><a href="/dashboard/administration/settings/" class="sidebar-link-a">General</a></li>
+                        <li class="sidebar-link active"><a href="/dashboard/accountManagement" class="sidebar-link-a">General</a></li>
                         <li class="sidebar-link"><a href="/dashboard/accountManagement/integrations" class="sidebar-link-a">Integrations</a></li>
                         <li class="sidebar-link"><a href="/dashboard/accountManagement/security" class="sidebar-link-a">Security Settings</a></li>
                         <li class="sidebar-link"><a href="/dashboard/accountManagement/caliaccounts" class="sidebar-link-a">Cali Account Settings</a></li>
