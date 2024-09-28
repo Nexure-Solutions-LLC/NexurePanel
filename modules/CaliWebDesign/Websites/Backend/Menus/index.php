@@ -1,9 +1,10 @@
 <?php
 
     $tabs = [
-        "Hosting" => "#",
-        "DNS" => "/modules/CaliWebDesign/DomainManagement/Dns",
-        "Mail" => "/modules/CaliWebDesign/EmailManagement/",
+        "General" => "#",
+        "Site Editor" => "#",
+        "Terminal" => "#",
+        "File Manager" => "#",
         "Settings" => "/modules/CaliWebDesign/Websites/settings",
     ];
 

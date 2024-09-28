@@ -145,12 +145,12 @@ if (strtolower($currentAccount->role->name) == "customer") {
                         } else {
 
                             echo '
-                                            
-                                    <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
-                                        <option>No domains available</option>
-                                    </select>
-                                    
-                                ';
+                                                
+                                        <select class="form-input with-border-special" name="websiteSelector" id="websiteSelector" style="margin-top:0;">
+                                            <option>No domains available</option>
+                                        </select>
+                                        
+                                    ';
                         }
 
                         ?>
@@ -290,23 +290,35 @@ if (strtolower($currentAccount->role->name) == "customer") {
                             <div class="caliweb-horizantal-spacer" style="margin-top:15px; margin-bottom:15px;"></div>
                         </div>
                         <div class="card-body">
-                            <div class="caliweb-three-grid" style="grid-column-gap: 32px;">
+                            <div class="caliweb-three-grid" style="grid-column-gap: 32px; grid-row-gap: 32px;">
                                 <div class="caliweb-card dashboard-card account-center-cards">
                                     <div class="card-body">
-                                        <p class="font-12px" style="padding-bottom:20px;">Site Sessions</p< /div>
+                                        <p class="font-12px" style="padding-bottom:20px;">Site Sessions</p>
                                         <h4 class="text-bold font-size-20 no-padding">5,102</h4>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card account-center-cards">
                                     <div class="card-body">
-                                        <p class="font-12px" style="padding-bottom:20px;">Actions</p< /div>
+                                        <p class="font-12px" style="padding-bottom:20px;">Actions</p>
                                         <h4 class="text-bold font-size-20 no-padding">5,099</h4>
                                     </div>
                                 </div>
                                 <div class="caliweb-card dashboard-card account-center-cards">
                                     <div class="card-body">
-                                        <p class="font-12px" style="padding-bottom:20px;">Contact Requests</p< /div>
+                                        <p class="font-12px" style="padding-bottom:20px;">Contact Requests</p>
                                         <h4 class="text-bold font-size-20 no-padding">4,673</h4>
+                                    </div>
+                                </div>
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Bandwidth Usage</p>
+                                        <h4 class="text-bold font-size-20 no-padding">4.6 GB</h4>
+                                    </div>
+                                </div>
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Diskspace Used</p>
+                                        <h4 class="text-bold font-size-20 no-padding">172.82 MB</h4>
                                     </div>
                                 </div>
                             </div>
@@ -364,8 +376,42 @@ if (strtolower($currentAccount->role->name) == "customer") {
                     <div>
                         <div class="caliweb-card dashboard-card">
 
-                            <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Websites/Backend/Menus/index.php'); ?>
+                            <div class="caliweb-three-grid" style="grid-column-gap: 32px; grid-row-gap: 32px;">
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Site Sessions</p>
+                                        <h4 class="text-bold font-size-20 no-padding">5,102</h4>
+                                    </div>
+                                </div>
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Actions</p>
+                                        <h4 class="text-bold font-size-20 no-padding">5,099</h4>
+                                    </div>
+                                </div>
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Contact Requests</p>
+                                        <h4 class="text-bold font-size-20 no-padding">4,673</h4>
+                                    </div>
+                                </div>
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Bandwidth Usage</p>
+                                        <h4 class="text-bold font-size-20 no-padding">4.6 GB</h4>
+                                    </div>
+                                </div>
+                                <div class="caliweb-card dashboard-card account-center-cards">
+                                    <div class="card-body">
+                                        <p class="font-12px" style="padding-bottom:20px;">Diskspace Used</p>
+                                        <h4 class="text-bold font-size-20 no-padding">172.82 MB</h4>
+                                    </div>
+                                </div>
+                            </div>
 
+                        </div>
+                        <div class="caliweb-card dashboard-card" style="margin-top:1%;">
+                            <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Websites/Backend/Menus/index.php'); ?>
                             <div class="website-info-content">
                                 <div class="website-bottom-part">
                                     <div class="caliweb-grid caliweb-three-grid" style="grid-column-gap:20px; grid-row-gap:30px;">
@@ -461,9 +507,7 @@ if (strtolower($currentAccount->role->name) == "customer") {
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
                     </div>
                     <div>
