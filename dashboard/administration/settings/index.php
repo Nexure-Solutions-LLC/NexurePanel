@@ -1,50 +1,50 @@
 <?php
-$pagetitle = "Settings";
-$pagesubtitle = "System Setup";
-$pagetype = "Administration";
+    $pagetitle = "Settings";
+    $pagesubtitle = "System Setup";
+    $pagetype = "Administration";
 
-include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
 
-echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
+    echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
-// Setting Update Logic
+    // Setting Update Logic
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $current_time = time();
+        $current_time = time();
 
-    // Check if the last submission time is stored in the session
+        // Check if the last submission time is stored in the session
 
-    if (isset($_SESSION['last_submit_time'])) {
+        if (isset($_SESSION['last_submit_time'])) {
 
-        $time_diff = $current_time - $_SESSION['last_submit_time'];
+            $time_diff = $current_time - $_SESSION['last_submit_time'];
 
-        if ($time_diff < 5) {
+            if ($time_diff < 5) {
 
-            header("Location: /error/rateLimit");
-            exit;
+                header("Location: /error/rateLimit");
+                exit;
+            }
         }
+
+        // If the rate limit check passes, update the last submission time
+
+        $_SESSION['last_submit_time'] = $current_time;
+
+        // Continue with processing the form data
+
+        $panelTheme = mysqli_real_escape_string($con, $_POST["panelTheme"]);
+        $panelMaintenanceMode = mysqli_real_escape_string($con, $_POST["panelMaintenanceMode"]);
+        $panelMaintenanceModeMessage = mysqli_real_escape_string($con, $_POST["maintenanceModeMessage"]);
+        $paymentDescriptor = mysqli_real_escape_string($con, $_POST["paymentDescriptor"]);
+        $registrationMode = mysqli_real_escape_string($con, $_POST["registrationMode"]);
+
+        $query = "UPDATE `caliweb_panelconfig` SET `panelTheme`='$panelTheme',`maintainenceMode`='$panelMaintenanceMode',`paymentDescriptor`='$paymentDescriptor',`maintenanceModeMessage`='$panelMaintenanceModeMessage',`isRegEnabled`='[value-25]' WHERE id = '1'";
+        $result = mysqli_query($con, $query);
+
+        header("location:/dashboard/administration/settings");
+        exit;
     }
-
-    // If the rate limit check passes, update the last submission time
-
-    $_SESSION['last_submit_time'] = $current_time;
-
-    // Continue with processing the form data
-
-    $panelTheme = mysqli_real_escape_string($con, $_POST["panelTheme"]);
-    $panelMaintenanceMode = mysqli_real_escape_string($con, $_POST["panelMaintenanceMode"]);
-    $panelMaintenanceModeMessage = mysqli_real_escape_string($con, $_POST["maintenanceModeMessage"]);
-    $paymentDescriptor = mysqli_real_escape_string($con, $_POST["paymentDescriptor"]);
-    $registrationMode = mysqli_real_escape_string($con, $_POST["registrationMode"]);
-
-    $query = "UPDATE `caliweb_panelconfig` SET `panelTheme`='$panelTheme',`maintainenceMode`='$panelMaintenanceMode',`paymentDescriptor`='$paymentDescriptor',`maintenanceModeMessage`='$panelMaintenanceModeMessage',`isRegEnabled`='[value-25]' WHERE id = '1'";
-    $result = mysqli_query($con, $query);
-
-    header("location:/dashboard/administration/settings");
-    exit;
-}
 
 ?>
 
@@ -96,13 +96,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="dashboard-table">
                             <?php
 
-                            settingsManageListingTable(
-                                $con,
-                                "SELECT * FROM caliweb_panelconfig WHERE id = 1",
-                                ['DBA Name', 'Company Legal Name', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Payment Descriptor'],
-                                ['organizationShortName', 'organization', 'organizationAddress', 'organizationCity', 'organizationState', 'organizationZipcode', 'organizationCountry', 'paymentDescriptor'],
-                                ['10%', '17%', '20%', '10%', '10%', '8%', '12%', '15%']
-                            );
+                                settingsManageListingTable(
+                                    $con,
+                                    "SELECT * FROM caliweb_panelconfig WHERE id = 1",
+                                    ['DBA Name', 'Company Legal Name', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Payment Descriptor'],
+                                    ['organizationShortName', 'organization', 'organizationAddress', 'organizationCity', 'organizationState', 'organizationZipcode', 'organizationCountry', 'paymentDescriptor'],
+                                    ['10%', '17%', '20%', '10%', '10%', '8%', '12%', '15%']
+                                );
 
                             ?>
                         </div>
@@ -113,13 +113,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="dashboard-table">
                             <?php
 
-                            settingsManageListingTable(
-                                $con,
-                                "SELECT * FROM caliweb_users WHERE id = 1",
-                                ['Legal Name', 'Phone Number', 'Email', 'Role', 'Access Level', 'Account Status', 'Email Verification', 'Setup Date'],
-                                ['legalName', 'mobileNumber', 'email', 'userrole', 'employeeAccessLevel', 'accountStatus', 'emailVerfied', 'registrationDate'],
-                                ['10%', '12%', '23%', '10%', '10%', '10%', '12%', '15%']
-                            );
+                                settingsManageListingTable(
+                                    $con,
+                                    "SELECT * FROM caliweb_users WHERE id = 1",
+                                    ['Legal Name', 'Phone Number', 'Email', 'Role', 'Access Level', 'Account Status', 'Email Verification', 'Setup Date'],
+                                    ['legalName', 'mobileNumber', 'email', 'userrole', 'employeeAccessLevel', 'accountStatus', 'emailVerfied', 'registrationDate'],
+                                    ['10%', '12%', '23%', '10%', '10%', '10%', '12%', '15%']
+                                );
 
                             ?>
                         </div>
