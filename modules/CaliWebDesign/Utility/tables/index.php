@@ -60,7 +60,7 @@
             try {
 
                 $dateObj = new DateTime($date);
-                return $dateObj->format('m/d/Y g:i A');
+                return $dateObj->format('m/d/Y');
 
             } catch (\Throwable $exception) {
             
