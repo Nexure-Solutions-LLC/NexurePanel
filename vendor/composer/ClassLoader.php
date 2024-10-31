@@ -42,11 +42,19 @@ namespace Composer\Autoload;
  */
 class ClassLoader
 {
+<<<<<<< HEAD
     /** @var ?string */
+=======
+    /** @var \Closure(string):void */
+    private static $includeFile;
+
+    /** @var string|null */
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
     private $vendorDir;
 
     // PSR-4
     /**
+<<<<<<< HEAD
      * @var array[]
      * @psalm-var array<string, array<string, int>>
      */
@@ -59,11 +67,23 @@ class ClassLoader
     /**
      * @var array[]
      * @psalm-var array<string, string>
+=======
+     * @var array<string, array<string, int>>
+     */
+    private $prefixLengthsPsr4 = array();
+    /**
+     * @var array<string, list<string>>
+     */
+    private $prefixDirsPsr4 = array();
+    /**
+     * @var list<string>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     private $fallbackDirsPsr4 = array();
 
     // PSR-0
     /**
+<<<<<<< HEAD
      * @var array[]
      * @psalm-var array<string, array<string, string[]>>
      */
@@ -71,6 +91,17 @@ class ClassLoader
     /**
      * @var array[]
      * @psalm-var array<string, string>
+=======
+     * List of PSR-0 prefixes
+     *
+     * Structured as array('F (first letter)' => array('Foo\Bar (full prefix)' => array('path', 'path2')))
+     *
+     * @var array<string, array<string, list<string>>>
+     */
+    private $prefixesPsr0 = array();
+    /**
+     * @var list<string>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     private $fallbackDirsPsr0 = array();
 
@@ -78,8 +109,12 @@ class ClassLoader
     private $useIncludePath = false;
 
     /**
+<<<<<<< HEAD
      * @var string[]
      * @psalm-var array<string, string>
+=======
+     * @var array<string, string>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     private $classMap = array();
 
@@ -87,6 +122,7 @@ class ClassLoader
     private $classMapAuthoritative = false;
 
     /**
+<<<<<<< HEAD
      * @var bool[]
      * @psalm-var array<string, bool>
      */
@@ -97,19 +133,42 @@ class ClassLoader
 
     /**
      * @var self[]
+=======
+     * @var array<string, bool>
+     */
+    private $missingClasses = array();
+
+    /** @var string|null */
+    private $apcuPrefix;
+
+    /**
+     * @var array<string, self>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     private static $registeredLoaders = array();
 
     /**
+<<<<<<< HEAD
      * @param ?string $vendorDir
+=======
+     * @param string|null $vendorDir
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public function __construct($vendorDir = null)
     {
         $this->vendorDir = $vendorDir;
+<<<<<<< HEAD
     }
 
     /**
      * @return string[]
+=======
+        self::initializeIncludeClosure();
+    }
+
+    /**
+     * @return array<string, list<string>>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public function getPrefixes()
     {
@@ -121,8 +180,12 @@ class ClassLoader
     }
 
     /**
+<<<<<<< HEAD
      * @return array[]
      * @psalm-return array<string, array<int, string>>
+=======
+     * @return array<string, list<string>>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public function getPrefixesPsr4()
     {
@@ -130,8 +193,12 @@ class ClassLoader
     }
 
     /**
+<<<<<<< HEAD
      * @return array[]
      * @psalm-return array<string, string>
+=======
+     * @return list<string>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public function getFallbackDirs()
     {
@@ -139,8 +206,12 @@ class ClassLoader
     }
 
     /**
+<<<<<<< HEAD
      * @return array[]
      * @psalm-return array<string, string>
+=======
+     * @return list<string>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public function getFallbackDirsPsr4()
     {
@@ -148,8 +219,12 @@ class ClassLoader
     }
 
     /**
+<<<<<<< HEAD
      * @return string[] Array of classname => path
      * @psalm-return array<string, string>
+=======
+     * @return array<string, string> Array of classname => path
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public function getClassMap()
     {
@@ -157,8 +232,12 @@ class ClassLoader
     }
 
     /**
+<<<<<<< HEAD
      * @param string[] $classMap Class to filename map
      * @psalm-param array<string, string> $classMap
+=======
+     * @param array<string, string> $classMap Class to filename map
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      *
      * @return void
      */
@@ -175,24 +254,42 @@ class ClassLoader
      * Registers a set of PSR-0 directories for a given prefix, either
      * appending or prepending to the ones previously set for this prefix.
      *
+<<<<<<< HEAD
      * @param string          $prefix  The prefix
      * @param string[]|string $paths   The PSR-0 root directories
      * @param bool            $prepend Whether to prepend the directories
+=======
+     * @param string              $prefix  The prefix
+     * @param list<string>|string $paths   The PSR-0 root directories
+     * @param bool                $prepend Whether to prepend the directories
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      *
      * @return void
      */
     public function add($prefix, $paths, $prepend = false)
     {
+<<<<<<< HEAD
         if (!$prefix) {
             if ($prepend) {
                 $this->fallbackDirsPsr0 = array_merge(
                     (array) $paths,
+=======
+        $paths = (array) $paths;
+        if (!$prefix) {
+            if ($prepend) {
+                $this->fallbackDirsPsr0 = array_merge(
+                    $paths,
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                     $this->fallbackDirsPsr0
                 );
             } else {
                 $this->fallbackDirsPsr0 = array_merge(
                     $this->fallbackDirsPsr0,
+<<<<<<< HEAD
                     (array) $paths
+=======
+                    $paths
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                 );
             }
 
@@ -201,19 +298,31 @@ class ClassLoader
 
         $first = $prefix[0];
         if (!isset($this->prefixesPsr0[$first][$prefix])) {
+<<<<<<< HEAD
             $this->prefixesPsr0[$first][$prefix] = (array) $paths;
+=======
+            $this->prefixesPsr0[$first][$prefix] = $paths;
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
             return;
         }
         if ($prepend) {
             $this->prefixesPsr0[$first][$prefix] = array_merge(
+<<<<<<< HEAD
                 (array) $paths,
+=======
+                $paths,
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                 $this->prefixesPsr0[$first][$prefix]
             );
         } else {
             $this->prefixesPsr0[$first][$prefix] = array_merge(
                 $this->prefixesPsr0[$first][$prefix],
+<<<<<<< HEAD
                 (array) $paths
+=======
+                $paths
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
             );
         }
     }
@@ -222,9 +331,15 @@ class ClassLoader
      * Registers a set of PSR-4 directories for a given namespace, either
      * appending or prepending to the ones previously set for this namespace.
      *
+<<<<<<< HEAD
      * @param string          $prefix  The prefix/namespace, with trailing '\\'
      * @param string[]|string $paths   The PSR-4 base directories
      * @param bool            $prepend Whether to prepend the directories
+=======
+     * @param string              $prefix  The prefix/namespace, with trailing '\\'
+     * @param list<string>|string $paths   The PSR-4 base directories
+     * @param bool                $prepend Whether to prepend the directories
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      *
      * @throws \InvalidArgumentException
      *
@@ -232,17 +347,29 @@ class ClassLoader
      */
     public function addPsr4($prefix, $paths, $prepend = false)
     {
+<<<<<<< HEAD
+=======
+        $paths = (array) $paths;
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         if (!$prefix) {
             // Register directories for the root namespace.
             if ($prepend) {
                 $this->fallbackDirsPsr4 = array_merge(
+<<<<<<< HEAD
                     (array) $paths,
+=======
+                    $paths,
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                     $this->fallbackDirsPsr4
                 );
             } else {
                 $this->fallbackDirsPsr4 = array_merge(
                     $this->fallbackDirsPsr4,
+<<<<<<< HEAD
                     (array) $paths
+=======
+                    $paths
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                 );
             }
         } elseif (!isset($this->prefixDirsPsr4[$prefix])) {
@@ -252,18 +379,30 @@ class ClassLoader
                 throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
             }
             $this->prefixLengthsPsr4[$prefix[0]][$prefix] = $length;
+<<<<<<< HEAD
             $this->prefixDirsPsr4[$prefix] = (array) $paths;
         } elseif ($prepend) {
             // Prepend directories for an already registered namespace.
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 (array) $paths,
+=======
+            $this->prefixDirsPsr4[$prefix] = $paths;
+        } elseif ($prepend) {
+            // Prepend directories for an already registered namespace.
+            $this->prefixDirsPsr4[$prefix] = array_merge(
+                $paths,
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                 $this->prefixDirsPsr4[$prefix]
             );
         } else {
             // Append directories for an already registered namespace.
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 $this->prefixDirsPsr4[$prefix],
+<<<<<<< HEAD
                 (array) $paths
+=======
+                $paths
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
             );
         }
     }
@@ -272,8 +411,13 @@ class ClassLoader
      * Registers a set of PSR-0 directories for a given prefix,
      * replacing any others previously set for this prefix.
      *
+<<<<<<< HEAD
      * @param string          $prefix The prefix
      * @param string[]|string $paths  The PSR-0 base directories
+=======
+     * @param string              $prefix The prefix
+     * @param list<string>|string $paths  The PSR-0 base directories
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      *
      * @return void
      */
@@ -290,8 +434,13 @@ class ClassLoader
      * Registers a set of PSR-4 directories for a given namespace,
      * replacing any others previously set for this namespace.
      *
+<<<<<<< HEAD
      * @param string          $prefix The prefix/namespace, with trailing '\\'
      * @param string[]|string $paths  The PSR-4 base directories
+=======
+     * @param string              $prefix The prefix/namespace, with trailing '\\'
+     * @param list<string>|string $paths  The PSR-4 base directories
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      *
      * @throws \InvalidArgumentException
      *
@@ -425,7 +574,12 @@ class ClassLoader
     public function loadClass($class)
     {
         if ($file = $this->findFile($class)) {
+<<<<<<< HEAD
             includeFile($file);
+=======
+            $includeFile = self::$includeFile;
+            $includeFile($file);
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
             return true;
         }
@@ -476,9 +630,15 @@ class ClassLoader
     }
 
     /**
+<<<<<<< HEAD
      * Returns the currently registered loaders indexed by their corresponding vendor directories.
      *
      * @return self[]
+=======
+     * Returns the currently registered loaders keyed by their corresponding vendor directories.
+     *
+     * @return array<string, self>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
      */
     public static function getRegisteredLoaders()
     {
@@ -555,6 +715,7 @@ class ClassLoader
 
         return false;
     }
+<<<<<<< HEAD
 }
 
 /**
@@ -569,4 +730,28 @@ class ClassLoader
 function includeFile($file)
 {
     include $file;
+=======
+
+    /**
+     * @return void
+     */
+    private static function initializeIncludeClosure()
+    {
+        if (self::$includeFile !== null) {
+            return;
+        }
+
+        /**
+         * Scope isolated include.
+         *
+         * Prevents access to $this/self from included files.
+         *
+         * @param  string $file
+         * @return void
+         */
+        self::$includeFile = \Closure::bind(static function($file) {
+            include $file;
+        }, null, null);
+    }
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 }
