@@ -666,6 +666,7 @@ html[data-theme='dark'] body {
     padding-bottom: 10px;
     background-color: #f1f1f1;
     padding: 10px;
+    padding-left:20px;
     border-radius: 6px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
