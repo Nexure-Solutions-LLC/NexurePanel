@@ -15,6 +15,16 @@
 
     class AccountHandler {
         
+<<<<<<< HEAD
+=======
+        public $id;
+        public $password;
+        public $accountNotes;
+        public $emailVerfied;
+        public $firstInteractionDate;
+        public $lastInteractionDate;
+        public $lang;
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         public string $legalName;
         public string $mobileNumber;
         public string $email;
@@ -816,6 +826,10 @@
         public $emailverifydate;
         public $emailverifydateformatted;
         public $emailverifydateformattedfinal;
+<<<<<<< HEAD
+=======
+        public $emailverifystatus;
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
         public $employeeAccountInfo;
         public $employeename;

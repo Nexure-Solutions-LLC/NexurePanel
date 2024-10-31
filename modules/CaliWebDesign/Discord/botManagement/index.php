@@ -6,7 +6,11 @@
     $pagesubtitle = 'Discord Hosting Services Management';
     $pagetype = '';
 
+<<<<<<< HEAD
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+=======
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
     $accountnumber = $_GET['account_number'] ?? '';
 
@@ -17,14 +21,22 @@
         header("Location: /dashboard/customers/");
 
         exit;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
     }
 
     $accountnumber = $accountnumber;
 
     $role = $currentAccount->role->name;
 
+<<<<<<< HEAD
     function setPageTitleAndType($role)
     {
+=======
+    function setPageTitleAndType($role) {
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
         $titles = [
             'customer' => 'Client',
@@ -41,16 +53,27 @@
                 'title' => $titles[$roleLower],
                 'type' => $titles[$roleLower]
             ];
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         } else {
 
             header("Location: /error/genericSystemError/");
 
             exit();
         }
+<<<<<<< HEAD
     }
 
     function fetchCustomerAccount($con, $accountnumber)
     {
+=======
+
+    }
+
+    function fetchCustomerAccount($con, $accountnumber) {
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
         $query = "SELECT * FROM caliweb_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
 
@@ -61,17 +84,31 @@
         while ($row = mysqli_fetch_array($result)) {
 
             $info[] = $row;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         }
 
         mysqli_free_result($result);
 
         return $info;
+<<<<<<< HEAD
     }
 
     function displayPageTitle($pagetitle, $pagesubtitle)
     {
 
         echo '<title>' . htmlspecialchars($pagetitle, ENT_QUOTES, 'UTF-8') . ' | ' . htmlspecialchars($pagesubtitle, ENT_QUOTES, 'UTF-8') . '</title>';
+=======
+
+    }
+
+    function displayPageTitle($pagetitle, $pagesubtitle) {
+
+        echo '<title>' . htmlspecialchars($pagetitle, ENT_QUOTES, 'UTF-8') . ' | ' . htmlspecialchars($pagesubtitle, ENT_QUOTES, 'UTF-8') . '</title>';
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
     }
 
     if (strtolower($currentAccount->role->name) == "customer") {
@@ -83,17 +120,30 @@
             header("location: /dashboard/customers/");
 
             exit;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         }
 
         if (isset($currentAccount->role->name)) {
 
             $pageInfo = setPageTitleAndType($currentAccount->role->name);
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
             $pagetitle = $pageInfo['title'];
 
             $pagesubtitle =  $pagesubtitle;
 
             $pagetype = $pageInfo['type'];
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         }
 
         $domainName = "caliwebdesignservices.com";
@@ -103,10 +153,15 @@
         if (in_array($pagetitle, $clientPages) || (isset($pagesubtitle) && $pagesubtitle == "Client") || $pagetype == "Client") {
 
             echo '<link href="/assets/css/client-dashboard-css-2024.css" rel="stylesheet" type="text/css" />';
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         }
 
 ?>
 
+<<<<<<< HEAD
     <!-- HTML Content for customer users view -->
 
     <section class="first-dashboard-area-cards">
@@ -144,10 +199,89 @@
                                         <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Stop</button>
                                         <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Restart</button>
                                         <button class="caliweb-button secondary red" style="margin-left:10px;" onclick="" name="" type="">Destroy</button>
+=======
+        <!-- HTML Content for customer users view -->
+
+        <section class="first-dashboard-area-cards">
+
+            <section class="section caliweb-section customer-dashboard-greeting-section">
+                <div class="container caliweb-container">
+                    <div class="display-flex align-center" style="justify-content:space-between;">
+                        <div>
+                            <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design Bot Hosting / Home Page</p>
+                        </div>
+                        <div class="width-25">
+                            <select class="form-input with-border-special" name="discordbotselector" id="discordbotselector" style="margin-top:0;">
+                                <option>Discord Bot 1</option>
+                                <option>Discord Bot 2</option>
+                                <option>Discord Bot 3</option>
+                                <option>Discord Bot 4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section caliweb-section customer-dashboard-section" style="padding-bottom:60px;">
+                <div class="container caliweb-container">
+                    <div class="caliweb-one-grid" style="grid-row-gap: 32px;">
+                        <div class="caliweb-card dashboard-card" style="padding:30px;">
+                            <div class="display-flex align-center" style="justify-content:space-between;">
+                                <div class="title">
+                                    <h4 class="font-size-20" style="padding:0; margin:0;">Discord Bot 1</h4>
+                                </div>
+                                <div class="actionButtons">
+                                    <div class="display-flex align-center">
+                                        <div>
+                                            <button class="caliweb-button secondary" onclick="" name="" type="">Start</button>
+                                            <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Stop</button>
+                                            <button class="caliweb-button secondary" style="margin-left:10px;" onclick="" name="" type="">Restart</button>
+                                            <button class="caliweb-button secondary red" style="margin-left:10px;" onclick="" name="" type="">Destroy</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="caliweb-grid caliweb-two-grid" style="grid-template-columns: 1.5fr .5fr; grid-row-gap: 0px; grid-column-gap:40px;">
+                                <div class="botOutputfromDocker">
+                                    <p>This bot is not started.</p>
+                                </div>
+                                <div class="website-info-content" style="margin-top:10%;">
+                                    <div class="website-bottom-part">
+                                        <div class="caliweb-grid caliweb-one-grid" style="grid-column-gap:20px; grid-row-gap:20px;">
+                                            <a href="/modules/CaliWebDesign/Discord/botManagement/terminal/" style="text-decoration:none;" class="dark-mode-white">
+                                                <div class="caliweb-web-manage-btn">
+                                                    <p style="font-weight:700; display:flex; align-items:center;">
+                                                        <img src="/assets/img/systemIcons/terminal.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                        <span style="font-family: 'Mona Sans', sans-serif;">Terminal</span>
+                                                    </p>
+                                                    <p style="font-size:12px; margin-top:10px;">Run commands using the command line for your bot.</p>
+                                                </div>
+                                            </a>
+                                            <a href="/modules/CaliWebDesign/Discord/botManagement/fileManager" style="text-decoration:none;" class="dark-mode-white">
+                                                <div class="caliweb-web-manage-btn">
+                                                    <p style="font-weight:700; display:flex; align-items:center;">
+                                                        <img src="/assets/img/systemIcons/folder.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                        <span style="font-family: 'Mona Sans', sans-serif;">File Manager</span>
+                                                    </p>
+                                                    <p style="font-size:12px; margin-top:10px;">Edit your bots files, change permissions or delete files.</p>
+                                                </div>
+                                            </a>
+                                            <a href="/modules/CaliWebDesign/Discord/botManagement/gitHub" style="text-decoration:none;" class="dark-mode-white">
+                                                <div class="caliweb-web-manage-btn">
+                                                    <p style="font-weight:700; display:flex; align-items:center;">
+                                                        <img src="/assets/img/systemIcons/github.png" style="height:20px; margin-right:10px; width:20px;" /> 
+                                                        <span style="font-family: 'Mona Sans', sans-serif;">Manage GitHub</span>
+                                                    </p>
+                                                    <p style="font-size:12px; margin-top:10px;">Push from and Pull or Deploy to GitHub effortlessly.</p>
+                                                </div>
+                                            </a>
+                                        </div>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
                                     </div>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="caliweb-grid caliweb-two-grid" style="grid-template-columns: 1.5fr .5fr; grid-row-gap: 0px; grid-column-gap:40px;">
                             <div class="botOutputfromDocker">
                                 <p>This bot is not started.</p>
@@ -206,6 +340,27 @@
 
         displayPageTitle($pagetitle, $pagesubtitle);
 
+=======
+                        <div class="caliweb-card dashboard-card" style="padding:30px;">
+                            <div class="card-header no-padding no-margin customer-card-header" style="padding-top:20px; padding-bottom:20px; border:0;">
+                                <h6 class="no-padding" style="font-size:16px; font-weight:600;">
+                                    <?php echo 'Configuration'; ?>
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+ 
+<?php
+
+    } else if (strtolower($currentAccount->role->name) == "authorized user") {
+        
+        displayPageTitle($pagetitle, $pagesubtitle);
+    
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 ?>
 
     <!-- HTML Content for authorized users view -->
@@ -218,6 +373,10 @@
 
             header("location: /dashboard/administration/accounts/");
             exit;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
         }
 
         $domainName = "caliwebdesignservices.com";
@@ -228,6 +387,7 @@
 ?>
 
 
+<<<<<<< HEAD
     <!-- HTML Content for administrators view -->
 
     <!-- HTML Content for administrators view -->
@@ -311,12 +471,27 @@
         </div>
     </section>
 
+=======
+        <!-- HTML Content for administrators view -->
+
+        <section class="section first-dashboard-area-cards" style="padding-top:2%;">
+            <div class="container width-98">
+                
+            </div>
+        </section>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
 
 <?php
 
     }
 
+<<<<<<< HEAD
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>
+=======
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+
+?>
+>>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
