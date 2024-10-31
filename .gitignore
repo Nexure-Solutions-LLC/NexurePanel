@@ -9,8 +9,7 @@ installation/encodingGeneration
 dashboard/administration/accounts/fileUpload/uploadLogic
 CaliUtilitiesBot/
 CaliUtilitiesBot/*
-<<<<<<< HEAD
 error/errorLogs
 error/errorLogs/*
-=======
->>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
+vendor/
+vendor/*
