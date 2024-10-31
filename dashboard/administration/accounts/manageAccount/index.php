@@ -136,7 +136,7 @@
                                                 "SELECT * FROM caliweb_fileRecords WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['File Name', 'Type', 'Upload Date', 'Actions'],
                                                 ['fileDisplayName', 'fileType', 'fileUploadDate'],
-                                                ['10%', '20%', '15%'],
+                                                ['30%', '40%', '20%'],
                                                 [
                                                     'Download' => "{filePath}",
                                                     'Delete' => "/dashboard/administration/accounts/fileDeletion/?file_path={filePath}"
