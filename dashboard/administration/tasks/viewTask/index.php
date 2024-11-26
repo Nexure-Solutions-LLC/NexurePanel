@@ -4,8 +4,8 @@
     $pagesubtitle = "Details";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/taskTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/tables/taskTables/index.php');
     
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -18,7 +18,7 @@
 
     }
 
-    $manageTaskDefintionK = new \CaliWebDesign\Utility\TaskView();
+    $manageTaskDefintionK = new \NexureSolutions\Utility\TaskView();
     $manageTaskDefintionK->manageTask($con, $taskid);
 
 ?>
@@ -26,7 +26,7 @@
     <section class="section first-dashboard-area-cards">
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Task/Headers/index.php'); ?>
+                <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Task/Headers/index.php'); ?>
                 <div class="caliweb-one-grid special-caliweb-spacing">
                     <div>
                         <div class="caliweb-card dashboard-card">
@@ -53,6 +53,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

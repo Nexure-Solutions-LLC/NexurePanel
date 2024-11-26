@@ -5,7 +5,7 @@
     $_SESSION['pagesubtitle'] = $pagesubtitle = "Assign Account Teams";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountnumber = $_GET['account_number'];
 
@@ -152,7 +152,7 @@
                                                         <option>Please choose an option</option>
                                                         <?php
 
-                                                            $variableDefinitionsP = new \CaliWebDesign\Generic\VariableDefinitions();
+                                                            $variableDefinitionsP = new \NexureSolutions\Generic\VariableDefinitions();
                                                             $options = $variableDefinitionsP->getTeamsOptions($con);
 
                                                         ?>
@@ -173,7 +173,7 @@
 
 <?php
 
-        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+        include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
     } else {
 

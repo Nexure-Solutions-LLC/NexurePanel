@@ -4,7 +4,7 @@
     $pagesubtitle = "Inbox";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
     
@@ -144,6 +144,6 @@
 
 <?php
 
-include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

@@ -4,7 +4,7 @@
     $pagesubtitle = "Make Payment";
     $pagetype = "Client";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountnumber = $_GET['account_number'];
 
@@ -14,7 +14,7 @@
 
     }
 
-    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
     $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".$accountnumber."'");

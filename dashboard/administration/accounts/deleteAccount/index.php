@@ -4,7 +4,7 @@
     $pagesubtitle = "Delete";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountNumber = $_GET['account_number'] ?? '';
     $accountType = $_GET['account_type'] ?? '';
@@ -37,7 +37,7 @@
         exit;
     }
 
-    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountNumber);
 
     if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
@@ -94,6 +94,6 @@
 
     header("location: /dashboard/administration/accounts");
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

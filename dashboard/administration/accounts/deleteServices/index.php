@@ -4,7 +4,7 @@
     $pagesubtitle = "Delete";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountNumber = $_GET['account_number'] ?? '';
     $serviceID = $_GET['service_id'] ?? '';
@@ -55,6 +55,6 @@
 
     header("location: /dashboard/administration/accounts/manageAccount/?account_number=$accountNumber");
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

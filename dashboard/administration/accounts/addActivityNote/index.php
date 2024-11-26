@@ -5,7 +5,7 @@
     $_SESSION['pagesubtitle'] = $pagesubtitle = "Place Account Notices";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountnumber = $_GET['account_number'];
 
@@ -114,7 +114,7 @@
             <div class="container width-98">
                 <div class="caliweb-one-grid special-caliweb-spacing">
                     <div class="caliweb-card dashboard-card">
-                        <form method="POST" action="" id="caliwebdesign-panel-form">
+                        <form method="POST" action="" id="NexureSolutions-panel-form">
                             <div class="card-header">
                                 <div class="display-flex align-center" style="justify-content: space-between;">
                                     <div class="display-flex align-center">
@@ -179,7 +179,7 @@
 
 <?php
 
-        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+        include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
     } else {
 

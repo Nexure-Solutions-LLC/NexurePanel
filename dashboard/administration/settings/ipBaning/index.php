@@ -3,8 +3,8 @@
     $pagesubtitle = "System Setup";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/settingsTables/index.php');
 
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 ?>
@@ -102,6 +102,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

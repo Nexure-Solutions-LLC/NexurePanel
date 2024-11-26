@@ -4,8 +4,8 @@
     $pagesubtitle = 'General';
     $pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/settingsTables/index.php');
 
     $accountModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
@@ -29,7 +29,7 @@
                 </aside>
             </div>
             <div>
-                <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Account/Management/Headers/index.php'); ?>
+                <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Account/Management/Headers/index.php'); ?>
                 <div class="caliweb-card dashboard-card" style="margin-top:1%;">
                     <div class="display-flex align-center" style="justify-content:space-between;">
                         <div>
@@ -76,6 +76,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

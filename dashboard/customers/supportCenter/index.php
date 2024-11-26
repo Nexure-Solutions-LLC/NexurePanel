@@ -4,7 +4,7 @@
     $pagesubtitle = "Customer Service";
     $pagetype = "Client";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $websiteresult = mysqli_query($con, "SELECT * FROM nexure_websites WHERE email = '$caliemail'");
     $websiteinfo = mysqli_fetch_array($websiteresult);
@@ -110,4 +110,4 @@
             </section>
         </section>
 
-<?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php'); ?>
+<?php include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php'); ?>

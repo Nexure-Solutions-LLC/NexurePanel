@@ -8,24 +8,24 @@
     // This installer is opesource under the same license as the panel.
 
     
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php'); 
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php'); 
 
 ?>
 
     <head>
         <title>Cali Panel Installer 20.0.1</title>
-        <script src="https://caliwebdesignservices.com/assets/js/darkmode.js" type="text/javascript"></script>
+        <script src="https://NexureSolutionsservices.com/assets/js/darkmode.js" type="text/javascript"></script>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
-        <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
+        <link href="https://NexureSolutionsservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/login-css-2024.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="apple-touch-icon" sizes="180x180" href="https://caliwebdesignservices.com/assets/img/favico/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://caliwebdesignservices.com/assets/img/favico/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="https://caliwebdesignservices.com/assets/img/favico/favicon-16x16.png">
-        <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://NexureSolutionsservices.com/assets/img/favico/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://NexureSolutionsservices.com/assets/img/favico/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://NexureSolutionsservices.com/assets/img/favico/favicon-16x16.png">
+        <link rel="manifest" href="https://NexureSolutionsservices.com/assets/img/favico/site.webmanifest">
         <script type="text/javascript">   
             window.antiFlicker = {
                 active: true,
@@ -71,6 +71,6 @@
 
 <?php 
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php'); 
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php'); 
 
 ?>

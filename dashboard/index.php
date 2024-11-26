@@ -4,7 +4,7 @@
     $pagesubtitle = "";
     $pagetype = "";
      
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/System/Dashboard.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/System/Dashboard.php");
 
     $accountnumber = $currentAccount->accountNumber;
 
@@ -14,7 +14,7 @@
         
     }
 
-    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
 
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 

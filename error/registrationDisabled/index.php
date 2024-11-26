@@ -21,7 +21,7 @@
 
 ?>
 <!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
-<?php require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php"); ?>
+<?php require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php"); ?>
 
     <!-- 
         Unique Website Title Tag Start 
@@ -60,6 +60,6 @@
         </div>
     </div>
 
-<?php include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); ?>
+<?php include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php"); ?>
 
 <?php } ?>

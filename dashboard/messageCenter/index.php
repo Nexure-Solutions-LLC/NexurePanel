@@ -4,7 +4,7 @@
     $pagesubtitle = 'General';
     $pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -17,7 +17,7 @@
                     <div class="caliweb-card dashboard-card sidebar-card" style="overflow-y: scroll;">
                         <?php
 
-                            include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/MessageCenter/Sidebars/index.php');
+                            include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/MessageCenter/Sidebars/index.php');
 
                         ?>
                     </div>
@@ -53,6 +53,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

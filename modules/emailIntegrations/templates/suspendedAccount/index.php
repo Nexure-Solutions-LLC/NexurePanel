@@ -69,7 +69,7 @@
                     </div>
                     <div class="email-body">
                         <p>Hi,</p>
-                        <p>'.$variableDefinitionX->orgShortName.' here, We are reaching out with a bit of bad news. Your account with us has been suspended due to unusual activity we have noticed. Please <a href="https://caliwebdesignservices.com/contact" class="careers-link">contact us</a> for more information.</p>
+                        <p>'.$variableDefinitionX->orgShortName.' here, We are reaching out with a bit of bad news. Your account with us has been suspended due to unusual activity we have noticed. Please <a href="https://NexureSolutionsservices.com/contact" class="careers-link">contact us</a> for more information.</p>
                         <p>— The '.$variableDefinitionX->orgShortName.' Team</p>
                     </div>
                     <div class="email-footer">

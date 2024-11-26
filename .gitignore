@@ -1,7 +1,7 @@
 *.env
 .env
-modules/CaliWebDesign/Websites/terminal
-modules/CaliWebDesign/Websites/siteBuilder
+modules/NexureSolutions/Websites/terminal
+modules/NexureSolutions/Websites/siteBuilder
 license/
 license
 license/*

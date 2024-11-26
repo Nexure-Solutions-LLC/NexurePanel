@@ -5,7 +5,7 @@
 
     $accountnumber = $_GET['account_number'];
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
@@ -168,4 +168,4 @@
             </section>
         </section>
 
-<?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php'); ?>
+<?php include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php'); ?>

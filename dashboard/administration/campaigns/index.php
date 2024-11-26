@@ -4,11 +4,11 @@
     $pagesubtitle = "List of Campaigns";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
     
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
 
-    $campaignsSystem = new \CaliWebDesign\MarketingCloud\CampaignsSystem($con);
+    $campaignsSystem = new \NexureSolutions\MarketingCloud\CampaignsSystem($con);
     $adPartners = $campaignsSystem->loadAdPartners();
 
 ?>
@@ -59,6 +59,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

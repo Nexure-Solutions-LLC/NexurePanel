@@ -1,6 +1,6 @@
 <?php
 
-$imageDir = $_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/graphSQL/barGraphs/';
+$imageDir = $_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/graphSQL/barGraphs/';
 $timeLimit = 86400;
 $currentTime = time();
 

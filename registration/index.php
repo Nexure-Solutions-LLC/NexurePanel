@@ -6,7 +6,7 @@
     $pagetitle = "Registration";
     $pagesubtitle = "Basic Information";
 
-    include($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    include($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php");
 
     $passableUserId = $variableDefinitionX->userId;
     $passableApiKey = $variableDefinitionX->apiKey;
@@ -450,6 +450,6 @@
 
 <?php 
     
-    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); 
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php"); 
     
 ?>

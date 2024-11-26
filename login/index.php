@@ -69,7 +69,7 @@
         }
     }
 
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php");
 
 
     $passableUserId = $variableDefinitionX->userId;
@@ -320,7 +320,7 @@
 
                                             if ($loginModulesName == "Cali OAuth") {
 
-                                                include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Oauth//index.php");
+                                                include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Oauth//index.php");
 
                                             }
                                         }
@@ -369,6 +369,6 @@
 
 <?php 
     
-    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php"); 
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php"); 
     
 ?>
