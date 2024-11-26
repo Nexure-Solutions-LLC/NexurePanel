@@ -46,7 +46,7 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Sy
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
-    <link href="https://caliwebdesignservicess.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
+    <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/dashboard-css-2024.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
