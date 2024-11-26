@@ -1,4 +1,4 @@
-## Cali Panel 20.0.1
+## Nexure Panel
 
 This is the official repository for Nexure Panel that will run virtually every modern business out there with a completely modulated experience.
 
