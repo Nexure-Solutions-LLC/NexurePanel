@@ -74,7 +74,7 @@
 
                     $discord_id = $discord_user_data['id'];
                     
-                    $update_query = "UPDATE `caliweb_users` SET `discord_id` = '$discord_id' WHERE `email` = '".$_SESSION['caliid']."'";
+                    $update_query = "UPDATE `nexure_users` SET `discord_id` = '$discord_id' WHERE `email` = '".$_SESSION['caliid']."'";
 
                     mysqli_query($con, $update_query);
 

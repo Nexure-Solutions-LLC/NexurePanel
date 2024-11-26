@@ -92,7 +92,7 @@
 
         $theme = isset($_SESSION['theme']) ? $_SESSION['theme'] : 'light-mode';
 
-        $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance";
+        $sql = "SELECT salesPerson, salesPerformance FROM nexure_salesperformance";
 
         createSalesPerformanceGraph($theme, 'salesPerformance', $sql);
 
@@ -102,7 +102,7 @@
 
         $fullname = $currentAccount->legalName;
 
-        $sql = "SELECT salesPerson, salesPerformance FROM caliweb_salesperformance WHERE salesPerson = '$fullname'";
+        $sql = "SELECT salesPerson, salesPerformance FROM nexure_salesperformance WHERE salesPerson = '$fullname'";
 
         createSalesPerformanceGraph($theme, 'employeeSalesPerformance', $sql);
     }

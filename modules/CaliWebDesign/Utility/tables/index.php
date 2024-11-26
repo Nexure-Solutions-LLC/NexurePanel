@@ -144,7 +144,7 @@
 
     if ($_SESSION['graphCallType'] == "Dashboard Tasks Table") {
 
-        $sql = "SELECT * FROM caliweb_tasks";
+        $sql = "SELECT * FROM nexure_tasks";
         $result = mysqli_query($con, $sql);
         $headers = ["Task Name", "Task Start Date", "Task Due Date", "Status"];
 
@@ -164,7 +164,7 @@
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Cases Table") {
 
-        $sql = "SELECT * FROM caliweb_cases";
+        $sql = "SELECT * FROM nexure_cases";
         $result = mysqli_query($con, $sql);
         $headers = ["Customer Name", "Case Created", "Case Closed", "Status"];
 
@@ -183,7 +183,7 @@
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Tasks Table Employee Only") {
 
-        $sql = "SELECT * FROM caliweb_tasks WHERE assignedUser = '$fullname'";
+        $sql = "SELECT * FROM nexure_tasks WHERE assignedUser = '$fullname'";
         $result = mysqli_query($con, $sql);
         $headers = ["Task Name", "Task Start Date", "Task Due Date", "Status"];
 
@@ -201,7 +201,7 @@
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Cases Table Employee Only") {
 
-        $sql = "SELECT * FROM caliweb_cases WHERE assignedAgent = '$fullname'";
+        $sql = "SELECT * FROM nexure_cases WHERE assignedAgent = '$fullname'";
         $result = mysqli_query($con, $sql);
         $headers = ["Customer Name", "Case Title", "Case Created", "Case Closed", "Status"];
 
@@ -221,7 +221,7 @@
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Leads Table") {
 
-        $sql = "SELECT * FROM caliweb_leads";
+        $sql = "SELECT * FROM nexure_leads";
         $result = mysqli_query($con, $sql);
         $headers = ["Assigned To", "Customer Name", "Account Number", "Status"];
 
@@ -240,7 +240,7 @@
 
     } elseif ($_SESSION['graphCallType'] == "Dashboard Leads Table Employee Only") {
 
-        $sql = "SELECT * FROM caliweb_leads WHERE assignedAgent = '$fullname'";
+        $sql = "SELECT * FROM nexure_leads WHERE assignedAgent = '$fullname'";
         $result = mysqli_query($con, $sql);
         $headers = ["Assigned To", "Customer Name", "Account Number", "Status"];
 

@@ -39,7 +39,7 @@
 
                                 accountsHomeListingTable(
                                     $con,
-                                    "SELECT * FROM caliweb_users WHERE userrole <> 'administrator' AND userrole <> 'authorized user'",
+                                    "SELECT * FROM nexure_users WHERE userrole <> 'administrator' AND userrole <> 'authorized user'",
                                     ['Company/Account Number', 'Owner', 'Phone', 'Type', 'DB Prefix', 'Status', 'Actions'],
                                     ['accountNumber', 'legalName', 'mobileNumber', 'userrole', 'accountDBPrefix', 'accountStatus'],
                                     ['30%', '20%', '15%', '15%', '10%', '20%'],

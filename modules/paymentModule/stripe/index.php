@@ -1,5 +1,5 @@
 <?php
-    $processorResult = mysqli_query($con, "SELECT * FROM caliweb_paymentconfig WHERE processorName = 'Stripe'");
+    $processorResult = mysqli_query($con, "SELECT * FROM nexure_paymentconfig WHERE processorName = 'Stripe'");
 
     $processorInfo = mysqli_fetch_array($processorResult);
 
@@ -12,7 +12,7 @@
         // This part of the module establishes a connection to Stripe.
         // This part also checks to see if the key exists in our database.
 
-        $sql = "SELECT publicKey, secretKey FROM caliweb_paymentconfig LIMIT 1";
+        $sql = "SELECT publicKey, secretKey FROM nexure_paymentconfig LIMIT 1";
 
         $result = mysqli_query($con, $sql);
 
@@ -356,7 +356,7 @@
 
             \Stripe\Stripe::setApiKey($stripeSecretKey);
 
-            $stripeIDQuery = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'";
+            $stripeIDQuery = "SELECT * FROM nexure_users WHERE accountNumber = '$accountnumber'";
 
             $stripeIDResult = mysqli_query($con, $stripeIDQuery);
 

@@ -23,7 +23,7 @@
 
     }
 
-    $checkServiceQuery = "SELECT COUNT(*) AS count FROM `caliweb_services` WHERE `accountNumber` = ? AND `serviceIdentifier` = ?";
+    $checkServiceQuery = "SELECT COUNT(*) AS count FROM `nexure_services` WHERE `accountNumber` = ? AND `serviceIdentifier` = ?";
     $stmt = $con->prepare($checkServiceQuery);
     $stmt->bind_param('ss', $accountNumber, $serviceID);
     $stmt->execute();
@@ -39,7 +39,7 @@
     }
 
     $deleteQueries = [
-        "DELETE FROM `caliweb_services` WHERE `accountNumber`= '$accountNumber' AND `serviceIdentifier` = '$serviceID'"
+        "DELETE FROM `nexure_services` WHERE `accountNumber`= '$accountNumber' AND `serviceIdentifier` = '$serviceID'"
     ];
 
     foreach ($deleteQueries as $query) {

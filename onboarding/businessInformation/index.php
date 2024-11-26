@@ -5,7 +5,7 @@
 
     $caliemail = $_SESSION['caliid'];
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userprofileresult = mysqli_query($con, "SELECT * FROM nexure_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($userprofileresult);
     mysqli_free_result($userprofileresult);
 
@@ -71,18 +71,18 @@
             // If the industry isnt supported the panel will reject the application and
             // send them to the denial screen.
 
-            $checkBusinessIndustryQuery = "SELECT COUNT(*) as count FROM `caliweb_restrictedbusinesses` WHERE `businessIndustry` = '$businessIndustry'";
+            $checkBusinessIndustryQuery = "SELECT COUNT(*) as count FROM `nexure_restrictedbusinesses` WHERE `businessIndustry` = '$businessIndustry'";
             $checkBusinessIndustryResult = mysqli_query($con, $checkBusinessIndustryQuery);
             $checkBusinessIndustryRow = mysqli_fetch_assoc($checkBusinessIndustryResult);
 
             if ($checkBusinessIndustryRow['count'] > 0) {
 
-                $userProfileUpdateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is running a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
+                $userProfileUpdateQuery = "UPDATE `nexure_users` SET `accountStatus` = 'Closed', `statusReason`='The customer is running a prohibited business and their application was denied.', `accountNotes`='The customer is runing a prohibited business and their application was denied.' WHERE email = '$caliemail'";
                 $userProfileUpdateResult = mysqli_query($con, $userProfileUpdateQuery);
 
-                $userOwnerDeleteQuery = "DELETE FROM caliweb_ownershipinformation WHERE emailAddress = '$caliemail'";
+                $userOwnerDeleteQuery = "DELETE FROM nexure_ownershipinformation WHERE emailAddress = '$caliemail'";
                 
-                $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Denied','$businessRegistrationDate','$businessDescription','True')";
+                $submitBusinessInformationQuery = "INSERT INTO `nexure_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Denied','$businessRegistrationDate','$businessDescription','True')";
                 $submitBusinessInformationResult = mysqli_query($con, $submitBusinessInformationQuery);
 
                 if ($userProfileUpdateResult && $userOwnerDeleteQuery && $submitBusinessInformationResult) {
@@ -97,7 +97,7 @@
 
             } else {
 
-                $submitBusinessInformationQuery = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Active','$businessRegistrationDate','$businessDescription','False')";
+                $submitBusinessInformationQuery = "INSERT INTO `nexure_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES ('$businessName','$businessType','$businessIndustry','$businessRevenue','$caliemail','Active','$businessRegistrationDate','$businessDescription','False')";
                 $submitBusinessInformationResult   = mysqli_query($con, $submitBusinessInformationQuery);
 
                 if ($submitBusinessInformationResult) {

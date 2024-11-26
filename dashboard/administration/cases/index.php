@@ -35,7 +35,7 @@
                         <?php
                             if ($currentAccount->accessLevel->name == "Executive" || $currentAccount->accessLevel->name == "Manager") {
 
-                                $sql = "SELECT * FROM caliweb_cases";
+                                $sql = "SELECT * FROM nexure_cases";
                                 $result = mysqli_query($con, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {
@@ -121,7 +121,7 @@
 
                             } else {
 
-                                $sql = "SELECT * FROM caliweb_cases WHERE assignedUser = '$fullname'";
+                                $sql = "SELECT * FROM nexure_cases WHERE assignedUser = '$fullname'";
                                 $result = mysqli_query($con, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {

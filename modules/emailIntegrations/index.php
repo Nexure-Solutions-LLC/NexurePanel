@@ -17,7 +17,7 @@
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
 
-    $panelresult = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = 1");
+    $panelresult = mysqli_query($con, "SELECT * FROM nexure_panelconfig WHERE id = 1");
     $panelinfo = mysqli_fetch_array($panelresult);
     mysqli_free_result($panelresult);
 

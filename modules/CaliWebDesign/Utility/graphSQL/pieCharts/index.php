@@ -44,7 +44,7 @@
 
         imagefilledrectangle($image, 0, 0, $width, $height, $backgroundColor);
 
-        $sql = "SELECT segment, value FROM caliweb_leadssource";
+        $sql = "SELECT segment, value FROM nexure_leadssource";
         $result = $con->query($sql);
 
         $data = [];

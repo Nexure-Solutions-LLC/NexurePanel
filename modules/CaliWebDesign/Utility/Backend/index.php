@@ -84,7 +84,7 @@
             try {
 
                 $con = $this->sql_connection;
-                $query = "SELECT * FROM caliweb_users WHERE ". $this->_sanitize($att_name) . " = '" . $this->_sanitize($att_val) . "';";
+                $query = "SELECT * FROM nexure_users WHERE ". $this->_sanitize($att_name) . " = '" . $this->_sanitize($att_val) . "';";
                 $exec = mysqli_query($con, $query);
                 $array = mysqli_fetch_array($exec);
                 
@@ -221,11 +221,11 @@
 
                 $con = $this->sql_connection;
 
-                $query = "UPDATE `caliweb_ownershipinformation` SET emailAddress = '" . $this->_sanitize($email) . "' WHERE emailAddress = '" . $this->_sanitize($this->email) . "';";
+                $query = "UPDATE `nexure_ownershipinformation` SET emailAddress = '" . $this->_sanitize($email) . "' WHERE emailAddress = '" . $this->_sanitize($this->email) . "';";
                 
                 $exec = mysqli_query($con, $query);
 
-                $query = "UPDATE `caliweb_users` SET email = '" . $this->_sanitize($email) . "' WHERE email = '" . $this->_sanitize($this->email) . "';";
+                $query = "UPDATE `nexure_users` SET email = '" . $this->_sanitize($email) . "' WHERE email = '" . $this->_sanitize($this->email) . "';";
                 
                 $exec = mysqli_query($con, $query);
 
@@ -270,11 +270,11 @@
 
                 if ($useStringSyntax) {
 
-                    $query = "UPDATE `caliweb_users` SET ".$this->_sanitize($att_name). " = '" . $this->_sanitize($att_val) . "' WHERE email = '" . $this->_sanitize($this->email) . "';";
+                    $query = "UPDATE `nexure_users` SET ".$this->_sanitize($att_name). " = '" . $this->_sanitize($att_val) . "' WHERE email = '" . $this->_sanitize($this->email) . "';";
                 
                 } else {
                     
-                    $query = "UPDATE `caliweb_users` SET ".$this->_sanitize($att_name). " = " . $this->_sanitize($att_val) . " WHERE email = '" . $this->_sanitize($this->email) . "';";
+                    $query = "UPDATE `nexure_users` SET ".$this->_sanitize($att_name). " = " . $this->_sanitize($att_val) . " WHERE email = '" . $this->_sanitize($this->email) . "';";
                 
                 }
                 $exec = mysqli_query($con, $query);
@@ -313,7 +313,7 @@
 
                 }
 
-                $query = "UPDATE `caliweb_users` SET ";
+                $query = "UPDATE `nexure_users` SET ";
 
                 $setClauses = [];
 
@@ -718,7 +718,7 @@
 
             // Prepare the SQL Statement to get all the user's info
 
-            $this->taskInfo = $this->fetchSingleRow($con, 'caliweb_tasks', "id = '".mysqli_real_escape_string($con, $taskID)."'");
+            $this->taskInfo = $this->fetchSingleRow($con, 'nexure_tasks', "id = '".mysqli_real_escape_string($con, $taskID)."'");
 
             if (!$this->taskInfo) {
 
@@ -847,7 +847,7 @@
 
                 // Initialize panel information
 
-                $panelinfo = $this->fetchSingleRow($con, 'caliweb_panelconfig', 1);
+                $panelinfo = $this->fetchSingleRow($con, 'nexure_panelconfig', 1);
                 $this->initializePanelConfig($panelinfo);
 
                 // Set generic variable definitions
@@ -861,7 +861,7 @@
 
                 // Initialize payment processor information
 
-                $paymentgateway = $this->fetchSingleRow($con, 'caliweb_paymentconfig', 1);
+                $paymentgateway = $this->fetchSingleRow($con, 'nexure_paymentconfig', 1);
                 $this->initializePaymentProcessor($paymentgateway);
                 
             } catch (\Throwable $exception) {
@@ -948,7 +948,7 @@
 
             // Prepare the SQL Statement to get all the user's info
 
-            $this->customerAccountInfo = $this->fetchSingleRow($con, 'caliweb_users', "accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
+            $this->customerAccountInfo = $this->fetchSingleRow($con, 'nexure_users', "accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
 
             if (!$this->customerAccountInfo) {
 
@@ -978,13 +978,13 @@
 
             // Account Notes Section
 
-            $this->notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."' ORDER BY id DESC");
+            $this->notesResults = mysqli_query($con, "SELECT * FROM nexure_accountnotes WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."' ORDER BY id DESC");
 
             // Get the Interaction Dates Information for the Account Header
 
             $newInteractionDate = date('Y-m-d H:i:s');
 
-            mysqli_query($con, "UPDATE caliweb_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'");
+            mysqli_query($con, "UPDATE nexure_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'");
 
             $firstinteractiondate = $this->customerAccountInfo['firstInteractionDate'] ?? null;
 
@@ -992,7 +992,7 @@
 
             $this->firstinteractiondateformattedfinal = $firstinteractiondateformatted->format('F j, Y g:i A');
 
-            $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'"))['lastInteractionDate'] ?? null;
+            $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM nexure_users WHERE accountNumber='".mysqli_real_escape_string($con, $accountnumber)."'"))['lastInteractionDate'] ?? null;
 
             $lastinteractiondateformatted = new \DateTime($lastinteractiondate);
 
@@ -1000,7 +1000,7 @@
 
             // Business Specific Data Storage and Variable Declaration for the Customer's Business
 
-            $businessAccountInfo = $this->fetchSingleRow($con, 'caliweb_businesses', "email = '".mysqli_real_escape_string($con, $this->customeremail)."'");
+            $businessAccountInfo = $this->fetchSingleRow($con, 'nexure_businesses', "email = '".mysqli_real_escape_string($con, $this->customeremail)."'");
 
             $this->businessname = $businessAccountInfo['businessName'] ?? $this->legalname;
 
@@ -1010,7 +1010,7 @@
 
             // Fetch website info
 
-            $websiteAccountInfo = $this->fetchSingleRow($con, 'caliweb_websites', "email = '".mysqli_real_escape_string($con, $this->customeremail)."'");
+            $websiteAccountInfo = $this->fetchSingleRow($con, 'nexure_websites', "email = '".mysqli_real_escape_string($con, $this->customeremail)."'");
 
             $this->websitedomain = $websiteAccountInfo['domainName'] ?? 'Not Assigned';
 
@@ -1046,7 +1046,7 @@
 
             // Prepare the SQL Statement to get all the employee's info
 
-            $this->employeeAccountInfo = $this->fetchSingleRow($con, 'caliweb_payroll', "employeeIDNumber = '" . mysqli_real_escape_string($con, $employeeIDNumber) . "'");
+            $this->employeeAccountInfo = $this->fetchSingleRow($con, 'nexure_payroll', "employeeIDNumber = '" . mysqli_real_escape_string($con, $employeeIDNumber) . "'");
 
             if (!$this->employeeAccountInfo) {
 
@@ -1103,10 +1103,10 @@
                     b.businessName AS businessName,
                     w.domainName AS websiteDomain,
                     b.businessIndustry AS businessIndustry
-                FROM caliweb_users u
-                LEFT JOIN caliweb_ownershipinformation o ON u.email = o.emailAddress
-                LEFT JOIN caliweb_businesses b ON u.email = b.email
-                LEFT JOIN caliweb_websites w ON u.email = w.email
+                FROM nexure_users u
+                LEFT JOIN nexure_ownershipinformation o ON u.email = o.emailAddress
+                LEFT JOIN nexure_businesses b ON u.email = b.email
+                LEFT JOIN nexure_websites w ON u.email = w.email
                 WHERE u.accountNumber = ? 
                 OR (o.legalName = ? AND u.email = ? AND b.businessName = ?)
                 OR (w.domainName = ? AND b.businessIndustry = ? AND b.businessName = ?)
@@ -1193,7 +1193,7 @@
 
             }
 
-            $websiteInfo = $this->fetchSingleRow($con, 'caliweb_websites', "email = '".mysqli_real_escape_string($con, $customeremail)."'");
+            $websiteInfo = $this->fetchSingleRow($con, 'nexure_websites', "email = '".mysqli_real_escape_string($con, $customeremail)."'");
 
             return $websiteInfo['domainName'] ?? "Not Assigned";
 
@@ -1202,7 +1202,7 @@
         public function getActiveClientModulesOptions($con) {
             $options = '';
 
-            $query = "SELECT * FROM caliweb_modules";
+            $query = "SELECT * FROM nexure_modules";
 
             $result = mysqli_query($con, $query);
 
@@ -1236,7 +1236,7 @@
 
         public function getTeamsOptions($con) {
 
-            $query = "SELECT * FROM `caliweb_available_teams`";
+            $query = "SELECT * FROM `nexure_available_teams`";
 
             $result = mysqli_query($con, $query);
 
@@ -1277,7 +1277,7 @@
 
             global $con;
             
-            $query = "SELECT serviceStartDate, serviceType FROM caliweb_services WHERE accountNumber = ?";
+            $query = "SELECT serviceStartDate, serviceType FROM nexure_services WHERE accountNumber = ?";
 
             $stmt = $con->prepare($query);
 
@@ -1792,7 +1792,7 @@
 
                 $setString = rtrim($setString, ', ');
 
-                $query = "UPDATE `caliweb_tasks` SET " . $setString . " WHERE id = " . $this->helper->sanitize($con, (string)$taskId) . ";";
+                $query = "UPDATE `nexure_tasks` SET " . $setString . " WHERE id = " . $this->helper->sanitize($con, (string)$taskId) . ";";
 
                 $exec = mysqli_query($con, $query);
 
@@ -1854,7 +1854,7 @@
                 $this->_setQueryingIdentifier("id");
                 $this->queryingIdentifierIsString = false;
                 $this->InheritableSubclass = Task::class;
-                $this->_setCollectionToQuery("caliweb_tasks");
+                $this->_setCollectionToQuery("nexure_tasks");
 
             } catch (\Throwable $exception) {
                 
@@ -1885,7 +1885,7 @@
 
             try {
 
-                $query = "SELECT * FROM `caliweb_tasks` WHERE id = $this->id;";
+                $query = "SELECT * FROM `nexure_tasks` WHERE id = $this->id;";
                 $con = $this->sql_connection;
                 $exec = $con->query($query);
                 return $exec->fetch_array() ?? null;
@@ -1903,7 +1903,7 @@
             try {
 
                 $con = $this->sql_connection;
-                $query = "SELECT * FROM `caliweb_tasks`";
+                $query = "SELECT * FROM `nexure_tasks`";
                 $exec = $con->query($query);
                 return $exec->fetch_all();
 
@@ -2045,7 +2045,7 @@
 
         public function loadAdPartners() {
 
-            $query = "SELECT * FROM caliweb_modules WHERE moduleName = 'Cali Marketing Cloud'";
+            $query = "SELECT * FROM nexure_modules WHERE moduleName = 'Cali Marketing Cloud'";
 
             $result = mysqli_query($this->con, $query);
 
@@ -2057,7 +2057,7 @@
 
                 foreach ($adPartners as $partner) {
 
-                    $partnerQuery = "SELECT * FROM caliweb_modules WHERE moduleName = ? AND moduleDependsOn = 'Cali Marketing Cloud'";
+                    $partnerQuery = "SELECT * FROM nexure_modules WHERE moduleName = ? AND moduleDependsOn = 'Cali Marketing Cloud'";
 
                     $stmt = mysqli_prepare($this->con, $partnerQuery);
 
@@ -2097,7 +2097,7 @@
 
         public function eventsRetrive($con, $accountnumber) {
 
-            $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM caliweb_events WHERE accountNumber = '$accountnumber' ORDER BY eventTimeDate DESC");
+            $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM nexure_events WHERE accountNumber = '$accountnumber' ORDER BY eventTimeDate DESC");
 
         }
 

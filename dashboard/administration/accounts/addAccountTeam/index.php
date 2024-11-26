@@ -16,7 +16,7 @@
 
     }
 
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".$accountnumber."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
 
@@ -68,7 +68,7 @@
 
                 $teamRole = isset($parts[2]) ? $parts[2] : '';
 
-                $insertQuery = "INSERT INTO `caliweb_teamslisting` (`accountNumber`, `teamName`, `teamTitle`, `teamRole`, `teamIconFile`) VALUES ($accountnumber, ?, ?, ?, ?)";
+                $insertQuery = "INSERT INTO `nexure_teamslisting` (`accountNumber`, `teamName`, `teamTitle`, `teamRole`, `teamIconFile`) VALUES ($accountnumber, ?, ?, ?, ?)";
 
                 $stmt = $con->prepare($insertQuery);
 

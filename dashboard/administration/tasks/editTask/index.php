@@ -48,7 +48,7 @@
 
         $_SESSION['last_submit_time'] = $current_time;
 
-        $taskUpdateRequest = "UPDATE `caliweb_tasks` SET `status`='$editStatus',`taskPriority`='$editPriority' WHERE id = '$taskid'";
+        $taskUpdateRequest = "UPDATE `nexure_tasks` SET `status`='$editStatus',`taskPriority`='$editPriority' WHERE id = '$taskid'";
         $taskUpdateResult = mysqli_query($con, $taskUpdateRequest);
 
         if ($taskUpdateResult) {

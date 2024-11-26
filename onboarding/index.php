@@ -5,7 +5,7 @@
 
     $caliemail = $_SESSION['caliid'];
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userprofileresult = mysqli_query($con, "SELECT * FROM nexure_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($userprofileresult);
     mysqli_free_result($userprofileresult);
 
@@ -71,7 +71,7 @@
             
             $encryptedeinssnumber = encryptSSN($einssnnumber, $encryptKey, $encryptIv);
 
-            $query = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$fullname','$mobilenumber','$caliemail','$dateofbirth','$encryptedeinssnumber','','','','','','')";
+            $query = "INSERT INTO `nexure_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES ('$fullname','$mobilenumber','$caliemail','$dateofbirth','$encryptedeinssnumber','','','','','','')";
             $result   = mysqli_query($con, $query);
 
             if ($result) {

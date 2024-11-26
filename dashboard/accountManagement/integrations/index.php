@@ -7,7 +7,7 @@
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
 
-    $accountModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
+    $accountModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
 
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';

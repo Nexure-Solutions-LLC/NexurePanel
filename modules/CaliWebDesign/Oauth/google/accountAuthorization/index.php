@@ -65,7 +65,7 @@
 
                     $google_id = $google_user_data['id'];
 
-                    $update_query = "UPDATE `caliweb_users` SET `google_id` = '$google_id' WHERE `email` = '".$_SESSION['caliid']."'";
+                    $update_query = "UPDATE `nexure_users` SET `google_id` = '$google_id' WHERE `email` = '".$_SESSION['caliid']."'";
                     mysqli_query($con, $update_query);
 
                     echo '<script type="text/javascript">window.location = "/dashboard/accountManagement/accountSettings/integrations"</script>';

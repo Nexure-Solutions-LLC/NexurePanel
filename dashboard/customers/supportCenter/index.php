@@ -6,7 +6,7 @@
 
     include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
 
-    $websiteresult = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$caliemail'");
+    $websiteresult = mysqli_query($con, "SELECT * FROM nexure_websites WHERE email = '$caliemail'");
     $websiteinfo = mysqli_fetch_array($websiteresult);
 
     echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
@@ -42,7 +42,7 @@
                                     <?php
 
                                         // Fetch data from MySQL table
-                                        $sql = "SELECT * FROM caliweb_cases WHERE emailAddress = '".$currentAccount->email."'";
+                                        $sql = "SELECT * FROM nexure_cases WHERE emailAddress = '".$currentAccount->email."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned

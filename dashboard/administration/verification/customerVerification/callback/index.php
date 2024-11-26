@@ -8,7 +8,7 @@
 
     $accountnumber = $_GET['account_number'];
     $passorginURL = "/dashboard/administration/accounts/manageAccount/?account_number=$accountnumber";
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".$accountnumber."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
 

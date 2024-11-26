@@ -238,8 +238,8 @@
 
             $businessQuery = "
                 SELECT 
-                    (SELECT businessName FROM caliweb_businesses WHERE email = '{$email}') AS businessName, 
-                    (SELECT employeeAccessLevel FROM caliweb_users WHERE email = '{$email}') AS employeeAccessLevel
+                    (SELECT businessName FROM nexure_businesses WHERE email = '{$email}') AS businessName, 
+                    (SELECT employeeAccessLevel FROM nexure_users WHERE email = '{$email}') AS employeeAccessLevel
             ";
 
             $businessInfo = mysqli_fetch_assoc(mysqli_query($con, $businessQuery));

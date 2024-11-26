@@ -68,7 +68,7 @@
 
                 $google_id = $google_user_data['id'];
 
-                $google_query = "SELECT * FROM `caliweb_users` WHERE `google_id` = '$google_id'";
+                $google_query = "SELECT * FROM `nexure_users` WHERE `google_id` = '$google_id'";
 
                 $google_result = mysqli_query($con, $google_query);
 
@@ -82,7 +82,7 @@
 
                         // Perform query
 
-                        $google_query = mysqli_query($con, "SELECT * FROM caliweb_users WHERE google_id = '".$_SESSION['caligoogleid']."'");
+                        $google_query = mysqli_query($con, "SELECT * FROM nexure_users WHERE google_id = '".$_SESSION['caligoogleid']."'");
 
                         $google_info = mysqli_fetch_array($google_query);
                         

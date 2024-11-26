@@ -16,7 +16,7 @@
     $local_email = stripslashes($local_email);
     $local_email = mysqli_real_escape_string($con, $local_email);
 
-    $remoteQuery = "SELECT * FROM `caliweb_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
+    $remoteQuery = "SELECT * FROM `nexure_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
     $queryExec = mysqli_query($con, $remoteQuery);
     $queryRecItem = mysqli_fetch_array($queryExec);
     $verificationCode = $queryRecItem["recoverycode"];
@@ -59,10 +59,10 @@
 
             if ($newPassword == $confirmNewPassword) {
 
-                $query    = "UPDATE `caliweb_users` SET `password`='".hash("sha512", $newPassword)."' WHERE `email`='$local_email'";
+                $query    = "UPDATE `nexure_users` SET `password`='".hash("sha512", $newPassword)."' WHERE `email`='$local_email'";
                 $result = mysqli_query($con, $query) or die(mysqli_error());
 
-                $removeQuery = "DELETE FROM `caliweb_recoveryrequests` WHERE id = " . $_SESSION["recoveryrequestID"] . " AND recoverycode = '" . $_SESSION["recoverycode"] . "' AND email = '" . $local_email . "';";
+                $removeQuery = "DELETE FROM `nexure_recoveryrequests` WHERE id = " . $_SESSION["recoveryrequestID"] . " AND recoverycode = '" . $_SESSION["recoverycode"] . "' AND email = '" . $local_email . "';";
                 $result = mysqli_query($con, $removeQuery) or die(mysqli_error());
 
                 if ($result) {

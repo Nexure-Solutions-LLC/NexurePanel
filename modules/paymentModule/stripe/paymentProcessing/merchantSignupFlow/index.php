@@ -18,7 +18,7 @@
     $variableDefinitionX = new \CaliUtilities\VariableDefinitions();
     $variableDefinitionX->variablesHeader($con);
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userprofileresult = mysqli_query($con, "SELECT * FROM nexure_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($userprofileresult);
     mysqli_free_result($userprofileresult);
 

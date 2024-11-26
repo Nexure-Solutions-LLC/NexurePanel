@@ -72,7 +72,7 @@
 
         // Peroforms the database entry into MySQL.
 
-        $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
+        $accountInsertRequest = "INSERT INTO `nexure_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
             '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '', '$accountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '$ownerOwnedEmail', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
 
         if (mysqli_query($con, $accountInsertRequest)) {

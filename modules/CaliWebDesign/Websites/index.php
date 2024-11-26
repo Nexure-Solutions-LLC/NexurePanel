@@ -53,7 +53,7 @@ function setPageTitleAndType($role)
 function fetchCustomerAccount($con, $accountnumber)
 {
 
-    $query = "SELECT * FROM caliweb_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
+    $query = "SELECT * FROM nexure_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
 
     $result = mysqli_query($con, $query);
 
@@ -108,7 +108,7 @@ if (strtolower($currentAccount->role->name) == "customer") {
 
     $userEmail = $currentAccount->email;
 
-    $query = "SELECT domainName FROM caliweb_websites WHERE email = ?";
+    $query = "SELECT domainName FROM nexure_websites WHERE email = ?";
 
     $statement = $con->prepare($query);
 
@@ -390,7 +390,7 @@ if (strtolower($currentAccount->role->name) == "customer") {
 
     function fetchCustomerAccount($con, $accountnumber) {
 
-        $query = "SELECT * FROM caliweb_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
+        $query = "SELECT * FROM nexure_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
 
         $result = mysqli_query($con, $query);
 
@@ -451,7 +451,7 @@ if (strtolower($currentAccount->role->name) == "customer") {
 
         $userEmail = $currentAccount->email;
 
-        $query = "SELECT domainName FROM caliweb_websites WHERE email = ?";
+        $query = "SELECT domainName FROM nexure_websites WHERE email = ?";
 
         $statement = $con->prepare($query);
 

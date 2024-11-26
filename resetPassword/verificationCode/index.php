@@ -15,7 +15,7 @@
             $local_email = $_SESSION["resetPassswordEmail"];
             $local_email = stripslashes($local_email);
             $local_email = mysqli_real_escape_string($con, $local_email);
-            $remoteQuery = "SELECT * FROM `caliweb_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
+            $remoteQuery = "SELECT * FROM `nexure_recoveryrequests` WHERE email ='".$local_email."' ORDER BY timestamp DESC;";
             $queryExec = mysqli_query($con, $remoteQuery);
             $queryRecItem = mysqli_fetch_array($queryExec);
             $verificationCode = $queryRecItem["recoverycode"];

@@ -51,7 +51,7 @@
 
         // Database Calls
         
-        $taskInsertRequest = "INSERT INTO `caliweb_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`, `taskPriority`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assignedemployee','$taskdescription','$taskpriority')";
+        $taskInsertRequest = "INSERT INTO `nexure_tasks`(`taskName`, `taskDueDate`, `taskStartDate`, `status`, `assignedUser`, `taskDescription`, `taskPriority`) VALUES ('$taskname','$duedate','$taskstartdate','$taskstatus','$assignedemployee','$taskdescription','$taskpriority')";
         $taskInsertResult = mysqli_query($con, $taskInsertRequest);
 
         if ($taskInsertResult) {

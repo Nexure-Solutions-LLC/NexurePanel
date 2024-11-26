@@ -35,7 +35,7 @@
                     <div class="dashboard-table">
                         <?php
 
-                            $sql = "SELECT * FROM caliweb_tasks";
+                            $sql = "SELECT * FROM nexure_tasks";
 
                             function displayTasks($con, $baseSql, $accessLevel, $currentUser) {
 

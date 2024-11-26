@@ -73,7 +73,7 @@
 
                 $github_id = $github_user_data['id'];
 
-                $github_query = "SELECT * FROM `caliweb_users` WHERE `github_id` = '$github_id'";
+                $github_query = "SELECT * FROM `nexure_users` WHERE `github_id` = '$github_id'";
 
                 $github_result = mysqli_query($con, $github_query);
 
@@ -87,7 +87,7 @@
 
                         // Perform query
 
-                        $github_query = mysqli_query($con, "SELECT * FROM caliweb_users WHERE github_id = '".$_SESSION['caligithubid']."'");
+                        $github_query = mysqli_query($con, "SELECT * FROM nexure_users WHERE github_id = '".$_SESSION['caligithubid']."'");
 
                         $github_info = mysqli_fetch_array($github_query);
                         

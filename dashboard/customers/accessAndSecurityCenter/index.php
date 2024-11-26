@@ -41,7 +41,7 @@
                                     <?php
 
                                         // Fetch data from MySQL table
-                                        $sql = "SELECT * FROM caliweb_users WHERE email = '".$caliemail."'";
+                                        $sql = "SELECT * FROM nexure_users WHERE email = '".$caliemail."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned
@@ -107,7 +107,7 @@
                                     <?php
 
                                         // Fetch data from MySQL table
-                                        $sql = "SELECT * FROM caliweb_users WHERE userrole = 'authorized user' AND ownerAuthorizedEmail = '".$caliemail."'";
+                                        $sql = "SELECT * FROM nexure_users WHERE userrole = 'authorized user' AND ownerAuthorizedEmail = '".$caliemail."'";
                                         $result = mysqli_query($con, $sql);
 
                                         // Check if any rows were returned

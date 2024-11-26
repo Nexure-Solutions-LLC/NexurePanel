@@ -17,7 +17,7 @@
     $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".$accountnumber."'");
 
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
 

@@ -19,7 +19,7 @@
     }
 
     // Perform query
-    $result = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
+    $result = mysqli_query($con, "SELECT * FROM nexure_panelconfig WHERE id = '1'");
     $panelinfo = mysqli_fetch_array($result);
     // Free result set
     mysqli_free_result($result);

@@ -10,7 +10,7 @@
 
     if ($taskid != "" || $taskid != NULL) {
 
-        $taskDeleteRequest = "DELETE FROM `caliweb_tasks` WHERE `id`= '$taskid'";
+        $taskDeleteRequest = "DELETE FROM `nexure_tasks` WHERE `id`= '$taskid'";
         $taskDeleteResult = mysqli_query($con, $taskDeleteRequest);
 
         if ($taskDeleteResult) {
