@@ -12,12 +12,12 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Syst
     \____/\__,_/_/_/     |__/|__/\___/_.___/  /_____/\___/____/_/\__, /_/ /_/ 
                                                                 /____/        
 
-    This site was created by Cali Web Design Services LLC. http://www.caliwebdesignservices.com
+    This site was created by Nexure Solutions LLC. http://www.caliwebdesignservices.com
     Last Published: Fri Feb 2 2024 at 08:38:52 PM (Pacific Daylight Time US and Canada) 
 
     Creator/Developer: Cali Web Design Development Team, Michael Brinkley, Nick Derry, All logos other 
     than ours go to their respectful owners. Images are provided by undraw.co as well as pexels.com 
-    and are opensource svgs, or images to use by Cali Web Design Services LLC.
+    and are opensource svgs, or images to use by Nexure Solutions LLC.
 
     Website Registration Code: 49503994-20344
     Registration Date: July 09 2022
@@ -50,10 +50,10 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/Syst
     <link href="/assets/css/dashboard-css-2024.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://caliwebdesignservices.com/assets/img/favico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://caliwebdesignservices.com/assets/img/favico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://caliwebdesignservices.com/assets/img/favico/favicon-16x16.png">
-    <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://nexuresolutions.com/assets/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://nexuresolutions.com/assets/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://nexuresolutions.com/assets/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://nexuresolutions.com/assets/img/favicon/site.webmanifest">
     <?php include($_SERVER["DOCUMENT_ROOT"] . "/dashboard/company/themes/index.php"); ?>
     <?php
 

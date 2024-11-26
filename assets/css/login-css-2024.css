@@ -438,6 +438,16 @@ body {
     border-bottom-right-radius: 8px !important;
 }
 
+@media (min-width:1367px) and (max-width:1700px) {
+    .caliweb-login-box {
+        position: relative;
+        max-width: 28% !important;
+        z-index: 100;
+        margin: auto;
+        height: 100%;
+    }
+}
+
 @media (max-width: 1366px) {
     body {
         overflow-y: scroll;
