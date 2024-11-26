@@ -38,7 +38,7 @@ error_reporting(E_ALL);
         $ipAddress = stripslashes($_REQUEST['ipAddress']);
         $ipAddress = mysqli_real_escape_string($con, $ipAddress);
 
-        $ipquery = "DELETE FROM `caliweb_networks` WHERE ipAddress = '$ipAddress'";
+        $ipquery = "DELETE FROM `nexure_networks` WHERE ipAddress = '$ipAddress'";
         $ipresult = mysqli_query($con, $ipquery);
 
         if ($ipresult) {

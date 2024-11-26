@@ -37,7 +37,7 @@
                             
                             <?php
 
-                                $sql = "SELECT * FROM caliweb_leads";
+                                $sql = "SELECT * FROM nexure_leads";
 
                                 function displayTasks($con, $baseSql, $accessLevel, $currentUser)
                                 {

@@ -23,7 +23,7 @@
 
             // Get the menu option listing for the services.
 
-            $sql = "SELECT * FROM caliweb_available_purchasables WHERE serviceOrProductStatus = 'Active'";
+            $sql = "SELECT * FROM nexure_available_purchasables WHERE serviceOrProductStatus = 'Active'";
 
             $result = $con->query($sql);
 

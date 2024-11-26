@@ -1,6 +1,6 @@
 ## Cali Panel 20.0.1
 
-This is the official repository for the new Cali Web Design Panel that will run virtually every modern business out there with a completely modulated experience.
+This is the official repository for Nexure Panel that will run virtually every modern business out there with a completely modulated experience.
 
 ---
 
@@ -52,7 +52,7 @@ This is the official repository for the new Cali Web Design Panel that will run 
 This panel is still in development so the install script has not been built yet. The panel also is buggy and unfinished
 it currently is only open to Developer Testing.
 
-You can view a demo link [here](https://us-east.cali-cloud-compute-135-148-28-43.caliwebdesignservices.com/).
+You can view a demo link [here](https://us-east-1.nexure-cloud-compute-15-204-176-210.nexuresolutions.com/).
 
 ---
 
@@ -72,11 +72,11 @@ You can view a demo link [here](https://us-east.cali-cloud-compute-135-148-28-43
 
 ### Installation
 
-1. Clone the repository: `bash git clone https://github.com/NickDerry2023/CaliWebDesignPanel20.0.1-Installer.git`
+1. Clone the repository: `bash git clone https://github.com/NickDerry2023/NexurePanelInstaller.git`
 2. Install the panel by running the install.sh bash script.
 3. Run post installation by navigating to the panels domain then the folder /install
 4. Configure the panel and set credentials in the .ENV file.
-5. Run the cron jobs by doing: `crontab -e` and `0 * * * * /usr/bin/php /var/www/calipanel/automations/fileDeletion/index.php`
+5. Run the cron jobs by doing: `crontab -e` and `0 * * * * /usr/bin/php /var/www/nexurepanel/automations/fileDeletion/index.php`
 6. Login to the admin account you created.
 
 

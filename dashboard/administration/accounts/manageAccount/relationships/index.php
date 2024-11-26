@@ -50,7 +50,7 @@
 
                                             accountsManageListingTable(
                                                 $con,
-                                                "SELECT * FROM caliweb_users WHERE userrole = 'authorized user'",
+                                                "SELECT * FROM nexure_users WHERE userrole = 'authorized user'",
                                                 ['Company', 'Owner', 'Phone', 'Type', 'Status', 'Actions'],
                                                 ['legalName', 'legalName', 'mobileNumber', 'userrole', 'accountStatus'],
                                                 ['18%', '18%', '15%', '20%', '10%'],

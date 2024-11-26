@@ -44,7 +44,7 @@
 
         // Check duplicate accounts
 
-        $checkCaliID = "SELECT * FROM caliweb_users WHERE `email` = '$emailaddress'";
+        $checkCaliID = "SELECT * FROM nexure_users WHERE `email` = '$emailaddress'";
         $resultCaliIDCheck = mysqli_query($con, $checkCaliID);
 
         if (mysqli_num_rows($resultCaliIDCheck) == 1) {
@@ -79,7 +79,7 @@
 
             // Peroforms the database entry into MySQL.
 
-            $accountInsertRequest = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
+            $accountInsertRequest = "INSERT INTO `nexure_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES (
                 '$emailaddress', '".hash("sha512", $password)."', '$legalname', '$phonenumber', '$accountstatus', '', '$registrationdate', '$accountnotes', '$builtaccountnumber', '$randomPrefix', 'true', '$registrationdate', '$registrationdate', '/assets/img/profileImages/default.png', '$SS_STRIPE_ID', '', '', '$userrole', '$accesslevel', '', '$registrationdate', '0000-00-00 00:00:00', 'en-US')";
 
             if (mysqli_query($con, $accountInsertRequest)) {
@@ -115,7 +115,7 @@
         
         } else {
 
-            $moduleCheckResult = mysqli_query($con, "SELECT moduleName FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Staff Function'");
+            $moduleCheckResult = mysqli_query($con, "SELECT moduleName FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Staff Function'");
             $hasPayrollModule = false;
 
             while ($moduleCheckRow = mysqli_fetch_assoc($moduleCheckResult)) {
@@ -134,7 +134,7 @@
                 $employeeNewID = getNextEmployeeID($con);
                 $employeeFormattedID = sprintf('%08d', $employeeNewID);
 
-                $employeeInsertRequest = "INSERT INTO `caliweb_payroll`(`employeeName`, `employeeIDNumber`, `employeePayType`, `employeeEmail`, `employeeTimeType`, `employeeHireDate`, `employeeTerminationDate`, `employeeRehireDate`, `employeePayRate`, `employeeWorkedHours`, `employeeExpectedPay`, `employeeActualPay`, `employeePhoneNumber`, `employeeExtension`, `employeeAddressLine1`, `employeeAddressLine2`, `employeeCity`, `employeeState`, `employeePostalCode`, `employeeCountry`, `employeeDateOfBirth`, `employeeSSNNumber`, `employeeDepartment`, `employeeNotes`, `employeeStatus`, `bankRoutingNumber`, `bankAccountNumber`, `bankAccountType`, `fundingType`) VALUES (
+                $employeeInsertRequest = "INSERT INTO `nexure_payroll`(`employeeName`, `employeeIDNumber`, `employeePayType`, `employeeEmail`, `employeeTimeType`, `employeeHireDate`, `employeeTerminationDate`, `employeeRehireDate`, `employeePayRate`, `employeeWorkedHours`, `employeeExpectedPay`, `employeeActualPay`, `employeePhoneNumber`, `employeeExtension`, `employeeAddressLine1`, `employeeAddressLine2`, `employeeCity`, `employeeState`, `employeePostalCode`, `employeeCountry`, `employeeDateOfBirth`, `employeeSSNNumber`, `employeeDepartment`, `employeeNotes`, `employeeStatus`, `bankRoutingNumber`, `bankAccountNumber`, `bankAccountType`, `fundingType`) VALUES (
                     '$legalname','$employeeFormattedID','Salary','$email','Full-Time','$registrationdate','0000-00-00','0000-00-00','0.00','0.00','0.00','0.00','$phonenumber','0000','$streetaddress','$additionaladdress','$city','$state','$postalcode','$country','$dateofbirth','000-00-0000','Not Assigned','','$accountstatus','000000000','000000000','Undefined','Standard ACH')";
                 
                 if (mysqli_query($con, $employeeInsertRequest)) {
@@ -160,7 +160,7 @@
 
     function getNextEmployeeID($con) {
 
-        $checkEmployeeIDsResult = mysqli_query($con, "SELECT employeeIDNumber FROM caliweb_payroll ORDER BY id DESC LIMIT 1");
+        $checkEmployeeIDsResult = mysqli_query($con, "SELECT employeeIDNumber FROM nexure_payroll ORDER BY id DESC LIMIT 1");
 
         if ($row = mysqli_fetch_assoc($checkEmployeeIDsResult)) {
 
@@ -177,12 +177,12 @@
 
     function insertOwnershipInformationAndBusiness($con, $legalname, $phonenumber, $email, $dateofbirth, $encryptedeinssnumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $businessname, $businessindustry, $businessrevenue) {
         
-        $addressInsertRequest = "INSERT INTO `caliweb_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES (
+        $addressInsertRequest = "INSERT INTO `nexure_ownershipinformation`(`legalName`, `phoneNumber`, `emailAddress`, `dateOfBirth`, `EINorSSNNumber`, `addressline1`, `addressline2`, `city`, `state`, `postalcode`, `country`) VALUES (
             '$legalname', '$phonenumber', '$email', '$dateofbirth', '$encryptedeinssnumber', '$streetaddress', '$additionaladdress', '$city', '$state', '$postalcode', '$country')";
 
         if (mysqli_query($con, $addressInsertRequest)) {
 
-            $businessInsertRequest = "INSERT INTO `caliweb_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES (
+            $businessInsertRequest = "INSERT INTO `nexure_businesses`(`businessName`, `businessType`, `businessIndustry`, `businessRevenue`, `email`, `businessStatus`, `businessRegDate`, `businessDescription`, `isRestricted`) VALUES (
                 '$businessname', '', '$businessindustry', '$businessrevenue', '$email', 'Active', '0000-00-00', '', 'false')";
 
             if (mysqli_query($con, $businessInsertRequest)) {

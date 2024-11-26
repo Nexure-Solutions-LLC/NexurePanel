@@ -17,7 +17,7 @@
 
     // Prepare the SQL Statement to get all the users info later.
 
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
 
@@ -40,26 +40,26 @@
 
     // Account Notes Section
 
-    $notesResults = mysqli_query($con, "SELECT * FROM caliweb_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
+    $notesResults = mysqli_query($con, "SELECT * FROM nexure_accountnotes WHERE accountNumber='$accountnumber' ORDER BY id DESC");
 
     // Get the Interaction Dates Information for the Account Header
 
     $newInteractionDate = date('Y-m-d H:i:s');
-    mysqli_query($con, "UPDATE caliweb_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='$accountnumber'");
+    mysqli_query($con, "UPDATE nexure_users SET lastInteractionDate='$newInteractionDate' WHERE accountNumber='$accountnumber'");
 
     $firstinteractiondate = isset($customerAccountInfo['firstInteractionDate']) ? $customerAccountInfo['firstInteractionDate'] : null;
-    $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM caliweb_users WHERE accountNumber='$accountnumber'"))['lastInteractionDate'] ?? null;
+    $lastinteractiondate = mysqli_fetch_assoc(mysqli_query($con, "SELECT lastInteractionDate FROM nexure_users WHERE accountNumber='$accountnumber'"))['lastInteractionDate'] ?? null;
 
     // Business Sepecific Data Storage and Variable Declaration for the customers business
 
-    $businessAccountInfo = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM caliweb_businesses WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"));
+    $businessAccountInfo = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM nexure_businesses WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"));
     $businessname = $businessAccountInfo['businessName'] ?? $legalname;
     $businessindustry = $businessAccountInfo['businessIndustry'] ?? "Not Assigned";
-    $websitedomain = $businessAccountInfo ? (mysqli_fetch_array(mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"))['domainName'] ?? "Not Assigned") : "Not Assigned";
+    $websitedomain = $businessAccountInfo ? (mysqli_fetch_array(mysqli_query($con, "SELECT * FROM nexure_websites WHERE email = '".mysqli_real_escape_string($con, $customeremail)."'"))['domainName'] ?? "Not Assigned") : "Not Assigned";
 
     // Fetch website info
 
-    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_websites WHERE email = '$customeremail'");
+    $websiteAccountQuery = mysqli_query($con, "SELECT * FROM nexure_websites WHERE email = '$customeremail'");
     $websiteAccountInfo = mysqli_fetch_array($websiteAccountQuery);
     mysqli_free_result($websiteAccountQuery);
 

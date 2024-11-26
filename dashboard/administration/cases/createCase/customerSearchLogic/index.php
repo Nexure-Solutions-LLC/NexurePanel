@@ -7,7 +7,7 @@
 
     $term = isset($_GET['term']) ? $_GET['term'] : '';
 
-    $query = "SELECT legalName, email, accountNumber FROM caliweb_users WHERE (legalName LIKE ? OR accountNumber LIKE ? OR email LIKE ?)";
+    $query = "SELECT legalName, email, accountNumber FROM nexure_users WHERE (legalName LIKE ? OR accountNumber LIKE ? OR email LIKE ?)";
 
     $statement = $con->prepare($query);
 

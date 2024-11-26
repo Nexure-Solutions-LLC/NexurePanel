@@ -12,7 +12,7 @@
 
     // Perform query
     
-    $panelthemeresult = mysqli_query($con, "SELECT * FROM caliweb_panelconfig WHERE id = '1'");
+    $panelthemeresult = mysqli_query($con, "SELECT * FROM nexure_panelconfig WHERE id = '1'");
     $panelthemeinfo = mysqli_fetch_array($panelthemeresult);
     
     // Free result set

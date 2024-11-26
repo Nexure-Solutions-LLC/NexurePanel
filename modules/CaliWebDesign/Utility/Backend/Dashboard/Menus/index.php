@@ -1,9 +1,9 @@
 <?php
 
-    $sql = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND `modulePositionType` = 'Staff Function'";
+    $sql = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND `modulePositionType` = 'Staff Function'";
     $moduleresult = mysqli_query($con, $sql);
 
-    $departmentsql = "SELECT * FROM caliweb_payroll WHERE employeeEmail = '$currentAccount->email'";
+    $departmentsql = "SELECT * FROM nexure_payroll WHERE employeeEmail = '$currentAccount->email'";
     $departmentresult = mysqli_query($con, $departmentsql);
 
     function renderNavLinks($activeLink, $accountNumber = null) {

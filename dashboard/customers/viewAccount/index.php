@@ -159,7 +159,7 @@
 
                                             accountsManageListingTable(
                                                 $con,
-                                                "SELECT * FROM caliweb_services WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
+                                                "SELECT * FROM nexure_services WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['Service ID', 'Service Name', 'Type', 'Started', 'Renewal', 'Cost', 'Status', 'Actions'],
                                                 ['serviceIdentifier', 'serviceName', 'serviceType', 'serviceStartDate', 'serviceEndDate', 'serviceCost', 'serviceStatus'],
                                                 ['15%', '20%', '15%', '12%', '12%', '8%', '8%'],

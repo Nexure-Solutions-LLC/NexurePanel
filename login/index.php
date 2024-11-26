@@ -29,7 +29,7 @@
 
             $client_ip = $_SERVER['REMOTE_ADDR'];
 
-            $query = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id' AND `password` = '" . hash("sha512", $password) . "'";
+            $query = "SELECT * FROM `nexure_users` WHERE `email` = '$cali_id' AND `password` = '" . hash("sha512", $password) . "'";
 
             $result = mysqli_query($con, $query);
 
@@ -53,7 +53,7 @@
 
                 if ($_SESSION['failed_attempts'] > 5) {
 
-                    $ban_query = "INSERT INTO `caliweb_networks` (`ipAddress`, `listType`) VALUES ('$client_ip', 'Blacklist')";
+                    $ban_query = "INSERT INTO `nexure_networks` (`ipAddress`, `listType`) VALUES ('$client_ip', 'Blacklist')";
 
                     mysqli_query($con, $ban_query);
 
@@ -106,7 +106,7 @@
     function isIpBlocked($ip, $con)
     {
 
-        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'blacklist'";
+        $query = "SELECT COUNT(*) FROM nexure_networks WHERE ipAddress = ? AND listType = 'blacklist'";
 
         if ($stmt = $con->prepare($query)) {
 
@@ -129,7 +129,7 @@
     function isIpAllowed($ip, $con)
     {
 
-        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'whitelist'";
+        $query = "SELECT COUNT(*) FROM nexure_networks WHERE ipAddress = ? AND listType = 'whitelist'";
 
         if ($stmt = $con->prepare($query)) {
 
@@ -311,7 +311,7 @@
                             </div>
                             <div class="form-control">
                                 <?php
-                                    $loginModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
+                                    $loginModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
                                     $loginModulesLookupResult = mysqli_query($con, $loginModulesLookupQuery);
 
                                     if (mysqli_num_rows($loginModulesLookupResult) > 0) {
@@ -365,7 +365,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>s
 
 <?php 
     

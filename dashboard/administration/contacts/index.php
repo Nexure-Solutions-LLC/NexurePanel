@@ -39,7 +39,7 @@
 
                                 contactsHomeListingTable(
                                     $con,
-                                    "SELECT * FROM caliweb_ownershipinformation",
+                                    "SELECT * FROM nexure_ownershipinformation",
                                     ['Legal Name', 'Email', 'Date of Birth', 'Address Line 1', 'Address Line 2', 'City', 'State', 'Postal Code', 'Country', 'Actions'],
                                     ['legalName', 'emailAddress', 'dateOfBirth', 'addressline1', 'addressline2', 'city', 'state', 'postalcode', 'country'],
                                     ['14%', '15%', '10%', '15%', '10%', '8%', '5%', '8%', '10%'],

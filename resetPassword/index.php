@@ -33,12 +33,12 @@
             
             // Check user is exist in the database
 
-            $query    = "SELECT * FROM `caliweb_users` WHERE `email` = '$cali_id'";
+            $query    = "SELECT * FROM `nexure_users` WHERE `email` = '$cali_id'";
             $result = mysqli_query($con, $query) or die(mysqli_error());
             $rows = mysqli_num_rows($result);
 
             $verificationCode = rand(1000000000000000, 9999999999999999);
-            $newQuery = "INSERT INTO `caliweb_recoveryrequests` (email, recoverycode, timestamp) VALUES ('".$cali_id."', '".$verificationCode."',". time() .")";
+            $newQuery = "INSERT INTO `nexure_recoveryrequests` (email, recoverycode, timestamp) VALUES ('".$cali_id."', '".$verificationCode."',". time() .")";
             $result = mysqli_query($con, $newQuery) or die(mysqli_error());
 
             $_SESSION["verification_code"] = $verificationCode;

@@ -5,7 +5,7 @@
 
     $caliemail = $_SESSION['caliid'];
 
-    $userprofileresult = mysqli_query($con, "SELECT * FROM caliweb_users WHERE email = '$caliemail'");
+    $userprofileresult = mysqli_query($con, "SELECT * FROM nexure_users WHERE email = '$caliemail'");
     $userinfo = mysqli_fetch_array($userprofileresult);
     mysqli_free_result($userprofileresult);
 
@@ -66,7 +66,7 @@
             $country = stripslashes($_REQUEST['country']);
             $country = mysqli_real_escape_string($con, $country);
 
-            $query = "UPDATE `caliweb_ownershipinformation` SET `addressline1`='$addressline1',`addressline2`='$addressline2',`city`='$city',`state`='$state',`postalcode`='$postalcode',`country`='$country' WHERE `emailAddress` = '$caliemail'";
+            $query = "UPDATE `nexure_ownershipinformation` SET `addressline1`='$addressline1',`addressline2`='$addressline2',`city`='$city',`state`='$state',`postalcode`='$postalcode',`country`='$country' WHERE `emailAddress` = '$caliemail'";
             $result   = mysqli_query($con, $query);
 
             if ($result) {

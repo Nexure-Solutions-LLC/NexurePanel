@@ -39,7 +39,7 @@
         $paymentDescriptor = mysqli_real_escape_string($con, $_POST["paymentDescriptor"]);
         $registrationMode = mysqli_real_escape_string($con, $_POST["registrationMode"]);
 
-        $query = "UPDATE `caliweb_panelconfig` SET `panelTheme`='$panelTheme',`maintainenceMode`='$panelMaintenanceMode',`paymentDescriptor`='$paymentDescriptor',`maintenanceModeMessage`='$panelMaintenanceModeMessage',`isRegEnabled`='[value-25]' WHERE id = '1'";
+        $query = "UPDATE `nexure_panelconfig` SET `panelTheme`='$panelTheme',`maintainenceMode`='$panelMaintenanceMode',`paymentDescriptor`='$paymentDescriptor',`maintenanceModeMessage`='$panelMaintenanceModeMessage',`isRegEnabled`='[value-25]' WHERE id = '1'";
         $result = mysqli_query($con, $query);
 
         header("location:/dashboard/administration/settings");
@@ -98,7 +98,7 @@
 
                                 settingsManageListingTable(
                                     $con,
-                                    "SELECT * FROM caliweb_panelconfig WHERE id = 1",
+                                    "SELECT * FROM nexure_panelconfig WHERE id = 1",
                                     ['DBA Name', 'Company Legal Name', 'Address', 'City', 'State', 'Postal Code', 'Country', 'Payment Descriptor'],
                                     ['organizationShortName', 'organization', 'organizationAddress', 'organizationCity', 'organizationState', 'organizationZipcode', 'organizationCountry', 'paymentDescriptor'],
                                     ['10%', '17%', '20%', '10%', '10%', '8%', '12%', '15%']
@@ -115,7 +115,7 @@
 
                                 settingsManageListingTable(
                                     $con,
-                                    "SELECT * FROM caliweb_users WHERE id = 1",
+                                    "SELECT * FROM nexure_users WHERE id = 1",
                                     ['Legal Name', 'Phone Number', 'Email', 'Role', 'Access Level', 'Account Status', 'Email Verification', 'Setup Date'],
                                     ['legalName', 'mobileNumber', 'email', 'userrole', 'employeeAccessLevel', 'accountStatus', 'emailVerfied', 'registrationDate'],
                                     ['10%', '12%', '23%', '10%', '10%', '10%', '12%', '15%']

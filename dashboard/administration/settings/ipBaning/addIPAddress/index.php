@@ -36,7 +36,7 @@
         $listType = stripslashes($_REQUEST['listType']);
         $listType = mysqli_real_escape_string($con, $listType);
         
-        $ipquery    = "INSERT INTO `caliweb_networks`(`ipAddress`, `listType`) VALUES ('$ipAddress','$listType')";
+        $ipquery    = "INSERT INTO `nexure_networks`(`ipAddress`, `listType`) VALUES ('$ipAddress','$listType')";
         $ipresult   = mysqli_query($con, $ipquery);
 
         if ($ipresult) {

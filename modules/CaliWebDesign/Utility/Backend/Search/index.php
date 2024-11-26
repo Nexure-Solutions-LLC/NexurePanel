@@ -38,7 +38,7 @@
         private function searchUsers($searchTerm)
         {
 
-            $query = "SELECT legalName, email, accountNumber FROM caliweb_users WHERE (legalName LIKE ? OR accountNumber LIKE ? OR email LIKE ?)";
+            $query = "SELECT legalName, email, accountNumber FROM nexure_users WHERE (legalName LIKE ? OR accountNumber LIKE ? OR email LIKE ?)";
 
             $statement = $this->con->prepare($query);
 
@@ -53,7 +53,7 @@
         private function searchCases($searchTerm)
         {
 
-            $query = "SELECT caseNumber, caseTitle FROM caliweb_cases WHERE (caseNumber LIKE ? OR caseTitle LIKE ?)";
+            $query = "SELECT caseNumber, caseTitle FROM nexure_cases WHERE (caseNumber LIKE ? OR caseTitle LIKE ?)";
 
             $statement = $this->con->prepare($query);
 
@@ -68,7 +68,7 @@
         private function searchTasks($searchTerm)
         {
 
-            $query = "SELECT taskName, taskDescription FROM caliweb_tasks WHERE (taskName LIKE ? OR taskDescription LIKE ?)";
+            $query = "SELECT taskName, taskDescription FROM nexure_tasks WHERE (taskName LIKE ? OR taskDescription LIKE ?)";
 
             $statement = $this->con->prepare($query);
 

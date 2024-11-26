@@ -15,7 +15,7 @@
 
     }
 
-    $customerAccountQuery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '".$accountnumber."'");
+    $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".$accountnumber."'");
     $customerAccountInfo = mysqli_fetch_array($customerAccountQuery);
     mysqli_free_result($customerAccountQuery);
 
@@ -26,7 +26,7 @@
 
     }
 
-    $sql = "SELECT * FROM caliweb_notetypes";
+    $sql = "SELECT * FROM nexure_notetypes";
 
     $result = $con->query($sql);
 
@@ -82,7 +82,7 @@
             $content = mysqli_real_escape_string($con, $_POST["preset"]);
             $added_at = date("d-m-Y h:i:sa");
 
-            $query = 'INSERT INTO `caliweb_accountnotes` (accountnumber, notetype, content, added_by, added_at) VALUES ("' . $accountnumber . '", "' . $notetype . '", "' . $content . '", "' . $currentAccount->legalName . '", "' . $added_at . '");';
+            $query = 'INSERT INTO `nexure_accountnotes` (accountnumber, notetype, content, added_by, added_at) VALUES ("' . $accountnumber . '", "' . $notetype . '", "' . $content . '", "' . $currentAccount->legalName . '", "' . $added_at . '");';
             $result = mysqli_query($con, $query);
 
             header("location:/dashboard/administration/accounts/manageAccount?account_number=" . $accountnumber);

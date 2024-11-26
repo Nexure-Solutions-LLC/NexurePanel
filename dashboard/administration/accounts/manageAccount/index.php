@@ -77,7 +77,7 @@
 
                                             accountsManageListingTable(
                                                 $con,
-                                                "SELECT * FROM caliweb_users WHERE userrole = 'authorized user' AND accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
+                                                "SELECT * FROM nexure_users WHERE userrole = 'authorized user' AND accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['Name', 'Phone', 'Type', 'Status', 'Actions'],
                                                 ['legalName', 'mobileNumber', 'userrole', 'accountStatus'],
                                                 ['25%', '20%', '20%', '20%'],
@@ -105,7 +105,7 @@
 
                                             accountsManageListingTable(
                                                 $con,
-                                                "SELECT * FROM caliweb_services WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
+                                                "SELECT * FROM nexure_services WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['Service ID', 'Service Name', 'Type', 'Started', 'Renewal', 'Cost', 'Status', 'Actions'],
                                                 ['serviceIdentifier', 'serviceName', 'serviceType', 'serviceStartDate', 'serviceEndDate', 'serviceCost', 'serviceStatus'],
                                                 ['15%', '20%', '15%', '12%', '12%', '8%', '8%'],
@@ -133,7 +133,7 @@
 
                                             accountsManageListingTable(
                                                 $con,
-                                                "SELECT * FROM caliweb_fileRecords WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
+                                                "SELECT * FROM nexure_fileRecords WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['File Name', 'Type', 'Upload Date', 'Actions'],
                                                 ['fileDisplayName', 'fileType', 'fileUploadDate'],
                                                 ['30%', '40%', '20%'],
@@ -160,7 +160,7 @@
 
                                             accountsManageListingTable(
                                                 $con,
-                                                "SELECT * FROM caliweb_cases WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
+                                                "SELECT * FROM nexure_cases WHERE accountNumber = '".mysqli_real_escape_string($con, $accountnumber)."'",
                                                 ['Case Number', 'Case Title', 'Created Date', 'Closed Date', 'Assigned Agent', 'Status', 'Actions'],
                                                 ['caseNumber', 'caseTitle', 'caseCreateDate', 'caseCloseDate', 'assignedAgent', 'caseStatus'],
                                                 ['10%', '20%', '15%', '15%', '15%', '10%'],

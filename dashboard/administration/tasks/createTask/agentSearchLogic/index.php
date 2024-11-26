@@ -6,7 +6,7 @@
 
     $term = isset($_GET['term']) ? $_GET['term'] : '';
 
-    $query = "SELECT legalName, email FROM caliweb_users WHERE userrole = 'administrator' AND (legalName LIKE ? OR email LIKE ?)";
+    $query = "SELECT legalName, email FROM nexure_users WHERE userrole = 'administrator' AND (legalName LIKE ? OR email LIKE ?)";
 
     $statement = $con->prepare($query);
 

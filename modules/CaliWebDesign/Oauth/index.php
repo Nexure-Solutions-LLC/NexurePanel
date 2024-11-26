@@ -14,7 +14,7 @@
 
     // Load Custom login Modules Such as Sign-In with Discord, Google, or Okta Authentication
 
-    $authModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
+    $authModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $authModulesLookupResult = mysqli_query($con, $authModulesLookupQuery);
 
     if (mysqli_num_rows($authModulesLookupResult) > 0) {

@@ -60,7 +60,7 @@
 
                                     settingsManageListingTable(
                                         $con,
-                                        "SELECT * FROM caliweb_networks WHERE listType = '" . strtolower('whitelist') . "'",
+                                        "SELECT * FROM nexure_networks WHERE listType = '" . strtolower('whitelist') . "'",
                                         ['IP Address', 'Type'],
                                         ['ipAddress', 'listType'],
                                         ['50%', '50%']
@@ -84,7 +84,7 @@
 
                                     settingsManageListingTable(
                                         $con,
-                                        "SELECT * FROM caliweb_networks WHERE listType = '" . strtolower('blacklist') . "'",
+                                        "SELECT * FROM nexure_networks WHERE listType = '" . strtolower('blacklist') . "'",
                                         ['IP Address', 'Type'],
                                         ['ipAddress', 'listType'],
                                         ['50%', '50%']

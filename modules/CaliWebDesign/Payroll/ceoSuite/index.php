@@ -30,7 +30,7 @@
                             <table style="width:100%;">
                                 <?php
                                     // Fetch data from MySQL table
-                                    $sql = "SELECT * FROM caliweb_payroll";
+                                    $sql = "SELECT * FROM nexure_payroll";
                                     $result = mysqli_query($con, $sql);
 
                                     // Check if any rows were returned

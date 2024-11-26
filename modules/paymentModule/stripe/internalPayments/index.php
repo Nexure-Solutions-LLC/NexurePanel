@@ -29,7 +29,7 @@
 
         $serviceName = mysqli_real_escape_string($con, $serviceName);
 
-        $query = "SELECT modulePath FROM caliweb_modules WHERE matchingService = '$serviceName'";
+        $query = "SELECT modulePath FROM nexure_modules WHERE matchingService = '$serviceName'";
 
         $result = mysqli_query($con, $query);
 
@@ -135,7 +135,7 @@
 
                 } else {
 
-                    $updateQuery = "UPDATE `caliweb_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='Make sure the system is not in test mode.' WHERE email = '$caliemail'";
+                    $updateQuery = "UPDATE `nexure_users` SET `accountStatus` = 'Terminated', `statusReason`='The customer could not be scored on the risk scoring system.', `accountNotes`='Make sure the system is not in test mode.' WHERE email = '$caliemail'";
                     $updateResult = mysqli_query($con, $updateQuery);
 
                     if ($updateResult) {
@@ -164,7 +164,7 @@
 
         } elseif ($pagetitle == "Services" && $pagesubtitle == "Create Order") {
 
-            $customerprofilequery = mysqli_query($con, "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumber'");
+            $customerprofilequery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '$accountnumber'");
             $customerprofileresult = mysqli_fetch_array($customerprofilequery);
             mysqli_free_result($customerprofilequery);
 
@@ -204,7 +204,7 @@
 
                 if ($module) {
 
-                    $orderInsertRequest = "INSERT INTO `caliweb_services`(`serviceIdentifier`, `serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`, `serviceCatagory`) VALUES ('$serviceID', '$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','$module','$purchasableCatagory')";
+                    $orderInsertRequest = "INSERT INTO `nexure_services`(`serviceIdentifier`, `serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`, `serviceCatagory`) VALUES ('$serviceID', '$purchasableItem','$purchasableType','$orderdate','$endDate','$serviceStatus','$accountnumber','$amountPrice','$module','$purchasableCatagory')";
                     
                     if (mysqli_query($con, $orderInsertRequest)) {
 

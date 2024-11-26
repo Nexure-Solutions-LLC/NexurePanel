@@ -149,7 +149,7 @@
 
     function isIpBlocked($ip, $con) {
 
-        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'blacklist'";
+        $query = "SELECT COUNT(*) FROM nexure_networks WHERE ipAddress = ? AND listType = 'blacklist'";
 
         if ($stmt = $con->prepare($query)) {
 
@@ -173,7 +173,7 @@
 
     function isIpAllowed($ip, $con) {
 
-        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'whitelist'";
+        $query = "SELECT COUNT(*) FROM nexure_networks WHERE ipAddress = ? AND listType = 'whitelist'";
 
         if ($stmt = $con->prepare($query)) {
 

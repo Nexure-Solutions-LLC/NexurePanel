@@ -24,7 +24,7 @@
 
     }
 
-    $checkAccountQuery = "SELECT COUNT(*) AS count FROM `caliweb_users` WHERE `accountNumber` = ?";
+    $checkAccountQuery = "SELECT COUNT(*) AS count FROM `nexure_users` WHERE `accountNumber` = ?";
     $stmt = $con->prepare($checkAccountQuery);
     $stmt->bind_param('s', $accountNumber);
     $stmt->execute();
@@ -65,9 +65,9 @@
         // Delete the owner and all related information
 
         $deleteQueries = [
-            "DELETE FROM `caliweb_users` WHERE `accountNumber` = '$accountNumber'",
-            "DELETE FROM `caliweb_businesses` WHERE `email` = '$manageAccountDefinitionR->customeremail'",
-            "DELETE FROM `caliweb_ownershipinformation` WHERE `emailAddress` = '$manageAccountDefinitionR->customeremail'"
+            "DELETE FROM `nexure_users` WHERE `accountNumber` = '$accountNumber'",
+            "DELETE FROM `nexure_businesses` WHERE `email` = '$manageAccountDefinitionR->customeremail'",
+            "DELETE FROM `nexure_ownershipinformation` WHERE `emailAddress` = '$manageAccountDefinitionR->customeremail'"
         ];
 
     } else {
@@ -75,7 +75,7 @@
         // Delete only the authorized user
 
         $deleteQueries = [
-            "DELETE FROM `caliweb_users` WHERE `accountNumber` = '$accountNumber' AND `userrole` = '".mysqli_real_escape_string($con, $accountType)."'"
+            "DELETE FROM `nexure_users` WHERE `accountNumber` = '$accountNumber' AND `userrole` = '".mysqli_real_escape_string($con, $accountType)."'"
         ];
 
     }

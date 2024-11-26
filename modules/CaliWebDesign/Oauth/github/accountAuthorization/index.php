@@ -73,7 +73,7 @@
 
                     $github_id = $github_user_data['id'];
 
-                    $update_query = "UPDATE `caliweb_users` SET `github_id` = '$github_id' WHERE `email` = '" . $_SESSION['caliid'] . "'";
+                    $update_query = "UPDATE `nexure_users` SET `github_id` = '$github_id' WHERE `email` = '" . $_SESSION['caliid'] . "'";
 
                     mysqli_query($con, $update_query);
 

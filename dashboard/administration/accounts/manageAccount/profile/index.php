@@ -41,7 +41,7 @@
                             <div class="card-body">
                                 <?php
 
-                                    $sql = "SELECT * FROM `caliweb_teamslisting` WHERE accountNumber = '".$accountnumber."'";
+                                    $sql = "SELECT * FROM `nexure_teamslisting` WHERE accountNumber = '".$accountnumber."'";
                                     $result = mysqli_query($con, $sql);
 
                                     if (mysqli_num_rows($result) > 0) {

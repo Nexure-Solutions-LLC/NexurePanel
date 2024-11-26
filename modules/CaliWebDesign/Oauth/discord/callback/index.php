@@ -67,7 +67,7 @@
 
                 $discord_id = $discord_user_data['id'];
 
-                $discord_query = "SELECT * FROM `caliweb_users` WHERE `discord_id` = '$discord_id'";
+                $discord_query = "SELECT * FROM `nexure_users` WHERE `discord_id` = '$discord_id'";
 
                 $discord_result = mysqli_query($con, $discord_query);
 
@@ -81,7 +81,7 @@
 
                         // Perform query
 
-                        $discord_query = mysqli_query($con, "SELECT * FROM caliweb_users WHERE discord_id = '".$_SESSION['calidiscordid']."'");
+                        $discord_query = mysqli_query($con, "SELECT * FROM nexure_users WHERE discord_id = '".$_SESSION['calidiscordid']."'");
                         
                         $discord_info = mysqli_fetch_array($discord_query);
                         

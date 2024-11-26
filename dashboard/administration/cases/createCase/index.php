@@ -49,7 +49,7 @@
 
         // Database Calls
         
-        $caseInsertRequest = "INSERT INTO `caliweb_cases`(`caseNumber`, `emailAddress`, `customerName`, `caseTitle`, `caseCreateDate`, `caseCloseDate`, `caseStatus`, `caseDescription`, `assignedAgent`, `assignedDepartment`, `accountNumber`) VALUES ('','$customersearch','','$casetitle','$casecreated','0000-00-00','$casestatus','$casedescription','$assignedagent','','')";
+        $caseInsertRequest = "INSERT INTO `nexure_cases`(`caseNumber`, `emailAddress`, `customerName`, `caseTitle`, `caseCreateDate`, `caseCloseDate`, `caseStatus`, `caseDescription`, `assignedAgent`, `assignedDepartment`, `accountNumber`) VALUES ('','$customersearch','','$casetitle','$casecreated','0000-00-00','$casestatus','$casedescription','$assignedagent','','')";
         $caseInsertResult = mysqli_query($con, $caseInsertRequest);
 
         if ($caseInsertResult) {

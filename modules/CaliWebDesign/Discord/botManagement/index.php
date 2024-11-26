@@ -75,7 +75,7 @@
     function fetchCustomerAccount($con, $accountnumber) {
 >>>>>>> 9ed4cde29 ([UPDATE] Includes new calls so that Cali Panel can support PHP8.2 as it had unsupported function calls. This panel will now run on PHP8.2 Co-authored-by: Alexis <CaliAlexis@users.noreply.github.com>)
 
-        $query = "SELECT * FROM caliweb_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
+        $query = "SELECT * FROM nexure_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
 
         $result = mysqli_query($con, $query);
 

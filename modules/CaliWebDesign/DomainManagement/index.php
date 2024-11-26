@@ -52,7 +52,7 @@ function setPageTitleAndType($role)
 function fetchCustomerAccount($con, $accountnumber)
 {
 
-    $query = "SELECT * FROM caliweb_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
+    $query = "SELECT * FROM nexure_users WHERE FIND_IN_SET('$accountnumber', accountNumber) > 0";
 
     $result = mysqli_query($con, $query);
 

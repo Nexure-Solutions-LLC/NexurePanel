@@ -25,7 +25,7 @@
 
     $accountnumberEscaped = mysqli_real_escape_string($con, $accountnumber);
 
-    $query = "SELECT * FROM caliweb_users WHERE accountNumber = '$accountnumberEscaped'";
+    $query = "SELECT * FROM nexure_users WHERE accountNumber = '$accountnumberEscaped'";
     $result = mysqli_query($con, $query);
     
     $customerAccountInfo = mysqli_fetch_array($result);

@@ -42,7 +42,7 @@
     function isIpBlocked($ip, $con)
     {
 
-        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'blacklist'";
+        $query = "SELECT COUNT(*) FROM nexure_networks WHERE ipAddress = ? AND listType = 'blacklist'";
 
         if ($stmt = $con->prepare($query)) {
 
@@ -65,7 +65,7 @@
     function isIpAllowed($ip, $con)
     {
 
-        $query = "SELECT COUNT(*) FROM caliweb_networks WHERE ipAddress = ? AND listType = 'whitelist'";
+        $query = "SELECT COUNT(*) FROM nexure_networks WHERE ipAddress = ? AND listType = 'whitelist'";
 
         if ($stmt = $con->prepare($query)) {
 
@@ -283,7 +283,7 @@
                 $accountnumber_starting = $_ENV['ACCOUNTSTARTNUMBER'];
                 $builtaccountnumber = $accountnumber_starting.$accountnumber;
 
-                $checkCaliID = "SELECT * FROM caliweb_users WHERE `email` = '$caliid'";
+                $checkCaliID = "SELECT * FROM nexure_users WHERE `email` = '$caliid'";
                 $resultCaliIDCheck = mysqli_query($con, $checkCaliID);
 
                 if (mysqli_num_rows($resultCaliIDCheck) == 1) {
@@ -338,7 +338,7 @@
 
                         $SS_STRIPE_ID = add_customer($legalname, $caliid, $mobilenumber, $builtaccountnumber);
 
-                        $query    = "INSERT INTO `caliweb_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES ('$caliid','".hash("sha512", $password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','/assets/img/profileImages/default.png','$SS_STRIPE_ID','','','Customer','Retail','','$registrationdate','0000-00-00 00:00:00','en-US')";
+                        $query    = "INSERT INTO `nexure_users`(`email`, `password`, `legalName`, `mobileNumber`, `accountStatus`, `statusReason`, `statusDate`, `accountNotes`, `accountNumber`, `accountDBPrefix`, `emailVerfied`, `emailVerifiedDate`, `registrationDate`, `profileIMG`, `stripeID`, `discord_id`, `google_id`, `userrole`, `employeeAccessLevel`, `ownerAuthorizedEmail`, `firstInteractionDate`, `lastInteractionDate`, `lang`) VALUES ('$caliid','".hash("sha512", $password)."','$legalname','$mobilenumber','Under Review','We need more information to continuing opening an account with us.','$registrationdate','','$builtaccountnumber','$randomPrefix','false','0000-00-00 00:00:00','$registrationdate','/assets/img/profileImages/default.png','$SS_STRIPE_ID','','','Customer','Retail','','$registrationdate','0000-00-00 00:00:00','en-US')";
                         $result   = mysqli_query($con, $query);
 
                         if ($result) {

@@ -7,7 +7,7 @@
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
     include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/settingsTables/index.php');
 
-    $accountModulesLookupQuery = "SELECT * FROM caliweb_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
+    $accountModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
 
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
@@ -41,7 +41,7 @@
 
                             settingsManageListingTable(
                                 $con,
-                                "SELECT * FROM caliweb_users WHERE email = '" . $currentAccount->email . "'",
+                                "SELECT * FROM nexure_users WHERE email = '" . $currentAccount->email . "'",
                                 ['Legal Name', 'Email', 'Mobile Number', 'Account Number', 'Role'],
                                 ['legalName', 'email', 'mobileNumber', 'accountNumber', 'userrole'],
                                 ['20%', '20%', '20%', '20%', '20%']
@@ -60,7 +60,7 @@
 
                             settingsManageListingTable(
                                 $con,
-                                "SELECT * FROM caliweb_ownershipinformation WHERE emailAddress = '" . $currentAccount->email . "'",
+                                "SELECT * FROM nexure_ownershipinformation WHERE emailAddress = '" . $currentAccount->email . "'",
                                 ['Address Line 1', 'Address Line 2', 'City', 'State', 'Country', 'Postal Code'],
                                 ['addressline1', 'addressline2', 'city', 'state', 'country', 'postalcode'],
                                 ['40%', '20%', '10%', '10%', '10%']
