@@ -38,7 +38,7 @@
         if ($pagetitle == "Customer Accounts" && $pagesubtitle == "Payment Methods") {
 
 
-            $account = new \CaliWebDesign\Accounts\AccountHandler($con);
+            $account = new \NexureSolutions\Accounts\AccountHandler($con);
 
             $account->fetchByAccountNumber($accountnumber);
 

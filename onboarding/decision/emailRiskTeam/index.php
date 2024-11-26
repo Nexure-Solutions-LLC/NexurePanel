@@ -2,7 +2,7 @@
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php");
 
     use Dotenv\Dotenv;
 
@@ -46,7 +46,7 @@
                     <img src="<?php echo $variableDefinitionX->orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $variableDefinitionX->orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
                     <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">This application seems potentially fradulent</h6>
-                    <p class="caliweb-login-sublink license-text-dark width-100">Please email our risk review department at support@caliwebdesignservices.com to resolve this, they typically respond within 24 hours.</p>
+                    <p class="caliweb-login-sublink license-text-dark width-100">Please email our risk review department at support@NexureSolutionsservices.com to resolve this, they typically respond within 24 hours.</p>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
     </div>
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php');
 
     } else {
 

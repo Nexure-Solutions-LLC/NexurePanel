@@ -1,7 +1,7 @@
 <?php
 
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php");
 
     $caliemail = $_SESSION['caliid'];
 
@@ -410,5 +410,5 @@
     </div>
 
 <?php
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php');
 ?>

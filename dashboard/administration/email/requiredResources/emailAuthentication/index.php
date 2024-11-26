@@ -4,7 +4,7 @@
 
         // Autenticate into the email server.
 
-        $hostName = '{mail.caliwebdesignservices.com:993/imap/ssl}INBOX'; // DO NOT MODIFY THIS LINE
+        $hostName = '{mail.NexureSolutionsservices.com:993/imap/ssl}INBOX'; // DO NOT MODIFY THIS LINE
 
         $emailWebClientLoginQuery = "SELECT * FROM nexure_calimail WHERE assignedUser = '$caliemail'";
         $emailWebClientLoginResult = mysqli_query($con, $emailWebClientLoginQuery);

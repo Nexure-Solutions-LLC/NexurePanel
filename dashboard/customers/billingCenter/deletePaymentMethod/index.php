@@ -8,7 +8,7 @@
     $pagesubtitle = "Delete your Payment Method";
     $pagetype = "Client";
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     // Retrieve account number from query parameters and check the account number and if its present
 

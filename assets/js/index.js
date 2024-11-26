@@ -102,7 +102,7 @@ $(document).ready(function () {
 
     // Initialize searches with specific endpoints and formatting
     
-    setupSearch('#systemSearch', '#systemSearchResults', '/modules/CaliWebDesign/Utility/Backend/Search/index.php', function (item) {
+    setupSearch('#systemSearch', '#systemSearchResults', '/modules/NexureSolutions/Utility/Backend/Search/index.php', function (item) {
         return '<strong>' + Object.values(item)[0] + '</strong><br>' + Object.values(item).slice(1).join(' • ');
     });
 

@@ -4,7 +4,7 @@
 
     session_start();
 
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php");
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
 
     use Twilio\Rest\Client;
@@ -180,8 +180,8 @@
         <div class="preloader">
             <div style="margin-left:auto;margin-right:auto;max-width:80%;">
                 <div class="logo" style="margin-top:-6%;">
-                    <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-Logo.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
-                    <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-WhiteLogo.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
+                    <img src="https://NexureSolutionsservices.com/assets/img/logos/NexureSolutions-Logo.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
+                    <img src="https://NexureSolutionsservices.com/assets/img/logos/NexureSolutions-WhiteLogo.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
                 </div>
                 <div style="margin-top:6%;" class="loading-bar">
                     <div class="loading-bar-inner"></div>
@@ -194,5 +194,5 @@
         </script>
     ';
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php');
 ?>

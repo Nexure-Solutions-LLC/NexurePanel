@@ -4,7 +4,7 @@
     $pagesubtitle = "Your account has been placed in an additional review";
     $pagetype = "Status Page";
 
-    require($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Status/Headers/index.php');
+    require($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Status/Headers/index.php');
 
     echo '<title>'.$variableDefinitionX->orgShortName.' - Under Review</title>';
 
@@ -40,6 +40,6 @@
             </div>
         </div>';
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php');
 
 ?>

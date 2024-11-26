@@ -14,9 +14,9 @@
 
     } else {
 
-        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+        include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
-        $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+        $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
         $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
         if ($manageAccountDefinitionR->customerAccountInfo != NULL) {
@@ -166,7 +166,7 @@
                                                                 <option>Please choose an option</option>
                                                                 <?php
 
-                                                                    $variableDefinitions = new \CaliWebDesign\Generic\VariableDefinitions();
+                                                                    $variableDefinitions = new \NexureSolutions\Generic\VariableDefinitions();
                                                                     $catagoryoptions = $variableDefinitions->getActiveClientModulesOptions($con);
 
                                                                 ?>
@@ -248,7 +248,7 @@
 
 <?php
 
-                include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+                include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
             }
         

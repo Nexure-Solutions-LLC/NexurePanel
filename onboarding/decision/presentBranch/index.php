@@ -5,7 +5,7 @@
     include($_SERVER["DOCUMENT_ROOT"]."/lang/en_US.php");
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-    require($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Login/Headers/index.php");
+    require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php");
 
     use Dotenv\Dotenv;
 
@@ -69,7 +69,7 @@
     </div>
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Login/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Login/Footers/index.php');
 
     } else {
 

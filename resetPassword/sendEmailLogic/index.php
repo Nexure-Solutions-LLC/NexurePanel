@@ -32,7 +32,7 @@
         $email->IsSMTP();
         $email->SMTPAuth = true;
         $email->SMTPSecure = 'ssl';
-        $email->Host = "mail.caliwebdesignservices.com";
+        $email->Host = "mail.NexureSolutionsservices.com";
         $email->Port = 465;
 
         $envNoReplyEmail = $_ENV['NO_REPLY_EMAIL'];
@@ -46,7 +46,7 @@
         include($_SERVER["DOCUMENT_ROOT"]."/modules/emailIntegrations/index.php"); 
 
         $fromName = 'Nexure Solutions LLC';
-        $email->SetFrom("noreply@caliwebdesignservices.com", $fromName);
+        $email->SetFrom("noreply@NexureSolutionsservices.com", $fromName);
         $email->AddAddress($_SESSION['resetPassswordEmail']);
         $email->isHTML(true);
         $email->Subject = $submittedsubject;

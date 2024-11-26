@@ -6,8 +6,8 @@
 
     $accountnumber = (string) $_GET['account_number'];
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/tables/accountTables/index.php');
 
     if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
@@ -39,7 +39,7 @@
 
         $customerStatus = $currentAccount->accountStatus;
 
-        $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+        $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
         $manageAccountDefinitionR->manageAccount($con, $storedAccountNumbersString);
 
         $businessname = ($manageAccountDefinitionR->businessname !== null) ? $manageAccountDefinitionR->businessname : null;
@@ -244,6 +244,6 @@
         
     }
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

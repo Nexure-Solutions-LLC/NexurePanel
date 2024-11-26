@@ -4,8 +4,8 @@
     $pagesubtitle = "Linked Relationships";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/accountTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/tables/accountTables/index.php');
 
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
@@ -20,7 +20,7 @@
 
     $accountnumberEsc = mysqli_real_escape_string($con, $accountnumber);
 
-    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
 ?>
@@ -28,11 +28,11 @@
     <section class="section first-dashboard-area-cards">
         <div class="container width-98">
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Headers/index.php'); ?>
+                <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Account/Headers/index.php'); ?>
                 <div class="caliweb-two-grid special-caliweb-spacing account-grid-modified">
                     <div>
                         <div class="caliweb-card dashboard-card">
-                            <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Account/Menus/index.php'); ?>
+                            <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Account/Menus/index.php'); ?>
                             <div class="caliweb-card dashboard-card">
                                 <div class="card-header">
                                     <div class="display-flex align-center" style="justify-content:space-between;">
@@ -132,6 +132,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>

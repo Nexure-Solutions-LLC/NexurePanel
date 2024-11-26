@@ -8,7 +8,7 @@ error_reporting(E_ALL);
     $pagetitle = "Home";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     echo '<title>' . $pagetitle . ' | ' . $variableDefinitionX->orgShortName . '</title>';
 
@@ -54,7 +54,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Sales Person Activity";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/graphSQL/barGraphs/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/graphSQL/barGraphs/index.php');
                             ?>
 
                         </div>
@@ -83,7 +83,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Sales Person Activity";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/graphSQL/barGraphs/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/graphSQL/barGraphs/index.php');
                             ?>
 
                         </div>
@@ -112,7 +112,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Employee Only Sales Activity";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/graphSQL/barGraphs/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/graphSQL/barGraphs/index.php');
                             ?>
 
                         </div>
@@ -163,7 +163,7 @@ error_reporting(E_ALL);
                             $graphCallType = "Deals by Segment";
                             $_SESSION['graphCallType'] = $graphCallType;
 
-                            include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/graphSQL/pieCharts/index.php');
+                            include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/graphSQL/pieCharts/index.php');
                         ?>
                     </div>
                     <div class="card-footer">
@@ -189,7 +189,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Tasks Table";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -216,7 +216,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Tasks Table";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -243,7 +243,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Tasks Table Employee Only";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -274,7 +274,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Cases Table";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -303,7 +303,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Cases Table";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -332,7 +332,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Cases Table Employee Only";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -364,7 +364,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Leads Table";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -393,7 +393,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Leads Table";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -422,7 +422,7 @@ error_reporting(E_ALL);
                                 unset($_SESSION['graphCallType']);
                                 $graphCallType = "Dashboard Leads Table Employee Only";
                                 $_SESSION['graphCallType'] = $graphCallType;
-                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/tables/index.php');
+                                include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/tables/index.php');
                             ?>
 
                         </div>
@@ -464,7 +464,7 @@ error_reporting(E_ALL);
             function updateTheme(theme) {
 
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", "/modules/CaliWebDesign/Utility/graphSQL/themeingRequirement/index.php", true);
+                xhr.open("POST", "/modules/NexureSolutions/Utility/graphSQL/themeingRequirement/index.php", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                 xhr.onload = function() {
@@ -522,7 +522,7 @@ error_reporting(E_ALL);
 
 <?php
 
-        include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+        include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
         
     } catch (\Throwable $exception) {
 

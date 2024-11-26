@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"] . '/lang/en_US.php');
 require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-require($_SERVER["DOCUMENT_ROOT"] . "/modules/CaliWebDesign/Utility/Backend/index.php");
+require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/index.php");
 require($_SERVER["DOCUMENT_ROOT"] . "/license/index.php");
 
 session_start();
@@ -79,7 +79,7 @@ $dotenv->load();
 
 // Initalize the variable class and function from Cali Utilities
 
-$variableDefinitionX = new \CaliWebDesign\Generic\VariableDefinitions();
+$variableDefinitionX = new \NexureSolutions\Generic\VariableDefinitions();
 $variableDefinitionX->variablesHeader($con);
 
 // Check Language
@@ -96,14 +96,14 @@ if (isset($_POST['langPreference'])) {
 <head>
     <meta charset="utf-8" />
     <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
-    <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
+    <link href="https://NexureSolutionsservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/login-css-2024.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="apple-touch-icon" sizes="180x180" href="https://caliwebdesignservices.com/assets/img/favico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="https://caliwebdesignservices.com/assets/img/favico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="https://caliwebdesignservices.com/assets/img/favico/favicon-16x16.png">
-    <link rel="manifest" href="https://caliwebdesignservices.com/assets/img/favico/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://NexureSolutionsservices.com/assets/img/favico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://NexureSolutionsservices.com/assets/img/favico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://NexureSolutionsservices.com/assets/img/favico/favicon-16x16.png">
+    <link rel="manifest" href="https://NexureSolutionsservices.com/assets/img/favico/site.webmanifest">
     <?php include($_SERVER["DOCUMENT_ROOT"] . "/dashboard/company/themes/index.php"); ?>
 
     <script type="text/javascript">
@@ -161,13 +161,13 @@ if (isset($_POST['langPreference'])) {
                 </div>
                 <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
                 <div class="list-links-footer">
-                    <a href="https://caliwebdesignservices.com/terms">Terms of Service</a>
-                    <a href="https://caliwebdesignservices.com/privacy">Privacy Policy</a>
+                    <a href="https://NexureSolutionsservices.com/terms">Terms of Service</a>
+                    <a href="https://NexureSolutionsservices.com/privacy">Privacy Policy</a>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://caliwebdesignservices.com/assets/js/index.js"></script>
+    <script src="https://NexureSolutionsservices.com/assets/js/index.js"></script>
 </body>
 
 </html>

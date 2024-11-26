@@ -4,8 +4,8 @@
     $pagesubtitle = "List";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/tables/taskTables/index.php');
+    include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/tables/taskTables/index.php');
     
     echo "<title>$pagetitle | $pagesubtitle</title>";
 
@@ -98,4 +98,4 @@
         }
     </script>
 
-<?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php'); ?>
+<?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php'); ?>

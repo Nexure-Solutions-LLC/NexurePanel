@@ -5,7 +5,7 @@
     $_SESSION['pagesubtitle'] = $pagesubtitle = "Alter Balances";
     $pagetype = "Administration";
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
 
@@ -33,7 +33,7 @@
 
     }
 
-    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
     $customerAccountQuery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '".$accountnumber."'");
@@ -119,7 +119,7 @@
             <div class="container width-98">
                 <div class="caliweb-one-grid special-caliweb-spacing">
                     <div class="caliweb-card dashboard-card">
-                        <form method="POST" action="" id="caliwebdesign-panel-form">
+                        <form method="POST" action="" id="NexureSolutions-panel-form">
                             <div class="card-header">
                                 <div class="display-flex align-center" style="justify-content: space-between;">
                                     <div class="display-flex align-center">
@@ -165,7 +165,7 @@
 
 <?php
 
-        include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+        include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
     } else {
 

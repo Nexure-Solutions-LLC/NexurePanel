@@ -10,7 +10,7 @@
     $pagesubtitle = "";
     $pagetype = "";
 
-    include($_SERVER["DOCUMENT_ROOT"]."/modules/CaliWebDesign/Utility/Backend/Onboarding/Complete/index.php");
+    include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Onboarding/Complete/index.php");
 
     // Checks type of payment processor.
 

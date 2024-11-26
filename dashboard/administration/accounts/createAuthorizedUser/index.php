@@ -4,7 +4,7 @@
     $pagetype = "Administration";
 
     require($_SERVER["DOCUMENT_ROOT"] . '/configuration/index.php');
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Headers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Headers/index.php');
 
     $accountnumber = $_GET['account_number'] ?? '';
 
@@ -15,7 +15,7 @@
 
     }
 
-    $manageAccountDefinitionR = new \CaliWebDesign\Generic\VariableDefinitions();
+    $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -173,6 +173,6 @@
 
 <?php
 
-    include($_SERVER["DOCUMENT_ROOT"].'/modules/CaliWebDesign/Utility/Backend/Dashboard/Footers/index.php');
+    include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Dashboard/Footers/index.php');
 
 ?>
