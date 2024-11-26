@@ -70,7 +70,7 @@ $LANG_RESET_PASSWORD_STAGE_2_TEXT = "An email has been sent to this email addres
 $LANG_LICENSE_TITLE_PAR_1 = "Cali Web Design";
 $LANG_LICENSE_TITLE_PAR_2 = "License Error";
 $LANG_LICENSE_TITLE = "The key you entered is incorrect or malformed!";
-$LANG_LICENSE_TEXT = "To protect the Cali Web Design Panel, you need a license to use it. The key you entered is not valid and cannot be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.";
+$LANG_LICENSE_TEXT = "To protect the Nexure Panel, you need a license to use it. The key you entered is not valid and cannot be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.";
 
 // Registration Disabled Text Specifications
 
@@ -236,9 +236,9 @@ $LANG_APPROVAL_DENIED_PAGE_BODY = "Because of the information you have specified
 
 // Panel About Information
 
-$PANEL_ABOUT_TITLE_PRODUCT_NAME = "Cali Web Design Panel ".$variableDefinitionX->panelVersionName." Web Version";
-$PANEL_ABOUT_INFO = "This software was created by Cali Web Design Services LLC. This software allows the ability to run your business from one place. The software is equipped with OAuth, CRM, Payroll, Time Keeping, Merchant Processing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can add and remove features as well as develop your own features as needed for your type of business.";
-$PANEL_ABOUT_LICENSE_DISCLAIMER = "THE BASE CODE OF THIS SOFTWARE IS OPEN SOURCE AND FREE TO USE UNDER THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL). THE AUTHOR OF DERIVATIVE WORKS OF THIS SOFTWARE MUST NOTIFY CALI WEB DESIGN OF CHANGES. CERTAIN MODULES AND PAID VERSIONS OF THIS SOFTWARE WE DEVELOP ARE NOT OPEN SOURCE.";
+$PANEL_ABOUT_TITLE_PRODUCT_NAME = "Nexure Panel ".$variableDefinitionX->panelVersionName." Web Version";
+$PANEL_ABOUT_INFO = "This software was created by Nexure Solutions LLC. This software allows the ability to run your business from one place. The software is equipped with OAuth, CRM, Payroll, Time Keeping, Merchant Processing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can add and remove features as well as develop your own features as needed for your type of business.";
+$PANEL_ABOUT_LICENSE_DISCLAIMER = "THE BASE CODE OF THIS SOFTWARE IS OPEN SOURCE AND FREE TO USE UNDER THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL). THE AUTHOR OF DERIVATIVE WORKS OF THIS SOFTWARE MUST NOTIFY NEXURE SOLUTIONS OF CHANGES. CERTAIN MODULES AND PAID VERSIONS OF THIS SOFTWARE WE DEVELOP ARE NOT OPEN SOURCE.";
 
 
 ?>

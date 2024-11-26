@@ -4,7 +4,7 @@
     // This replaces the seperate middleware our former developer Mikey made.
     // It also was moved to Cali Web Design Modules from Cali Web Design Compoents.
     // THIS SOFTWARE IS OPENSOURCE UNDER COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0
-    // (C) 2024 Cali Web Design Services LLC.
+    // (C) 2024 Nexure Solutions LLC.
 
     namespace CaliWebDesign\Accounts;
 
@@ -711,6 +711,7 @@
         public $taskduedate;
         public $assigneduser;
         public $status;
+        public $taskInfo;
 
         public function manageTask($con, $taskID)
         {

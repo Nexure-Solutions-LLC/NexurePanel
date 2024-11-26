@@ -42,8 +42,8 @@ echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
                 </div>
                 <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:73.5vh;">
                     <div>
-                        <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-Logo.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
-                        <img src="https://caliwebdesignservices.com/assets/img/logos/CaliWebDesign-WhiteLogo.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
+                        <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoBlack.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
+                        <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoWhite.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
                     </div>
                     <div style="padding-left:5px; padding-right:5px; width:70%;">
                         <div>
@@ -57,10 +57,10 @@ echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
                             <br>
                         </div>
                         <div>
-                            <p style="margin-top:10px; font-size:14px;">Software Name: Cali Web Design Panel (Cali Panel)</p>
+                            <p style="margin-top:10px; font-size:14px;">Software Name: Nexure Solutions Panel (Nexure Panel)</p>
                             <p style="margin-top:10px; font-size:14px;">Version: <?php echo $variableDefinitionX->panelVersionName; ?> Developer Beta 3</p>
                             <p style="margin-top:10px; font-size:14px;">Release Date: 08/03/2024 10:18:22 PM (Eastern Time)</p>
-                            <p style="margin-top:10px; font-size:14px;">Edition: Cali Panel Developer Edition</p>
+                            <p style="margin-top:10px; font-size:14px;">Edition: Nexure Panel Developer Edition</p>
                             <?php
 
                             echo "<p style='margin-top:10px; font-size:14px;'>Current PHP Version: " . phpversion() . "</p>";
@@ -69,7 +69,7 @@ echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
                             ?>
                             <p style="margin-top:10px; font-size:14px;">Languages: HTML, CSS, JS, PHP and MySQL</p>
-                            <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Cali Web Design Services LLC, Nick Derry, Mikey W, Mikey Brinkley, Nathan Schwartz, Aiden Webb.</p>
+                            <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Nexure Solutions LLC, Nick Derry, Mikey W, Mikey Brinkley, Nathan Schwartz, Aiden Webb.</p>
                         </div>
                         <!-- <div id="phpinfo" style="margin-top:6%;">
                                 <?php

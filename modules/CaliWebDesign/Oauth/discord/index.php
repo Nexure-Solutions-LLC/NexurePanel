@@ -4,7 +4,7 @@
 
     // Cali Web Design Discord OAuth Module
     // Version: 2.0.1
-    // (C) Copyright Cali Web Design Services LLC - All rights reserved
+    // (C) Copyright Nexure Solutions LLC - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is not included in the Cali Panel software by default

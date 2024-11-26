@@ -45,7 +45,7 @@
 
         include($_SERVER["DOCUMENT_ROOT"]."/modules/emailIntegrations/index.php"); 
 
-        $fromName = 'Cali Web Design Services LLC';
+        $fromName = 'Nexure Solutions LLC';
         $email->SetFrom("noreply@caliwebdesignservices.com", $fromName);
         $email->AddAddress($_SESSION['resetPassswordEmail']);
         $email->isHTML(true);
