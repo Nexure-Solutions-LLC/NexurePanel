@@ -23,7 +23,7 @@
         foreach ($links as $name => $url) {
 
             $activeClass = $activeLink === $name ? 'active' : '';
-            echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable\">$name</a></li>";
+            echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable $activeClass\">$name</a></li>";
 
         }
 

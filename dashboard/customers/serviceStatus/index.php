@@ -20,7 +20,7 @@
                         <p class="width-50 font-14px" style="margin-left:auto; max-width: 650px; margin-right:auto;">Nexure offers stellar world-class uptime and network availability. Listed below are all our services and their status. If there is an outage it would be reported here.</p>
                         </div>
                     </div>
-                    <div class="service-status-bar width-75" style="font-size:14px; font-weight:400;!important; margin-left:auto; margin-right:auto;">
+                    <div class="service-status-bar width-75" style="font-size:14px; font-weight:400 !important; margin-left:auto; margin-right:auto;">
                         <div class="circle"></div>All Services Currently Online
                         <span class="tooltip-text">
                             Operational For 69420 Days

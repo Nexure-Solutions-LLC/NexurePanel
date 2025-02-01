@@ -131,12 +131,12 @@
                                         <label for="panelTheme">Panel Theme</label>
                                         <br>
                                         <select class="form-input" style="width:100%;" name="panelTheme" id="panelTheme">
-                                            <option>CaliDefault</option>
-                                            <option>CaliClassic</option>
-                                            <option>CaliPurple</option>
-                                            <option>CaliGreen</option>
-                                            <option>CaliOrange</option>
-                                            <option>CaliRed</option>
+                                            <option>NexureDefault</option>
+                                            <option>NexureClassic</option>
+                                            <option>NexurePurple</option>
+                                            <option>NexureGreen</option>
+                                            <option>NexureOrange</option>
+                                            <option>NexureRed</option>
                                         </select>
                                     </div>
                                     <div class="form-control" style="margin-top:6%;">
