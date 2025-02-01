@@ -7,8 +7,6 @@ license
 license/*
 installation/encodingGeneration
 dashboard/administration/accounts/fileUpload/uploadLogic
-CaliUtilitiesBot/
-CaliUtilitiesBot/*
 error/errorLogs
 error/errorLogs/*
 vendor/
