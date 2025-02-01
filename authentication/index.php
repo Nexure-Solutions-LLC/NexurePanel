@@ -3,8 +3,17 @@
 
     if(!isset($_SESSION["caliid"])) {
 
-        header("Location: /login");
-        exit();
+        if ($pagetitle == "Linked Roles") {
+
+            header("Location: /login/?referral_url=/modules/NexureSolutions/Discord/linkedRoles");
+            exit();
+
+        } else {
+
+            header("Location: /login");
+            exit();
+
+        }
 
     }
     
