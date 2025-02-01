@@ -90,7 +90,7 @@
                     "Account Opened", 
                     $emailaddress, 
                     $legalname, 
-                    "[Important Information] - Hello from Cali Web Design Services"
+                    "[Important Information] - Hello from Nexure Solutions"
                 );
 
                 handleEmployeeOrBusinessInsert($con, $legalname, $emailaddress, $registrationdate, $phonenumber, $streetaddress, $additionaladdress, $city, $state, $postalcode, $country, $dateofbirth, $encryptedeinssnumber, $businessname, $businessindustry, $businessrevenue, $accountstatus, $accesslevel);

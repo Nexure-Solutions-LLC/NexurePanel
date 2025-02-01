@@ -128,7 +128,7 @@ if (strtolower($currentAccount->role->name) == "customer") {
             <div class="container caliweb-container">
                 <div class="display-flex align-center" style="justify-content:space-between;">
                     <div>
-                        <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design Web Development / Home Page</p>
+                        <p class="no-padding" style="font-size:16px;">Overview / Nexure Web Development / Home Page</p>
                     </div>
                     <div class="width-25">
                         <?php
@@ -471,7 +471,7 @@ if (strtolower($currentAccount->role->name) == "customer") {
                     <div class="container caliweb-container">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design Web Development / Home Page</p>
+                                <p class="no-padding" style="font-size:16px;">Overview / Nexure Web Development / Home Page</p>
                             </div>
                             <div class="width-25">
                                 <?php

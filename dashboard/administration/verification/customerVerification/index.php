@@ -56,7 +56,7 @@
                 $customerPhoneNumber,
                 array(
                     "from" => $_ENV['TWILLIONUMBER'],
-                    "body" => "[CALI WEB DESIGN FREE MSG]: Thank you for calling Cali Web Design. Your code is: $verificationCode. Remember: Cali Web Design will not call or text you to ask for this code."
+                    "body" => "[Nexure FREE MSG]: Thank you for calling Nexure. Your code is: $verificationCode. Remember: Nexure will not call or text you to ask for this code."
                 )
             );
 
@@ -180,8 +180,8 @@
         <div class="preloader">
             <div style="margin-left:auto;margin-right:auto;max-width:80%;">
                 <div class="logo" style="margin-top:-6%;">
-                    <img src="https://NexureSolutionsservices.com/assets/img/logos/NexureSolutions-Logo.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
-                    <img src="https://NexureSolutionsservices.com/assets/img/logos/NexureSolutions-WhiteLogo.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
+                    <img src="https://NexureSolutionsservices.com/assets/img/logos/NexureSolutions-Logo.svg" width="150px" loading="lazy" alt="Nexure Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
+                    <img src="https://NexureSolutionsservices.com/assets/img/logos/NexureSolutions-WhiteLogo.svg" width="150px" loading="lazy" alt="Nexure Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
                 </div>
                 <div style="margin-top:6%;" class="loading-bar">
                     <div class="loading-bar-inner"></div>

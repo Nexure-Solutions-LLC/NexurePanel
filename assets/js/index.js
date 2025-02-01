@@ -1,4 +1,4 @@
-// Cali Web Design Panel UI/UX Library
+// Nexure Panel UI/UX Library
 // Feel free to add to this as needed.
 
 // ====================== Required Preloader JS Code ======================
@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-// ====================== Cali Web Design Search System ======================
+// ====================== Nexure Search System ======================
 
 $(document).ready(function () {
 

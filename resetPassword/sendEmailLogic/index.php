@@ -41,7 +41,7 @@
         $email->Username = $envNoReplyEmail;
         $email->Password = $envNoReplyPassword;
 
-        $submittedsubject = "Here is your requested Cali Web Design verification code"; 
+        $submittedsubject = "Here is your requested Nexure verification code"; 
 
         include($_SERVER["DOCUMENT_ROOT"]."/modules/emailIntegrations/index.php"); 
 

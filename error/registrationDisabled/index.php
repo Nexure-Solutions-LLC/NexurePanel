@@ -20,7 +20,7 @@
     } else {
 
 ?>
-<!-- Universal Rounded Floating Cali Web Design Header Bar start -->   
+<!-- Universal Rounded Floating Nexure Header Bar start -->   
 <?php require($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Utility/Backend/Login/Headers/index.php"); ?>
 
     <!-- 
@@ -43,7 +43,7 @@
     <div class="caliweb-login-footer license-footer">
         <div class="container caliweb-container">
             <div class="caliweb-grid-2">
-                <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
+                <!-- DO NOT REMOVE THE Nexure COPYRIGHT TEXT -->
                 <!-- 
                     THIS TEXT IS TO GIVE CREDIT TO THE AUTHORS AND REMOVING IT
                     MAY CAUSE YOUR LICENSE TO BE REVOKED.
@@ -51,7 +51,7 @@
                 <div class="">
                     <p class="caliweb-login-footer-text">&copy; 2024 - Nexure Solutions LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
-                <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
+                <!-- DO NOT REMOVE THE Nexure COPYRIGHT TEXT -->
                 <div class="list-links-footer">
                     <a href="<?php echo $variableDefinitionX->paneldomain; ?>/terms">Terms of Service</a>
                     <a href="<?php echo $variableDefinitionX->paneldomain; ?>/privacy">Privacy Policy</a>

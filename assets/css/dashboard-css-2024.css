@@ -1,11 +1,10 @@
-/* =================== Cali Web Design Dashboard Global Styles =================== */
+/* =================== Nexure Dashboard Global Styles =================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
 body {
     overflow-x: hidden;
-    background-color: #f1f1f1;
-    background-image: url("/assets/img/dashboardBackground/mainBackground.webp") !important;
+    background-color: #fff;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,6 +13,10 @@ body {
     position: fixed;
     top: 0;
     bottom: 0;
+}
+
+td, th {
+    background-color: transparent !important;
 }
 
 *::-webkit-scrollbar {
@@ -29,6 +32,10 @@ body {
 *::-webkit-scrollbar-thumb {
     background-color: #c4c4c4;
     border-radius: 50px;
+}
+
+:selection {
+    color: #8bc2f0 !important;
 }
 
 .text-bold {
@@ -131,7 +138,7 @@ body {
 }
 
 .tab-switch-tab.active {
-    border-bottom: 2px solid #D49DFF;
+    border-bottom: 2px solid #9dd0ff;
 }
 
 .toggle-container {
@@ -166,7 +173,7 @@ body {
     background-color: #f2f3f5;
 }
 
-/* =================== Cali Web Design Dashboard Container Styles =================== */
+/* =================== Nexure Dashboard Container Styles =================== */
 
 .container,
 .caliweb-navbar-container,
@@ -219,14 +226,13 @@ body {
     width:40%;
 }
 
-/* =================== Cali Web Design Dashboard Header Styles =================== */
+/* =================== Nexure Dashboard Header Styles =================== */
 
 .caliweb-navbar {
     background-color: #fff;
     display: block;
     padding-top: 0;
     padding-bottom: 0;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .caliweb-header-search {
@@ -234,7 +240,7 @@ body {
 }
 
 .caliweb-search-input {
-    border-radius: 6px;
+    border-radius: 999px;
     border: 1px solid #ddd;
     background-color: #fff;
     width: 100%;
@@ -242,7 +248,7 @@ body {
     min-width: 100%;
     margin-top: 0;
     margin-bottom: 0;
-    padding: 10px;
+    padding: 8px;
 }
 
 .caliweb-nav-buttons {
@@ -253,31 +259,23 @@ body {
 .caliweb-nav-links {
     padding-left: 0;
     margin-left: 0;
-    margin-top: 5px;
-    margin-bottom: 0px;
+    margin-top: 8px;
+    margin-bottom: 7px;
 }
 
 .nav-links {
     margin-left: 4px;
     margin-right: 4px;
-    border-radius: 0;
-    padding: 4px 14px;
-    border-top: 3px solid transparent;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
+    border-radius: 999px;
+    padding: 2px 14px;
 }
 
 .nav-links:hover {
-    border-top: 3px solid #000;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    background-color: #eee;
 }
 
 .nav-links.active {
-    border-top: 3px solid #000;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
-    background-color: #f1f1f1;
+    background-color: #9dd0ff;
 }
 
 .more {
@@ -303,8 +301,15 @@ body {
     border: 1px solid transparent !important;
 }
 
+.dropdown .nav-links {
+    border-radius: 4px !important;
+    padding: 4px 14px !important;
+    margin-bottom: 4px;
+}
+
 .dropdown a {
     padding: 14px 8px !important;
+    border-radius: 4px;
 }
 
 .dropdown li:hover {
@@ -315,13 +320,12 @@ body {
     display: block;
 }
 
-/* =================== Cali Web Design Dashboard Dark Mode Styles =================== */
+/* =================== Nexure Dashboard Dark Mode Styles =================== */
 
 html[data-theme='dark'] body {
     overflow-x: hidden;
-    background-color: #1f1f1f;
+    background-color: #000;
     color: #DBDBDB !important;
-    background-image: url("/assets/img/dashboardBackground/mainBackgroundDark.webp") !important;
 }
 
 .dark-mode *::-webkit-scrollbar {
@@ -352,16 +356,6 @@ html[data-theme='dark'] body {
 }
 
 .dark-mode .nav-links:hover {
-    border-top: 3px solid #fff;
-    border-left: 1px solid #222;
-    border-right: 1px solid #222;
-    background-color: #1f1f1f;
-}
-
-.dark-mode .nav-links.active {
-    border-top: 3px solid #fff;
-    border-left: 1px solid #222;
-    border-right: 1px solid #222;
     background-color: #1f1f1f;
 }
 
@@ -425,7 +419,7 @@ html[data-theme='dark'] body {
 }
 
 .dark-mode .tab-switch-tab.active {
-    border-bottom: 2px solid #D49DFF;
+    border-bottom: 2px solid #9dd0ff;
 }
 
 .dark-mode .customer-business-card-bar {
@@ -598,7 +592,36 @@ html[data-theme='dark'] body {
     background-color: #232323;
 }
 
-/* =================== Cali Web Design Dashboard Grid Styles =================== */
+.dark-mode .border-top-grey-300 {
+    border-top: 1px solid #222 !important;
+}
+
+.dark-mode .background-darker-300 {
+    background-color: #0a0a0a !important;
+}
+
+.dark-mode .caliweb-button.primary {
+    color: #000 !important;
+    background-color: #9dd0ff !important;
+}
+
+.dark-mode .caliweb-button.primary:hover {
+    color: #000 !important;
+    background-color: #79bbfa !important;
+}
+
+.dark-mode .nav-links.active,
+.dark-mode .nav-links-clickable.active {
+    background-color: #9dd0ff;
+    color: #000 !important;
+}
+
+.dark-mode .nav-links.active:hover,
+.dark-mode .nav-links-clickable.active:hover {
+    color: #000 !important;
+}
+
+/* =================== Nexure Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
     grid-row-gap: 10px !important;
@@ -625,24 +648,24 @@ html[data-theme='dark'] body {
     grid-template-columns: .5fr 1.5fr;
 }
 
-/* =================== Cali Web Design Dashboard Section Styles =================== */
+/* =================== Nexure Dashboard Section Styles =================== */
 
 .section {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-/* =================== Cali Web Design Dashboard Three Card Styles =================== */
+/* =================== Nexure Dashboard Three Card Styles =================== */
 
 .caliweb-card.dashboard-card {
-    background: #fff;
+    background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 20px;
 }
 
 .caliweb-card.dashboard-card-shrink {
-    background: #fff;
+    background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 10px;
@@ -751,7 +774,7 @@ html[data-theme='dark'] body {
     color: #901818;
 }
 
-/* =================== Cali Web Design Dashboard Table Styles =================== */
+/* =================== Nexure Dashboard Table Styles =================== */
 
 .dashboard-table {
     width: 100%;
@@ -779,7 +802,7 @@ th {
     font-size: 12px;
 }
 
-/* =================== Cali Web Design Dashboard Calendar Widget Styles =================== */
+/* =================== Nexure Dashboard Calendar Widget Styles =================== */
 
 
 .swal2-input {
@@ -798,7 +821,7 @@ textarea.swal2-input {
     outline: none;
 }
 
-/* =================== Cali Web Design Dashboard Customer Accounts Overview =================== */
+/* =================== Nexure Dashboard Customer Accounts Overview =================== */
 
 .customer-dashboard-greeting-section {
     padding-top: 50px;
@@ -827,7 +850,7 @@ textarea.swal2-input {
 
 .customer-account-title {}
 
-/* =================== Cali Web Design Dashboard Customer Accounts Edit/Create =================== */
+/* =================== Nexure Dashboard Customer Accounts Edit/Create =================== */
 
 .fillable-header {
     background-color: #f1f1f1;
@@ -854,7 +877,7 @@ textarea.swal2-input {
     width:100%;
 }
 
-/* =================== Cali Web Design Dashboard Image Thumbnail =================== */
+/* =================== Nexure Dashboard Image Thumbnail =================== */
 
 .thumb-web-img {
     border: 1px solid #eee;
@@ -895,7 +918,7 @@ textarea.swal2-input {
     backdrop-filter: blur(5px);
 }
 
-/* =================== Cali Web Design Dashboard Modals =================== */
+/* =================== Nexure Dashboard Modals =================== */
 
 .modal {
     display: none;
@@ -943,7 +966,7 @@ textarea.swal2-input {
     padding: 8px 12px !important;
 }
 
-/* =================== Cali Web Design Cali Mail Styling =================== */
+/* =================== Nexure Cali Mail Styling =================== */
 
 .caliweb-email-listing-container {
     height: 85vh;
@@ -1024,7 +1047,7 @@ textarea.swal2-input {
     padding: 20px;
 }
 
-/* =================== Cali Web Design System Styling Styling =================== */
+/* =================== Nexure System Styling Styling =================== */
 
 .setttings-shifted-spacing {
     -ms-grid-columns: .35fr 1.6fr;
@@ -1120,7 +1143,7 @@ textarea.swal2-input {
     border-radius: 6px;
 }
 
-/* =================== Cali Web Design Dashboard PHP Info Styling =================== */
+/* =================== Nexure Dashboard PHP Info Styling =================== */
 
 #phpinfo {
     width: 100%;
@@ -1185,7 +1208,7 @@ textarea.swal2-input {
     padding-bottom:4% !important;
 }
 
-/* =================== Cali Web Design Terminal/Bot Output =================== */
+/* =================== Nexure Terminal/Bot Output =================== */
 
 .botOutputfromDocker {
     background-color: #000;
@@ -1204,7 +1227,7 @@ textarea.swal2-input {
     font-family: "Source Code Pro", monospace;
 }
 
-/* =================== Cali Web Design Message Center Styles =================== */
+/* =================== Nexure Message Center Styles =================== */
 
 .messageCenterTopTools {
     margin-bottom:30px;
@@ -1310,7 +1333,7 @@ textarea.swal2-input {
     border-bottom-right-radius: 8px !important;
 }
 
-/* =================== Cali Web Design Account Center Styling =================== */
+/* =================== Nexure Account Center Styling =================== */
 
 .newRedesignedSettingsSpacing {
     grid-column-gap: 90px;
@@ -1342,6 +1365,18 @@ textarea.swal2-input {
     margin-top:4%;
 }
 
+.caliweb-button.primary {
+    background-color: #9dd0ff;
+    color:#000;
+    border:1px solid #9dd0ff;
+}
+
+.caliweb-button.primary:hover {
+    background-color: #79bbfa;
+    color:#000;
+    border:1px solid #79bbfa;
+}
+
 .caliweb-button.primary.red {
     background-color: #ffbbbb;
     border:1px solid #ffdad9;
@@ -1354,20 +1389,28 @@ textarea.swal2-input {
     color: #000;
 }
 
-/* =================== Cali Web Design Domain Checker Styling =================== */
+/* =================== Nexure Domain Checker Styling =================== */
 
 .domain-search {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
 }
 
-/* =================== Cali Web Design Dashboard Preloader =================== */
-
-.loading-bar-inner {
-    background-color: #9fe4f9 !important;
+.border-top-grey-300 {
+    border-top: 1px solid #ddd;
 }
 
-/* =================== Cali Web Design Dashboard Mobile Styling =================== */
+.background-darker-300 {
+    background-color: #f4f4f4 !important;
+}
+
+/* =================== Nexure Dashboard Preloader =================== */
+
+.loading-bar-inner {
+    background-color: #8bc2f0 !important;
+}
+
+/* =================== Nexure Dashboard Mobile Styling =================== */
 
 @media (min-width:1290px) and (max-width: 1500px) {
     .caliweb-three-grid.customer-grid-quick-actions {

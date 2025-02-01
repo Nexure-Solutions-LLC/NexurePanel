@@ -114,7 +114,7 @@
             <div class="container caliweb-container">
                 <div class="display-flex align-center" style="justify-content:space-between;">
                     <div>
-                        <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design Bot Hosting / Home Page</p>
+                        <p class="no-padding" style="font-size:16px;">Overview / Nexure Bot Hosting / Home Page</p>
                     </div>
                     <div class="width-25">
                         <select class="form-input with-border-special" name="discordbotselector" id="discordbotselector" style="margin-top:0;">

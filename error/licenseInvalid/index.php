@@ -90,12 +90,12 @@ if (isset($_POST['langPreference'])) {
 }
 
 ?>
-<!-- Universal Rounded Floating Cali Web Design Header Bar start -->
+<!-- Universal Rounded Floating Nexure Header Bar start -->
 <html lang="en-us">
 
 <head>
     <meta charset="utf-8" />
-    <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
+    <meta name="author" content="Nexure Development Team, Nick Derry, Michael Brinkley">
     <link href="https://NexureSolutionsservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/login-css-2024.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
@@ -151,7 +151,7 @@ if (isset($_POST['langPreference'])) {
     <div class="caliweb-login-footer license-footer">
         <div class="container caliweb-container">
             <div class="caliweb-grid-2">
-                <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
+                <!-- DO NOT REMOVE THE Nexure COPYRIGHT TEXT -->
                 <!-- 
                             THIS TEXT IS TO GIVE CREDIT TO THE AUTHORS AND REMOVING IT
                             MAY CAUSE YOUR LICENSE TO BE REVOKED.
@@ -159,7 +159,7 @@ if (isset($_POST['langPreference'])) {
                 <div class="">
                     <p class="caliweb-login-footer-text">&copy; 2024 - Nexure Solutions LLC - All rights reserved. It is illegal to copy this website.</p>
                 </div>
-                <!-- DO NOT REMOVE THE CALI WEB DESIGN COPYRIGHT TEXT -->
+                <!-- DO NOT REMOVE THE Nexure COPYRIGHT TEXT -->
                 <div class="list-links-footer">
                     <a href="https://NexureSolutionsservices.com/terms">Terms of Service</a>
                     <a href="https://NexureSolutionsservices.com/privacy">Privacy Policy</a>

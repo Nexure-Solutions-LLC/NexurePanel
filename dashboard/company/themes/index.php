@@ -1,6 +1,6 @@
 <?php
 
-    // The Cali Web Design Panel allows for custom themeing
+    // The Nexure Panel allows for custom themeing
     // DO NOT MODIFY THE MAIN STYLESHEET IN ASSETS OF THE ROOT
     // DIRECTORY
 

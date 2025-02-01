@@ -1,6 +1,6 @@
 <?php
 
-    // Cali Panel Required and System Imports
+    // Nexure Panel Required and System Imports
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
     require($_SERVER["DOCUMENT_ROOT"].'/authentication/index.php');
@@ -65,12 +65,12 @@
         'profiles_sample_rate' => 1.0,
     ]);
 
-    // Initalize the ENV File
+    // Initialize the ENV File
 
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
     $dotenv->load();
 
-    // Initalize the variable class and function from Cali Utilities
+    // Initialize the variable class and function from Cali Utilities
 
     $variableDefinitionX = new \NexureSolutions\Generic\VariableDefinitions();
     $variableDefinitionX->variablesHeader($con);
@@ -78,7 +78,7 @@
     $passableUserId = $variableDefinitionX->userId;
     $passableApiKey = $variableDefinitionX->apiKey;
 
-    // Initalize the signed in users information from Cali Accounts
+    // Initialize the signed in users information from Cali Accounts
 
     $caliemail = $_SESSION['caliid'];
 
@@ -348,7 +348,7 @@
     if ($currentAccount->accountStatus->name == "UnderReview") {
 
         switch ($currentAccount->statusReason) {
-            case "The customers risk score flagged for review and needs to be approved by a Cali Web Design Team Member.":
+            case "The customers risk score flagged for review and needs to be approved by a Nexure Team Member.":
                 header("Location: /onboarding/decision/manualReview");
                 break;
             case "This customer needs to speak to the Online Team, transfer them. FOR ONLINE TEAM USE ONLY. The account was flagged for unusual activity, verify customer.":

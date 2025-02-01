@@ -1,10 +1,10 @@
 <?php
-// Cali Web Design Portal Version 20.0.8
+
+// Nexure Portal Version 20.0.2
 // Default Language file for United States English
 
-// (C) Cali Web Design Services 2024 - It is illegal
-// to copy, reproduce, host, decompile or disassemble
-// this software without permission from Cali Web Design.
+// (C) Nexure Solutions 2025 - All credit goes to the original 
+// authors.
 
 // This is the Default Lang File and will be overwritten
 // when the panel updates. To prevent this and customize
@@ -19,7 +19,7 @@
 
 // Login Page Text Specifications
 
-$LANG_LOGIN_TITLE_PAR_1 = "Cali Web Design";
+$LANG_LOGIN_TITLE_PAR_1 = "Nexure";
 $LANG_LOGIN_TITLE_PAR_2 = "Login";
 $LANG_LOGIN_PASSWORD = "Password";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Incorrect Username or Password";
@@ -40,9 +40,9 @@ $LANG_SELF_REGISTER_LEGAL_NAME = "Legal Name";
 $LANG_SELF_REGISTER_PHONE_NUMBER = "Phone Number";
 $LANG_SELF_REGISTER_EMAIL_ADDR = "Email Address";
 $LANG_SELF_REGISTER_PASSWORD = "Password";
-$LANG_REGISTER_AUTH_ERROR_TITLE = "Cali Web Design Registration Error";
-$LANG_REGISTER_AUTH_ERROR_TEXT = "The registration process failed for an unknown reason. Please try again or if the problem persists contact Cali Web Design.";
-$LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Cali Web Design reCaptcha Error";
+$LANG_REGISTER_AUTH_ERROR_TITLE = "Nexure Registration Error";
+$LANG_REGISTER_AUTH_ERROR_TEXT = "The registration process failed for an unknown reason. Please try again or if the problem persists contact Nexure.";
+$LANG_REGISTER_CAPTCHA_ERROR_TITLE = "Nexure reCaptcha Error";
 $LANG_REGISTER_CAPTCHA_ERROR_TEXT = "You did not check that silly little box. Please make sure you're not a robot. We require this to protect against spam.";
 $LANG_ID_DISCLAIMER = "We're required by law to ask your name, address, date of birth and other information to help us identify you. We may require additional verification if we cant verify you using public record.";
 $LANG_REG_SUBMIT_ERROR_TITLE = "There is an account with this email.";
@@ -67,50 +67,50 @@ $LANG_RESET_PASSWORD_STAGE_2_TEXT = "An email has been sent to this email addres
 
 // License Error Text Specifications
 
-$LANG_LICENSE_TITLE_PAR_1 = "Cali Web Design";
+$LANG_LICENSE_TITLE_PAR_1 = "Nexure";
 $LANG_LICENSE_TITLE_PAR_2 = "License Error";
 $LANG_LICENSE_TITLE = "The key you entered is incorrect or malformed!";
-$LANG_LICENSE_TEXT = "To protect the Nexure Panel, you need a license to use it. The key you entered is not valid and cannot be used. Contact Cali Web Design Services for a Genuine Key or make sure that the DB and Config File keys match.";
+$LANG_LICENSE_TEXT = "To protect the Nexure Panel, you need a license to use it. The key you entered is not valid and cannot be used. Contact Nexure Solutions for a Genuine Key or make sure that the DB and Config File keys match.";
 
 // Registration Disabled Text Specifications
 
-$LANG_REG_DISABLED_TITLE_PAR_1 = "Cali Web Design";
+$LANG_REG_DISABLED_TITLE_PAR_1 = "Nexure";
 $LANG_REG_DISABLED_TITLE_PAR_2 = "Registration Disabled";
 $LANG_REG_DISABLED_TITLE = "This organization has disabled registrations!";
 $LANG_REG_DISABLED_TEXT = "We are currently not accepting new registrations. If you would like to become a customer, please contact us.";
 
 // Generic Errors Text Specifications
 
-$LANG_GENERIC_ERROR_TITLE_PAR_1 = "Cali Web Design";
+$LANG_GENERIC_ERROR_TITLE_PAR_1 = "Nexure";
 $LANG_GENERIC_ERROR_TITLE_PAR_2 = "System Error";
 $LANG_GENERIC_ERROR_TITLE = "We encountered an unexpected error.";
-$LANG_GENERIC_ERROR_TEXT = "The action you performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Cali Web Design.";
+$LANG_GENERIC_ERROR_TEXT = "The action you performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Nexure.";
 
 // Rate Limit Error Text Specification
 
-$LANG_RATELIMIT_ERROR_TITLE_PAR_1 = "Cali Web Design";
+$LANG_RATELIMIT_ERROR_TITLE_PAR_1 = "Nexure";
 $LANG_RATELIMIT_ERROR_TITLE_PAR_2 = "Rate Limit Error";
 $LANG_RATELIMIT_ERROR_TITLE = "We rate limited you for our protection.";
-$LANG_RATELIMIT_ERROR_TEXT = "The action you performed was done too quickly and our systems arent able to process the second request. We cant work that fast! Please try again in 5 seconds. If you need assistance please contact Cali Web Design.";
+$LANG_RATELIMIT_ERROR_TEXT = "The action you performed was done too quickly and our systems arent able to process the second request. We cant work that fast! Please try again in 5 seconds. If you need assistance please contact Nexure.";
 
 // Customer Security Quiz Text Specifications
 
-$LANG_CUSTOMER_VERIFICATION_TITLE_PAR_1 = "Cali Web Design";
+$LANG_CUSTOMER_VERIFICATION_TITLE_PAR_1 = "Nexure";
 $LANG_CUSTOMER_VERIFICATION_TITLE_PAR_2 = "Security Quiz";
-$LANG_CUSTOMER_VERIFICATION_TITLE = "Cali Web Design needs to verify some information before proceeding.";
+$LANG_CUSTOMER_VERIFICATION_TITLE = "Nexure needs to verify some information before proceeding.";
 $LANG_CUSTOMER_VERIFICATION_TEXT = "Please complete the short security quiz. The information in this security quiz is formed of your public record.";
-$LANG_CUSTOMER_VERIFICATION_TEXT_PHONE_VERIFY = "Cali Web Design will send a 6 digit code to your phone number. Please enter this code here.";
+$LANG_CUSTOMER_VERIFICATION_TEXT_PHONE_VERIFY = "Nexure will send a 6 digit code to your phone number. Please enter this code here.";
 
 // Account Suspension Error Text Specifications
 
 $LANG_SUSPENDED_TITLE = "We have suspended your account for suspicious activity.";
-$LANG_SUSPENDED_TEXT = "Your account at Cali Web Design has been suspended. Please contact Cali Web Design Support in order to resolve this issue. Your services have been suspended and cannot be accessed.";
-$LANG_SUSPENDED_CONTACT_INFO = "To resolve this issue, please call the number for your type of account. <br><br>For Cali Web Design Retail Customers, call +1 (877)-597-7325. For Cali Web Design Business Customers, call +1 (315)-898-1221. For Cali Web Design UK Customers, call +44 (87) 0820 0077";
+$LANG_SUSPENDED_TEXT = "Your account at Nexure has been suspended. Please contact Nexure Support in order to resolve this issue. Your services have been suspended and cannot be accessed.";
+$LANG_SUSPENDED_CONTACT_INFO = "To resolve this issue, please call the number for your type of account. <br><br>For Nexure Retail Customers, call +1 (877)-597-7325. For Nexure Business Customers, call +1 (315)-898-1221. For Nexure UK Customers, call +44 (87) 0820 0077";
 
 // Account Terminated Error Text Specifications
 
 $LANG_TERMINATED_TITLE = "We have terminated your account.";
-$LANG_TERMINATED_TEXT = "Your account at Cali Web Design has been terminated. You may no longer use Cali Web Design. This decision is final and can't be overturned.";
+$LANG_TERMINATED_TEXT = "Your account at Nexure has been terminated. You may no longer use Nexure. This decision is final and can't be overturned.";
 
 // Account Under Review Text Specifications
 
@@ -124,10 +124,10 @@ $LANG_BANNED_TEXT = "We cant verify the authenticity of this visit. We have bann
 
 // Payment Errors Text Specifications
 
-$LANG_PAYMENT_ERROR_TITLE_PAR_1 = "Cali Web Design";
+$LANG_PAYMENT_ERROR_TITLE_PAR_1 = "Nexure";
 $LANG_PAYMENT_ERROR_TITLE_PAR_2 = "Payment Error";
 $LANG_PAYMENT_ERROR_TITLE = "We encountered a payment error.";
-$LANG_PAYMENT_ERROR_TEXT = "The payment has failed. Please try again or use another card. We are sorry for any issues this may have caused. If you need assistance, please contact Cali Web Design Support.";
+$LANG_PAYMENT_ERROR_TEXT = "The payment has failed. Please try again or use another card. We are sorry for any issues this may have caused. If you need assistance, please contact Nexure Support.";
 
 // Mobile Experience Text Specifications
 
@@ -150,7 +150,7 @@ $LANG_ONBOARD_STARTTITLE = "You have made the first step into getting your accou
 $LANG_ONBOARD_NAMEFEILD = "Legal Name";
 $LANG_ONBOARD_PHONEFEILD = "Phone Number";
 $LANG_ONBOARD_EMAILFEILD = "Email Address";
-$LANG_ONBOARD_DOBFEILD = "Date of Bith (Must be 14 years or older)";
+$LANG_ONBOARD_DOBFEILD = "Date of Birth (Must be 14 years or older)";
 $LANG_ONBOARD_EINORSSNFEILD = "EIN or SSN Number";
 $LANG_ONBOARD_SECUREFORMTITLE = "This is a secure form and will be verified with the IRS.";
 $LANG_ONBOARD_SUBMITDISCLAIMER = "Why do we require this? To comply with financial regulations and provide our full range of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.";
@@ -232,13 +232,12 @@ $LANG_CUSTOMER_SUPPORT_CENTER_TITLE_TEXT = "Current Support Cases";
 
 $LANG_APPROVAL_DENIED_PAGE_TITLE = "Your account was denied!";
 $LANG_APPROVAL_DENIED_PAGE_HEADER = "Approval Denied";
-$LANG_APPROVAL_DENIED_PAGE_BODY = "Because of the information you have specified, you do not qualify to open an account at Cali Web Design. Please logout ";
+$LANG_APPROVAL_DENIED_PAGE_BODY = "Because of the information you have specified, you do not qualify to open an account at Nexure. Please logout ";
 
 // Panel About Information
 
 $PANEL_ABOUT_TITLE_PRODUCT_NAME = "Nexure Panel ".$variableDefinitionX->panelVersionName." Web Version";
 $PANEL_ABOUT_INFO = "This software was created by Nexure Solutions LLC. This software allows the ability to run your business from one place. The software is equipped with OAuth, CRM, Payroll, Time Keeping, Merchant Processing, Web Site Editing, and tons of other features your business needs to succeed. The panel is completely modular so you can add and remove features as well as develop your own features as needed for your type of business.";
 $PANEL_ABOUT_LICENSE_DISCLAIMER = "THE BASE CODE OF THIS SOFTWARE IS OPEN SOURCE AND FREE TO USE UNDER THE COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL). THE AUTHOR OF DERIVATIVE WORKS OF THIS SOFTWARE MUST NOTIFY NEXURE SOLUTIONS OF CHANGES. CERTAIN MODULES AND PAID VERSIONS OF THIS SOFTWARE WE DEVELOP ARE NOT OPEN SOURCE.";
-
 
 ?>

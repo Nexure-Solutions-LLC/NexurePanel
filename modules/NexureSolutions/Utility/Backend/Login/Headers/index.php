@@ -16,7 +16,7 @@
             This site was created by Nexure Solutions LLC. http://www.NexureSolutionsservices.com
             Last Published: Fri Feb 2 2024 at 08:38:52 PM (Pacific Daylight Time US and Canada) 
 
-            Creator/Developer: Cali Web Design Development Team, Michael Brinkley, Nick Derry, All logos other 
+            Creator/Developer: Nexure Development Team, Michael Brinkley, Nick Derry, All logos other 
             than ours go to their respectful owners. Images are provided by undraw.co as well as pexels.com 
             and are opensource svgs, or images to use by Nexure Solutions LLC.
 
@@ -45,7 +45,7 @@
                 <script src="https://caliwebdesignservices.com/assets/js/darkmode.js" type="text/javascript"></script>
                 <meta charset="utf-8" />
                 <meta content="width=device-width, initial-scale=1" name="viewport" />
-                <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
+                <meta name="author" content="Nexure Development Team, Nick Derry, Michael Brinkley">
                 <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
                 <link href="/assets/css/login-css-2024.css" rel="stylesheet" type="text/css" />
                 <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">

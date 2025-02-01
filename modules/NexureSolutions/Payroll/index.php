@@ -1,12 +1,12 @@
 <?php
 
-    // Cali Web Design Payroll Module
+    // Nexure Payroll Module
     // Version: 1.2.5
     // (C) Copyright Nexure Solutions LLC - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is not included in the Cali Panel software by default
-    // the Cali Web Design Payroll Module will allow you to run payroll on
+    // the Nexure Payroll Module will allow you to run payroll on
     // certain time schedules, record and track employee work time and
     // run payments (with an integrated bank module), and records and keep track of
     // 1099s and W-2 Forms.

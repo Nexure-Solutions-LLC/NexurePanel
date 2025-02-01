@@ -59,7 +59,7 @@
             <section class="section caliweb-section customer-dashboard-greeting-section">
                 <div class="container caliweb-container">
                     <div class="display-flex align-center" style="justify-content:space-between">
-                        <p class="no-padding" style="font-size:16px;">Overview / Cali Web Design View Account / Details</p>
+                        <p class="no-padding" style="font-size:16px;">Overview / Nexure View Account / Details</p>
                         <a href="javascript:void(0)" class="caliweb-button secondary" onclick="openPaymentModal()">Pay Balance</a>
                     </div>
                 </div>

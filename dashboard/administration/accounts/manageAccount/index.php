@@ -216,7 +216,7 @@
                                     <div>
                                         <?php
 
-                                            // Gets the total amount spent with Cali Web Design by totaling
+                                            // Gets the total amount spent with Nexure by totaling
                                             // the amount of payments a given customer has made.
 
                                             $totalAmount = 0;

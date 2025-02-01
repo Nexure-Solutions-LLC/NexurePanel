@@ -16,8 +16,8 @@
                 <div class="caliweb-one-grid no-grid-row-bottom">
                     <div class="width-100" style="margin-top:3%;">
                         <div style="margin-left:auto; margin-right:auto; text-align:center;">
-                        <h3 class="caliweb-login-heading " style="font-size:25px;">Cali Web Design <span style="font-size:25px;font-weight:700">Service Status</span></h3>
-                        <p class="width-50 font-14px" style="margin-left:auto; max-width: 650px; margin-right:auto;">Cali Web Design offers stellar world-class uptime and network availability. Listed below are all our services and their status. If there is an outage it would be reported here.</p>
+                        <h3 class="caliweb-login-heading " style="font-size:25px;">Nexure <span style="font-size:25px;font-weight:700">Service Status</span></h3>
+                        <p class="width-50 font-14px" style="margin-left:auto; max-width: 650px; margin-right:auto;">Nexure offers stellar world-class uptime and network availability. Listed below are all our services and their status. If there is an outage it would be reported here.</p>
                         </div>
                     </div>
                     <div class="service-status-bar width-75" style="font-size:14px; font-weight:400;!important; margin-left:auto; margin-right:auto;">
@@ -35,7 +35,7 @@
                 <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">Cali Web Design Website</p>
+                                <p style="font-size:16px; font-weight:500;">Nexure Website</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -66,7 +66,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">Cali Web Design Email Services (Cali Mail)</p>
+                                <p style="font-size:16px; font-weight:500;">Nexure Email Services (Cali Mail)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -97,7 +97,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">Cali Web Design Management Portal (Cali Panel)</p>
+                                <p style="font-size:16px; font-weight:500;">Nexure Management Portal (Cali Panel)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -128,7 +128,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">Cali Web Design Host Server #1 (US1 - US-East)</p>
+                                <p style="font-size:16px; font-weight:500;">Nexure Host Server #1 (US1 - US-East)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -159,7 +159,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">Cali Web Design Host Server #2 (US2 - US-West)</p>
+                                <p style="font-size:16px; font-weight:500;">Nexure Host Server #2 (US2 - US-West)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight:500; text-align:right;">69% Uptime</p>
@@ -190,7 +190,7 @@
                     <div class="status-data-bar-box" style="position:relative;">
                         <div class="display-flex align-center" style="justify-content:space-between;">
                             <div>
-                                <p style="font-size:16px; font-weight:500;">Cali Web Design Host Server #3 (EU1 - Germany)</p>
+                                <p style="font-size:16px; font-weight:500;">Nexure Host Server #3 (EU1 - Germany)</p>
                             </div>
                             <div>
                                 <p style="font-size:16px; font-weight: 500; text-align:right; ">69% Uptime</p>

@@ -1,8 +1,8 @@
 <?php
 
-    // This is the Cali Web Design Backend Middleware.
-    // This replaces the seperate middleware our former developer Mikey made.
-    // It also was moved to Cali Web Design Modules from Cali Web Design Compoents.
+    // This is the Nexure Backend Middleware.
+    // This replaces the separate middleware our former developer Mikey made.
+    // It also was moved to Nexure Modules from Nexure Components.
     // THIS SOFTWARE IS OPENSOURCE UNDER COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0
     // (C) 2024 Nexure Solutions LLC.
 
@@ -1556,7 +1556,7 @@
         
         // Management of Generic subclasses.
         // Management classes will inherit from this class.
-        // (CaliTasks, CaliCases, CaliLeads, CaliCampaigns, CaliEmployees)
+        // (NexureTasks, NexureCases, NexureLeads, NexureCampaigns, NexureEmployees)
 
         protected mysqli $sql_connection;
         public string $collectionToQuery;

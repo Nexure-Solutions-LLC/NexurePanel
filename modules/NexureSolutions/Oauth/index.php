@@ -1,12 +1,12 @@
 <?php
 
-    // Cali Web Design OAuth Module
+    // Nexure OAuth Module
     // Version: 1.0.4
     // (C) Copyright Nexure Solutions LLC - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is included in the Cali Panel software by default
-    // the Cali Web Design OAuth Module will allow you to authenticate
+    // the Nexure OAuth Module will allow you to authenticate
     // using your external accounts into the Cali Panel for example
     // Google, Discord, Clever, and Okta. This can save time instead
     // of needing to fill our registration form our you can just quickly

@@ -48,7 +48,7 @@
 
         // Set the banner message and style
 
-        if ($availability['available']) {
+        if ($availability['available'] ?? false) {
 
             $bannerMessage = "The domain <strong>{$domain}</strong> is available for purchase.";
             $bannerStyle = "background-color:#D0FFBD; color:#000; padding: 15px; text-align:center; border-radius: 5px;";
@@ -72,7 +72,7 @@
 <?php endif; ?>
 
 <!-- HTML Content for administrators view -->
-<section class="section first-dashboard-area-cards" style="padding-top:2%;">
+<section class="section first-dashboard-area-cards" style="padding-top:1%;">
     <div class="container width-98">
         <div class="caliweb-one-grid special-caliweb-spacing">
             <div class="caliweb-one-grid special-caliweb-spacing">

@@ -2,7 +2,7 @@
 
     // Cali Panel will now run applications in docker.
     // This is the module responsible for handling docker functions
-    // This file will do the basics needed to use docker with Cali Web Design.
+    // This file will do the basics needed to use docker with Nexure.
 
     namespace NexureSolutions\Docker;
 
