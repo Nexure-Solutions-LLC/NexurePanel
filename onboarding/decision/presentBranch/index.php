@@ -49,7 +49,7 @@
                     <img src="<?php echo $variableDefinitionX->orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $variableDefinitionX->orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
                     <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">You need to come to a branch to finish this application.</h6>
-                    <p class="caliweb-login-sublink license-text-dark width-100">We couldn't verify your information online or by phone. Please present to your nearest Cali Web Design branch to finish this application.</p>
+                    <p class="caliweb-login-sublink license-text-dark width-100">We couldn't verify your information online or by phone. Please present to your nearest Nexure branch to finish this application.</p>
                 </div>
             </div>
         </div>

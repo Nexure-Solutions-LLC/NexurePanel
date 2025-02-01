@@ -2,13 +2,13 @@
 
     ob_start();
 
-    // Cali Web Design Google OAuth Module
+    // Nexure Google OAuth Module
     // Version: 2.0.1
     // (C) Copyright Nexure Solutions LLC - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is not included in the Cali Panel software by default
-    // the Cali Web Design Google OAuth Module will allow you to authenicate
+    // the Nexure Google OAuth Module will allow you to authenicate
     // using your google account into the Cali Panel. This can save time instead
     // of needing to fill our registration form our you can just quickly
     // authenicate.
