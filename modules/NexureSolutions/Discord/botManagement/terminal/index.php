@@ -27,7 +27,7 @@
             <section class="section caliweb-section customer-dashboard-section" style="padding-bottom:60px;">
                 <div class="container caliweb-container">
                     <div class="caliweb-one-grid" style="grid-row-gap: 32px;">
-                        <div class="caliweb-card dashboard-card" style="padding20px; background-color:#000 !important;">
+                        <div class="caliweb-card dashboard-card" style="padding:20px; background-color:#000 !important;">
                             <div class="card-body">
                                 <iframe src="/modules/NexureSolutions/Discord/botManagement/terminal/terminalLogic/index.php" style="padding:0; margin:0; border:0; width:100%; height:45vh;"></iframe>
                             </div>
