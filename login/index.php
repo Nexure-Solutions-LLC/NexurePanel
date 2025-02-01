@@ -5,6 +5,8 @@
     $pagetitle = "Login Page";
     $_SESSION['pagetitle'] = $pagetitle;
 
+    $referral_url = $_GET["referral_url"];
+
     if (isset($_SESSION['caliid'])) {
 
         header("Location: /dashboard");
@@ -35,13 +37,29 @@
 
             if (mysqli_num_rows($result) == 1) {
 
-                unset($_SESSION['failed_attempts']);
+                if ($referral_url != "") {
 
-                $_SESSION['caliid'] = $cali_id;
+                    unset($_SESSION['failed_attempts']);
 
-                header("Location: /dashboard");
+                    $_SESSION['referral_url'] = $referral_url;
+                    $_SESSION['caliid'] = $cali_id;
 
-                exit;
+                    header("Location: /dashboard");
+
+                    exit;
+
+                } else {
+
+                    unset($_SESSION['failed_attempts']);
+
+                    $_SESSION['caliid'] = $cali_id;
+
+                    header("Location: /dashboard");
+
+                    exit;
+
+                }
+
             } else {
 
                 if (!isset($_SESSION['failed_attempts'])) {

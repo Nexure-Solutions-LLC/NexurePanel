@@ -1,6 +1,6 @@
 <?php
 
-    $pagetitle = "";
+    $pagetitle = "Linked Roles";
     $pagetype = "";
 
     require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/System/Dashboard.php");
