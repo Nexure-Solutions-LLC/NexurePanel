@@ -13,3 +13,5 @@ error/errorLogs
 error/errorLogs/*
 vendor/
 vendor/*
+modules/NexureSolutions/Discord/NexureUtilitiesBot
+modules/NexureSolutions/Discord/NexureUtilitiesBot/*
