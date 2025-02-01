@@ -86,6 +86,14 @@ $LANG_GENERIC_ERROR_TITLE_PAR_2 = "System Error";
 $LANG_GENERIC_ERROR_TITLE = "We encountered an unexpected error.";
 $LANG_GENERIC_ERROR_TEXT = "The action you performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Nexure.";
 
+
+// Nexure Linked Roles Success Message
+
+$LANG_LINKEDROLES_SUCCESS_PAR_1 = "Nexure";
+$LANG_LINKEDROLES_SUCCESS_PAR_2 = "Linked Roles";
+$LANG_LINKEDROLES_SUCCESS_TITLE = "Your linked role was successfully applied.";
+$LANG_LINKEDROLES_SUCCESS_TEXT = "You requested a linked role. You are authorized for this linked role, We have assigned it to your account, Please return to Discord to finish claiming your role. You can safely close this page.";
+
 // Rate Limit Error Text Specification
 
 $LANG_RATELIMIT_ERROR_TITLE_PAR_1 = "Nexure";
