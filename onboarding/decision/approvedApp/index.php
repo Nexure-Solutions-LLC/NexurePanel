@@ -46,7 +46,7 @@
                     <img src="<?php echo $variableDefinitionX->orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $variableDefinitionX->orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
                     <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">Congratulations! Your account was Approved!</h6>
-                    <p class="caliweb-login-sublink license-text-dark width-100">Welcome to Cali Web Design! We have decided to approve your account. Click <a class="careers-link" href="/dashboard/">here</a> to visit your dashboard.</p>
+                    <p class="caliweb-login-sublink license-text-dark width-100">Welcome to Nexure! We have decided to approve your account. Click <a class="careers-link" href="/dashboard/">here</a> to visit your dashboard.</p>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 
     
-$pagetitle = "Cali Web Design Terminal Software 0.2.4";
+$pagetitle = "Nexure Terminal Software 0.2.4";
 $pagesubtitle = "Terminal Emulation";
 $pagetype = "Client";
 
@@ -358,7 +358,7 @@ EOF;
     <!DOCTYPE html>
     <html>
         <head>
-            <title>Cali Web Design Terminal Shell</title>
+            <title>Nexure Terminal Shell</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             <link rel="apple-touch-icon" sizes="180x180" href="https://NexureSolutionsservices.com/assets/img/favico/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="https://NexureSolutionsservices.com/assets/img/favico/favicon-32x32.png">
@@ -829,7 +829,7 @@ EOF;
                         $.terminal.defaults.formatters = last;
                     }
                 },
-                greetings: 'Cali Web Design Secure Terminal v. <?= VERSION ?>',
+                greetings: 'Nexure Secure Terminal v. <?= VERSION ?>',
                 prompt: 'password: ',
                 onInit: function(term) {
                     term.set_mask(true);

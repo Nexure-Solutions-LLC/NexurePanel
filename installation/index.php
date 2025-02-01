@@ -1,6 +1,6 @@
 <?php
 
-    // Cali Web Design Panel Installer
+    // Nexure Panel Installer
     // Version 20.0.1
     // Copyright Nexure Solutions LLC (C) 2024. All Rights Reserved.
     // This is the installer for the Cali Panel Web Software, It will configure
@@ -17,7 +17,7 @@
         <script src="https://NexureSolutionsservices.com/assets/js/darkmode.js" type="text/javascript"></script>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
+        <meta name="author" content="Nexure Development Team, Nick Derry, Michael Brinkley">
         <link href="https://NexureSolutionsservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/login-css-2024.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">

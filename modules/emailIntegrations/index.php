@@ -7,11 +7,11 @@
         users can chnage the templates of the emails without messing with the panel
         functions. 
 
-        (C) Cali Web Design Services 2024 - It is illegal to copy, reproduce, 
+        (C) Nexure Solutions 2024 - It is illegal to copy, reproduce, 
         host, decompile or disassemble this software without permission from 
-        Cali Web Design.
+        Nexure.
 
-        This loader will work with any Cali Web Design Panel Software or versions.
+        This loader will work with any Nexure Panel Software or versions.
 
     */
 

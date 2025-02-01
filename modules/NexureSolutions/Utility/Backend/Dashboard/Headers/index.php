@@ -5,26 +5,29 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Sy
 ?>
 <!DOCTYPE html>
 <!-- 
-       ______      ___    _       __     __       ____            _           
-      / ____/___ _/ (_)  | |     / /__  / /_     / __ \___  _____(_)___ _____ 
-     / /   / __ `/ / /   | | /| / / _ \/ __ \   / / / / _ \/ ___/ / __ `/ __ \
-    / /___/ /_/ / / /    | |/ |/ /  __/ /_/ /  / /_/ /  __(__  ) / /_/ / / / /
-    \____/\__,_/_/_/     |__/|__/\___/_.___/  /_____/\___/____/_/\__, /_/ /_/ 
-                                                                /____/        
+        
+         _   __                             _____       __      __  _                 
+        / | / /__  _  ____  __________     / ___/____  / /_  __/ /_(_)___  ____  _____
+       /  |/ / _ \| |/_/ / / / ___/ _ \    \__ \/ __ \/ / / / / __/ / __ \/ __ \/ ___/
+      / /|  /  __/>  </ /_/ / /  /  __/   ___/ / /_/ / / /_/ / /_/ / /_/ / / / (__  ) 
+     /_/ |_/\___/_/|_|\__,_/_/   \___/   /____/\____/_/\__,_/\__/_/\____/_/ /_/____/  
+                                                                                 
 
-    This site was created by Nexure Solutions LLC. http://www.NexureSolutionsservices.com
-    Last Published: Fri Feb 2 2024 at 08:38:52 PM (Pacific Daylight Time US and Canada) 
+    This site was created by Nexure Solutions LLC. http://www.nexuresolutions.com
+    Last Published: January 30 2025 at 06:57:42 PM (Eastern Time)
 
-    Creator/Developer: Cali Web Design Development Team, Michael Brinkley, Nick Derry, All logos other 
-    than ours go to their respectful owners. Images are provided by undraw.co as well as pexels.com 
-    and are opensource svgs, or images to use by Nexure Solutions LLC.
+    Creator/Developer: Nexure Development Team
 
-    Website Registration Code: 49503994-20344
-    Registration Date: July 09 2022
-    Initial Development On: Jun 30 2023
-    Last Update: Feb 2th 2024
+    Images and content used on this website may come from third-party sources. Credits go
+    to the respective owners of that content.
+
+    Website Registration Code: 1099203-662835
+    Registration Date: November 4 2024
+    Initial Development On: June 30 2023
+    Last Update: January 30 2024 06:58:02 AM Eastern Time
     Website Version: 20.0.0
-    Expiration Date: 02/19/2088 (LTSB Long-Term Servicing Branch)
+    Expiration Date: 04/20/2098 (LTSB Long-Term Servicing Branch)
+
     Contact Information:
         Phone: +1-877-597-7325
         Email: support@nexuresolutions.com
@@ -32,11 +35,16 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Sy
     Copyright Statement: Do not copy this website, if the code is found to be duplicated, reproduced,
     or copied we will fine you a minimum of $250,000 and criminal charges may be pressed.
 
+    Note from Developer: 
+
+    To Mcaopin thank you for standing by me through every challenge, every long night, and every 
+    quiet day of hard work. Your patience, love, and unwavering support has meant everything to me.
+    You were the reason why I started this and I can't thank you enough. Your a real one.
+
     CopyOurCodeWeWillSendYouToJesus(C)2024ThisIsOurHardWork.
 
     Dear rule breakers, questioners, straight-A students who skipped class: We want you.
     https://nexuresolutions.com/careers.
-    
 
 -->
 <html lang="en-us">
@@ -45,7 +53,7 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Sy
     <script src="https://caliwebdesignservices.com/assets/js/darkmode.js" type="text/javascript"></script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta name="author" content="Cali Web Design Development Team, Nick Derry, Michael Brinkley">
+    <meta name="author" content="Nexure Development Team, Nick Derry, Michael Brinkley">
     <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/dashboard-css-2024.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
@@ -101,67 +109,71 @@ require($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Sy
 <body>
 
     <div class="caliweb-navbar" id="caliweb-header">
-        <div class="container caliweb-navbar-container">
-            <div class="caliweb-navbar-logo">
-                <a href="https://caliwebdesignservices.com/">
-                    <img src="<?php echo $variableDefinitionX->orglogolight; ?>" width="100px" loading="lazy" alt="Light Logo" class="caliweb-navbar-logo-img light-mode">
-                    <img src="<?php echo $variableDefinitionX->orglogodark; ?>" width="100px" loading="lazy" alt=" Dark Logo" class="caliweb-navbar-logo-img dark-mode">
-                </a>
+        <div class="background-darker-300">
+            <div class="container caliweb-navbar-container">
+                <div class="caliweb-navbar-logo">
+                    <a href="https://caliwebdesignservices.com/">
+                        <img src="<?php echo $variableDefinitionX->orglogolight; ?>" width="100px" loading="lazy" alt="Light Logo" class="caliweb-navbar-logo-img light-mode">
+                        <img src="<?php echo $variableDefinitionX->orglogodark; ?>" width="100px" loading="lazy" alt=" Dark Logo" class="caliweb-navbar-logo-img dark-mode">
+                    </a>
+                </div>
+                <div class="caliweb-header-search">
+                    <input class="form-input caliweb-search-input" id="systemSearch" placeholder="Search all of <?php echo $variableDefinitionX->orgShortName ?>" />
+                    <div id="systemSearchResults" class="systemwide-search-results"></div>
+                </div>
+                <div class="caliweb-nav-buttons display-flex align-center">
+                    <a href="/dashboard/accountManagement" class="display-flex align-center profile-block dark-mode-white">
+                        <?php
+
+                        if ($currentAccount->profile_url != "") {
+
+                            echo '<img src="' . $currentAccount->profile_url . '" class="profileImage" />';
+                        } else {
+
+                            echo '<img src="/assets/img/profileImages/default.png" class="profileImage" />';
+                        }
+
+                        ?><span><?php echo $currentAccount->legalName; ?></span>
+                    </a>
+                    <a href="/dashboard/messageCenter" class="toggle-container" style="padding: 6px 10px 5px 10px;">
+                        <span class="lnr lnr-envelope" class="toggle-input"></span>
+                    </a>
+                    <span class="toggle-container">
+                        <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
+                        <span class="lnr lnr-moon" class="toggle-input" id="darkModeIcon"></span>
+                    </span>
+                </div>
+                <button style="background-color:transparent; border:none; outline:0;" href="javascript:void(0);" class="caliweb-menu-icon" aria-label="Mobile Menu" onclick="responsiveMenu()">
+                    <img src="https://caliwebdesignservices.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
+                </button>
             </div>
-            <div class="caliweb-header-search">
-                <input class="form-input caliweb-search-input" id="systemSearch" placeholder="Search all of <?php echo $variableDefinitionX->orgShortName ?>" />
-                <div id="systemSearchResults" class="systemwide-search-results"></div>
-            </div>
-            <div class="caliweb-nav-buttons display-flex align-center">
-                <a href="/dashboard/accountManagement" class="display-flex align-center profile-block dark-mode-white">
-                    <?php
-
-                    if ($currentAccount->profile_url != "") {
-
-                        echo '<img src="' . $currentAccount->profile_url . '" class="profileImage" />';
-                    } else {
-
-                        echo '<img src="/assets/img/profileImages/default.png" class="profileImage" />';
-                    }
-
-                    ?><span><?php echo $currentAccount->legalName; ?></span>
-                </a>
-                <a href="/dashboard/messageCenter" class="toggle-container" style="padding: 6px 10px 5px 10px;">
-                    <span class="lnr lnr-envelope" class="toggle-input"></span>
-                </a>
-                <span class="toggle-container">
-                    <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
-                    <span class="lnr lnr-moon" class="toggle-input" id="darkModeIcon"></span>
-                </span>
-            </div>
-            <button style="background-color:transparent; border:none; outline:0;" href="javascript:void(0);" class="caliweb-menu-icon" aria-label="Mobile Menu" onclick="responsiveMenu()">
-                <img src="https://caliwebdesignservices.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
-            </button>
         </div>
-        <div class="container display-flex align-center">
-            <nav class="caliweb-navbar-menu" id="caliweb-navigation">
-                <?php include($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Dashboard/Menus/index.php"); ?>
-            </nav>
-            <div class="systemLoads display-flex align-center">
-                <a href="/dashboard/administration/systemStatus" class="dark-mode-white" style="text-decoration:none;">
-                    <div class="dashboard-system-status">
-                        <p class="display-flex align-center" style="font-size:14px;"><img src="/assets/img/systemIcons/serviceStatus.png" style="height:20px; width:20px; margin-right:10px;" /> <span>All services are online</span></p>
-                    </div>
-                </a>
-                <span>
-                    <?php
+        <div class="border-top-grey-300">
+            <div class="container display-flex align-center">
+                <nav class="caliweb-navbar-menu" id="caliweb-navigation">
+                    <?php include($_SERVER["DOCUMENT_ROOT"] . "/modules/NexureSolutions/Utility/Backend/Dashboard/Menus/index.php"); ?>
+                </nav>
+                <div class="systemLoads display-flex align-center">
+                    <a href="/dashboard/administration/systemStatus" class="dark-mode-white" style="text-decoration:none;">
+                        <div class="dashboard-system-status">
+                            <p class="display-flex align-center" style="font-size:14px;"><img src="/assets/img/systemIcons/serviceStatus.png" style="height:20px; width:20px; margin-right:10px;" /> <span>All services are online</span></p>
+                        </div>
+                    </a>
+                    <span>
+                        <?php
 
-                    $loads = sys_getloadavg();
+                        $loads = sys_getloadavg();
 
-                    $rounded_loads = array_map(function ($load) {
+                        $rounded_loads = array_map(function ($load) {
 
-                        return number_format($load, 2);
-                    }, $loads);
+                            return number_format($load, 2);
+                        }, $loads);
 
-                    echo "System Loads: " . implode(", ", $rounded_loads);
+                        echo "System Loads: " . implode(", ", $rounded_loads);
 
-                    ?>
-                </span>
+                        ?>
+                    </span>
+                </div>
             </div>
         </div>
     </div>

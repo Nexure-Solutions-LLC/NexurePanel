@@ -69,7 +69,7 @@
                     if (in_array($name, $visibleLinks)) {
 
                         $activeClass = $activeLink === $name ? 'active' : '';
-                        echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable\">$name</a></li>";
+                        echo "<li class=\"nav-links $activeClass\"><a href=\"$url\" class=\"nav-links-clickable $activeClass\">$name</a></li>";
                     
                     }
                     
@@ -191,40 +191,40 @@
 
         switch ($pagetitle) {
             case "Home":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Dashboard</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Dashboard</p>';
                 renderAdminNavLinks('Home', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Your Calendar and Planner":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Calendar</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Calendar</p>';
                 renderAdminNavLinks('Calendar', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Customer Accounts":
             case "Services":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Customer Cloud</p>';
                 renderAdminNavLinks('Accounts', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Connected Payments":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Payments Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Payments Cloud</p>';
                 renderPaymentNavLinks('Payments Cloud', $moduleresult, $currentAccount->role->name, $accountnumber);
                 break;
             case "Tasks":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Employee Cloud</p>';
                 renderAdminNavLinks('Tasks', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Cases":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Customer Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Customer Cloud</p>';
                 renderAdminNavLinks('Cases', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Campaigns":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Marketing Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Marketing Cloud</p>';
                 renderAdminNavLinks('Campaigns', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Payroll":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Employee Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Employee Cloud</p>';
                 renderAdminNavLinks('Dashboard', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Web Design Services Management":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:7px; font-weight:500;">Software Development Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Software Development Cloud</p>';
                 renderAdminNavLinks('Web Design', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             default:

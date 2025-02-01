@@ -19,31 +19,29 @@ echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
                             <li class="sidebar-link"><a href="/dashboard/administration/settings/ipBaning" class="sidebar-link-a">IP Banning</a></li>
                             <li class="sidebar-link"><a href="/license" class="sidebar-link-a">Licencing</a></li>
                             <li class="sidebar-link"><a href="/dashboard/administration/settings/updates" class="sidebar-link-a">Updates</a></li>
-                            <li class="sidebar-link active"><a href="/dashboard/administration/settings/about" class="sidebar-link-a">About Cali Panel</a></li>
+                            <li class="sidebar-link active"><a href="/dashboard/administration/settings/about" class="sidebar-link-a">About Nexure Panel</a></li>
                         </ul>
                     </aside>
                 </div>
             </div>
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <div class="caliweb-card dashboard-card custom-padding-account-card" style="padding-bottom:0; background-color: #f1f1f1">
-                    <div class="card-header-account" style="margin-bottom:0; border-bottom:0;">
-                        <div class="display-flex align-center">
-                            <div class="no-padding margin-10px-right icon-size-formatted">
-                                <img src="/assets/img/systemIcons/settingsicon.png" alt="Settings Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
-                            </div>
-                            <div>
-                                <p class="no-padding font-14px" style="padding-bottom:4px;">Settings</p>
-                                <h4 class="text-bold font-size-16 no-padding display-flex align-center">
-                                    About
-                                </h4>
-                            </div>
+                <div class="card-header-account" style="margin-bottom:0; border-bottom:0;">
+                    <div class="display-flex align-center">
+                        <div class="no-padding margin-10px-right icon-size-formatted">
+                            <img src="/assets/img/systemIcons/settingsicon.png" alt="Settings Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
+                        </div>
+                        <div>
+                            <p class="no-padding font-14px" style="padding-bottom:4px;">Settings</p>
+                            <h4 class="text-bold font-size-16 no-padding display-flex align-center">
+                                About
+                            </h4>
                         </div>
                     </div>
                 </div>
                 <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:73.5vh;">
                     <div>
-                        <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoBlack.svg" width="150px" loading="lazy" alt="Cali Web Design Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
-                        <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoWhite.svg" width="150px" loading="lazy" alt="Cali Web Design Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
+                        <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoBlack.svg" width="150px" loading="lazy" alt="Nexure Logo" class="caliweb-navbar-logo-img light-mode" style="width:150px;">
+                        <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoWhite.svg" width="150px" loading="lazy" alt="Nexure Dark Logo" class="caliweb-navbar-logo-img dark-mode" style="width:150px;">
                     </div>
                     <div style="padding-left:5px; padding-right:5px; width:70%;">
                         <div>
@@ -69,7 +67,7 @@ echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
                             ?>
                             <p style="margin-top:10px; font-size:14px;">Languages: HTML, CSS, JS, PHP and MySQL</p>
-                            <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Nexure Solutions LLC, Nick Derry, Mikey W, Mikey Brinkley, Nathan Schwartz, Aiden Webb.</p>
+                            <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Nexure Solutions LLC, Nick Derry, Mikey W, Mcaopin W, Nathan Schwartz, Aiden Webb.</p>
                         </div>
                         <!-- <div id="phpinfo" style="margin-top:6%;">
                                 <?php

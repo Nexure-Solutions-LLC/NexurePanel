@@ -51,7 +51,7 @@
                     <img src="<?php echo $variableDefinitionX->orglogolight; ?>" class="caliweb-navbar-logo-img light-mode" style="width:15%; margin-top:12%;" />
                     <img src="<?php echo $variableDefinitionX->orglogodark; ?>" class="caliweb-navbar-logo-img dark-mode" style="width:15%; margin-top:12%;" />
                     <h6 style="font-weight:700; margin:0; padding:0; margin-top:5%; margin-bottom:5%;">This application can not be automatically approved. Please give us more time.</h6>
-                    <p class="caliweb-login-sublink license-text-dark width-100">Thank you for applying to Cali Web Design, just know we got your application and are reviewing it. Please give us 3 - 5 business days.</p>
+                    <p class="caliweb-login-sublink license-text-dark width-100">Thank you for applying to Nexure, just know we got your application and are reviewing it. Please give us 3 - 5 business days.</p>
                 </div>
             </div>
         </div>
