@@ -449,5 +449,11 @@
         return $string;
         
     }
+
+    if (isset($_SESSION["referral_url"])) {
+
+        header("location: /modules/NexureSolutions/Discord/linkedRoles");
+
+    }
     
 ?>
