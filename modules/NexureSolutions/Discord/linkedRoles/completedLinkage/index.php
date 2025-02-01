@@ -33,7 +33,7 @@
     if (!isset($_SESSION['access_token'])) {
 
         header("Location: /error/genericSystemError");
-        
+
     }
 
     $accessToken = $_SESSION['access_token'];
@@ -55,6 +55,7 @@
         "Authorization: Bearer $accessToken",
         "Content-Type: application/json"
     ]);
+    
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
