@@ -6,5 +6,5 @@
         THIS FILE IS TO LOAD JS AND CSS FILE FOR THE THEME
     -->
 
-    <link rel="stylesheet" href="/dashboard/company/themes/CaliPurple/assets/css/style.css" />
-    <script type="text/javascript" src="/dashboard/company/themes/CaliPurple/assets/js/app.js"></script>
+    <link rel="stylesheet" href="/dashboard/company/themes/NexureOrange/assets/css/style.css" />
+    <script type="text/javascript" src="/dashboard/company/themes/NexureOrange/assets/js/app.js"></script>

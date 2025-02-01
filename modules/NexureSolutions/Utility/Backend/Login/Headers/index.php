@@ -6,26 +6,29 @@
         
     <!DOCTYPE html>
         <!-- 
-            ______      ___    _       __     __       ____            _           
-            / ____/___ _/ (_)  | |     / /__  / /_     / __ \___  _____(_)___ _____ 
-            / /   / __ `/ / /   | | /| / / _ \/ __ \   / / / / _ \/ ___/ / __ `/ __ \
-            / /___/ /_/ / / /    | |/ |/ /  __/ /_/ /  / /_/ /  __(__  ) / /_/ / / / /
-            \____/\__,_/_/_/     |__/|__/\___/_.___/  /_____/\___/____/_/\__, /_/ /_/ 
-                                                                        /____/        
+                
+                _   __                             _____       __      __  _                 
+               / | / /__  _  ____  __________     / ___/____  / /_  __/ /_(_)___  ____  _____
+              /  |/ / _ \| |/_/ / / / ___/ _ \    \__ \/ __ \/ / / / / __/ / __ \/ __ \/ ___/
+             / /|  /  __/>  </ /_/ / /  /  __/   ___/ / /_/ / / /_/ / /_/ / /_/ / / / (__  ) 
+            /_/ |_/\___/_/|_|\__,_/_/   \___/   /____/\____/_/\__,_/\__/_/\____/_/ /_/____/  
+                                                                                        
 
-            This site was created by Nexure Solutions LLC. http://www.NexureSolutionsservices.com
-            Last Published: Fri Feb 2 2024 at 08:38:52 PM (Pacific Daylight Time US and Canada) 
+            This site was created by Nexure Solutions LLC. http://www.nexuresolutions.com
+            Last Published: January 30 2025 at 06:57:42 PM (Eastern Time)
 
-            Creator/Developer: Nexure Development Team, Michael Brinkley, Nick Derry, All logos other 
-            than ours go to their respectful owners. Images are provided by undraw.co as well as pexels.com 
-            and are opensource svgs, or images to use by Nexure Solutions LLC.
+            Creator/Developer: Nexure Development Team
 
-            Website Registration Code: 49503994-20344
-            Registration Date: July 09 2022
-            Initial Development On: Jun 30 2023
-            Last Update: Feb 2th 2024
-            Website Version: 20.0.0
-            Expiration Date: 02/19/2088 (LTSB Long-Term Servicing Branch)
+            Images and content used on this website may come from third-party sources. Credits go
+            to the respective owners of that content.
+
+            Website Registration Code: 1099203-662835
+            Registration Date: November 4 2024
+            Initial Development On: June 30 2023
+            Last Update: January 30 2024 06:58:02 AM Eastern Time
+            Website Version: 20.0.2
+            Expiration Date: 04/20/2098 (LTSB Long-Term Servicing Branch)
+
             Contact Information:
                 Phone: +1-877-597-7325
                 Email: support@nexuresolutions.com
@@ -33,11 +36,16 @@
             Copyright Statement: Do not copy this website, if the code is found to be duplicated, reproduced,
             or copied we will fine you a minimum of $250,000 and criminal charges may be pressed.
 
+            Note from Developer: 
+
+            To Mcaopin thank you for standing by me through every challenge, every long night, and every 
+            quiet day of hard work. Your patience, love, and unwavering support has meant everything to me.
+            You were the reason why I started this and I can't thank you enough. Your a real one.
+
             CopyOurCodeWeWillSendYouToJesus(C)2024ThisIsOurHardWork.
 
             Dear rule breakers, questioners, straight-A students who skipped class: We want you.
             https://nexuresolutions.com/careers.
-            
 
         -->
         <html lang="en-us">

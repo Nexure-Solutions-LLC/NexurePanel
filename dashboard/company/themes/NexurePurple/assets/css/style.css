@@ -6,27 +6,20 @@ Do not remove the copyright text.
 
 */
 
-body,
-html,
-.login-container {
-    background-image: none !important;
-    background: linear-gradient(to right, #FFFFFF, #e8b885) !important;
-}
-
 ::selection {
-    color: #e4c36f !important;
+    color: #cdc9ff !important;
 }
 
 .loading-bar-inner {
-    background-color: #ebb042 !important;
+    background-color: #cdc9ff !important;
 }
 
 .careers-link {
-    color: #6c4908;
+    color: rgb(86, 7, 102);
 }
 
 .careers-link:hover {
-    color: #ebb042;
+    color: #c58adb;
 }
 
 .sidebar-link.active,
@@ -35,7 +28,7 @@ html,
 .drop-menu-item-sidebar.active {
     background-color: #f2f4f5;
     border-radius: 6px;
-    border: 1px solid #e8b885 !important;
+    border: 1px solid #aaa4ff !important;
 }
 
 .dark-mode .sidebar-link.active,
@@ -43,13 +36,23 @@ html,
 .dark-mode .drop-menu-item-sidebar.active,
 .dark-mode .drop-menu-item-sidebar.active {
     background-color: #0a0a0a;
-    border: 1px solid #e8b885 !important;
+    border: 1px solid #aaa4ff !important;
 }
 
-.dark-mode body,
-.dark-mode html,
-.dark-mode .login-container,
-html[data-theme='dark'] body {
-    background-image: none !important;
-    background: linear-gradient(to left, #a8a8a8, #9a590f) !important;
+.caliweb-button.primary {
+    background-color: #cdc9ff !important;
+    border:1px solid #cdc9ff !important;
+}
+
+.caliweb-button.primary:hover {
+    background-color: #aaa4ff !important;
+    border:1px solid #aaa4ff !important;
+}
+
+.nav-links.active {
+    background-color: #cdc9ff !important;
+}
+
+.tab-switch-tab.active {
+    border-color: #aaa4ff !important;
 }

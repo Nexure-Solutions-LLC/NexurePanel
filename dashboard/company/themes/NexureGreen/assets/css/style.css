@@ -6,13 +6,6 @@ Do not remove the copyright text.
 
 */
 
-body,
-html,
-.login-container {
-    background-image: none !important;
-    background: linear-gradient(to right, #FFFFFF, #86d978) !important;
-}
-
 ::selection {
     color:#b4ffa7 !important;
 }
@@ -46,10 +39,20 @@ html,
     border: 1px solid #86d978 !important;
 }
 
-.dark-mode body,
-.dark-mode html,
-.dark-mode .login-container,
-html[data-theme='dark'] body {
-    background-image: none !important;
-    background: linear-gradient(to left, #a8a8a8, #0d4803) !important;
+.caliweb-button.primary {
+    background-color: #b4ffa7 !important;
+    border:1px solid #b4ffa7 !important;
+}
+
+.caliweb-button.primary:hover {
+    background-color: #63ba54 !important;
+    border:1px solid #63ba54 !important;
+}
+
+.nav-links.active {
+    background-color: #b4ffa7 !important;
+}
+
+.tab-switch-tab.active {
+    border-color: #63ba54 !important;
 }

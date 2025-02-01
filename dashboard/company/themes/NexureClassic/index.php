@@ -6,5 +6,5 @@
         THIS FILE IS TO LOAD JS AND CSS FILE FOR THE THEME
     -->
 
-    <link rel="stylesheet" href="/dashboard/company/themes/CaliClassic/assets/css/style.css" />
-    <script type="text/javascript" src="/dashboard/company/themes/CaliClassic/assets/js/app.js"></script>
+    <link rel="stylesheet" href="/dashboard/company/themes/NexureClassic/assets/css/style.css" />
+    <script type="text/javascript" src="/dashboard/company/themes/NexureClassic/assets/js/app.js"></script>

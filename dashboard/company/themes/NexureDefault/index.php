@@ -6,5 +6,5 @@
         THIS FILE IS TO LOAD JS AND CSS FILE FOR THE THEME
     -->
 
-    <link rel="stylesheet" href="/dashboard/company/themes/CaliRed/assets/css/style.css" />
-    <script type="text/javascript" src="/dashboard/company/themes/CaliRed/assets/js/app.js"></script>
+    <link rel="stylesheet" href="/dashboard/company/themes/NexureDefault/assets/css/style.css" />
+    <script type="text/javascript" src="/dashboard/company/themes/NexureDefault/assets/js/app.js"></script>
