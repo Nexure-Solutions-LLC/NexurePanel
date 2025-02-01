@@ -86,7 +86,6 @@ $LANG_GENERIC_ERROR_TITLE_PAR_2 = "System Error";
 $LANG_GENERIC_ERROR_TITLE = "We encountered an unexpected error.";
 $LANG_GENERIC_ERROR_TEXT = "The action you performed has failed. We are working on a fix as soon as possible. We are sorry for any issues this may have caused. If you need assistance please contact Nexure.";
 
-
 // Nexure Linked Roles Success Message
 
 $LANG_LINKEDROLES_SUCCESS_PAR_1 = "Nexure";
