@@ -23,7 +23,7 @@
 
             // Loads Variables from ENV so that the OAuth link can be built.
 
-            $discord_dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/modules/NexureSolutions/Oauth/discord");
+            $discord_dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/modules/NexureSolutions/Discord");
             $discord_dotenv->load();
 
             $discord_client_id = $_ENV['DISCORD_CLIENT_ID'];
