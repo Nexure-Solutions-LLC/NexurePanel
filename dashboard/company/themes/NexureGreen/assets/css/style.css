@@ -42,6 +42,7 @@ Do not remove the copyright text.
 .caliweb-button.primary {
     background-color: #b4ffa7 !important;
     border:1px solid #b4ffa7 !important;
+    color: #000 !important;
 }
 
 .caliweb-button.primary:hover {
