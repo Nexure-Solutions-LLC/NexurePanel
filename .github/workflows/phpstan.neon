@@ -1,26 +1,10 @@
 parameters:
     level: max
     paths:
-        - src
-        - app
-        - authentication
-        - automations
-        - configuration
-        - dashboard
-        - error
-        - installation
-        - lang
-        - license
-        - login
-        - logout
-        - modules
-        - onboarding
-        - phpmyadmin
-        - registration
-        - resetPassword
-        - vendor
+        - .  # Scans the entire project (excluding vendor)
     excludePaths:
         - vendor/*
+        - .github/*
         - node_modules/*
         - storage/*
         - bootstrap/cache/*
