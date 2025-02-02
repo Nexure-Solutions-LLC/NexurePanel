@@ -50,11 +50,11 @@
     <html lang="en-us">
 
     <head>
-        <script src="https://caliwebdesignservices.com/assets/js/darkmode.js" type="text/javascript"></script>
+        <script src="https://nexuresolutions.com/assets/js/v1/darkmode.js" type="text/javascript"></script>
         <meta charset="utf-8" />
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta name="author" content="Nexure Development Team, Nick Derry, Michael Brinkley">
-        <link href="https://caliwebdesignservices.com/assets/css/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
+        <link href="https://nexuresolutions.com/assets/css/v1/2024-01-29-styling.css" rel="stylesheet" type="text/css" />
         <link href="/assets/css/dashboard-css-2024.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -112,7 +112,7 @@
             <div class="background-darker-300">
                 <div class="container caliweb-navbar-container">
                     <div class="caliweb-navbar-logo">
-                        <a href="https://caliwebdesignservices.com/">
+                        <a href="https://nexuresolutions.com/">
                             <img src="<?php echo $variableDefinitionX->orglogolight; ?>" width="100px" loading="lazy" alt="Light Logo" class="caliweb-navbar-logo-img light-mode">
                             <img src="<?php echo $variableDefinitionX->orglogodark; ?>" width="100px" loading="lazy" alt=" Dark Logo" class="caliweb-navbar-logo-img dark-mode">
                         </a>
@@ -144,7 +144,7 @@
                         </span>
                     </div>
                     <button style="background-color:transparent; border:none; outline:0;" href="javascript:void(0);" class="caliweb-menu-icon" aria-label="Mobile Menu" onclick="responsiveMenu()">
-                        <img src="https://caliwebdesignservices.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
+                        <img src="https://nexuresolutions.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
                     </button>
                 </div>
             </div>
