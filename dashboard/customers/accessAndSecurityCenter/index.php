@@ -20,7 +20,7 @@
                             <p class="no-padding" style="font-size:16px;">Access and Security</p>
                         </div>
                         <div>
-                            <a href="" class="caliweb-button primary">Add Authorized User</a>
+                            <a href="" class="caliweb-button primary" style="margin:0;">Add Authorized User</a>
                         </div>
                     </div>
                 </div>
