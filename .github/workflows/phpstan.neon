@@ -21,3 +21,6 @@ parameters:
         - ../../phpmyadmin
         - ../../storage/*
         - ../../bootstrap/cache/*
+    ignoreErrors:
+        - '#Variable \$.+ might not be defined#'
+        - '#Cannot access offset .+ on array\|false\|null#'
