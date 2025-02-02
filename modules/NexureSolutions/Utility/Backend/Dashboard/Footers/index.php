@@ -1,5 +1,5 @@
-        <script src="https://caliwebdesignservices.com/assets/js/index.js"></script>
-        <script src="https://caliwebdesignservices.com/assets/js/darkmode.js" type="text/javascript"></script>
+        <script src="https://nexuresolutions.com/assets/js/v1/index.js"></script>
+        <script src="https://nexuresolutions.com/assets/js/v1/darkmode.js" type="text/javascript"></script>
         <div class="preloader">
           <div style="margin-left:auto;margin-right:auto;max-width:80%;">
               <div class="logo" style="margin-top:-6%;">
