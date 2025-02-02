@@ -13,6 +13,8 @@
         "ezyang/htmlpurifier": "^4.17",
         "mustache/mustache": "^2.14",
         "phpstan/phpstan": "^1.11",
-        "sentry/sentry": "^4.8"
+        "sentry/sentry": "^4.8",
+        "symfony/options-resolver": "^6.0",
+        "symfony/yaml": "^6.0"
     }
 }
