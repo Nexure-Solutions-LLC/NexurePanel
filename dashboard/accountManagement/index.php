@@ -23,7 +23,7 @@
                         <li class="sidebar-link active"><a href="/dashboard/accountManagement" class="sidebar-link-a">General</a></li>
                         <li class="sidebar-link"><a href="/dashboard/accountManagement/integrations" class="sidebar-link-a">Integrations</a></li>
                         <li class="sidebar-link"><a href="/dashboard/accountManagement/security" class="sidebar-link-a">Security Settings</a></li>
-                        <li class="sidebar-link"><a href="/dashboard/accountManagement/caliaccounts" class="sidebar-link-a">Cali Account Settings</a></li>
+                        <li class="sidebar-link"><a href="/dashboard/accountManagement/nexureaccounts" class="sidebar-link-a">Nexure Account Settings</a></li>
                         <li class="sidebar-link"><a href="/dashboard/accountManagement/advanced" class="sidebar-link-a">Advanced Settings</a></li>
                     </ul>
                 </aside>
