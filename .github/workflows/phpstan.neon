@@ -12,12 +12,12 @@ parameters:
         - ../../logout
         - ../../modules
         - ../../onboarding
-        - ../../phpmyadmin
         - ../../registration
         - ../../resetPassword
     excludePaths:
         - ../../vendor/*
         - ../../.github/*
         - ../../node_modules/*
+        - ../../phpmyadmin
         - ../../storage/*
         - ../../bootstrap/cache/*
