@@ -22,7 +22,7 @@
                             <p class="no-padding" style="font-size:16px;">Support Center / View and Manage Cases</p>
                         </div>
                         <div>
-                            <a href="" class="caliweb-button primary">Create Case</a>
+                            <a href="" class="caliweb-button primary" style="margin:0;">Create Case</a>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
                 <div class="container caliweb-container">
                     <div class="caliweb-one-grid">
                         <div class="accounts-overview">
-                            <div class="caliweb-card dashboard-card" style="padding:20px; border:0 !important;">
+                            <div class="caliweb-card dashboard-card">
                                 <div class="card-header no-padding no-margin customer-card-header" style="padding-top:20px; padding-bottom:20px; border:0;">
                                     <h6 class="no-padding" style="font-size:16px; font-weight:600;">
                                         <?php echo $LANG_CUSTOMER_SUPPORT_CENTER_TITLE_TEXT; ?>

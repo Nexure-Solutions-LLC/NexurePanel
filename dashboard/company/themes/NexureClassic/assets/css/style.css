@@ -5,3 +5,152 @@ Feel free to customize the panel all you want.
 Do not remove the copyright text.
 
 */
+
+.background-darker-300 {
+    background: rgb(255,255,255) !important;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(1,36,78,1) 77%) !important;
+}
+
+.border-top-grey-300 {
+    border-color: #000;
+    background-color: rgb(208, 208, 208);
+}
+
+.caliweb-nav-buttons,
+.caliweb-nav-buttons a,
+.toggle-container {
+    color: #fff !important;
+    border-radius: 0px !important;
+}
+
+.caliweb-nav-buttons a:hover,
+.toggle-container:hover {
+    background-color: rgb(93, 93, 93);
+}
+
+.caliweb-search-input {
+    border-radius:0px !important;
+    border:inset 1px solid #eee !important;
+    color:#000;
+}
+
+.nav-links {
+    border-radius: 0px !important;
+    border:1px solid transparent !important;
+}
+
+.nav-links.active {
+    border-radius: 0px !important;
+    background-color: transparent !important;
+    border:1px solid #333 !important;
+}
+
+.nav-links:hover {
+    border-radius: 0px !important;
+    background-color: transparent !important;
+    border:1px solid #333 !important;
+}
+
+.caliweb-card.dashboard-card {
+    border-radius: 0px !important;  
+    background-color: transparent; 
+    border-color: #292929;
+}
+
+.dropdown {
+    background-color: rgb(208, 208, 208);
+    border-color: #000;
+}
+
+.dropdown .nav-links:hover {
+    border-color: #000 !important;
+}
+
+.caliweb-pricing-bar {
+    background-color: beige;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    border-color: #9b9b9b !important;
+    padding:8px !important;
+}
+
+.caliweb-button.primary {
+    background-color: #c9c9c9 !important;
+    border-color: #bebebe !important;
+    color:#000 !important;
+    border-radius: 0px !important;
+    padding:6px 14px !important;
+}
+
+.caliweb-button.primary:hover {
+    background-color: #aaaaaa !important;
+    border-color: #bebebe !important;
+    color:#000 !important;
+    border-radius: 0px !important;
+}
+
+.caliweb-button.secondary {
+    border-radius: 0px !important;
+    padding:6px 14px !important;
+}
+
+th, td {
+    padding:5px !important;
+    border-color: #c3c3c3 !important;
+}
+
+.card-header-account {
+    border-radius: 0px !important;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.caliweb-login-box-content {
+    border-color: #aaaaaa !important;
+    border-radius: 0 !important;
+    background-color: #b1bfce;
+}
+
+.form-input {
+    background-color: #eee !important;
+    border-color: #c3c3c3 !important;
+    border-radius: 0px !important;
+    padding:6px 14px !important;
+}
+
+.caliweb-login-box {
+    margin: 0px !important;
+    margin-left: 4% !important;
+    margin-top: 6% !important;
+    max-width: 25% !important;
+    background-color: #768493;
+}
+
+.caliweb-login-heading {
+    display: none !important;
+}
+
+.login-container, body {
+    background-color: #4f6c84;
+}
+
+.caliweb-error-box {
+    background-color: rgb(200, 86, 86);
+    color: #000 !important;
+}
+
+.caliweb-login-sublink {
+    color: #000 !important; 
+}
+
+.section.first-dashboard-area-cards.dashboard-admin-cards-withtoolbar,
+.section.first-dashboard-area-cards {
+    background-color: #fff !important;
+}
+
+.account-status-badge {
+    border-radius: 0px !important;
+}

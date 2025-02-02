@@ -25,7 +25,7 @@
                             <p class="no-padding" style="font-size:16px;">Overview / Billing Center</p>
                         </div>
                         <div>
-                            <a href="/dashboard/customers/billingCenter/createPaymentMethod" class="caliweb-button primary">Add Payment Method</a>
+                            <a href="/dashboard/customers/billingCenter/createPaymentMethod" class="caliweb-button primary" style="margin:0;">Add Payment Method</a>
                         </div>
                     </div>
                 </div>
