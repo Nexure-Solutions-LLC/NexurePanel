@@ -145,13 +145,13 @@
                 <div class="container caliweb-container">
                     <div class="caliweb-one-grid">
                         <div class="accounts-overview">
-                            <div class="caliweb-card dashboard-card" style="padding:20px; border:0 !important;">
+                            <div class="caliweb-card dashboard-card">
                                 <div class="card-header no-padding no-margin customer-card-header" style="padding-top:20px; padding-bottom:20px; border:0;">
-                                    <h6 class="no-padding" style="font-size:16px; font-weight:600;">
+                                    <h6 class="no-padding" style="font-size:16px; font-weight:600; font-family: 'IBM Plex Sans', sans-serif;">
                                         <?php echo $LANG_CUSTOMER_SERVICES_TITLE_TEXT; ?>
                                     </h6>
                                 </div>
-                                <div class="card-body" style="padding-top:20px; padding-bottom:20px;">
+                                <div class="card-body" style="padding-top:20px; padding-bottom:20px; margin-top:20px;">
 
                                         <?php
 

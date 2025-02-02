@@ -163,6 +163,9 @@
                     case "Billing Center":
                         renderNavLinks('Billing', $currentAccount->accountNumber);
                         break;
+                    case "Order Services":
+                        renderNavLinks('Order Services', $currentAccount->accountNumber);
+                        break;
                     case "Service Status":
                         renderNavLinks('Service Status', $currentAccount->accountNumber);
                         break;
@@ -197,6 +200,14 @@
             case "Your Calendar and Planner":
                 echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Calendar</p>';
                 renderAdminNavLinks('Calendar', $moduleresult, $departmentresult, $currentAccount->role->name);
+                break;
+            case "Leads":
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Marketing Cloud</p>';
+                renderAdminNavLinks('Leads', $moduleresult, $departmentresult, $currentAccount->role->name);
+                break;
+            case "Contacts":
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Customer Cloud</p>';
+                renderAdminNavLinks('Contacts', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Customer Accounts":
             case "Services":
