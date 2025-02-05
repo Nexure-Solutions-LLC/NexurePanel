@@ -361,12 +361,12 @@ html[data-theme='dark'] body {
 
 .dark-mode .caliweb-card.dashboard-card {
     background: #141414;
-    border: 1px solid #222;
+    border: 1px solid #333;
 }
 
 .dark-mode .caliweb-card.dashboard-card-shrink {
     background: #141414;
-    border: 1px solid #222;
+    border: 1px solid #333;
 }
 
 .dark-mode .card-header {
@@ -510,7 +510,6 @@ html[data-theme='dark'] body {
 }
 
 .dark-mode .note-card {
-    box-shadow: rgba(21, 21, 21, 0.2) 0px 2px 8px 0px;
     margin-bottom: 15px;
 }
 
@@ -674,7 +673,6 @@ html[data-theme='dark'] body {
 }
 
 .note-card {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     margin-bottom: 15px;
 }
 
