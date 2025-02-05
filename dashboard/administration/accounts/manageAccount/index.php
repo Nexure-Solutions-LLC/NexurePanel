@@ -261,7 +261,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <?php if (mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0): ?>
+                                <?php if (mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0 && ($manageAccountDefinitionR->customerStatus == 'Active')): ?>
                                     <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">No notes have been made for this account.</p>
                                 <?php endif; ?>
                                 <?php if ($manageAccountDefinitionR->statusreason): ?>
