@@ -194,7 +194,7 @@
                     
                     $randomDigits = mt_rand(10000, 99999);
                     
-                    $uniqueCode = "CWD-$year-$randomDigits";
+                    $uniqueCode = "NXE-$year-$randomDigits";
                     
                     return $uniqueCode;
 
