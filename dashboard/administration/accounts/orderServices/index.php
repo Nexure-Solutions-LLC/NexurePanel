@@ -89,7 +89,7 @@
 
                 $currentYear = date('Y');
                 $randomServiceIDNumber = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
-                $serviceIDBuilt = "CWD-$currentYear-$randomServiceIDNumber";
+                $serviceIDBuilt = "NXE-$currentYear-$randomServiceIDNumber";
 
                 // System Feilds
 

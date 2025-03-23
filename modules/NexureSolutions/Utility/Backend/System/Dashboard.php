@@ -56,6 +56,7 @@
     use GuzzleHttp\Client;
     use IPLib\Factory;
     use Detection\MobileDetect;
+    use Stripe\Stripe;
 
     // Initalize Sentry
 
@@ -455,5 +456,72 @@
         header("location: /modules/NexureSolutions/Discord/linkedRoles");
 
     }
+
+    function createStripeCustomers($con) {
+
+        $query = "SELECT secretKey FROM nexure_paymentconfig WHERE processorName = 'Stripe' LIMIT 1";
+        $result = mysqli_query($con, $query);
+        
+        if ($result && mysqli_num_rows($result) > 0) {
+    
+            $row = mysqli_fetch_assoc($result);
+            $secretKey = $row['secretKey'];
+
+            
+            Stripe::setApiKey($secretKey);
+
+
+            $query = "SELECT n.id, n.email, n.legalName, n.mobileNumber, n.accountNumber, 
+                     oi.emailAddress, oi.addressline1, oi.addressline2, 
+                     oi.city, oi.state, oi.postalcode, oi.country 
+              FROM nexure_users n 
+              LEFT JOIN nexure_ownershipinformation oi ON n.email = oi.emailAddress
+              WHERE n.stripeID = ''";
+
+
+            $result = mysqli_query($con, $query);
+
+            if ($result && mysqli_num_rows($result) > 0) {
+
+                while ($user = mysqli_fetch_assoc($result)) {
+
+                    try {
+
+                        $customer = \Stripe\Customer::create([
+                            'email' => $user['email'],
+                            'name' => $user['legalName'],
+                            'phone' => $user['mobileNumber'],
+                            'address' => [
+                                'line1' => $user['addressline1'],
+                                'line2' => $user['addressline2'],
+                                'city' => $user['city'],
+                                'state' => $user['state'],
+                                'postal_code' => $user['postalcode'],
+                                'country' => $user['country'],
+                            ],
+                            'description' => "Account Number: " . $user['accountNumber'],
+                        ]);
+
+                        $updateQuery = "UPDATE nexure_users SET stripeID = ? WHERE id = ?";
+                        $stmt = $con->prepare($updateQuery);
+                        $stmt->bind_param("si", $customer->id, $user['id']);
+                        $stmt->execute();
+                        $stmt->close();
+
+                    } catch (Exception $e) {
+
+                        redirect("/error/genericSystemError");
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    createStripeCustomers($con);
     
 ?>

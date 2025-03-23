@@ -178,6 +178,25 @@
                         </div>
                     </div>
                     <div>
+                        <?php if ($manageAccountDefinitionR->customerStatus == "Under Review" || $manageAccountDefinitionR->customerStatus == "under review") : ?>
+                            <div class="caliweb-card dashboard-card" style="margin-bottom:2%;">
+                                <div class="card-header">
+                                    <div class="display-flex align-center" style="justify-content:space-between;">
+                                        <p class="no-padding">Important Notice</p>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="font-14px display-flex align-center"><img src="/assets/img/systemIcons/infoicon.png" class="filter-white-on-dark" style="margin-right:20px; width:30px; height:30px;" /> <span>This account is currently pending and has not been approved automatically. Please take action or request the client to finish onboarding.</span></p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="display-flex align-center">
+                                        <a href="/dashboard/administration/accounts/approveAccount/index.php?account_number=<?php echo $accountnumber; ?>" class="caliweb-button primary no-margin margin-10px-right" style="padding:6px 24px;">Approve</a>
+                                        <a href="/dashboard/administration/accounts/rejectAccount/index.php?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Reject</a>
+                                        <a href="/dashboard/administration/accounts/transferAccount/index.php?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin" style="padding:6px 24px;">Transfer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="caliweb-card dashboard-card" style="margin-bottom:2%;">
                             <div class="card-header">
                                 <p class="no-padding">Account Insights</p>
@@ -257,29 +276,12 @@
                             <div class="card-header">
                                 <div class="display-flex align-center" style="justify-content:space-between;">
                                     <p class="no-padding">Notes and Activity</p>
-                                    <a href="/dashboard/administration/accounts/addActivityNote/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Place Note</a>
+                                    <a href="/dashboard/administration/accounts/addActivityNote/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin" style="padding:6px 24px;">Place Note</a>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <?php if (mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0 && ($manageAccountDefinitionR->customerStatus == 'Active')): ?>
+                                <?php if ($manageAccountDefinitionR->statusreason || mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0 && ($manageAccountDefinitionR->customerStatus == 'Active')): ?>
                                     <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">No notes have been made for this account.</p>
-                                <?php endif; ?>
-                                <?php if ($manageAccountDefinitionR->statusreason): ?>
-                                    <div class="caliweb-card dashboard-card note-card">
-                                        <div class="card-header">
-                                            <div class="display-flex align-center">
-                                                <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
-                                                    <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
-                                                </div>
-                                                <div>
-                                                    <p class="no-padding font-12px"><strong>Account Status</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="no-padding font-12px"><?= $manageAccountDefinitionR->statusreason ?></p>
-                                        </div>
-                                    </div>
                                 <?php endif; ?>
                                 <?php 
                                     while ($row = mysqli_fetch_assoc($manageAccountDefinitionR->notesResults)): 
