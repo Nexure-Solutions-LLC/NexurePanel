@@ -29,7 +29,7 @@
         // This is variable definitions 
 
         $registrationdate = date("Y-m-d H:i:s");
-        $builtaccountnumber = $_ENV['ACCOUNTSTARTNUMBER'] . substr(str_shuffle("0123456789"), 0, 12);
+        $builtaccountnumber = $_ENV['ACCOUNTSTARTNUMBER'] . substr(str_shuffle("0123456789"), 0, 4);
 
         // Social Security / Employer Identification Numbers encryption logic.
 
