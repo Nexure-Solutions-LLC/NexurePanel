@@ -620,6 +620,10 @@ html[data-theme='dark'] body {
     color: #000 !important;
 }
 
+.dark-mode .filter-white-on-dark {
+    filter: invert(1) !important;
+}
+
 /* =================== Nexure Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {

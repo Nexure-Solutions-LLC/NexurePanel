@@ -75,30 +75,13 @@
                                         <p class="no-padding">Notes and Activity</p>
                                     </div>
                                     <div class="display-flex align-center">
-                                        <a href="/dashboard/administration/accounts/addActivityNote/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin margin-10px-right" style="padding:6px 24px;">Place Note</a>
+                                        <a href="/dashboard/administration/accounts/addActivityNote/?account_number=<?php echo $accountnumber; ?>" class="caliweb-button secondary no-margin" style="padding:6px 24px;">Place Note</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <?php if (mysqli_num_rows($manageAccountDefinitionR->notesResults) == 0): ?>
                                     <p class="font-14px no-padding" style="margin-top:10px; margin-bottom:10px;">No notes have been made for this account.</p>
-                                <?php endif; ?>
-                                <?php if ($manageAccountDefinitionR->statusreason): ?>
-                                    <div class="caliweb-card dashboard-card note-card">
-                                        <div class="card-header">
-                                            <div class="display-flex align-center">
-                                                <div class="no-padding margin-20px-right icon-size-formatted" style="height: 40px; width: 40px;">
-                                                    <img src="/assets/img/systemIcons/notesicon.png" alt="Notes Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
-                                                </div>
-                                                <div>
-                                                    <p class="no-padding font-12px"><strong>Account Status</strong></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card-body">
-                                            <p class="no-padding font-12px"><?= $manageAccountDefinitionR->statusreason ?></p>
-                                        </div>
-                                    </div>
                                 <?php endif; ?>
                                 <?php 
                                     while ($row = mysqli_fetch_assoc($manageAccountDefinitionR->notesResults)): 

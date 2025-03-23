@@ -272,7 +272,7 @@
     function banIp($ip)
     {
 
-        header("Location: /error/bannedUser");
+        echo '<script>window.location.replace("/error/bannedUser");</script>';
 
         exit;
     }
