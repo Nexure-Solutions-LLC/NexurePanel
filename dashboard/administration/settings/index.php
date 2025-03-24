@@ -38,8 +38,9 @@
         $panelMaintenanceModeMessage = mysqli_real_escape_string($con, $_POST["maintenanceModeMessage"]);
         $paymentDescriptor = mysqli_real_escape_string($con, $_POST["paymentDescriptor"]);
         $registrationMode = mysqli_real_escape_string($con, $_POST["registrationMode"]);
+        $panelBanIPMode = mysqli_real_escape_string($con, $_POST["panelBanIPMode"]);
 
-        $query = "UPDATE `nexure_panelconfig` SET `panelTheme`='$panelTheme',`maintainenceMode`='$panelMaintenanceMode',`paymentDescriptor`='$paymentDescriptor',`maintenanceModeMessage`='$panelMaintenanceModeMessage',`isRegEnabled`='[value-25]' WHERE id = '1'";
+        $query = "UPDATE `nexure_panelconfig` SET `panelTheme`='$panelTheme',`maintainenceMode`='$panelMaintenanceMode',`paymentDescriptor`='$paymentDescriptor',`maintenanceModeMessage`='$panelMaintenanceModeMessage',`isRegEnabled`='$registrationMode',`blacklistedIPsEnabled`='$panelBanIPMode' WHERE id = '1'";
         $result = mysqli_query($con, $query);
 
         header("location:/dashboard/administration/settings");
@@ -143,7 +144,7 @@
                                         <label for="panelMaintenanceMode">Maintenance Mode</label>
                                         <br>
                                         <select class="form-input" style="width:100%;" name="panelMaintenanceMode" id="panelMaintenanceMode">
-                                            <option>False (Default)</option>
+                                            <option>False</option>
                                             <option>True</option>
                                         </select>
                                     </div>
@@ -164,8 +165,16 @@
                                             <label for="registrationMode">Registration Enabled</label>
                                             <br>
                                             <select class="form-input" style="width:100%;" name="registrationMode" id="registrationMode">
-                                                <option>True (Default)</option>
+                                                <option>True</option>
                                                 <option>False</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-control" style="margin-top:6%;">
+                                            <label for="panelMaintenanceMode">IPs can be banned?</label>
+                                            <br>
+                                            <select class="form-input" style="width:100%;" name="panelBanIPMode" id="panelBanIPMode">
+                                                <option>False</option>
+                                                <option>True</option>
                                             </select>
                                         </div>
                                     </div>
