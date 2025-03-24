@@ -785,6 +785,7 @@
         public $orglogosquare;
         public $orglogolight;
         public $orglogodark;
+        public $blacklistIPStatus;
         public $paymentProcessorName;
         public $dataTimestamp;
         public $datedataOutput;
@@ -914,6 +915,8 @@
             $this->orglogosquare = $panelinfo['organizationLogoSquare'];
 
             $this->paymentDescriptor = $panelinfo['paymentDescriptor'];
+
+            $this->blacklistIPStatus = $panelinfo['blacklistedIPsEnabled'];
 
         }
 
