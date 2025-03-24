@@ -21,7 +21,7 @@
                         <div class="display-flex align-center" style="justify-content: space-between;">
                             <div class="display-flex align-center">
                                 <div class="no-padding margin-10px-right icon-size-formatted">
-                                    <img src="/assets/img/systemIcons/accountsicon.png" alt="Client Logo and/or Business Logo" style="background-color:#f5e6fe;" class="client-business-andor-profile-logo" />
+                                    <img src="/assets/img/systemIcons/creditservices.png" alt="Client Logo and/or Business Logo" style="background-color:#fbe7e3;" class="client-business-andor-profile-logo" />
                                 </div>
                                 <div>
                                     <p class="no-padding font-14px">Credit Services</p>

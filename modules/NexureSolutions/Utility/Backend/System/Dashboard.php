@@ -79,6 +79,8 @@
     $passableUserId = $variableDefinitionX->userId;
     $passableApiKey = $variableDefinitionX->apiKey;
 
+    $blacklistIPStatus = $variableDefinitionX->blacklistIPStatus;
+
     // Initialize the signed in users information from Cali Accounts
 
     $caliemail = $_SESSION['caliid'];
@@ -314,7 +316,7 @@
 
     // Assuming $pdo is your PDO connection
 
-    if (!isIpAllowed($clientIp, $con)) {
+    if (!isIpAllowed($clientIp, $con) && $blacklistIPStatus == "True") {
 
         if (isIpBlacklistedOrProxyVpn($clientIp, $passableUserId, $passableApiKey)) {
 
