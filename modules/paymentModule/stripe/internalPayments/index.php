@@ -360,6 +360,36 @@
 
             }
 
+            function getSubscriptionDueDate($customerId) {
+
+                try {
+
+                    $subscriptions = \Stripe\Subscription::all([
+                        'customer' => $customerId,
+                        'status' => 'active',
+                        'limit' => 1
+                    ]);
+            
+                    if (empty($subscriptions->data)) {
+
+                        return '——';
+
+                    }
+                    
+                    $subscription = $subscriptions->data[0];
+
+                    $dueDate = date('F d, Y', $subscription->current_period_end);
+            
+                    return $dueDate;
+
+                } catch (\Exception $e) {
+
+                    return '——';
+
+                }
+
+            }
+
             function updateCreditBalance($customerId, $amount) {
 
                 try {

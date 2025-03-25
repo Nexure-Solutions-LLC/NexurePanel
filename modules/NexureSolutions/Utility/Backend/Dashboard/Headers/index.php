@@ -143,9 +143,6 @@
                             <span class="lnr lnr-moon" class="toggle-input" id="darkModeIcon"></span>
                         </span>
                     </div>
-                    <button style="background-color:transparent; border:none; outline:0;" href="javascript:void(0);" class="caliweb-menu-icon" aria-label="Mobile Menu" onclick="responsiveMenu()">
-                        <img src="https://nexuresolutions.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
-                    </button>
                 </div>
             </div>
             <div class="border-top-grey-300">
