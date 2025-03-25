@@ -770,6 +770,110 @@
 
     }
 
+    namespace NexureSolutions\Blacklister;
+
+    class BlacklistVariableDefinitions
+    {
+
+        public $blacklistId;
+        public $blacklistIdentifier;
+        public $blacklistTitle;
+        public $blacklistDescription;
+        public $blacklistStatus;
+        public $emailAddress;
+        public $accountNumber;
+        public $submittedBy;
+        public $blacklistTimestamp;
+        public $blacklistTimestampformattedfinal;
+
+        public function loadBlacklistEntry($con, $accountNumber) {
+
+            try {
+
+                $blacklistInfo = $this->fetchSingleRow($con, 'nexure_blacklists', "accountNumber = '" . mysqli_real_escape_string($con, $accountNumber) . "'");
+                
+                if (!$blacklistInfo) {
+
+                    return false;
+
+                }
+
+                $this->initializeBlacklistEntry($blacklistInfo);
+
+                return true;
+
+            } catch (\Throwable $exception) {
+
+                \Sentry\captureException($exception);
+
+                return false;
+
+            }
+
+        }
+
+        private function fetchSingleRow($con, $table, $condition) {
+
+            $query = "SELECT * FROM $table WHERE $condition LIMIT 1";
+
+            $result = mysqli_query($con, $query);
+
+            if (!$result) {
+
+                \Sentry\captureException("Query failed: " . mysqli_error($con));
+
+                throw new \Exception("Query failed: " . mysqli_error($con));
+
+            }
+
+            $row = mysqli_fetch_array($result);
+
+            mysqli_free_result($result);
+
+            return $row;
+
+        }
+
+        private function initializeBlacklistEntry($blacklistInfo) {
+
+            $this->blacklistId = $blacklistInfo['id'];
+
+            $this->blacklistIdentifier = $blacklistInfo['blacklistIdentifier'];
+
+            $this->blacklistTitle = $blacklistInfo['blacklistTitle'];
+
+            $this->blacklistDescription = $blacklistInfo['blacklistDescription'];
+
+            $this->blacklistStatus = $blacklistInfo['status'];
+            
+            $this->emailAddress = $blacklistInfo['emailAddress'];
+
+            $this->accountNumber = $blacklistInfo['accountNumber'];
+
+            $this->submittedBy = $blacklistInfo['submittedBy'];
+
+            $blacklistTimestamp = $blacklistInfo['submittedDate'];
+
+            $blacklistTimestampformatted = new \DateTime($blacklistTimestamp);
+
+            $this->blacklistTimestampformattedfinal = $blacklistTimestampformatted->format('F j, Y g:i A');
+
+        }
+
+        public function checkIfBlacklisted($con, $identifier) {
+
+            $query = "SELECT COUNT(*) as count FROM nexure_blacklists WHERE blacklistIdentifier = '" . mysqli_real_escape_string($con, $identifier) . "'";
+            
+            $result = mysqli_query($con, $query);
+            
+            $row = mysqli_fetch_assoc($result);
+            
+            return $row['count'] > 0;
+        
+        }
+
+    }
+
     namespace NexureSolutions\Generic;
 
     use NexureSolutions\Utility;
@@ -1172,6 +1276,59 @@
                                 <img src='/assets/img/systemIcons/duplicateaccounticon.png' alt='Client Logo and/or Business Logo' style='background-color:#fff9dd;' class='client-business-andor-profile-logo' />
                             </div>
                             <p class='no-padding' style='font-weight:800; font-family: Mona Sans, sans-serif;'>We found no potential duplicates of this account.</p>
+                        </div>
+                    </div>
+
+                ";
+
+                return [
+
+                    "status" => $HTMLCONTENT,
+
+                ];
+
+            }
+
+        }
+
+        public function checkForBlacklistAccount($accountNumber, $con) {
+
+            $query = "SELECT * FROM `nexure_blacklists` WHERE `accountnumber` = '$accountNumber' AND `status` = 'Active'";
+            
+            $stmt = $con->prepare($query);
+
+            if ($stmt === false) {
+
+                die('Prepare failed: ' . htmlspecialchars($con->error));
+
+            }
+            
+            if (!$stmt->execute()) {
+
+                die('Execute failed: ' . htmlspecialchars($stmt->error));
+
+            }
+            
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows == 1) {
+
+                $duplicates = [];
+
+                while ($row = $result->fetch_assoc()) {
+
+                    $duplicates[] = $row;
+
+                }
+
+                $HTMLCONTENT = "
+                
+                    <div class='caliweb-card dashboard-card' style='margin-bottom:10px;'>
+                        <div class='display-flex align-center'>
+                            <div class='no-padding margin-10px-right icon-size-formatted'>
+                                <img src='/assets/img/systemIcons/blacklisterservices.png' alt='Blacklister Logo' style='background-color:#fbe7e3;' class='client-business-andor-profile-logo' />
+                            </div>
+                            <p class='no-padding' style='font-weight:800;'>This account has an active blacklist. Do not service this account.</p>
                         </div>
                     </div>
 
