@@ -28,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// ====================== Dynamic Years =============================
+
+function updateYear() {
+    document.getElementById("nexure-year").textContent = new Date().getFullYear();
+}
+
+updateYear();
 
 // ====================== Nexure Search System ======================
 
