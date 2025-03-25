@@ -69,24 +69,24 @@
     // Initialize the ENV File
 
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
+
     $dotenv->load();
-
-    // Initialize the variable class and function from Cali Utilities
-
-    $variableDefinitionX = new \NexureSolutions\Generic\VariableDefinitions();
-    $variableDefinitionX->variablesHeader($con);
-
-    $passableUserId = $variableDefinitionX->userId;
-    $passableApiKey = $variableDefinitionX->apiKey;
-
-    $blacklistIPStatus = $variableDefinitionX->blacklistIPStatus;
-
-    // Initialize the signed in users information from Cali Accounts
 
     $caliemail = $_SESSION['caliid'];
 
+    $variableDefinitionX = new \NexureSolutions\Generic\VariableDefinitions();
+
+    $variableDefinitionX->variablesHeader($con);
+
     $currentAccount = new \NexureSolutions\Accounts\AccountHandler($con);
+
     $success = $currentAccount->fetchByEmail($caliemail);
+
+    $passableUserId = $variableDefinitionX->userId;
+
+    $passableApiKey = $variableDefinitionX->apiKey;
+
+    $blacklistIPStatus = $variableDefinitionX->blacklistIPStatus;
 
     // Mobile Detection
 
@@ -95,6 +95,7 @@
     if ($detect->isMobile() || $detect->isTablet()) {
 
         header("Location: /error/mobileExperience/");
+
         exit();
 
     }
