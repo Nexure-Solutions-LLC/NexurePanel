@@ -50,6 +50,11 @@ Do not remove the copyright text.
     border:1px solid #aaa4ff !important;
 }
 
+.dark-mode .caliweb-button.primary,
+.dark-mode .caliweb-button.primary:hover {
+    color: #000 !important;
+}
+
 .nav-links.active {
     background-color: #cdc9ff !important;
 }

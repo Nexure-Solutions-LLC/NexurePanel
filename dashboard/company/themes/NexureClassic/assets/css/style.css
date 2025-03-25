@@ -154,3 +154,7 @@ th, td {
 .account-status-badge {
     border-radius: 0px !important;
 }
+
+.toggle-container {
+    display: none !important;
+}
