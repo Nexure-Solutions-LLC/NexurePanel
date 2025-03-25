@@ -1,1 +1,0 @@
-Error: [8192] Creation of dynamic property CaliWebDesign\Accounts\AccountHandler::$lang is deprecated in /var/www/calipanel/modules/CaliWebDesign/Utility/Backend/index.php on line 453

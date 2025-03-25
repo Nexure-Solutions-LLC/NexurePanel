@@ -174,11 +174,11 @@ td, th {
 }
 
 .careers-link {
-    color: #8bc2f0 !important;
+    color: #8bc2f0;
 }
 
 .careers-link:hover {
-    color: #79bbfa !important;
+    color: #79bbfa;
 }
 
 /* =================== Nexure Dashboard Container Styles =================== */
@@ -617,9 +617,12 @@ html[data-theme='dark'] body {
     background-color: #79bbfa !important;
 }
 
-.dark-mode .nav-links.active,
-.dark-mode .nav-links-clickable.active {
+.dark-mode .nav-links.active {
     background-color: #9dd0ff;
+    color: #000 !important;
+}
+
+.dark-mode .nav-links-clickable.active {
     color: #000 !important;
 }
 
