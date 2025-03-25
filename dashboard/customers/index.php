@@ -24,6 +24,50 @@
 
     }
 
+    function getServiceType($con, $accountNumber) {
+        
+        try {
+
+            $query = "SELECT serviceName FROM nexure_services WHERE accountNumber = '$accountNumber'";
+
+            $result = $con->query($query);
+            
+            if (!$result) {
+
+                return '';
+
+            }
+    
+            $row = $result->fetch_assoc();
+
+            if (!$row) {
+
+                return '';
+
+            }
+    
+            $service = $row['serviceName'];
+    
+            $words = explode(' ', trim($service));
+    
+            if (count($words) > 1) {
+
+                array_shift($words);
+
+            }
+    
+            $serviceType = implode(' ', $words);
+    
+            return htmlspecialchars($serviceType);
+    
+        } catch (\Exception $e) {
+
+            return '';
+
+        }
+
+    }
+
     try {
 
         $accountNumbers = $currentAccount->accountNumber;
@@ -37,6 +81,8 @@
         $manageAccountDefinitionR->manageAccount($con, $accountNumbers);
 
         $businessname = ($manageAccountDefinitionR->businessname !== null) ? $manageAccountDefinitionR->businessname : null;
+
+        $serviceType = getServiceType($con, $accountNumbers);
 
         echo '<title>'.$pagetitle.' | '.$pagesubtitle.'</title>';
     
@@ -105,7 +151,7 @@
 
                                                 $balance = '$'.getCreditBalance($stripeID);
 
-                                                $dueDate = 'July 12, 2024';
+                                                $dueDate = getSubscriptionDueDate($stripeID);
 
                                                 $statusMessage = '';
 
@@ -114,7 +160,7 @@
                                             echo '
                             
                                                 <div class="display-flex align-center no-padding no-margin customer-account-title" style="padding:20px; justify-content:space-between;">
-                                                    <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: \'IBM Plex Sans\', sans-serif;">' . $variableDefinitionX->orgShortName . ' Standard (...' . $truncatedAccountNumber . ')</h6>
+                                                    <h6 class="no-padding no-margin" style="font-size:16px; font-weight:600; font-family: \'IBM Plex Sans\', sans-serif;">' . $variableDefinitionX->orgShortName . ' ' . $serviceType . ' (...' . $truncatedAccountNumber . ')</h6>
                                                     <div class="caliweb-button-section">   
                                                         <a href="/dashboard/customers/viewAccount/?account_number=' . urlencode($accountNumber) . '" class="caliweb-button secondary">View Account</a>
                                                     </div>
