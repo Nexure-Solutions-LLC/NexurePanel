@@ -241,7 +241,7 @@
 
                                         <?php
 
-                                            $dueDate =  $manageAccountDefinitionR->calculateDueDate($accountnumber);
+                                            $dueDate =  $dueDate = getSubscriptionDueDate($manageAccountDefinitionR->customerStripeID);
 
                                             echo "<p style='font-size:16px; font-weight:800; font-family: Mona Sans, sans-serif;'>$dueDate</p>";
 

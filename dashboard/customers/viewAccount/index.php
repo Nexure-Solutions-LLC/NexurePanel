@@ -33,6 +33,50 @@
 
     $storedAccountNumbers = array_map('trim', explode(',', $storedAccountNumbersString));
 
+    function getServiceType($con, $accountNumber) {
+        
+        try {
+
+            $query = "SELECT serviceName FROM nexure_services WHERE accountNumber = '$accountNumber'";
+
+            $result = $con->query($query);
+            
+            if (!$result) {
+
+                return '';
+
+            }
+    
+            $row = $result->fetch_assoc();
+
+            if (!$row) {
+
+                return '';
+
+            }
+    
+            $service = $row['serviceName'];
+    
+            $words = explode(' ', trim($service));
+    
+            if (count($words) > 1) {
+
+                array_shift($words);
+
+            }
+    
+            $serviceType = implode(' ', $words);
+    
+            return htmlspecialchars($serviceType);
+    
+        } catch (\Exception $e) {
+
+            return '';
+
+        }
+
+    }
+
     if (in_array($accountnumber, $storedAccountNumbers)) {
 
         $truncatedAccountNumber = substr($accountnumber, -4);
@@ -50,7 +94,9 @@
 
         $balance = $isRestricted ? '——' : '$'.getCreditBalance($stripeID);
 
-        $dueDate = $isRestricted ? '——' : 'July 12, 2024';
+        $dueDate = $isRestricted ? '——' : getSubscriptionDueDate($stripeID);
+
+        $serviceType = getServiceType($con, $storedAccountNumbersString);
 
 ?>
 
@@ -74,7 +120,7 @@
                                     <div class="display-flex align-top">
                                         <div>
                                             <p style="font-size:14px; font-weight:600;">
-                                                <?php echo $variableDefinitionX->orgShortName; ?> Standard
+                                                <?php echo $variableDefinitionX->orgShortName; ?> <?php echo $serviceType ?>
                                                 (...<?php echo $truncatedAccountNumber; ?>)
                                             </p>
                                             <p style="font-size:12px; margin-top:5px;">
@@ -100,9 +146,8 @@
 
                                         echo '
 
-                                            <div class="account-status-banner '.strtolower($currentAccount->accountStatus->name) == "restricted" ? 'id="accountRestricted"' : ''.'">
+                                            <div class="account-status-banner restricted" id="accountRestricted">
                                                 <p style="font-size:14px;">We have restricted this account and reopened it to protect your services. If you have any questions, please contact us.</p>
-                                                
                                             </div>
 
                                         ';
@@ -121,7 +166,7 @@
                                         </div>
                                         <div class="customer-duedate" style="margin-top:4%;">
                                             <h5 style="font-weight:300; font-size:18px;" class="no-padding no-margin">
-                                                <?php echo strtolower($currentAccount->accountStatus->name) == "restricted" ? '——' : 'July 12, 2024'; ?>
+                                                <?php echo strtolower($currentAccount->accountStatus->name) == "restricted" ? '——' : $dueDate = getSubscriptionDueDate($stripeID); ?>
                                             </h5>
                                             <p style="font-size:12px; padding-top:5px;" class="no-padding no-margin">Due Date</p>
                                         </div>
