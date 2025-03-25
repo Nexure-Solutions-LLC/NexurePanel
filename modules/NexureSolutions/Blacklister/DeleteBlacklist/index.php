@@ -18,15 +18,11 @@
 
     }
 
-    $blacklistRevokeRequest = "UPDATE `nexure_blacklists` SET `status`= 'Revoked' WHERE `accountNumber` = '$accountnumber'";
+    $blacklistDeleteRequest = "DELETE FROM `nexure_blacklists` WHERE `accountNumber` = '$accountnumber'";
 
-    $blacklistDeleteResult = mysqli_query($con, $blacklistRevokeRequest);
+    $blacklistDeleteResult = mysqli_query($con, $blacklistDeleteRequest);
 
-    $blacklistAccountUpdateRequest = "UPDATE `nexure_users` SET `accountStatus`= 'Under Review', `statusReason` = 'This account previously had a blacklist and it was revoked.' WHERE `accountNumber` = '$accountnumber'";
-    
-    $blacklistAccountUpdateResult = mysqli_query($con, $blacklistAccountUpdateRequest);
-
-    if ($blacklistDeleteResult && $blacklistAccountUpdateResult) {
+    if ($blacklistDeleteResult) {
 
         header ("location: /modules/NexureSolutions/Blacklister/");
 

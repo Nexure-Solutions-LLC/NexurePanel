@@ -173,6 +173,14 @@ td, th {
     background-color: #f2f3f5;
 }
 
+.careers-link {
+    color: #8bc2f0 !important;
+}
+
+.careers-link:hover {
+    color: #79bbfa !important;
+}
+
 /* =================== Nexure Dashboard Container Styles =================== */
 
 .container,

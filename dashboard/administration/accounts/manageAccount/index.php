@@ -32,11 +32,13 @@
     if (!$accountnumber) {
 
         header("location: /dashboard/administration/accounts");
+        
         exit;
 
     }
 
     $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
+
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
 ?>
@@ -49,6 +51,24 @@
                     <div>
                         <div class="caliweb-card dashboard-card">
                             <?php include($_SERVER["DOCUMENT_ROOT"].'/modules/NexureSolutions/Utility/Backend/Account/Menus/index.php'); ?>
+                            <?php
+
+                                $blacklistCheck = $manageAccountDefinitionR->checkForBlacklistAccount(
+                                    $accountnumber,
+                                    $con
+                                );
+
+                                if (!isset($blacklistCheck['status'])) {
+                                    
+                                    echo $blacklistCheck;
+
+                                } else {
+
+                                    echo $blacklistCheck['status'];
+
+                                }
+
+                            ?>
                             <?php
 
                                 $duplicateCheck = $manageAccountDefinitionR->checkForDuplicateAccount(

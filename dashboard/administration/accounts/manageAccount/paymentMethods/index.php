@@ -9,19 +9,25 @@
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
     unset($_SESSION['stripe_token']);
+
     unset($_SESSION['ACCOUNTNUMBERCUST']);
+    
     unset($_SESSION['stripe_id']);
 
     $accountnumber = $_GET['account_number'] ?? '';
 
     if (!$accountnumber) {
+
         header("location: /dashboard/administration/accounts");
+
         exit;
+
     }
 
     $accountnumberEsc = mysqli_real_escape_string($con, $accountnumber);
 
     $manageAccountDefinitionR = new \NexureSolutions\Generic\VariableDefinitions();
+
     $manageAccountDefinitionR->manageAccount($con, $accountnumber);
 
 ?>
