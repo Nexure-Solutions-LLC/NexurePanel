@@ -116,6 +116,13 @@
 
                 \Stripe\Customer::createSource($stripeID, ['source' => $token]);
 
+                function redirect($url) {
+
+                    echo "<script type='text/javascript'>window.location = '$url'</script>";
+                    exit;
+        
+                }
+
                 redirect($redirectURL);
 
             } catch (\Throwable $exception) {
@@ -141,13 +148,6 @@
                 break;
             default:
                 break;
-        }
-
-        function redirect($url) {
-
-            echo "<script type='text/javascript'>window.location = '$url'</script>";
-            exit;
-
         }
 
         function formatAmountForStripe($amount) {
