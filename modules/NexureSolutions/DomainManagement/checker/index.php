@@ -77,7 +77,7 @@
         <div class="caliweb-one-grid special-caliweb-spacing">
             <div class="caliweb-one-grid special-caliweb-spacing">
                 <div class="caliweb-card dashboard-card custom-padding-account-card" style="padding-bottom:0;">
-                    <div class="card-header-account" style="margin-bottom:0;">
+                    <div class="card-header-services" style="margin-bottom:0;">
                         <div class="display-flex align-center">
                             <div class="no-padding margin-10px-right icon-size-formatted">
                                 <img src="/assets/img/customerBusinessLogos/defaultstore.png" alt="Client Logo and/or Business Logo" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />

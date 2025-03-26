@@ -28,14 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// ====================== Dynamic Years =============================
-
-function updateYear() {
-    document.getElementById("nexure-year").textContent = new Date().getFullYear();
-}
-
-updateYear();
-
 // ====================== Nexure Search System ======================
 
 $(document).ready(function () {
@@ -308,3 +300,11 @@ document.getElementById('greetingMessage').innerHTML = greet;
 function showNewForm() {
     document.getElementById('new-form').style.display = 'block';
 }
+
+// ====================== Dynamic Years =============================
+
+function updateYear() {
+    document.getElementById("nexure-year").textContent = new Date().getFullYear();
+}
+
+updateYear();

@@ -58,15 +58,11 @@
     use Detection\MobileDetect;
     use Stripe\Stripe;
 
-    // Initalize Sentry
-
     \Sentry\init([
         'dsn' => $_ENV['SENTRY_DSN'],
         'traces_sample_rate' => 1.0,
         'profiles_sample_rate' => 1.0,
     ]);
-
-    // Initialize the ENV File
 
     $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 
@@ -87,6 +83,12 @@
     $passableApiKey = $variableDefinitionX->apiKey;
 
     $blacklistIPStatus = $variableDefinitionX->blacklistIPStatus;
+
+    $sentryToken = $_ENV['SENTRY_TOKEN'];
+
+    $sentryOrg = $_ENV['SENTRY_ORG'];
+
+    $sentryProject = $_ENV['SENTRY_PROJECT'];
 
     // Mobile Detection
 

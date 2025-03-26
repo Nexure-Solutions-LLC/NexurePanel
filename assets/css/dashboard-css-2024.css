@@ -328,6 +328,14 @@ td, th {
     display: block;
 }
 
+/* =================== System Logs Styling ================ */
+
+.log-entry {
+    border-bottom: 1px solid #ddd;
+    padding:10px;
+    padding-left:0;
+}
+
 /* =================== Nexure Dashboard Dark Mode Styles =================== */
 
 html[data-theme='dark'] body {
@@ -635,6 +643,10 @@ html[data-theme='dark'] body {
     filter: invert(1) !important;
 }
 
+.dark-mode .log-entry {
+    border-bottom: 1px solid #444;
+}
+
 /* =================== Nexure Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
@@ -698,8 +710,6 @@ html[data-theme='dark'] body {
 }
 
 .card-header-account {
-    padding-top: 0px;
-    padding-bottom: 10px;
     background-color: #f1f1f1;
     padding: 10px;
     padding-left:20px;
@@ -710,6 +720,38 @@ html[data-theme='dark'] body {
     border-top-right-radius: 6px;
     border-bottom: 1px solid #eee;
     margin-bottom: 2.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header-services {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 6px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 2.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.settings-header {
+    background-color: #f1f1f1;
+    padding: 20px;
+    padding-left:20px;
+    border-radius: 6px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom: none;
+    margin-bottom: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1435,6 +1477,18 @@ textarea.swal2-input {
 }
 
 /* =================== Nexure Dashboard Mobile Styling =================== */
+
+@media (max-width: 1500px)  {
+    .settings-header-compact {
+        padding:0 !important;
+        padding-left:20px !important;
+    }
+
+    .mobile-header-compact {
+        margin-top:-10% !important;
+        margin-bottom:-10% !important;
+    }
+}
 
 @media (min-width:1290px) and (max-width: 1500px) {
     .caliweb-three-grid.customer-grid-quick-actions {
