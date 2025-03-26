@@ -86,7 +86,9 @@
                 ]);
 
                 function redirect($url) {
+
                     header("Location: " . $url);
+
                     exit();
                 }
 
@@ -119,6 +121,7 @@
                 function redirect($url) {
 
                     echo "<script type='text/javascript'>window.location = '$url'</script>";
+
                     exit;
         
                 }
@@ -174,6 +177,114 @@
             }
 
             return '';
+
+        }
+
+        function generateUniqueCode() {
+
+            $year = date('Y');
+
+            $randomDigits = mt_rand(10000, 99999);
+
+            return "NXE-$year-$randomDigits";
+
+        }
+
+        function createStripeSubscription($customerId, $productName, $amount, $interval) {
+
+            try {
+
+                $product = \Stripe\Product::create([
+                    'name' => $productName,
+                ]);
+        
+                $price = \Stripe\Price::create([
+                    'unit_amount' => $amount * 100,
+                    'currency' => 'usd',
+                    'recurring' => ['interval' => $interval],
+                    'product' => $product->id,
+                ]);
+
+                $subscription = \Stripe\Subscription::create([
+                    'customer' => $customerId,
+                    'items' => [[
+                        'price' => $price->id,
+                    ]],
+                    'expand' => ['latest_invoice.payment_intent']
+                ]);
+        
+                return $subscription->id;
+
+            } catch (Exception $exception) {
+
+                \Sentry\captureException($exception);
+
+                header("/error/genericSystemError");
+
+            }
+
+        }
+
+        function createService($con, $accountnumber, $amountPrice, $purchasableItem, $purchasableType, $orderdate, $endDate, $serviceStatus, $purchasableCatagory) {
+            
+            $customerprofilequery = mysqli_query($con, "SELECT * FROM nexure_users WHERE accountNumber = '$accountnumber'");
+
+            $customerprofileresult = mysqli_fetch_array($customerprofilequery);
+
+            mysqli_free_result($customerprofilequery);
+        
+            $customerstripeID = $customerprofileresult['stripeID'] ?? '';
+
+            $stripeAmount = formatAmountForStripe($amountPrice);
+        
+            try {
+
+                $customer = \Stripe\Customer::retrieve($customerstripeID);
+
+                $defaultSource = $customer->default_source;
+        
+                \Stripe\PaymentIntent::create([
+                    'amount' => $stripeAmount,
+                    'currency' => 'usd',
+                    'customer' => $customerstripeID,
+                    'payment_method' => $defaultSource,
+                    'off_session' => true,
+                    'confirm' => true,
+                ]);
+        
+                $module = getModulePath($purchasableItem);
+
+                $serviceID = generateUniqueCode();
+
+                function redirect($url) {
+
+                    header("Location: " . $url);
+
+                    exit();
+
+                }
+        
+                if ($module) {
+
+                    $orderInsertRequest = "INSERT INTO `nexure_services`(`serviceIdentifier`, `serviceName`, `serviceType`, `serviceStartDate`, `serviceEndDate`, `serviceStatus`, `accountNumber`, `serviceCost`, `linkedServiceName`, `serviceCatagory`) 
+                                          VALUES ('$serviceID', '$purchasableItem', '$purchasableType', '$orderdate', '$endDate', '$serviceStatus', '$accountnumber', '$amountPrice', '$module', '$purchasableCatagory')";
+        
+                    if (mysqli_query($con, $orderInsertRequest)) {
+
+                        redirect("$module/deploy");
+
+                    } else {
+
+                        redirect("/error/genericSystemError");
+
+                    }
+                }
+
+            } catch (\Stripe\Exception\ApiErrorException $e) {
+
+                redirect("/error/genericSystemError");
+
+            }
 
         }
 

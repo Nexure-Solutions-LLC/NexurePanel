@@ -77,23 +77,28 @@
 
                 $_SESSION['last_submit_time'] = $current_time;
 
-                // Service Info Feilds
-
                 $purchasableItem = stripslashes($_REQUEST['purchasable']);
+
                 $purchasableType = stripslashes($_REQUEST['type']);
+
                 $purchasableCatagory = stripslashes($_REQUEST['catagory']);
+
                 $serviceStatus = stripslashes($_REQUEST['service_status']);
+
                 $paymentMethodFormFeild = stripslashes($_REQUEST['payment_method']);
+
                 $amountPrice = stripslashes($_REQUEST['amount']);
+
                 $endDate = stripslashes($_REQUEST['end_date']);
 
                 $currentYear = date('Y');
+
                 $randomServiceIDNumber = str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+
                 $serviceIDBuilt = "NXE-$currentYear-$randomServiceIDNumber";
 
-                // System Feilds
-
                 $orderdate = date("Y-m-d H:i:s");
+
                 $accountnumber = $accountnumber;
 
                 if ($variableDefinitionX->apiKeysecret != "" && $variableDefinitionX->paymentgatewaystatus == "active") {
@@ -103,6 +108,24 @@
                         require ($_SERVER["DOCUMENT_ROOT"].'/modules/paymentModule/stripe/internalPayments/index.php');
 
                     }
+
+                }
+
+                if ($purchasableType === "Monthly") {
+
+                    $interval = 'month';
+
+                } elseif ($purchasableType === "Yearly") {
+
+                    $interval = 'year';
+                    
+                }
+
+                if ($purchasableType == "Monthly" || $purchasableType == "Yearly") {
+
+                    $subscriptionId = createStripeSubscription($stripeCustomerId, $purchasableItem, $amountPrice, $interval);
+    
+                    createService($con, $accountnumber, $amountPrice, $purchasableItem, $purchasableType, $orderdate, $endDate, $serviceStatus, $purchasableCatagory);
 
                 }
 
@@ -174,8 +197,8 @@
                                                             </select>
                                                         </div>
                                                         <div class="form-control" style="margin-top:20px;">
-                                                            <label for="type">Item Type</label>
-                                                            <select type="text" name="type" id="type" class="form-input">
+                                                            <label for="type">Duration</label>
+                                                            <select type="text" name="type" id="type" onchange="updateEndDate()" class="form-input">
                                                                 <option>Please choose an option</option>
                                                                 <option>One-Time</option>
                                                                 <option>Monthly</option>
@@ -237,11 +260,40 @@
                     function updateAmount() {
                        
                         var serviceSelect = document.getElementById('purchasable');
+
                         var amountInput = document.getElementById('amount');
+
                         var selectedOption = serviceSelect.options[serviceSelect.selectedIndex];
+
                         var price = selectedOption.getAttribute('data-price');
+
                         amountInput.value = price;
                         
+                    }
+
+                    function updateEndDate() {
+
+                        var typeSelect = document.getElementById('type');
+
+                        var endDateInput = document.getElementById('end_date');
+
+                        var currentDate = new Date();
+
+
+                        if (typeSelect.value === "Monthly") {
+
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+
+                        } else if (typeSelect.value === "Yearly") {
+
+                            currentDate.setFullYear(currentDate.getFullYear() + 1);
+
+                        }
+
+                        var formattedDate = currentDate.toISOString().split('T')[0];
+
+                        endDateInput.value = formattedDate;
+
                     }
 
                 </script>
