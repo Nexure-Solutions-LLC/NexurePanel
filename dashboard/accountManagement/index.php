@@ -28,9 +28,9 @@
                     </ul>
                 </aside>
             </div>
-            <div>
+            <div class="caliweb-one-grid special-caliweb-spacing">
                 <?php include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Account/Management/Headers/index.php'); ?>
-                <div class="caliweb-card dashboard-card" style="margin-top:1%;">
+                <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:75vh;">
                     <div class="display-flex align-center" style="justify-content:space-between;">
                         <div>
                             <h3 style="font-size:18px; padding-top:0%; margin-bottom:4%;">Personal Information</h3>
