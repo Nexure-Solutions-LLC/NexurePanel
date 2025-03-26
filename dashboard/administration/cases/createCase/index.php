@@ -32,8 +32,8 @@
 
         // Personal Information Section
 
-        $casetitle = stripslashes($_REQUEST['casetitle']);
-        $casetitle = mysqli_real_escape_string($con, $casetitle);
+        $casename = stripslashes($_REQUEST['casename']);
+        $casename = mysqli_real_escape_string($con, $casename);
         $customersearch = stripslashes($_REQUEST['customersearch']);
         $customersearch = mysqli_real_escape_string($con, $customersearch);
         $casestatus = stripslashes($_REQUEST['casestatus']);
@@ -49,7 +49,7 @@
 
         // Database Calls
         
-        $caseInsertRequest = "INSERT INTO `nexure_cases`(`caseNumber`, `emailAddress`, `customerName`, `caseTitle`, `caseCreateDate`, `caseCloseDate`, `caseStatus`, `caseDescription`, `assignedAgent`, `assignedDepartment`, `accountNumber`) VALUES ('','$customersearch','','$casetitle','$casecreated','0000-00-00','$casestatus','$casedescription','$assignedagent','','')";
+        $caseInsertRequest = "INSERT INTO `nexure_cases`(`caseNumber`, `emailAddress`, `customerName`, `caseTitle`, `caseCreateDate`, `caseCloseDate`, `caseStatus`, `caseDescription`, `assignedAgent`, `assignedDepartment`, `accountNumber`) VALUES ('','$customersearch','','$casename','$casecreated','0000-00-00','$casestatus','$casedescription','$assignedagent','','')";
         $caseInsertResult = mysqli_query($con, $caseInsertRequest);
 
         if ($caseInsertResult) {
@@ -101,8 +101,8 @@
                                     <div class="caliweb-grid caliweb-two-grid" style="grid-row-gap:0px !important; grid-column-gap:100px !important;">
                                         <div class="form-left-side" style="width:80%;">
                                             <div class="form-control">
-                                                <label for="casetitle">Case Title</label>
-                                                <input type="text" name="casetitle" id="casetitle" class="form-input" placeholder="Please give a title for your case." required="" />
+                                                <label for="casetitle">Case Name</label>
+                                                <input type="text" name="casename" id="casename" class="form-input" placeholder="Please give a name for your case." required="" />
                                             </div>
                                             <div class="form-control" style="padding-top:10px;">
                                                 <label for="customersearch">Customer</label>
