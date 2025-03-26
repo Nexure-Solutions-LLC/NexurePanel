@@ -58,8 +58,8 @@
                                         ['assignedAgent', 'customerName', 'accountNumber', 'status'],
                                         ['30%', '20%', '20%', '20%', '10%'],
                                         [
-                                            'View' => "/dashboard/administration/leads/viewLead/?task_id={id}",
-                                            'Edit' => "/dashboard/administration/tasks/editLead/?task_id={id}",
+                                            'View' => "/dashboard/administration/leads/viewLead/?lead_id={id}",
+                                            'Edit' => "/dashboard/administration/tasks/editLead/?lead_id={id}",
                                             'Delete' => "openModal({id})"
                                         ]
                                     );
