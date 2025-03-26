@@ -54,30 +54,12 @@
         <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
             <div class="caliweb-settings-sidebar">
                 <div class="caliweb-card dashboard-card sidebar-card">
-                    <aside class="caliweb-sidebar">
-                        <ul class="sidebar-list-linked">
-                            <a href="/dashboard/administration/settings/" class="sidebar-link-a">
-                                <li class="sidebar-link active">General</li>
-                            </a>
-                            <a href="/dashboard/administration/settings/ipBaning" class="sidebar-link-a">
-                                <li class="sidebar-link">IP Banning</li>
-                            </a>
-                            <a href="/licensing/" class="sidebar-link-a">
-                                <li class="sidebar-link">Licencing</li>
-                            </a>
-                            <a href="/dashboard/administration/settings/update" class="sidebar-link-a">
-                                <li class="sidebar-link">Updates</li>
-                            </a>
-                            <a href="/dashboard/administration/settings/about" class="sidebar-link-a">
-                                <li class="sidebar-link">About Nexure Panel</li>
-                            </a>
-                        </ul>
-                    </aside>
+                    <?php  include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Menus/Settings/index.php'); ?>
                 </div>
             </div>
             <div class="caliweb-one-grid special-caliweb-spacing">
-                <div class="card-header-account" style="margin-bottom:0; border-bottom:0;">
-                    <div class="display-flex align-center">
+                <div class="settings-header settings-header-compact">
+                    <div class="display-flex align-center mobile-header-compact">
                         <div class="no-padding margin-10px-right icon-size-formatted">
                             <img src="/assets/img/systemIcons/settingsicon.png" alt="Settings Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />
                         </div>
@@ -89,7 +71,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:73.5vh;">
+                <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:75vh;">
                     <div>
                         <h3 style="font-size:18px; margin-top:10px; margin-bottom:4%;">Company Information</h3>
                         <div class="dashboard-table">
