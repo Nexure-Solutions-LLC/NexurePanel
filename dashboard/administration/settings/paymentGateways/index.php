@@ -26,19 +26,19 @@
                         <div>
                             <p class="no-padding font-14px" style="padding-bottom:4px;">Settings</p>
                             <h4 class="text-bold font-size-16 no-padding display-flex align-center">
-                                Products and Services
+                                Payment Gateways
                             </h4>
                         </div>
                     </div>
                 </div>
                 <div class="caliweb-card dashboard-card" style="overflow-y:scroll; height:75vh;">
                     <div id="logs-container">
-                        <div class="display-flex align-center justify-space-between">
+                    <div class="display-flex align-center justify-space-between">
                             <div>
-                                <h3 style="font-size:18px; margin-top:10px; margin-bottom:4%;">Catalog of Products or Services</h3>
+                                <h3 style="font-size:18px; margin-top:10px; margin-bottom:4%;">Configured Payment Gateways</h3>
                             </div> 
                             <div>
-                                <a href="/dashboard/administration/settings/products/addProductOrService/" class="caliweb-button primary">Create Product or Service</a>
+                                <a href="/dashboard/administration/settings/products/addProductOrService/" class="caliweb-button primary">Add Payment Gateway</a>
                             </div>
                         </div>    
                         <br>
@@ -47,10 +47,17 @@
 
                                 settingsManageListingTable(
                                     $con,
-                                    "SELECT * FROM `nexure_available_purchasables`",
-                                    ['Service/Product', 'Price', 'Submitted By', 'Status'],
-                                    ['serviceOrProductName', 'serviceOrProductPrice', 'createdByStaffMemberName', 'serviceOrProductStatus'],
-                                    ['25%', '25%', '25%', '25%']
+                                    "SELECT processorName, 
+                                            LEFT(publicKey, 35) AS publicKey, 
+                                            LEFT(secretKey, 35) AS secretKey, 
+                                            locationID, 
+                                            clientID, 
+                                            status 
+                                    FROM nexure_paymentconfig 
+                                    WHERE id = 1",
+                                    ['Processor Name', 'Public Key', 'Secret Key', 'Location ID', 'Client ID', 'Status'],
+                                    ['processorName', 'publicKey', 'secretKey', 'locationID', 'clientID', 'status'],
+                                    ['10%', '15%', '15%', '10%', '10%', '8%']
                                 );
 
                             ?>
