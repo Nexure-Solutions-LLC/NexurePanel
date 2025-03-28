@@ -1204,19 +1204,32 @@
 
             $query = "
                 SELECT 
-                    u.accountNumber AS userAccountNumber,
-                    o.legalName AS ownershipLegalName,
-                    o.emailAddress AS ownershipEmail,
-                    b.businessName AS businessName,
-                    w.domainName AS websiteDomain,
-                    b.businessIndustry AS businessIndustry
+                    u.accountNumber, o.legalName, o.emailAddress, 
+                    b.businessName, w.domainName, b.businessIndustry
                 FROM nexure_users u
                 LEFT JOIN nexure_ownershipinformation o ON u.email = o.emailAddress
                 LEFT JOIN nexure_businesses b ON u.email = b.email
                 LEFT JOIN nexure_websites w ON u.email = w.email
-                WHERE u.accountNumber = ? 
-                OR (o.legalName = ? AND u.email = ? AND b.businessName = ?)
-                OR (w.domainName = ? AND b.businessIndustry = ? AND b.businessName = ?)
+                WHERE 
+                    u.accountNumber = ? 
+                    OR o.legalName LIKE CONCAT('%', ?, '%')
+                    OR b.businessName LIKE CONCAT('%', ?, '%')
+                    OR w.domainName LIKE CONCAT('%', ?, '%')
+                    OR (b.businessIndustry = ? AND b.businessName LIKE CONCAT('%', ?, '%'))
+
+                UNION
+
+                SELECT 
+                    u2.accountNumber, o2.legalName, o2.emailAddress, 
+                    b2.businessName, w2.domainName, b2.businessIndustry
+                FROM nexure_users u2
+                LEFT JOIN nexure_ownershipinformation o2 ON u2.email = o2.emailAddress
+                LEFT JOIN nexure_businesses b2 ON u2.email = b2.email
+                LEFT JOIN nexure_websites w2 ON u2.email = w2.email
+                WHERE 
+                    o2.legalName LIKE CONCAT('%', ?, '%')
+                    OR b2.businessName LIKE CONCAT('%', ?, '%')
+                    OR w2.domainName LIKE CONCAT('%', ?, '%');
             ";
             
             $stmt = $con->prepare($query);
@@ -1227,8 +1240,18 @@
 
             }
 
-            $stmt->bind_param("sssssss", $accountNumber, $ownerName, $email, $businessName, $websiteDomain, $industry, $businessName);
-            
+            $stmt->bind_param("sssssssss", 
+                $accountNumber,
+                $ownerName,
+                $businessName,
+                $websiteDomain,
+                $industry,
+                $businessName,
+                $ownerName,
+                $businessName,
+                $websiteDomain
+            );
+                        
             if (!$stmt->execute()) {
 
                 die('Execute failed: ' . htmlspecialchars($stmt->error));

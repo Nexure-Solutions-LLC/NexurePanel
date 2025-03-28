@@ -64,7 +64,7 @@
                 $password = stripslashes($_REQUEST['password']);
                 $password = mysqli_real_escape_string($con, $password);
                 $registrationdate = date("Y-m-d H:i:s");
-                $accountnumber = substr(str_shuffle("0123456789"), 0, 4);
+                $accountnumber = substr(str_shuffle("0123456789"), 0, $accountnumberlength);
                 $dispnone = stripslashes($_REQUEST['dispnone']);
                 $dispnone = mysqli_real_escape_string($con, $dispnone);
 

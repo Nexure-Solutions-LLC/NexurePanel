@@ -94,6 +94,8 @@
 
     $blacklistIPStatus = $variableDefinitionX->blacklistIPStatus;
 
+    $accountnumberlength = $_ENV["ACCOUNTNUMBERLENGTH"];
+
     // IP Address Checking and Banning
 
     function getClientIp()
