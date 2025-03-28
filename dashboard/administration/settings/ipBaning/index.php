@@ -14,7 +14,7 @@
         <div class="caliweb-two-grid special-caliweb-spacing setttings-shifted-spacing">
             <div class="caliweb-settings-sidebar">
                 <div class="caliweb-card dashboard-card sidebar-card">
-                    <?php  include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Menus/Settings/index.php'); ?>
+                    <?php  include($_SERVER["DOCUMENT_ROOT"] . '/modules/NexureSolutions/Utility/Backend/Dashboard/Sidebars/Settings/index.php'); ?>
                 </div>
             </div>
             <div class="caliweb-one-grid special-caliweb-spacing">
