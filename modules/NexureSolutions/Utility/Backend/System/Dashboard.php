@@ -90,6 +90,8 @@
 
     $sentryProject = $_ENV['SENTRY_PROJECT'];
 
+    $accountnumberlength = $_ENV["ACCOUNTNUMBERLENGTH"];
+
     // Mobile Detection
 
     $detect = new MobileDetect();
