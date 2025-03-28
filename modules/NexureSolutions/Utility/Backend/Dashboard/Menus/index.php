@@ -202,11 +202,11 @@
                 renderAdminNavLinks('Calendar', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Leads":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Marketing Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Lead Generation</p>';
                 renderAdminNavLinks('Leads', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Contacts":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Customer Cloud</p>';
+                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Contact Manager</p>';
                 renderAdminNavLinks('Contacts', $moduleresult, $departmentresult, $currentAccount->role->name);
                 break;
             case "Customer Accounts":
