@@ -18,8 +18,8 @@
         <a href="/dashboard/administration/settings/products/" class="sidebar-link-a">
             <li class="sidebar-link <?= isActive('/dashboard/administration/settings/products/') ?>">Products</li>
         </a>
-        <a href="/dashboard/administration/settings/paymentgateways/" class="sidebar-link-a">
-            <li class="sidebar-link <?= isActive('/dashboard/administration/settings/paymentgateways/') ?>">Payment Gateways</li>
+        <a href="/dashboard/administration/settings/paymentGateways/" class="sidebar-link-a">
+            <li class="sidebar-link <?= isActive('/dashboard/administration/settings/paymentGateways/') ?>">Payment Gateways</li>
         </a>
         <a href="/dashboard/administration/settings/logs/" class="sidebar-link-a">
             <li class="sidebar-link <?= isActive('/dashboard/administration/settings/logs/') ?>">Logs</li>
