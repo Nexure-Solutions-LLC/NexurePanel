@@ -1,4 +1,4 @@
-    <div class="card-header-account" style="margin-bottom:0; border-bottom:0;">
+    <div class="card-header-services" style="margin-bottom:0; border-bottom:0;">
         <div class="display-flex align-center">
             <div class="no-padding margin-10px-right icon-size-formatted">
                 <img src="/assets/img/systemIcons/webservices.png" alt="Settings Icon" style="background-color:#ffe6e2;" class="client-business-andor-profile-logo" />

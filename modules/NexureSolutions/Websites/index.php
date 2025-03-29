@@ -333,7 +333,6 @@ if (strtolower($currentAccount->role->name) == "customer") {
                 </div>
             </div>
         </section>
-
     </section>
 
 
