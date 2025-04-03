@@ -59,7 +59,7 @@ $LANG_PASSWORD_RESETTITLE_TEXT = "Your password has been changed";
 $LANG_PASSWORD_RESETSUCCESS_BASE_TEXT = "You have successfully changed your password.";
 $LANG_PASSWORD_RESETSUCCESS_SECONDARY_TEXT = "You will be automatically be redirected in";
 $LANG_PASSWORD_RESETSUCCESS_REDIRECTFALLBACK_TEXT = "If you are not redirected automatically, you can";
-$LANG_RESETPASSWORD_ERROR_TITLE = "Password feilds don't match";
+$LANG_RESETPASSWORD_ERROR_TITLE = "Password fields don't match";
 $LANG_RESETPASSWORD_ERROR_TEXT = "The password you chose must match in both the new password feild and the confirm password feild.";
 $LANG_RESET_PASSWORD_STAGE_2_TEXT = "An email has been sent to this email address containing a link to reset your password. Ensure that you check your Spam folder if you cannot find it.";
 
@@ -98,7 +98,7 @@ $LANG_LINKEDROLES_SUCCESS_TEXT = "You requested a linked role. You are authorize
 $LANG_RATELIMIT_ERROR_TITLE_PAR_1 = "Nexure";
 $LANG_RATELIMIT_ERROR_TITLE_PAR_2 = "Rate Limit Error";
 $LANG_RATELIMIT_ERROR_TITLE = "We rate limited you for our protection.";
-$LANG_RATELIMIT_ERROR_TEXT = "The action you performed was done too quickly and our systems arent able to process the second request. We cant work that fast! Please try again in 5 seconds. If you need assistance please contact Nexure.";
+$LANG_RATELIMIT_ERROR_TEXT = "The action you performed was done too quickly and our systems aren't able to process the second request. We cant work that fast! Please try again in 5 seconds. If you need assistance please contact Nexure.";
 
 // Customer Security Quiz Text Specifications
 
@@ -160,7 +160,7 @@ $LANG_ONBOARD_EMAILFEILD = "Email Address";
 $LANG_ONBOARD_DOBFEILD = "Date of Birth (Must be 14 years or older)";
 $LANG_ONBOARD_EINORSSNFEILD = "EIN or SSN Number";
 $LANG_ONBOARD_SECUREFORMTITLE = "This is a secure form and will be verified with the IRS.";
-$LANG_ONBOARD_SUBMITDISCLAIMER = "Why do we require this? To comply with financial regulations and provide our full range of services we need to fully verfiy you and your business. We also use this information when we run a soft credit-check.";
+$LANG_ONBOARD_SUBMITDISCLAIMER = "Why do we require this? To comply with financial regulations and provide our full range of services we need to fully verify you and your business. We also use this information when we run a soft credit-check.";
 
 // Onboarding Address Text Specifications
 
@@ -174,7 +174,7 @@ $LANG_ONBOARD_COUNTRYFEILD = "Country";
 
 // Onboarding Billing Text Specifications
 
-$LANG_ONBOARD_BILLINGTITLE = "Please provide your billing information so that you can order services without interuption.";
+$LANG_ONBOARD_BILLINGTITLE = "Please provide your billing information so that you can order services without interruption.";
 
 // Onboarding Business Text Specifications
 
