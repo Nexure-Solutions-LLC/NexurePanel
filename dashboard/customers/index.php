@@ -207,7 +207,7 @@
                                             $webDesignStatusModuleCheck = $moduleInfo['moduleStatus'];
                                             $webDesignPathModule= $moduleInfo['modulePath'];
 
-                                            if ($webDesignNameModuleCheck == "Cali Websites" && $webDesignStatusModuleCheck == "Active") {
+                                            if ($webDesignNameModuleCheck == "Nexure Websites" && $webDesignStatusModuleCheck == "Active") {
 
                                                 echo ' 
                                                     <a href="'.$webDesignPathModule.'" class="dark-mode-white" style="text-decoration:none;">
@@ -255,7 +255,7 @@
 
                                             $codeIntPathModule= $codemoduleInfo['modulePath'];
 
-                                            if ($codeIntNameModuleCheck == "Cali Code Integrity" && $codeIntStatusModuleCheck == "Active") {
+                                            if ($codeIntNameModuleCheck == "Nexure Code Integrity" && $codeIntStatusModuleCheck == "Active") {
 
                                                 echo '
                                                     <a href="'.$codeIntPathModule.'" class="dark-mode-white" style="text-decoration:none;">

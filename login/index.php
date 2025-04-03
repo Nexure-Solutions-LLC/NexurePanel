@@ -123,7 +123,7 @@
                                         while ($loginModulesLookupRow = mysqli_fetch_assoc($loginModulesLookupResult)) {
                                             $loginModulesName = $loginModulesLookupRow['moduleName'];
 
-                                            if ($loginModulesName == "Cali OAuth") {
+                                            if ($loginModulesName == "Nexure OAuth") {
 
                                                 include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Oauth//index.php");
 

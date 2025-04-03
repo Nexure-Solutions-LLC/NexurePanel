@@ -2228,7 +2228,7 @@
 
         public function loadAdPartners() {
 
-            $query = "SELECT * FROM nexure_modules WHERE moduleName = 'Cali Marketing Cloud'";
+            $query = "SELECT * FROM nexure_modules WHERE moduleName = 'Nexure Marketing Cloud'";
 
             $result = mysqli_query($this->con, $query);
 
@@ -2240,7 +2240,7 @@
 
                 foreach ($adPartners as $partner) {
 
-                    $partnerQuery = "SELECT * FROM nexure_modules WHERE moduleName = ? AND moduleDependsOn = 'Cali Marketing Cloud'";
+                    $partnerQuery = "SELECT * FROM nexure_modules WHERE moduleName = ? AND moduleDependsOn = 'Nexure Marketing Cloud'";
 
                     $stmt = mysqli_prepare($this->con, $partnerQuery);
 
