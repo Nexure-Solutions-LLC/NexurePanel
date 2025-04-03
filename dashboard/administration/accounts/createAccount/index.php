@@ -120,7 +120,7 @@
 
             while ($moduleCheckRow = mysqli_fetch_assoc($moduleCheckResult)) {
 
-                if ($moduleCheckRow['moduleName'] === "Cali Payroll") {
+                if ($moduleCheckRow['moduleName'] === "Nexure Payroll") {
 
                     $hasPayrollModule = true;
                     break;

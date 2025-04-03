@@ -45,7 +45,7 @@
 
                                     $accountModulesName = $accountModulesLookupRow['moduleName'];
 
-                                    if ($accountModulesName == "Cali OAuth") {
+                                    if ($accountModulesName == "Nexure OAuth") {
 
                                         include($_SERVER["DOCUMENT_ROOT"]."/modules/NexureSolutions/Oauth/index.php");
 
