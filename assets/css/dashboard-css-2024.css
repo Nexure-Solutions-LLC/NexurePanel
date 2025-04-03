@@ -647,6 +647,10 @@ html[data-theme='dark'] body {
     border-bottom: 1px solid #444;
 }
 
+.dark-mode .settings-header {
+    background-color: #222 !important;
+}
+
 /* =================== Nexure Dashboard Grid Styles =================== */
 
 .special-caliweb-spacing {
