@@ -647,7 +647,8 @@ html[data-theme='dark'] body {
     border-bottom: 1px solid #444;
 }
 
-.dark-mode .settings-header {
+.dark-mode .settings-header,
+.dark-mode .card-header-services {
     background-color: #222 !important;
 }
 
