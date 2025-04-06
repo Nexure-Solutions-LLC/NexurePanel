@@ -33,7 +33,7 @@
             <div class="container caliweb-container">
                 <div class="caliweb-grid-2">
                     <div class="">
-                        <p class="caliweb-login-footer-text">&copy; <span id="nexure-year"></span> - Nexure Solutions LLC - All rights reserved. It is illegal to copy this website.</p>
+                        <p class="caliweb-login-footer-text">&copy; <span id="nexure-year"></span> - Nexure Solutions LLP - All rights reserved. It is illegal to copy this website.</p>
                     </div>
                     <div class="list-links-footer">
                         <a href="'.$variableDefinitionX->paneldomain.'/terms">Terms of Service</a>

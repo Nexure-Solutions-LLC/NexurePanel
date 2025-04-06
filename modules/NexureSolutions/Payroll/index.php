@@ -2,7 +2,7 @@
 
     // Nexure Payroll Module
     // Version: 1.2.5
-    // (C) Copyright Nexure Solutions LLC - All rights reserved
+    // (C) Copyright Nexure Solutions LLP - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is not included in the Cali Panel software by default

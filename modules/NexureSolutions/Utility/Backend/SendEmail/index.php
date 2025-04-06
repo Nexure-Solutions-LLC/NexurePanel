@@ -51,7 +51,7 @@
 
             include($_SERVER["DOCUMENT_ROOT"]."/modules/emailIntegrations/index.php");
 
-            $fromName = 'Nexure Solutions LLC';
+            $fromName = 'Nexure Solutions LLP';
 
             $email->SetFrom("noreply@NexureSolutionsservices.com", $fromName);
 
