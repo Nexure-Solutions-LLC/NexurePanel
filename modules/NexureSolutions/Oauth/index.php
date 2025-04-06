@@ -2,7 +2,7 @@
 
     // Nexure OAuth Module
     // Version: 1.0.4
-    // (C) Copyright Nexure Solutions LLC - All rights reserved
+    // (C) Copyright Nexure Solutions LLP - All rights reserved
     // DISMANTLING, REVERSE ENGINEERING, OR MODIFICATION OF THIS MODULE IS PROHIBITED.
 
     // This module is included in the Cali Panel software by default

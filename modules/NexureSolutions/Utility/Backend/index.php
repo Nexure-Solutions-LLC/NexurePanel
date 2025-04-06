@@ -4,7 +4,7 @@
     // This replaces the separate middleware our former developer Mikey made.
     // It also was moved to Nexure Modules from Nexure Components.
     // THIS SOFTWARE IS OPENSOURCE UNDER COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0
-    // (C) 2024 Nexure Solutions LLC.
+    // (C) 2024 Nexure Solutions LLP.
 
     namespace NexureSolutions\Accounts;
 
