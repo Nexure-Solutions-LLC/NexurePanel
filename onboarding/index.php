@@ -153,7 +153,7 @@
                     MAY CAUSE YOUR LICENSE TO BE REVOKED.
                 -->
                 <div class="">
-                    <p class="caliweb-login-footer-text">&copy; <span id="nexure-year"></span> - Nexure Solutions LLC - All rights reserved. It is illegal to copy this website.</p>
+                    <p class="caliweb-login-footer-text">&copy; <span id="nexure-year"></span> - Nexure Solutions LLP - All rights reserved. It is illegal to copy this website.</p>
                 </div>
                 <!-- DO NOT REMOVE THE Nexure COPYRIGHT TEXT -->
                 <div class="list-links-footer">

@@ -59,7 +59,7 @@ echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
                             ?>
                             <p style="margin-top:10px; font-size:14px;">Languages: HTML, CSS, JS, PHP and MySQL</p>
-                            <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Nexure Solutions LLC, Nick Derry, Mikey W, Mcaopin W, Nathan Schwartz, Aiden Webb.</p>
+                            <p style="margin-top:1%; font-size:14px; margin-bottom:6%;">Authors: Nexure Solutions LLP, Nick Derry, Mikey W, Mcaopin W, Nathan Schwartz, Aiden Webb.</p>
                         </div>
                         <!-- <div id="phpinfo" style="margin-top:6%;">
                                 <?php

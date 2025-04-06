@@ -72,7 +72,7 @@ You can view a demo link [here](https://us-east-1.nexure-cloud-compute-15-204-17
 
 ### Installation
 
-1. Clone the repository: `bash git clone https://github.com/NickDerry2023/NexurePanelInstaller.git`
+1. Clone the repository: `bash git clone https://github.com/NickDerry2023/NexurePanel.git`
 2. Install the panel by running the install.sh bash script.
 3. Run post installation by navigating to the panels domain then the folder /install
 4. Configure the panel and set credentials in the .ENV file.
