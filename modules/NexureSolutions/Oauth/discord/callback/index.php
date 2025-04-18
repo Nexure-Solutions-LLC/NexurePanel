@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     session_start();
 
     require($_SERVER["DOCUMENT_ROOT"].'/configuration/index.php');
@@ -6,7 +10,7 @@
 
     use Dotenv\Dotenv;
 
-    $discord_dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/modules/NexureSolutions/Oauth/discord");
+    $discord_dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']."/modules/NexureSolutions/Discord");
 
     $discord_dotenv->load();
 

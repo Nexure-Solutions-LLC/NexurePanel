@@ -12,6 +12,7 @@
     // of needing to fill our registration form our you can just quickly
     // authenticate.
 
+
     // Load Custom login Modules Such as Sign-In with Discord, Google, or Okta Authentication
 
     $authModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";

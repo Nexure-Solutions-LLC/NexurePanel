@@ -10,6 +10,10 @@
     $accountModulesLookupQuery = "SELECT * FROM nexure_modules WHERE moduleStatus = 'Active' AND modulePositionType = 'Authentication'";
     $accountModulesLookupResult = mysqli_query($con, $accountModulesLookupQuery);
 
+
+    unset($_SESSION['pagetitle']);
+    $_SESSION['pagetitle'] = $pagetitle;
+
     echo '<title>' . $pagetitle . ' | ' . $pagesubtitle . '</title>';
 
 ?>
