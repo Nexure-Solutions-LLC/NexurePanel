@@ -2,49 +2,12 @@
 
     session_start();
 
+    // Import Files
+
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
-    require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/Configuration/EnvironmentFile/index.php');
-    require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/Configuration/Database/index.php');
+    require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/System/Handlers/index.php');
 
-    function errorHandler($errno, $errstr, $errfile, $errline) {
-
-        $log_timestamp = date("d-m-Y H:i:sa");
-        $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline";
-        $errorLogFile = $_SERVER["DOCUMENT_ROOT"] . "/ErrorHandling/Logs/$log_timestamp.log";
-
-        error_log($errorMessage, 3, $errorLogFile);
-        session_start();
-        $_SESSION['error_log_file'] = $errorLogFile;
-
-        while (ob_get_level()) {
-
-            ob_end_clean();
-
-        }
-
-        if (headers_sent()) {
-
-            echo '<meta http-equiv="refresh" content="0;url=/ErrorHandling/ErrorPages/GenericError">';
-
-        } else {
-
-            header("Location: /ErrorHandling/ErrorPages/GenericError");
-
-        }
-
-        exit;
-
-    }
-
-    set_error_handler("errorHandler");
-
-    $error = error_get_last();
-
-    if ($error !== null && in_array($error['type'], [E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING])) {
-
-        customErrorHandler($error['type'], $error['message'], $error['file'], $error['line']);
-
-    }
+    // Language Handler
 
     function isSelectedLang($lang_name) {
 
@@ -75,6 +38,8 @@
         'traces_sample_rate' => 1.0,
         'profiles_sample_rate' => 1.0,
     ]);
+
+    // Variable Definitions
 
     $accountnumberlength = $_ENV["ACCOUNTNUMBERLENGTH"];
 

@@ -2,6 +2,15 @@
     "require": {
         "mustache/mustache": "^2.14",
         "vlucas/phpdotenv": "^5.6",
-        "sentry/sdk": "^4.0"
+        "sentry/sdk": "^4.0",
+        "mobiledetect/mobiledetectlib": "^4.8",
+        "guzzle/guzzle": "^3.9",
+        "stripe/stripe-php": "^17.1",
+        "mlocati/ip-lib": "^1.20",
+        "google/apiclient": "^2.18",
+        "symfony/options-resolver": "^6.0",
+        "symfony/yaml": "^6.0",
+        "fpdf/fpdf": "^1.86",
+        "tecnickcom/tcpdf": "^6.8"
     }
 }
