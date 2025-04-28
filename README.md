@@ -78,5 +78,3 @@ You can view a demo link [here](https://us-east-1.nexure-cloud-compute-15-204-17
 4. Configure the panel and set credentials in the .ENV file.
 5. Run the cron jobs by doing: `crontab -e` and `0 * * * * /usr/bin/php /var/www/nexurepanel/automations/fileDeletion/index.php`
 6. Login to the admin account you created.
-
-
