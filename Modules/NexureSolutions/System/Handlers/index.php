@@ -15,23 +15,32 @@
     namespace NexureSolutions\Generic {
 
         use DateTime;
+        
         use Exception;
+
         use Sentry;
+
         use NexureSolutions\Utility;
 
         class VariableDefinitions
         {
 
             public $nexureid;
+
             public $OnlineAccessInformation;
+
             public $accessType;
+
             public $onlineAccessStatus;
 
             public $firstinteractiondateformattedfinal;
+
             public $lastinteractiondateformattedfinal;
 
             public $emailverifydate;
+
             public $emailverifydateformatted;
+
             public $emailverifydateformattedfinal;
 
             public $emailverifystatus;
@@ -166,6 +175,7 @@
         {
 
             public $eventsresponse;
+
             public $accountnumber;
 
             public function eventsRetrive($con, $accountnumber) {
@@ -185,6 +195,7 @@
         // Bring in the required files such as database connection.
 
         require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/Configuration/EnvironmentFile/index.php');
+
         require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/Configuration/Database/index.php');
 
         session_start();
@@ -256,7 +267,9 @@
         // IP Address Checking and Banning
 
         $passableUserId = $_ENV['IPCHECKAPIUSER'];
+
         $passableApiKey = $_ENV['IPCHECKAPIKEY'];
+
         $blacklistIPStatus = $_ENV['BLACKLIST_IP_STATUS'] ?? "False";
 
         function getClientIp() {
@@ -336,16 +349,23 @@
         function isIpBlacklistedOrProxyVpn($ip, $passableUserId, $passableApiKey) {
 
             $url = "https://neutrinoapi.net/ip-probe";
+
             $ch = curl_init();
 
             curl_setopt($ch, CURLOPT_URL, $url);
+
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
             curl_setopt($ch, CURLOPT_POST, 1);
+
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(['ip' => $ip]));
+
             curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $passableUserId", "API-Key: $passableApiKey"]);
 
             $response = curl_exec($ch);
+
             curl_close($ch);
+
             $data = json_decode($response, true);
 
             if (isset($data['is-hosting']) && $data['is-hosting']) {
@@ -416,11 +436,15 @@
         function isIPSpamListed($ip, $passableUserId, $passableApiKey) {
 
             $url = "https://neutrinoapi.net/host-reputation";
+
             $ch = curl_init();
 
             curl_setopt($ch, CURLOPT_URL, $url);
+
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
             curl_setopt($ch, CURLOPT_POST, 1);
+
             curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query([
                 'host' => $ip,
                 'list-rating' => '3',
@@ -428,8 +452,11 @@
             ]));
 
             curl_setopt($ch, CURLOPT_HTTPHEADER, ["User-ID: $passableUserId", "API-Key: $passableApiKey"]);
+
             $response = curl_exec($ch);
+
             curl_close($ch);
+
             $data = json_decode($response, true);
 
             if (isset($data['is-listed']) && $data['is-listed']) {
