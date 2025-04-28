@@ -14,13 +14,145 @@
 
     namespace NexureSolutions\Generic {
 
+        use DateTime;
+        use Exception;
+        use Sentry;
         use NexureSolutions\Utility;
 
         class VariableDefinitions
         {
 
+            public $nexureid;
+            public $OnlineAccessInformation;
+            public $accessType;
+            public $onlineAccessStatus;
+
             public $firstinteractiondateformattedfinal;
             public $lastinteractiondateformattedfinal;
+
+            public $emailverifydate;
+            public $emailverifydateformatted;
+            public $emailverifydateformattedfinal;
+
+            public $emailverifystatus;
+
+            private function fetchSingleRow(\mysqli $con, string $query, array $params = []): ?array
+            {
+
+                $stmt = $con->prepare($query);
+
+                if (!$stmt) {
+
+                    Sentry\captureException(new Exception("Prepare failed: " . $con->error));
+
+                    throw new Exception("Prepare failed: " . $con->error);
+
+                }
+
+                if (!empty($params)) {
+
+                    $types = str_repeat('s', count($params));
+
+                    $stmt->bind_param($types, ...$params);
+
+                }
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                if (!$result) {
+
+                    Sentry\captureException(new Exception("Query failed: " . $stmt->error));
+
+                    throw new Exception("Query failed: " . $stmt->error);
+
+                }
+
+                $row = $result->fetch_assoc();
+
+                $stmt->close();
+
+                return $row ?: null;
+            }
+
+            public function GatherOnlineAccessInformation(\mysqli $con, string $nexureid): void
+            {
+
+                $this->OnlineAccessInformation = $this->fetchSingleRow(
+                    $con,
+                    "SELECT * FROM nexure_users WHERE email = ? LIMIT 1",
+                    [$nexureid]
+                );
+
+                $this->onlineAccessStatus = $this->OnlineAccessInformation['onlineAccessStatus'] ?? null;
+
+                $this->accessType = $this->OnlineAccessInformation['accessType'] ?? null;
+
+                $newInteractionDate = date('Y-m-d H:i:s');
+
+                $updateStmt = $con->prepare("UPDATE nexure_users SET lastInteractionDate = ? WHERE email = ?");
+
+                if ($updateStmt) {
+
+                    $updateStmt->bind_param('ss', $newInteractionDate, $nexureid);
+
+                    $updateStmt->execute();
+
+                    $updateStmt->close();
+
+                } else {
+
+                    Sentry\captureException(new Exception("Prepare failed for update: " . $con->error));
+
+                }
+
+                $this->firstinteractiondateformattedfinal = $this->formatDate(
+
+                    $this->OnlineAccessInformation['firstInteractionDate'] ?? null
+
+                );
+
+                $this->lastinteractiondateformattedfinal = $this->formatDate(
+
+                    $newInteractionDate
+
+                );
+
+                $this->emailverifydateformattedfinal = $this->formatDate(
+
+                    $this->OnlineAccessInformation['emailVerifiedDate'] ?? null
+
+                );
+
+                $this->emailverifystatus = ucfirst($this->OnlineAccessInformation['emailVerifiedStatus'] ?? 'Unknown');
+
+            }
+
+            private function formatDate(?string $date): string
+            {
+                
+                if (empty($date)) {
+
+                    return 'Unknown';
+
+                }
+
+                try {
+
+                    $dateTime = new DateTime($date);
+
+                    return $dateTime->format('F j, Y g:i A');
+
+                } catch (Exception $e) {
+
+                    Sentry\captureException($e);
+
+                    return 'Invalid Date';
+
+                }
+
+            }
 
         }
 
