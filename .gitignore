@@ -1,15 +1,1 @@
-*.env
 .env
-modules/NexureSolutions/Websites/terminal
-modules/NexureSolutions/Websites/siteBuilder
-license/
-license
-license/*
-installation/encodingGeneration
-dashboard/administration/accounts/fileUpload/uploadLogic
-error/errorLogs
-error/errorLogs/*
-vendor/
-vendor/*
-modules/NexureSolutions/Discord/NexureUtilitiesBot
-modules/NexureSolutions/Discord/NexureUtilitiesBot/*
