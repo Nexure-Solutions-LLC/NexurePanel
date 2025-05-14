@@ -43,5 +43,32 @@
 
     }
 
+    function isSelectedLang($lang_name) {
+
+        $langPreference = "EN_US";
+
+        if (isset($_SESSION["lang"])) {
+
+            $langPreference = $_SESSION["lang"];
+
+        }
+
+        if ($langPreference == $lang_name) {
+
+            return 'selected';
+
+        } else {
+
+            return '';
+
+        }
+
+    }
+
+    if (isset($_POST['langPreference'])) {
+
+        $_SESSION["lang"] = $_POST['langPreference'];
+
+    }
 
 ?>

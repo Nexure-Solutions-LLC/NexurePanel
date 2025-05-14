@@ -19,7 +19,6 @@
 
 // Login Page Text Specifications
 
-
 $LANG_LOGIN_PASSWORD = "Password";
 $LANG_LOGIN_AUTH_ERROR_TITLE = "Incorrect Username or Password";
 $LANG_LOGIN_AUTH_ERROR_TEXT = "The username or password entered is incorrect. Please try again or contact us to reset your login.";
@@ -30,5 +29,21 @@ $LANG_LOGIN_GOOGLE_BUTTON = "Sign In with Google";
 $LANG_LOGIN_OKTA_BUTTON = "Sign In with Okta";
 $LANG_LOGIN_GITHUB_BUTTON = "Sign In with GitHub";
 $LANG_LOGIN_APPLE_BUTTON = "Sign In with Apple";
+
+// ====================== START DASHBOARD LANGUAGE AREA ==========================
+
+// Personal Dashboard Overview Page Text Specifications
+
+$LANG_QUICKACTIONS_TITLE = "Quick Actions";
+$LANG_RUN_SPEEDTEST_TILE = "Run Speed Test";
+$LANG_RUN_SPEEDTEST_SUBTEXT = "Wondering how fast your site is? Run a speed test to find out.";
+$LANG_BACKUPS_TILE = "Backups";
+$LANG_BACKUPS_SUBTEXT = "Run scheduled backups and restore backups right within your portal.";
+$LANG_LOG_FILES_TILE = "Log Files";
+$LANG_LOG_FILES_SUBTEXT = "View your websites logs, account logs and what your users are doing.";
+$LANG_CODE_INTEGRITY_TILE = "Code Integrity";
+$LANG_CODE_INTEGRITY_SUBTEXT = "Code Integrity allows you to protect your website.";
+$LANG_MONITORING_TILE = "Monitoring";
+$LANG_MONITORING_SUBTEXT = "Have us monitor your website for any suspicious activity.";
 
 ?>

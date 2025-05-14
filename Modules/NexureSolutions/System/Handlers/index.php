@@ -4,20 +4,15 @@
     // This replaces the separate middleware our former developer Mikey made.
     // It also was moved to Nexure Modules from Nexure Components.
     // THIS SOFTWARE IS OPENSOURCE UNDER COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0
-    // (C) 2025 Nexure Solutions LLC.
-
-    // ============= Start Middleware Logic - This needs to be first to work. ============= */
+    // (C) 2025 Nexure Solutions LLP.
 
     // This is the start of the handlers for accounts, tasks, variables, etc.
-
     // Variable Definitions
 
     namespace NexureSolutions\Generic {
 
         use DateTime;
-        
         use Exception;
-
         use Sentry;
 
         use NexureSolutions\Utility;
@@ -26,23 +21,14 @@
         {
 
             public $nexureid;
-
             public $OnlineAccessInformation;
-
             public $accessType;
-
             public $onlineAccessStatus;
-
             public $firstinteractiondateformattedfinal;
-
             public $lastinteractiondateformattedfinal;
-
             public $emailverifydate;
-
             public $emailverifydateformatted;
-
             public $emailverifydateformattedfinal;
-
             public $emailverifystatus;
 
             private function fetchSingleRow(\mysqli $con, string $query, array $params = []): ?array
@@ -96,7 +82,7 @@
 
                 $this->onlineAccessStatus = $this->OnlineAccessInformation['onlineAccessStatus'] ?? null;
 
-                $this->accessType = $this->OnlineAccessInformation['accessType'] ?? null;
+                $this->accessType = $this->OnlineAccessInformation['accessLevel'] ?? null;
 
                 $newInteractionDate = date('Y-m-d H:i:s');
 
@@ -130,11 +116,11 @@
 
                 $this->emailverifydateformattedfinal = $this->formatDate(
 
-                    $this->OnlineAccessInformation['emailVerifiedDate'] ?? null
+                    $this->OnlineAccessInformation['emailVerificationDate'] ?? null
 
                 );
 
-                $this->emailverifystatus = ucfirst($this->OnlineAccessInformation['emailVerifiedStatus'] ?? 'Unknown');
+                $this->emailverifystatus = ucfirst($this->OnlineAccessInformation['emailStatus'] ?? 'Unknown');
 
             }
 
