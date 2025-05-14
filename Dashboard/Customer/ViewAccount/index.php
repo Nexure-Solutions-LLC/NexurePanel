@@ -27,7 +27,7 @@
                             <p class="margin-bottom-10px">Overview / Account: <?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</p>
                         </div>
                         <div>
-                            <a href="#" class="nexure-button secondary">Pay Balance</a>
+                            <a href="javascript:void(0)" onclick="openPaymentModal()" class="nexure-button secondary">Pay Balance</a>
                         </div>
                     </div>    
                 </div>
@@ -43,7 +43,7 @@
                         <div class="display-flex align-center">
                             <h3 class="font-16px"><?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</h3>
                             <span class="padding-left-10px padding-right-10px"> | </span>
-                            <a href="" class="brand-link">See full account number <span class="lnr lnr-chevron-right"></span></a>
+                            <a href="javascript:void(0);" onclick="openModal()" class="brand-link display-flex align-center" style="margin-top:-3px;">See full account number <span class="lnr lnr-chevron-right"></span></a>
                         </div>
                         <p class="font-12px" style="text-transform:uppercase;"><?= htmlspecialchars($account['headerName']) ?></p>
                     </div>
@@ -141,6 +141,58 @@
         </div>
     </div>
 </section>
+
+<div id="accountModal" class="modal">
+    <div class="modal-content">
+        <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Full Account Number</h6>
+        <p style="font-size:14px; padding-top:30px; padding-bottom:30px;">Full Account Number: <?php echo $accountNumber; ?></p>
+        <p style="font-size:14px; padding-bottom:30px;">This account number will be used to identify your account. Keep this number safe.</p>
+        <div style="display:flex; align-items:right; justify-content:right;">
+            <button class="nexure-button primary" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+</div>
+
+<div id="paybalanceModal" class="modal">
+    <div class="modal-content">
+        <form method="POST" action="/Dashboard/Customer/ViewAccount/MakePayment/?account_number=<?php echo $accountnumber; ?>">
+            <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Pay account balance?</h6>
+            <div style="font-size:14px; padding-top:30px; padding-bottom:30px;">
+                <div class="form-control">
+                    <input class="nexure-textbox" id="balanceNumber" type="numeric" maxlenghth="10" name="balanceNumber" style="width:25%;" placeholder="65.00" />
+                </div>
+            </div>
+            <p style="font-size:14px; padding-bottom:10px;">Please specify how much you would like to pay. Payments will post immediatly, you may need to refresh the page if the balance does not update.</p>
+            <p style="font-size:14px; padding-bottom:10px;">NOTE: You can make a payment larger than the balance if you want to prepay for services.</p>
+            <p style="font-size:14px; padding-bottom:30px;">Please do not include the currency, simply type the numeric value.</p>
+            <div style="display:flex; align-items:right; justify-content:right;">
+                <button class="nexure-button primary" type="submit" name="submit">Submit Payment</button>
+                <button class="nexure-button secondary" onclick="closePaymentModal()">Close</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    var modal = document.getElementById("accountModal");
+    var modalPayBalance = document.getElementById("paybalanceModal");
+
+    function openModal() {
+        modal.style.display = "block";
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    function openPaymentModal() {
+        modalPayBalance.style.display = "block";
+    }
+
+    function closePaymentModal() {
+        modalPayBalance.style.display = "none";
+    }
+</script>
 
 <?php
 
