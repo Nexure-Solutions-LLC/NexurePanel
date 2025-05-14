@@ -1,10 +1,8 @@
 <?php
 
     // This is the Nexure Backend Middleware.
-    // This replaces the separate middleware our former developer Mikey made.
-    // It also was moved to Nexure Modules from Nexure Components.
-    // THIS SOFTWARE IS OPENSOURCE UNDER COMMON DEVELOPMENT AND DISTRIBUTION LICENSE Version 1.0
-    // (C) 2025 Nexure Solutions LLP.
+    // Author: Nexure Developers
+    // Nexure Solutions LLP (C) 2025 - All rights reserved.
 
     // This is the start of the handlers for accounts, tasks, variables, etc.
     // Variable Definitions
@@ -19,8 +17,8 @@
 
         class VariableDefinitions
         {
-
             public $nexureid;
+            public $displayName;
             public $OnlineAccessInformation;
             public $accessType;
             public $onlineAccessStatus;
@@ -30,6 +28,42 @@
             public $emailverifydateformatted;
             public $emailverifydateformattedfinal;
             public $emailverifystatus;
+            public $paymentID;
+            public $userAccounts = [];
+
+            public $accountNumber;
+            public $accountDisplayName;
+            public $headerName;
+            public $creditLimit;
+            public $balance;
+            public $minimumPayment;
+            public $dueDate;
+            public $accountStatus;
+            public $accountServices = [];
+            public $selectedAccountDetails;
+
+            public $PanelConfigurationInformation;
+            public $organizationLegalName;
+            public $organizationShortName;
+            public $organizationSquareLogo;
+            public $organizationWideLogo;
+            public $organizationWideLogoDark;
+            public $organizationAddressLine1;
+            public $organizationAddressLine2;
+            public $organizationCity;
+            public $organizationState;
+            public $organizationCountry;
+            public $organizationPostalCode;
+            public $paymentDescriptor;
+            public $licenseKey;
+            public $activationDate;
+            public $expirationDate;
+            public $organizationID;
+            public $registrationDisabledMessage;
+            public $maintenanceEnabledMessage;
+            public $maintenanceStatus;
+            public $registrationStatus;
+            public $panelTheme;
 
             private function fetchSingleRow(\mysqli $con, string $query, array $params = []): ?array
             {
@@ -71,6 +105,57 @@
                 return $row ?: null;
             }
 
+            public function GatherPanelConfiguration(\mysqli $con): void
+            {
+                $this->PanelConfigurationInformation = $this->fetchSingleRow(
+                    $con,
+                    "SELECT * FROM nexure_config WHERE 1"
+                );
+
+                $this->organizationLegalName = $this->PanelConfigurationInformation['organizationLegalName'] ?? null;
+
+                $this->organizationShortName = $this->PanelConfigurationInformation['organizationShortName'] ?? null;
+
+                $this->organizationSquareLogo = $this->PanelConfigurationInformation['organizationSquareLogo'] ?? null;
+
+                $this->organizationWideLogo = $this->PanelConfigurationInformation['organizationWideLogo'] ?? null;
+
+                $this->organizationWideLogoDark = $this->PanelConfigurationInformation['organizationWideLogoDark'] ?? null;
+
+                $this->organizationAddressLine1 = $this->PanelConfigurationInformation['organizationAddressLine1'] ?? null;
+
+                $this->organizationAddressLine2 = $this->PanelConfigurationInformation['organizationAddressLine2'] ?? null;
+
+                $this->organizationCity = $this->PanelConfigurationInformation['organizationCity'] ?? null;
+
+                $this->organizationState = $this->PanelConfigurationInformation['organizationState'] ?? null;
+
+                $this->organizationCountry = $this->PanelConfigurationInformation['organizationCountry'] ?? null;
+
+                $this->organizationPostalCode = $this->PanelConfigurationInformation['organizationPostalCode'] ?? null;
+
+                $this->paymentDescriptor = $this->PanelConfigurationInformation['paymentDescriptor'] ?? null;
+
+                $this->licenseKey = $this->PanelConfigurationInformation['licenseKey'] ?? null;
+
+                $this->activationDate = $this->PanelConfigurationInformation['activationDate'] ?? null;
+
+                $this->expirationDate = $this->PanelConfigurationInformation['expirationDate'] ?? null;
+
+                $this->organizationID = $this->PanelConfigurationInformation['organizationID'] ?? null;
+
+                $this->registrationDisabledMessage = $this->PanelConfiguratioInformation['registrationDisabledMessage'] ?? null;
+
+                $this->maintenanceEnabledMessage = $this->PanelConfigurationInformation['maintenanceEnabledMessage'] ?? null;
+
+                $this->maintenanceStatus = $this->PanelConfigurationInformation['maintenanceStatus'] ?? null;
+
+                $this->registrationStatus = $this->PanelConfigurationInformation['registrationStatus'] ?? null;
+                
+                $this->panelTheme = $this->PanelConfigurationInformation['panelTheme'] ?? null;
+
+            }
+
             public function GatherOnlineAccessInformation(\mysqli $con, string $nexureid): void
             {
 
@@ -81,6 +166,10 @@
                 );
 
                 $this->onlineAccessStatus = $this->OnlineAccessInformation['onlineAccessStatus'] ?? null;
+
+                $this->displayName = $this->OnlineAccessInformation['displayName'] ?? 'User';
+
+                $this->paymentID = $this->OnlineAccessInformation['paymentID'] ?? '';
 
                 $this->accessType = $this->OnlineAccessInformation['accessLevel'] ?? null;
 
@@ -149,6 +238,265 @@
 
             }
 
+            public function GatherUserAccounts(\mysqli $con, string $nexureid): void
+            {
+
+                $stmt = $con->prepare("SELECT accountNumber, accountStatus, openedDate FROM nexure_accounts WHERE email = ? ORDER BY openedDate DESC");
+
+                if (!$stmt) {
+
+                    \Sentry\captureException(new \Exception("Prepare failed: " . $con->error));
+
+                    throw new \Exception("Prepare failed: " . $con->error);
+
+                }
+
+                $stmt->bind_param('s', $nexureid);
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                if (!$result) {
+
+                    \Sentry\captureException(new \Exception("Query failed: " . $stmt->error));
+
+                    throw new \Exception("Query failed: " . $stmt->error);
+
+                }
+
+                $accounts = [];
+
+                while ($row = $result->fetch_assoc()) {
+
+                    $accounts[] = $row;
+
+                }
+
+                $stmt->close();
+
+                $latestAccountNumber = $accounts[0]['accountNumber'] ?? null;
+
+                foreach ($accounts as &$account) {
+
+                    $accountNumber = $account['accountNumber'];
+
+                    $stmt = $con->prepare("SELECT serviceName FROM nexure_services WHERE accountNumber = ? ORDER BY orderDate DESC LIMIT 1");
+
+                    $stmt->bind_param('s', $accountNumber);
+
+                    $stmt->execute();
+
+                    $serviceResult = $stmt->get_result();
+
+                    $accountDisplayName = ($serviceResult && $serviceResult->num_rows > 0)
+                        ? $serviceResult->fetch_assoc()['serviceName']
+                        : "Unnamed Service";
+
+                    $stmt->close();
+
+                    $stmt = $con->prepare("SELECT businessLegalName FROM nexure_businesses WHERE accountNumber = ? LIMIT 1");
+
+                    $stmt->bind_param('s', $accountNumber);
+
+                    $stmt->execute();
+
+                    $businessResult = $stmt->get_result();
+
+                    $businessName = ($businessResult && $businessResult->num_rows > 0)
+                        ? $businessResult->fetch_assoc()['businessLegalName']
+                        : null;
+
+                    $stmt->close();
+
+                    $stmt = $con->prepare("SELECT legalName FROM nexure_ownership WHERE accountNumber = ? LIMIT 1");
+
+                    $stmt->bind_param('s', $accountNumber);
+
+                    $stmt->execute();
+
+                    $ownershipResult = $stmt->get_result();
+
+                    $legalName = ($ownershipResult && $ownershipResult->num_rows > 0)
+                        ? $ownershipResult->fetch_assoc()['legalName']
+                        : "Personal Account";
+
+                    $stmt->close();
+
+                    $headerName = ($businessName && $accountNumber === $latestAccountNumber)
+                        ? $businessName
+                        : $legalName;
+
+                    $this->userAccounts[] = [
+                        'accountNumber' => $accountNumber,
+                        'accountStatus' => $account['accountStatus'],
+                        'balance' => $account['balance'] ?? 0.00,
+                        'dueDate' => $account['dueDate'] ?? 'N/A',
+                        'accountDisplayName' => $accountDisplayName,
+                        'headerName' => $headerName,
+                    ];
+
+                }
+
+            }
+
+            public function GatherSingleAccountDetails(\mysqli $con, string $accountNumber): void
+            {
+
+                $accountStmt = $con->prepare("SELECT * FROM nexure_accounts WHERE accountNumber = ? LIMIT 1");
+
+                $accountStmt->bind_param("s", $accountNumber);
+
+                $accountStmt->execute();
+
+                $accountResult = $accountStmt->get_result();
+
+                $accountDetails = $accountResult->fetch_assoc();
+
+                $accountStmt->close();
+
+                if (!$accountDetails) {
+
+                    $this->selectedAccountDetails = null;
+
+                    return;
+
+                }
+
+                $businessStmt = $con->prepare("SELECT businessLegalName FROM nexure_businesses WHERE accountNumber = ? LIMIT 1");
+
+                $businessStmt->bind_param("s", $accountNumber);
+
+                $businessStmt->execute();
+
+                $businessResult = $businessStmt->get_result();
+
+                $businessDetails = $businessResult->fetch_assoc();
+
+                $businessStmt->close();
+
+                $ownershipStmt = $con->prepare("SELECT legalName FROM nexure_ownership WHERE accountNumber = ? LIMIT 1");
+
+                $ownershipStmt->bind_param("s", $accountNumber);
+
+                $ownershipStmt->execute();
+
+                $ownershipResult = $ownershipStmt->get_result();
+
+                $ownershipDetails = $ownershipResult->fetch_assoc();
+
+                $ownershipStmt->close();
+
+                $headerName = $businessDetails['businessLegalName'] ?? ($ownershipDetails['legalName'] ?? 'Unknown');
+
+                $gatewayStmt = $con->prepare("SELECT processorName FROM nexure_payments WHERE status = 'Active'");
+
+                $gatewayStmt->execute();
+
+                $gatewayResult = $gatewayStmt->get_result();
+
+                $processors = [];
+
+                while ($row = $gatewayResult->fetch_assoc()) {
+
+                    $processors[] = $row['processorName'];
+
+                }
+
+                $gatewayStmt->close();
+
+                $balanceInfo = [
+                    'credit' => 0.0,
+                    'subscription' => 0.0
+                ];
+
+                $balanceDisplay = '&mdash;';
+                
+                $balance = 0.0;
+
+                foreach ($processors as $processor) {
+
+                    $filePath = $_SERVER["DOCUMENT_ROOT"]."/Modules/{$processor}/Payments/Backend/index.php";
+
+                    if (file_exists($filePath)) {
+
+                        include $filePath;
+
+                        $stripe = initStripe($con);
+
+                        $creditBalance = getCreditBalance($stripe, $this->paymentID);
+
+                        $balanceInfo['credit'] += $creditBalance;
+                            
+                    }
+
+                }
+
+                $credit = floatval($balanceInfo['credit']);
+
+                $balance = $credit;
+
+                if ($credit !== 0.0) {
+
+                    $balanceDisplay = ($balance < 0)
+
+                        ? "-" . number_format(abs($balance), 2)
+                        : "" . number_format($balance, 2);
+
+                } elseif ($credit === 0.0) {
+
+                    $balanceDisplay = "0.00";
+
+                }
+
+                $minimumPayment = ($balance > 50.00) ? round($balance * 0.30, 2) : $balance;
+
+                $servicesStmt = $con->prepare("SELECT * FROM nexure_services WHERE accountNumber = ?");
+
+                $servicesStmt->bind_param("s", $accountNumber);
+
+                $servicesStmt->execute();
+
+                $servicesResult = $servicesStmt->get_result();
+
+                $services = [];
+
+                while ($row = $servicesResult->fetch_assoc()) {
+
+                    $services[] = $row;
+
+                }
+
+                $servicesStmt->close();
+
+                $serviceStmt = $con->prepare("SELECT serviceName FROM nexure_services WHERE accountNumber = ? ORDER BY orderDate DESC LIMIT 1");
+
+                $serviceStmt->bind_param("s", $accountNumber);
+
+                $serviceStmt->execute();
+
+                $serviceResult = $serviceStmt->get_result();
+
+                $serviceDetails = $serviceResult->fetch_assoc();
+
+                $serviceStmt->close();
+
+                $accountDisplayName = $serviceDetails['serviceName'] ?? 'Unknown';
+
+                $this->selectedAccountDetails = [
+                    'accountNumber' => $accountNumber,
+                    'accountDisplayName' => $accountDisplayName,
+                    'headerName' => $headerName,
+                    'creditLimit' => $accountDetails['creditLimit'] ?? 0,
+                    'accountStatus' => $accountDetails['accountStatus'] ?? 'Unknown',
+                    'balance' => $balanceDisplay,
+                    'minimumPayment' => $minimumPayment,
+                    'dueDate' => 'May 30 2025',
+                    'services' => $services
+                ];
+                
+            }
+
         }
 
     }
@@ -186,69 +534,7 @@
 
         session_start();
 
-        // Error Logging and Redirection
-
-        function errorHandler($errno, $errstr, $errfile, $errline) {
-
-            $log_timestamp = date("d-m-Y_H-i-sa");
-
-            $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline\n";
-        
-            $errorLogDir = $_SERVER["DOCUMENT_ROOT"] . "/ErrorHandling/Logs/";
-
-            $errorLogFile = $errorLogDir . "$log_timestamp.log";
-        
-
-            if (!is_dir($errorLogDir)) {
-
-                mkdir($errorLogDir, 0775, true);
-
-            }
-        
-            error_log($errorMessage, 3, $errorLogFile);
-
-            if (session_status() === PHP_SESSION_ACTIVE) {
-
-                $_SESSION['error_log_file'] = $errorLogFile;
-
-            }
-
-            while (ob_get_level()) {
-
-                ob_end_clean();
-
-            }
-        
-            if (headers_sent()) {
-
-                echo '<meta http-equiv="refresh" content="0;url=/ErrorHandling/ErrorPages/GenericError">';
-
-            } else {
-
-                header("Location: /ErrorHandling/ErrorPages/GenericError");
-
-            }
-        
-            exit;
-        }
-        
-        set_error_handler("errorHandler");
-        
-        register_shutdown_function(function() {
-
-            $error = error_get_last();
-
-            if ($error !== null && in_array($error['type'], [
-
-                E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING
-
-            ])) {
-
-                errorHandler($error['type'], $error['message'], $error['file'], $error['line']);
-
-            }
-
-        });
+   
 
         // IP Address Checking and Banning
 

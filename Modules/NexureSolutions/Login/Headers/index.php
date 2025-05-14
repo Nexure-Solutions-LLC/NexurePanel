@@ -76,7 +76,7 @@
                 <div class="display-flex align-center">
                     <div class="nexure-branding">
                         <a href="https://nexuresolutions.com/catalog" class="text-neutral">
-                            <span>Nexure</span> | <span class="font-bold">CRM Cloud</span>
+                            <span><?php echo $VariableDefinitionHandler->organizationShortName; ?></span> | <span class="font-bold">CRM Cloud</span>
                         </a>
                     </div>
                     <div class="nexure-navbar-menu" id="nexure-navbar-js"></div>

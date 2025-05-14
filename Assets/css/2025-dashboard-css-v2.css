@@ -35,6 +35,10 @@ body {
     font-size: 24px;
 }
 
+.text-uppercase {
+    text-transform: uppercase;
+}
+
 .informationIcon {
     height:30px;
     width:30px;

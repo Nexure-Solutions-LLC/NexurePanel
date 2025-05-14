@@ -91,20 +91,20 @@
 
 ?>
 
-        <title>Nexure Unified Panel | <?php echo $PageTitle; ?></title>
+        <title><?php echo $VariableDefinitionHandler->organizationShortName; ?> Unified Panel | <?php echo $PageTitle; ?></title>
 
         <!-- Login Page main content area -->
 
         <div class="nexure-login-section">
             <div class="container nexure-container">
                 <div class="logo-area margin-bottom-30px">
-                    <img src="https://nexuresolutions.com/assets/img/logos/NexureLogoSquare.png" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo light-mode">
-                    <img src="https://nexuresolutions.com/assets/img/logos/NexureLogoSquare.png" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo dark-mode">
+                    <img src="<?php echo $VariableDefinitionHandler->organizationSquareLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo light-mode">
+                    <img src="<?php echo $VariableDefinitionHandler->organizationSquareLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo dark-mode">
                 </div>
                 <div class="nexure-login-content height-100">
                     <form action="" method="POST" class="nexure-login-form" id="nexure-form-plugin">
                         <div class="form-control margin-top-10px">
-                            <label for="nexureid" class="font-12px">Nexure ID</label><br>
+                            <label for="nexureid" class="font-12px"><?php echo $VariableDefinitionHandler->organizationShortName; ?> ID</label><br>
                             <input class="nexure-textbox width-100" name="nexureid" id="nexureid" type="email" placeholder="me@example.com" />
                         </div>
                         <div class="form-control">

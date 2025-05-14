@@ -6,7 +6,7 @@
 
 ?>
 
-    <title>Nexure Unified Panel | <?php echo $PageTitle; ?></title>
+    <title><?php echo $VariableDefinitionHandler->organizationShortName; ?> Unified Panel | <?php echo $PageTitle; ?></title>
 
 
     <!-- Dashboard Content -->

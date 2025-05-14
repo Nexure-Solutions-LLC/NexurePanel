@@ -76,8 +76,8 @@
                         <div class="display-flex align-center">
                             <div class="nexure-branding">
                                 <a href="https://nexuresolutions.com/">
-                                    <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoBlack.svg" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo light-mode">
-                                    <img src="https://nexuresolutions.com/assets/img/logos/NexureWideLogoWhite.svg" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo dark-mode">
+                                    <img src="<?php echo $VariableDefinitionHandler->organizationWideLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo light-mode">
+                                    <img src="<?php echo $VariableDefinitionHandler->organizationWideLogoDark; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo dark-mode">
                                 </a>
                             </div>
                             <div class="nexure-navbar-menu" id="nexure-navbar-js"></div>
@@ -101,15 +101,16 @@
                         <nav class="nexure-navbar-menu display-flex align-center" id="nexure-navbar-js">
                             <p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Dashboard</p>
                             <li class="nav-links"><a href="/">Dashboard</a></li>
-                            <li class="nav-links"><a href="/">Open an account</a></li>
+                            <li class="nav-links"><a href="/Onboarding">Open an account</a></li>
                             <li class="nav-links"><a href="/">Billing</a></li>
                             <li class="nav-links"><a href="/">Support Center</a></li>
                             <li class="nav-links"><a href="/">Access and Security</a></li>
                             <li class="nav-links"><a href="/">Service Information</a></li>
+                            <li class="nav-links"><a href="/Logout">Sign Off</a></li>
                         </nav>
                         <div class="systemLoads display-flex align-center">
                             <p class="font-14px">
-                                <?php
+                                <?php if ($PageTitle == "Admin Center") {
 
                                     $loads = sys_getloadavg();
 
@@ -120,7 +121,7 @@
 
                                     echo "System Loads: " . implode(", ", $rounded_loads);
 
-                                ?>
+                                } ?>
                             </p>
                         </div>
                     </div>

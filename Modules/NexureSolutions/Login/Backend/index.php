@@ -43,6 +43,11 @@
 
     $accountnumberlength = $_ENV["ACCOUNTNUMBERLENGTH"];
 
+    // Middleware Calls
+
+    $VariableDefinitionHandler = new \NexureSolutions\Generic\VariableDefinitions();
+    $VariableDefinitionHandler->GatherPanelConfiguration($con);
+
     if (isset($_POST['langPreference'])) {
 
         $_SESSION["lang"] = $_POST['langPreference'];
