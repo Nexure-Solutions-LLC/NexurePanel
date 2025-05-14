@@ -16,6 +16,6 @@
         </div>
     
     </body>
-    <script type="text/javascript"  src="/Assets/js/login.js"></script>
+    <script type="text/javascript"  src="/Assets/js/Login.js"></script>
     <script src="https://nexuresolutions.com/assets/js/index.js" type="text/javascript"></script>
 </html>
