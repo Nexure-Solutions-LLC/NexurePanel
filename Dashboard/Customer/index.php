@@ -16,7 +16,7 @@
                     <h4 class="text-bold font-24px no-padding margin-top-10px margin-bottom-50px"><span id="greetingMessage"></span>, Undefined</h4>
                 </div>
             </div>
-            <!-- <div class="nexure-grid nexure-one-grid no-row-gap">
+            <div class="nexure-grid nexure-two-grid no-row-gap offset-grid">
                 <div class="nexure-card">
                     <div class="display-flex align-center">
                         <div>
@@ -28,9 +28,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <div class="nexure-grid nexure-two-grid no-row-gap offset-grid">
-                <div class="nexure-card">
+                <!-- <div class="nexure-card">
                     <p class="margin-bottom-20px"><strong>Nexure accounts</strong></p>
 
                     <div class="background-grey-100">
@@ -59,7 +57,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </div> -->
                 <div>
                     <div class="nexure-card">
                         <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
