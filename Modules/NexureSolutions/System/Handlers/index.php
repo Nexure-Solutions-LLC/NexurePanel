@@ -327,10 +327,70 @@
                         ? $businessName
                         : $legalName;
 
+                    $gatewayStmt = $con->prepare("SELECT processorName FROM nexure_payments WHERE status = 'Active'");
+
+                    $gatewayStmt->execute();
+
+                    $gatewayResult = $gatewayStmt->get_result();
+
+                    $processors = [];
+
+                    while ($row = $gatewayResult->fetch_assoc()) {
+
+                        $processors[] = $row['processorName'];
+
+                    }
+
+                    $gatewayStmt->close();
+
+                    $balanceInfo = [
+                        'credit' => 0.0,
+                        'subscription' => 0.0
+                    ];
+
+                    $balanceDisplay = '&mdash;';
+                    
+                    $balance = 0.0;
+
+                    foreach ($processors as $processor) {
+
+                        $filePath = $_SERVER["DOCUMENT_ROOT"]."/Modules/{$processor}/Payments/Backend/index.php";
+
+                        if (file_exists($filePath)) {
+
+                            include_once $filePath;
+
+                            $stripe = initStripe($con);
+
+                            $creditBalance = getCreditBalance($stripe, $this->paymentID);
+
+                            $balanceInfo['credit'] += $creditBalance;
+                                
+                        }
+
+                    }
+
+                    $credit = floatval($balanceInfo['credit']);
+
+                    $balance = $credit;
+
+                    if ($credit !== 0.0) {
+
+                        $balanceDisplay = ($balance < 0)
+
+                            ? "-" . number_format(abs($balance), 2)
+                            : "" . number_format($balance, 2);
+
+                    } elseif ($credit === 0.0) {
+
+                        $balanceDisplay = "0.00";
+
+                    }
+
                     $this->userAccounts[] = [
                         'accountNumber' => $accountNumber,
                         'accountStatus' => $account['accountStatus'],
-                        'balance' => $account['balance'] ?? 0.00,
+                        'balance' => $balanceDisplay,
                         'dueDate' => $account['dueDate'] ?? 'N/A',
                         'accountDisplayName' => $accountDisplayName,
                         'headerName' => $headerName,
@@ -420,7 +480,7 @@
 
                     if (file_exists($filePath)) {
 
-                        include $filePath;
+                        include_once $filePath;
 
                         $stripe = initStripe($con);
 

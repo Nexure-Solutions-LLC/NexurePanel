@@ -38,6 +38,12 @@
                             <p class="font-12px text-uppercase text-bold"><?= htmlspecialchars($headerName) ?></p>
                         </div>
 
+                         <?php if (strtolower($account['accountStatus']) === 'restricted'): ?>
+                            <div class="restricted-notice margin-bottom-10px">
+                                <p class="font-12px">We have restricted this account and reopened it to protect your service. If you have any questions, please contact us.</p>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="nexure-table-container">
                             <table class="nexure-table-plugin nexure-table-domains">
                                 <thead>
@@ -51,10 +57,15 @@
                                 </thead>
                                 <tbody>
                                     <?php foreach ($VariableDefinitionHandler->userAccounts as $account): ?>
+                                        <?php if (strtolower($account['accountStatus']) === 'closed') continue; ?>
                                         <tr>
                                             <td class="width-50"><?= htmlspecialchars($account['accountDisplayName']) ?> (...<?= substr($account['accountNumber'], -4) ?>)</td>
-                                            <td class="width-20">$<?= number_format((float)$account['balance'], 2) ?></td>
-                                            <td class="width-20"><?= $account['dueDate'] ? date('F j, Y', strtotime($account['dueDate'])) : '—' ?></td>
+                                            <td class="width-20">
+                                                <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . $account['balance'] ?>
+                                            </td>
+                                            <td class="width-20">
+                                                <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : ($account['dueDate'] ? date('F j, Y', strtotime($account['dueDate'])) : '—') ?>
+                                            </td>
                                             <td class="width-10">
                                                 <span class="account-status-badge <?= strtolower($account['accountStatus']) === 'open' ? 'green' : 'red' ?>">
                                                     <?= htmlspecialchars($account['accountStatus']) ?>
