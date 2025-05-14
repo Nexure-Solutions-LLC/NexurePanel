@@ -22,10 +22,24 @@
         <div class="nexure-grid nexure-one-grid no-row-gap">
             <div class="nexure-card">
                 <div class="card-header">
-                    <p class="margin-bottom-20px">Overview / Account: <?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</p>
+                    <div class="display-flex justify-content-space-between">
+                        <div>
+                            <p class="margin-bottom-10px">Overview / Account: <?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</p>
+                        </div>
+                        <div>
+                            <a href="#" class="nexure-button secondary">Pay Balance</a>
+                        </div>
+                    </div>    
                 </div>
-                <div class="card-body">
+                <div class="card-body margin-top-10px margin-bottom-10px">
                     <div>
+
+                         <?php if (strtolower($account['accountStatus']) === 'restricted'): ?>
+                            <div class="restricted-notice margin-bottom-30px" style="margin-top:-10px;">
+                                <p class="font-12px">We have restricted this account and reopened it to protect your service. If you have any questions, please contact us.</p>
+                            </div>
+                        <?php endif; ?>
+
                         <div class="display-flex align-center">
                             <h3 class="font-16px"><?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</h3>
                             <span class="padding-left-10px padding-right-10px"> | </span>
@@ -37,25 +51,25 @@
                         <div class="nexure-grid nexure-three-grid no-row-gap margin-top-30px">
                             <div>
                                 <h3 class="font-30px" style="font-weight:300;">
-                                    $<?= $account['balance'] ?>
+                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . $account['balance'] ?>
                                 </h3>
                                 <p class="font-12px">Current Balance</p>
                             </div>
                             <div>
                                 <h3 class="font-18px" style="font-weight:300;">
-                                    $<?= number_format($account['creditLimit'], 2) ?>
+                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . number_format($account['creditLimit'], 2) ?>
                                 </h3>
                                 <p class="font-12px">Credit Limit</p>
                             </div>
                             <div>
                                 <h3 class="font-18px" style="font-weight:300;">
-                                    <?= htmlspecialchars($account['dueDate']) ?>
+                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : htmlspecialchars($account['dueDate']) ?>
                                 </h3>
                                 <p class="font-12px">Due Date</p>
                             </div>
                             <div class="margin-top-30px">
                                 <h3 class="font-18px" style="font-weight:300;">
-                                    $<?= number_format($account['minimumPayment'], 2) ?>
+                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . number_format($account['minimumPayment'], 2) ?>
                                 </h3>
                                 <p class="font-12px">Minimum Amount Due</p>
                             </div>
