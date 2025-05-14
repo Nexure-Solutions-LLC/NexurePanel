@@ -1,5 +1,9 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     // Import Files
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -30,6 +34,16 @@
     $sentryOrg = $_ENV['SENTRY_ORG'];
     $sentryProject = $_ENV['SENTRY_PROJECT'];
     $accountnumberlength = $_ENV["ACCOUNTNUMBERLENGTH"];
+
+    // Middleware Calls
+
+    $VariableDefinitionHandler = new \NexureSolutions\Generic\VariableDefinitions();
+    $VariableDefinitionHandler->GatherOnlineAccessInformation($con, $nexureid);
+    $VariableDefinitionHandler->GatherUserAccounts($con, $nexureid);
+    $VariableDefinitionHandler->GatherOnlineAccessInformation($con, $nexureid);
+    $VariableDefinitionHandler->GatherPanelConfiguration($con);
+
+    $account = !empty($VariableDefinitionHandler->userAccounts) ? $VariableDefinitionHandler->userAccounts[0] : null;
 
     // Mobile Detection
 
