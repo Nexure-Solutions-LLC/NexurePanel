@@ -20,11 +20,8 @@
         case "administrator":
             header("location:/Dashboard/Administration");
             break;
-        case 'personal':
-            header("location:/Dashboard/Personal");
-            break;
-        case 'business':
-            header("location:/Dashboard/Business");
+        case 'customer':
+            header("location:/Dashboard/Customer");
             break;
         default:
             header("Location: /ErrorHandling/ErrorPages/GenericError");

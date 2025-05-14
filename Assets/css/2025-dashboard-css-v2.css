@@ -20,7 +20,238 @@
 
 */
 
+/* ====================== Global Styles ===================== */
+
 body {
     margin:0;
     padding:0;
+}
+
+.text-bold  {
+    font-weight: bold;
+}
+
+.font-24px {
+    font-size: 24px;
+}
+
+.informationIcon {
+    height:30px;
+    width:30px;
+}
+
+.customer-quick-actions-img {
+    height: 40px;
+    width: 40px;
+    border: 1px solid #eee;
+    padding: 4px;
+    border-radius: 6px;
+    margin-bottom: 6%;
+}
+
+.account-status-badge {
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-size: 12px;
+    margin-top: 0;
+}
+
+.account-status-badge.passive {
+    border: 1px solid #B8B8B8;
+    background-color: #F1F1F1;
+    color: #646464;
+}
+
+.account-status-badge.green {
+    border: 1px solid #6ED741;
+    background-color: #CEFFB9;
+    color: #204510;
+}
+
+.account-status-badge.yellow {
+    border: 1px solid #D5D94A;
+    background-color: #FDFFBE;
+    color: #585A1A;
+}
+
+.account-status-badge.red,
+.account-status-badge.red-restricted {
+    border: 1px solid #FF9090;
+    background-color: #FFE1E1;
+    color: #AD3434;
+}
+
+.account-status-badge.red-dark {
+    border: 1px solid #FE5D5D;
+    background-color: #FFD4D4;
+    color: #901818;
+}
+
+.border-right {
+    border-right:1px solid #cacaca;
+}
+
+/* ====================== Container Styles ===================== */
+
+.container, 
+.nexure-container, 
+.nexure-nav-container {
+    width:100% !important;
+    max-width: 95% !important;
+}
+
+/* ====================== Grid Styles ===================== */
+
+.offset-grid {
+    grid-template-columns: 1.3fr .7fr;
+    display: grid;
+    align-items: start; /* Important: prevents stretching */
+}
+
+/* ====================== Header Styles ===================== */
+
+.nexure-header {
+    position: sticky !important;
+    top:0 !important;
+    left:0;
+    width:100%;
+    background-color: #ffffff !important;
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
+
+.background-darker-300 {
+    background-color: #f1f1f1 !important;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+
+.toggle-container {
+    padding: 8px 8px !important;
+}
+
+.profile-image {
+    border-radius: 999px;
+    border:1px solid #ddd;
+    height:30px;
+    width:30px;
+}
+
+.border-top-grey-300 {
+    border-top: 1px solid #ddd;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+
+.nav-links a {
+    padding: 4px 16px;
+}
+
+/* ====================== Section Styles ===================== */
+
+.section.dashboard {
+    padding-top:2%;
+    padding-bottom: 2%;
+}
+
+.nexure-card {
+    padding:20px !important;
+}
+
+.card-header {
+    padding-bottom:5px;
+    border-bottom: 1px solid #ddd !important;
+}
+
+.card-body {
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+.card-footer {
+    padding-top:5px;
+    border-top: 1px solid #ddd !important;
+}
+
+.nexure-card:hover {
+    border: 1px solid #ddd !important;
+}
+
+.background-grey-100 {
+    background-color:#dddcdc;
+    padding:10px;
+    border-radius: 6px;
+}
+
+/* ====================== Table Styles ===================== */
+
+.nexure-table-plugin td,
+.nexure-table-plugin th {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.nexure-table-plugin td {
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.nexure-table-plugin th {
+    border-bottom: 1px solid #ddd;
+    background-color: #e7e7e7;
+}
+
+/* ====================== Dark Mode Styles ===================== */
+
+body.dark-mode {
+    background-color:rgb(0, 0, 0) !important;
+}
+
+.dark-mode .nexure-logo {
+    background-color: transparent !important;
+}
+
+.dark-mode .nexure-header {
+    background-color: #000000 !important;
+}
+
+.dark-mode .background-darker-300 {
+    background-color: #0a0a0a !important;
+}
+
+.dark-mode .border-top-grey-300 {
+    border-top: 1px solid #222 !important;
+}
+
+.dark-mode .nexure-table-plugin th {
+    background-color: #333;
+    border-bottom: 1px solid #2b2a2a;
+}
+
+.dark-mode .nexure-table-plugin {
+    border:0;
+}
+
+.dark-mode .background-grey-100 {
+    background-color: #333;
+    padding:10px;
+    border-radius: 6px;
+}
+
+.dark-mode .customer-quick-actions-img {
+    border: 1px solid #222;
+}
+
+.dark-mode .border-right {
+    border-right:1px solid #313131;
+}
+
+.dark-mode .card-header {
+    border-bottom: 1px solid #222 !important;
+}
+
+.dark-mode .card-footer {
+    border-top: 1px solid #222 !important;
 }
