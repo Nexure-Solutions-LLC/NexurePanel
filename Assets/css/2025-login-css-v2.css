@@ -297,6 +297,13 @@ a:hover {
     color:#000;
 }
 
+/* ====================== Generic System Styles ===================== */
+
+.generic-system-pages {
+    margin-top:2%;
+    margin-left:8%;
+}
+
 /* ====================== Footer Styles ===================== */
 
 .nexure-footer {
