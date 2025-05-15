@@ -58,6 +58,7 @@
                                 <tbody>
                                     <?php foreach ($VariableDefinitionHandler->userAccounts as $account): ?>
                                         <?php if (strtolower($account['accountStatus']) === 'closed') continue; ?>
+                                        <?php if (strtolower($account['accountStatus']) === 'rejected') continue; ?>
                                         <tr>
                                             <td class="width-50"><?= htmlspecialchars($account['accountDisplayName']) ?> (...<?= substr($account['accountNumber'], -4) ?>)</td>
                                             <td class="width-20">
@@ -94,36 +95,61 @@
                     </div>
                 <?php endif; ?>
                 <div>
-                    <div class="nexure-card">
-                        <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
-                        <div class="nexure-grid nexure-three-grid margin-top-30px gap-row-spacing-30 margin-bottom-10px">
-                            <div>
-                                <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/page-speed.png" />
-                                <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
-                                <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_RUN_SPEEDTEST_SUBTEXT; ?></p>
-                            </div>
-                            <div>
-                                <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/synchronize.png" />
-                                <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_BACKUPS_TILE; ?></p>
-                                <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_BACKUPS_SUBTEXT; ?></p>
-                            </div>
-                            <div>
-                                <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/log-file.png" />
-                                <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_LOG_FILES_TILE; ?></p>
-                                <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
-                            </div>
-                            <div>
-                                <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/integrity.png" />
-                                <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_CODE_INTEGRITY_TILE; ?></p>
-                                <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Nexure <?php echo $LANG_CODE_INTEGRITY_SUBTEXT; ?></p>
-                            </div>
-                            <div>
-                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/monitoring.png" />
-                                <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_MONITORING_TILE; ?></p>
-                                <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_MONITORING_SUBTEXT; ?></p>
+                    <?php if ($account): ?>
+                        <div class="nexure-card">
+                            <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
+                            <div class="nexure-grid nexure-three-grid margin-top-30px gap-row-spacing-30 margin-bottom-10px">
+                                <div>
+                                    <a href="/Dashboard/Customer/QuickActions/SpeedTest/" class="quick-actions-link">
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/page-speed.png" />
+                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
+                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_RUN_SPEEDTEST_SUBTEXT; ?></p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="/Modules/NexureSolutions/Hosting/ManageHosting/Backups" class="quick-actions-link">
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/synchronize.png" />
+                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_BACKUPS_TILE; ?></p>
+                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_BACKUPS_SUBTEXT; ?></p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="/Dashboard/Customer/QuickActions/Logs/" class="quick-actions-link">
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/log-file.png" />
+                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_LOG_FILES_TILE; ?></p>
+                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="/Modules/NexureSolutions/Development/CodeIntegrity" class="quick-actions-link">
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/integrity.png" />
+                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_CODE_INTEGRITY_TILE; ?></p>
+                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Nexure <?php echo $LANG_CODE_INTEGRITY_SUBTEXT; ?></p>
+                                    </a>
+                                </div>
+                                <div>
+                                    <a href="/Dashboard/Customer/QuickActions/Monitoring/" class="quick-actions-link">
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/monitoring.png" />
+                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_MONITORING_TILE; ?></p>
+                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_MONITORING_SUBTEXT; ?></p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php else: ?>
+                        <div class="nexure-card">
+                            <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
+                            <div class="nexure-grid nexure-three-grid margin-top-30px gap-row-spacing-30 margin-bottom-10px">
+                                <div>
+                                    <a href="/Onboarding/" class="quick-actions-link">
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/open-account.png" />
+                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_OPENNEWACCOUNT_TILE; ?></p>
+                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_OPENNEWACCOUNT_SUBTEXT; ?></p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="nexure-card margin-top-20px">
                         <p><strong>Plan for your next business</strong></p>
                         <p class="margin-top-10px">You have no pre-approved account offers.</p>

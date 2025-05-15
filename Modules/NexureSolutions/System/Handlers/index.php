@@ -54,6 +54,7 @@
             public $organizationState;
             public $organizationCountry;
             public $organizationPostalCode;
+            public $organizationSupportInfo;
             public $paymentDescriptor;
             public $licenseKey;
             public $activationDate;
@@ -133,6 +134,8 @@
                 $this->organizationCountry = $this->PanelConfigurationInformation['organizationCountry'] ?? null;
 
                 $this->organizationPostalCode = $this->PanelConfigurationInformation['organizationPostalCode'] ?? null;
+
+                $this->organizationSupportInfo = $this->PanelConfigurationInformation['organizationSupportInfo'] ?? null;
 
                 $this->paymentDescriptor = $this->PanelConfigurationInformation['paymentDescriptor'] ?? null;
 
