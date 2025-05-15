@@ -95,6 +95,15 @@ body {
     border-right:1px solid #cacaca;
 }
 
+.quick-actions-link {
+    color:#000;
+    transition: all 0.3s ease-in-out;
+}
+
+.quick-actions-link:hover {
+    color: #414141;
+}
+
 /* ====================== Container Styles ===================== */
 
 .container, 
@@ -353,4 +362,12 @@ body.dark-mode {
     background-color: #1b1b1b;
     border: 1px solid #222;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.dark-mode .quick-actions-link {
+    color:#dbdbdb;
+}
+
+.dark-mode .quick-actions-link:hover {
+    color: #fff;
 }
