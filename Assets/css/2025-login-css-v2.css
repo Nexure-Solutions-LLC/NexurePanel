@@ -269,6 +269,34 @@ a:hover {
     background-color: #f1f1f1 !important;
 }
 
+/* ====================== Opening of accounts and online-access Styles ===================== */
+
+.nexure-open-online-access-and-account {
+    margin-top:7%;
+}
+
+.card-header {
+    padding-bottom:5px;
+    border-bottom: 1px solid #ddd !important;
+}
+
+.card-body {
+    padding-bottom:20px;
+}
+
+.card-footer {
+    padding-top:20px;
+    border-top: 1px solid #ddd !important;
+}
+
+.onboarding-card-link {
+    color:#000;
+}
+
+.onboarding-card-link:hover {
+    color:#000;
+}
+
 /* ====================== Footer Styles ===================== */
 
 .nexure-footer {
@@ -361,4 +389,20 @@ body.dark-mode {
     background-color: #333;
     color:white;
     border:1px solid #333;
+}
+
+.dark-mode .card-header {
+    border-bottom: 1px solid #222 !important;
+}
+
+.dark-mode .card-footer {
+    border-top: 1px solid #222 !important;
+}
+
+.dark-mode .onboarding-card-link {
+    color:#dbdbdb;
+}
+
+.dark-mode .onboarding-card-link:hover {
+    color:#dbdbdb;
 }
