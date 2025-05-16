@@ -34,6 +34,7 @@
             public $riskScoreMonitoring;
 
             public $accountNumber;
+            public $accountType;
             public $accountDisplayName;
             public $headerName;
             public $creditLimit;
@@ -258,7 +259,7 @@
             public function GatherUserAccounts(\mysqli $con, string $nexureid): void
             {
 
-                $stmt = $con->prepare("SELECT accountNumber, accountStatus, openedDate FROM nexure_accounts WHERE email = ? ORDER BY openedDate DESC");
+                $stmt = $con->prepare("SELECT accountNumber, accountType, accountStatus, openedDate FROM nexure_accounts WHERE email = ? ORDER BY openedDate DESC");
 
                 if (!$stmt) {
 
@@ -297,6 +298,8 @@
                 foreach ($accounts as &$account) {
 
                     $accountNumber = $account['accountNumber'];
+
+                    $accountType = $account['accountType'];
 
                     $stmt = $con->prepare("SELECT serviceName FROM nexure_services WHERE accountNumber = ? ORDER BY orderDate DESC LIMIT 1");
 
@@ -406,6 +409,7 @@
 
                     $this->userAccounts[] = [
                         'accountNumber' => $accountNumber,
+                        'accountType' => $accountType,
                         'accountStatus' => $account['accountStatus'],
                         'balance' => $balanceDisplay,
                         'dueDate' => $account['dueDate'] ?? 'N/A',
@@ -560,8 +564,11 @@
 
                 $accountDisplayName = $serviceDetails['serviceName'] ?? 'Unknown';
 
+                $accountType = $accountDetails['accountType'];
+
                 $this->selectedAccountDetails = [
                     'accountNumber' => $accountNumber,
+                    'accountType' => $accountType,
                     'accountDisplayName' => $accountDisplayName,
                     'headerName' => $headerName,
                     'creditLimit' => $accountDetails['creditLimit'] ?? 0,

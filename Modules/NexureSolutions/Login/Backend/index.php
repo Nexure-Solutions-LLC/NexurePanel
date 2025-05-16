@@ -5,6 +5,7 @@
     // Import Files
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+
     require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/System/Handlers/index.php');
 
     // Language Handler
