@@ -53,6 +53,7 @@
                                 <thead>
                                     <tr>
                                         <th>Account</th>
+                                        <th>Type</th>
                                         <th>Balance</th>
                                         <th>Due Date</th>
                                         <th>Status</th>
@@ -64,7 +65,10 @@
                                         <?php if (strtolower($account['accountStatus']) === 'closed') continue; ?>
                                         <?php if (strtolower($account['accountStatus']) === 'rejected') continue; ?>
                                         <tr>
-                                            <td class="width-50"><?= htmlspecialchars($account['accountDisplayName']) ?> (...<?= substr($account['accountNumber'], -4) ?>)</td>
+                                            <td class="width-30"><?= htmlspecialchars($account['accountDisplayName']) ?> (...<?= substr($account['accountNumber'], -4) ?>)</td>
+                                            <td class="width-20">
+                                                <?= htmlspecialchars($account['accountType']) ?>
+                                            </td>
                                             <td class="width-20">
                                                 <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . $account['balance'] ?>
                                             </td>

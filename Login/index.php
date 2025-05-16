@@ -122,8 +122,8 @@
                         </div>
                     <?php endif; ?>
                     <div class="after-login-area display-flex align-center justify-content-space-between margin-top-30px margin-bottom-10px padding-top-10px">
-                        <p class="margin-top-10px gray-100 font-12px">Forgot Login? <a class="brand-link" href="/ResetPassword">Reset it</a>.</a>
-                        <p class="margin-top-10px gray-100 font-12px">Not enrolled? <a class="brand-link" href="/Register">Register Now</a>.</a>
+                        <p class="margin-top-10px gray-100 font-12px">Forgot Login? <a class="brand-link font-12px" href="/ResetPassword">Reset it</a>.</a>
+                        <p class="margin-top-10px gray-100 font-12px">Not enrolled? <a class="brand-link font-12px" href="/Register">Register Now</a>.</a>
                     </div>
                 </div>
             </div>
