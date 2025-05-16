@@ -44,7 +44,7 @@ $LANG_LOG_FILES_SUBTEXT = "View your websites logs, account logs and what your u
 $LANG_CODE_INTEGRITY_TILE = "Code Integrity";
 $LANG_CODE_INTEGRITY_SUBTEXT = "Code Integrity allows you to protect your website.";
 $LANG_MONITORING_TILE = "Monitoring";
-$LANG_MONITORING_SUBTEXT = "Have us monitor your website for any suspicious activity.";
+$LANG_MONITORING_SUBTEXT = "Have us monitor your account for any suspicious activity.";
 $LANG_OPENNEWACCOUNT_TILE = "Open an account";
 $LANG_OPENNEWACCOUNT_SUBTEXT = "Open a new account to get started with using Nexure.";
 

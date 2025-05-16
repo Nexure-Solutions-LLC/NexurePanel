@@ -19,6 +19,7 @@
         {
             public $nexureid;
             public $displayName;
+            public $profileImage;
             public $OnlineAccessInformation;
             public $accessType;
             public $onlineAccessStatus;
@@ -30,6 +31,7 @@
             public $emailverifystatus;
             public $paymentID;
             public $userAccounts = [];
+            public $riskScoreMonitoring;
 
             public $accountNumber;
             public $accountDisplayName;
@@ -64,7 +66,11 @@
             public $maintenanceEnabledMessage;
             public $maintenanceStatus;
             public $registrationStatus;
+            public $enableFeeDisclosurePage;
+            public $feeDisclosureLink;
             public $panelTheme;
+
+            public $NexureRiskScore10;
 
             private function fetchSingleRow(\mysqli $con, string $query, array $params = []): ?array
             {
@@ -154,6 +160,10 @@
                 $this->maintenanceStatus = $this->PanelConfigurationInformation['maintenanceStatus'] ?? null;
 
                 $this->registrationStatus = $this->PanelConfigurationInformation['registrationStatus'] ?? null;
+
+                $this->enableFeeDisclosurePage = $this->PanelConfigurationInformation['enableFeeDisclosurePage'] ?? null;
+
+                $this->feeDisclosureLink = $this->PanelConfigurationInformation['feeDisclosureLink'] ?? null;
                 
                 $this->panelTheme = $this->PanelConfigurationInformation['panelTheme'] ?? null;
 
@@ -171,6 +181,8 @@
                 $this->onlineAccessStatus = $this->OnlineAccessInformation['onlineAccessStatus'] ?? null;
 
                 $this->displayName = $this->OnlineAccessInformation['displayName'] ?? 'User';
+
+                $this->profileImage = $this->OnlineAccessInformation['profileImage'] ?? '';
 
                 $this->paymentID = $this->OnlineAccessInformation['paymentID'] ?? '';
 
@@ -213,6 +225,8 @@
                 );
 
                 $this->emailverifystatus = ucfirst($this->OnlineAccessInformation['emailStatus'] ?? 'Unknown');
+
+                $this->riskScoreMonitoring = ucfirst($this->OnlineAccessInformation['riskScoreMonitoring']);
 
             }
 
@@ -560,6 +574,101 @@
                 
             }
 
+            public function loadRiskScore(\mysqli $con, string $nexureid): void
+            {
+                $row = $this->fetchSingleRow(
+                    $con,
+                    "SELECT scoreValue FROM nexure_riskscores WHERE email = ?",
+                    [$nexureid]
+                );
+
+                if ($row && isset($row['scoreValue'])) {
+
+                    $score = (int)$row['scoreValue'];
+
+                    $this->NexureRiskScore10 = max(0, min(999, $score));
+
+                } else {
+
+                    $this->NexureRiskScore10 = 0;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    // Nexure Modules Component
+
+    namespace NexureSolutions\Modules {
+
+        class NexureModules
+        {
+
+            public $allModules = [];
+
+            public $activeModules = [];
+
+            public $inactiveModules = [];
+
+            public function retrieveModules($con)
+            {
+
+                $query = mysqli_query($con, "SELECT * FROM nexure_modules ORDER BY moduleName ASC");
+
+                while ($module = mysqli_fetch_assoc($query)) {
+
+                    $this->allModules[] = $module;
+
+                    if (strtolower($module['moduleStatus']) === 'active') {
+
+                        $this->activeModules[] = $module;
+
+                    } else {
+
+                        $this->inactiveModules[] = $module;
+                    }
+
+                }
+
+            }
+
+            public function isModuleEnabled($code)
+            {
+
+                foreach ($this->activeModules as $module) {
+
+                    if ((int)$module['moduleCode'] === (int)$code) {
+
+                        return true;
+
+                    }
+
+                }
+
+                return false;
+
+            }
+
+            public function getModuleByCode($code)
+            {
+
+                foreach ($this->allModules as $module) {
+
+                    if ((int)$module['moduleCode'] === (int)$code) {
+                        
+                        return $module;
+
+                    }
+
+                }
+
+                return null;
+
+            }
+
         }
 
     }
@@ -595,9 +704,73 @@
 
         require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/Configuration/Database/index.php');
 
+        require($_SERVER["DOCUMENT_ROOT"] . '/Modules/NexureSolutions/System/Schemas/index.php');
+
         session_start();
 
-   
+        // Error Logging and Redirection
+
+        function errorHandler($errno, $errstr, $errfile, $errline) {
+
+            $log_timestamp = date("d-m-Y_H-i-sa");
+
+            $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline\n";
+        
+            $errorLogDir = $_SERVER["DOCUMENT_ROOT"] . "/ErrorHandling/Logs/";
+
+            $errorLogFile = $errorLogDir . "$log_timestamp.log";
+        
+
+            if (!is_dir($errorLogDir)) {
+
+                mkdir($errorLogDir, 0775, true);
+
+            }
+        
+            error_log($errorMessage, 3, $errorLogFile);
+
+            if (session_status() === PHP_SESSION_ACTIVE) {
+
+                $_SESSION['error_log_file'] = $errorLogFile;
+
+            }
+
+            while (ob_get_level()) {
+
+                ob_end_clean();
+
+            }
+        
+            if (headers_sent()) {
+
+                echo '<meta http-equiv="refresh" content="0;url=/ErrorHandling/ErrorPages/GenericError">';
+
+            } else {
+
+                header("Location: /ErrorHandling/ErrorPages/GenericError");
+
+            }
+        
+            exit;
+        }
+        
+        set_error_handler("errorHandler");
+        
+        register_shutdown_function(function() {
+
+            $error = error_get_last();
+
+            if ($error !== null && in_array($error['type'], [
+
+                E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING
+
+            ])) {
+
+                errorHandler($error['type'], $error['message'], $error['file'], $error['line']);
+
+            }
+
+        });
 
         // IP Address Checking and Banning
 

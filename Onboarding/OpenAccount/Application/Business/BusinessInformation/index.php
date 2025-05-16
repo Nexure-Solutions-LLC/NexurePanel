@@ -59,6 +59,8 @@
 
 ?>
 
+    <title><?php echo $VariableDefinitionHandler->organizationShortName; ?> Unified Panel | Business Account Application</title>
+
     <style>
         body {
             overflow-y: auto !important;
@@ -75,7 +77,7 @@
                 <div class="centered-content">
                     <h4 class="font-20px">Business Information</h4>
                     <p class="font-14px margin-top-20px width-60 centered-content">We collect information about your business for compliance and vetting reasons. Please enter the following information to continue opening your account.</p>
-                    <form action="" method="POST" class="width-60 centered-content">
+                    <form action="" method="POST" class="width-80 centered-content">
                         <div class="nexure-grid nexure-one-grid no-row-gap margin-top-60px">
                             <div class="form-control"  style="text-align:left; align-items:start;">
                                 <label for="businessLegalName">Legal Business Name</label>
