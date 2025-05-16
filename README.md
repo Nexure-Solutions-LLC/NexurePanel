@@ -41,16 +41,19 @@ This is the official repository for Nexure Panel that will run virtually every m
 
 - Nick Derry
 - Mikey Brinkley
-- Aiden Webb
-- Nathan Schwartz
-- Mikey W
+- Mikey W¹
+- Joy Clens²
+- AlexySSH³
+
+¹Mikey W wrote the baseplate `/Modules/NexureSolutions/System/Handlers/index.php` file we have refactored the code.
+²Joy Clens wrote portions of the Discord Integration Module located at `/Modules/Discord/Bot` sadly this is all she will probably write for the CRM system.
+³AlexySSH wrote the other portions of the Discord Integration Module located at `/Modules/Discord/Bot`.
 
 ---
 
 ### Getting Started
 
-This panel is still in development so the install script has not been built yet. The panel also is buggy and unfinished
-it currently is only open to Developer Testing.
+This panel is still in development so the install script has not been built yet. This panel will be opened to Developer and Public Testing.
 
 You can view a demo link [here](https://us-east-1.nexure-cloud-compute-15-204-176-210.nexuresolutions.com/).
 
@@ -72,9 +75,9 @@ You can view a demo link [here](https://us-east-1.nexure-cloud-compute-15-204-17
 
 ### Installation
 
-1. Clone the repository: `bash git clone https://github.com/NickDerry2023/NexurePanel.git`
+1. Clone the repository: `bash git clone https://github.com/Nexure-Solutions-LLC/NexurePanel.git`
 2. Install the panel by running the install.sh bash script.
-3. Run post installation by navigating to the panels domain then the folder /install
+3. Run post installation by navigating to the panels domain then the folder /Install
 4. Configure the panel and set credentials in the .ENV file.
-5. Run the cron jobs by doing: `crontab -e` and `0 * * * * /usr/bin/php /var/www/nexurepanel/automations/fileDeletion/index.php`
+5. Run the cron jobs by doing: `crontab -e` and `0 * * * * /usr/bin/php /var/www/nexurepanel/Automations/index.php`
 6. Login to the admin account you created.
