@@ -2,15 +2,26 @@
 
     $PageTitle = "Customer Dashboard";
 
-    include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Headers/index.php");
-
     $accountNumber = $_GET['account_number'] ?? null;
 
-    if ($accountNumber) {
+    include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Headers/index.php");
+
+    if (isset($accountNumber)) {
+
         $VariableDefinitionHandler->GatherSingleAccountDetails($con, $accountNumber);
+        
         $account = $VariableDefinitionHandler->selectedAccountDetails;
+
     } else {
-        $account = null;
+        
+        echo "
+
+            <script>
+                window.location = '/Dashboard';
+            </script>
+
+        ";
+
     }
 
 ?>
@@ -155,7 +166,7 @@
 
 <div id="paybalanceModal" class="modal">
     <div class="modal-content">
-        <form method="POST" action="/Dashboard/Customer/ViewAccount/MakePayment/?account_number=<?php echo $accountnumber; ?>">
+        <form method="POST" action="/Dashboard/Customer/ViewAccount/MakePayment/?account_number=<?php echo $accountNumber; ?>">
             <h6 style="font-size:16px; font-weight:800; padding:0; margin:0;">Pay account balance?</h6>
             <div style="font-size:14px; padding-top:30px; padding-bottom:30px;">
                 <div class="form-control">

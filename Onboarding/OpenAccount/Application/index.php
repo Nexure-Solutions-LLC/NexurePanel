@@ -4,6 +4,8 @@
 
 ?>
 
+<title><?php echo $VariableDefinitionHandler->organizationShortName; ?> Unified Panel | Onboarding Account Selection</title>
+
 <section class="section nexure-open-online-access-and-account">
     <div class="container nexure-container">
         <div style="display:flex; align-items:top;">

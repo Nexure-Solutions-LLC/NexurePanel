@@ -1,9 +1,5 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
     // Import Files
 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
@@ -42,6 +38,13 @@ error_reporting(E_ALL);
     $VariableDefinitionHandler->GatherUserAccounts($con, $nexureid);
     $VariableDefinitionHandler->GatherOnlineAccessInformation($con, $nexureid);
     $VariableDefinitionHandler->GatherPanelConfiguration($con);
+    $VariableDefinitionHandler->loadRiskScore($con, $nexureid);
+
+    use NexureSolutions\Modules\NexureModules;
+
+    $NexureModuleHandler = new NexureModules();
+    $NexureModuleHandler->retrieveModules($con);
+
 
     $account = !empty($VariableDefinitionHandler->userAccounts) ? $VariableDefinitionHandler->userAccounts[0] : null;
 

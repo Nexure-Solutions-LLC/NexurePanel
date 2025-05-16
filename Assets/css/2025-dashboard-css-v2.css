@@ -39,6 +39,14 @@ body {
     text-transform: uppercase;
 }
 
+.profile-link {
+    color: #000;
+}
+
+.profile-link:hover {
+    color: #000;
+}
+
 .informationIcon {
     height:30px;
     width:30px;
@@ -131,6 +139,24 @@ body {
     background-color: #ffffff !important;
     padding-top:0px !important;
     padding-bottom:0px !important;
+}
+
+.search-container {
+    padding:0 !important;
+    margin:0 !important;
+}
+
+.searchbar {
+    margin:0 !important;
+    background-color: #fff !important;
+    border: 1px solid #ddd !important;
+    padding:8px 24px !important;
+    border-radius: 999px !important;
+}
+
+.searchbar:hover,
+.searchbar:focus {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px !important;
 }
 
 .background-darker-300 {
@@ -294,6 +320,86 @@ body {
     color: #000;
 }
 
+/* ====================== Nexure Risk Score Styles ===================== */
+
+.score-header h2 {
+    font-size: 16px;
+    color: #333;
+}
+
+.score-value {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+}
+
+.score-label {
+    padding: 4px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    width:unset;
+    margin-left:10px;
+}
+
+.score-label.green {
+    background: #CEFFB9;
+    color: #204510;
+    border: 1px solid #6ED741;
+}
+
+.score-label.yellow {
+    background: #FDFFBE;
+    color: #585A1A;
+    border: 1px solid #D5D94A;
+}
+
+.score-label.orange {
+    background: #f8e9d7;
+    color: #975920;
+    border: 1px solid #c88023;
+}
+
+.score-label.red {
+    background: #FFE1E1;
+    color: #AD3434;
+    border: 1px solid #FF9090;
+}
+
+.score-bar {
+    position: relative;
+    height: 8px;
+    background: linear-gradient(to right, #f44336 0%, #ff9800 33%, #ffeb3b 66%, #4caf50 100%);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.score-indicator {
+    position: absolute;
+    top: -12px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid black;
+    z-index: 3;
+}
+
+.score-range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.score-delta {
+    align-self: flex-end;
+    font-size: 13px;
+    font-weight: 500;
+    color: #999;
+}
+
 /* ====================== Dark Mode Styles ===================== */
 
 body.dark-mode {
@@ -370,4 +476,107 @@ body.dark-mode {
 
 .dark-mode .quick-actions-link:hover {
     color: #fff;
+}
+
+.dark-mode .profile-link {
+    color: #dbdbdb;
+}
+
+.dark-mode .profile-link:hover {
+    color: #dbdbdb;
+}
+
+.dark-mode .score-indicator {
+    position: absolute;
+    top: -12px;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid #dbdbdb;
+    z-index: 3;
+}
+
+.dark-mode .searchbar {
+    background-color: #222 !important;
+    border: 1px solid #444 !important;
+}
+
+.dark-mode .searchbar:hover,
+.dark-mode .searchbar:focus {
+    border: 1px solid #8fc8f7 !important;
+}
+
+/* ====================== Mobile Styles ===================== */
+
+@media (max-width:1000px) {
+
+    .section.dashboard {
+        margin-top:10px !important;
+        margin-bottom:40px !important;
+    }
+
+    .nexure-grid,
+    .nexure-two-grid,
+    .nexure-four-grid,
+    .nexure-five-grid,
+    .nexure-six-grid,
+    .nexure-seven-grid{
+        grid-template-columns: 1fr !important;
+        row-gap: 20px !important;
+    }
+
+    .nexure-three-grid {
+        grid-template-columns: 1fr 1fr !important;
+        row-gap: 20px !important;
+    }
+
+    .greeting-mobile {
+        margin-bottom: 10px !important;
+        background-color: #c5edff;
+        padding:30px;
+        border-radius: 10px;
+        text-align: center;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .nexure-table-plugin tbody tr,
+    .nexure-table-plugin tbody tr td,
+    .nexure-table-plugin tr  {
+        margin-bottom: 30px !important;
+        padding: 0px !important;
+        font-size: 14px !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-bottom: 0 !important;
+    }
+
+    .nexure-table-plugin tbody tr {
+        background-color: #fff !important;
+        padding-left: 20px !important;
+        padding-top:20px !important;
+        padding-bottom: 20px !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .nexure-table-plugin {
+        width:95% !important;
+    }
+
+    .nexure-table-container {
+        margin-top: -10px !important
+    }
+
+    .border-top-grey-300 {
+        margin-top: 0px;
+    }
+
+    .search-container {
+        display: none !important;
+    }
 }

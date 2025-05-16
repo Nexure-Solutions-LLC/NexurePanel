@@ -4,6 +4,18 @@
 
 ?>
 
+<title><?php echo $VariableDefinitionHandler->organizationShortName; ?> Unified Panel | Onboarding</title>
+
+<style>
+    .nexure-card:hover {
+        border:1px solid #ddd !important;
+    }
+
+    .dark-mode .nexure-card:hover {
+        border:1px solid #333 !important;
+    }
+</style>
+
 <section class="section nexure-open-online-access-and-account">
     <div class="container nexure-container">
         <div style="display:flex; align-items:top;">
