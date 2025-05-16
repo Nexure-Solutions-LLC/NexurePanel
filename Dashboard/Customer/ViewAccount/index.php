@@ -38,7 +38,11 @@
                             <p class="margin-bottom-10px">Overview / Account: <?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</p>
                         </div>
                         <div>
-                            <a href="javascript:void(0)" onclick="openPaymentModal()" class="nexure-button secondary">Pay Balance</a>
+                            <?php if (strtolower($account['accountType']) != "service account" || strtolower($account['accountType']) != "credit card" || strtolower($account['accountType']) != "line of credit"): ?>
+                            
+                            <?php else: ?>
+                                <a href="javascript:void(0)" onclick="openPaymentModal()" class="nexure-button secondary">Pay Balance</a>
+                            <?php endif; ?>
                         </div>
                     </div>    
                 </div>
@@ -72,18 +76,31 @@
                                 </h3>
                                 <p class="font-12px">Credit Limit</p>
                             </div>
-                            <div>
-                                <h3 class="font-18px" style="font-weight:300;">
-                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : htmlspecialchars($account['dueDate']) ?>
+                            <?php if (strtolower($account['accountType']) != "service account" || strtolower($account['accountType']) != "credit card" || strtolower($account['accountType']) != "line of credit"): ?>
+                                <div>
+                                    <h3 class="font-18px" style="font-weight:300;">
+                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . $account['balance'] ?>
                                 </h3>
-                                <p class="font-12px">Due Date</p>
-                            </div>
-                            <div class="margin-top-30px">
-                                <h3 class="font-18px" style="font-weight:300;">
-                                    <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . number_format($account['minimumPayment'], 2) ?>
-                                </h3>
-                                <p class="font-12px">Minimum Amount Due</p>
-                            </div>
+                                <p class="font-12px">Present Balance</p>
+                                </div>
+                            <?php else: ?>
+                                <div>
+                                    <h3 class="font-18px" style="font-weight:300;">
+                                        <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : htmlspecialchars($account['dueDate']) ?>
+                                    </h3>
+                                    <p class="font-12px">Due Date</p>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (strtolower($account['accountType']) != "service account" || strtolower($account['accountType']) != "credit card" || strtolower($account['accountType']) != "line of credit"): ?>
+                                <!-- No Content Here -->
+                            <?php else: ?>
+                                <div class="margin-top-30px">
+                                    <h3 class="font-18px" style="font-weight:300;">
+                                        <?= strtolower($account['accountStatus']) === 'restricted' ? '— —' : '$' . number_format($account['minimumPayment'], 2) ?>
+                                    </h3>
+                                    <p class="font-12px">Minimum Amount Due</p>
+                                </div>
+                            <?php endif; ?>
                             <div class="margin-top-30px">
                                 <span class="account-status-badge <?= strtolower($account['accountStatus']) === 'open' ? 'green' : 'red' ?>">
                                     <?= htmlspecialchars($account['accountStatus']) ?>
@@ -112,17 +129,21 @@
             </div>
             <div class="nexure-card margin-top-20px">
                 <div class="card-header">
-                    <p class="margin-bottom-20px">Services</p>
+                    <?php if (strtolower($account['accountType']) != "service account"): ?>
+                        <p class="margin-bottom-20px">Transactions</p>
+                    <?php else: ?>
+                        <p class="margin-bottom-20px">Services</p>
+                    <?php endif; ?>
                 </div>
                 <div class="card-body">
                     <div class="nexure-table-container">
                         <table class="nexure-table-plugin nexure-table-domains">
                             <thead>
                                 <tr>
-                                    <th>Service Name</th>
+                                    <th><?php if (strtolower($account['accountType']) != "service account"): ?>Transaction<?php else: ?>Service<?php endif; ?> Name</th>
                                     <th>Amount</th>
-                                    <th>Order Date</th>
-                                    <th>Render Date</th>
+                                    <th><?php if (strtolower($account['accountType']) != "service account"): ?>Posted<?php else: ?>Order<?php endif; ?> Date</th>
+                                    <?php if (strtolower($account['accountType']) != "service account"): ?><?php else: ?><th>Render Date</th><?php endif; ?>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -134,8 +155,8 @@
                                             <td class="width-30"><?= htmlspecialchars($service['serviceName']) ?></td>
                                             <td class="width-20">$<?= number_format($service['amount'], 2) ?></td>
                                             <td class="width-20"><?= date('F j Y', strtotime($service['orderDate'])) ?></td>
-                                            <td class="width-20"><?= date('F j Y', strtotime($service['renderDate'])) ?></td>
-                                            <td class="width-20"><span class="account-status-badge <?= strtolower($service['status']) === 'active' ? 'green' : 'red' ?>"><?= htmlspecialchars($service['status']) ?></span></td>
+                                            <?php if (strtolower($account['accountType']) != "service account"): ?><?php else: ?><td class="width-20"><?= date('F j Y', strtotime($service['renderDate'])) ?></td><?php endif; ?>
+                                            <td class="width-20"><span class="account-status-badge <?= in_array(strtolower($service['status']), ['active', 'posted']) ? 'green' : 'red' ?>"><?= htmlspecialchars($service['status']) ?></span></td>
                                             <td class="width-40"><a href="" class="nexure-button primary">View</a><a href="" class="nexure-button secondary">Invoice</a></td>
                                         </tr>
                                     <?php endforeach; ?>

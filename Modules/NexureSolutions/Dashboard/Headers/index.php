@@ -108,10 +108,10 @@
                             <p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Dashboard</p>
                             <li class="nav-links"><a href="/">Dashboard</a></li>
                             <li class="nav-links"><a href="/Onboarding">Open an account</a></li>
-                            <li class="nav-links"><a href="/">Billing</a></li>
-                            <li class="nav-links"><a href="/">Support Center</a></li>
-                            <li class="nav-links"><a href="/">Access and Security</a></li>
-                            <li class="nav-links"><a href="/">Service Information</a></li>
+                            <li class="nav-links"><a href="/Dashboard/Customer/Billing">Billing</a></li>
+                            <li class="nav-links"><a href="/Dashboard/Customer/SupportCenter">Support Center</a></li>
+                            <li class="nav-links"><a href="/Dashboard/Customer/SecurityCenter">Access & Security</a></li>
+                            <li class="nav-links"><a href="/Dashboard/Customer/ServiceInformation">Service Information</a></li>
                             <li class="nav-links"><a href="/Logout">Sign Off</a></li>
                         </nav>
                         <div class="systemLoads display-flex align-center">
