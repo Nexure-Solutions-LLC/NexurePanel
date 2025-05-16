@@ -80,19 +80,25 @@
                                     <img src="<?php echo $VariableDefinitionHandler->organizationWideLogoDark; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo dark-mode">
                                 </a>
                             </div>
-                            <div class="nexure-navbar-menu" id="nexure-navbar-js"></div>
+                        </div>
+                        <div class="search-container width-50">
+                            <form method="POST" action="" class="no-margin no-padding">
+                                <input class="nexure-textbox searchbar" name="nexuresearch" id="nexuresearch" placeholder="Search all of <?php echo $VariableDefinitionHandler->organizationShortName; ?>" />
+                            </form>
                         </div>
                         <div class="display-flex align-center">
-                            <a href="/Dashboard/Settings/Account"> 
-                                <img src="/Assets/img/ProfileImages/Default.png" class="image-fluid profile-image" />
+                            <a href="/Dashboard/Settings/Account" class="profile-link display-flex align-center">
+                                <?php if ($VariableDefinitionHandler->profileImage != "" || $VariableDefinitionHandler->profileImage != NULL): ?> 
+                                    <img src="<?php echo $VariableDefinitionHandler->profileImage; ?>" class="image-fluid profile-image" />
+                                <?php else: ?>
+                                    <img src="/Assets/img/ProfileImages/Default.png" class="image-fluid profile-image" />
+                                <?php endif; ?>
+                                <span class="secondary-font font-14px margin-left-10px"><?php echo $VariableDefinitionHandler->displayName; ?></span>
                             </a>
                             <span class="toggle-container">
                                 <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
                                 <span class="lnr lnr-moon"  class="toggle-input" id="darkModeIcon"></span>
                             </span>
-                            <button style="background-color:transparent; border:none; outline:0;" href="javascript:void(0);" class="nexure-menu-icon" aria-label="Mobile Menu" onclick="responsiveMenu()">
-                                <img src="https://nexuresolutions.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -123,6 +129,9 @@
 
                                 } ?>
                             </p>
+                            <button style="background-color:transparent; border:none; outline:0;" href="javascript:void(0);" class="nexure-menu-icon" aria-label="Mobile Menu" onclick="responsiveMenu()">
+                                <img src="https://nexuresolutions.com/assets/img/systemicons/menu.svg" loading="lazy" width="24" alt="" class="menu-icon">
+                            </button>
                         </div>
                     </div>
                 </div>

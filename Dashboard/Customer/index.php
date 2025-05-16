@@ -13,6 +13,10 @@
         $lastFour = "----";
     }
 
+    $riskScore = $VariableDefinitionHandler->NexureRiskScore10;
+
+    $category = RiskScoreCategory::fromScore($riskScore);
+
 ?>
 
     <title><?php echo $VariableDefinitionHandler->organizationShortName; ?> Unified Panel | <?php echo $PageTitle; ?></title>
@@ -22,7 +26,7 @@
         <div class="container nexure-container">
             <div class="nexure-grid nexure-one-grid no-row-gap">
                 <div>
-                    <h4 class="text-bold font-24px no-padding margin-top-10px margin-bottom-50px"><span id="greetingMessage"></span>, <?php echo $VariableDefinitionHandler->displayName; ?></h4>
+                    <h4 class="text-bold font-24px no-padding margin-top-10px margin-bottom-50px greeting-mobile"><span id="greetingMessage"></span>, <?php echo $VariableDefinitionHandler->displayName; ?></h4>
                 </div>
             </div>
             <div class="nexure-grid nexure-two-grid no-row-gap offset-grid">
@@ -99,20 +103,24 @@
                         <div class="nexure-card">
                             <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
                             <div class="nexure-grid nexure-three-grid margin-top-30px gap-row-spacing-30 margin-bottom-10px">
-                                <div>
-                                    <a href="/Dashboard/Customer/QuickActions/SpeedTest/" class="quick-actions-link">
-                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/page-speed.png" />
-                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
-                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_RUN_SPEEDTEST_SUBTEXT; ?></p>
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="/Modules/NexureSolutions/Hosting/ManageHosting/Backups" class="quick-actions-link">
-                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/synchronize.png" />
-                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_BACKUPS_TILE; ?></p>
-                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_BACKUPS_SUBTEXT; ?></p>
-                                    </a>
-                                </div>
+                                <?php if ($NexureModuleHandler->isModuleEnabled(82)): ?>
+                                    <div>
+                                        <a href="/Dashboard/Customer/QuickActions/SpeedTest/" class="quick-actions-link">
+                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/page-speed.png" />
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_RUN_SPEEDTEST_SUBTEXT; ?></p>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($NexureModuleHandler->isModuleEnabled(82)): ?>
+                                    <div>
+                                        <a href="/Modules/NexureSolutions/Hosting/ManageHosting/Backups" class="quick-actions-link">
+                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/synchronize.png" />
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_BACKUPS_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_BACKUPS_SUBTEXT; ?></p>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
                                 <div>
                                     <a href="/Dashboard/Customer/QuickActions/Logs/" class="quick-actions-link">
                                         <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/log-file.png" />
@@ -120,13 +128,15 @@
                                         <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
                                     </a>
                                 </div>
-                                <div>
-                                    <a href="/Modules/NexureSolutions/Development/CodeIntegrity" class="quick-actions-link">
-                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/integrity.png" />
-                                        <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_CODE_INTEGRITY_TILE; ?></p>
-                                        <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Nexure <?php echo $LANG_CODE_INTEGRITY_SUBTEXT; ?></p>
-                                    </a>
-                                </div>
+                                <?php if ($NexureModuleHandler->isModuleEnabled(82)): ?>
+                                    <div>
+                                        <a href="/Modules/NexureSolutions/Development/CodeIntegrity" class="quick-actions-link">
+                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/integrity.png" />
+                                            <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_CODE_INTEGRITY_TILE; ?></p>
+                                            <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;">Nexure <?php echo $LANG_CODE_INTEGRITY_SUBTEXT; ?></p>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
                                 <div>
                                     <a href="/Dashboard/Customer/QuickActions/Monitoring/" class="quick-actions-link">
                                         <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/monitoring.png" />
@@ -150,6 +160,25 @@
                             </div>
                         </div>
                     <?php endif; ?>
+                    <?php if ($NexureModuleHandler->isModuleEnabled(75) && $VariableDefinitionHandler->riskScoreMonitoring == 'True'): ?>
+                        <div class="nexure-card margin-top-20px">
+                            <p><strong><?php echo $VariableDefinitionHandler->organizationShortName; ?> Risk Score 1.0®</strong></p>
+                            <div class="score-container">
+                                <div class="score-value display-flex align-center padding-bottom-20px"><?php echo isset($riskScore) ? (string)$riskScore : '——'; ?> <?php echo '<div class="score-label ' . $category->colorClass() . '">' . $category->label() . '</div>'; ?></div>
+                                <div class="score-bar">
+                                    <div class="score-indicator" id="score-indicator"></div>
+                                </div>
+                                <div class="score-range">
+                                    <span>0</span>
+                                    <span>299</span>
+                                    <span>499</span>
+                                    <span>699</span>
+                                    <span>849</span>
+                                    <span>999</span>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="nexure-card margin-top-20px">
                         <p><strong>Plan for your next business</strong></p>
                         <p class="margin-top-10px">You have no pre-approved account offers.</p>
@@ -158,6 +187,10 @@
             </div>
         </div>
     </section>
+
+    <script>
+        window.nexureRiskScore = <?php echo isset($riskScore) ? (int)$riskScore : 0; ?>;
+    </script>
 
 <?php
 
