@@ -74,10 +74,10 @@
                     <h5 class="font-18px">Need help?</h5>
                     <p class="font-14px margin-top-10px">If you need help with your application, call us at <?php echo $VariableDefinitionHandler->organizationSupportInfo; ?></p>
                 </div>
-                <div class="centered-content">
+                <div class="margin-left-80px">
                     <h4 class="font-20px">Business Information</h4>
-                    <p class="font-14px margin-top-20px width-60 centered-content">We collect information about your business for compliance and vetting reasons. Please enter the following information to continue opening your account.</p>
-                    <form action="" method="POST" class="width-80 centered-content">
+                    <p class="font-14px margin-top-20px width-60">We collect information about your business for compliance and vetting reasons. Please enter the following information to continue opening your account.</p>
+                    <form action="" method="POST" class="width-80">
                         <div class="nexure-grid nexure-one-grid no-row-gap margin-top-60px">
                             <div class="form-control"  style="text-align:left; align-items:start;">
                                 <label for="businessLegalName">Legal Business Name</label>

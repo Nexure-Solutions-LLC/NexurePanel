@@ -156,8 +156,6 @@
 
     global $con, $CurrentOnlineAccessAccount, $PageTitle, $PageSubtitle;
 
-    $accountNumber = $CurrentOnlineAccessAccount->accountNumber ?? null;
-
     $CurrentOnlineAccessAccountRole = $CurrentOnlineAccessAccount->role->name ?? null;
 
     $adminModules = getActiveModulesByFunction($con, 'Administration');

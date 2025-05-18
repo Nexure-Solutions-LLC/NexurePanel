@@ -23,9 +23,9 @@
                 <h5 class="font-18px">Need help?</h5>
                 <p class="font-14px margin-top-10px">If you need help with your application, call us at <?php echo $VariableDefinitionHandler->organizationSupportInfo; ?></p>
             </div>
-            <div class="centered-content">
+            <div class="margin-left-80px">
                 <h5 class="font-20px">Let's open your <?php echo $VariableDefinitionHandler->organizationShortName; ?> account</h5>
-                <div class="nexure-card margin-top-30px centered-content width-70" style="text-align:left; align-items:start;">
+                <div class="nexure-card margin-top-30px width-70" style="text-align:left; align-items:start;">
                     <div class="card-body">
                         <p><strong>Before you start, you should know:</strong></p>
                         <div>
@@ -56,9 +56,9 @@
                         <p class="font-14px">Have a different business type? Call <?php echo $VariableDefinitionHandler->organizationShortName; ?> at <?php echo $VariableDefinitionHandler->organizationSupportInfo; ?> and we'll help you out.</p>
                     </div>
                 </div>
-                <div class="margin-top-50px">
+                <div class="margin-top-50px display-flex align-center justify-content-space-between width-75">
+                    <p class="font-14px width-50">We're required by law to ask for names, addresses, taxpayer ID numbers and other information to help us identify you, the business and its beneficial owners.</p>
                     <a href="/Onboarding/OpenAccount/Application/" class="nexure-button primary" style="padding:10px 24px !important;">Get started</a>
-                    <p class="font-14px margin-top-40px centered-content width-60">We're required by law to ask for names, addresses, taxpayer ID numbers and other information to help us identify you, the business and its beneficial owners.</p>
                 </div>
             </div>
         </div>

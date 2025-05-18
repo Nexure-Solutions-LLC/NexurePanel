@@ -4,25 +4,17 @@
 
     $accountNumber = $_GET['account_number'] ?? null;
 
+    if ($accountNumber == "" || $accountNumber == NULL) {
+
+        header("Location: /Dashboard");
+        
+    }
+
     include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Headers/index.php");
 
-    if (isset($accountNumber)) {
-
-        $CurrentOnlineAccessAccount->GatherSingleAccountDetails($con, $accountNumber);
+    $CurrentOnlineAccessAccount->GatherSingleAccountDetails($con, $accountNumber);
         
-        $account = $CurrentOnlineAccessAccount->selectedAccountDetails;
-
-    } else {
-        
-        echo "
-
-            <script>
-                window.location = '/Dashboard';
-            </script>
-
-        ";
-
-    }
+    $account = $CurrentOnlineAccessAccount->selectedAccountDetails;
 
 ?>
 
@@ -38,8 +30,11 @@
                             <p class="margin-bottom-10px">Overview / Account: <?= htmlspecialchars($account['accountDisplayName']) ?> (... <?= substr($account['accountNumber'], -4) ?>)</p>
                         </div>
                         <div>
-                            <?php if (strtolower($account['accountType']) != "service account" || strtolower($account['accountType']) != "credit card" || strtolower($account['accountType']) != "line of credit"): ?>
-                            
+                            <?php if (
+                                strtolower($account['accountType']) != "service account" &&
+                                strtolower($account['accountType']) != "credit card" &&
+                                strtolower($account['accountType']) != "line of credit"
+                            ): ?> 
                             <?php else: ?>
                                 <a href="javascript:void(0)" onclick="openPaymentModal()" class="nexure-button secondary">Pay Balance</a>
                             <?php endif; ?>
