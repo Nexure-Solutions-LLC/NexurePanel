@@ -99,12 +99,12 @@
                         </div>
                         <div class="display-flex align-center">
                             <a href="/Dashboard/Settings/Account" class="profile-link display-flex align-center">
-                                <?php if ($VariableDefinitionHandler->profileImage != "" || $VariableDefinitionHandler->profileImage != NULL): ?> 
-                                    <img src="<?php echo $VariableDefinitionHandler->profileImage; ?>" class="image-fluid profile-image" />
+                                <?php if ($CurrentOnlineAccessAccount->profileImage != "" || $CurrentOnlineAccessAccount->profileImage != NULL): ?> 
+                                    <img src="<?php echo $CurrentOnlineAccessAccount->profileImage; ?>" class="image-fluid profile-image" />
                                 <?php else: ?>
                                     <img src="/Assets/img/ProfileImages/Default.png" class="image-fluid profile-image" />
                                 <?php endif; ?>
-                                <span class="secondary-font font-14px margin-left-10px"><?php echo $VariableDefinitionHandler->displayName; ?></span>
+                                <span class="secondary-font font-14px margin-left-10px"><?php echo $CurrentOnlineAccessAccount->displayName; ?></span>
                             </a>
                             <span class="toggle-container">
                                 <span class="lnr lnr-sun" class="toggle-input" id="lightModeIcon"></span>
@@ -115,16 +115,7 @@
                 </div>
                 <div class="border-top-grey-300">
                     <div class="container display-flex align-center justify-content-space-between">
-                        <nav class="nexure-navbar-menu display-flex align-center" id="nexure-navbar-js">
-                            <p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Dashboard</p>
-                            <li class="nav-links"><a href="/">Dashboard</a></li>
-                            <li class="nav-links"><a href="/Onboarding">Open an account</a></li>
-                            <li class="nav-links"><a href="/Dashboard/Customer/Billing">Billing</a></li>
-                            <li class="nav-links"><a href="/Dashboard/Customer/SupportCenter">Support Center</a></li>
-                            <li class="nav-links"><a href="/Dashboard/Customer/SecurityCenter">Access & Security</a></li>
-                            <li class="nav-links"><a href="/Dashboard/Customer/ServiceInformation">Service Information</a></li>
-                            <li class="nav-links"><a href="/Logout">Sign Off</a></li>
-                        </nav>
+                        <?php include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Menus/Header/index.php"); ?>
                         <div class="systemLoads display-flex align-center">
                             <p class="font-14px">
                                 <?php if ($PageTitle == "Admin Center") {

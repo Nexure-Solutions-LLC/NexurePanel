@@ -34,19 +34,17 @@
     // Middleware Calls
 
     $VariableDefinitionHandler = new \NexureSolutions\Generic\VariableDefinitions();
-    $VariableDefinitionHandler->GatherOnlineAccessInformation($con, $nexureid);
-    $VariableDefinitionHandler->GatherUserAccounts($con, $nexureid);
-    $VariableDefinitionHandler->GatherOnlineAccessInformation($con, $nexureid);
     $VariableDefinitionHandler->GatherPanelConfiguration($con);
-    $VariableDefinitionHandler->loadRiskScore($con, $nexureid);
 
-    use NexureSolutions\Modules\NexureModules;
-
-    $NexureModuleHandler = new NexureModules();
+    $NexureModuleHandler = new \NexureSolutions\Modules\NexureModules;
     $NexureModuleHandler->retrieveModules($con);
 
+    $CurrentOnlineAccessAccount =  new \NexureSolutions\Accounts\AccountHandler($con);
+    $CurrentOnlineAccessAccount->GatherOnlineAccessInformation($con, $nexureid);
+    $CurrentOnlineAccessAccount->GatherUserAccounts($con, $nexureid);
+    $CurrentOnlineAccessAccount->loadRiskScore($con, $nexureid);
 
-    $account = !empty($VariableDefinitionHandler->userAccounts) ? $VariableDefinitionHandler->userAccounts[0] : null;
+    $account = !empty($CurrentOnlineAccessAccount->userAccounts) ? $CurrentOnlineAccessAccount->userAccounts[0] : null;
 
     // Mobile Detection
 

@@ -6,14 +6,20 @@
 
     
     if ($account) {
+
         $accountName = strtoupper($account['headerName']);
+
         $lastFour = substr($account['accountNumber'], -4);
+
     } else {
+
         $accountName = "NO ACCOUNT";
+
+
         $lastFour = "----";
     }
 
-    $riskScore = $VariableDefinitionHandler->NexureRiskScore10;
+    $riskScore = $CurrentOnlineAccessAccount->NexureRiskScore10;
 
     $category = RiskScoreCategory::fromScore($riskScore);
 
@@ -26,13 +32,13 @@
         <div class="container nexure-container">
             <div class="nexure-grid nexure-one-grid no-row-gap">
                 <div>
-                    <h4 class="text-bold font-24px no-padding margin-top-10px margin-bottom-50px greeting-mobile"><span id="greetingMessage"></span>, <?php echo $VariableDefinitionHandler->displayName; ?></h4>
+                    <h4 class="text-bold font-24px no-padding margin-top-10px margin-bottom-50px greeting-mobile"><span id="greetingMessage"></span>, <?php echo $CurrentOnlineAccessAccount->displayName; ?></h4>
                 </div>
             </div>
             <div class="nexure-grid nexure-two-grid no-row-gap offset-grid">
                 <?php if ($account): ?>
                     <?php
-                        $mostRecentAccount = $VariableDefinitionHandler->userAccounts[0] ?? null;
+                        $mostRecentAccount = $CurrentOnlineAccessAccount->userAccounts[0] ?? null;
                         $headerName = $mostRecentAccount['headerName'] ?? $VariableDefinitionHandler->organizationShortName.' ACCOUNT';
                     ?>
                     <div class="nexure-card">
@@ -61,7 +67,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($VariableDefinitionHandler->userAccounts as $account): ?>
+                                    <?php foreach ($CurrentOnlineAccessAccount->userAccounts as $account): ?>
                                         <?php if (strtolower($account['accountStatus']) === 'closed') continue; ?>
                                         <?php if (strtolower($account['accountStatus']) === 'rejected') continue; ?>
                                         <tr>
@@ -164,7 +170,7 @@
                             </div>
                         </div>
                     <?php endif; ?>
-                    <?php if ($NexureModuleHandler->isModuleEnabled(75) && $VariableDefinitionHandler->riskScoreMonitoring == 'True'): ?>
+                    <?php if ($NexureModuleHandler->isModuleEnabled(75) && $CurrentOnlineAccessAccount->riskScoreMonitoring == 'True'): ?>
                         <div class="nexure-card margin-top-20px">
                             <p class="primary-font"><strong><?php echo $VariableDefinitionHandler->organizationShortName; ?> Risk Score 1.0®</strong></p>
                             <div class="score-container">
