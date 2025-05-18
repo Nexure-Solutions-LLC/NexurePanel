@@ -581,6 +581,8 @@
 
                 $accountDetails = $accountResult->fetch_assoc();
 
+                
+
                 $accountStmt->close();
 
                 if (!$accountDetails) {
@@ -778,67 +780,6 @@
 
         // Error Logging and Redirection
 
-        function errorHandler($errno, $errstr, $errfile, $errline) {
-
-            $log_timestamp = date("d-m-Y_H-i-sa");
-
-            $errorMessage = "Error: [$errno] $errstr in $errfile on line $errline\n";
-        
-            $errorLogDir = $_SERVER["DOCUMENT_ROOT"] . "/ErrorHandling/Logs/";
-
-            $errorLogFile = $errorLogDir . "$log_timestamp.log";
-        
-
-            if (!is_dir($errorLogDir)) {
-
-                mkdir($errorLogDir, 0775, true);
-
-            }
-        
-            error_log($errorMessage, 3, $errorLogFile);
-
-            if (session_status() === PHP_SESSION_ACTIVE) {
-
-                $_SESSION['error_log_file'] = $errorLogFile;
-
-            }
-
-            while (ob_get_level()) {
-
-                ob_end_clean();
-
-            }
-        
-            if (headers_sent()) {
-
-                echo '<meta http-equiv="refresh" content="0;url=/ErrorHandling/ErrorPages/GenericError">';
-
-            } else {
-
-                header("Location: /ErrorHandling/ErrorPages/GenericError");
-
-            }
-        
-            exit;
-        }
-        
-        set_error_handler("errorHandler");
-        
-        register_shutdown_function(function() {
-
-            $error = error_get_last();
-
-            if ($error !== null && in_array($error['type'], [
-
-                E_ERROR, E_PARSE, E_CORE_ERROR, E_CORE_WARNING, E_COMPILE_ERROR, E_COMPILE_WARNING
-
-            ])) {
-
-                errorHandler($error['type'], $error['message'], $error['file'], $error['line']);
-
-            }
-
-        });
 
         // IP Address Checking and Banning
 

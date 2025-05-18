@@ -37,11 +37,11 @@
                     <h5 class="font-18px">Need help?</h5>
                     <p class="font-14px margin-top-10px">If you need help with your application, call us at <?php echo $VariableDefinitionHandler->organizationSupportInfo; ?></p>
                 </div>
-                <div class="centered-content">
+                <div class="margin-left-80px">
                     <h5 class="font-20px">Tell us your business structure and type</h5>
-                    <p class="font-14px margin-top-20px width-60 centered-content">You can find what structure and type your business is by looking at your formation document or by visiting the Secretary of State's website where your business is registered.</p>
+                    <p class="font-14px margin-top-20px width-60">You can find what structure and type your business is by looking at your formation document or by visiting the Secretary of State's website where your business is registered.</p>
                     <form action="" method="POST">
-                        <div class="nexure-grid nexure-two-grid centered-content width-80 margin-top-60px gap-row-spacing-30">
+                        <div class="nexure-grid nexure-two-grid width-80 margin-top-60px gap-row-spacing-30">
                             <div class="form-control" style="text-align:left; align-items:start;">
                                 <label for="">Legal business structure</label>
                                 <select class="nexure-textbox" name="businessLegalStructure">
@@ -64,7 +64,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="width-90">
+                        <div class="width-80">
                             <div class="button-area" style="text-align:right; align-items:end;">
                                 <button class="nexure-button primary float-right" style="padding:10px 50px !important;" type="submit" name="submit">Next</button>
                             </div>
