@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="margin-left-20px">
                                     <p><strong>Personal Account</strong></p>
-                                    <p>Personal accounts are best for individuals who are not a business that need service for their project or portfolio. This is for non-commercial use.</p>
+                                    <p class="margin-top-10px">Personal accounts are best for individuals who are not a business that need service for their project or portfolio. This is for non-commercial use.</p>
                                 </div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="margin-left-20px">
                                     <p><strong>Business Account</strong></p>
-                                    <p>Business accounts are best for corporations, partnerships, or LLCs who are in need service for their business operations. This is for commercial use.</p>
+                                    <p class="margin-top-10px">Business accounts are best for corporations, partnerships, or LLCs who are in need service for their business operations. This is for commercial use.</p>
                                 </div>
                             </div>
                         </div>

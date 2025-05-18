@@ -46,6 +46,20 @@ $LANG_CODE_INTEGRITY_SUBTEXT = "Code Integrity allows you to protect your websit
 $LANG_MONITORING_TILE = "Monitoring";
 $LANG_MONITORING_SUBTEXT = "Have us monitor your account for any suspicious activity.";
 $LANG_OPENNEWACCOUNT_TILE = "Open an account";
-$LANG_OPENNEWACCOUNT_SUBTEXT = "Open a new account to get started with using Nexure.";
+$LANG_OPENNEWACCOUNT_SUBTEXT = "Open a new account to get started with using ".$VariableDefinitionHandler->organizationShortName.".";
+
+// ====================== START ERROR HANDLING LANGUAGE AREA ==========================
+
+$LANG_GENERICERROR_TITLE = "We have encountered an unexpected error.";
+$LANG_GENERICERROR_SUBTEXT = "The ".$VariableDefinitionHandler->organizationShortName." CRM System has encountered an unrecoverable error. We understand generic errors are not helpful we have logged the error output below for your system administrator.";
+$LANG_SUSPENDEDONLINEACCESS_TITLE = "We have suspended your account for suspicious activity.";
+$LANG_SUSPENDEDONLINEACCESS_SUBTEXT = "Your account at ".$VariableDefinitionHandler->organizationShortName." has been suspended. Please contact ".$VariableDefinitionHandler->organizationShortName." in order to resolve this issue. Your services have been suspended and cannot be accessed.";
+$LANG_SUSPENDEDONLINEACCESS_CONTACTINFO_SUBTEXT = "To resolve this issue, please call the number for your type of account. <br><br>For ".$VariableDefinitionHandler->organizationShortName." Retail Customers, call ".$VariableDefinitionHandler->organizationShortName." option 1. For ".$VariableDefinitionHandler->organizationShortName." Business Customers, call ".$VariableDefinitionHandler->organizationSupportInfo." option 2.";
+$LANG_TERMINATEDONLINEACCESS_TITLE = "We have terminated your account.";
+$LANG_TERMINATEDDONLINEACCESS_SUBTEXT = "You may no longer use the platform. Your accounts at ".$VariableDefinitionHandler->organizationShortName." have been terminated. We can't provide any additional information regarding this. This decision is final and can't be overturned.";
+$LANG_UNDERREVIEWACCOUNT_TITLE = "Uh-Oh! We need more time to review your information to open your account.";
+$LANG_UNDERREVIEWACCOUNT_SUBTEXT = "Your account application is under review. Our underwriters need more time to open this account. We will reach out via email with the results of the application. We thank you for your interest in ".$VariableDefinitionHandler->organizationShortName.".";
+$LANG_MOBILEEXPERIANCE_TITLE = "Oh! You tried to access the system from your mobile device.";
+$LANG_MOBILEEXPERIANCE_SUBTEXT = "For the best experience please use a laptop or desktop computer, If you wish to continue on your mobile device download our app.";
 
 ?>

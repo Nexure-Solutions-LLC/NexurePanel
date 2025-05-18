@@ -22,6 +22,7 @@
             <link href="https://nexuresolutions.com/assets/css/2024-11-04-styling.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" href="https://nexuresolutions.com/assets/css/2024-11-08-fonts.css">
             <link rel="stylesheet" href="/Assets/css/2025-dashboard-css-v2.css" />
+            
             <?php 
             
                 if ($VariableDefinitionHandler->panelTheme != "NexureDefault") {
@@ -31,6 +32,7 @@
                 }
 
             ?>
+
             <link rel="apple-touch-icon" sizes="180x180" href="https://nexuresolutions.com/assets/img/favicon/apple-touch-icon.png">
             <link rel="icon" type="image/png" sizes="32x32" href="https://nexuresolutions.com/assets/img/favicon/favicon-32x32.png">
             <link rel="icon" type="image/png" sizes="16x16" href="https://nexuresolutions.com/assets/img/favicon/favicon-16x16.png">

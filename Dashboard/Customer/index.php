@@ -36,7 +36,7 @@
                         $headerName = $mostRecentAccount['headerName'] ?? $VariableDefinitionHandler->organizationShortName.' ACCOUNT';
                     ?>
                     <div class="nexure-card">
-                        <p class="margin-bottom-20px"><strong><?php echo $VariableDefinitionHandler->organizationShortName; ?> accounts</strong></p>
+                        <p class="margin-bottom-20px primary-font"><strong><?php echo $VariableDefinitionHandler->organizationShortName; ?> accounts</strong></p>
 
                         <div class="background-grey-100 margin-bottom-10px">
                             <p class="font-12px text-uppercase text-bold"><?= htmlspecialchars($headerName) ?></p>
@@ -105,7 +105,7 @@
                 <div>
                     <?php if ($account): ?>
                         <div class="nexure-card">
-                            <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
+                            <p class="no-padding primary-font"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
                             <div class="nexure-grid nexure-three-grid margin-top-30px gap-row-spacing-30 margin-bottom-10px">
                                 <?php if ($NexureModuleHandler->isModuleEnabled(82)): ?>
                                     <div>
@@ -152,7 +152,7 @@
                         </div>
                     <?php else: ?>
                         <div class="nexure-card">
-                            <p class="no-padding"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
+                            <p class="no-padding primary-font"><strong><?php echo $LANG_QUICKACTIONS_TITLE; ?></strong></p>
                             <div class="nexure-grid nexure-three-grid margin-top-30px gap-row-spacing-30 margin-bottom-10px">
                                 <div>
                                     <a href="/Onboarding/" class="quick-actions-link">
@@ -166,7 +166,7 @@
                     <?php endif; ?>
                     <?php if ($NexureModuleHandler->isModuleEnabled(75) && $VariableDefinitionHandler->riskScoreMonitoring == 'True'): ?>
                         <div class="nexure-card margin-top-20px">
-                            <p><strong><?php echo $VariableDefinitionHandler->organizationShortName; ?> Risk Score 1.0®</strong></p>
+                            <p class="primary-font"><strong><?php echo $VariableDefinitionHandler->organizationShortName; ?> Risk Score 1.0®</strong></p>
                             <div class="score-container">
                                 <div class="score-value display-flex align-center padding-bottom-20px"><?php echo isset($riskScore) ? (string)$riskScore : '——'; ?> <?php echo '<div class="score-label ' . $category->colorClass() . '">' . $category->label() . '</div>'; ?></div>
                                 <div class="score-bar">
@@ -184,8 +184,8 @@
                         </div>
                     <?php endif; ?>
                     <div class="nexure-card margin-top-20px">
-                        <p><strong>Plan for your next business</strong></p>
-                        <p class="margin-top-10px">You have no pre-approved account offers.</p>
+                        <p class="primary-font"><strong>Plan for your next business</strong></p>
+                        <p class="margin-top-20px">You have no pre-approved account offers.</p>
                     </div>
                 </div>
             </div>

@@ -413,3 +413,35 @@ body.dark-mode {
 .dark-mode .onboarding-card-link:hover {
     color:#dbdbdb;
 }
+
+.dark-mode .license-text-dark {
+    color: #dbdbdb !important;
+}
+
+@media (min-width: 1299px) and (max-width: 1800px) {
+    .nexure-login-content {
+        width:25%;
+    }
+}
+
+@media (max-width: 1298px) {
+    .nexure-login-content {
+        width:50%;
+    }
+}
+
+@media (min-width: 1000px) and (max-width: 1297px) {
+    .nexure-login-content {
+        width:30%;
+    }
+}
+
+@media (max-width: 999px) {
+    .nexure-login-content {
+        width:80%;
+    }
+
+    .nexure-login-section {
+        margin-top:20%;
+    }
+}
