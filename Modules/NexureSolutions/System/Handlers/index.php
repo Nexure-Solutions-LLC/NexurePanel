@@ -8,42 +8,12 @@
     // Variable Definitions
 
     namespace NexureSolutions\Generic {
-
-        use DateTime;
+        
         use Exception;
         use Sentry;
 
-        use NexureSolutions\Utility;
-
         class VariableDefinitions
         {
-            public $nexureid;
-            public $displayName;
-            public $profileImage;
-            public $OnlineAccessInformation;
-            public $accessType;
-            public $onlineAccessStatus;
-            public $firstinteractiondateformattedfinal;
-            public $lastinteractiondateformattedfinal;
-            public $emailverifydate;
-            public $emailverifydateformatted;
-            public $emailverifydateformattedfinal;
-            public $emailverifystatus;
-            public $paymentID;
-            public $userAccounts = [];
-            public $riskScoreMonitoring;
-
-            public $accountNumber;
-            public $accountType;
-            public $accountDisplayName;
-            public $headerName;
-            public $creditLimit;
-            public $balance;
-            public $minimumPayment;
-            public $dueDate;
-            public $accountStatus;
-            public $accountServices = [];
-            public $selectedAccountDetails;
 
             public $PanelConfigurationInformation;
             public $organizationLegalName;
@@ -70,8 +40,6 @@
             public $enableFeeDisclosurePage;
             public $feeDisclosureLink;
             public $panelTheme;
-
-            public $NexureRiskScore10;
 
             private function fetchSingleRow(\mysqli $con, string $query, array $params = []): ?array
             {
@@ -168,6 +136,185 @@
                 
                 $this->panelTheme = $this->PanelConfigurationInformation['panelTheme'] ?? null;
 
+            }
+
+        }
+
+    }
+
+    // Nexure Modules Component
+
+    namespace NexureSolutions\Modules {
+
+        class NexureModules
+        {
+
+            public $allModules = [];
+
+            public $activeModules = [];
+
+            public $inactiveModules = [];
+
+            public function retrieveModules($con)
+            {
+
+                $query = mysqli_query($con, "SELECT * FROM nexure_modules ORDER BY moduleName ASC");
+
+                while ($module = mysqli_fetch_assoc($query)) {
+
+                    $this->allModules[] = $module;
+
+                    if (strtolower($module['moduleStatus']) === 'active') {
+
+                        $this->activeModules[] = $module;
+
+                    } else {
+
+                        $this->inactiveModules[] = $module;
+                    }
+
+                }
+
+            }
+
+            public function isModuleEnabled($code)
+            {
+
+                foreach ($this->activeModules as $module) {
+
+                    if ((int)$module['moduleCode'] === (int)$code) {
+
+                        return true;
+
+                    }
+
+                }
+
+                return false;
+
+            }
+
+            public function getModuleByCode($code)
+            {
+
+                foreach ($this->allModules as $module) {
+
+                    if ((int)$module['moduleCode'] === (int)$code) {
+                        
+                        return $module;
+
+                    }
+
+                }
+
+                return null;
+
+            }
+
+        }
+
+    }
+
+    // Nexure Calendar Component
+
+    namespace NexureSolutions\Calendar {
+
+        class CalendarComponents
+        {
+
+            public $eventsresponse;
+
+            public $accountnumber;
+
+            public function eventsRetrive($con, $accountnumber) {
+
+                $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM nexure_events WHERE accountNumber = '$accountnumber' ORDER BY eventTimeDate DESC");
+
+            }
+
+        }
+
+    }
+
+    // Nexure Account System Component
+
+    namespace NexureSolutions\Accounts {
+
+        use DateTime;
+        use Exception;
+        use Sentry;
+
+        class AccountHandler
+        {
+
+            public $nexureid;
+            public $displayName;
+            public $profileImage;
+            public $OnlineAccessInformation;
+            public $accessType;
+            public $onlineAccessStatus;
+            public $firstinteractiondateformattedfinal;
+            public $lastinteractiondateformattedfinal;
+            public $emailverifydate;
+            public $emailverifydateformatted;
+            public $emailverifydateformattedfinal;
+            public $emailverifystatus;
+            public $paymentID;
+            public $userAccounts = [];
+            public $riskScoreMonitoring;
+
+            public $accountNumber;
+            public $accountType;
+            public $accountDisplayName;
+            public $headerName;
+            public $creditLimit;
+            public $balance;
+            public $minimumPayment;
+            public $dueDate;
+            public $accountStatus;
+            public $accountServices = [];
+            public $selectedAccountDetails;
+
+            public $NexureRiskScore10;
+
+            private function fetchSingleRow(\mysqli $con, string $query, array $params = []): ?array
+            {
+
+                $stmt = $con->prepare($query);
+
+                if (!$stmt) {
+
+                    Sentry\captureException(new Exception("Prepare failed: " . $con->error));
+
+                    throw new Exception("Prepare failed: " . $con->error);
+
+                }
+
+                if (!empty($params)) {
+
+                    $types = str_repeat('s', count($params));
+
+                    $stmt->bind_param($types, ...$params);
+
+                }
+
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+
+                if (!$result) {
+
+                    Sentry\captureException(new Exception("Query failed: " . $stmt->error));
+
+                    throw new Exception("Query failed: " . $stmt->error);
+
+                }
+
+                $row = $result->fetch_assoc();
+
+                $stmt->close();
+
+                return $row ?: null;
             }
 
             public function GatherOnlineAccessInformation(\mysqli $con, string $nexureid): void
@@ -603,97 +750,11 @@
 
             }
 
-        }
+            function fromUserRole(string $requestedUserRole): ?string {
 
-    }
+                $roleEnum = \userRole::fromString($requestedUserRole);
 
-    // Nexure Modules Component
-
-    namespace NexureSolutions\Modules {
-
-        class NexureModules
-        {
-
-            public $allModules = [];
-
-            public $activeModules = [];
-
-            public $inactiveModules = [];
-
-            public function retrieveModules($con)
-            {
-
-                $query = mysqli_query($con, "SELECT * FROM nexure_modules ORDER BY moduleName ASC");
-
-                while ($module = mysqli_fetch_assoc($query)) {
-
-                    $this->allModules[] = $module;
-
-                    if (strtolower($module['moduleStatus']) === 'active') {
-
-                        $this->activeModules[] = $module;
-
-                    } else {
-
-                        $this->inactiveModules[] = $module;
-                    }
-
-                }
-
-            }
-
-            public function isModuleEnabled($code)
-            {
-
-                foreach ($this->activeModules as $module) {
-
-                    if ((int)$module['moduleCode'] === (int)$code) {
-
-                        return true;
-
-                    }
-
-                }
-
-                return false;
-
-            }
-
-            public function getModuleByCode($code)
-            {
-
-                foreach ($this->allModules as $module) {
-
-                    if ((int)$module['moduleCode'] === (int)$code) {
-                        
-                        return $module;
-
-                    }
-
-                }
-
-                return null;
-
-            }
-
-        }
-
-    }
-
-    // Nexure Calendar Component
-
-    namespace NexureSolutions\Calendar {
-
-        class CalendarComponents
-        {
-
-            public $eventsresponse;
-
-            public $accountnumber;
-
-            public function eventsRetrive($con, $accountnumber) {
-
-                $this->eventsresponse = mysqli_query($con, "SELECT eventName, eventDescription, eventTimeDate FROM nexure_events WHERE accountNumber = '$accountnumber' ORDER BY eventTimeDate DESC");
+                return $roleEnum?->name ?? null;
 
             }
 
