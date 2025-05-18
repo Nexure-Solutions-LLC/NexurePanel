@@ -142,8 +142,8 @@
                                 <tr>
                                     <th><?php if (strtolower($account['accountType']) != "service account"): ?>Transaction<?php else: ?>Service<?php endif; ?> Name</th>
                                     <th>Amount</th>
-                                    <th><?php if (strtolower($account['accountType']) != "service account"): ?>Posted<?php else: ?>Order<?php endif; ?> Date</th>
-                                    <?php if (strtolower($account['accountType']) != "service account"): ?><?php else: ?><th>Render Date</th><?php endif; ?>
+                                    <th><?php if (strtolower($account['accountType']) != "service account"): ?>Posted<?php else: ?>Ordered<?php endif; ?></th>
+                                    <?php if (strtolower($account['accountType']) != "service account"): ?><?php else: ?><th>Rendered</th><?php endif; ?>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
