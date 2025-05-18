@@ -1,6 +1,7 @@
 <?php
 
     $PageTitle = "Customer Dashboard";
+    $PageSubtitle = "";
 
     include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Headers/index.php");
 

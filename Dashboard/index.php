@@ -2,11 +2,11 @@
     
     include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Backend/index.php");
 
-    $VariableDefinitionsG = new \NexureSolutions\Generic\VariableDefinitions();
+    $CurrentOnlineAccessAccount =  new \NexureSolutions\Accounts\AccountHandler($con);
 
-    $VariableDefinitionsG->GatherOnlineAccessInformation($con, $nexureid);
+    $CurrentOnlineAccessAccount->GatherOnlineAccessInformation($con, $nexureid);
 
-    $upperAccessType = $VariableDefinitionsG->accessType;
+    $upperAccessType = $CurrentOnlineAccessAccount->accessType;
 
     $lowerAccessType = strtolower($upperAccessType);
 

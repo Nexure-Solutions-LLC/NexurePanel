@@ -8,9 +8,9 @@
 
     if (isset($accountNumber)) {
 
-        $VariableDefinitionHandler->GatherSingleAccountDetails($con, $accountNumber);
+        $CurrentOnlineAccessAccount->GatherSingleAccountDetails($con, $accountNumber);
         
-        $account = $VariableDefinitionHandler->selectedAccountDetails;
+        $account = $CurrentOnlineAccessAccount->selectedAccountDetails;
 
     } else {
         
