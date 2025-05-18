@@ -237,6 +237,7 @@ body {
     padding-right: 10px !important;
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+    font-size:12px !important;
 }
 
 .nexure-table-plugin td {
@@ -245,8 +246,10 @@ body {
 }
 
 .nexure-table-plugin th {
+    border-top:1px solid #ddd;
     border-bottom: 1px solid #ddd;
     background-color: #e7e7e7;
+    font-weight: 600 !important;
 }
 
 /* =================== Nexure Dashboard Modals =================== */
@@ -424,7 +427,8 @@ body.dark-mode {
 
 .dark-mode .nexure-table-plugin th {
     background-color: #333;
-    border-bottom: 1px solid #2b2a2a;
+    border-bottom: 1px solid #444;
+    border-top:1px solid #444;
 }
 
 .dark-mode .nexure-table-plugin {
