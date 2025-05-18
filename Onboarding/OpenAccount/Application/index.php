@@ -13,10 +13,10 @@
                 <h5 class="font-18px">Need help?</h5>
                 <p class="font-14px margin-top-10px">If you need help with your application, call us at <?php echo $VariableDefinitionHandler->organizationSupportInfo; ?></p>
             </div>
-            <div class="centered-content">
+            <div class="margin-left-80px">
                 <h5 class="font-20px">Tell us the kind of account your opening</h5>
                 <p class="font-14px margin-top-20px"><?php echo $VariableDefinitionHandler->organizationShortName; ?> offers two accounts personal and business. Choose the account that best fits your need.</p>
-                <div class="width-60 centered-content margin-top-60px">
+                <div class="width-60 margin-top-60px">
                     <a href="/Onboarding/OpenAccount/Application/Personal" class="onboarding-card-link">
                         <div class="nexure-card margin-top-40px" style="text-align:left; align-items:start;">
                             <div class="display-flex align-center">
