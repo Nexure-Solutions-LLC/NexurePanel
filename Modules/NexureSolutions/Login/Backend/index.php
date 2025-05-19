@@ -49,6 +49,9 @@
     $VariableDefinitionHandler = new \NexureSolutions\Generic\VariableDefinitions();
     $VariableDefinitionHandler->GatherPanelConfiguration($con);
 
+    $NexureModuleHandler = new \NexureSolutions\Modules\NexureModules;
+    $NexureModuleHandler->retrieveModules($con);
+
     if (isset($_POST['langPreference'])) {
 
         $_SESSION["lang"] = $_POST['langPreference'];
