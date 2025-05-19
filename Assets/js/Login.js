@@ -20,16 +20,19 @@ document.getElementById('lblGreetings').innerHTML = greet;
 function startCountdown(seconds, redirectUrl) {
 
     var countdownElement = document.getElementById('countdown');
+    
     var remainingSeconds = seconds;
     
     var countdownInterval = setInterval(function() {
 
         countdownElement.innerHTML = remainingSeconds;
+
         remainingSeconds--;
         
         if (remainingSeconds < 0) {
 
             clearInterval(countdownInterval);
+
             window.location.href = redirectUrl;
 
         }
@@ -37,6 +40,46 @@ function startCountdown(seconds, redirectUrl) {
     }, 1000);
 
 }
+
+// ============ Identity Verification Javascript Code =============
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const verifyBtn = document.getElementById('verifyBtn');
+
+    if (verifyBtn) {
+
+        verifyBtn.addEventListener('click', async () => {
+
+            try {
+
+                const res = await fetch('/Modules/NexureSolutions/Identity/index.php');
+
+                const data = await res.json();
+
+                if (data.url) {
+
+                    window.location.href = data.url;
+
+                } else {
+
+                    alert('Failed to start verification. Please try again.');
+
+                }
+
+            } catch (err) {
+
+                console.error('Verification error:', err);
+
+                alert('An error occurred. Please try again.');
+
+            }
+
+        });
+
+    }
+
+});
 
 // ============ Redirect Javascript Code =============
 

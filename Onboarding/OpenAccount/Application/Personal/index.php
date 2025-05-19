@@ -14,9 +14,9 @@
 
     if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['submit'])) {
 
-        $businessLegalName = htmlspecialchars($_POST['businessLegalName']);
+        $legalName = htmlspecialchars($_POST['legalName']);
 
-        $businessDBAName = htmlspecialchars($_POST['businessDBAName']);
+        $mobileNumber = htmlspecialchars($_POST['mobileNumber']);
 
         $line1 = htmlspecialchars($_POST['addressLine1']);
 
@@ -30,29 +30,43 @@
 
         $country = htmlspecialchars($_POST['country']);
 
-        $tin = encryptTIN($_POST['businessTIN'], $encryption_key, $encryption_iv);
+        $tin = encryptTIN($_POST['tin'], $encryption_key, $encryption_iv);
 
-        $_SESSION['nexureApplication']['businessLegalName'] = $businessLegalName;
+        $_SESSION['nexureApplication']['personalLegalName'] = $legalName;
 
-        $_SESSION['nexureApplication']['businessDBAName'] = $businessDBAName;
+        $_SESSION['nexureApplication']['personalMobileNumber'] = $mobileNumber;
 
-        $_SESSION['nexureApplication']['businessLine1'] = $line1;
+        $_SESSION['nexureApplication']['personalLine1'] = $line1;
+         
+        $_SESSION['nexureApplication']['personalLine2'] = $line2;
 
-        $_SESSION['nexureApplication']['businessLine2'] = $line2;
+        $_SESSION['nexureApplication']['personalCity'] = $city;
 
-        $_SESSION['nexureApplication']['businessCity'] = $city;
+        $_SESSION['nexureApplication']['personalState'] = $state;
 
-        $_SESSION['nexureApplication']['businessState'] = $state;
+        $_SESSION['nexureApplication']['personalPostalCode'] = $postal;
 
-        $_SESSION['nexureApplication']['businessPostalCode'] = $postal;
+        $_SESSION['nexureApplication']['personalCountry'] = $country;
 
-        $_SESSION['nexureApplication']['businessCountry'] = $country;
+        $_SESSION['nexureApplication']['personalTIN'] = $tin;
 
-        $_SESSION['nexureApplication']['businessTIN'] = $tin;
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Modules/NexureSolutions/System/Handlers/index.php");
 
-        header("Location: /Onboarding/OpenAccount/Application/Business/IndustryInformation");
+        $NexureModuleHandler = new \NexureSolutions\Modules\NexureModules;
+        $NexureModuleHandler->retrieveModules($con);
+
+        if ($NexureModuleHandler->isModuleEnabled(65)) {
+
+            header("Location: /Onboarding/OpenAccount/Application/Personal/IdentityVerification");
+
+        } else {
+
+            header("Location: /Onboarding/OpenAccount/Application/Personal/FeeDisclosures");
+
+        }
 
         exit;
+
     }
 
     include($_SERVER["DOCUMENT_ROOT"] . "/Modules/NexureSolutions/Login/Headers/index.php");
@@ -80,8 +94,8 @@
                     <form action="" method="POST" class="width-80">
                         <div class="nexure-grid nexure-one-grid no-row-gap margin-top-60px">
                             <div class="form-control"  style="text-align:left; align-items:start;">
-                                <label for="businessLegalName">Legal Name</label>
-                                <input type="text" name="businessLegalName" class="nexure-textbox" required>
+                                <label for="legalName">Legal Name</label>
+                                <input type="text" name="legalName" class="nexure-textbox" required>
                             </div>
                             <div class="form-control"  style="text-align:left; align-items:start;">
                                 <label for="mobileNumber">Mobile Number</label>
@@ -313,7 +327,7 @@
                         </div>
                         <div class="nexure-grid nexure-one-grid gap-row-spacing-30">
                             <div class="form-control" style="text-align:left; align-items:start;">
-                                <label for="businessTIN">EIN or SSN</label>
+                                <label for="tin">EIN or SSN</label>
                                 <input type="text" name="businessTIN" class="nexure-textbox" required>
                             </div>
                         </div>
