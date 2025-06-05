@@ -1,38 +1,34 @@
 import discord
 from discord.ext import commands
-from utils.constants import guild_counters, reminder_counters, prefixes
-import os
-from dotenv import load_dotenv
+import asyncmy
 
+from utils.constants import NexureConstants
 
-async def get_next_case_id(guild_id):
+async def initialise_connection():
+    SQL_CON = NexureConstants().sql_con()
 
-    guild_case_number = await guild_counters.find_one_and_update(
-        {"_id": str(guild_id)}, {"$inc": {"seq": 1}}, upsert=True, return_document=True
+    pool = await asyncmy.create_pool(
+        host=SQL_CON['HOST'],
+        port=SQL_CON['PORT'],
+        user=SQL_CON['USER'],
+        password=SQL_CON['PASSWORD'],
+        db=SQL_CON['DATABASE'],
+        minsize=1,
+        maxsize=10,
+        autocommit=True
     )
+    return pool
 
-    return guild_case_number["seq"]
+async def reload_auth(db) -> list:
+    users = []
+    async with db.acquire() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(f'SELECT oAuthID FROM {NexureConstants().sql_users()} WHERE botAuth = %s', True)
+            result = await cur.fetchall()
+        await cur.close()
+        users = [int(uid[0]) for uid in result]
 
-
-async def get_next_reminder_id(guild_id):
-
-    guild_reminder_number = await reminder_counters.find_one_and_update(
-        {"_id": str(guild_id)}, {"$inc": {"seq": 1}}, upsert=True, return_document=True
-    )
-
-    return guild_reminder_number["seq"]
-
-
-async def get_prefix(nexure, message):
-    guild_data = await prefixes.find_one({"guild_id": str(message.guild.id)})
-
-    if guild_data:
-        prefix = guild_data.get("prefix")
-    else:
-        load_dotenv()
-        prefix = str(os.getenv("PREFIX"))
-
-    return commands.when_mentioned_or(prefix)(nexure, message)
+    return users
 
 
 class NexureContext(commands.Context):
@@ -40,38 +36,9 @@ class NexureContext(commands.Context):
     def nexure(self):
         return self.bot
 
-    async def send_success(self, message: str):
-        embed = discord.Embed(
-            title="",
-            description=f"{self.nexure.success} {message}",
-            color=self.nexure.base_color,
-        )
-        return await super().send(embed=embed, reference=self.message)
+    @property
+    def user(self):
+        return self.author
 
-    async def send_error(self, message: str):
-        embed = discord.Embed(
-            title="",
-            description=f"{self.nexure.error} {message}",
-            color=self.nexure.base_color,
-        )
-        return await super().send(embed=embed, reference=self.message)
 
-    async def send_loading(self, message: str):
-        embed = discord.Embed(
-            title="", description=f"{self.nexure.loading} {message}", color=0x2A2C31
-        )
-        return await super().send(embed=embed, reference=self.message)
-
-    async def send_warning(self, message: str):
-        embed = discord.Embed(
-            title="",
-            description=f"{self.nexure.warning} {message}",
-            color=self.nexure.base_color,
-        )
-        return await super().send(embed=embed, reference=self.message)
-
-    async def send_normal(self, message: str):
-        embed = discord.Embed(
-            title="", description=f"{message}", color=self.nexure.base_color
-        )
-        return await super().send(embed=embed)
+# Love, bread.

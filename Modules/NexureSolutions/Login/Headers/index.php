@@ -4,6 +4,39 @@
 
 ?>
 
+<!-- 
+        
+         _   __                             _____       __      __  _                 
+        / | / /__  _  ____  __________     / ___/____  / /_  __/ /_(_)___  ____  _____
+       /  |/ / _ \| |/_/ / / / ___/ _ \    \__ \/ __ \/ / / / / __/ / __ \/ __ \/ ___/
+      / /|  /  __/>  </ /_/ / /  /  __/   ___/ / /_/ / / /_/ / /_/ / /_/ / / / (__  ) 
+     /_/ |_/\___/_/|_|\__,_/_/   \___/   /____/\____/_/\__,_/\__/_/\____/_/ /_/____/  
+                                                                                 
+
+    This site was created by Nexure Solutions LLP. http://www.nexuresolutions.com
+    Last Published: May 28 2025 at 11:415:03 PM (Eastern Time)
+
+    Creator/Developer: Nexure Development Team
+
+    Images and content used on this website may come from third-party sources. Credits go
+    to the respective owners of that content.
+
+    Contact Information:
+        Phone: +1-855-537-3591
+        Email: support@nexuresolutions.com
+
+    Note from Developer: 
+
+    Whatever.
+
+    Designed and Developed by Nexure in Pennsylvania.
+
+    Dear rule breakers, questioners, straight-A students who skipped class: We want you.
+    https://nexuresolutions.com/careers.
+    
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

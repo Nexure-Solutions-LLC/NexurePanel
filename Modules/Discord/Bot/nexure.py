@@ -1,228 +1,159 @@
 # ==========================================================================================================
 # This software was created by Nexure Solutions LLP.
-# This software was ported from Strive Systems for use within the Nexure CRM Environment.
-# This software was provided to Nexure under a license by the developers of Strive.
-# This software was created by Nick Derry, Joy Clens, AlexySSH. This will include different features
-# than Strive for features and discord management functions within the CRM system. 
+# This software was created by Alfie Chadd.
 # ==========================================================================================================
 
 import discord
-import os
-import requests
-import asyncio
-import sentry_sdk
-from datetime import datetime
 from discord.ext import commands
-from utils.constants import NexureConstants, afks, prefixes
-from utils.utils import get_prefix, NexureContext
-from cogwatch import watch
+from datetime import datetime
+import asyncio 
+import os
+import sys
+import sentry_sdk
+from cogwatch import watch 
 
-# We use constants.py to specify things like the mysql db connection, prefix
-# and default embed color.
-
-constants = NexureConstants()
-
+from utils.constants import NexureConstants, logger
+from utils.utils import NexureContext, initialise_connection, reload_auth
 
 class Nexure(commands.AutoShardedBot):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.token = None
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.start_time = datetime.now()
-        self.beta_guilds = [1175890904230408223]  # Nexure Solutions LLP Discord Server
-
-        self.error = "<:nexurefail:1338900416972193902>"
-        self.success = "<:nexuresuccess:1338900384932036618>"
-        self.loading = "<a:loading:1338811352692817920>"
-        self.warning = "<:nexureWarning:1338900771823030373>"
-        self.base_color = 0x66D8FF
         self.context = NexureContext
+        self.db = None
 
     async def get_context(self, message, *, cls=NexureContext):
         return await super().get_context(message, cls=cls)
-
-    @watch(path="cogs", preload=False)
-    async def on_ready(self):
-        nexure.prefixes = {}
-
-        guilds = prefixes.find()
-        async for guild in guilds:
-            nexure.prefixes[guild.get("guild_id")] = guild.get("prefix")
-
-        nexure.afk_users = []
-
-        all_afks = afks.find({})
-        async for afk in all_afks:
-            afk_doc = {"user_id": afk.get("user_id"), "guild_id": afk.get("guild_id")}
-            nexure.afk_users.append(afk_doc)
-
-        if constants.nexure_environment_type() == "Development":
-            for guild in nexure.guilds:
-
-                id = guild.id
-                owner = guild.get_member(guild.owner_id)
-                is_dev_guild = id in self.beta_guilds
-                channel = nexure.get_guild(self.beta_guilds[0]).get_channel(
-                    1338806026094247968
-                )
-
-                # Check if owner is None
-
-                if owner is None:
-                    owner_info = "Owner not found"
-                else:
-                    owner_info = f"{owner}({owner.id})"
-
-                embed = discord.Embed(
-                    title="Beta bot added to a guild",
-                    description=f"**NAME:** `{guild.name}`\n**ID:** `{id}`\n**OWNER:** `{owner_info}`\n**IS_DEV_GUILD:** `{is_dev_guild}`",
-                )
-
-                if not is_dev_guild:
-                    await guild.leave()
-                    await channel.send(embed=embed)
-
-        else:
-
-            guild_count = len(nexure.guilds)
-            user_count = sum(
-                guild.member_count or 0 for guild in nexure.guilds
-            )  # Default to 0 if None
-
-            await nexure.change_presence(
-                activity=discord.Activity(
-                    name=f"{guild_count} Guilds • {user_count:,} Users • /help",
-                    type=discord.ActivityType.watching,
-                )
-            )
-
-        print(
-            f"{nexure.user.name} is ready!"
-        )  # with {guild_count} guilds and {user_count:,} users.
-
-    # Use bypassed users from the constants class instead of hardcoding them
-    # The constants.py file will get the IDs from MongoDb allowing bot owners
-    # to remove and add users.
-
-    async def is_owner(self, user: discord.User):
-        await constants.fetch_bypassed_users()
-        return user.id in constants.bypassed_users
-
-    # Sets up the cogs for nexure. This will cycle thru the cogs folder and
-    # load each file with the .py file extenstion.
+    
 
     async def setup_hook(self) -> None:
-        for root, _, files in os.walk("./cogs"):
-            for file in files:
-                if file.endswith(".py"):
-                    cog_path = os.path.relpath(os.path.join(root, file), "./cogs")
-                    cog_module = cog_path.replace(os.sep, ".")[:-3]
+        cog_count = 0
+        found_files = False
+        for root, dirs, files in os.walk('./cogs'):
+            dirs[:] = [d for d in dirs if d != '__pycache__']
+            
+            cog_files = [f for f in files if f.endswith('.py')]
+            if cog_files:
+                found_files = True
+                for filename in cog_files:
+                    relative_path = os.path.relpath(root, './cogs').replace(os.sep, '.')
+                    cog_name = f"cogs{('.' + relative_path) if relative_path != '.' else ''}.{filename[:-3]}"
+                    try:
+                        await self.load_extension(cog_name) 
+                        logger.info(f"Loaded cog: {cog_name}")
+                        cog_count += 1
+                    except Exception as e:
+                        logger.error(f"Failed to load cog: {cog_name}. Error: {e}")
 
-                    await nexure.load_extension(f"cogs.{cog_module}")
+        if not found_files:
+            logger.critical('Unable to locate any cog files. Stopping bot.')
+            sys.exit('RESOURCE NOT FOUND.')
 
-        print("All cogs loaded successfully!")
+        logger.info(f"Loaded {cog_count} cogs")
 
-    async def refresh_blacklist_periodically(self):
-        while True:
-            await self.constants.refresh_blacklists()
-            await asyncio.sleep(3600)
+    @watch(path='cogs', preload=False)
+    async def on_ready(self):
+        await self.tree.sync()
+
+        await self.change_presence(
+            activity=discord.Activity(
+                name=f"nexuresolutions.com",
+                type=discord.ActivityType.watching,
+            )
+        )
+
+        try:
+            self.db = await initialise_connection()
+            async with self.db.acquire() as conn:
+                async with conn.cursor() as cur:
+                    await cur.execute("SELECT 1")
+                    result = await cur.fetchone()
+                    logger.info(f'Connected to server. Returned: {result}')
+
+        except Exception as e:
+            logger.critical(f'Failed to connect to database, error thrown: {e}')
+            sys.exit('RESOURCE NOT AVAILABLE')
+
+        except Exception as e:
+            logger.critical(f'Failed to connect to database, error thrown: {e}')
+            sys.exit('RESOURCE NOT AVAILABLE')
+
+        logger.info(f"Bot is ready: {self.user}")
 
 
-# Sets the bot's intents. This uses the members intent, default intents, and message_content
-# intent. We will call intents later inorder to start Nexure.
+    async def is_owner(self, user: discord.User):
+        auth_list = await reload_auth(self.db)
+        return user.id in auth_list
+
+NexureConstants = NexureConstants()
 
 intents = discord.Intents.default()
 intents.message_content = True
 intents.members = True
 
-
-# Intializes nexure Bot and loads the prefix, intents, and other important things for discord.
-
 nexure = Nexure(
-    command_prefix=get_prefix,
+    command_prefix='!',
     intents=intents,
     chunk_guilds_at_startup=False,
     help_command=None,
-    allowed_mentions=discord.AllowedMentions(
+    allowed_mentioms=discord.AllowedMentions(
         replied_user=True, everyone=True, roles=True
     ),
-    cls=NexureContext,
+    cls=NexureContext
 )
 
-
-# Before invoking any command, check blacklist.
-
-
 @nexure.before_invoke
-async def before_invoke(ctx):
-
-    # Skip check if the user is in the bypass list
-
-    if ctx.author.id in constants.bypassed_users:
+async def before_invoke(ctx: NexureContext):
+    auth_list = await reload_auth(ctx.bot.db)
+    NexureConstants.Auth_list = auth_list
+    if ctx.author.id in NexureConstants.Auth_list:
         return
 
-    # Run the blacklist check
+    if ctx.guild == None:
+        raise commands.NoPrivateMessage('You may not use this command here.')
 
-    await global_blacklist_check(ctx)
+    await blacklist_check(ctx)
 
+async def blacklist_check(ctx):
+    user = ctx.author.id
+    async with ctx.bot.db.acquire() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(f'SELECT * FROM {NexureConstants.sql_blacklists()} WHERE type = %s AND associatedID = %s', ('user',  user))
+            result = await cur.fetchone()
+        await cur.close()
+            
+    if result != None:
+        embed = discord.Embed(title='Blacklist notice', description='You are unable to use this command, you are blacklisted form **all** Nexure assets. If you would like to appeal, please [contact us](https://nexuresolutions.com/) and we will be more then happy to assist you.', colour=NexureConstants.colour())
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png')
+        embed.set_footer(text=f'User ID: {user}')
+        await ctx.user.send(embed=embed)
+        raise commands.CheckFailure("You are blacklisted from Nexure assets.")
+    
+    guild = ctx.guild.id
+    async with ctx.bot.db.acquire() as conn:
+        async with conn.cursor() as cur:
+            await cur.execute(f'SELECT * FROM {NexureConstants.sql_blacklists()} WHERE type = %s AND associatedID = %s', ('guild',  guild))
+            result = await cur.fetchone()
+        await cur.close()
 
-async def global_blacklist_check(ctx):
+    if result != None:
+        embed = discord.Embed(title='Blacklist notice', description='Nexure assets are not operational within this guild, it is blacklisted form **all** Nexure assets. If you would like to appeal, please [contact us](https://nexuresolutions.com/) and we will be more then happy to assist you.', colour=NexureConstants.colour())
+        embed.set_thumbnail(url='https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png')
+        embed.set_footer(text=f'Guild ID: {guild}')
+        await ctx.send(embed=embed)
+        raise commands.CheckFailure("This guild is blacklisted from Nexure assets.")
 
-    # Fetch blacklist if not already fetched or periodically
+    return
 
-    await constants.fetch_blacklisted_users()
-    await constants.fetch_blacklisted_guilds()
-
-    # Check if the user is blacklisted
-
-    if ctx.author.id in constants.blacklists and ctx.command.name != "unblacklist":
-
-        em = discord.Embed(
-            title="",
-            description=f"{nexure.warning} **Blacklisted User** \n\n> You are blacklisted from Nexure, you can either file a dispute by calling `+1 (855)-537-3591` or emailing `disputes@nexuresolutions.com` or wait 10 years for it to be de-listed.",
-            color=constants.nexure_embed_color_setup(),
+async def run():
+    if NexureConstants.environment() == 'PRODUCTION':
+        sentry_sdk.init(
+            dsn = NexureConstants.sentry_dsn(),
+            traces_sample_rate=1.0,
+            profiles_sample_rate=1.0
         )
 
-        await ctx.send(embed=em)
+    async with nexure:
+        await nexure.start(NexureConstants.token())
 
-        raise commands.CheckFailure("You are blacklisted from using Nexure.")
-
-    # Check if the guild is blacklisted
-
-    if ctx.guild and ctx.guild.id in constants.blacklists and ctx.command.name != "unblacklist":
-        
-        em = discord.Embed(
-            title="",
-            description=f"{nexure.warning} **Blacklisted Guild** \n\n> This server is blacklisted from Nexure , you can either file a dispute by calling `+1 (855)-537-3591` or emailing `disputes@nexuresolutions.com` or wait 10 years for it to be de-listed.",
-            color=constants.nexure_embed_color_setup(),
-        )
-        
-        await ctx.send(embed=em)
-        
-        raise commands.CheckFailure("This guild is blacklisted from using Nexure.")
-
-    # Prevent the command from being run in DMs
-
-    if ctx.guild is None:
-        raise commands.NoPrivateMessage(
-            "This command cannot be used in private messages."
-        )
-
-    return True
-
-
-def run():
-
-    # Sets up sentry for advanced error reporting.
-    # This software uses the Nexure Sentry account.
-
-    sentry_sdk.init(
-        dsn=constants.sentry_dsn_setup(),
-        traces_sample_rate=1.0,
-        profiles_sample_rate=1.0,
-    )
-
-    nexure.run(constants.nexure_token_setup())
-
-
-if __name__ == "__main__":
-    run()
+# Love, bread.

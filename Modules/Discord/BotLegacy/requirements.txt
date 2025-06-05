@@ -1,0 +1,13 @@
+discord
+motor
+zuid
+sentry_sdk
+python-dotenv
+jishaku
+DiscordUtils
+requests
+shortuuid
+cogwatch==3.3.1
+six
+pytz
+aiohttp

@@ -55,7 +55,7 @@ class BotConfigModal(Modal):
             upsert=True,
         )
 
-        response_message = f"<:nexuresuccess:1338900384932036618> Bot prefix set to `{prefix}` and theme color set to `{theme_color}`."
+        response_message = f"<:NexureSuccess:1370202310113886339> Bot prefix set to `{prefix}` and theme color set to `{theme_color}`."
         setup_cog = self.bot.get_cog("SetupCog")
         if setup_cog.setup_message_id:
             await interaction.response.send_message(response_message, ephemeral=True)
@@ -104,7 +104,7 @@ class PluginConfigModal(Modal):
             upsert=True,
         )
 
-        response_message = f"<:nexuresuccess:1338900384932036618> Modules updated: {', '.join(selected_modules)}."
+        response_message = f"<:NexureSuccess:1370202310113886339> Modules updated: {', '.join(selected_modules)}."
 
         # Retrieve the setup cog and update the setup message
         setup_cog = self.bot.get_cog("SetupCog")

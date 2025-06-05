@@ -50,7 +50,7 @@
 
             $activeClass = ($activeLink === $name) ? 'active' : '';
 
-            echo "<li class=\"nav-links $activeClass\"><a href=\"$url\">$name</a></li>";
+            echo "<li class=\"nav-links\"><a class=\"$activeClass\" href=\"$url\">$name</a></li>";
 
         }
 
@@ -124,7 +124,7 @@
 
             $activeClass = ($activeLink === $name) ? 'active' : '';
 
-            echo "<li class=\"nav-links $activeClass\"><a href=\"$url\">$name</a></li>";
+            echo "<li class=\"nav-links\"><a class=\"$activeClass\" href=\"$url\">$name</a></li>";
 
         }
 

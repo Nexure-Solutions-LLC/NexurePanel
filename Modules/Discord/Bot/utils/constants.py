@@ -1,150 +1,98 @@
 import os
-import discord
-from motor.motor_asyncio import AsyncIOMotorClient
 from dotenv import load_dotenv
-
+import colorlog
+import logging
+import asyncio 
 
 load_dotenv()
 
-
-mongodb_url = os.getenv("MONGODB_URL")
-mongodb_db = os.getenv("MONGODB_DB")
-client = AsyncIOMotorClient(mongodb_url)
-db = client[mongodb_db]
-
-
-afks = db.afks
-blacklist_bypass = db.blacklist_bypass
-blacklistedwords = db.blacklistedwords
-blacklists = db.blacklists
-notes = db.notes
-prefixes = db.prefixes
-reminders = db.reminders
-setup_col = db.setup
-verify_waiting = db.verify_waiting
-cases = db.cases
-guild_counters = db.guild_counters
-reminder_counters = db.reminder_counters
-timezones = db.timezones
-socials = db.socials
-lastfm = db.lastfm
-welcomer = db.welcomer
-giveaways = db.giveaways
-
-
-class NexureConstants:
+class NexureConstants():
     def __init__(self):
-        self.mongo_client = None
-        self.mongo_db = None
-        self.bypassed_users = []
-        self.blacklists = []
-        self.server_blacklists = []
+        self.Auth_list = []
 
-    # Checks the users to see if they are blacklist bypasssed and bot owner. This function
-    # will get the User IDs from MongoDB and can be called to see if users are allowed to
-    # run commands.
+    def environment(self) -> str:
+        return os.getenv('ENVIRONMENT')
 
-    async def fetch_bypassed_users(self):
-        try:
-            results = blacklist_bypass.find({}, {"discord_id": 1})
+    def token(self) -> str:
+        return os.getenv('TOKEN')
 
-            bypassed_users = []
-            async for result in results:
-                bypassed_users.append(result.get("discord_id"))
+    def sentry_dsn(self) -> str: 
+        return os.getenv('SENTRY_DSN')
+    
+    def sql_con(self) -> dict[any]:
+        return {
+            'HOST': os.getenv('SQL_HOST'),
+            'PORT': int(os.getenv('SQL_PORT', '3306')),
+            'USER': os.getenv('SQL_USER'),
+            'PASSWORD': os.getenv('SQL_PASSWORD'),
+            'DATABASE': os.getenv('SQL_DATABASE')
+        }
 
-            self.bypassed_users = bypassed_users
+    def sql_accounts(self) -> str:
+        return os.getenv('SQL_ACCOUNTS')
+    
+    def sql_cases(self) -> str:
+        return os.getenv('SQL_CASES')
 
-        except Exception as e:
-            print(f"Error fetching bypassed users: {str(e)}")
+    def sql_users(self) -> str:
+        return os.getenv('SQL_USERS')
+        
+    def sql_blacklists(self) -> str:
+        return os.getenv('SQL_BLACKLISTS')
+        
+    def sql_tickets(self) -> str:
+        return os.getenv('SQL_TICKETS')
 
-    # Checks the owner of the bot
-    # Owners will also be given Jsk Permissions which is dangerous so please be careful who you add into
-    # the bot as an owner.
+    def colour(self) -> int:
+        return int(os.getenv('COLOUR'))
 
-    async def is_owner(self, user_id: int):
-        if not self.bypassed_users:
-            await self.fetch_bypassed_users()
-        return user_id in self.bypassed_users
+    def error_prefix(self) -> str:
+        return os.getenv('ERROR_PREFIX') 
 
-    # Fetch the customizable prefix for the bot
+    def case_prefix(self) -> str:
+        return os.getenv('CASE_PREFIX')
+    
+    def emojis(self) -> dict[str]:
+        return {
+            'success': os.getenv('SUCCESS_EMOJI'),
+            'failed': os.getenv('FAILED_EMOJI'),
+            'loading': os.getenv('LOADING_EMOJI')
+        }
 
-    # Fetch the bot token
+    def support_roles(self) -> list[int]:
+        roles = [int(role.strip()) for role in os.getenv('SUPPORT_ROLES').split(',')]
+        return roles
+    
+    def ticket_category(self) -> str:
+        return os.getenv('TICKET_CATAGORY')
 
-    def nexure_token_setup(self):
-        token = os.getenv("TOKEN")
-        if not isinstance(token, str):
-            raise TypeError(
-                f"expected token to be a str, received {type(token).__name__} instead"
-            )
-        return token
+    def ticket_transcript(self) -> str:
+        return os.getenv('TRANSCRIPT_CHANNEL')
 
-    def nexure_client_id_setup(self):
-        token = os.getenv("CLIENT_ID")
-        if not isinstance(token, str):
-            raise TypeError(
-                f"expected token to be a str, received {type(token).__name__} instead"
-            )
-        return token
+    def welcome_channel(self) -> str:
+        return os.getenv('WELCOME_CHANNEL')
+    
+    def welcome_role(self) -> int:
+        return os.getenv('MEMBER_ROLE')
 
-    def nexure_client_secret_setup(self):
-        token = os.getenv("CLIENT_SECRET")
-        if not isinstance(token, str):
-            raise TypeError(
-                f"expected token to be a str, received {type(token).__name__} instead"
-            )
-        return token
 
-    def nexure_redirect_uri_setup(self):
-        token = os.getenv("REDIRECT_URL")
-        if not isinstance(token, str):
-            raise TypeError(
-                f"expected token to be a str, received {type(token).__name__} instead"
-            )
-        return token
+log = colorlog.ColoredFormatter(
+    "%(blue)s[%(asctime)s]%(reset)s - %(filename)s - %(log_color)s%(levelname)s%(reset)s - %(message)s",
+    datefmt='%Y-%m-%d %H:%M:%S',
+    log_colors={
+        'DEBUG': 'cyan',
+        'INFO': 'green',
+        'WARNING': 'yellow',
+        'ERROR': 'red',
+        'CRITICAL': 'bold_red',
+    }
+)
 
-    # Fetch the Sentry DSN for error reporting
+handler = logging.StreamHandler()
+handler.setFormatter(log)
 
-    def sentry_dsn_setup(self):
-        return os.getenv("SENTRY_DSN")
+logger = logging.getLogger(__name__)
+logger.addHandler(handler)
+logger.setLevel(logging.DEBUG)
 
-    # Fetch the default embed color for the bot
-
-    def nexure_embed_color_setup(self):
-        DEFAULT_EMBED_COLOR = discord.Color.from_str("#66d8ff")
-        return DEFAULT_EMBED_COLOR
-
-    # Gets the bots type either production or development
-
-    def nexure_environment_type(self):
-        return os.getenv("ENVIRONMENT")
-
-    async def fetch_blacklisted_users(self):
-        try:
-            cursor = db.blacklists.find({}, {"discord_id": 1})
-
-            blacklists = []
-
-            async for document in cursor:
-                blacklists.append(document["discord_id"])
-            self.blacklists = blacklists
-
-        except Exception as e:
-            print(f"Error fetching blacklisted users: {str(e)}")
-
-    async def fetch_blacklisted_guilds(self):
-        try:
-            cursor = blacklists.find({}, {"discord_id": 1})
-            server_blacklists = []
-
-            async for document in cursor:
-                server_blacklists.append(document["discord_id"])
-            self.server_blacklists = server_blacklists
-
-        except Exception as e:
-            print(f"Error fetching blacklisted guilds: {str(e)}")
-
-    # Call this periodically to refresh blacklist data
-
-    async def refresh_blacklists(self):
-        await self.fetch_blacklisted_users()
-        await self.fetch_blacklisted_guilds()
+# Love, bread.
