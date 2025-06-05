@@ -1,3 +1,7 @@
 .env
 vendor
 phpmyadmin/config.inc.php
+__pycache__
+__pycache__/
+*.pyc
+*.pyo
