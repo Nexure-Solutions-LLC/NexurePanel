@@ -12,6 +12,10 @@ class NexureConstants():
 
     def environment(self) -> str:
         return os.getenv('ENVIRONMENT')
+    
+    def nexure_embed_color_setup(self):
+        DEFAULT_EMBED_COLOR = discord.Color.from_str("#8dc6f4")
+        return DEFAULT_EMBED_COLOR
 
     def token(self) -> str:
         return os.getenv('TOKEN')

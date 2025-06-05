@@ -40,5 +40,40 @@ class NexureContext(commands.Context):
     def user(self):
         return self.author
 
+    async def send_success(self, message: str):
+        embed = discord.Embed(
+            title="",
+            description=f"{self.nexure.success} {message}",
+            color=self.nexure.base_color,
+        )
+        return await super().send(embed=embed, reference=self.message)
+
+    async def send_error(self, message: str):
+        embed = discord.Embed(
+            title="",
+            description=f"{self.nexure.error} {message}",
+            color=self.nexure.base_color,
+        )
+        return await super().send(embed=embed, reference=self.message)
+
+    async def send_loading(self, message: str):
+        embed = discord.Embed(
+            title="", description=f"{self.nexure.loading} {message}", color=0x2A2C31
+        )
+        return await super().send(embed=embed, reference=self.message)
+
+    async def send_warning(self, message: str):
+        embed = discord.Embed(
+            title="",
+            description=f"{self.nexure.warning} {message}",
+            color=self.nexure.base_color,
+        )
+        return await super().send(embed=embed, reference=self.message)
+
+    async def send_normal(self, message: str):
+        embed = discord.Embed(
+            title="", description=f"{message}", color=self.nexure.base_color
+        )
+        return await super().send(embed=embed)
 
 # Love, bread.
