@@ -74,10 +74,6 @@ class Nexure(commands.AutoShardedBot):
             logger.critical(f'Failed to connect to database, error thrown: {e}')
             sys.exit('RESOURCE NOT AVAILABLE')
 
-        except Exception as e:
-            logger.critical(f'Failed to connect to database, error thrown: {e}')
-            sys.exit('RESOURCE NOT AVAILABLE')
-
         logger.info(f"Bot is ready: {self.user}")
 
 

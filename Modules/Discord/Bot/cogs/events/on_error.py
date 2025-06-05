@@ -66,7 +66,6 @@ class OnError(commands.Cog):
 
         try:
             embed = discord.Embed(title='Error!', description=description, colour=discord.Color.red())
-            embed.set_thumbnail(url='https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png')
             embed.set_footer(text=f'User ID: {ctx.author.id} | Guild ID: {ctx.guild.id}')
             if error_id: 
                 embed.add_field(name='Error ID', value=f'`{error_id}`')
