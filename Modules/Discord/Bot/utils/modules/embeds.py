@@ -85,19 +85,15 @@ class PingCommandEmbed:
         uptime,
     ):
         embed = discord.Embed(
-            title="<:1E:1303180097200586843> Nexure",
+            title="<:1E:1303180097200586843> Network Information",
             color=constants.nexure_embed_color_setup(),
         )
 
-        embed.set_thumbnail(
-            url="https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png"
-        )
-
         embed.add_field(
-            name="<:settings:1377235960902848593> **Network Information**",
+            name="",
             value=(
-                f"**Latency:** `{round(latency * 1000)}ms` \n"
-                f"**Uptime:** <t:{int(uptime.timestamp())}:R>"
+                f"> **Latency:** `{round(latency * 1000)}ms` \n"
+                f"> **Uptime:** <t:{int(uptime.timestamp())}:R>"
             ),
             inline=False,
         )
