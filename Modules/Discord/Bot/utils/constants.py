@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 import colorlog
+import discord
 import logging
 import asyncio 
 
