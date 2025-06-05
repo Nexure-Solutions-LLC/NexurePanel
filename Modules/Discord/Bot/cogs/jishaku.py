@@ -1,9 +1,13 @@
-from jishaku.cog import STANDARD_FEATURES, OPTIONAL_FEATURES
+from discord.ext import commands
+
+from jishaku.cog import STANDARD_FEATURES
 
 
-class CustomDebugCog(*OPTIONAL_FEATURES, *STANDARD_FEATURES):
+class CustomDebugCog(*STANDARD_FEATURES):
     pass
 
 
-async def setup(bot):
+async def setup(bot: commands.Bot):
     await bot.add_cog(CustomDebugCog(bot=bot))
+
+# Love, bread.

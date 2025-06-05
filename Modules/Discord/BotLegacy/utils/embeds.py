@@ -36,7 +36,7 @@ class MissingArgsEmbed(discord.Embed):
     def __init__(self, param_name):
         super().__init__(
             title="",
-            description=f"<:nexurefail:1338900416972193902> Please specify a {param_name}",
+            description=f"<:NexureFail:1377202015507054663> Please specify a {param_name}",
             color=discord.Color.red(),
         )
 
@@ -49,7 +49,7 @@ class BadArgumentEmbed(discord.Embed):
     def __init__(self):
         super().__init__(
             title="",
-            description="<:nexurefail:1338900416972193902> You provided an incorrect argument type.",
+            description="<:NexureFail:1377202015507054663> You provided an incorrect argument type.",
             color=discord.Color.red(),
         )
 
@@ -61,7 +61,7 @@ class ForbiddenEmbed(discord.Embed):
     def __init__(self):
         super().__init__(
             title="",
-            description="<:nexurefail:1338900416972193902> I couldn't send you a DM. Please check your DM settings.",
+            description="<:NexureFail:1377202015507054663> I couldn't send you a DM. Please check your DM settings.",
             color=discord.Color.red(),
         )
 
@@ -74,7 +74,7 @@ class MissingPermissionsEmbed(discord.Embed):
     def __init__(self):
         super().__init__(
             title="",
-            description="<:nexurefail:1338900416972193902> You don't have the required permissions to run this command.",
+            description="<:NexureFail:1377202015507054663> You don't have the required permissions to run this command.",
             color=discord.Color.red(),
         )
 
@@ -156,7 +156,7 @@ class AboutEmbed:
     ):
         embed = discord.Embed(
             description=(
-                "Nexure is an exceptional moderation and management tool designed specifically for community servers."
+                "Nexure Solutions is a comprehensive business management and digital solutions provider, dedicated to helping companies achieve their goals in a competitive, digital-first world."
             ),
             color=discord.Color.from_str("#2a2c30"),
         )
@@ -206,20 +206,12 @@ class AboutWithButtons:
 
         support_server_button = Button(
             label="Support Server",
-            emoji="<:chat:1338807815036338199>",
+            emoji="<:NexureChat:1377219689041756310>",
             style=discord.ButtonStyle.primary,
-            url="https://discord.gg/CaFGe87hR2",
-        )
-
-        invite_button = Button(
-            label="Invite Nexure",
-            emoji="<:Nexure:1338783953598939157>",
-            style=discord.ButtonStyle.link,
-            url="https://discord.com/oauth2/authorize?client_id=1328678328370204672&permissions=8&integration_type=0&scope=bot",
+            url="https://discord.gg/bvVNAzm89a",
         )
 
         view.add_item(support_server_button)
-        view.add_item(invite_button)
 
         return view
 
@@ -398,17 +390,17 @@ class PingCommandEmbed:
         page: int = 0,
     ):
         embed = discord.Embed(
-            title="<:Nexure:1338783953598939157> Nexure",
+            title="<:1E:1303180097200586843> Nexure",
             color=constants.nexure_embed_color_setup(),
         )
 
         embed.set_thumbnail(
-            url="https://media.discordapp.net/attachments/1338788379806011422/1338794770977259570/NexureLogoGrey.png"
+            url="https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png"
         )
 
         if page == 0:
             embed.add_field(
-                name="<:settings:1338809252948738152> **Network Information**",
+                name="<:settings:1377235960902848593> **Network Information**",
                 value=(
                     f"**Latency:** `{round(latency * 1000)}ms` \n"
                     f"**Database:** `{'Connected' if database_latency else 'Disconnected'}\n` "
@@ -425,7 +417,7 @@ class PingCommandEmbed:
 
             for shard in shards_to_display:
                 embed.add_field(
-                    name=f"<:clock:1338811480451055719> **Shard {shard['id']}**",
+                    name=f"<:clock:1377236028024164352> **Shard {shard['id']}**",
                     value=f"> **Latency:** `{shard['latency']}ms` \n> **Guilds:** `{shard['guilds']}`",
                     inline=False,
                 )
@@ -468,7 +460,7 @@ class UserInformationEmbed:
 
             # Check for Early Supporter role third
             if discord.utils.get(guild_member.roles, id=early_supporter_role_id):
-                badges.append("> <:Nexure:1338783953598939157> Contributor")
+                badges.append("> <:1E:1303180097200586843> Contributor")
 
         except (discord.NotFound, discord.Forbidden):
             pass
@@ -639,7 +631,7 @@ class PrefixSuccessEmbed(discord.Embed):
     def __init__(self, new_prefix: str):
         super().__init__(
             title="",
-            description=f"<:nexuresuccess:1338900384932036618> Prefix successfully changed to `{new_prefix}`.",
+            description=f"<:NexureSuccess:1370202310113886339> Prefix successfully changed to `{new_prefix}`.",
             color=discord.Color.green(),
         )
 
@@ -663,7 +655,7 @@ class ReminderEmbed(discord.Embed):
         # Set the embed title and color
 
         self.title = ""
-        self.description = f"<:nexuresuccess:1338900384932036618> Got it! I have set a reminder. It will go off at <t:{reminder_time}:R>."
+        self.description = f"<:NexureSuccess:1370202310113886339> Got it! I have set a reminder. It will go off at <t:{reminder_time}:R>."
         self.color = discord.Color.green()
 
 

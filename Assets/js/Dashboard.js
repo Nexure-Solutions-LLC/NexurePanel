@@ -22,6 +22,48 @@ function updateIndicatorPosition() {
 
 updateIndicatorPosition();
 
+document.addEventListener('DOMContentLoaded', () => {
+
+    const timeElement = document.getElementById('userSystemTime');
+
+    function formatTime(date) {
+
+        const options = {
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+        };
+
+        const timePart = date.toLocaleTimeString(undefined, options);
+
+        const day = date.getDate();
+
+        const month = date.toLocaleString(undefined, { month: 'long' });
+
+        const year = date.getFullYear();
+
+        return `${timePart} ${month} ${day}, ${year}`;
+
+    }
+
+    function updateTime() {
+
+        const now = new Date();
+
+        timeElement.textContent = `${formatTime(now)}`;
+
+    }
+
+    if (timeElement) {
+
+        updateTime();
+
+        setInterval(updateTime, 1000);
+
+    }
+
+});
+
 // ============ Identity Verification Javascript Code =============
 
 document.addEventListener('DOMContentLoaded', () => {

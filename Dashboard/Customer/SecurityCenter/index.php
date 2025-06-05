@@ -1,6 +1,7 @@
 <?php
 
     $PageTitle = "Customer Dashboard";
+    $PageSubtitle = "Access and Security";
 
     include($_SERVER["DOCUMENT_ROOT"]."/Modules/NexureSolutions/Dashboard/Headers/index.php");
 
@@ -37,7 +38,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                               <tr>
+                                    <td colspan="6">No system users available</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -56,7 +59,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               
+                               <tr>
+                                    <td colspan="6">No authorized users available</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
