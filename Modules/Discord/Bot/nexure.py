@@ -25,7 +25,7 @@ class Nexure(commands.AutoShardedBot):
         super().__init__(*args, **kwargs)
         self.start_time = datetime.now()
         self.context = NexureContext
-        self.before_invoke(self.command_check)
+        self.before_invoke(self.before_commands)
         self.check(self.command_check)
         self.guilds_chunked = asyncio.Event()
 
