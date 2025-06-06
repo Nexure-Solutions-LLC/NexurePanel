@@ -1,12 +1,11 @@
 import discord
+import contextlib
+import re
 from discord.ext import commands
 from discord.ui import View, Button
 from datetime import datetime, timedelta
 from zuid import ZUID
 from typing import Optional
-import contextlib
-import re
-
 from utils.utils import NexureContext, Timespan
 from utils.constants import NexureConstants
 
@@ -409,7 +408,7 @@ class Moderation(commands.Cog):
         
         view = Paginator(pages, ctx.user)
         await ctx.send(embed=pages[0], view=view)
-        `
+        
 
 async def setup(bot):
     await bot.add_cog(Moderation(bot))
