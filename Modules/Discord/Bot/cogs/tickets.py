@@ -1,10 +1,11 @@
-import discord
+import asyncio, discord
 from discord.ext import commands
 from discord.ui import View, select, button
 import os
 
 from utils.utils import NexureContext
 from utils.constants import NexureConstants, logger
+
 
 class CloseOptions(View):
     def __init__(self, *, timeout = None, bot, constants):
@@ -14,12 +15,14 @@ class CloseOptions(View):
         self.nexure_constants = constants
         self.ticket_id = None
     
+
     @button(label='Open', style=discord.ButtonStyle.green)
     async def open_callback(self, interaction: discord.Interaction, button: button):
         await self.load_data(interaction)
 
         roles = interaction.user.roles
         for role in roles:
+            await asyncio.sleep(1e-3)
             if role.id in self.nexure_constants.support_roles():
                 break
 
@@ -27,9 +30,11 @@ class CloseOptions(View):
             raise commands.MissingPermissions()
     
         await interaction.channel.set_permissions(self.user, read_messages=True, send_messages=True)
-        
-        embed = discord.Embed(title='Success!', description='Ticket opened.', colour=self.nexure_constants.colour())
-        await interaction.response.send_message(embed=embed, ephemeral=True)
+        await interaction.response.send_message(
+            embed=discord.Embed(title='Success!', description='Ticket opened.', colour=self.nexure_constants.colour()),
+            ephemeral=True
+        )
+
     
     @button(label='Delete', style=discord.ButtonStyle.red)
     async def delete_callback(self, interaction: discord.Interaction, button: button):
@@ -38,6 +43,7 @@ class CloseOptions(View):
 
         roles = interaction.user.roles
         for role in roles:
+            await asyncio.sleep(1e-3)
             if role.id in self.nexure_constants.support_roles():
                 break
 
@@ -135,6 +141,7 @@ class CloseOptions(View):
         messages = [msg async for msg in interaction.channel.history(limit=None, oldest_first=True)]
 
         for msg in messages:
+            await asyncio.sleep(1e-3)
             author = msg.author.display_name
             avatar_url = msg.author.display_avatar.url
             timestamp = msg.created_at.strftime('%Y-%m-%d %H:%M')
@@ -144,6 +151,7 @@ class CloseOptions(View):
 
             embeds_html = ""
             for embed in msg.embeds:
+                await asyncio.sleep(1e-3)
                 embeds_html += f"""
                 <div class="embed">
                     <div class="embed-title">{embed.title or ''}</div>
@@ -174,33 +182,23 @@ class CloseOptions(View):
 
     
         filename = f"ticket-{self.ticket_id}.html"
-        with open(filename, 'w', encoding='utf-8') as f:
-            f.write(html)
-
-        ufile = discord.File(filename, filename=filename)
-        sfile = discord.File(filename, filename=filename)
+        file = discord.File(io.StringIO(html), filename=filename)
 
         embed = discord.Embed(title='Nexure Support: Transcript', description='Thank you for contacting our support team. Attached is a transcript for your ease.', colour=self.nexure_constants.colour())
-        embed.set_thumbnail(url='https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png')
-        await self.user.send(embed=embed, file=ufile)
+        embed.set_thumbnail(url=self.bot.display_avatar.url)
+        await self.user.send(embed=embed, file=file)
 
         transcript_channel = await self.bot.fetch_channel(self.nexure_constants.ticket_transcript())
         staff_embed = discord.Embed(title='Staff: Transcript', description='A new ticket transcript has just been generated. I\'ve attached it to this message. ', colour=self.nexure_constants.colour())
-        await transcript_channel.send(embed=staff_embed, file=sfile)
+        await transcript_channel.send(embed=staff_embed, file=file)
 
         await interaction.channel.delete(reason=f'Ticket closed by {interaction.user}')
-        os.remove(filename)
 
 
     async def load_data(self, interaction: discord.Interaction):
-        async with self.bot.db.acquire() as conn:
-            async with conn.cursor() as cur:
-                    await cur.execute(f'SELECT oAuthID, id FROM {self.nexure_constants.sql_tickets()} WHERE channelID = %s', (interaction.channel.id))
-                    user_id, ticket_id = await cur.fetchone()
-
+        user_id, ticket_id = await self.bot.database.fetchrow(f'SELECT oAuthID, id FROM {self.nexure_constants.sql_tickets()} WHERE channelID = %s;', interaction.channel.id)
         self.user = await self.bot.fetch_user(user_id)
         self.ticket_id = ticket_id
-
 
 
 class TicketButtons(View):
@@ -217,6 +215,7 @@ class TicketButtons(View):
         
         roles = interaction.user.roles
         for role in roles:
+            await asyncio.sleep(1e-3)
             if role.id in self.nexure_constants.support_roles():
                 break
 
@@ -224,10 +223,12 @@ class TicketButtons(View):
             raise commands.MissingPermissions()
         
         view = CloseOptions(bot=self.bot, constants=self.nexure_constants)
-
-        await interaction.channel.set_permissions(self.user, read_messages=None, send_messages=None)
         embed = discord.Embed(title='Closure options', description='Select one of the options below. **TICKETS ARE AUTOMATICALLY TRANSCRIBED.**', colour=self.nexure_constants.colour())
-        await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+
+        await asyncio.gather(*(
+            interaction.channel.set_permissions(self.user, read_messages=None, send_messages=None),
+            interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+        ))
 
 
     @button(label='Close with reason', style=discord.ButtonStyle.red, custom_id='Nexure-Ticket-Close-Reason')
@@ -236,24 +237,26 @@ class TicketButtons(View):
 
         roles = interaction.user.roles
         for role in roles:
+            await asyncio.sleep(1e-3)
             if role.id in self.nexure_constants.support_roles():
                 break
 
         else:
             raise commands.MissingPermissions()
         
-        await interaction.channel.set_permissions(self.user, read_messages=False, send_messages=False)
         embed = discord.Embed(title='Closure options', description='Select one of the options below. **TICKETS ARE AUTOMATICALLY TRANSCRIBED.**', colour=self.nexure_constants.colour())
-        await interaction.response.send_message(embed=embed)
+
+        await asyncio.gather(*(
+            interaction.channel.set_permissions(self.user, read_messages=False, send_messages=False),
+            interaction.response.send_message(embed=embed)
+        ))
+
 
     async def load_data(self, interaction: discord.Interaction):
-        async with self.bot.db.acquire() as conn:
-            async with conn.cursor() as cur:
-                    await cur.execute(f'SELECT oAuthID, id FROM {self.nexure_constants.sql_tickets()} WHERE channelID = %s', (interaction.channel.id))
-                    user_id, ticket_id = await cur.fetchone()
-
+        user_id, ticket_id = await self.bot.database.fetchrow(f'SELECT oAuthID, id FROM {self.nexure_constants.sql_tickets()} WHERE channelID = %s;', interaction.channel.id)
         self.user = await self.bot.fetch_user(user_id)
         self.ticket_id = ticket_id
+
 
 class PanelView(View):
     def __init__(self, *, timeout = None, bot, constants):
@@ -275,8 +278,8 @@ class PanelView(View):
     )
     async def select_on_submit(self, interaction: discord.Interaction, select: select):
         await interaction.response.defer()
-        self.user = interaction.user
 
+        self.user = interaction.user
         guild = interaction.guild
 
         overwrites = {
@@ -315,41 +318,35 @@ class PanelView(View):
                 overwrites[role] = discord.PermissionOverwrite(read_messages=True, send_messages=True)
         
         else:
-            embed = discord.Embed(title='Error!', description=f'{self.nexure_constants.emojis()['failed']} Sorry! I was not able to locate that ticket type within our system. Please try again.')
-            return await interaction.followup.send(embed=embed, ephemeral=True)
+            return await interaction.followup.send(
+                embed=discord.Embed(title='Error!', description=f'{self.nexure_constants.emojis()['failed']} Sorry! I was not able to locate that ticket type within our system. Please try again.'),
+                ephemeral=True
+            )
         
         ticket_category = await self.bot.fetch_channel(self.nexure_constants.ticket_category())
         
-        async with self.bot.db.acquire() as conn:
-            async with conn.cursor() as cur:
-                await cur.execute(f'SELECT email FROM {self.nexure_constants.sql_users()} WHERE oAuthID = %s', (self.user.id))
-                result = await cur.fetchone()
-                email = result[0] if result else None
+        accountNumber = None
+        if (email := await ctx.bot.database.fetchval(
+            f'SELECT email FROM {self.nexure_constants.sql_users()} WHERE oAuthID = %s;',
+            self.user.id
+        )):
+            accountNumber = await ctx.bot.database.fetchval(
+                f'SELECT accountNumber FROM {self.nexure_constants.sql_accounts()} WHERE email = %s;',
+                email
+            )
 
-                accountNumber = None
-                if email:
-                    await cur.execute(f'SELECT accountNumber FROM {self.nexure_constants.sql_accounts()} WHERE email = %s',(email))
-                    result = await cur.fetchone()
-                    accountNumber = result[0] if result else None
-
-                await cur.execute(f'INSERT INTO {self.nexure_constants.sql_tickets()} (accountNumber, oAuthID, channelID, type) VALUES (%s, %s, %s, %s)', (str(accountNumber), str(self.user.id), None, select.values[0]))
-                ticket_id = cur.lastrowid
-                await conn.commit()
-
+        await ctx.bot.database.execute(f'INSERT INTO {self.nexure_constants.sql_tickets()} (accountNumber, oAuthID, channelID, type) VALUES (%s, %s, %s, %s);', str(accountNumber), str(self.user.id), None, select.values[0])
+        ticket_id = await ctx.bot.database.fetchval("SELECT LAST_INSERT_ID();")
     
         view = TicketButtons(bot=self.bot, constants=self.nexure_constants)
         channel = await ticket_category.create_text_channel(name=f"{self.user.name}-{ticket_id}", overwrites=overwrites)
         embed = discord.Embed(title=title, description=description, colour=self.nexure_constants.colour())
-        embed.set_thumbnail(url='https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png')
+        embed.set_thumbnail(url=ctx.bot.display_avatar.url)
         await channel.send(content=ping, embed=embed, view=view)
+        await interaction.followup.send(embed=discord.Embed(title='Success!', description=f"{self.nexure_constants.emojis()['success']} Ticket created! {channel.jump_url}", colour=self.nexure_constants.colour()), ephemeral=True)
 
-        embed = discord.Embed(title='Success!', description=f"{self.nexure_constants.emojis()['success']} Ticket created! {channel.jump_url}", colour=self.nexure_constants.colour())
-        await interaction.followup.send(embed=embed, ephemeral=True)
+        await ctx.bot.database.execute(f'UPDATE {self.nexure_constants.sql_tickets()} SET channelID = %s WHERE id = %s;', channel.id, ticket_id)
 
-        async with self.bot.db.acquire() as conn:
-            async with conn.cursor() as cur:
-                await cur.execute(f'UPDATE {self.nexure_constants.sql_tickets()} SET channelID = %s WHERE id = %s', (channel.id, ticket_id))
-                await conn.commit()
 
 class Tickets(commands.Cog):
     def __init__(self, bot):
@@ -360,7 +357,7 @@ class Tickets(commands.Cog):
     @commands.is_owner()
     async def send_panel(self, ctx: NexureContext):
         embed = discord.Embed(title='Nexure Solutions Support', description='Welcome to Nexure! Got a question, query, or need assistance from one of our experts? Go ahead and open a ticket, and our team will be more then happy to help you.', colour=self.nexure_constants.colour())
-        embed.set_thumbnail(url='https://media.discordapp.net/attachments/1370199512123052033/1377213812947816510/NexureLogoSquare.png')
+        embed.set_thumbnail(url=ctx.bot.display_avatar.url)
 
         view = PanelView(bot=self.bot, constants=self.nexure_constants)
         await ctx.send(embed=embed, view=view)
