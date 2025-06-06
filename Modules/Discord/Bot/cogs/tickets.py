@@ -1,8 +1,7 @@
 import asyncio, discord
+import os
 from discord.ext import commands
 from discord.ui import View, select, button
-import os
-
 from utils.utils import NexureContext
 from utils.constants import NexureConstants, logger
 

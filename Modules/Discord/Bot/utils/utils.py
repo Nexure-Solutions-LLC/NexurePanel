@@ -1,10 +1,10 @@
 import discord
+import asyncmy
 from discord.ext import commands
 from durations_nlp import Duration
 from typing import Optional
-import asyncmy
-
 from utils.constants import NexureConstants
+
 constants = NexureConstants()
 
 

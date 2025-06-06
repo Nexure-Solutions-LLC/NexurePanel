@@ -1,6 +1,5 @@
 from __future__ import annotations
 from utils.constants import NexureConstants
-
 from asyncmy import create_pool
 from asyncio import Event
 from functools import partial as PartialFunction

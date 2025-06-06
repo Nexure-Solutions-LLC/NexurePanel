@@ -1,8 +1,7 @@
 import discord
-from discord.ext import commands
 import sentry_sdk as sdk
+from discord.ext import commands
 from zuid import ZUID
-
 from utils.constants import NexureConstants, logger
 
 error_prefix = NexureConstants().error_prefix()

@@ -1,7 +1,7 @@
-from nexure import run
-from utils.constants import logger
 import asyncio
 import sys
+from nexure import run
+from utils.constants import logger
 
 if __name__ == "__main__":
     try:

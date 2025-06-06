@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-
 from utils.constants import NexureConstants
 
 class on_member_join(commands.Cog):

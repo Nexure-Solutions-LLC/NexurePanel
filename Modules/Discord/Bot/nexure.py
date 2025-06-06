@@ -1,22 +1,22 @@
 # ==========================================================================================================
 # This software was created by Nexure Solutions LLP.
-# This software was created by Alfie Chadd.
+# This software was created by Alfie Chadd and Treyten Sanders.
 # ==========================================================================================================
 
 import discord
-from discord.ext import commands
-from datetime import datetime
 import asyncio
 import os
 import sys
 import sentry_sdk
 import traceback
+import pathlib
+from discord.ext import commands
+from datetime import datetime
 from cogwatch import watch
 from typing import Any, Literal
 from jishaku import Flags
-
 from utils.constants import NexureConstants, logger
-from utils.utils import NexureContext, initialise_connection, reload_auth
+from utils.utils import NexureContext
 from utils.drivers.database.mysql import MySQL
 
 
@@ -25,9 +25,8 @@ class Nexure(commands.AutoShardedBot):
         super().__init__(*args, **kwargs)
         self.start_time = datetime.now()
         self.context = NexureContext
-        self.before_invoke(self.check_blacklists)
-        self.check(self.check_blacklists)
-
+        self.before_invoke(self.command_check)
+        self.check(self.command_check)
         self.guilds_chunked = asyncio.Event()
 
 
@@ -45,11 +44,11 @@ class Nexure(commands.AutoShardedBot):
     async def command_check(self, ctx: NexureContext) -> bool:
         await ctx.bot.wait_until_ready()
         
-        if await bot.is_owner(ctx.author):
+        if await ctx.bot.is_owner(ctx.author):
             return True
 
         if ctx.author.id in NexureConstants.Auth_list:
-            return
+            return True
 
         if not ctx.guild:
             raise commands.NoPrivateMessage('You may not use this command here.')
@@ -92,6 +91,7 @@ class Nexure(commands.AutoShardedBot):
             raise
 
         NexureConstants.Auth_list = await self.database.reload_auth()
+        await self.load_extensions()
 
 
     async def manage_extension(
@@ -158,7 +158,7 @@ class Nexure(commands.AutoShardedBot):
             self.guilds,
             key=lambda g: g.member_count,
             reverse=True
-        ):.
+        ):
             if guild.chunked is False:
                 await asyncio.sleep(1e-3)
                 await self.loop.create_task(chunk_guild(guild))
@@ -168,12 +168,12 @@ class Nexure(commands.AutoShardedBot):
 
 
     async def is_owner(self, user: discord.User):
-        auth_list = await reload_auth(self.database)
+        auth_list = await self.database.reload_auth()
         return user.id in auth_list
 
 NexureConstants = NexureConstants()
 
-nexure = Nexure(
+nexure = Nexure (
     command_prefix='!',
     chunk_guilds_at_startup=False,
     help_command=None,
