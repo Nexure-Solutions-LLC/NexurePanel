@@ -1,1 +1,1 @@
-[ ! -f .env ] && touch .env; python3 -m "$NAME" "$@"
+[ ! -f bot/.env ] && touch bot/.env; python3 -m "$NAME" "$@"
