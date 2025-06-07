@@ -112,6 +112,10 @@ body {
     color: #414141;
 }
 
+.padding-10px {
+    padding:10px !important;
+}
+
 /* ====================== Container Styles ===================== */
 
 .container, 
@@ -213,6 +217,12 @@ body {
 .card-header {
     padding-bottom:5px;
     border-bottom: 1px solid #ddd !important;
+}
+
+.client-business-andor-profile-logo {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
 }
 
 .card-body {

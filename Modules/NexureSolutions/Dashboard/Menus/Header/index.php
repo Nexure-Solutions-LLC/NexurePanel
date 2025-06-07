@@ -60,17 +60,28 @@
     function renderAdminNavLinks($activeLink, $modules, $CurrentOnlineAccessAccountRole) {
 
         $adminLinks = [
-            'Dashboard' => '/Dashboard/Admin',
-            'Manage Accounts' => '/Dashboard/Admin/Accounts',
-            'Create Account' => '/Dashboard/Admin/AccountCreate',
-            'Billing Overview' => '/Dashboard/Admin/BillingOverview',
-            'Support Dashboard' => '/Dashboard/Admin/Support',
+            'Home' => '/Dashboard/Administration/',
+            'Tasks' => '/Dashboard/Administration/Tasks',
+            'Leads' => '/Dashboard/Administration/Leads',
+            'Accounts' => '/Dashboard/Administration/Accounts',
+            'Campaigns' => '/Dashboard/Administration/Campaigns',
+            'Contacts' => '/Dashboard/Administration/Contacts',
+            'Cases' => '/Dashboard/Administration/Cases',
             'Sign Off' => '/Logout'
         ];
 
-        echo '<nav class="nexure-navbar-menu display-flex align-center" id="nexure-navbar-js">';
+        // Define department visibility
 
-        echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Admin</p>';
+        $departmentVisibility = [
+            'Support Department' => ['Home', 'Tasks', 'Cases', 'Contacts'],
+            'Sales Department' => ['Home', 'Tasks', 'Leads', 'Campaigns', 'Contacts'],
+            'Accounting Department' => ['Home', 'Tasks', 'Accounts'],
+            'Billing Department' => ['Home', 'Tasks', 'Accounts', 'Contacts', 'Cases'],
+            'Board of Directors' => array_keys($adminLinks),
+            'Development Department' => array_keys($adminLinks),
+        ];
+
+        echo '<nav class="nexure-navbar-menu display-flex align-center" id="nexure-navbar-js">';
 
         foreach ($adminLinks as $name => $url) {
             
@@ -195,41 +206,50 @@
 
         switch ($PageTitle) {
             case "Dashboard":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Dashboard</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Dashboard</p>';
                 renderAdminNavLinks('Dashboard', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Tasks":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Tasks</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Tasks</p>';
                 renderAdminNavLinks('Tasks', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Leads":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Leads</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Leads</p>';
                 renderAdminNavLinks('Leads', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Contacts":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Contacts</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Contacts</p>';
                 renderAdminNavLinks('Contacts', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Customer Accounts":
             case "Services":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Customer Accounts</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Customer Accounts</p>';
                 renderAdminNavLinks('Manage Accounts', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Connected Payments":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Payments</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Payments</p>';
                 renderPaymentNavLinks('Dashboard', $accountNumber, $paymentModules);
+                echo '</div>';
                 break;
             case "Cases":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Cases</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Cases</p>';
                 renderAdminNavLinks('Cases', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Campaigns":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Campaigns</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Campaigns</p>';
                 renderAdminNavLinks('Campaigns', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             case "Payroll":
-                echo '<p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Payroll</p>';
+                echo '<div class="display-flex align-center"><p class="no-margin no-padding" style="padding-right:20px; padding-top:2px; font-weight:500;">Payroll</p>';
                 renderAdminNavLinks('Payroll', $adminModules, $CurrentOnlineAccessAccountRole);
+                echo '</div>';
                 break;
             default:
                 renderAdminNavLinks('Dashboard', $adminModules, $CurrentOnlineAccessAccountRole);
