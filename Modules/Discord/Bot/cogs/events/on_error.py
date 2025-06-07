@@ -68,11 +68,8 @@ class OnError(commands.Cog):
             embed.set_footer(text=f'User ID: {ctx.author.id} | Guild ID: {ctx.guild.id}')
             if error_id: 
                 embed.add_field(name='Error ID', value=f'`{error_id}`')
-            
-            if show_error:
-                ephemeral = False
                 
-            await ctx.send(embed=embed, ephemeral=ephemeral)
+            await ctx.send(embed=embed, ephemeral=not show_error)
 
         except Exception as e:
             logger.error(e)
