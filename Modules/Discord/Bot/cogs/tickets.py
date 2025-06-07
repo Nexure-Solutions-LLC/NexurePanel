@@ -2,9 +2,9 @@ import asyncio, discord
 import os
 from discord.ext import commands
 from discord.ui import View, select, button
+
 from utils.utils import NexureContext
 from utils.constants import NexureConstants, logger
-
 
 class CloseOptions(View):
     def __init__(self, *, timeout = None, bot, constants):
