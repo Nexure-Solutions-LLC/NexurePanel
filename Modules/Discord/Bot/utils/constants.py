@@ -37,7 +37,7 @@ class NexureConstants():
         return os.getenv('SQL_ACCOUNTS')
     
     def sql_cases(self) -> str:
-        return os.getenv('SQL_CASES')
+        return os.getenv('SQL_MODERATION')
 
     def sql_users(self) -> str:
         return os.getenv('SQL_USERS')
@@ -46,7 +46,7 @@ class NexureConstants():
         return os.getenv('SQL_BLACKLISTS')
         
     def sql_tickets(self) -> str:
-        return os.getenv('SQL_TICKETS')
+        return os.getenv('SQL_CASES')
 
     def colour(self) -> int:
         return int(os.getenv('COLOUR'))
