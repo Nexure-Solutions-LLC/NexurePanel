@@ -141,6 +141,15 @@
         </div>
     </section>
 
+    <section class="nexure-pricing-bar">
+        <div class="container nexure-container catalog-container">
+            <div class="width-100 display-flex align-center justify-content-space-between">
+                <p class="font-14px no-padding no-margin">Licensed To: <?php echo $VariableDefinitionHandler->organizationLegalName; ?></p>
+                <p class="font-14px no-padding no-margin">Version 25.0.5</p>
+            </div>
+        </div>
+    </section>
+
 
 <?php
 
