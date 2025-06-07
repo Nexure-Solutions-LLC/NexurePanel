@@ -252,6 +252,7 @@
             public $profileImage;
             public $OnlineAccessInformation;
             public $accessType;
+            public $accessLevel;
             public $onlineAccessStatus;
             public $firstinteractiondateformattedfinal;
             public $lastinteractiondateformattedfinal;
@@ -335,6 +336,8 @@
                 $this->paymentID = $this->OnlineAccessInformation['paymentID'] ?? '';
 
                 $this->accessType = $this->OnlineAccessInformation['accessLevel'] ?? null;
+
+                $this->accessLevel = $this->OnlineAccessInformation['accessType'] ?? null;
 
                 $newInteractionDate = date('Y-m-d H:i:s');
 
