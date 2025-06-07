@@ -1,1 +1,1 @@
-python3 -m "$NAME" "$@"
+[ ! -f .env ] && touch .env; python3 -m "$NAME" "$@"
