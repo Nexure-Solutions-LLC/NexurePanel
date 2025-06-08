@@ -17,7 +17,7 @@ async def start_dask() -> Client:
         ),
         direct_to_workers=True,
         asynchronous=True,
-        name="Dzi",
+        name="Nexure",
     )
     
     return __import__("dask.distributed").GLOBAL_DASK
