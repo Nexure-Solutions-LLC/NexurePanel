@@ -1,5 +1,6 @@
 from __future__ import annotations
-from bot.core.main import Configuration, Colors, Emojis, Keychain
+from bot.core.main.keychain import Keychain
+from bot.core.main.literals import Configuration, Colors, Emojis
 from bot.core.processing import Events
 from bot.utils.drivers.database import MySQL
 from bot.utils.drivers.network import ClientSession
