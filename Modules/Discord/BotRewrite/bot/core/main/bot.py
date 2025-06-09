@@ -93,7 +93,7 @@ class NexureClient(NonShardedBot):
         ))
         
     
-    async def close(self) -> NoReturn:      
+    async def close(self):      
         await self.database.close()
         await Dask.stop_dask()
         await super().close()
