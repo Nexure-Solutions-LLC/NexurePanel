@@ -5,8 +5,9 @@ from bot.core.processing import Events
 from bot.utils.drivers.database import MySQL
 from bot.utils.drivers.network import ClientSession
 from bot.utils.worker import dask as Dask
+from bot.utils.patch import Context
 
-from discord import GuildChannel, Member, TextChannel, VoiceChannel
+from discord import GuildChannel, Interaction, Member, TextChannel, VoiceChannel
 from discord.ext.commands import (
     Bot as NonShardedBot
 )
@@ -18,7 +19,7 @@ from loguru import logger
 from pathlib import Path
 from sys import stdout as STDOUT
 from traceback import print_exc as PrintTraceback
-from typing import Literal, Tuple
+from typing import Literal, Tuple, Union
 from watchfiles import Change, awatch
 
 logger.remove()
@@ -91,6 +92,13 @@ class NexureClient(NonShardedBot):
             lambda channel: isinstance(channel, VoiceChannel),
             self.get_all_channels()
         ))
+
+                    
+    async def get_context(
+        self: Bot, origin: Union[ Message, Interaction ],
+        /, cls: Context = Context,
+    ) -> Any:
+        return await super().get_context(origin, cls=cls)
         
     
     async def close(self):      
