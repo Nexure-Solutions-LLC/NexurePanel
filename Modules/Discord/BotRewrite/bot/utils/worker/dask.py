@@ -3,7 +3,7 @@ from dask.distributed import Client, LocalCluster
 
 
 async def start_dask() -> Client:
-    __import__("dask.distributed").GLOBAL_DASK = await Client(
+    __import__("dask.distributed").GLOBAL = await Client(
         LocalCluster(
             dashboard_address=":8787",
             asynchronous=True,
@@ -20,15 +20,15 @@ async def start_dask() -> Client:
         name="Nexure",
     )
     
-    return __import__("dask.distributed").GLOBAL_DASK
+    return __import__("dask.distributed").GLOBAL
 
 
 async def stop_dask() -> None | Exception:
     try:
-        from dask.distributed import GLOBAL_DASK
+        from dask.distributed import GLOBAL
         
     except ImportError:
         raise AttributeError("Dask has not been initialized through StartDask.")
     
-    await __import__("dask.distributed").GLOBAL_DASK.close()
-    del __import__("dask.distributed").GLOBAL_DASK
+    await __import__("dask.distributed").GLOBAL.close()
+    del __import__("dask.distributed").GLOBAL

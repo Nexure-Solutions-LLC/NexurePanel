@@ -101,6 +101,7 @@ class NexureClient(NonShardedBot):
         
     async def setup_hook(self):
         self.database = MySQL()
+        self.redis = Redis()
         self.session = ClientSession()
         
         self.dask = await Dask.start_dask()
@@ -114,6 +115,14 @@ class NexureClient(NonShardedBot):
             
         except Exception:
             self.logger.warning("Shutting down; MySQL pool failed to initialize.")
+            await self.close()
+            raise
+
+        try:
+            await self.redis.initialize()
+
+        except Exception:
+            logger.warning("Shutting down; Redis connection failed to initialize.")
             await self.close()
             raise
 
