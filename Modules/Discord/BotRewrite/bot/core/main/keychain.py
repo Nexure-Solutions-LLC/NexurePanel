@@ -1,5 +1,5 @@
 from __future__ import annotations
-from bot.drivers.network._essentials import HEADERS
+from bot.utils.drivers.network._essentials import HEADERS
 
 from cryptography.fernet import Fernet
 import requests
