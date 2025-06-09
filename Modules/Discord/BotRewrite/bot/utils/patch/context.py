@@ -33,6 +33,12 @@ from typing import (
 
 
 class Context(DefaultContextC):
+    __slots__ = (
+        "response",
+        "send_success",
+        "send_error"
+    )
+    
     def __init__(
         self: Context,
         *args: Tuple[Any], **kwargs: Dict[ str, Any ]

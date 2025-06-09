@@ -20,6 +20,8 @@ from typing import Any, Iterable, List, Optional, Union
 
 
 class PaginatorModal(Modal, title="Advanced Pagination"):
+    __slots__ = ("button", "page_number")
+
     def __init__(self, button: PaginatorButton) :
         super().__init__()
 
@@ -52,6 +54,8 @@ class PaginatorModal(Modal, title="Advanced Pagination"):
 
 
 class PaginatorButton(Button):
+    __slots__ = ()
+
     def __init__(
         self, 
         emoji: str, style: ButtonStyle, custom_id: str
@@ -87,6 +91,11 @@ class PaginatorButton(Button):
 
 
 class Paginator(View):
+    __slots__ = (
+        "bot", "destination", "current_page",
+        "pages", "patch", "message"
+    )
+    
     def __init__(
         self, 
         bot: Any, destination: Union[ Context, GuildChannel, Interaction ], 

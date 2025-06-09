@@ -15,6 +15,8 @@ __all__ = ("AutoRenewingLock", "Redis")
 
 
 class AutoRenewingLock(Lock):
+    __slots__ = ()
+
     async def renew(self) -> bool:
         try:
             await self.extend(additional_time=self.timeout)
@@ -24,12 +26,13 @@ class AutoRenewingLock(Lock):
 
 
 class Redis(DefaultRedisC):
-    __semaphores: Dict[ str, Semaphore ] = {}
+    __slots__ = ("__semaphores",)
     
     
     def __init__(self, *args: Tuple[Any], **kwargs: Dict[ str, Any ]):
         super().__init__(decode_responses=True, *args, **kwargs)
-        
+        self.__semaphores = {}
+
         
     async def __aenter__(self) -> Self:
         return await self.initialize()

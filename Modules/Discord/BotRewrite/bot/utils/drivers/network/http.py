@@ -32,6 +32,8 @@ import orjson
 
 
 class ClientSession(DefaultClientSession):
+    __slots__ = ("__sems",)
+
     def __init__(self: ClientSession, *args, **kwargs) -> None:
         super().__init__(
             timeout=ClientTimeout(total=60),

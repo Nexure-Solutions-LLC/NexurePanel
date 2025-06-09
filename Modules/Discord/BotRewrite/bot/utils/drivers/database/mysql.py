@@ -20,6 +20,16 @@ class UniqueViolationError(IntegrityError):
 
 
 class MySQL:
+    __slots__ = (
+        "__bot",
+        "__pool",
+        "__event",
+        "errors",
+        "fetch",
+        "fetchrow",
+        "fetchval"
+    )
+    
     def __init__(self, bot: Bot):
         self.__bot = bot
         self.__pool = None

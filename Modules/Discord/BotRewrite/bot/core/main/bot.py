@@ -2,7 +2,7 @@ from __future__ import annotations
 from bot.core.main.keychain import Keychain
 from bot.core.main.literals import Configuration, Colors, Emojis
 from bot.core.processing import Events
-from bot.utils.drivers.database import MySQL
+from bot.utils.drivers.database import MySQL, Redis
 from bot.utils.drivers.network import ClientSession
 from bot.utils.worker import dask as Dask
 from bot.utils.patch import Context
@@ -12,10 +12,11 @@ from discord.ext.commands import (
     Bot as NonShardedBot
 )
 
-from asyncio import Event, sleep, wait_for
+from asyncio import CancelledError, Event, sleep, wait_for
 from collections import deque
 from jishaku import Flags
 from loguru import logger
+from munch import Munch
 from pathlib import Path
 from sys import stdout as STDOUT
 from traceback import print_exc as PrintTraceback
@@ -32,6 +33,14 @@ logger.add(
 
 
 class NexureClient(NonShardedBot):
+    __slots__ = (
+        "guilds_chunked",
+        "keychain", "fernet",
+        "config", "logger",
+        "_audit_log_cache",
+        "database", "redis", "session", "dask"
+    )
+    
     def __init__(self):
         super().__init__(
             command_prefix=Configuration.command_prefix,
@@ -65,7 +74,7 @@ class NexureClient(NonShardedBot):
         
     @property
     def audit_cache(self) -> deque:
-        return self._audit_cache
+        return self._audit_log_cache
         
         
     @property
@@ -95,7 +104,7 @@ class NexureClient(NonShardedBot):
 
                     
     async def get_context(
-        self: Bot, origin: Union[ Message, Interaction ],
+        self, origin: Union[ Message, Interaction ],
         /, cls: Context = Context,
     ) -> Any:
         return await super().get_context(origin, cls=cls)
