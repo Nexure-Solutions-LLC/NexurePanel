@@ -19,7 +19,7 @@ from loguru import logger
 from pathlib import Path
 from sys import stdout as STDOUT
 from traceback import print_exc as PrintTraceback
-from typing import Literal, Tuple, Union
+from typing import Any, Literal, Tuple, Union
 from watchfiles import Change, awatch
 
 logger.remove()
