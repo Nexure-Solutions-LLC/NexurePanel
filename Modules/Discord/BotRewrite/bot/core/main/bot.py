@@ -28,7 +28,7 @@ logger.remove()
 logger.add(
     sink=STDOUT,
     format="<blue>[{time:YYYY-MM-DD HH:mm:ss}]</blue> - {file} - <level>{level}</level> - {message}",
-    level="DEBUG",
+    level="INFO",
     colorize=True
 )
 
@@ -118,7 +118,7 @@ class NexureClient(NonShardedBot):
         
         
     async def setup_hook(self):
-        self.database = MySQL(bot)
+        self.database = MySQL(self)
         self.redis = Redis()
         self.session = ClientSession()
         
