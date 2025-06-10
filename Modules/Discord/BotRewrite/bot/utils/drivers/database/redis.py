@@ -31,7 +31,7 @@ class Redis(DefaultRedisC):
     
     def __init__(self, *args: Tuple[Any], **kwargs: Dict[ str, Any ]):
         super().__init__(decode_responses=True, *args, **kwargs)
-        self.__semaphores = {}
+        self.__semaphores = dict()
 
         
     async def __aenter__(self) -> Self:

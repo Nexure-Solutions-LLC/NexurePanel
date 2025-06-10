@@ -27,7 +27,7 @@ def normalize_dict(dictionary: Dict[ str, Any ] | List[Dict]) -> Dict:
         dictionary = [dictionary]
     
     for dictionary_ in dictionary:
-        new = {}
+        new = dict()
         for key, value in tuple(dictionary_.items()):
             new[key.lower()] = dictionary_.pop(key)
         
@@ -45,7 +45,7 @@ def create_model(data: Dict | List) -> BaseModel | List[BaseModel]:
         return orjson.loads(orjson.dumps(data).replace(b"#text", b"text"))
 
     def _generate_model_fields(data: Dict) -> Dict:
-        fields = {}
+        fields = dict()
         
         for key, value in data.items():
             if isinstance(value, dict):
