@@ -7,7 +7,7 @@ import requests
 
 class Keychain:
     def __init__(self: Keychain):
-        self.__FERNET_KEY = requests.get("http://localhost:1515").text
+        self.__FERNET_KEY = requests.get("http://127.0.0.1:1515").text
         self.__fernet = Fernet(self.__FERNET_KEY)
 
         for key, value in HEADERS.Authorization.items():
