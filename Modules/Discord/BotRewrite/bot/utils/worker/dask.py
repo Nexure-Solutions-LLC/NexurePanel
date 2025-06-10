@@ -12,8 +12,6 @@ async def start_dask() -> Client:
             n_workers=4,
             scheduler_port=0,
             silence_logs="ERROR",
-            worker_memory_target=0.8,
-            worker_memory_spill=0.9
         ),
         direct_to_workers=True,
         asynchronous=True,
