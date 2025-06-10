@@ -7,7 +7,8 @@ from bot.utils.drivers.network import ClientSession
 from bot.utils.worker import dask as Dask
 from bot.utils.patch import Context
 
-from discord import GuildChannel, Interaction, Member, TextChannel, VoiceChannel
+from discord import Interaction, Member, TextChannel, VoiceChannel
+from discord.abc import GuildChannel
 from discord.ext.commands import (
     Bot as NonShardedBot
 )
