@@ -21,7 +21,7 @@ from asyncio import (
 from aiomisc.backoff import asyncretry as Retry
 from bs4 import BeautifulSoup
 from collections import defaultdict
-from discord import CommandError
+from discord.ext.commands import CommandError
 from functools import partial as PartialFunction
 from pydantic import BaseModel
 from random import choice
