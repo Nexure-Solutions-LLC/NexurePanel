@@ -11,7 +11,7 @@ sys.path.append(dirname(abspath(__file__)))
 async def run():
     async with NexureClient() as bot:
         try:
-            await bot.start(token=bot.keychain.DISCORD_AUTH_TOKEN, reconnect=False)
+            await bot.start(token=bot.keychain.Discord, reconnect=False)
 
         finally:
             if not bot.is_closed():
