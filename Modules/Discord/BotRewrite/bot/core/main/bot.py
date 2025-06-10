@@ -118,7 +118,7 @@ class NexureClient(NonShardedBot):
         
         
     async def setup_hook(self):
-        self.database = MySQL()
+        self.database = MySQL(bot)
         self.redis = Redis()
         self.session = ClientSession()
         
