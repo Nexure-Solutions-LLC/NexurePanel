@@ -50,7 +50,7 @@ class ClientSession(DefaultClientSession):
             **kwargs
         )
         
-        self.__sems = defaultdict(Semaphore(3))
+        self.__sems = defaultdict(lambda: Semaphore(3))
 
 
     @Retry(max_tries=2, pause=3)
