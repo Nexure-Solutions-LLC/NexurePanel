@@ -179,7 +179,7 @@ class Information(Cog):
         guild = ctx.guild if not invite else invite.guild
         
         embed = (
-            Embed(title=guild.name, description=f"> Owned by {guild.owner.mention if hasattr(guild, "owner") else "N/A"} {FormatDate(guild.created_at, style='R')}. {guild.description}", color=await dominant_color(guild.icon) if guild.icon else ctx.bot.config.colors.main)
+            Embed(title=guild.name, description=f"> Owned by {guild.owner.mention if hasattr(guild, "owner") else "N/A"}, created {FormatDate(guild.created_at, style='R')}. {guild.description}", color=await dominant_color(guild.icon) if guild.icon else ctx.bot.config.colors.main)
             .set_author(name=f"{guild.name} ({guild.id})", icon_url=guild.icon)
             .set_thumbnail(url=guild.icon)
             .set_image(url=guild.banner)
