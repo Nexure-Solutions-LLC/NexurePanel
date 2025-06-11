@@ -67,7 +67,7 @@ class MySQL:
         self.__pool = await create_pool(
             db=Env["SQL_DATABASE"],
             host=Env["SQL_HOST"],
-            port=Env["SQL_PORT"],
+            port=int(Env["SQL_PORT"]),
             user=Env["SQL_USER"],
             password=Env["SQL_PASSWORD"],
             maxsize=10, autocommit=True, echo=False
