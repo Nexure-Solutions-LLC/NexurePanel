@@ -95,7 +95,6 @@ class Context(DefaultContextC):
         return await (self.response.edit if kwargs.pop("edit", False) else self.send_or_reply)(
             content=kwargs.pop("content", None),
             delete_after=kwargs.pop("delete_after", None),
-            ephemeral=kwargs.pop("ephemeral", False),
             embed=Embed(
                 color=kwargs.pop("color", self.bot.config.colors.main),
                 title=kwargs.pop("title", None),
