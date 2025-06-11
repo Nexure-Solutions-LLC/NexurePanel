@@ -97,7 +97,7 @@ class Information(Cog):
         """Get information about a user."""
 
         if hasattr(user, "joined_at"):
-            if len(mentions := tuple(map(lambda role: role.mention, reversed(user.roles[1:])))) > 5:
+            if len(mentions := list(map(lambda role: role.mention, reversed(user.roles[1:])))) > 5:
                 roles = ", ".join(mentions[:5]) + f" and {len(mentions) - 5} more"
             else:
                 roles = ", ".join(mentions + ["@everyone"])
