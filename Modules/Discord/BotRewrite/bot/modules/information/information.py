@@ -15,7 +15,7 @@ from discord.ext.commands import (
 
 from asyncio import gather
 from datetime import datetime as Date
-from discord import ButtonStyle, Embed, Member as DiscordMember, User as DiscordUser
+from discord import ButtonStyle, Embed, Invite, Member as DiscordMember, User as DiscordUser
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
@@ -67,21 +67,9 @@ class Information(Cog):
         return await ctx.reply(
             view=(
                 View()
-                .add_item(Button(
-                    label="WEBP",
-                    style=ButtonStyle.link,
-                    url=user.display_avatar.replace(size=4096, format="webp").url
-                ))
-                .add_item(Button(
-                    label="PNG",
-                    style=ButtonStyle.link,
-                    url=user.display_avatar.replace(size=4096, format="png").url
-                ))
-                .add_item(Button(
-                    label="JPG",
-                    style=ButtonStyle.link,
-                    url=user.display_avatar.replace(size=4096, format="jpg").url
-                ))
+                .add_item(Button(label="WEBP", style=ButtonStyle.link, url=user.display_avatar.replace(size=4096, format="webp").url))
+                .add_item(Button(label="PNG", style=ButtonStyle.link, url=user.display_avatar.replace(size=4096, format="png").url))
+                .add_item(Button(label="JPG", style=ButtonStyle.link, url=user.display_avatar.replace(size=4096, format="jpg").url))
             ),
             embed=ctx.default_embed.set_image(url=user.display_avatar.url).set_color(await dominant_color(user.display_avatar))
         )
@@ -129,4 +117,66 @@ class Information(Cog):
             View()
             .add_item(Button(label="Avatar", style=ButtonStyle.link, url=user.display_avatar.url))
             .add_item(Button(label="Banner", style=ButtonStyle.link, url=banner_url or "https://example.com", disabled=not banner_url))
+        ))
+
+
+    @HybridGroup(
+        "server",
+        aliases=("guild", "s"),
+        usage="<subcommand>",
+        example="info",
+        invoke_without_command=True
+    )
+    async def server(self, ctx: Context):
+        """Get details about the current, or referenced server."""
+        return await ctx.send_help(ctx.command.qualified_name)
+    
+
+    @server.command(
+        name="icon",
+        aliases=("logo", "image"),
+        usage="[server INVITE]",
+        example="discord.gg/nexure"
+    )
+    async def server_icon(self, ctx: Context, invite: Optional[Invite] = None):
+        """Get the icon of a server."""
+        guild = ctx.guild if not invite else invite.guild
+        
+        if not guild.icon:
+            return await ctx.send_error("This server does not have an icon.")
+        
+        return await ctx.reply(
+            view=(
+                View()
+                .add_item(Button(label="WEBP", style=ButtonStyle.link, url=guild.icon.replace(size=4096, format="webp").url))
+                .add_item(Button(label="PNG", style=ButtonStyle.link, url=guild.icon.replace(size=4096, format="png").url))
+                .add_item(Button(label="JPG", style=ButtonStyle.link, url=guild.icon.replace(size=4096, format="jpg").url))
+            ),
+            embed=ctx.default_embed.set_image(url=guild.icon.url).set_color(await dominant_color(guild.icon))
+        )
+
+
+    @server.command(
+        name="info",
+        aliases=("details", "stats", "profile"),
+        usage="[server INVITE]",
+        example="discord.gg/nexure"
+    )
+    async def server_info(self, ctx: Context, invite: Optional[Invite] = None):
+        """Get information about a server."""
+        guild = ctx.guild if not invite else invite.guild
+        
+        embed = (
+            Embed(title=guild.name, description=f"> Owned by {guild.owner.mention if hasattr(guild, "owner") else "N/A"}. {guild.description}", color=await dominant_color(guild.icon) if guild.icon else ctx.bot.config.colors.main)
+            .set_author(name=f"{guild.name} ({guild.id})", icon_url=guild.icon)
+            .set_thumbnail(url=guild.icon)
+            .set_footer(text=f"Created: {FormatDate(guild.created_at, style='R')}")
+            .add_field(name="Members", value=f"{guild.member_count:,}", inline=True)
+            .add_field(name="Channels", value=len(guild.channels), inline=True)
+            .add_field(name="Roles", value=len(guild.roles), inline=True)
+        )
+
+        await ctx.reply(embed=embed, view=(
+            View()
+            .add_item(Button(label="Icon", style=ButtonStyle.link, url=guild.icon.url if guild.icon else "https://example.com"))
         ))
