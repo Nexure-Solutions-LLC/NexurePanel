@@ -28,7 +28,7 @@ logger.remove()
 logger.add(
     sink=STDOUT,
     format="<blue>[{time:YYYY-MM-DD HH:mm:ss}]</blue> - {file} - <level>{level}</level> - {message}",
-    level="DEBUG",
+    level="INFO",
     colorize=True
 )
 
