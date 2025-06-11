@@ -49,7 +49,7 @@ class Developer(Cog):
         return await ctx.send_help(ctx.command.qualified_name)
 
 
-    @bot_owner_management.command(
+    @owner_management.command(
         name="list",
         aliases=("show", "display"),
         usage=None, example=None
@@ -67,7 +67,7 @@ class Developer(Cog):
         ))
 
 
-    @bot_owner_management.command(
+    @owner_management.command(
         name="add",
         aliases=("append",),
         usage="<user>",
@@ -90,7 +90,7 @@ class Developer(Cog):
         ))
 
 
-    @bot_owner_management.command(
+    @owner_management.command(
         name="remove",
         usage="<user>",
         example="@nickderry24"
