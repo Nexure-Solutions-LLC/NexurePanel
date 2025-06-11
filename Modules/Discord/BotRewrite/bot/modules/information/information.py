@@ -106,7 +106,7 @@ class Information(Cog):
             Embed(title=user, color=await dominant_color(user.display_avatar))
             .set_author(name=f"{user.name} ({user.id})", icon_url=user.display_avatar)
             .set_thumbnail(url=user.display_avatar)
-            .set_footer(text="" if not getattr(user, "joined_at") else "   \u2022   ".join(filter(None, [
+            .set_footer(text="" if not getattr(user, "joined_at", None) else "   \u2022   ".join(filter(None, [
                 "Administrator" if user.guild_permissions.administrator else "Create Invite" if user.guild_permissions.create_instant_invite else "No Permissions",
                 f"Join position: {Ordinal(sorted(ctx.guild.members, key=lambda m: m.joined_at or Date.min).index(user)+1)}",
                 "No mutual guilds" if not user.mutual_guilds else f"{len(user.mutual_guilds)} mutual guild{'s' if len(user.mutual_guilds) != 1 else ''}"
