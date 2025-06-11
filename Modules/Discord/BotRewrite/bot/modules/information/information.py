@@ -14,8 +14,10 @@ from discord.ext.commands import (
 )
 
 from asyncio import gather
+from contextlib import suppress as SuppressException
 from datetime import datetime as Date
-from discord import ButtonStyle, Embed, Invite, Member as DiscordMember, User as DiscordUser
+from discord import ButtonStyle, Embed, Member as DiscordMember, User as DiscordUser
+from discord.errors import NotFound
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
@@ -162,8 +164,13 @@ class Information(Cog):
         usage="[server INVITE]",
         example="discord.gg/nexure"
     )
-    async def server_info(self, ctx: Context, invite: Optional[Invite] = None):
+    async def server_info(self, ctx: Context, invite: Optional[str] = None):
         """Get information about a server."""
+        
+        if invite:
+            with SuppressException(NotFound):
+                invite = await ctx.bot.fetch_invite(invite)
+
         guild = ctx.guild if not invite else invite.guild
         
         embed = (
