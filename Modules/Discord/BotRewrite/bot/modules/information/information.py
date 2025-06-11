@@ -96,6 +96,9 @@ class Information(Cog):
     async def user_info(self, ctx: Context, user: Optional[Union[ DiscordMember, DiscordUser ]] = Author):
         """Get information about a user."""
 
+        if user == ctx.bot.user:
+            user = ctx.guild.me
+            
         if hasattr(user, "joined_at"):
             if len(mentions := list(map(lambda role: role.mention, reversed(user.roles[1:])))) > 5:
                 roles = ", ".join(mentions[:5]) + f" and {len(mentions) - 5} more"
