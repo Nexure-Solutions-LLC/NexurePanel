@@ -16,7 +16,7 @@ from discord.ext.commands import (
 from asyncio import gather
 from contextlib import suppress as SuppressException
 from datetime import datetime as Date
-from discord import ButtonStyle, Embed, Member as DiscordMember, User as DiscordUser
+from discord import ButtonStyle, Embed, Member as DiscordMember, PartialInviteGuild, User as DiscordUser
 from discord.errors import NotFound
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
@@ -183,9 +183,9 @@ class Information(Cog):
             .set_author(name=f"{guild.name} ({guild.id})", icon_url=guild.icon)
             .set_thumbnail(url=guild.icon)
             .set_image(url=guild.banner)
-            .add_field(name="Members", value=f"{guild.member_count:,}", inline=True)
-            .add_field(name="Channels", value=len(guild.channels), inline=True)
-            .add_field(name="Roles", value=len(guild.roles), inline=True)
+            .add_field(name="Members", value=f"{guild.member_count if not isinstance(guild, PartialInviteGuild) else invite.approximate_member_count:,}", inline=True)
+            .add_field(name="Channels", value=len(guild.channels if not isinstance(guild, PartialInviteGuild) else "N/A"), inline=True)
+            .add_field(name="Roles", value=len(guild.roles if not isinstance(guild, PartialInviteGuild) else "N/A"), inline=True)
         )
 
         return await ctx.reply(embed=embed, view=(
