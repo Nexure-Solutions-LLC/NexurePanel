@@ -140,8 +140,13 @@ class Information(Cog):
         usage="[server INVITE]",
         example="discord.gg/nexure"
     )
-    async def server_icon(self, ctx: Context, invite: Optional[Invite] = None):
+    async def server_icon(self, ctx: Context, invite: Optional[str] = None):
         """Get the icon of a server."""
+
+        if invite:
+            with SuppressException(NotFound):
+                invite = await ctx.bot.fetch_invite(invite)
+                
         guild = ctx.guild if not invite else invite.guild
         
         if not guild.icon:
