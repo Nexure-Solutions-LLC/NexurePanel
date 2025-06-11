@@ -51,6 +51,7 @@ class ClientSession(DefaultClientSession):
         )
         
         self.__sems = defaultdict(lambda: Semaphore(3))
+        __import__("aiohttp").GLOBAL = self
 
 
     @Retry(max_tries=2, pause=3)

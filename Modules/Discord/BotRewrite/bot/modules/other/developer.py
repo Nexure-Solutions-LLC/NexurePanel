@@ -70,7 +70,7 @@ class Developer(Cog):
     @owner_management.command(
         name="add",
         aliases=("append",),
-        usage="<user>",
+        usage="<user USER>",
         example="@nickderry24"
     )
     async def add_bot_owner(self, ctx: Context, *, user: User):
@@ -93,7 +93,7 @@ class Developer(Cog):
 
     @owner_management.command(
         name="remove",
-        usage="<user>",
+        usage="<user USER>",
         example="@nickderry24"
     )
     async def remove_bot_owner(self, ctx: Context, *, user: User):

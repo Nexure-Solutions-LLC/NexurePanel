@@ -14,10 +14,14 @@ from discord.ext.commands import (
     UserConverter
 )
 
-from discord import Color as DefaultColorC
+from aiohttp import GLOBAL as ClientSession
+from colorthief import ColorThief
+from discord import Asset, Color as DefaultColorC
 from fast_string_match import closest_match
+from io import BytesIO
 from matplotlib.colors import cnames as CNames
 from munch import Munch
+from redis import GLOBAL as Redis
 from typing import Any, Union, Optional
 
 __all__ = (
@@ -36,13 +40,13 @@ class BaseConverter(Converter):
         ctx: Context, argument: str
     ) -> Any:
         if argument.isnumeric():
-            id = int(argument)
+            id_ = int(argument)
 
-            if await ctx.bot.redis.sismember(f"invalid_ids:{self.__class__.__name__.lower()}", id):
+            if await ctx.bot.redis.sismember(f"invalid_ids:{self.__class__.__name__.lower()}", id_):
                 raise getattr(commands, f"{self.__class__.__name__.title()}NotFound")(argument)
 
             if not (16 <= len(argument) <= 20):
-                await ctx.bot.redis.sadd(f"invalid_ids:{self.__class__.__name__.lower()}", id)
+                await ctx.bot.redis.sadd(f"invalid_ids:{self.__class__.__name__.lower()}", id_)
                 raise getattr(commands, f"{self.__class__.__name__.title()}NotFound")(argument)
 
         try:
@@ -102,13 +106,13 @@ class Role(RoleConverter):
         ctx: Context, argument: str
     ) -> Any:
         if argument.isnumeric():
-            id = int(argument)
+            id_ = int(argument)
 
-            if await ctx.bot.redis.sismember("invalid_ids:role", id):
+            if await ctx.bot.redis.sismember("invalid_ids:role", id_):
                 raise RoleNotFound(argument)
 
             if not (16 <= len(argument) <= 20):
-                await ctx.bot.redis.sadd("invalid_ids:role", id)
+                await ctx.bot.redis.sadd("invalid_ids:role", id_)
                 raise RoleNotFound(argument)
                 
         try:
@@ -158,3 +162,13 @@ MessageConverter = Message
 RoleConverter = Role
 UserConverter = User
 TextChannelConverter = TextChannel
+
+
+async def dominant_color(image: Union[ Asset, str, bytes ]) -> DefaultColorC:
+    if isinstance(image, Asset):
+        image = await image.read()
+
+    elif isinstance(image, str):
+        image = await ClientSession.request(image)
+
+    return DefaultColorC.from_rgb(*ColorThief(BytesIO(image)).get_color(quality=1))
