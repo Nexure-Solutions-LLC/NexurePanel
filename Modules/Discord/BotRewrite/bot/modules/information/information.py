@@ -93,7 +93,7 @@ class Information(Cog):
         usage="<user USER>",
         example="@nickderry24"
     )
-    async def user_info(self, ctx: Context, user: Optional[Union[DiscordMember, DiscordUser]] = Author):
+    async def user_info(self, ctx: Context, user: Optional[Union[ DiscordMember, DiscordUser ]] = Author):
         """Get information about a user."""
 
         if hasattr(user, "joined_at"):
