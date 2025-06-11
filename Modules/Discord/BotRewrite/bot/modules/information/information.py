@@ -15,7 +15,7 @@ from discord.ext.commands import (
 
 from asyncio import gather
 from datetime import datetime as Date
-from discord import ButtonStyle, Embed
+from discord import ButtonStyle, Embed, Member as DiscordMember, User as DiscordUser
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
@@ -93,7 +93,7 @@ class Information(Cog):
         usage="<user USER>",
         example="@nickderry24"
     )
-    async def user_info(self, ctx: Context, user: Optional[Union[Member, User]] = Author):
+    async def user_info(self, ctx: Context, user: Optional[Union[DiscordMember, DiscordUser]] = Author):
         """Get information about a user."""
 
         if hasattr(user, "joined_at"):
