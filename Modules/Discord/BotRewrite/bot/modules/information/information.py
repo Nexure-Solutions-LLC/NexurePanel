@@ -83,7 +83,7 @@ class Information(Cog):
                     url=user.display_avatar.replace(size=4096, format="jpg").url
                 ))
             ),
-            embed=ctx.default_embed.set_image(url=user.display_avatar.url)
+            embed=ctx.default_embed.set_image(url=user.display_avatar.url).set_color(await dominant_color(user.display_avatar))
         )
     
 
