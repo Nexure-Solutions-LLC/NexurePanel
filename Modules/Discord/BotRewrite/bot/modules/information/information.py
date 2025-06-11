@@ -19,7 +19,7 @@ from discord import ButtonStyle, Embed
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
-from typing import Literal, Optional
+from typing import Literal, Optional, Union
 
 
 class Information(Cog):
@@ -93,7 +93,7 @@ class Information(Cog):
         usage="<user USER>",
         example="@nickderry24"
     )
-    async def user_info(self, ctx: Context, user: Optional[User] = Author):
+    async def user_info(self, ctx: Context, user: Optional[Union[Member, User]] = Author):
         """Get information about a user."""
 
         if hasattr(user, "joined_at"):
