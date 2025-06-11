@@ -1,5 +1,5 @@
 from __future__ import annotations
-from bot.utils.converter import dominant_color, User
+from bot.utils.converter import dominant_color, Member, User
 
 from discord.ext.commands import (
     Author,
