@@ -184,8 +184,8 @@ class Information(Cog):
             .set_thumbnail(url=guild.icon)
             .set_image(url=guild.banner)
             .add_field(name="Members", value=f"{guild.member_count if not isinstance(guild, PartialInviteGuild) else invite.approximate_member_count:,}", inline=True)
-            .add_field(name="Channels", value=len(guild.channels if not isinstance(guild, PartialInviteGuild) else "N/A"), inline=True)
-            .add_field(name="Roles", value=len(guild.roles if not isinstance(guild, PartialInviteGuild) else "N/A"), inline=True)
+            .add_field(name="Channels", value=len(guild.channels) if not isinstance(guild, PartialInviteGuild) else "N/A", inline=True)
+            .add_field(name="Roles", value=len(guild.roles) if not isinstance(guild, PartialInviteGuild) else "N/A", inline=True)
         )
 
         return await ctx.reply(embed=embed, view=(
