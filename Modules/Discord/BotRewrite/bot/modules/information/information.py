@@ -98,7 +98,7 @@ class Information(Cog):
 
         if user == ctx.bot.user:
             user = ctx.guild.me
-            
+
         if hasattr(user, "joined_at"):
             if len(mentions := list(map(lambda role: role.mention, reversed(user.roles[1:])))) > 5:
                 roles = ", ".join(mentions[:5]) + f" and {len(mentions) - 5} more"
@@ -111,8 +111,8 @@ class Information(Cog):
             .set_thumbnail(url=user.display_avatar)
             .set_footer(text="" if not getattr(user, "joined_at", None) else "   \u2022   ".join(filter(None, [
                 "Administrator" if user.guild_permissions.administrator else "Create Invite" if user.guild_permissions.create_instant_invite else "No Permissions",
-                f"Join position: {Ordinal(sorted(ctx.guild.members, key=lambda m: m.joined_at or Date.min).index(user)+1)}",
-                "No mutual guilds" if not user.mutual_guilds else f"{len(user.mutual_guilds)} mutual guild{'s' if len(user.mutual_guilds) != 1 else ''}"
+                f"Join position: {Ordinal(sorted(ctx.guild.members, key=lambda m: m.joined_at).index(user)+1)}",
+                ("No mutual guilds" if not user.mutual_guilds else f"{len(user.mutual_guilds)} mutual guild{'s' if len(user.mutual_guilds) != 1 else ''}") if user != ctx.bot.user else "Mutual guilds N/A"
             ]))) 
             .add_field(name="Created", value=FormatDate(user.created_at, style="R"))
             .add_field(name="Joined", value="N/A" if not getattr(user, "joined_at", None) else FormatDate(user.joined_at, style="R"))
