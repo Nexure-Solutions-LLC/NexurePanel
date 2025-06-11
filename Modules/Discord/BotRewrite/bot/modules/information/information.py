@@ -146,7 +146,7 @@ class Information(Cog):
         if invite:
             with SuppressException(NotFound):
                 invite = await ctx.bot.fetch_invite(invite)
-                
+
         guild = ctx.guild if not invite else invite.guild
         
         if not guild.icon:
@@ -179,16 +179,17 @@ class Information(Cog):
         guild = ctx.guild if not invite else invite.guild
         
         embed = (
-            Embed(title=guild.name, description=f"> Owned by {guild.owner.mention if hasattr(guild, "owner") else "N/A"}. {guild.description}", color=await dominant_color(guild.icon) if guild.icon else ctx.bot.config.colors.main)
+            Embed(title=guild.name, description=f"> Owned by {guild.owner.mention if hasattr(guild, "owner") else "N/A"} {FormatDate(guild.created_at, style='R')}. {guild.description}", color=await dominant_color(guild.icon) if guild.icon else ctx.bot.config.colors.main)
             .set_author(name=f"{guild.name} ({guild.id})", icon_url=guild.icon)
             .set_thumbnail(url=guild.icon)
-            .set_footer(text=f"Created: {FormatDate(guild.created_at, style='R')}")
+            .set_image(url=guild.banner)
             .add_field(name="Members", value=f"{guild.member_count:,}", inline=True)
             .add_field(name="Channels", value=len(guild.channels), inline=True)
             .add_field(name="Roles", value=len(guild.roles), inline=True)
         )
 
-        await ctx.reply(embed=embed, view=(
+        return await ctx.reply(embed=embed, view=(
             View()
             .add_item(Button(label="Icon", style=ButtonStyle.link, url=guild.icon.url if guild.icon else "https://example.com"))
+            .add_item(Button(label="Banner", style=ButtonStyle.link, url=guild.banner.url if guild.banner else "https://example.com", disabled=not guild.banner))
         ))
