@@ -84,6 +84,7 @@ class Developer(Cog):
         if botauth:
             return await ctx.send_error("This user is already privileged.")
 
+        ctx.bot.owner_ids.append(user.id)
         await gather(*(
             ctx.bot.database.execute("UPDATE nexure_users SET botAuth = 1 WHERE oAuthID = %s;", user.id),
             ctx.send_success(f"Successfully added {user.mention} as a privileged user.")
@@ -106,6 +107,7 @@ class Developer(Cog):
         if not botauth:
             return await ctx.send_error("This user is not privileged.")
 
+        ctx.bot.owner_ids.remove(user.id)
         await gather(*(
             ctx.bot.database.execute("UPDATE nexure_users SET botAuth = 0 WHERE oAuthID = %s;", user.id),
             ctx.send_success(f"Successfully revoked {user.mention}'s privileges.")

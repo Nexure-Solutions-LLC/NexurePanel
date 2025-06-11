@@ -126,7 +126,7 @@ class NexureClient(NonShardedBot):
         
         try:
             await self.database.initialize()
-            self.owner_ids = tuple(map(
+            self.owner_ids = list(map(
                 int,
                 await self.database.fetch(f"SELECT oAuthID FROM nexure_users WHERE botAuth = 1;")
             ))
