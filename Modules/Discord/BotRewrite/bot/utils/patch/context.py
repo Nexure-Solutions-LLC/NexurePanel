@@ -54,7 +54,7 @@ class Context(DefaultContextC):
     def default_embed(self: Context) -> Embed:
         return Embed(color=self.bot.config.colors.main, timestamp=Date.now()).set_author(
             name="Nexure Solutions", 
-            icon_url=self.bot.display_avatar
+            icon_url=self.bot.user.display_avatar
         )
         
     
