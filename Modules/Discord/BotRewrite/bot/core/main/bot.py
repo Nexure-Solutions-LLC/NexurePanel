@@ -123,13 +123,13 @@ class NexureClient(NonShardedBot):
         self.session = ClientSession()
         
         self.dask = await Dask.start_dask()
-        self.owner_ids = tuple(map(
-            int,
-            await self.database.fetch(f"SELECT oAuthID FROM nexure_users WHERE botAuth = 1;")
-        ))
         
         try:
             await self.database.initialize()
+            self.owner_ids = tuple(map(
+                int,
+                await self.database.fetch(f"SELECT oAuthID FROM nexure_users WHERE botAuth = 1;")
+            ))
             
         except Exception:
             self.logger.warning("Shutting down; MySQL pool failed to initialize.")
