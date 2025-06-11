@@ -44,7 +44,7 @@ class Developer(Cog):
         example="add @nickderry24",
         invoke_without_command=True
     )
-    async def bot_owner_management(self, ctx: Context):
+    async def owner_management(self, ctx: Context):
         """Manage the list of users with privileges on the bot."""
         return await ctx.send_help(ctx.command.qualified_name)
 
