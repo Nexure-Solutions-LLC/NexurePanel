@@ -31,8 +31,8 @@ class Information(Cog):
         processing_latency = (Date.now().timestamp()-ctx.message.created_at.timestamp()) * 1e3
         rest_start = Date.now()
         
-        await ctx.send_success(f"**WebSocket latency:** `{round(self.bot.latency*1000, 2):.2f}ms`\n> **Processing latency:** `{processing_latency:.2f}ms`\n> **REST latency:** `Calculating...`")
-        return await ctx.send_success(
+        await ctx.respond(f"**WebSocket latency:** `{round(self.bot.latency*1000, 2):.2f}ms`\n> **Processing latency:** `{processing_latency:.2f}ms`\n> **REST latency:** `Calculating...`", title="Network Information")
+        return await ctx.respond(
             f"**WebSocket latency:** `{round(self.bot.latency*1000, 2)}ms`\n> **Processing latency:** `{processing_latency:.2f}ms`\n> **REST latency:** `{(Date.now().timestamp() - rest_start.timestamp()) * 1e3:.2f}ms`",
-            edit=True
+            title="Network Information", edit=True
         )
