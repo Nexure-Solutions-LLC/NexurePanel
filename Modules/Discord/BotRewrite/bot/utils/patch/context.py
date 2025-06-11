@@ -91,8 +91,8 @@ class Context(DefaultContextC):
     ) -> Message:
         if args and isinstance(args[0], str):
             kwargs["message"] = args[0]
-             
-        return await self.send_or_reply(
+        
+        return await (self.response.edit if kwargs.pop("edit", False) else self.send_or_reply)(
             content=kwargs.pop("content", None),
             delete_after=kwargs.pop("delete_after", None),
             ephemeral=kwargs.pop("ephemeral", False),
