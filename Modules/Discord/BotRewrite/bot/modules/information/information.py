@@ -218,7 +218,7 @@ class Information(Cog):
         
         try:
             emote = PartialEmoji.from_str(emote)
-        except PartialEmojiConversionFailure:
+        except Exception:
             return await ctx.send_error("I couldn't find that custom or unicode emoji.")
 
         return await ctx.reply(
