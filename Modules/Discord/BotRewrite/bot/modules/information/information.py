@@ -233,6 +233,6 @@ class Information(Cog):
                 .add_field(name="Name", value=emote.name)
                 .add_field(name="Animated", value=emote.animated and "Yes" or "No")
                 .add_field(name="Type", value=emote.is_custom_emoji() and "Custom" or "Unicode")
-                .add_field(name="Created On", value=FormatDate(Date.fromtimestamp(emote.created_at.timestamp())), inline=False)
+                .add_field(name="Created On", value=FormatDate(Date.fromtimestamp(emote.created_at.timestamp())) if emote.is_custom_emoji() else "N/A", inline=False)
             )
         )
