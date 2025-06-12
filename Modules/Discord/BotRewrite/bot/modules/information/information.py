@@ -16,8 +16,8 @@ from discord.ext.commands import (
 from asyncio import gather
 from contextlib import suppress as SuppressException
 from datetime import datetime as Date
-from discord import ButtonStyle, Embed, Member as DiscordMember, PartialInviteGuild, User as DiscordUser
-from discord.errors import NotFound
+from discord import ButtonStyle, Embed, Emoji, Member as DiscordMember, PartialEmoji, PartialInviteGuild, User as DiscordUser
+from discord.errors import NotFound, PartialEmojiConversionFailure
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
@@ -193,3 +193,46 @@ class Information(Cog):
             .add_item(Button(label="Icon", style=ButtonStyle.link, url=guild.icon.url if guild.icon else "https://example.com"))
             .add_item(Button(label="Banner", style=ButtonStyle.link, url=guild.banner.url if guild.banner else "https://example.com", disabled=not guild.banner))
         ))
+    
+
+    @HybridGroup(
+        name="emotes",
+        aliases=("emoji", "e"),
+        usage="<subcommand>",
+        example="find :NickDewwyDewwy:",
+        invoke_without_command=True
+    )
+    async def emotes(self, ctx: Context):
+        """Get details about emotes."""
+        return await ctx.send_help(ctx.command.qualified_name)
+    
+
+    @emotes.command(
+        name="find",
+        aliases=("search",),
+        usage="<name>",
+        example="find :NickDewwyDewwy:"
+    )
+    async def emotes_find(self, ctx: Context, *, emote: str):
+        """Find an emote by name or reference."""
+        
+        try:
+            emote = PartialEmoji.from_str(emote)
+        except PartialEmojiConversionFailure:
+            return await ctx.send_error("I couldn't find that custom or unicode emoji.")
+
+        return await ctx.reply(
+            view=(
+                View()
+                .add_item(Button(label="View", style=ButtonStyle.link, url=emote.url))
+            ),
+            embed=(
+                ctx.default_embed.set_color(await dominant_color(emote.url))
+                .set_image(url=emote.url)
+                .set_footer(text=f"ID: {emote.id}")
+                .add_field(name="Name", value=emote.name)
+                .add_field(name="Animated", value=emote.animated and "Yes" or "No")
+                .add_field(name="Type", value=emote.is_custom_emoji() and "Custom" or "Unicode")
+                .add_field(name="Created On", value=FormatDate(Date.fromtimestamp(emote.created_at.timestamp())), inline=False)
+            )
+        )
