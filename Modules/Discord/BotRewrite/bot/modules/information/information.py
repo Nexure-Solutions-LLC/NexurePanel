@@ -233,3 +233,25 @@ class Information(Cog):
                 .add_field(name="Created On", value=FormatDate(Date.fromtimestamp(emote.created_at.timestamp())) if emote.is_custom_emoji() else "N/A", inline=False)
             )
         )
+    
+
+    @emotes.command(
+        name="list",
+        aliases=("all", "show"),
+        usage=None, example=None
+    )
+    async def emotes_list(self, ctx: Context):
+        """List all custom emotes in the current server."""
+        
+        if not ctx.guild.emojis:
+            return await ctx.send_error("This server has no custom emojis.")
+
+        return await ctx.paginate((
+            (
+                ctx.default_embed
+                .set_color(ctx.bot.config.colors.main)
+                .set_thumbnail(url=ctx.guild.icon)
+                .set_title(f"{ctx.guild.name}'s Emojis ({len(ctx.guild.emojis)}/{ctx.guild.emoji_limit})")
+            ),
+            f"{emoji} - `{emoji}`" for emoji in ctx.guild.emojis
+        ))
