@@ -17,7 +17,7 @@ from asyncio import gather
 from contextlib import suppress as SuppressException
 from datetime import datetime as Date
 from discord import ButtonStyle, Embed, Emoji, Member as DiscordMember, PartialEmoji, PartialInviteGuild, User as DiscordUser
-from discord.errors import NotFound, PartialEmojiConversionFailure
+from discord.errors import NotFound
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
