@@ -197,7 +197,7 @@ class Information(Cog):
 
     @HybridGroup(
         name="emotes",
-        aliases=("emoji", "e"),
+        aliases=("emoji", "emote", "e"),
         usage="<subcommand>",
         example="find :NickDewwyDewwy:",
         invoke_without_command=True
