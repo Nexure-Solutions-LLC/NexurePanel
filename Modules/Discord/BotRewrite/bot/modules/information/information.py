@@ -222,10 +222,7 @@ class Information(Cog):
             return await ctx.send_error("I couldn't find that custom or unicode emoji.")
 
         return await ctx.reply(
-            view=(
-                View()
-                .add_item(Button(label="View", style=ButtonStyle.link, url=emote.url))
-            ),
+            view=View().add_item(Button(label="View", style=ButtonStyle.link, url=emote.url)),
             embed=(
                 ctx.default_embed.set_color(await dominant_color(emote.url) if emote.is_custom_emoji() else ctx.bot.config.colors.main)
                 .set_image(url=emote.url)
