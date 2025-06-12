@@ -170,4 +170,7 @@ async def dominant_color(image: Union[ Asset, str, bytes ]) -> DefaultColorC:
     elif isinstance(image, str):
         image = await ClientSession.request(image)
 
-    return DefaultColorC.from_rgb(*ColorThief(BytesIO(image)).get_color(quality=1))
+    try:
+        return DefaultColorC.from_rgb(*ColorThief(BytesIO(image)).get_color(quality=1))
+    except Exception:
+        return DefaultColorC(value=0x8DC6F4)
