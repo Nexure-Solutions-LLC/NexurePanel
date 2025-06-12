@@ -253,5 +253,5 @@ class Information(Cog):
                 .set_thumbnail(url=ctx.guild.icon)
                 .set_title(f"{ctx.guild.name}'s Emojis ({len(ctx.guild.emojis)}/{ctx.guild.emoji_limit})")
             ),
-            f"{emoji} - `{emoji}`" for emoji in ctx.guild.emojis
+            [f"{emoji} - `{emoji}`" for emoji in ctx.guild.emojis]
         ))
