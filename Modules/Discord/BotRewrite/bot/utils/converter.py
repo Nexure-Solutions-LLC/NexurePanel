@@ -1,5 +1,5 @@
 from __future__ import annotations
-
+from bot.utils.worker import Offload
 from discord.ext import commands
 from discord.ext.commands import (
     Context,
@@ -163,7 +163,7 @@ RoleConverter = Role
 UserConverter = User
 TextChannelConverter = TextChannel
 
-
+@Offload
 async def dominant_color(image: Union[ Asset, str, bytes ]) -> DefaultColorC:
     if isinstance(image, Asset):
         image = await image.read()

@@ -227,7 +227,7 @@ class Information(Cog):
                 .add_item(Button(label="View", style=ButtonStyle.link, url=emote.url))
             ),
             embed=(
-                ctx.default_embed.set_color(await dominant_color(emote.url))
+                ctx.default_embed.set_color(await dominant_color(emote.url if emote.is_custom_emoji() else ctx.bot.config.colors.main))
                 .set_image(url=emote.url)
                 .set_footer(text=f"ID: {emote.id}")
                 .add_field(name="Name", value=emote.name)
