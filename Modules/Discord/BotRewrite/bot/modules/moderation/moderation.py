@@ -41,7 +41,7 @@ class Moderation(Cog):
         await self.bot.database.execute(
             "INSERT INTO nexure_moderations (moderator_id, member_id, type, reason, created_on, case_id) VALUES (%s, %s, %s, %s, %s, %s);",
             moderator_id, member_id, type, reason, Date.now(),
-            await self.bot.database.fetchval("SELECT COALESCE(MAX(case_id), 0)+1 FROM nexure_moderations WHERE moderator_id = %s;", moderator_id)+1
+            await self.bot.database.fetchval("SELECT COALESCE((SELECT MAX(case_id) FROM moderation_history WHERE moderator_id = %s), 0);", moderator_id)+1
         )
 
 
