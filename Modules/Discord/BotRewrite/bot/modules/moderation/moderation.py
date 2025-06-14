@@ -460,6 +460,10 @@ class Moderation(Cog):
             delete_message_seconds=days*86400,
             reason=f"{ctx.bot.user.name.title()} Moderation [{ctx.author}]: {reason}"
         )
+        await self.log_moderation(
+            ctx.author.id, user.id, 
+            type="Ban", reason=reason
+        )
 
         if hasattr(user, "joined_at"):
             ctx.bot.loop.create_task(self.notify_of_moderation(
@@ -491,6 +495,11 @@ class Moderation(Cog):
             ctx, user,
             title="Unbanned", message="You have been unbanned from"
         ))
+
+        await self.log_moderation(
+            ctx.author.id, user.id, 
+            type="Unban", reason=f"Manual unban by {ctx.author}."
+        )
             
         return await ctx.send_success(f"Successfully unbanned {user.mention}.")
         
@@ -522,6 +531,10 @@ class Moderation(Cog):
         await ctx.guild.unban(
             member,
             reason=f"{ctx.bot.user.name.title()} Moderation [{ctx.author}]: User was soft banned"
+        )
+        await self.log_moderation(
+            ctx.author.id, member.id, 
+            type="Softban", reason=reason
         )
         #-
 
@@ -604,6 +617,10 @@ class Moderation(Cog):
             return await ctx.send_error("Please provide a reason under 64 characters.")
             
         await ctx.guild.kick(member, reason=f"{ctx.bot.user.name.title()} Moderation [{ctx.author}]: {reason}")
+        await self.log_moderation(
+            ctx.author.id, member.id, 
+            type="Kick", reason=reason
+        )
 
         GatherTasks(
             self.notify_of_moderation(
