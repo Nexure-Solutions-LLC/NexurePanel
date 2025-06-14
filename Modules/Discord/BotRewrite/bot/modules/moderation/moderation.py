@@ -181,7 +181,7 @@ class Moderation(Cog):
 
     @purge.command(
         name="after",
-        aliases=("since", "a"),
+        aliases=("since",),
         usage="<message MESSAGE>", example="1382763085911031839"
     )
     @MaxConcurrency(1, BucketType.channel, wait=False)
