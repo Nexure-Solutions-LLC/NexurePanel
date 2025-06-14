@@ -4,6 +4,7 @@ from bot.utils.converter import Member, Message, User
 from bot.utils.views import Confirmation
 
 from discord.ext.commands import (
+    Author,
     BucketType,
     Cog,
     has_permissions as HasPermissions,
@@ -630,4 +631,81 @@ class Moderation(Cog):
                 title="Kicked", message="You have been kicked from", reason=reason
             ),
             ctx.send_success(f"Successfully **kicked** {member.mention} for {'no reason' if reason == 'No reason provided' else reason}.")
+        )
+
+
+    @HybridCommand(
+        name="moderationhistory",
+        aliases=("mh", "modhistory",),
+        usage="[member MEMBER]", example="@nickderry24"
+    )
+    @HasPermissions(manage_messages=True)
+    async def moderationhistory(self, ctx: Context, *, member: Optional[Member] = Author):
+        """View the moderation history of a member or staff member in the server."""
+        
+        if not (history := await ctx.bot.database.execute(
+            "SELECT case_id, type, member_id, reason FROM nexure_moderations WHERE moderator_id = %s ORDER BY case_id DESC;",
+            member.id
+        )):
+            return await ctx.send_error("There is no previously recorded moderation history for that staff member.")
+           
+        return await ctx.paginate((
+            ctx.default_embed.set_title(f"Moderation History for '{member}'"),
+            "\n".join(f"**Case #{case_id}**\n> **Type:** {type}\n> **Member:** {_member} (`{_member.id}`)\n> **Reason:** {reason}" for case_id, type, member_id, reason in history if (_member := ctx.bot.get_user(member_id)))
+        ), show_index=False)
+        
+        
+    @HybridGroup(
+        name="history",
+        usage="[member MEMBER]", example="@mewa",
+        invoke_without_command=True
+    )
+    @HasPermissions(manage_messages=True)
+    async def history(self, ctx: Context, *, member: Optional[Member] = Author):
+        """View the punishment history of a member in the server."""
+        
+        if not (history := await ctx.bot.database.execute(
+            "SELECT case_id, type, moderator_id, reason FROM nexure_moderations WHERE member_id = %s ORDER BY case_id DESC;",
+            member.id
+        )):
+            return await ctx.send_error("There is no previously recorded punishment history for that member.")
+            
+        return await ctx.paginate((
+            ctx.default_embed.set_title(f"Punishment History for '{member}'"),
+            "\n".join(f"**Case #{case_id}**\n> **Type:** {type}\n> **Moderator:** {moderator} (`{moderator.id}`)\n> **Reason:** {reason}" for case_id, type, moderator_id, reason in history if (moderator := self.bot.get_user(moderator_id)))
+        ), show_index=False)
+        
+        
+    @history.group(
+        name="remove",
+        usage="<member MEMBER> [case_id NUMBER]", example="@nickderry24 1528",
+        invoke_without_command=True
+    )
+    @HasPermissions(manage_messages=True)
+    async def history_remove(self, ctx: Context, member: Member, case_id: int):
+        """Remove a specific punishment from a member's history"""
+        
+        if not await ctx.bot.database.fetchrow("SELECT * FROM moderation_history WHERE member_id = %s AND case_id = %s;", member.id, case_id):
+            return await ctx.send_error("Please provide a valid case ID belonging to that member.")
+            
+        GatherTasks(
+            ctx.bot.database.execute("DELETE FROM moderation_history WHERE case_id = %s;", case_id),
+            ctx.success(f"Successfully removed that punishment.")
+        )
+        
+        
+    @history_remove.command(
+        name="all",
+        usage="<member MEMBER>", example="@nickderry24",
+    )
+    @HasPermissions(manage_messages=True)
+    async def history_remove_all(self, ctx: Context, *, member: Member):
+        """Remove all punishments from a member's history"""
+        
+        if not await ctx.bot.database.fetchrow("SELECT * FROM moderation_history WHERE member_id = %s LIMIT 1;", member.id):
+            return await ctx.send_error("There is no previously recorded punishment history for that member.")
+            
+        GatherTasks(
+            ctx.bot.database.execute("DELETE FROM moderation_history WHERE member_id = %s;", member.id),
+            ctx.success(f"Successfully **removed** every punishment.")
         )
