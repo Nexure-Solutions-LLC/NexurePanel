@@ -417,7 +417,7 @@ class Moderation(Cog):
 
     @purge.command(
         name="between",
-        aliases=("btw", "b"),
+        aliases=("btw",),
         usage="<start MESSAGE> <finish MESSAGE>", example="1382749929910439937 1382750104431366318"
     )
     @MaxConcurrency(1, BucketType.channel, wait=False)
