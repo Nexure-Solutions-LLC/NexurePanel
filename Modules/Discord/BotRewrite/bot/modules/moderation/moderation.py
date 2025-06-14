@@ -651,7 +651,7 @@ class Moderation(Cog):
            
         return await ctx.paginate((
             ctx.default_embed.set_title(f"Moderation History for '{member}'"),
-            "\n".join(f"**Case #{case_id}**\n> **Type:** {type}\n> **Member:** {_member} (`{_member.id}`)\n> **Reason:** {reason}" for case_id, type, member_id, reason in history if (_member := ctx.bot.get_user(member_id)))
+            "\n".join(f"**Case #{case_id}**\n> **Type:** {type}\n> **Member:** {_member} (`{_member.id}`)\n> **Reason:** {reason}" for case_id, type, member_id, reason in history if (_member := await ctx.bot.fetch_user(member_id)))
         ), show_index=False)
         
         
@@ -672,7 +672,7 @@ class Moderation(Cog):
             
         return await ctx.paginate((
             ctx.default_embed.set_title(f"Punishment History for '{member}'"),
-            "\n".join(f"**Case #{case_id}**\n> **Type:** {type}\n> **Moderator:** {moderator} (`{moderator.id}`)\n> **Reason:** {reason}" for case_id, type, moderator_id, reason in history if (moderator := self.bot.get_user(moderator_id)))
+            "\n".join(f"**Case #{case_id}**\n> **Type:** {type}\n> **Moderator:** {moderator} (`{moderator.id}`)\n> **Reason:** {reason}" for case_id, type, moderator_id, reason in history if (moderator := await ctx.bot.fetch_user(moderator_id)))
         ), show_index=False)
         
         
