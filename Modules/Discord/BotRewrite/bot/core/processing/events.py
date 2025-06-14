@@ -174,10 +174,7 @@ class Events:
         
         @bot.event
         async def on_audit_log_entry_create(entry: AuditLogEntry):
-            if entry.guild.id not in bot._audit_log_cache:
-                bot._audit_log_cache[entry.guild.id] = deque()
-                
-            bot._audit_log_cache[entry.guild.id].append(entry)
+            bot._audit_log_cache.append(entry)
                     
         
         @bot.event
