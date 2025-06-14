@@ -251,7 +251,7 @@ class Moderation(Cog):
 
     @purge.command(
         name="emojis",
-        aliases=("emotes", "emoji", "emoteonly", "e"),
+        aliases=("emotes", "emoji", "emoteonly"),
         usage="<amount NUMBER>", example="100"
     )
     @MaxConcurrency(1, BucketType.channel, wait=False)
