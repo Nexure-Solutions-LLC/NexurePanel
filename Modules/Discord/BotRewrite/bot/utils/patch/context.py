@@ -106,7 +106,7 @@ class Context(DefaultContextC):
         show_index: bool = True,
     ) -> Optional[Message]:
         if not entries or (isinstance(entries, tuple) and not entries[1]):
-            raise CommandError("> A response was meant to be formatted but no entries were provided.")
+            raise CommandError("A response was meant to be formatted but no entries were provided.")
         
         paginator = PartialFunction(
             Paginator,
