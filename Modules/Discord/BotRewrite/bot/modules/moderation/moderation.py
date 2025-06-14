@@ -661,17 +661,17 @@ class Moderation(Cog):
         invoke_without_command=True
     )
     @HasPermissions(manage_messages=True)
-    async def history(self, ctx: Context, *, member: Optional[Member] = Author):
-        """View the punishment history of a member in the server."""
+    async def history(self, ctx: Context, *, user: Optional[User] = Author):
+        """View the punishment history of a user."""
         
         if not (history := await ctx.bot.database.execute(
             "SELECT case_id, type, moderator_id, reason FROM nexure_moderations WHERE member_id = %s ORDER BY case_id DESC;",
-            member.id
+            user.id
         )):
-            return await ctx.send_error("There is no previously recorded punishment history for that member.")
+            return await ctx.send_error("There is no previously recorded punishment history for that user.")
             
         return await ctx.paginate((
-            ctx.default_embed.set_title(f"Punishment History for '{member}'"),
+            ctx.default_embed.set_title(f"Punishment History for '{user}'"),
             [f"**Case #{case_id}**\n> **Type:** {type}\n> **Moderator:** {moderator} (`{moderator.id}`)\n> **Reason:** {reason}" for case_id, type, moderator_id, reason in history if (moderator := await ctx.bot.fetch_user(moderator_id))]
         ), show_index=False)
         
