@@ -104,7 +104,7 @@ class Moderation(Cog):
 
     @purge.command(
         name="matches",
-        aliases=("match", "contains", "m"),
+        aliases=("match", "contains"),
         usage="<expression TEXT> <amount NUMBER>", example="nigg.*? 100"
     )
     @MaxConcurrency(1, BucketType.channel, wait=False)
