@@ -587,7 +587,7 @@ class Moderation(Cog):
         
     @HybridCommand(
         name="kick",
-        aliases=("kickmember", "k", "kick"),
+        aliases=("kickmember", "k",),
         usage="<member MEMBER> [reason TEXT DEFAULT 'No reason provided']",
         example="@nickderry24 Breaking the rules",
     )
