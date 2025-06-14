@@ -1,3 +1,4 @@
+# Author: Treyten
 from __future__ import annotations
 from bot.utils.converter import User
 
@@ -11,12 +12,16 @@ from discord.ext.commands import (
     max_concurrency as MaxConcurrency
 )
 
-from asyncio import gather
-from typing import Literal, Optional
+from asyncio import gather as GatherTasks
+from typing import Literal, Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from bot import NexureClient
+    from bot.utils.patch import Context
 
 
 class Developer(Cog):
-    def __init__(self, bot: Bot):
+    def __init__(self, bot: NexureClient):
         self.bot = bot
 
 
@@ -85,7 +90,7 @@ class Developer(Cog):
             return await ctx.send_error("This user is already privileged.")
 
         ctx.bot.owner_ids.append(user.id)
-        await gather(*(
+        GatherTasks(*(
             ctx.bot.database.execute("UPDATE nexure_users SET botAuth = 1 WHERE oAuthID = %s;", user.id),
             ctx.send_success(f"Successfully added {user.mention} as a privileged user.")
         ))
@@ -108,7 +113,7 @@ class Developer(Cog):
             return await ctx.send_error("This user is not privileged.")
 
         ctx.bot.owner_ids.remove(user.id)
-        await gather(*(
+        GatherTasks(*(
             ctx.bot.database.execute("UPDATE nexure_users SET botAuth = 0 WHERE oAuthID = %s;", user.id),
             ctx.send_success(f"Successfully revoked {user.mention}'s privileges.")
         ))

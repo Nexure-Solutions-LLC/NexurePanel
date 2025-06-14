@@ -1,10 +1,9 @@
+# Author: Treyten
 from __future__ import annotations
 
 from discord.ext.commands import (
     BucketType,
-    Context,
     CooldownMapping,
-    #Errors
     BadBoolArgument,
     BadInviteArgument,
     BadLiteralArgument,
@@ -28,22 +27,16 @@ from discord.ext.commands import (
 )
 
 from discord import (
-    AllowedMentions,
     AppCommandOptionType,
     AuditLogEntry,
-    ButtonStyle,
-    Color,
-    Embed,
     Guild,
     Interaction,
-    Member,
     Message,
     Permissions
 )
 
 from discord.app_commands import (
     AppCommandError,
-    Command as AppCommand,
     CommandInvokeError,
     TransformerError
 )
@@ -55,10 +48,21 @@ from discord.utils import oauth_url as OAuthURL
 from humanize import naturaldelta as NaturalDelta
 from traceback import format_exception as Traceback
 from tuuid import tuuid as TUUID
-from typing import Any
+from typing import Any, Dict, TYPE_CHECKING
 
 import regex as re
 
+if TYPE_CHECKING:
+    from bot import NexureClient
+    from bot.utils.patch import Context
+
+def multi_replace(text: str, to_replace: Dict[str, str], once: bool = False) -> str:
+    if once:
+        pattern = '|'.join(re.escape(key) for key in to_replace)
+        return re.sub(pattern, lambda m: to_replace[m.group(0)], text, 1)
+    
+    pattern = re.compile('|'.join(re.escape(key) for key in to_replace))
+    return pattern.sub(lambda m: to_replace[m.group(0)], text)
 
 class NoReturn(Exception):
     pass
@@ -78,7 +82,7 @@ def normalize_smartquotes(to_normalize: str) -> str:
 
 
 class Events:
-    def __init__(self, bot: Bot):
+    def __init__(self, bot: NexureClient):
         bot.exceptions = dict()
         self.command_cooldown = CooldownMapping.from_cooldown(
             2, 4, BucketType.member
@@ -184,10 +188,10 @@ class Events:
             if isinstance(error, (AppCommandError, CommandInvokeError, HybridCommandError)) and hasattr(error, "original"):
                 error = error.original
                 
-            if isinstance(error, CommandNotFound):
+            if isinstance(error, (AssertionError, CommandNotFound)):
                 return
             
-            if any(isinstance(getattr(error, "original", error), err) for err in (AssertionError, CheckFailure, NotOwner)):
+            if isinstance(getattr(error, "original", error), (CheckFailure, NotOwner)):
                 return await ctx.send_error("You are not permitted to run this command.")
             
             # - -- - -- - -- - -- - -- - -- - #

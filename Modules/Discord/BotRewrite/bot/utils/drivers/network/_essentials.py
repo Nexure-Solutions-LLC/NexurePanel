@@ -1,3 +1,4 @@
+# Author: Treyten
 from munch import Munch
 from os import environ as ENV
 from pydantic import BaseModel, create_model as _create_model

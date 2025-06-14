@@ -1,3 +1,4 @@
+# Author: Treyten
 from __future__ import annotations
 from bot.utils.converter import dominant_color, Member, User
 
@@ -13,7 +14,6 @@ from discord.ext.commands import (
     max_concurrency as MaxConcurrency
 )
 
-from asyncio import gather
 from contextlib import suppress as SuppressException
 from datetime import datetime as Date
 from discord import ButtonStyle, Embed, Emoji, Member as DiscordMember, PartialEmoji, PartialInviteGuild, User as DiscordUser
@@ -21,11 +21,15 @@ from discord.errors import NotFound
 from discord.ui import Button, View
 from discord.utils import format_dt as FormatDate
 from humanize import ordinal as Ordinal
-from typing import Literal, Optional, Union
+from typing import Literal, Optional, TYPE_CHECKING, Union
+
+if TYPE_CHECKING:
+    from bot import NexureClient
+    from bot.utils.patch import Context
 
 
 class Information(Cog):
-    def __init__(self, bot: Bot):
+    def __init__(self, bot: NexureClient):
         self.bot = bot
 
 
@@ -210,7 +214,7 @@ class Information(Cog):
     @emotes.command(
         name="find",
         aliases=("search",),
-        usage="<name>",
+        usage="<name TEXT>",
         example="find :NickDewwyDewwy:"
     )
     async def emotes_find(self, ctx: Context, *, emote: str):

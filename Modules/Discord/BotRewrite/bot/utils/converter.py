@@ -1,8 +1,8 @@
+# Author: Treyten
 from __future__ import annotations
 
 from discord.ext import commands
 from discord.ext.commands import (
-    Context,
     CommandError,
     Converter,
     GuildConverter,
@@ -16,13 +16,15 @@ from discord.ext.commands import (
 
 from aiohttp import GLOBAL as ClientSession
 from colorthief import ColorThief
-from discord import Asset, Color as DefaultColorC
+from discord import Asset, Color as DefaultColorC, Role as DiscordRole
 from fast_string_match import closest_match
 from io import BytesIO
 from matplotlib.colors import cnames as CNames
 from munch import Munch
-from redis import GLOBAL as Redis
-from typing import Any, Union, Optional
+from typing import Union, Optional, TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from bot.utils.patch import Context
 
 __all__ = (
     "Guild", "GuildConverter",
@@ -35,10 +37,7 @@ __all__ = (
 
 
 class BaseConverter(Converter):
-    async def convert(
-        self,
-        ctx: Context, argument: str
-    ) -> Any:
+    async def convert(self, ctx: Context, argument: str):
         if argument.isnumeric():
             id_ = int(argument)
 
@@ -67,11 +66,7 @@ class User(BaseConverter, UserConverter):
 
 
 class Member(BaseConverter, MemberConverter):
-    async def can_moderate(
-        self, 
-        ctx: "Context", member: Member, 
-        *, action: str = "moderate"
-    ) -> Munch:
+    async def can_moderate(self, ctx: Context, member: Member, *, action: Optional[str] = "moderate") -> Munch:
         message = ""
         
         if member.id == ctx.author.id:
@@ -101,10 +96,7 @@ class TextChannel(BaseConverter, TextChannelConverter):
 
 
 class Role(RoleConverter):
-    async def convert(
-        self,
-        ctx: Context, argument: str
-    ) -> Any:
+    async def convert(self, ctx: Context, argument: str) -> Optional[DiscordRole]:
         if argument.isnumeric():
             id_ = int(argument)
 
@@ -116,13 +108,11 @@ class Role(RoleConverter):
                 raise RoleNotFound(argument)
                 
         try:
-            return await super().convert(
-                ctx, (
-                    argument
-                    if argument.isnumeric() or "<@&" in argument
-                    else closest_match(argument, tuple(map(lambda r: r.name, ctx.guild.roles)))
-                )
-            )
+            return await super().convert(ctx, (
+                argument
+                if argument.isnumeric() or "<@&" in argument
+                else closest_match(argument, tuple(map(lambda r: r.name, ctx.guild.roles)))
+            ))
 
         except commands.RoleNotFound:
             if argument.isnumeric():
@@ -131,7 +121,7 @@ class Role(RoleConverter):
 
 
 class Color(Converter):
-    async def convert(self, _, argument: str) -> Optional[Union[str, DefaultColorC]]:
+    async def convert(self, _, argument: str) -> Optional[DefaultColorC]:
         if argument.lower() in ("random", "rand", "r"):
             return DefaultColorC.random()
 
@@ -162,6 +152,7 @@ MessageConverter = Message
 RoleConverter = Role
 UserConverter = User
 TextChannelConverter = TextChannel
+
 
 async def dominant_color(image: Union[ Asset, str, bytes ]) -> DefaultColorC:
     if isinstance(image, Asset):

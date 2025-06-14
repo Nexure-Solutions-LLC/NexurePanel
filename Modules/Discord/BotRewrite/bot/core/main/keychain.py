@@ -1,3 +1,4 @@
+# Author: Treyten
 from __future__ import annotations
 from bot.utils.drivers.network._essentials import HEADERS
 

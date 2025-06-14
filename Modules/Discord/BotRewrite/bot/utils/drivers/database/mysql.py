@@ -1,3 +1,4 @@
+# Author: Treyten
 from __future__ import annotations
 
 from asyncmy import create_pool
@@ -6,8 +7,11 @@ from functools import partial as PartialFunction
 from munch import Munch
 from os import environ as Env
 from pymysql import IntegrityError
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Tuple, TYPE_CHECKING
 from typing_extensions import Self
+
+if TYPE_CHECKING:
+    from bot import NexureClient
 
 __all__ = (
     "MySQL",
@@ -30,7 +34,7 @@ class MySQL:
         "fetchval"
     )
     
-    def __init__(self, bot: Bot):
+    def __init__(self, bot: NexureClient):
         self.__bot = bot
         self.__pool = None
         self.__event = Event()

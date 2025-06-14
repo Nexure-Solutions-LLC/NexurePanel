@@ -1,6 +1,6 @@
+# Author: Treyten
 from functools import wraps
 from typing import Any, Callable, Optional
-import cloudpickle
 
 
 def Offload(function: Callable) -> Optional[Callable]:
@@ -11,6 +11,6 @@ def Offload(function: Callable) -> Optional[Callable]:
 
     @wraps(function)
     async def wrapper(*args: Any, **kwargs: Any) -> Any:
-        return await GLOBAL.submit(cloudpickle.loads(cloudpickle.dumps(function)), *args, **kwargs)
+        return await GLOBAL.submit(function, *args, **kwargs)
 
     return wrapper

@@ -1,4 +1,4 @@
-
+# Author: Treyten
 from bot.core.main import NexureClient
 from os.path import abspath, dirname
 

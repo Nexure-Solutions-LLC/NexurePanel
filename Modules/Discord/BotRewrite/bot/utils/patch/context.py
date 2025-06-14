@@ -1,4 +1,4 @@
-
+# Author: Treyten
 from __future__ import annotations
 from ..paginator import embed_creator, Paginator, text_creator
 
@@ -33,16 +33,9 @@ from typing import (
 
 
 class Context(DefaultContextC):
-    __slots__ = (
-        "response",
-        "send_success",
-        "send_error"
-    )
-    
-    def __init__(
-        self: Context,
-        *args: Tuple[Any], **kwargs: Dict[ str, Any ]
-    ):
+    __slots__ = ("response", "send_success", "send_error")
+
+    def __init__(self, *args: Tuple[Any], **kwargs: Dict[ str, Any ]):
         super().__init__(*args, **kwargs)
         
         self.response = None
@@ -51,7 +44,7 @@ class Context(DefaultContextC):
         
         
     @CachedProperty
-    def default_embed(self: Context) -> Embed:
+    def default_embed(self) -> Embed:
         return Embed(color=self.bot.config.colors.main, timestamp=Date.now()).set_author(
             name="Nexure Solutions", 
             icon_url=self.bot.user.display_avatar
@@ -59,7 +52,7 @@ class Context(DefaultContextC):
         
     
     async def send_or_reply(
-        self: Context,
+        self,
         *args: Tuple[Any], **kwargs: Dict[ str, Any ]
     ) -> Message:
         try:
@@ -70,7 +63,7 @@ class Context(DefaultContextC):
         
         
     async def send(
-        self: Context,
+        self,
         *args: Tuple[Any], **kwargs: Dict[ str, Any ]
     ) -> Message:
         
@@ -86,7 +79,7 @@ class Context(DefaultContextC):
         
         
     async def respond(
-        self: Context,
+        self,
         *args: Tuple[Any], **kwargs: Dict[ str, Any ]
     ) -> Message:
         if args and isinstance(args[0], str):
@@ -104,7 +97,7 @@ class Context(DefaultContextC):
         
 
     async def paginate(
-        self: Context,
+        self,
         entries: Union[ Tuple[ Embed, List[str] ], List[Embed], str ],
         *, embed: Optional[Embed] = None,
         patch: Optional[Message] = None,

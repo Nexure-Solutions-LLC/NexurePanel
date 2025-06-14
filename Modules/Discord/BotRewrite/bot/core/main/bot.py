@@ -1,3 +1,4 @@
+# Author: Treyten
 from __future__ import annotations
 from bot.core.main.keychain import Keychain
 from bot.core.main.literals import Configuration, Colors, Emojis
@@ -7,11 +8,9 @@ from bot.utils.drivers.network import ClientSession
 from bot.utils.worker import dask as Dask
 from bot.utils.patch import Context
 
-from discord import Interaction, Member, TextChannel, VoiceChannel
+from discord import Interaction, Member, Message, TextChannel, VoiceChannel
 from discord.abc import GuildChannel
-from discord.ext.commands import (
-    Bot as NonShardedBot
-)
+from discord.ext.commands import Bot as NonShardedBot
 
 from asyncio import CancelledError, Event, sleep, wait_for
 from collections import deque
