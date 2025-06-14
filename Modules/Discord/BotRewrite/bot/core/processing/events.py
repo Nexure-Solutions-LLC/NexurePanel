@@ -188,7 +188,7 @@ class Events:
             if isinstance(error, (AppCommandError, CommandInvokeError, HybridCommandError)) and hasattr(error, "original"):
                 error = error.original
                 
-            if isinstance(error, (AssertionError, CommandNotFound)):
+            if isinstance(getattr(error, "original", error), (AssertionError, CommandNotFound)):
                 return
             
             if isinstance(getattr(error, "original", error), (CheckFailure, NotOwner)):
