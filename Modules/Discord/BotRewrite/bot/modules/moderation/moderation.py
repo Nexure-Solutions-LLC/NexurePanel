@@ -15,7 +15,7 @@ from discord.ext.commands import (
 from asyncio import gather as GatherTasks
 from contextlib import suppress as SuppressException
 from datetime import datetime as Date
-from discord import Embed, HTTPException
+from discord import Embed, HTTPException, Member as DiscordMember, User as DiscordUser
 from typing import Literal, Optional, TYPE_CHECKING, Union
 
 import regex
@@ -443,7 +443,7 @@ class Moderation(Cog):
         example="@nickderry24 1 Breaking the rules"
     )
     @HasPermissions(ban_members=True)
-    async def ban(self, ctx: Context, user: Union[ Member, User ], days: Optional[Literal[ 0, 1, 7 ]] = 0, *, reason: Optional[str] = "No reason provided"):
+    async def ban(self, ctx: Context, user: Union[ DiscordMember, DiscordUser ], days: Optional[Literal[ 0, 1, 7 ]] = 0, *, reason: Optional[str] = "No reason provided"):
         """Ban the mentioned user from the server."""
         
         if await ctx.bot.redis.ratelimited(f"moderations:removal:{ctx.guild.id}", 15, 300):
