@@ -210,8 +210,7 @@ class Events:
             # - -- - -- - -- - -- - -- - -- - #
             
             if isinstance(error, CommandError):
-                ret = str(error)[29:].capitalize().rstrip(".")+"."
-                return await ctx.send_error(ret, delete_after=None)
+                return await ctx.send_error(str(error).capitalize().rstrip(".")+".", delete_after=None)
             
             if isinstance(error, TransformerError):
                 if error.type == AppCommandOptionType.user and "to Member" in str(error):
