@@ -1,7 +1,7 @@
 # Author: Treyten
 from __future__ import annotations
-from bot.utils.converter import dominant_color, Member, Message, User
-from bot.utils.view import Confirmation
+from bot.utils.converter import Member, Message, User
+from bot.utils.views import Confirmation
 
 from discord.ext.commands import (
     BucketType,
