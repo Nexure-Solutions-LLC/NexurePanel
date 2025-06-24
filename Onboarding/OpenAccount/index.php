@@ -25,7 +25,7 @@
             </div>
             <div class="margin-left-80px">
                 <h5 class="font-20px">Let's open your <?php echo $VariableDefinitionHandler->organizationShortName; ?> account</h5>
-                <div class="nexure-card margin-top-30px width-70" style="text-align:left; align-items:start;">
+                <div class="nexure-card margin-top-30px width-70" style="text-align:left; align-items:start; border:1px solid transparent !important;">
                     <div class="card-body">
                         <p><strong>Before you start, you should know:</strong></p>
                         <div>

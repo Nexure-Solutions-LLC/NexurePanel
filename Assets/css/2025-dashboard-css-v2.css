@@ -154,6 +154,10 @@ body {
     padding-bottom:0px !important;
 }
 
+.nexure-navbar-sticky {
+    box-shadow: none !important;
+}
+
 .search-container {
     padding:0 !important;
     margin:0 !important;
@@ -255,7 +259,8 @@ body {
     border-top: 1px solid #ddd !important;
 }
 
-.nexure-card:hover {
+.nexure-card:hover,
+.nexure-card:focus {
     border: 1px solid transparent !important;
 }
 
@@ -464,6 +469,7 @@ body {
 
 body.dark-mode {
     background-color:rgb(0, 0, 0) !important;
+    background-image: url("/Assets/img/SystemImages/Backgrounds/LoginWallpaperDark.webp");
 }
 
 .dark-mode .nexure-logo {
@@ -471,20 +477,26 @@ body.dark-mode {
 }
 
 .dark-mode .nexure-header {
-    background-color: #000000 !important;
+    background: rgba(25, 25, 30, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(46, 46, 46, 0.2);
 }
 
 .dark-mode .background-darker-300 {
-    background-color: #0a0a0a !important;
+    background: rgba(25, 25, 30, 0.15) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
 .dark-mode .border-top-grey-300 {
-    border-top: 1px solid #222 !important;
-    background-color: #121212 !important;
+    background: rgba(25, 25, 30, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    border-top: 1px solid rgba(46, 46, 46, 0.2);
 }
 
 .dark-mode .nexure-table-plugin th {
-    background-color: #333;
+    background-color: #29292991;
+    backdrop-filter: saturate(120%) blur(10px);
     border-bottom: 1px solid #444;
     border-top:1px solid #444;
 }
@@ -494,29 +506,46 @@ body.dark-mode {
 }
 
 .dark-mode .background-grey-100 {
-    background-color: #333;
+    background-color: #29292977;
+    backdrop-filter: saturate(120%) blur(10px);
     padding:10px;
+    border: 1px solid rgba(46, 46, 46, 0.2) !important;
     border-radius: 6px;
+}
+
+.dark-mode .nexure-navbar-sticky::after {
+    box-shadow: none !important;
 }
 
 .dark-mode .customer-quick-actions-img {
     border: 1px solid #222;
+    background-color: #1d1d1d9d;
+}
+
+.dark-mode .nexure-textbox.searchbar {
+    background-color: #1d1d1d94 !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
 }
 
 .dark-mode .border-right {
-    border-right:1px solid #313131;
+    border-right: 1px solid rgba(46, 46, 46, 0.2) !important;
 }
 
 .dark-mode .card-header {
-    border-bottom: 1px solid #222 !important;
+    border-bottom: 1px solid rgba(46, 46, 46, 0.2) !important;
 }
 
 .dark-mode .card-footer {
-    border-top: 1px solid #222 !important;
+    border-top: 1px solid rgba(46, 46, 46, 0.2) !important;
+}
+
+.dark-mode .nexure-card {
+    background-color: #0a0a0a36 !important;
+    border:1px solid #3d3d3d3a !important;
 }
 
 .dark-mode .nexure-card:hover {
-    border: 1px solid #333 !important;
+    border:1px solid #3d3d3d3a !important;
 }
 
 .dark-mode .restricted-notice {

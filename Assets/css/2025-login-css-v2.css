@@ -87,6 +87,10 @@ a:hover {
     padding-bottom:8px !important;
 }
 
+.nexure-navbar-sticky {
+    box-shadow: none !important;
+}
+
 /* ====================== Login Content Styles ===================== */
 
 .nexure-login-section {
@@ -476,6 +480,19 @@ body.dark-mode {
 
 .dark-mode .gray-100 {
     color: #cfcfcf !important;
+}
+
+.dark-mode .nexure-card {
+    background-color: #0a0a0a36 !important;
+    border:1px solid #3d3d3d3a !important;
+}
+
+.dark-mode .nexure-card:hover {
+    border:1px solid #3d3d3d3a !important;
+}
+
+.dark-mode .nexure-navbar-sticky {
+    box-shadow: none !important;
 }
 
 @media (min-width: 1299px) and (max-width: 1800px) {
