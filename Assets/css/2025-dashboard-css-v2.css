@@ -236,7 +236,7 @@ body {
 
 .card-header {
     padding-bottom:5px;
-    border-bottom: 1px solid #ddd !important;
+    border-bottom: 1px solid #dddddda2 !important;
 }
 
 .client-business-andor-profile-logo {

@@ -27,7 +27,8 @@
 
     Note from Developer: 
 
-    Whatever.
+    To my Angel you’ve been my light, my motivation, and the reason I keep pushing forward.
+    I’m so grateful for you and you're truly one of a kind. I love you.
 
     Designed and Developed by Nexure in Pennsylvania.
 

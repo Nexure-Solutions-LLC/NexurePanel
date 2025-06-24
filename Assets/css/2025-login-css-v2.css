@@ -304,6 +304,10 @@ a:hover {
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
+.nexure-card:hover {
+    border: 1px solid transparent !important;
+}
+
 /* ====================== Opening of accounts and online-access Styles ===================== */
 
 .nexure-open-online-access-and-account {
