@@ -44,6 +44,7 @@ This is the official repository for Nexure Panel that will run virtually every m
 - Mikey W¹
 - Joy Clens²
 - AlexySSH³
+- Alfie C
 
 ¹Mikey W wrote the baseplate `/Modules/NexureSolutions/System/Handlers/index.php` file we have refactored the code.
 ²Joy Clens wrote portions of the Discord Integration Module located at `/Modules/Discord/Bot` sadly this is all she will probably write for the CRM system.
