@@ -107,11 +107,11 @@
                             <label for="nexureid" class="font-12px"><?php echo $VariableDefinitionHandler->organizationShortName; ?> ID</label><br>
                             <input class="nexure-textbox width-100" name="nexureid" id="nexureid" type="email" placeholder="me@example.com" />
                         </div>
-                        <div class="form-control">
+                        <div class="form-control margin-top-30px">
                             <label for="password" class="font-12px"><?php echo $LANG_LOGIN_PASSWORD; ?></label><br>
                             <input class="nexure-textbox width-100" name="password" id="password" type="password" placeholder="Super Secret Password" />
                         </div>
-                        <div class="form-control margin-top-20px">
+                        <div class="form-control margin-top-40px">
                             <button type="submit" name="submit" class="nexure-button primary width-100"><?php echo $LANG_LOGIN_BUTTON; ?></button>
                         </div>
                     </form>
@@ -121,7 +121,7 @@
                             <p class="nexure-login-sublink" style="font-size:12px;"><?php echo $LANG_LOGIN_AUTH_ERROR_TEXT; ?></p>
                         </div>
                     <?php endif; ?>
-                    <div class="after-login-area display-flex align-center justify-content-space-between margin-top-30px margin-bottom-10px padding-top-10px">
+                    <div class="after-login-area display-flex align-center justify-content-space-between margin-top-20px margin-bottom-10px padding-top-10px">
                         <p class="margin-top-10px gray-100 font-12px">Forgot Login? <a class="brand-link font-12px" href="/ResetPassword">Reset it</a>.</a>
                         <p class="margin-top-10px gray-100 font-12px">Not enrolled? <a class="brand-link font-12px" href="/Register">Register Now</a>.</a>
                     </div>

@@ -68,7 +68,7 @@
     </style>
 
     <section class="section nexure-open-online-access-and-account" style="padding-bottom:7%;">
-        <div class="container nexure-container">
+        <div class="container nexure-container padding-left-5per padding-top-30px">
             <div style="display:flex; align-items:top;">
                 <div>
                     <h5 class="font-18px">Need help?</h5>

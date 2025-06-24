@@ -52,7 +52,7 @@
             <meta name="countryCode" content="us"/>
             <meta name="focusArea" content="No Contact Module"/>
             <link rel="canonical" href="https://nexuresolutions.com/"/>
-            <link href="https://nexuresolutions.com/assets/css/2024-11-04-styling.css" rel="stylesheet" type="text/css" />
+            <link href="https://nexuresolutions.com/assets/css/v2/2025-15-06-styling.css" rel="stylesheet" type="text/css" />
             <link rel="stylesheet" href="https://nexuresolutions.com/assets/css/2024-11-08-fonts.css">
             <link rel="stylesheet" href="/Assets/css/2025-dashboard-css-v2.css" />
             

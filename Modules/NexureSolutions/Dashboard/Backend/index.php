@@ -86,4 +86,45 @@
 
     }
 
+    $redirectMap = [
+        "Client" => [
+            "authorized user" => "/Dashboard/customers/authorizedUserView",
+            "partner" => "/Dashboard/Partners",
+            "administrator" => "/Dashboard/administration"
+        ],
+        "Administration" => [
+            "authorized user" => "/Dashboard/Customers/AuthorizedUser",
+            "partner" => "/Dashboard/Partners",
+            "customer" => "/Dashboard/Customers"
+        ],
+        "Authorized User" => [
+            "customer" => "/Dashboard/Customers",
+            "partner" => "/Dashboard/Partners",
+            "administrator" => "/Dashboard/Administration"
+        ],
+        "Partners" => [
+            "authorized user" => "/Dashboard/Customers/AuthorizedUserView",
+            "administrator" => "/Dashboard/Administration",
+            "customer" => "/Dashboard/Customers"
+        ]
+    ];
+
+    $redirectUrl = $redirectMap[$PageType][strtolower($CurrentOnlineAccessAccount->accessType->name)] ?? null;
+
+    $clientPages = [
+        "Client",
+        "Customer",
+        "Account Management | Customer",
+        "Account Management | Partners",
+        "Account Management | Authorized User",
+        "Web Design Services Management | Client"
+    ];
+
+    if ($redirectUrl) {
+
+        header("Location: $redirectUrl");
+        exit();
+        
+    }
+
 ?>

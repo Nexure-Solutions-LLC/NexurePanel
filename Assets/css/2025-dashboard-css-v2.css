@@ -25,6 +25,9 @@
 body {
     margin:0;
     padding:0;
+    background-image: url("/Assets/img/SystemImages/Backgrounds/LoginWallpaper.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .text-bold  {
@@ -55,7 +58,9 @@ body {
 .customer-quick-actions-img {
     height: 40px;
     width: 40px;
-    border: 1px solid #eee;
+    background-color: #dddcdc86;
+    backdrop-filter: blur(2px) saturate(180%);
+    border: 1px solid #ddd;
     padding: 4px;
     border-radius: 6px;
     margin-bottom: 6%;
@@ -140,7 +145,11 @@ body {
     top:0 !important;
     left:0;
     width:100%;
-    background-color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(200%);
+    -webkit-backdrop-filter: blur(10px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     padding-top:0px !important;
     padding-bottom:0px !important;
 }
@@ -152,7 +161,9 @@ body {
 
 .searchbar {
     margin:0 !important;
-    background-color: #fff !important;
+    background-color: #f2f4f85e !important;
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
     border: 1px solid #ddd !important;
     padding:8px 24px !important;
     border-radius: 999px !important;
@@ -164,7 +175,9 @@ body {
 }
 
 .background-darker-300 {
-    background-color: #f1f1f1 !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) saturate(200%);
+    -webkit-backdrop-filter: blur(10px) saturate(200%);
     padding-top:8px;
     padding-bottom:8px;
 }
@@ -181,8 +194,10 @@ body {
 }
 
 .border-top-grey-300 {
-    border-top: 1px solid #ddd;
-    background-color: #f8f8f9 !important;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px) saturate(200%);
+    -webkit-backdrop-filter: blur(10px) saturate(200%);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding-top:12px;
     padding-bottom:10px;
 }
@@ -212,6 +227,11 @@ body {
 
 .nexure-card {
     padding:20px !important;
+    background-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px) saturate(140%);
+    -webkit-backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgba(228, 227, 227, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .card-header {
@@ -236,11 +256,13 @@ body {
 }
 
 .nexure-card:hover {
-    border: 1px solid #ddd !important;
+    border: 1px solid transparent !important;
 }
 
 .background-grey-100 {
-    background-color:#dddcdc;
+    background-color: #dddcdc86;
+    border: 1px solid rgba(221, 220, 220, 0.377);
+    backdrop-filter: saturate(120%) blur(10px);
     padding:10px;
     border-radius: 6px;
 }
@@ -271,7 +293,8 @@ body {
 .nexure-table-plugin th {
     border-top:1px solid #ddd;
     border-bottom: 1px solid #ddd;
-    background-color: #e7e7e7;
+    background-color: #dddcdc86;
+    backdrop-filter: blur(2px) saturate(180%);
     font-weight: 600 !important;
 }
 

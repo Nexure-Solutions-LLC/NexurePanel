@@ -14,7 +14,7 @@
                                                                                  
 
     This site was created by Nexure Solutions LLP. http://www.nexuresolutions.com
-    Last Published: May 28 2025 at 11:415:03 PM (Eastern Time)
+    Last Published: June 21 2025 at 03:41:14 PM (Eastern Time)
 
     Creator/Developer: Nexure Development Team
 
@@ -27,7 +27,8 @@
 
     Note from Developer: 
 
-    Whatever.
+    To my Angel you’ve been my light, my motivation, and the reason I keep pushing forward.
+    I’m so grateful for you and you're truly one of a kind. I love you.
 
     Designed and Developed by Nexure in Pennsylvania.
 
@@ -52,7 +53,7 @@
         <meta name="countryCode" content="us"/>
         <meta name="focusArea" content="No Contact Module"/>
         <link rel="canonical" href="https://nexuresolutions.com/"/>
-        <link href="https://nexuresolutions.com/assets/css/2024-11-04-styling.css" rel="stylesheet" type="text/css" />
+        <link href="https://nexuresolutions.com/assets/css/v2/2025-15-06-styling.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://nexuresolutions.com/assets/css/2024-11-08-fonts.css">
         <link rel="stylesheet" href="/Assets/css/2025-login-css-v2.css" />
 
