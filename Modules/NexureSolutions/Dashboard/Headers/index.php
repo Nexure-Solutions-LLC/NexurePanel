@@ -30,6 +30,10 @@
     To my Angel you’ve been my light, my motivation, and the reason I keep pushing forward.
     I’m so grateful for you and you're truly one of a kind. I love you.
 
+    I want to give a big thanks to Alfie for helping on this project and making sure I remain
+    mentally sane not only professionally but personally. You were there to talk to and understand
+    when no one else was, you are a real one for that and I cant thank you enough bro.
+
     Designed and Developed by Nexure in Pennsylvania.
 
     Dear rule breakers, questioners, straight-A students who skipped class: We want you.

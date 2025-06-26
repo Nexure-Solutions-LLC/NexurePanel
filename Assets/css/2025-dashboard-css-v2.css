@@ -121,6 +121,14 @@ body {
     padding:10px !important;
 }
 
+.brand-link {
+    color:#000000;
+}
+
+.brand-link:hover {
+    color:#424242;
+}
+
 /* ====================== Container Styles ===================== */
 
 .container, 
@@ -211,15 +219,16 @@ body {
 }
 
 .nav-links a.active {
-    background-color: #8fc8f7;
+    background-color: #000000;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-right: 5px;
     border-radius: 999px;
+    color:#dbdbdb;
 }
 
 .nav-links a.active:hover {
-    background-color: #8fc8f7 !important;
+    background-color: #272727 !important;
 }
 
 /* ====================== Section Styles ===================== */
@@ -296,8 +305,8 @@ body {
 }
 
 .nexure-table-plugin th {
-    border-top:1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     background-color: #dddcdc86;
     backdrop-filter: blur(2px) saturate(180%);
     font-weight: 600 !important;
@@ -357,6 +366,18 @@ body {
 }
 
 .modal-content .nexure-button.primary:hover {
+    background-color: #303030;
+    border-color: #303030;
+    color:#fff;
+}
+
+.nexure-button.primary {
+    background-color: #000;
+    border-color: #000;
+    color:#fff;
+}
+
+.nexure-button.primary:hover {
     background-color: #303030;
     border-color: #303030;
     color:#fff;
@@ -494,11 +515,16 @@ body.dark-mode {
     border-top: 1px solid rgba(46, 46, 46, 0.2);
 }
 
+.dark-mode .nexure-table-plugin {
+    background-color: transparent !important;
+}
+
 .dark-mode .nexure-table-plugin th {
     background-color: #29292991;
     backdrop-filter: saturate(120%) blur(10px);
     border-bottom: 1px solid #444;
-    border-top:1px solid #444;
+    border-top: 1px solid rgba(51, 51, 51, 0.2);
+    border-bottom: 1px solid rgba(51, 51, 51, 0.2);
 }
 
 .dark-mode .nexure-table-plugin {
@@ -600,6 +626,12 @@ body.dark-mode {
 }
 
 .dark-mode .nav-links a.active {
+    background-color: #fff !important;
+    color: black !important;
+}
+
+.dark-mode .nav-links a.active:hover {
+    background-color: #e0e0e0 !important;
     color: black !important;
 }
 
@@ -616,6 +648,26 @@ body.dark-mode {
 
 .dark-mode .nexure-textbox.grey-400 {
     background-color: #222 !important;
+}
+
+.dark-mode .brand-link {
+    color:#f1f1f1;
+}
+
+.dark-mode .brand-link:hover {
+    color:#d3d3d3;
+}
+
+.dark-mode .nexure-button.primary {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color:#000000;
+}
+
+.dark-mode .nexure-button.primary:hover {
+    background-color: #dddddd;
+    border-color: #dddddd;
+    color:#000000;
 }
 
 /* ====================== Mobile Styles ===================== */
