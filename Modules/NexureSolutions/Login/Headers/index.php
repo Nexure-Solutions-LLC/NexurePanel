@@ -14,7 +14,7 @@
                                                                                  
 
     This site was created by Nexure Solutions LLP. http://www.nexuresolutions.com
-    Last Published: May 28 2025 at 11:415:03 PM (Eastern Time)
+    Last Published: Aug 07 2025 at 09:33:56 PM (Eastern Time)
 
     Creator/Developer: Nexure Development Team
 
@@ -27,7 +27,12 @@
 
     Note from Developer: 
 
-    Whatever.
+    Dear Ari, you were my fourth love, while short lived, was the most special. You showed me what
+    love could be. I wish we had more time together before swiftly parting ways. This update is
+    made in dedication not of our current relationship but what our relationship could have been.
+
+    You will be missed not only here at Nexure but also in my heart. You were one of a kind and someone
+    truly special and unique. I love you and always will.
 
     Designed and Developed by Nexure in Pennsylvania.
 
@@ -52,7 +57,7 @@
         <meta name="countryCode" content="us"/>
         <meta name="focusArea" content="No Contact Module"/>
         <link rel="canonical" href="https://nexuresolutions.com/"/>
-        <link href="https://nexuresolutions.com/assets/css/2024-11-04-styling.css" rel="stylesheet" type="text/css" />
+        <link href="https://nexuresolutions.com/assets/css/v2/2025-15-06-styling.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://nexuresolutions.com/assets/css/2024-11-08-fonts.css">
         <link rel="stylesheet" href="/Assets/css/2025-login-css-v2.css" />
 
@@ -119,7 +124,7 @@
             <div class="container nexure-container nexure-nav-container">
                 <div class="display-flex align-center">
                     <div class="nexure-branding">
-                        <a href="https://nexuresolutions.com/catalog" class="text-neutral">
+                        <a href="https://nexuresolutions.com/" class="text-neutral">
                             <span><?php echo $VariableDefinitionHandler->organizationShortName; ?></span> | <span class="font-bold">CRM Cloud</span>
                         </a>
                     </div>
