@@ -26,10 +26,6 @@ body {
     margin:0;
     padding:0;
     background-color: #f1f1f1;
-    background-image: url("/Assets/img/SystemImages/Backgrounds/LoginWallpaper.webp");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
     height:100vh;
 }
 
@@ -53,6 +49,14 @@ a:hover {
 
 .arrow {
     padding-top: 2px;
+}
+
+.login-background {
+    background-image: url("/Assets/img/SystemImages/Backgrounds/LoginWallpaper.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100% !important;
 }
 
 /* ====================== Container Styles ===================== */
