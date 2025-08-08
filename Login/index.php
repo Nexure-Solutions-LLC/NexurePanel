@@ -96,12 +96,12 @@
         <!-- Login Page main content area -->
 
         <div class="nexure-login-section">
-            <div class="container nexure-container">
-                <div class="logo-area margin-bottom-30px">
-                    <img src="<?php echo $VariableDefinitionHandler->organizationSquareLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo light-mode">
-                    <img src="<?php echo $VariableDefinitionHandler->organizationSquareLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo dark-mode">
-                </div>
-                <div class="nexure-login-content height-100">
+            <div class="nexure-login-content height-100">
+                <div class="container nexure-container">
+                    <div class="logo-area margin-bottom-30px">
+                        <img src="<?php echo $VariableDefinitionHandler->organizationSquareLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo light-mode">
+                        <img src="<?php echo $VariableDefinitionHandler->organizationSquareLogo; ?>" loading="lazy" alt="Nexure Solutions Logo" class="nexure-logo square-logo dark-mode">
+                    </div>
                     <form action="" method="POST" class="nexure-login-form" id="nexure-form-plugin">
                         <div class="form-control margin-top-10px">
                             <label for="nexureid" class="font-12px"><?php echo $VariableDefinitionHandler->organizationShortName; ?> ID</label><br>

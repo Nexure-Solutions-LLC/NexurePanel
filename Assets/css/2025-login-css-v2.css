@@ -26,7 +26,11 @@ body {
     margin:0;
     padding:0;
     background-color: #f1f1f1;
-    height:100%;
+    background-image: url("/Assets/img/SystemImages/Backgrounds/LoginWallpaper.webp");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:100vh;
 }
 
 a {
@@ -67,9 +71,10 @@ a:hover {
     top:0 !important;
     left:0;
     width:100%;
-    background-color: #f1f1f1 !important;
     padding-top:8px !important;
     padding-bottom:8px !important;
+    border: 1px solid rgba(228, 227, 227, 0.2) !important;
+    box-shadow: 0 4px 30px rgba(77, 76, 76, 0.2) !important;
 }
 
 #langPreference {
@@ -79,26 +84,28 @@ a:hover {
 /* ====================== Login Content Styles ===================== */
 
 .nexure-login-section {
-    margin-top:8%;
+    position: fixed;
+    left:0;
+    bottom:0;
+    top:0;
+    height:100%;
+    width: 30%;   
+    display: flex;
+    align-items: center;
+    background-color: rgba(245, 245, 247, .2);
+    backdrop-filter: saturate(120%) blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(255, 255, 255, 0.05), inset 0 0 10px rgba(255, 255, 255, 0.1);
+    padding:20px;
 }
 
 .nexure-login-content {
-    background-image: radial-gradient(circle at 50% 100%, #ffffff 4%, #e6e6e6 58%), url(https://assets.website-files.com/649c8fc…/649d89f…_Noise.png) !important;
-    background-position: 0 0, 0 0 !important;
-    background-size: auto, auto !important;
-    border:1px solid #ddd;
-    padding:20px;
-    border-radius:20px;
-    width:20%;
-    margin-left:auto;
-    margin-right:auto;
+    width:100%;
+    margin-top:-30% !important;
 }
 
 .square-logo {
-    width:80px !important;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+    width:50px !important;
 }
 
 .nexure-logo {
@@ -142,6 +149,18 @@ a:hover {
     color: #363636;
     font-size: 14px;
     margin-top: 10px;
+}
+
+.nexure-textbox {
+    border: 1px solid #ddd !important;
+    background-color: #f2f4f85e !important;
+    backdrop-filter: blur(10px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(140%) !important;
+    color: #000 !important;
+}
+
+.nexure-search-heading::placeholder {
+    color: #414141 !important;
 }
 
 .nexure-login-sublink a {
@@ -320,8 +339,10 @@ a:hover {
     padding-top:20px;
     padding-bottom:20px;
     z-index: 999 !important;
-    background-color: #f1f1f1;
-    border-top:1px solid #ddd;
+    background-color: rgba(245, 245, 247, .2);
+    backdrop-filter: blur(2px) saturate(180%);
+    border-top: 1px solid rgba(228, 227, 227, 0.2) !important;
+    box-shadow: 0 4px 30px rgba(77, 76, 76, 0.2) !important;
 }
 
 /* ====================== Dark Mode Styles ===================== */
@@ -335,7 +356,11 @@ body.dark-mode {
 }
 
 .dark-mode .nexure-header {
-    background-color: #000000 !important;
+    background: rgba(25, 25, 30, 0.1) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border: 1px solid rgba(46, 46, 46, 0.2) !important;
+    box-shadow: none !important;
 }
 
 .dark-mode a {
@@ -355,19 +380,23 @@ body.dark-mode {
 }
 
 .dark-mode .gray-100 {
-    color:#8b8b8b !important;
+    color:#d6d6d6 !important;
 }
 
 .dark-mode .nexure-footer {
-    background-color: #000000;
-    border-top:1px solid #222;
+    background: rgba(25, 25, 30, 0.1) !important;
+    backdrop-filter: blur(20px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+    border-top: 1px solid rgba(46, 46, 46, 0.2) !important;
+    box-shadow: none !important;
 }
 
-.dark-mode .nexure-login-content {
-    background-image: radial-gradient(circle at 50% 100%, #1f1f1f 4%, #0c0c0c 58%), url(https://assets.website-files.com/649c8fc…/649d89f…_Noise.png) !important;
-    background-position: 0 0, 0 0 !important;
-    background-size: auto, auto !important;
-    border:1px solid #222;
+.dark-mode .nexure-login-section {
+    background-color: rgba(0, 0, 0, 0.466);
+    -webkit-backdrop-filter: saturate(180%) blur(40px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .dark-mode .after-login-area {
@@ -381,6 +410,18 @@ body.dark-mode {
 
 .dark-mode .industry-div:hover {
     background-color: rgba(149, 157, 165, 0.2) !important;
+}
+
+.dark-mode .nexure-textbox {
+    border: 1px solid #333 !important;
+    background-color: #1b1b1b54 !important;
+    backdrop-filter: blur(10px) saturate(140%) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(140%) !important;
+    color: #dbdbdb !important;
+}
+
+.dark-mode .nexure-search-heading::placeholder {
+    color: #cecece !important;
 }
 
 .dark-mode .onboarding-button {
