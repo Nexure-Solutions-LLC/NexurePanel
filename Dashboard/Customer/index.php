@@ -116,7 +116,7 @@
                                 <?php if ($NexureModuleHandler->isModuleEnabled(82)): ?>
                                     <div>
                                         <a href="/Dashboard/Customer/QuickActions/SpeedTest/" class="quick-actions-link">
-                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/page-speed.png" />
+                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/performance.png" />
                                             <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_RUN_SPEEDTEST_TILE; ?></p>
                                             <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_RUN_SPEEDTEST_SUBTEXT; ?></p>
                                         </a>
@@ -125,7 +125,7 @@
                                 <?php if ($NexureModuleHandler->isModuleEnabled(82)): ?>
                                     <div>
                                         <a href="/Modules/NexureSolutions/Hosting/ManageHosting/Backups" class="quick-actions-link">
-                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/synchronize.png" />
+                                            <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/transfer-data.png" />
                                             <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_BACKUPS_TILE; ?></p>
                                             <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_BACKUPS_SUBTEXT; ?></p>
                                         </a>
@@ -133,7 +133,7 @@
                                 <?php endif; ?>
                                 <div>
                                     <a href="/Dashboard/Customer/QuickActions/Logs/" class="quick-actions-link">
-                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/log-file.png" />
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/newspaper.png" />
                                         <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_LOG_FILES_TILE; ?></p>
                                         <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_LOG_FILES_SUBTEXT; ?></p>
                                     </a>
@@ -149,7 +149,7 @@
                                 <?php endif; ?>
                                 <div>
                                     <a href="/Dashboard/Customer/QuickActions/Monitoring/" class="quick-actions-link">
-                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/monitoring.png" />
+                                        <img class="customer-quick-actions-img" src="/Assets/img/SystemImages/Icons/presentation.png" />
                                         <p class="text-bold no-padding no-margin font-14px"><?php echo $LANG_MONITORING_TILE; ?></p>
                                         <p class="no-padding no-margin" style="padding-top:6%; font-size:12px;"><?php echo $LANG_MONITORING_SUBTEXT; ?></p>
                                     </a>

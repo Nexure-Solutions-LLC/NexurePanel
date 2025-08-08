@@ -62,7 +62,7 @@ body {
 }
 
 .account-status-badge {
-    border-radius: 4px;
+    border-radius: 999px;
     padding: 4px 12px;
     font-size: 12px;
     margin-top: 0;
